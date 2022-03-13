@@ -19,8 +19,8 @@ public class Board implements Serializable {
 	List<Player> players = new ArrayList<>();
 	
 	int currentPlayerID;
-	
-	int bankHouseCount, bankHotelCount;
+	int bankHouseCount,
+		bankHotelCount;
 	
 	Board() throws FileNotFoundException, IOException {
 		// Using defaults from standard rules
@@ -40,6 +40,7 @@ public class Board implements Serializable {
 		players.get(3).setPlayerID(3);
 		players.get(4).setPlayerID(4);
 	
+		// <editor-fold desc="Read CSV for Space data">
 		// Read from CSV file for Space data
 		String lineBuffer;
 		Map<String, Integer> propertyAttributes = new HashMap();
@@ -85,6 +86,8 @@ public class Board implements Serializable {
 				}	// end else if
 			}	// end while
 		} // end try
+		// </editor-fold>
+		
 	}	// end Board()
 	
 	private int parseIntHandler(String inputString) {
@@ -95,4 +98,6 @@ public class Board implements Serializable {
 			return Integer.parseInt(inputString);
 		}
 	}	// end parseIntHandler()
+	
+	
 }

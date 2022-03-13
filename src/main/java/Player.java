@@ -1,5 +1,5 @@
-
 import java.io.Serializable;
+import java.math.*;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -11,6 +11,7 @@ import java.io.Serializable;
  * @author jay
  */
 public class Player implements Serializable {
+	// <editor-fold desc="Attributes">
 	int playerID;
 	
 	// customName allows players to use a name other than the default
@@ -40,7 +41,9 @@ public class Player implements Serializable {
 	
 	// Number that appears on the face of the dice
 	int die1, die2;
+	// </editor-fold>
 
+	// <editor-fold desc="Constructor">
 	Player() {
 		playerID = 0;
 		customName = "";
@@ -71,6 +74,7 @@ public class Player implements Serializable {
 		die1 = 0;
 		die2 = 0;
 	}
+	// </editor-fold>
 
 	// <editor-fold defaultstate="collapsed" desc="Setters and getters">
 	public int getPlayerID() {
@@ -105,6 +109,11 @@ public class Player implements Serializable {
 		return currentPosition;
 	}
 	
+	public boolean getIsComputerControlled() {
+		return isComputerControlled;
+	}
+	// </editor-fold>
+	
 	/*
 	 * @return A boolean value indicating whether or not the player passed GO.
 	 */
@@ -119,10 +128,7 @@ public class Player implements Serializable {
 			return false;
 		}
 	}
+
 	
-	public boolean getIsComputerControlled() {
-		return isComputerControlled;
-	}
-	// </editor-fold>
 	
 }

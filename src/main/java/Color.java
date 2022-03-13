@@ -11,6 +11,7 @@ import java.util.Map;
  * @author jay
  */
 public class Color extends Property implements Serializable {
+	// <editor-fold desc="Attributes">
 	public enum colorGroupKeys {
         unspecified,
         brown,
@@ -24,8 +25,11 @@ public class Color extends Property implements Serializable {
 	}
 	colorGroupKeys colorGroup;
 	
-	int houseCount, hotelCount;
+	int houseCount,
+		hotelCount;
+	// </editor-fold>
 	
+	// <editor-fold desc="Constructor">
 	Color(Map<String, Integer> propertyAttributes, int inputSpaceID, String inputFriendlyName) {
 		super(null);
 		
@@ -48,6 +52,7 @@ public class Color extends Property implements Serializable {
 		houseCost = propertyAttributes.get("houseCost");
 		hotelCost = propertyAttributes.get("hotelCost");
 	}
+	// </editor-fold>
 	
 	// <editor-fold defaultstate="collapsed" desc="Setters and getters">
 	public colorGroupKeys getColorGroup() {

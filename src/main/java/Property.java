@@ -12,6 +12,7 @@ import java.util.Map;
  * @author jay
  */
 public abstract class Property extends Space implements Serializable {
+	// <editor-fold desc="Attributes">
 	public enum propertyTypeKeys {
 		unspecified,
 		color,
@@ -20,14 +21,25 @@ public abstract class Property extends Space implements Serializable {
 	}
 	propertyTypeKeys propertyType;
 
-	boolean isOwned, isMortgaged;
-	boolean isFullSetOwned;
+	boolean isOwned,
+		isMortgaged,
+		isFullSetOwned;
+	
 	int ownerID;
 	
-	// Note that rentHouse<n> variables are used for both Color and Railroad
-	// properties.
-	int rentBase, rentHouse1, rentHouse2, rentHouse3, rentHouse4, rentHotel;
-	int purchaseCost, mortgageValue, houseCost, hotelCost;
+	// Note that rentHouse<n> variables are used for both Color and Railroad properties.
+	int rentBase,
+		rentHouse1,
+		rentHouse2,
+		rentHouse3,
+		rentHouse4,
+		rentHotel;
+	
+	int purchaseCost,
+		mortgageValue,
+		houseCost,
+		hotelCost;
+	// </editor-fold>
 	
 	protected Property(Map<String, Integer> propertyAttributes) {
 		spaceType = spaceTypeKeys.property;
