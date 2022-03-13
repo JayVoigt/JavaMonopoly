@@ -25,7 +25,10 @@ public class JavaMonopoly {
 		}
 		
 		controller = new GameLogicController();
+		
 		view = new MainView();
+		
+		view.appendToGameLog("Successfully initialized");
 	}
 	
 	public static void main(String args[]) {
