@@ -1,4 +1,3 @@
-
 import java.io.Serializable;
 import java.util.Map;
 
@@ -28,11 +27,26 @@ public class Color extends Property implements Serializable {
 	int houseCount, hotelCount;
 	
 	Color(Map<String, Integer> propertyAttributes, int inputSpaceID, String inputFriendlyName) {
+		super(null);
+		
 		colorGroup = colorGroupKeys.unspecified;
 		id = inputSpaceID;
+		friendlyName = inputFriendlyName;
 		
 		houseCount = 0;
 		hotelCount = 0;
+		
+		rentBase = propertyAttributes.get("rentBase");
+		rentHouse1 = propertyAttributes.get("rentHouse1");
+		rentHouse2 = propertyAttributes.get("rentHouse2");
+		rentHouse3 = propertyAttributes.get("rentHouse3");
+		rentHouse4 = propertyAttributes.get("rentHouse4");
+		rentHotel = propertyAttributes.get("rentHotel");
+		
+		purchaseCost = propertyAttributes.get("purchaseCost");
+		mortgageValue = propertyAttributes.get("mortgageValue");
+		houseCost = propertyAttributes.get("houseCost");
+		hotelCost = propertyAttributes.get("hotelCost");
 	}
 	
 	// <editor-fold defaultstate="collapsed" desc="Setters and getters">

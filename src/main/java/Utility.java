@@ -12,9 +12,12 @@ import java.util.Map;
  */
 public class Utility extends Property {
 	public Utility(Map<String, Integer> propertyAttributes, int inputSpaceID, String inputFriendlyName) {
-		purchaseCost = propertyAttributes.get("purchaseCost");
+		super(null);
+		
 		id = inputSpaceID;
 		friendlyName = inputFriendlyName;
+		
+		purchaseCost = propertyAttributes.get("purchaseCost");
 	}
 	
 	@Override

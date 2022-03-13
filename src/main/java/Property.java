@@ -24,10 +24,12 @@ public abstract class Property extends Space implements Serializable {
 	boolean isFullSetOwned;
 	int ownerID;
 	
+	// Note that rentHouse<n> variables are used for both Color and Railroad
+	// properties.
 	int rentBase, rentHouse1, rentHouse2, rentHouse3, rentHouse4, rentHotel;
 	int purchaseCost, mortgageValue, houseCost, hotelCost;
 	
-	Property(Map<String, Integer> propertyAttributes) {
+	protected Property(Map<String, Integer> propertyAttributes) {
 		spaceType = spaceTypeKeys.property;
 		propertyType = propertyTypeKeys.unspecified;
 		
@@ -35,18 +37,6 @@ public abstract class Property extends Space implements Serializable {
 		isMortgaged = false;
 		
 		ownerID = 0;
-		
-		rentBase = staticValues[0];
-		rentHouse1 = staticValues[1];
-		rentHouse2 = staticValues[2];
-		rentHouse3 = staticValues[3];
-		rentHouse4 = staticValues[4];
-		rentHotel = staticValues[5];
-		
-		purchaseCost = staticValues[6];
-		mortgageValue = staticValues[7];
-		houseCost = staticValues[8];
-		hotelCost = staticValues[9];
 	}
 	
 	// <editor-fold defaultstate="collapsed" desc="Setters and getters">
