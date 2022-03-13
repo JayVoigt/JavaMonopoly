@@ -66,6 +66,8 @@ public class Player implements Serializable {
 		
 		consecutiveDoublesCount = 0;
 		
+		ownedPropertyIDs = new boolean[40];
+		mortgagedPropertyIDs = new boolean[40];
 		for ( int i = 0 ; i < 40 ; i++ ) {
 			ownedPropertyIDs[i] = false;
 			mortgagedPropertyIDs[i] = false;

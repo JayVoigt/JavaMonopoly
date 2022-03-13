@@ -45,7 +45,7 @@ public class Board implements Serializable {
 		String lineBuffer;
 		Map<String, Integer> propertyAttributes = new HashMap();
 		
-		try (BufferedReader spacesConfig = new BufferedReader(new FileReader("spaces.csv"))) {
+		try (BufferedReader spacesConfig = new BufferedReader(new FileReader("assets/spaces.csv"))) {
 			spacesConfig.readLine();
 			
 			while ((lineBuffer = spacesConfig.readLine()) != null) {
