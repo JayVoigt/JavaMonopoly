@@ -1,4 +1,3 @@
-
 import java.io.Serializable;
 
 /*
@@ -20,7 +19,10 @@ public class GameEvent extends Space implements Serializable {
 	}
 	gameEventTypeKeys gameEventType;
 	
-	GameEvent() {
+	GameEvent(int inputSpaceID, String inputFriendlyName) {
+		id = inputSpaceID;
+		friendlyName = inputFriendlyName;
+		
 		spaceType = Space.spaceTypeKeys.gameEvent;
 		gameEventType = gameEventTypeKeys.unspecified;
 	}
@@ -30,6 +32,7 @@ public class GameEvent extends Space implements Serializable {
 		gameEventType = inputGameEventType;
 	}
 	
+	// <editor-fold defaultstate="collapsed" desc="Setters and getters">
 	public gameEventTypeKeys getGameEventType() {
 		return gameEventType;
 	}
@@ -37,4 +40,5 @@ public class GameEvent extends Space implements Serializable {
 	public void setGameEventType(gameEventTypeKeys inputGameEventType) {
 		gameEventType = inputGameEventType;
 	}
+	// </editor-fold>
 }

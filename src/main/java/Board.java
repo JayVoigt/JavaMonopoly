@@ -13,7 +13,6 @@ import java.util.List;
 import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Scanner;
 
 public class Board implements Serializable {
 	List<Space> spaces = new ArrayList<>();
@@ -42,54 +41,50 @@ public class Board implements Serializable {
 		players.get(4).setPlayerID(4);
 	
 		// Read from CSV file for Space data
-		String lineBuffer = "";
-		int staticValues[] = null;
+		String lineBuffer;
 		Map<String, Integer> propertyAttributes = new HashMap();
-		BufferedReader spacesConfig = new BufferedReader(new FileReader("spaces.csv"));
 		
-		spacesConfig.readLine();
-		
-		while ((lineBuffer = spacesConfig.readLine()) != null) {
-			String[] configLine = lineBuffer.split(",", -1);
+		try (BufferedReader spacesConfig = new BufferedReader(new FileReader("spaces.csv"))) {
+			spacesConfig.readLine();
 			
-			int localID = parseIntHandler(configLine[0]);
-			
-			String localFriendlyName =	configLine[1];
-			String localSpaceType =		configLine[2];
-			String localPropertyType =	configLine[3];
-			String localColorGroup =	configLine[4];
-			
-			propertyAttributes.put("purchaseCost", parseIntHandler(configLine[5]));
-			propertyAttributes.put("rentBase", parseIntHandler(configLine[6]));
-			propertyAttributes.put("rentHouse1", parseIntHandler(configLine[7]));
-			propertyAttributes.put("rentHouse2", parseIntHandler(configLine[8]));
-			propertyAttributes.put("rentHouse3", parseIntHandler(configLine[9]));
-			propertyAttributes.put("rentHouse4", parseIntHandler(configLine[10]));
-			propertyAttributes.put("rentHotel", parseIntHandler(configLine[11]));
-			propertyAttributes.put("mortgageValue", parseIntHandler(configLine[12]));
-			propertyAttributes.put("houseCost", parseIntHandler(configLine[13]));
-			propertyAttributes.put("hotelCost", parseIntHandler(configLine[14]));
-			
-			if (localSpaceType.equals("gameEvent")) {
-				spaces.add(localID, new GameEvent());
-				spaces.get(localID).setID(localID);
-				spaces.get(localID).setFriendlyName(localFriendlyName);
-			}
-			else if (localSpaceType.equals("property")) {
+			while ((lineBuffer = spacesConfig.readLine()) != null) {
+				String[] configLine = lineBuffer.split(",", -1);
 				
-				if (localPropertyType.equals("color")) {
-					spaces.add(localID, new Color(propertyAttributes, localID, localFriendlyName));
+				int localID = parseIntHandler(configLine[0]);
+				
+				String localFriendlyName =	configLine[1];
+				String localSpaceType =		configLine[2];
+				String localPropertyType =	configLine[3];
+				String localColorGroup =	configLine[4];
+				
+				propertyAttributes.put("purchaseCost", parseIntHandler(configLine[5]));
+				propertyAttributes.put("rentBase", parseIntHandler(configLine[6]));
+				propertyAttributes.put("rentHouse1", parseIntHandler(configLine[7]));
+				propertyAttributes.put("rentHouse2", parseIntHandler(configLine[8]));
+				propertyAttributes.put("rentHouse3", parseIntHandler(configLine[9]));
+				propertyAttributes.put("rentHouse4", parseIntHandler(configLine[10]));
+				propertyAttributes.put("rentHotel", parseIntHandler(configLine[11]));
+				propertyAttributes.put("mortgageValue", parseIntHandler(configLine[12]));
+				propertyAttributes.put("houseCost", parseIntHandler(configLine[13]));
+				propertyAttributes.put("hotelCost", parseIntHandler(configLine[14]));
+				
+				if (localSpaceType.equals("gameEvent")) {
+					spaces.add(localID, new GameEvent(localID, localFriendlyName));
 				}
-				else if (localPropertyType.equals("railroad")) {
+				else if (localSpaceType.equals("property")) {
 					
-				}
-				else if (localPropertyType.equals("utility")) {
-					spaces.add(localID, new Utility(propertyAttributes, localID, localFriendlyName));
-				}
-			}
-		}
-		spacesConfig.close();
-		// End CSV reading
+					if (localPropertyType.equals("color")) {
+						spaces.add(localID, new Color(propertyAttributes, localID, localFriendlyName));
+					}
+					else if (localPropertyType.equals("railroad")) {
+						spaces.add(localID, new Railroad(propertyAttributes, localID, localFriendlyName));
+					}
+					else if (localPropertyType.equals("utility")) {
+						spaces.add(localID, new Utility(propertyAttributes, localID, localFriendlyName));
+					}
+				}	// end else if
+			}	// end while
+		} // end try
 	}	// end Board()
 	
 	private int parseIntHandler(String inputString) {
