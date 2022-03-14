@@ -41,6 +41,7 @@ public abstract class Property extends Space implements Serializable {
 		hotelCost;
 	// </editor-fold>
 	
+	// <editor-fold desc="Constructor">
 	protected Property(Map<String, Integer> propertyAttributes) {
 		spaceType = spaceTypeKeys.property;
 		propertyType = propertyTypeKeys.unspecified;
@@ -50,6 +51,7 @@ public abstract class Property extends Space implements Serializable {
 		
 		ownerID = 0;
 	}
+	// </editor-fold>
 	
 	// <editor-fold defaultstate="collapsed" desc="Setters and getters">
 	public propertyTypeKeys getPropertyType() {

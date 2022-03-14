@@ -18,18 +18,15 @@ public class Player implements Serializable {
 	// "Player n".
 	String customName;
 	
-	int currentBalance,
+	PlayerState state;
+	
+	int	
+		currentBalance,
 		currentPosition;
 	
-	boolean isPlayerActive,
-		isComputerControlled,
-		hasRequestedEndTurn,
-		hasRolledDice,
-		isInMandatoryActionsExhaustedState,
-		isJailed;
-	
-	boolean madeDecisionPostedBail,
-		madeDecisionPropertyAction;
+	boolean
+		isPlayerActive,
+		isComputerControlled;
 	
 	// How many times the player has rolled doubles on a single turn.
 	int consecutiveDoublesCount;
@@ -56,13 +53,6 @@ public class Player implements Serializable {
 		
 		isPlayerActive = false;
 		isComputerControlled = false;
-		hasRequestedEndTurn = false;
-		hasRolledDice = false;
-		isInMandatoryActionsExhaustedState = false;
-		isJailed = false;
-		
-		madeDecisionPostedBail = false;
-		madeDecisionPropertyAction = false;
 		
 		consecutiveDoublesCount = 0;
 		
@@ -116,6 +106,13 @@ public class Player implements Serializable {
 	}
 	// </editor-fold>
 	
+	public void initializePlayerForNewTurn() {
+		state.initializePlayerStateForNewTurn();
+		consecutiveDoublesCount = 0;
+		die1 = 0;
+		die2 = 0;
+	}
+	
 	/*
 	 * @return A boolean value indicating whether or not the player passed GO.
 	 */
@@ -130,7 +127,19 @@ public class Player implements Serializable {
 			return false;
 		}
 	}
-
 	
-	
-}
+	public int rollDice() {
+		die1 = (int) (Math.random() * 6);
+		die2 = (int) (Math.random() * 6);
+		
+		if (die1 == die2) {
+			state.hasRolledDoubles = true;
+		}
+		else {
+			state.hasRolledDoubles = false;
+			state.hasRolledDice = true;
+		}
+		
+		return die1 + die2;
+	}
+}	// end class

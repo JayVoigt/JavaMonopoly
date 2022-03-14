@@ -13,7 +13,7 @@ public class GameLogicController {
 	int playersCount,
 		turnCounter;
 	
-	public GameLogicController() {
+	public GameLogicController(Board board, MainView view) {
 		
 	}
 }

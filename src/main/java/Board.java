@@ -22,6 +22,7 @@ public class Board implements Serializable {
 	int bankHouseCount,
 		bankHotelCount;
 	
+	// <editor-fold desc="Constructor">
 	Board() throws FileNotFoundException, IOException {
 		// Using defaults from standard rules
 		bankHouseCount = 32;
@@ -89,6 +90,7 @@ public class Board implements Serializable {
 		// </editor-fold>
 		
 	}	// end Board()
+	// </editor-fold>
 	
 	private int parseIntHandler(String inputString) {
 		if (inputString.isEmpty()) {

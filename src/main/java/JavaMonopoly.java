@@ -24,7 +24,7 @@ public class JavaMonopoly {
 			Logger.getLogger(JavaMonopoly.class.getName()).log(Level.SEVERE, null, ex);
 		}
 		
-		controller = new GameLogicController();
+		controller = new GameLogicController(board, view);
 		
 		view = new MainView(board);
 		

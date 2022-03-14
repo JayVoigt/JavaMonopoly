@@ -208,6 +208,9 @@ m2=40</panel_attributes>
 - currentBalance: int
 - currentPosition: int
 
+- isPlayerActive: boolean
+- isComputerControlled: boolean
+
 - consecutiveDoublesCount: int
 
 - ownedPropertyIDs[]: boolean[40]
@@ -315,15 +318,15 @@ Player 0 is not a usable player.</panel_attributes>
     </coordinates>
     <panel_attributes>PlayerState
 --
-- isPlayerActive: boolean
-- isComputerControlled: boolean
 - hasRequestedEndTurn: boolean
 - hasRolledDice: boolean
 - isInMandatoryActionsExhaustedState: boolean
 - isJailed: boolean
 
 - madeDecisionPostedBail: boolean
-- madeDecisionPropertyAction: boolean</panel_attributes>
+- madeDecisionPropertyAction: boolean
+--
++ initializeNextTurnState(): void</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
