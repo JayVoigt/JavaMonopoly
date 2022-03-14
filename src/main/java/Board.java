@@ -92,6 +92,14 @@ public class Board implements Serializable {
 	}	// end Board()
 	// </editor-fold>
 	
+	public int getCurrentPlayerID() {
+		return currentPlayerID;
+	}
+
+	public void setCurrentPlayerID(int inputCurrentPlayerID) {
+		currentPlayerID = inputCurrentPlayerID;
+	}
+	
 	private int parseIntHandler(String inputString) {
 		if (inputString.isEmpty()) {
 			return 0;

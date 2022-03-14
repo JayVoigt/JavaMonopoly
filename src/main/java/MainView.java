@@ -36,6 +36,27 @@ public class MainView extends javax.swing.JFrame {
 		message = message.concat("\n");
 		textAreaGameLog.append(message);
 	}
+	
+	private Player getCurrentPlayer() {
+		return board.players.get(board.getCurrentPlayerID());
+	}
+	
+	public void update() {
+		Player currentPlayer = getCurrentPlayer();
+		if (currentPlayer.state.actionLockedEndTurn == true) {
+			buttonEndTurn.setEnabled(false);
+		}
+		else {
+			buttonEndTurn.setEnabled(true);
+		}
+		
+		if (currentPlayer.state.actionLockedRollDice == true) {
+			buttonRollDice.setEnabled(false);
+		}
+		else {
+			buttonRollDice.setEnabled(true);
+		}
+	}
 
 	/**
 	 * This method is called from within the constructor to initialize the form.
@@ -69,6 +90,11 @@ public class MainView extends javax.swing.JFrame {
         buttonEndTurn.setText("jButton1");
 
         buttonGenericAction.setText("jButton1");
+        buttonGenericAction.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonGenericActionActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -89,10 +115,11 @@ public class MainView extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(buttonRollDice, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonGenericAction, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonEndTurn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(buttonGenericAction, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(buttonEndTurn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(37, Short.MAX_VALUE))
         );
 
@@ -102,6 +129,11 @@ public class MainView extends javax.swing.JFrame {
     private void buttonRollDiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRollDiceActionPerformed
         appendToGameLog(board.spaces.get(4).getFriendlyName());
     }//GEN-LAST:event_buttonRollDiceActionPerformed
+
+    private void buttonGenericActionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGenericActionActionPerformed
+        Player currentPlayer = getCurrentPlayer();
+		update();
+    }//GEN-LAST:event_buttonGenericActionActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonEndTurn;

@@ -44,6 +44,8 @@ public class Player implements Serializable {
 	Player() {
 		playerID = 0;
 		customName = "";
+		
+		state = new PlayerState();
 
 		// The default balance for players is $1500.
 		currentBalance = 1500;
