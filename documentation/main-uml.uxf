@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="14.3.0">
-  <zoom_level>10</zoom_level>
+  <zoom_level>6</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>680</x>
-      <y>340</y>
-      <w>500</w>
-      <h>270</h>
+      <x>654</x>
+      <y>678</y>
+      <w>300</w>
+      <h>162</h>
     </coordinates>
     <panel_attributes>Board
 --
@@ -18,6 +18,8 @@
 - bankHouseCount: int
 - bankHotelCount: int
 --
+&lt;&lt;Constructor&gt;&gt; Board()
+
 - parseIntHandler(String inputString): int
 
 style=wordwrap</panel_attributes>
@@ -26,10 +28,10 @@ style=wordwrap</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1310</x>
-      <y>470</y>
-      <w>540</w>
-      <h>150</h>
+      <x>1008</x>
+      <y>756</y>
+      <w>324</w>
+      <h>90</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Abstract&gt;&gt;
 Space
@@ -46,10 +48,10 @@ style=wordwrap</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1310</x>
-      <y>680</y>
-      <w>540</w>
-      <h>350</h>
+      <x>1008</x>
+      <y>882</y>
+      <w>330</w>
+      <h>210</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Abstract&gt;&gt;
 Property
@@ -59,9 +61,11 @@ Property
 - isMortgaged: boolean
 - isFullSetOwned: boolean
 - ownerID: int
+
 - rentBase: int
 - rentHouse&lt;1-4&gt;: int
 - rentHotel: int
+
 - purchaseCost: int
 - mortgageValue: int
 - houseCost: int
@@ -77,10 +81,10 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1570</x>
-      <y>610</y>
-      <w>90</w>
-      <h>90</h>
+      <x>1164</x>
+      <y>840</y>
+      <w>54</w>
+      <h>54</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 extends</panel_attributes>
@@ -89,10 +93,10 @@ extends</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1380</x>
-      <y>1090</y>
-      <w>380</w>
-      <h>160</h>
+      <x>1050</x>
+      <y>1128</y>
+      <w>228</w>
+      <h>102</h>
     </coordinates>
     <panel_attributes>Color
 --
@@ -110,10 +114,10 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1560</x>
-      <y>1020</y>
-      <w>90</w>
-      <h>90</h>
+      <x>1158</x>
+      <y>1086</y>
+      <w>54</w>
+      <h>54</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 extends</panel_attributes>
@@ -122,10 +126,10 @@ extends</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1780</x>
-      <y>1090</y>
-      <w>330</w>
-      <h>160</h>
+      <x>1290</x>
+      <y>1128</y>
+      <w>198</w>
+      <h>102</h>
     </coordinates>
     <panel_attributes>Utility
 --
@@ -139,10 +143,10 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1760</x>
-      <y>1020</y>
-      <w>230</w>
-      <h>90</h>
+      <x>1278</x>
+      <y>1086</y>
+      <w>138</w>
+      <h>54</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 extends</panel_attributes>
@@ -151,10 +155,10 @@ extends</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>970</x>
-      <y>1090</y>
-      <w>390</w>
-      <h>160</h>
+      <x>804</x>
+      <y>1128</y>
+      <w>234</w>
+      <h>102</h>
     </coordinates>
     <panel_attributes>Railroad
 --
@@ -168,10 +172,10 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1150</x>
-      <y>1020</y>
-      <w>260</w>
-      <h>90</h>
+      <x>912</x>
+      <y>1086</y>
+      <w>156</w>
+      <h>54</h>
     </coordinates>
     <panel_attributes>lt=-&gt;
 extends</panel_attributes>
@@ -180,22 +184,22 @@ extends</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1170</x>
-      <y>490</y>
-      <w>160</w>
-      <h>40</h>
+      <x>948</x>
+      <y>768</y>
+      <w>72</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m2=40</panel_attributes>
-    <additional_attributes>10.0;10.0;140.0;10.0</additional_attributes>
+    <additional_attributes>10.0;10.0;100.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>40</x>
-      <y>340</y>
-      <w>500</w>
-      <h>470</h>
+      <x>300</x>
+      <y>678</y>
+      <w>300</w>
+      <h>282</h>
     </coordinates>
     <panel_attributes>Player
 --
@@ -224,19 +228,66 @@ m2=40</panel_attributes>
 --
 &lt;&lt;Constructor&gt;&gt; Player()
 
-+ advancePosition(int spacesCount): boolean</panel_attributes>
++ advancePosition(int spacesCount): boolean
++ rollDice(): int</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>530</x>
-      <y>560</y>
-      <w>170</w>
-      <h>40</h>
+      <x>594</x>
+      <y>768</y>
+      <w>72</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m2=5</panel_attributes>
-    <additional_attributes>150.0;10.0;10.0;10.0</additional_attributes>
+    <additional_attributes>100.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>654</x>
+      <y>444</y>
+      <w>300</w>
+      <h>162</h>
+    </coordinates>
+    <panel_attributes>MainView
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>978</x>
+      <y>444</y>
+      <w>300</w>
+      <h>162</h>
+    </coordinates>
+    <panel_attributes>GameLogicController</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>654</x>
+      <y>240</y>
+      <w>300</w>
+      <h>162</h>
+    </coordinates>
+    <panel_attributes>JavaMonopoly</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>750</x>
+      <y>396</y>
+      <w>18</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
   </element>
 </diagram>

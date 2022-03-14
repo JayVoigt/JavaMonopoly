@@ -13,6 +13,14 @@ import java.util.Map;
 public class Railroad extends Property implements Serializable {
 	public Railroad(Map<String, Integer> propertyAttributes, int inputSpaceID, String inputFriendlyName) {
 		super(null);
+		id = inputSpaceID;
+		friendlyName = inputFriendlyName;
+		
+		purchaseCost = propertyAttributes.get("purchaseCost");
+		rentHouse1 = propertyAttributes.get("rentHouse1");
+		rentHouse2 = propertyAttributes.get("rentHouse2");
+		rentHouse3 = propertyAttributes.get("rentHouse3");
+		rentHouse4 = propertyAttributes.get("rentHouse4");
 	}
 	
 	@Override
