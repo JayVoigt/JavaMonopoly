@@ -26,7 +26,7 @@ public class JavaMonopoly {
 		
 		controller = new GameLogicController();
 		
-		view = new MainView();
+		view = new MainView(board);
 		
 		view.appendToGameLog("Successfully initialized");
 		
