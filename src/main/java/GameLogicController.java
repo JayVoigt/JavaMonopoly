@@ -18,14 +18,16 @@ public class GameLogicController {
 	int playersCount,
 		turnCounter;
 	
-	public GameLogicController(Board inputBoard, MainView inputView) {
+	public GameLogicController(Board inputBoard) {
 		board = inputBoard;
-		view = inputView;
 	}
 	
 	public void initializeNextTurn() {
+		currentPlayer = board.players.get(board.getCurrentPlayerID());
+		
 		currentPlayer.state.initializePlayerStateForNewTurn();
 		initialEvaluator();
+		System.out.println("Terminated INT");
 	}
 	
 	public void initialEvaluator() {
@@ -44,7 +46,6 @@ public class GameLogicController {
 		}
 		else {
 			currentPlayer.state.actionLockedRollDice = false;
-			// Termination
 		}
 	}
 	

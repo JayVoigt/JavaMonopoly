@@ -14,7 +14,6 @@ import java.util.logging.Logger;
  */
 public class JavaMonopoly {
 	Board board;
-	GameLogicController controller;
 	MainView view;
 
 	public JavaMonopoly() {
@@ -24,10 +23,7 @@ public class JavaMonopoly {
 			Logger.getLogger(JavaMonopoly.class.getName()).log(Level.SEVERE, null, ex);
 		}
 		
-		controller = new GameLogicController(board, view);
-		
 		view = new MainView(board);
-		
 		view.appendToGameLog("Successfully initialized");
 		
 		for ( int i = 0 ; i < board.spaces.size() ; i++ ) {

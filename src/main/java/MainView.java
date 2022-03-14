@@ -14,11 +14,13 @@ import javax.swing.UnsupportedLookAndFeelException;
 public class MainView extends javax.swing.JFrame {
 
 	Board board;
+	GameLogicController controller;
 	/**
 	 * Creates new form MainView
 	 */
 	public MainView(Board inputBoard) {
 		board = inputBoard;
+		controller = new GameLogicController(inputBoard);
 		// <editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
 		try{
 			UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
@@ -127,7 +129,7 @@ public class MainView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonRollDiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRollDiceActionPerformed
-        appendToGameLog(board.spaces.get(4).getFriendlyName());
+        Player currentPlayer = getCurrentPlayer();
     }//GEN-LAST:event_buttonRollDiceActionPerformed
 
     private void buttonGenericActionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGenericActionActionPerformed
