@@ -10,7 +10,6 @@
 public class GameLogicController {
 
     Board board;
-    MainView view;
 
     Player currentPlayer;
     Space currentSpace;
@@ -56,13 +55,11 @@ public class GameLogicController {
             if (currentPlayer.getHasRolledDice() == true) {
                 if (currentPlayer.getMadeDecisionPropertyAction() == true) {
                     currentPlayer.setActionLockedEndTurn(false);
-                    //view.update();
                 } else {
                     propertyPurchaseManager();
                 }
             } else {
                 currentPlayer.setActionLockedRollDice(false);
-                //view.update();
             }
         }
     }
@@ -75,7 +72,6 @@ public class GameLogicController {
         currentPlayer = board.players.get(board.getCurrentPlayerID());
         
         currentPlayer.rollDice();
-        //view.update();
         
         // Reset roll dice condition for doubles
         if (currentPlayer.getHasRolledDoubles() == true) {
@@ -122,6 +118,13 @@ public class GameLogicController {
     public void endTurnManager() {
         currentPlayer = board.players.get(board.getCurrentPlayerID());
         currentPlayer.setActionLockedEndTurn(true);
-        //view.update();
+       
+        if (board.getCurrentPlayerID() == playersCount) {
+            currentPlayer = board.players.get(1);
+        }
+        else {
+            board.setCurrentPlayerID(board.getCurrentPlayerID() + 1);
+            currentPlayer = board.players.get(board.getCurrentPlayerID());
+        }
     }
 }

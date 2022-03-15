@@ -152,6 +152,7 @@ public class MainView extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonRollDiceActionPerformed
 
     private void buttonUNLOCKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonUNLOCKActionPerformed
+        appendToGameLog("buttonUNLOCK");
         update();
     }//GEN-LAST:event_buttonUNLOCKActionPerformed
 
