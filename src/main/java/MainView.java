@@ -21,6 +21,7 @@ public class MainView extends javax.swing.JFrame {
 	public MainView(Board inputBoard) {
 		board = inputBoard;
 		controller = new GameLogicController(inputBoard);
+		
 		// <editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
 		try{
 			UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
@@ -28,6 +29,7 @@ public class MainView extends javax.swing.JFrame {
 		
 		}
 		//</editor-fold>
+		
 		initComponents();
 		this.setVisible(true);
 
