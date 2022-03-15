@@ -39,6 +39,45 @@ public class Player implements Serializable {
 	// Number that appears on the face of the dice
 	int die1, die2;
 	// </editor-fold>
+	
+	// <editor-fold desc="State attributes">
+	// Basic state parameters
+	boolean
+		hasRequestedEndTurn,
+		hasRolledDice,
+		isInMandatoryActionsExhaustedState,
+		isJailed;
+	
+	// Decisions given by GUI prompts
+	boolean
+		madeDecisionPostedBail,
+		resultDecisionPostedBail,
+		madeDecisionPropertyAction,
+		resultDecisionPropertyAction;
+	
+	boolean
+		hasRolledDoubles;
+
+	// Required state of GUI elements during player's turn
+	boolean
+		actionLockedRollDice,
+		actionLockedEndTurn;
+	// </editor-fold>
+	
+	public void initializePlayerStateForNewTurn() {
+		hasRequestedEndTurn = false;
+		hasRolledDice = false;
+		isInMandatoryActionsExhaustedState = false;
+		
+		madeDecisionPostedBail = false;
+		madeDecisionPropertyAction = false;
+		
+		hasRolledDoubles = false;
+		
+		// Actions are locked by default, and later unlocked when appropriate.
+		actionLockedRollDice = true;
+		actionLockedEndTurn = true;
+	}
 
 	// <editor-fold desc="Constructor">
 	Player() {
@@ -108,8 +147,46 @@ public class Player implements Serializable {
 	}
 	// </editor-fold>
 	
+	// <editor-fold desc="Setters and getters for state attributes">
+	public boolean getHasRequestedEndTurn() {
+		return hasRequestedEndTurn;
+	}
+	
+	public boolean getHasRolledDice() {
+		return hasRolledDice;
+	}
+	
+	public boolean getIsInMAEState() {
+		return isInMandatoryActionsExhaustedState;
+	}
+	
+	public boolean getIsJailed() {
+		return isJailed;
+	}
+	
+	public boolean getMadeDecisionPostedBail() {
+		return madeDecisionPostedBail;
+	}
+	
+	public boolean getMadeDecisionPropertyAction() {
+		return madeDecisionPropertyAction;
+	}
+	
+	public boolean getHasRolledDoubles() {
+		return hasRolledDoubles;
+	}
+	
+	public boolean getActionLockedRollDice() {
+		return actionLockedRollDice;
+	}
+	
+	public boolean getActionLockedEndTurn() {
+		return actionLockedEndTurn;
+	}
+	// </editor-fold>
+	
 	public void initializePlayerForNewTurn() {
-		state.initializePlayerStateForNewTurn();
+		initializePlayerStateForNewTurn();
 		consecutiveDoublesCount = 0;
 		die1 = 0;
 		die2 = 0;
@@ -135,11 +212,11 @@ public class Player implements Serializable {
 		die2 = (int) (Math.random() * 6);
 		
 		if (die1 == die2) {
-			state.hasRolledDoubles = true;
+			hasRolledDoubles = true;
 		}
 		else {
-			state.hasRolledDoubles = false;
-			state.hasRolledDice = true;
+			hasRolledDoubles = false;
+			hasRolledDice = true;
 		}
 		
 		return die1 + die2;

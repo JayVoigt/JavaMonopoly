@@ -4,10 +4,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1390</x>
-      <y>840</y>
-      <w>540</w>
-      <h>350</h>
+      <x>810</x>
+      <y>620</y>
+      <w>790</w>
+      <h>520</h>
     </coordinates>
     <panel_attributes>Domain: Player
 </panel_attributes>
@@ -16,8 +16,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1390</x>
-      <y>480</y>
+      <x>810</x>
+      <y>260</y>
       <w>540</w>
       <h>350</h>
     </coordinates>
@@ -28,12 +28,69 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1390</x>
-      <y>120</y>
+      <x>1920</x>
+      <y>160</y>
       <w>540</w>
       <h>350</h>
     </coordinates>
     <panel_attributes>Domain: View
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>830</x>
+      <y>640</y>
+      <w>190</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>initialEvaluator</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>210</x>
+      <y>580</y>
+      <w>190</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>initialEvaluator</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>620</x>
+      <y>260</y>
+      <w>140</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>750</x>
+      <y>290</y>
+      <w>80</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;60.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1080</x>
+      <y>830</y>
+      <w>510</w>
+      <h>300</h>
+    </coordinates>
+    <panel_attributes>Domain: Player
 </panel_attributes>
     <additional_attributes/>
   </element>
