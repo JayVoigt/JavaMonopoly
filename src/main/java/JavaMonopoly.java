@@ -14,16 +14,17 @@ import java.util.logging.Logger;
  */
 public class JavaMonopoly {
 	Board board;
-	MainView view;
+	MainWindow view;
 
-	public JavaMonopoly() {
+	public JavaMonopoly() throws IOException {
 		try {
 			board = new Board();
 		} catch (IOException ex) {
 			Logger.getLogger(JavaMonopoly.class.getName()).log(Level.SEVERE, null, ex);
 		}
 		
-		view = new MainView(board);
+		view = new MainWindow(board);
+		view.setVisible(true);
 		view.appendToGameLog("Successfully initialized");
 		
 		for ( int i = 0 ; i < board.spaces.size() ; i++ ) {
@@ -31,7 +32,7 @@ public class JavaMonopoly {
 		}
 	}
 	
-	public static void main(String args[]) {
+	public static void main(String args[]) throws IOException {
 		new JavaMonopoly();
 	}
 }

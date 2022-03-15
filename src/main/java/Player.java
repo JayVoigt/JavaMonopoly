@@ -125,6 +125,10 @@ public class Player implements Serializable {
     public boolean getIsComputerControlled() {
         return isComputerControlled;
     }
+	
+	public void setIsComputerControlled(boolean input) {
+		isComputerControlled = input;
+	}
     
     public int getConsecutiveDoublesCount() {
         return consecutiveDoublesCount;
@@ -133,6 +137,14 @@ public class Player implements Serializable {
     public int getDiceSum() {
         return die1 + die2;
     }
+	
+	public int getDie1() {
+		return die1;
+	}
+	
+	public int getDie2() {
+		return die2;
+	}
     // </editor-fold>
 
     // <editor-fold desc="Setters and getters for state attributes">
@@ -243,8 +255,8 @@ public class Player implements Serializable {
     }
 
     public int rollDice() {
-        die1 = (int) (Math.random() * 6);
-        die2 = (int) (Math.random() * 6);
+        die1 = (int) (1 + Math.random() * 6);
+        die2 = (int) (1 + Math.random() * 6);
 
         if (die1 == die2) {
             hasRolledDoubles = true;
