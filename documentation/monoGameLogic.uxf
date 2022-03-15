@@ -1,0 +1,2039 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>8</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1504</x>
+      <y>256</y>
+      <w>240</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>MainWindow
+--
++ MainWindow(Board board,
+  GameController controller): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1848</x>
+      <y>256</y>
+      <w>288</w>
+      <h>256</h>
+    </coordinates>
+    <panel_attributes>Board
+--
+- player: Player[40]  // List
+- spaces: Space[40]	  // List
+- currentPlayer: int
+- bankHouseCount: int
+- bankHotelCount: int
+--
++ getCurrentPlayer(): int
++ setCurrentPlayer(int inputPlayer): void
+
++ issueBalanceChange(int playerID,
+  int changeAmount): void
+
++ issueHouse(int spaceID, int playerID):
+  boolean  // T/F on success/fail
+
++ issueHotel(int spaceID, int playerID):
+  booolean</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1400</x>
+      <y>456</y>
+      <w>384</w>
+      <h>232</h>
+    </coordinates>
+    <panel_attributes>GameController
+--
+- isGameActive: boolean
+- playersCount: int
+--
++ setIsGameActive(boolean inputIsGameActive): void
++ getIsGameActive(): boolean
+
++ setPlayersCount(int inputPlayersCount): void
++ getPlayersCount(): int
+--
++ nextTurn(Board board): void
+
++ evaluateSpaceAction(): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1264</x>
+      <y>304</y>
+      <w>208</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes>ProgramManager
+--
+- board: gameBoard
+- controller: gameController
+--
++ main(): void
++ saveGameState(): void
++ loadGameState(): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>1264</x>
+      <y>272</y>
+      <w>88</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>Entry main
+bg=white
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1296</x>
+      <y>288</y>
+      <w>24</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;20.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1464</x>
+      <y>320</y>
+      <w>56</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;50.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1376</x>
+      <y>408</y>
+      <w>40</w>
+      <h>104</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;110.0;30.0;110.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1736</x>
+      <y>280</y>
+      <w>128</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+can access</panel_attributes>
+    <additional_attributes>140.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2200</x>
+      <y>256</y>
+      <w>280</w>
+      <h>208</h>
+    </coordinates>
+    <panel_attributes>Player
+--
+- isActive: bool
+- currentPosition: int
+- isJailed: bool
+- isMandatoryActionsExhaustedState: bool
+- consecutiveJailTurns: int
+- consecutiveDoublesRolls: int
+--
++ getIsActive(): bool
++ setIsActive(bool inputIsActive): void
+
++ getCurrentPosition(): int
++ setCurrentPosition(int spaceID): void
+
++ getMAEState(): bool
++ setMAEState(int inputMAEState): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2128</x>
+      <y>288</y>
+      <w>88</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m2=4</panel_attributes>
+    <additional_attributes>10.0;10.0;90.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1536</x>
+      <y>408</y>
+      <w>88</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+can access</panel_attributes>
+    <additional_attributes>10.0;60.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1848</x>
+      <y>768</y>
+      <w>264</w>
+      <h>216</h>
+    </coordinates>
+    <panel_attributes>Space
+--
+- id: int
+- friendlyName: string
+- spaceType: enum
+--
++ getID(): int
++ setID(int inputID): void
+
++ getFriendlyName(): string
++ setFriendlyName(String
+  inputFriendlyName): void
+  
++ getSpaceType(): Space.spaceTypeKeys
++ setSpaceType(Space.spaceTypeKeys
+  inputSpaceType): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1872</x>
+      <y>504</y>
+      <w>32</w>
+      <h>280</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m2=40</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;330.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1752</x>
+      <y>360</y>
+      <w>112</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+can access</panel_attributes>
+    <additional_attributes>120.0;20.0;10.0;20.0;10.0;120.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1544</x>
+      <y>1000</y>
+      <w>328</w>
+      <h>176</h>
+    </coordinates>
+    <panel_attributes>Space : Property
+-
+- isOwned: bool
+- isMortgaged: bool
+- purchaseCost: int
+--
++ getIsOwned(): bool
++ setIsOwned(bool inputIsOwned): void
+
++ getIsMortgaged(): bool
++ setIsMortgaged(bool inputIsMortgaged): void
+
++ getPurchaseCost(): int
++ setPurchaseCost(int inputPurchaseCost): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2144</x>
+      <y>984</y>
+      <w>264</w>
+      <h>216</h>
+    </coordinates>
+    <panel_attributes>Space : GameEvent
+Includes Free Parking (null space)
+--
+- gameEventTypeKeys: enum
+--
++ evaluateAction(int playerID): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1704</x>
+      <y>936</y>
+      <w>160</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;80.0;10.0;10.0;180.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2104</x>
+      <y>936</y>
+      <w>136</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>150.0;60.0;150.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1256</x>
+      <y>1088</y>
+      <w>264</w>
+      <h>312</h>
+    </coordinates>
+    <panel_attributes>Property : Color
+--
+- colorGroup: enum
+- rentBase: int
+- rentHouse[4]: int
+- rentHotel: int
+- isFullColorSetOwned: bool
+- houseCount: int
+- hotelCount: int
+--
++ evaluateRent(): int
+
++ buildHouse(): bool
++ buildHotel(): bool
+
++ removeHouse(): bool
++ removeHotel(): bool</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1544</x>
+      <y>1232</y>
+      <w>264</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>Property : Utility
+--
++ evaluateRent(int diceRoll): int</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1872</x>
+      <y>1224</y>
+      <w>264</w>
+      <h>216</h>
+    </coordinates>
+    <panel_attributes>GameEvent : BalanceUpdate
+Includes GO, Tax
+--
+
+--
++ getBalanceChangeAmount(): int</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2144</x>
+      <y>1224</y>
+      <w>264</w>
+      <h>216</h>
+    </coordinates>
+    <panel_attributes>GameEvent : DrawCard
+Includes Chance, Community Chest
+--
+- </panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2416</x>
+      <y>1224</y>
+      <w>264</w>
+      <h>216</h>
+    </coordinates>
+    <panel_attributes>GameEvent : Jail
+--
+- currentJailedPlayers[4]: boolean
+--
++ containedPlayer</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1512</x>
+      <y>1120</y>
+      <w>48</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;40.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2008</x>
+      <y>1176</y>
+      <w>152</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;60.0;10.0;10.0;170.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1664</x>
+      <y>1168</y>
+      <w>24</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;80.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2272</x>
+      <y>1192</y>
+      <w>24</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;40.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2400</x>
+      <y>1176</y>
+      <w>136</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>150.0;60.0;150.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2696</x>
+      <y>1224</y>
+      <w>264</w>
+      <h>216</h>
+    </coordinates>
+    <panel_attributes>GameEvent : Teleport
+Includes Go To Jail
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2512</x>
+      <y>1176</y>
+      <w>248</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>290.0;60.0;290.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLObject</id>
+    <coordinates>
+      <x>536</x>
+      <y>464</y>
+      <w>696</w>
+      <h>576</h>
+    </coordinates>
+    <panel_attributes>GameController : InitialEvaluator
+valign=top
+layer=-1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>696</x>
+      <y>488</y>
+      <w>56</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>Entry</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>736</x>
+      <y>896</y>
+      <w>112</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>issue GO bonus
+type=sender</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>768</x>
+      <y>536</y>
+      <w>32</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>type=decision
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>688</x>
+      <y>504</y>
+      <w>16</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>type=initial</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>792</x>
+      <y>544</y>
+      <w>136</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m2=[is jailed]
+fg=#18A046</panel_attributes>
+    <additional_attributes>150.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>776</x>
+      <y>560</y>
+      <w>120</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m2=[is not jailed]
+fg=#C83232</panel_attributes>
+    <additional_attributes>10.0;60.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>912</x>
+      <y>536</y>
+      <w>32</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>type=decision
+&#128172;
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>832</x>
+      <y>560</y>
+      <w>208</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m2=T:[posted bail]
+fg=#18A046</panel_attributes>
+    <additional_attributes>10.0;70.0;120.0;70.0;120.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>896</x>
+      <y>480</y>
+      <w>64</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>Ask for
+bailPost
+decision
+-</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>920</x>
+      <y>520</y>
+      <w>24</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>744</x>
+      <y>544</y>
+      <w>40</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>30.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>744</x>
+      <y>832</y>
+      <w>32</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>type=decision</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>936</x>
+      <y>544</y>
+      <w>168</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m2=F:[did not post bail]
+fg=#C83232</panel_attributes>
+    <additional_attributes>190.0;90.0;190.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>1056</x>
+      <y>616</y>
+      <w>64</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>rollDice
+type=sender</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>1064</x>
+      <y>664</y>
+      <w>32</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>type=decision
+&#127922;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1072</x>
+      <y>640</y>
+      <w>24</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;30.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>832</x>
+      <y>624</y>
+      <w>248</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m2=[is doubles]
+fg=#18A046</panel_attributes>
+    <additional_attributes>10.0;10.0;140.0;10.0;200.0;70.0;290.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>736</x>
+      <y>608</y>
+      <w>104</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>normal turn
+state</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1072</x>
+      <y>688</y>
+      <w>128</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=[is not doubles]</panel_attributes>
+    <additional_attributes>10.0;50.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>824</x>
+      <y>632</y>
+      <w>256</w>
+      <h>136</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m2=[turns in jail &gt;= 3]</panel_attributes>
+    <additional_attributes>10.0;10.0;30.0;30.0;100.0;30.0;210.0;140.0;300.0;140.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>1064</x>
+      <y>728</y>
+      <w>32</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>type=decision
+&#127922;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>1056</x>
+      <y>920</y>
+      <w>96</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>end turn
+type=sender
+bg=red</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>1168</x>
+      <y>928</y>
+      <w>16</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>type=final</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1144</x>
+      <y>928</y>
+      <w>40</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>30.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>736</x>
+      <y>760</y>
+      <w>64</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>rollDice
+type=sender</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>752</x>
+      <y>856</y>
+      <w>112</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m2=[will pass go]
+fg=#18A046</panel_attributes>
+    <additional_attributes>10.0;50.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>744</x>
+      <y>712</y>
+      <w>32</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+F
+fg=#C83232</panel_attributes>
+    <additional_attributes>10.0;60.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>680</x>
+      <y>696</y>
+      <w>72</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;50.0;10.0;50.0;100.0;70.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>768</x>
+      <y>840</y>
+      <w>152</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m2=[will not pass go]
+fg=#C83232</panel_attributes>
+    <additional_attributes>170.0;130.0;170.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLSyncBarHorizontal</id>
+    <coordinates>
+      <x>840</x>
+      <y>936</y>
+      <w>72</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>lw=5
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>840</x>
+      <y>904</y>
+      <w>24</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;50.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>840</x>
+      <y>968</y>
+      <w>112</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>update position
+type=sender</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>1168</x>
+      <y>976</y>
+      <w>16</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>type=final</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1144</x>
+      <y>976</y>
+      <w>40</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>30.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>864</x>
+      <y>936</y>
+      <w>24</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;40.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>1112</x>
+      <y>840</y>
+      <w>64</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>Ask for
+endTurn
+decision
+-</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1096</x>
+      <y>856</y>
+      <w>32</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>20.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>1072</x>
+      <y>848</y>
+      <w>32</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>type=decision
+&#128172;
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1080</x>
+      <y>872</y>
+      <w>96</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=T:[end turn]
+fg=#18A046</panel_attributes>
+    <additional_attributes>10.0;60.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>736</x>
+      <y>688</y>
+      <w>32</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>type=decision
+❓</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>760</x>
+      <y>688</y>
+      <w>32</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>20.0;10.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>776</x>
+      <y>680</y>
+      <w>80</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>Has rolled
+dice
+-</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>744</x>
+      <y>712</y>
+      <w>200</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+T
+fg=#18A046</panel_attributes>
+    <additional_attributes>230.0;100.0;160.0;30.0;30.0;30.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>928</x>
+      <y>792</y>
+      <w>120</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>mandatory actions
+exhausted state
+bg=red</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1032</x>
+      <y>856</y>
+      <w>56</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>50.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>936</x>
+      <y>848</y>
+      <w>104</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>[UI] enable
+endTurn 
+bg=yellow
+type=sender</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>952</x>
+      <y>816</y>
+      <w>24</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;40.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1016</x>
+      <y>752</y>
+      <w>152</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=[turns in jail &lt;= 3]</panel_attributes>
+    <additional_attributes>10.0;50.0;10.0;20.0;80.0;20.0;80.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>656</x>
+      <y>688</y>
+      <w>32</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>type=decision
+&#127922;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>664</x>
+      <y>624</y>
+      <w>88</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m2=F
+fg=#C83232</panel_attributes>
+    <additional_attributes>90.0;10.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>744</x>
+      <y>632</y>
+      <w>24</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;70.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>568</x>
+      <y>608</y>
+      <w>104</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>hasRolledDice
+set False
+type=sender</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>680</x>
+      <y>536</y>
+      <w>72</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>initTurn
+type=sender</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>688</x>
+      <y>504</y>
+      <w>24</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;40.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>664</x>
+      <y>712</y>
+      <w>32</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m2=T
+fg=#18A046</panel_attributes>
+    <additional_attributes>10.0;100.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>808</x>
+      <y>792</y>
+      <w>80</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>jail player
+type=sender</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>880</x>
+      <y>800</y>
+      <w>64</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>60.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>592</x>
+      <y>672</y>
+      <w>72</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>is doubles
+-</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>624</x>
+      <y>688</y>
+      <w>48</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>40.0;20.0;10.0;20.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>656</x>
+      <y>792</y>
+      <w>32</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>type=decision
+&#127922;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>648</x>
+      <y>816</y>
+      <w>40</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>30.0;10.0;30.0;50.0;10.0;50.0</additional_attributes>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>568</x>
+      <y>840</y>
+      <w>88</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>Consecutive
+doubles &gt;= 3
+-</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>680</x>
+      <y>800</y>
+      <w>144</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m2=T
+fg=#18A046</panel_attributes>
+    <additional_attributes>160.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>576</x>
+      <y>632</y>
+      <w>96</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m2=F
+fg=#C83232</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;220.0;100.0;220.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>664</x>
+      <y>616</y>
+      <w>88</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>90.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>752</x>
+      <y>784</y>
+      <w>24</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;60.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>1056</x>
+      <y>968</y>
+      <w>96</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>passed to
+other domain</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>944</x>
+      <y>976</y>
+      <w>128</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>140.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1224</x>
+      <y>736</y>
+      <w>120</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;130.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1328</x>
+      <y>728</y>
+      <w>256</w>
+      <h>128</h>
+    </coordinates>
+    <panel_attributes>InitialEvaluator
+--
+-- handles logic when player's turn
+   is initialized
+-- has ability to hand off control
+   to another domain, namely that
+   of the SpaceEvaluator class</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>640</x>
+      <y>272</y>
+      <w>240</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>Normal Turn State
+--
+-- set isJailed to false</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>648</x>
+      <y>424</y>
+      <w>120</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;210.0;130.0;210.0;130.0;230.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1088</x>
+      <y>992</y>
+      <w>24</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>896</x>
+      <y>1056</y>
+      <w>336</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>Other Domain State
+--
+-- handles logic when player has reached
+   a space, and when the initial
+ 	mandatory actions exhausted state is true
+   </panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1408</x>
+      <y>680</y>
+      <w>24</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;60.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLObject</id>
+    <coordinates>
+      <x>536</x>
+      <y>1152</y>
+      <w>696</w>
+      <h>576</h>
+    </coordinates>
+    <panel_attributes>GameController : SpaceEvaluator
+valign=top
+layer=-1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1040</x>
+      <y>800</y>
+      <w>248</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;290.0;10.0;290.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1264</x>
+      <y>880</y>
+      <w>256</w>
+      <h>136</h>
+    </coordinates>
+    <panel_attributes>InitialEvaluator:
+mandatory actions exhausted state
+--
+-- a state which indicates that all
+   actions the player is required to
+   perform per initial turn
+   evaluation are complete
+-- these actions include:
+   - roll dice
+   - decide to post bail if jailed</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>992</x>
+      <y>1120</y>
+      <w>24</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;40.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLObject</id>
+    <coordinates>
+      <x>1256</x>
+      <y>1432</y>
+      <w>400</w>
+      <h>288</h>
+    </coordinates>
+    <panel_attributes>Color : evaluateRent()
+valign=top
+layer=-1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1360</x>
+      <y>1392</y>
+      <w>24</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1280</x>
+      <y>1456</y>
+      <w>24</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;50.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>1280</x>
+      <y>1448</y>
+      <w>16</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>type=initial</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>1272</x>
+      <y>1496</y>
+      <w>32</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>type=decision</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1296</x>
+      <y>1584</y>
+      <w>176</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m2=[is not improved]</panel_attributes>
+    <additional_attributes>200.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1296</x>
+      <y>1504</y>
+      <w>160</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m2=[is mortgaged]</panel_attributes>
+    <additional_attributes>180.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>1544</x>
+      <y>1504</y>
+      <w>16</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>type=final</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1280</x>
+      <y>1520</y>
+      <w>136</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m2=[is not mortgaged]</panel_attributes>
+    <additional_attributes>10.0;70.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>1272</x>
+      <y>1576</y>
+      <w>32</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>type=decision</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1280</x>
+      <y>1600</y>
+      <w>104</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m2=[is improved]</panel_attributes>
+    <additional_attributes>10.0;90.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>1456</x>
+      <y>1576</y>
+      <w>32</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>type=decision</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1464</x>
+      <y>1600</y>
+      <w>128</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m2=[color set owned]</panel_attributes>
+    <additional_attributes>10.0;60.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1480</x>
+      <y>1560</y>
+      <w>168</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m2=[color set not owned]</panel_attributes>
+    <additional_attributes>140.0;10.0;140.0;40.0;10.0;40.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>1440</x>
+      <y>1496</y>
+      <w>80</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>return 0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1512</x>
+      <y>1504</y>
+      <w>48</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>40.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>1528</x>
+      <y>1536</y>
+      <w>80</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>return
+base rent</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1600</x>
+      <y>1544</y>
+      <w>48</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>40.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>1632</x>
+      <y>1544</y>
+      <w>16</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>type=final</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>1448</x>
+      <y>1648</y>
+      <w>96</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>return
+base rent * 2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1536</x>
+      <y>1656</y>
+      <w>48</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>40.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>1568</x>
+      <y>1656</y>
+      <w>16</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>type=final</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>1272</x>
+      <y>1672</y>
+      <w>96</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>return
+improved rent</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1360</x>
+      <y>1680</y>
+      <w>48</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>40.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>1392</x>
+      <y>1680</y>
+      <w>16</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>type=final</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>896</x>
+      <y>272</y>
+      <w>168</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>Optional Actions
+--
+-- mortgage a property
+-- build an improvement
+-- sell an improvement</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLObject</id>
+    <coordinates>
+      <x>0</x>
+      <y>464</y>
+      <w>512</w>
+      <h>256</h>
+    </coordinates>
+    <panel_attributes>GameController : mortgageProperty()
+valign=top
+layer=-1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>216</x>
+      <y>504</y>
+      <w>16</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>type=initial</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>208</x>
+      <y>544</y>
+      <w>32</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>type=decision</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>232</x>
+      <y>552</y>
+      <w>152</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m2=[is mortgaged]</panel_attributes>
+    <additional_attributes>170.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>432</x>
+      <y>552</y>
+      <w>16</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>type=final</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>72</x>
+      <y>552</y>
+      <w>152</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m2=[is not mortgaged]</panel_attributes>
+    <additional_attributes>90.0;90.0;90.0;10.0;170.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>216</x>
+      <y>656</y>
+      <w>96</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>update
+balance
+type=sender</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>304</x>
+      <y>664</y>
+      <w>56</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>50.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>472</x>
+      <y>664</y>
+      <w>16</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>type=final</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>368</x>
+      <y>544</y>
+      <w>32</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>type=decision
+&#128172;
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>376</x>
+      <y>528</y>
+      <w>24</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>344</x>
+      <y>488</y>
+      <w>96</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>Ask for
+confirmation
+to unmortgage
+-</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>216</x>
+      <y>512</y>
+      <w>24</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;40.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>344</x>
+      <y>656</y>
+      <w>96</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>update
+isMortgaged
+type=sender</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>432</x>
+      <y>664</y>
+      <w>56</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>50.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>128</x>
+      <y>624</y>
+      <w>32</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>type=decision
+&#128172;
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>104</x>
+      <y>632</y>
+      <w>40</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;10.0;30.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>24</x>
+      <y>624</y>
+      <w>88</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>Ask for
+confirmation
+to mortgage
+-</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>392</x>
+      <y>544</y>
+      <w>56</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+F</panel_attributes>
+    <additional_attributes>50.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>264</x>
+      <y>568</y>
+      <w>136</w>
+      <h>104</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+T</panel_attributes>
+    <additional_attributes>10.0;110.0;10.0;70.0;150.0;70.0;150.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>152</x>
+      <y>624</y>
+      <w>56</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+F</panel_attributes>
+    <additional_attributes>50.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>192</x>
+      <y>632</y>
+      <w>16</w>
+      <h>16</h>
+    </coordinates>
+    <panel_attributes>type=final</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>136</x>
+      <y>648</y>
+      <w>96</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+T</panel_attributes>
+    <additional_attributes>100.0;30.0;10.0;30.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLObject</id>
+    <coordinates>
+      <x>0</x>
+      <y>736</y>
+      <w>512</w>
+      <h>256</h>
+    </coordinates>
+    <panel_attributes>GameController : improveProperty()
+valign=top
+layer=-1</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
