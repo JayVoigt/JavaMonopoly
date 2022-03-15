@@ -64,21 +64,6 @@ public class Player implements Serializable {
 		actionLockedEndTurn;
 	// </editor-fold>
 	
-	public void initializePlayerStateForNewTurn() {
-		hasRequestedEndTurn = false;
-		hasRolledDice = false;
-		isInMandatoryActionsExhaustedState = false;
-		
-		madeDecisionPostedBail = false;
-		madeDecisionPropertyAction = false;
-		
-		hasRolledDoubles = false;
-		
-		// Actions are locked by default, and later unlocked when appropriate.
-		actionLockedRollDice = true;
-		actionLockedEndTurn = true;
-	}
-
 	// <editor-fold desc="Constructor">
 	Player() {
 		playerID = 0;
@@ -183,10 +168,58 @@ public class Player implements Serializable {
 	public boolean getActionLockedEndTurn() {
 		return actionLockedEndTurn;
 	}
+        
+        public void setHasRequestedEndTurn(boolean input) {
+            hasRequestedEndTurn = input;
+        }
+        
+        public void setHasRolledDice(boolean input) {
+            hasRolledDice = input;
+        }
+        
+        public void setIsInMAEState(boolean input) {
+            isInMandatoryActionsExhaustedState = input;
+        }
+        
+        public void setIsJailed(boolean input) {
+            isJailed = input;
+        }
+        
+        public void setMadeDecisionPostedBail(boolean input) {
+            madeDecisionPostedBail = input;
+        }
+        
+        public void setMadeDecisionPropertyAction(boolean input) {
+            madeDecisionPropertyAction = input;
+        }
+        
+        public void setHasRolledDoubles(boolean input) {
+            hasRolledDoubles = input;
+        }
+        
+        public void setActionLockedRollDice(boolean input) {
+            actionLockedRollDice = input;
+        }
+        
+        public void setActionLockedEndTurn(boolean input) {
+            actionLockedEndTurn = input;
+        }
 	// </editor-fold>
 	
 	public void initializePlayerForNewTurn() {
-		initializePlayerStateForNewTurn();
+                  hasRequestedEndTurn = false;
+		hasRolledDice = false;
+		isInMandatoryActionsExhaustedState = false;
+		
+		madeDecisionPostedBail = false;
+		madeDecisionPropertyAction = false;
+		
+		hasRolledDoubles = false;
+		
+		// Actions are locked by default, and later unlocked when appropriate.
+		actionLockedRollDice = true;
+		actionLockedEndTurn = true;
+
 		consecutiveDoublesCount = 0;
 		die1 = 0;
 		die2 = 0;

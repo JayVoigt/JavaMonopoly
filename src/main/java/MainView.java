@@ -47,14 +47,14 @@ public class MainView extends javax.swing.JFrame {
 	
 	public void update() {
 		Player currentPlayer = getCurrentPlayer();
-		if (currentPlayer.state.actionLockedEndTurn == true) {
+		if (currentPlayer.getActionLockedEndTurn() == true) {
 			buttonEndTurn.setEnabled(false);
 		}
 		else {
 			buttonEndTurn.setEnabled(true);
 		}
 		
-		if (currentPlayer.state.actionLockedRollDice == true) {
+		if (currentPlayer.getActionLockedRollDice() == true) {
 			buttonRollDice.setEnabled(false);
 		}
 		else {
