@@ -215,7 +215,10 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         menuViewManuallyUpdateView = new javax.swing.JMenuItem();
 
         gameSetupDialog.setAlwaysOnTop(true);
+        gameSetupDialog.setLocationByPlatform(true);
         gameSetupDialog.setMinimumSize(new java.awt.Dimension(400, 300));
+        gameSetupDialog.setPreferredSize(new java.awt.Dimension(400, 300));
+        gameSetupDialog.setResizable(false);
 
         buttonStartGame.setIcon(new javax.swing.ImageIcon(getClass().getResource("/newgame.png"))); // NOI18N
         buttonStartGame.setText("Start Game");
@@ -319,7 +322,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
                     .addComponent(buttonStartGame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(gameSetupDialogLayout.createSequentialGroup()
                         .addComponent(staticLabelPlayersCount2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
                         .addComponent(jButton1))
                     .addGroup(gameSetupDialogLayout.createSequentialGroup()
                         .addGroup(gameSetupDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -361,7 +364,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         gameSetupDialogLayout.setVerticalGroup(
             gameSetupDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, gameSetupDialogLayout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(21, Short.MAX_VALUE)
                 .addGroup(gameSetupDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(staticLabelPlayersCount2)
                     .addComponent(jButton1))
@@ -390,9 +393,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(gameSetupDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(textFieldPlayer4Name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(staticLabelPlayer4Name))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
-                        .addComponent(buttonStartGame, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(staticLabelPlayer4Name)))
                     .addGroup(gameSetupDialogLayout.createSequentialGroup()
                         .addComponent(checkBoxPlayer1ComputerControlled)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -400,11 +401,13 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(checkBoxPlayer2ComputerControlled1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(checkBoxPlayer2ComputerControlled2)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addComponent(checkBoxPlayer2ComputerControlled2)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(buttonStartGame, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(8, 8, 8))
         );
 
+        gameEditorDialog.setLocationByPlatform(true);
         gameEditorDialog.setMinimumSize(new java.awt.Dimension(400, 300));
         gameEditorDialog.getContentPane().setLayout(null);
 
@@ -546,6 +549,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         );
 
         debugToolsDialog.setAlwaysOnTop(true);
+        debugToolsDialog.setLocationByPlatform(true);
 
         jButton2.setText("Space Button Highlight");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -571,6 +575,9 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
                 .addContainerGap(271, Short.MAX_VALUE))
         );
 
+        askPropertyDecisionDialog.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        askPropertyDecisionDialog.setAlwaysOnTop(true);
+        askPropertyDecisionDialog.setLocationByPlatform(true);
         askPropertyDecisionDialog.setSize(new java.awt.Dimension(400, 300));
 
         buttonPropertyDecisionPurchase.setIcon(new javax.swing.ImageIcon(getClass().getResource("/money.png"))); // NOI18N
@@ -1432,7 +1439,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         labelCurrentPlayer.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         labelCurrentPlayer.setText("n/a");
         jInternalFrame1.getContentPane().add(labelCurrentPlayer);
-        labelCurrentPlayer.setBounds(170, 10, 140, 20);
+        labelCurrentPlayer.setBounds(180, 10, 140, 20);
 
         labelDie2.setFont(new java.awt.Font("Courier", 0, 18)); // NOI18N
         labelDie2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -1458,7 +1465,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         labelCurrentBalance.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         labelCurrentBalance.setText("n/a");
         jInternalFrame1.getContentPane().add(labelCurrentBalance);
-        labelCurrentBalance.setBounds(170, 40, 140, 20);
+        labelCurrentBalance.setBounds(180, 40, 140, 20);
 
         jSeparator5.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jInternalFrame1.getContentPane().add(jSeparator5);
@@ -1476,7 +1483,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         labelCurrentPosition.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         labelCurrentPosition.setText("n/a");
         jInternalFrame1.getContentPane().add(labelCurrentPosition);
-        labelCurrentPosition.setBounds(170, 70, 140, 20);
+        labelCurrentPosition.setBounds(180, 70, 140, 20);
         jInternalFrame1.getContentPane().add(jSeparator7);
         jSeparator7.setBounds(0, 100, 330, 10);
 
@@ -1695,6 +1702,14 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		labelCurrentPlayer.setText(currentPlayer.getCustomName());
 		labelCurrentBalance.setText("$" + Integer.toString(currentPlayer.getCurrentBalance()));
 		labelCurrentPosition.setText(board.spaces.get(currentPlayer.getCurrentPosition()).getFriendlyName());
+		
+		if (currentPlayer.getIsComputerControlled() == true) {
+			labelCurrentPlayerIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/robot.png"))); // NOI18N
+		}
+		else {
+			labelCurrentPlayerIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/player-generic.png")));
+		}
+		
 		appendToDebugLog("[initUIForCurrentPlayer] Current player: " + currentPlayer.getCustomName());
 	}
 
@@ -2093,43 +2108,47 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		update();
     }//GEN-LAST:event_buttonPropertyDecisionPurchaseActionPerformed
 
-	// <editor-fold desc="Start game menu">
-    private void checkBoxPlayer2ComputerControlled2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBoxPlayer2ComputerControlled2ActionPerformed
-		// TODO add your handling code here:
-    }//GEN-LAST:event_checkBoxPlayer2ComputerControlled2ActionPerformed
+
+    private void menuViewManuallyUpdateViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuViewManuallyUpdateViewActionPerformed
+        update();
+    }//GEN-LAST:event_menuViewManuallyUpdateViewActionPerformed
+
+//GEN-FIRST:event_checkBoxPlayer2ComputerControlled2ActionPerformed
+ 
+//GEN-LAST:event_checkBoxPlayer2ComputerControlled2ActionPerformed
 
     private void checkBoxPlayer2ComputerControlled1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBoxPlayer2ComputerControlled1ActionPerformed
-		// TODO add your handling code here:
+        // TODO add your handling code here:
     }//GEN-LAST:event_checkBoxPlayer2ComputerControlled1ActionPerformed
 
     private void checkBoxPlayer1ComputerControlledActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBoxPlayer1ComputerControlledActionPerformed
-		if (checkBoxPlayer1ComputerControlled.isSelected() == true) {
-			board.players.get(1).setIsComputerControlled(true);
-		}
-		else {
-			board.players.get(1).setIsComputerControlled(false);
-		}
+        if (checkBoxPlayer1ComputerControlled.isSelected() == true) {
+            board.players.get(1).setIsComputerControlled(true);
+        }
+        else {
+            board.players.get(1).setIsComputerControlled(false);
+        }
     }//GEN-LAST:event_checkBoxPlayer1ComputerControlledActionPerformed
 
     private void checkBoxPlayer2ComputerControlledActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBoxPlayer2ComputerControlledActionPerformed
-		if (checkBoxPlayer2ComputerControlled.isSelected() == true) {
-			board.players.get(2).setIsComputerControlled(true);
-		}
-		else {
-			board.players.get(2).setIsComputerControlled(false);
-		}
+        if (checkBoxPlayer2ComputerControlled.isSelected() == true) {
+            board.players.get(2).setIsComputerControlled(true);
+        }
+        else {
+            board.players.get(2).setIsComputerControlled(false);
+        }
     }//GEN-LAST:event_checkBoxPlayer2ComputerControlledActionPerformed
-	
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-		appendToDebugLog("debug test");
+        appendToDebugLog("debug test");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void textFieldPlayer1NameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldPlayer1NameActionPerformed
-		// TODO add your handling code here:
+        // TODO add your handling code here:
     }//GEN-LAST:event_textFieldPlayer1NameActionPerformed
 
     private void spinnerStartingBalancePropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_spinnerStartingBalancePropertyChange
-		int inputStartingBalance = (int) spinnerStartingBalance.getValue();
+        int inputStartingBalance = (int) spinnerStartingBalance.getValue();
     }//GEN-LAST:event_spinnerStartingBalancePropertyChange
 
     private void comboBoxPlayersCountPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_comboBoxPlayersCountPropertyChange
@@ -2137,54 +2156,50 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     }//GEN-LAST:event_comboBoxPlayersCountPropertyChange
 
     private void comboBoxPlayersCountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxPlayersCountActionPerformed
-		String inputPlayersCount = comboBoxPlayersCount.getSelectedItem().toString();
-		if (inputPlayersCount.equals("1")) {
-			textFieldPlayer1Name.setEnabled(true);
-			textFieldPlayer2Name.setEnabled(false);
-			textFieldPlayer3Name.setEnabled(false);
-			textFieldPlayer4Name.setEnabled(false);
-		}
-		else if (inputPlayersCount.equals("2")) {
-			textFieldPlayer1Name.setEnabled(true);
-			textFieldPlayer2Name.setEnabled(true);
-			textFieldPlayer3Name.setEnabled(false);
-			textFieldPlayer4Name.setEnabled(false);
-		}
-		else if (inputPlayersCount.equals("3")) {
-			textFieldPlayer1Name.setEnabled(true);
-			textFieldPlayer2Name.setEnabled(true);
-			textFieldPlayer3Name.setEnabled(true);
-			textFieldPlayer4Name.setEnabled(false);
-		}
-		else if (inputPlayersCount.equals("4")) {
-			textFieldPlayer1Name.setEnabled(true);
-			textFieldPlayer2Name.setEnabled(true);
-			textFieldPlayer3Name.setEnabled(true);
-			textFieldPlayer4Name.setEnabled(true);
-		}
+        String inputPlayersCount = comboBoxPlayersCount.getSelectedItem().toString();
+        if (inputPlayersCount.equals("1")) {
+            textFieldPlayer1Name.setEnabled(true);
+            textFieldPlayer2Name.setEnabled(false);
+            textFieldPlayer3Name.setEnabled(false);
+            textFieldPlayer4Name.setEnabled(false);
+        }
+        else if (inputPlayersCount.equals("2")) {
+            textFieldPlayer1Name.setEnabled(true);
+            textFieldPlayer2Name.setEnabled(true);
+            textFieldPlayer3Name.setEnabled(false);
+            textFieldPlayer4Name.setEnabled(false);
+        }
+        else if (inputPlayersCount.equals("3")) {
+            textFieldPlayer1Name.setEnabled(true);
+            textFieldPlayer2Name.setEnabled(true);
+            textFieldPlayer3Name.setEnabled(true);
+            textFieldPlayer4Name.setEnabled(false);
+        }
+        else if (inputPlayersCount.equals("4")) {
+            textFieldPlayer1Name.setEnabled(true);
+            textFieldPlayer2Name.setEnabled(true);
+            textFieldPlayer3Name.setEnabled(true);
+            textFieldPlayer4Name.setEnabled(true);
+        }
     }//GEN-LAST:event_comboBoxPlayersCountActionPerformed
 
     private void buttonStartGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonStartGameActionPerformed
-		controller.setIsGameActive(true);
-		String inputPlayersCount = comboBoxPlayersCount.getSelectedItem().toString();
-		controller.setPlayersCount(Integer.parseInt(inputPlayersCount));
-		gameSetupDialog.setVisible(false);
+        controller.setIsGameActive(true);
+        String inputPlayersCount = comboBoxPlayersCount.getSelectedItem().toString();
+        controller.setPlayersCount(Integer.parseInt(inputPlayersCount));
+        gameSetupDialog.setVisible(false);
 
-		board.players.get(1).setCustomName(textFieldPlayer1Name.getText());
-		board.players.get(2).setCustomName(textFieldPlayer2Name.getText());
-		board.players.get(3).setCustomName(textFieldPlayer3Name.getText());
-		board.players.get(4).setCustomName(textFieldPlayer4Name.getText());
+        board.players.get(1).setCustomName(textFieldPlayer1Name.getText());
+        board.players.get(2).setCustomName(textFieldPlayer2Name.getText());
+        board.players.get(3).setCustomName(textFieldPlayer3Name.getText());
+        board.players.get(4).setCustomName(textFieldPlayer4Name.getText());
 
-		appendToGameLog("New game started with " + inputPlayersCount + " players.");
-		appendToDebugLog("New game started.");
-		
-		controller.initialEvaluator();
-		update();
-    }//GEN-LAST:event_buttonStartGameActionPerformed
+        appendToGameLog("New game started with " + inputPlayersCount + " players.");
+        appendToDebugLog("New game started.");
 
-    private void menuViewManuallyUpdateViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuViewManuallyUpdateViewActionPerformed
+        controller.initialEvaluator();
         update();
-    }//GEN-LAST:event_menuViewManuallyUpdateViewActionPerformed
+    }//GEN-LAST:event_buttonStartGameActionPerformed
 	// </editor-fold>
 
 	public void spaceButtonAppearanceHighlight(int spaceID) {
