@@ -608,6 +608,9 @@
       <SubComponents>
         <Component class="javax.swing.JButton" name="buttonPropertyDecisionPurchase">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/money.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Purchase"/>
           </Properties>
           <Events>
@@ -616,6 +619,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="buttonPropertyDecisionAuction">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/auction.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Auction"/>
           </Properties>
         </Component>
@@ -789,7 +795,7 @@
                   <Component id="frameBoard" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
                       <Component id="jInternalFrame2" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="249" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="250" max="-2" attributes="0"/>
                       <Component id="jInternalFrame1" min="-2" pref="376" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -803,7 +809,7 @@
       <Properties>
         <Property name="title" type="java.lang.String" value="Board"/>
         <Property name="frameIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="0" name="null"/>
+          <Image iconType="2" name="/Users/jay/NetBeansProjects/Monoproto3/src/main/resources/board.png"/>
         </Property>
         <Property name="visible" type="boolean" value="true"/>
       </Properties>
@@ -1026,7 +1032,7 @@
         <Component class="javax.swing.JLabel" name="iconPlayer1Position">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="/Users/jay/NetBeansProjects/Monoproto2/img/board/1x/12icon.png"/>
+              <Image iconType="2" name="/Users/jay/NetBeansProjects/Monoproto3/assets/player-icon-1-style2.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="jLabel1"/>
             <Property name="alignmentY" type="float" value="0.0"/>
@@ -2333,7 +2339,7 @@
               <Font name="Helvetica Neue" size="14" style="0"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/com/mycompany/monoproto3/dice-icon.png"/>
+              <Image iconType="2" name="/Users/jay/NetBeansProjects/Monoproto3/src/main/resources/dice-icon.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Player 1"/>
           </Properties>
@@ -2352,6 +2358,9 @@
       <SubComponents>
         <Component class="javax.swing.JButton" name="buttonEndTurn">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="2" name="/Users/jay/NetBeansProjects/Monoproto3/src/main/resources/arrow.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="End Turn"/>
           </Properties>
           <Events>
@@ -2365,6 +2374,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="buttonRollDice">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="2" name="/Users/jay/NetBeansProjects/Monoproto3/src/main/resources/dice-icon.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Roll Dice"/>
           </Properties>
           <Events>
@@ -2386,7 +2398,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="40" y="10" width="131" height="20"/>
+              <AbsoluteConstraints x="30" y="10" width="131" height="20"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -2452,7 +2464,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="40" y="40" width="131" height="20"/>
+              <AbsoluteConstraints x="30" y="40" width="131" height="20"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -2476,7 +2488,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="160" y="0" width="10" height="100"/>
+              <AbsoluteConstraints x="170" y="0" width="10" height="100"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -2487,17 +2499,17 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JLabel" name="staticLabelCurrentBalance1">
+        <Component class="javax.swing.JLabel" name="staticLabelPosition">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Helvetica Neue" size="18" style="1"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="2"/>
-            <Property name="text" type="java.lang.String" value="Balance"/>
+            <Property name="text" type="java.lang.String" value="Position"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="40" y="70" width="131" height="20"/>
+              <AbsoluteConstraints x="30" y="70" width="131" height="20"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -2534,6 +2546,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="buttonActionMortgage">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/mortgage.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Mortgage"/>
           </Properties>
           <Constraints>
@@ -2544,6 +2559,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="buttonActionImprovements">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/improvements.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Improvements"/>
           </Properties>
           <Constraints>
@@ -2554,7 +2572,10 @@
         </Component>
         <Component class="javax.swing.JButton" name="buttonActionMortgage1">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Mortgage"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/properties.png"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Properties"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -2564,7 +2585,10 @@
         </Component>
         <Component class="javax.swing.JButton" name="buttonActionImprovements1">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Improvements"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/statistics.png"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Statistics"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -2582,10 +2606,45 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JLabel" name="labelPlayer1ActiveIcon1">
+        <Component class="javax.swing.JLabel" name="labelCurrentPlayerIcon">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Helvetica Neue" size="14" style="0"/>
+            </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/player-generic.png"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Player 1"/>
+          </Properties>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="10" y="10" width="18" height="-1"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="javax.swing.JLabel" name="staticLabelPositionIcon">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Helvetica Neue" size="14" style="0"/>
+            </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/position.png"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Player 1"/>
+          </Properties>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="10" y="70" width="18" height="-1"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="javax.swing.JLabel" name="labelCurrentBalanceIcon1">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Helvetica Neue" size="14" style="0"/>
+            </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="2" name="/Users/jay/NetBeansProjects/Monoproto3/src/main/resources/money.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Player 1"/>
           </Properties>

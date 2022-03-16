@@ -181,7 +181,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         labelCurrentBalance = new javax.swing.JLabel();
         jSeparator5 = new javax.swing.JSeparator();
         jSeparator6 = new javax.swing.JSeparator();
-        staticLabelCurrentBalance1 = new javax.swing.JLabel();
+        staticLabelPosition = new javax.swing.JLabel();
         lableCurrentBalance1 = new javax.swing.JLabel();
         jSeparator7 = new javax.swing.JSeparator();
         buttonActionTrade = new javax.swing.JButton();
@@ -190,7 +190,9 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonActionMortgage1 = new javax.swing.JButton();
         buttonActionImprovements1 = new javax.swing.JButton();
         buttonActionTrade1 = new javax.swing.JButton();
-        labelPlayer1ActiveIcon1 = new javax.swing.JLabel();
+        labelCurrentPlayerIcon = new javax.swing.JLabel();
+        staticLabelPositionIcon = new javax.swing.JLabel();
+        labelCurrentBalanceIcon1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuFile = new javax.swing.JMenu();
         menuFileNewGame = new javax.swing.JMenuItem();
@@ -559,6 +561,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 
         askPropertyDecisionDialog.setSize(new java.awt.Dimension(400, 300));
 
+        buttonPropertyDecisionPurchase.setIcon(new javax.swing.ImageIcon(getClass().getResource("/money.png"))); // NOI18N
         buttonPropertyDecisionPurchase.setText("Purchase");
         buttonPropertyDecisionPurchase.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -566,6 +569,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
             }
         });
 
+        buttonPropertyDecisionAuction.setIcon(new javax.swing.ImageIcon(getClass().getResource("/auction.png"))); // NOI18N
         buttonPropertyDecisionAuction.setText("Auction");
 
         staticLabelPropertyDecision.setText("Would you like to purchase the following property?");
@@ -606,7 +610,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         setBackground(new java.awt.Color(255, 255, 255));
 
         frameBoard.setTitle("Board");
-        frameBoard.setFrameIcon(null);
+        frameBoard.setFrameIcon(new javax.swing.ImageIcon("/Users/jay/NetBeansProjects/Monoproto3/src/main/resources/board.png")); // NOI18N
         frameBoard.setVisible(true);
         frameBoard.getContentPane().setLayout(null);
 
@@ -695,7 +699,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         frameBoard.getContentPane().add(jPanel1);
         jPanel1.setBounds(160, 370, 660, 220);
 
-        iconPlayer1Position.setIcon(new javax.swing.ImageIcon("/Users/jay/NetBeansProjects/Monoproto2/img/board/1x/12icon.png")); // NOI18N
+        iconPlayer1Position.setIcon(new javax.swing.ImageIcon("/Users/jay/NetBeansProjects/Monoproto3/assets/player-icon-1-style2.png")); // NOI18N
         iconPlayer1Position.setText("jLabel1");
         iconPlayer1Position.setAlignmentY(0.0F);
         iconPlayer1Position.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
@@ -1344,7 +1348,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         labelPlayer4Name.setText("Player 4");
 
         labelPlayer1ActiveIcon.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        labelPlayer1ActiveIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/monoproto3/dice-icon.png"))); // NOI18N
+        labelPlayer1ActiveIcon.setIcon(new javax.swing.ImageIcon("/Users/jay/NetBeansProjects/Monoproto3/src/main/resources/dice-icon.png")); // NOI18N
         labelPlayer1ActiveIcon.setText("Player 1");
 
         javax.swing.GroupLayout jInternalFrame2Layout = new javax.swing.GroupLayout(jInternalFrame2.getContentPane());
@@ -1382,6 +1386,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         jInternalFrame1.setVisible(true);
         jInternalFrame1.getContentPane().setLayout(null);
 
+        buttonEndTurn.setIcon(new javax.swing.ImageIcon("/Users/jay/NetBeansProjects/Monoproto3/src/main/resources/arrow.png")); // NOI18N
         buttonEndTurn.setText("End Turn");
         buttonEndTurn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1391,6 +1396,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         jInternalFrame1.getContentPane().add(buttonEndTurn);
         buttonEndTurn.setBounds(200, 270, 105, 58);
 
+        buttonRollDice.setIcon(new javax.swing.ImageIcon("/Users/jay/NetBeansProjects/Monoproto3/src/main/resources/dice-icon.png")); // NOI18N
         buttonRollDice.setText("Roll Dice");
         buttonRollDice.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1404,7 +1410,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         staticLabelCurrentPlayer.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         staticLabelCurrentPlayer.setText("Current Player");
         jInternalFrame1.getContentPane().add(staticLabelCurrentPlayer);
-        staticLabelCurrentPlayer.setBounds(40, 10, 131, 20);
+        staticLabelCurrentPlayer.setBounds(30, 10, 131, 20);
 
         labelCurrentPlayer.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         labelCurrentPlayer.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -1430,7 +1436,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         staticLabelCurrentBalance.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         staticLabelCurrentBalance.setText("Balance");
         jInternalFrame1.getContentPane().add(staticLabelCurrentBalance);
-        staticLabelCurrentBalance.setBounds(40, 40, 131, 20);
+        staticLabelCurrentBalance.setBounds(30, 40, 131, 20);
 
         labelCurrentBalance.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         labelCurrentBalance.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -1440,15 +1446,15 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 
         jSeparator5.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jInternalFrame1.getContentPane().add(jSeparator5);
-        jSeparator5.setBounds(160, 0, 10, 100);
+        jSeparator5.setBounds(170, 0, 10, 100);
         jInternalFrame1.getContentPane().add(jSeparator6);
         jSeparator6.setBounds(0, 200, 330, 20);
 
-        staticLabelCurrentBalance1.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        staticLabelCurrentBalance1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        staticLabelCurrentBalance1.setText("Balance");
-        jInternalFrame1.getContentPane().add(staticLabelCurrentBalance1);
-        staticLabelCurrentBalance1.setBounds(40, 70, 131, 20);
+        staticLabelPosition.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        staticLabelPosition.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        staticLabelPosition.setText("Position");
+        jInternalFrame1.getContentPane().add(staticLabelPosition);
+        staticLabelPosition.setBounds(30, 70, 131, 20);
 
         lableCurrentBalance1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         lableCurrentBalance1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -1462,19 +1468,23 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         jInternalFrame1.getContentPane().add(buttonActionTrade);
         buttonActionTrade.setBounds(10, 170, 140, 23);
 
+        buttonActionMortgage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mortgage.png"))); // NOI18N
         buttonActionMortgage.setText("Mortgage");
         jInternalFrame1.getContentPane().add(buttonActionMortgage);
         buttonActionMortgage.setBounds(10, 110, 140, 23);
 
+        buttonActionImprovements.setIcon(new javax.swing.ImageIcon(getClass().getResource("/improvements.png"))); // NOI18N
         buttonActionImprovements.setText("Improvements");
         jInternalFrame1.getContentPane().add(buttonActionImprovements);
         buttonActionImprovements.setBounds(10, 140, 140, 23);
 
-        buttonActionMortgage1.setText("Mortgage");
+        buttonActionMortgage1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/properties.png"))); // NOI18N
+        buttonActionMortgage1.setText("Properties");
         jInternalFrame1.getContentPane().add(buttonActionMortgage1);
         buttonActionMortgage1.setBounds(180, 110, 140, 23);
 
-        buttonActionImprovements1.setText("Improvements");
+        buttonActionImprovements1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/statistics.png"))); // NOI18N
+        buttonActionImprovements1.setText("Statistics");
         jInternalFrame1.getContentPane().add(buttonActionImprovements1);
         buttonActionImprovements1.setBounds(180, 140, 140, 23);
 
@@ -1482,10 +1492,23 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         jInternalFrame1.getContentPane().add(buttonActionTrade1);
         buttonActionTrade1.setBounds(180, 170, 140, 23);
 
-        labelPlayer1ActiveIcon1.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        labelPlayer1ActiveIcon1.setText("Player 1");
-        jInternalFrame1.getContentPane().add(labelPlayer1ActiveIcon1);
-        labelPlayer1ActiveIcon1.setBounds(10, 40, 18, 18);
+        labelCurrentPlayerIcon.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        labelCurrentPlayerIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/player-generic.png"))); // NOI18N
+        labelCurrentPlayerIcon.setText("Player 1");
+        jInternalFrame1.getContentPane().add(labelCurrentPlayerIcon);
+        labelCurrentPlayerIcon.setBounds(10, 10, 18, 18);
+
+        staticLabelPositionIcon.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        staticLabelPositionIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/position.png"))); // NOI18N
+        staticLabelPositionIcon.setText("Player 1");
+        jInternalFrame1.getContentPane().add(staticLabelPositionIcon);
+        staticLabelPositionIcon.setBounds(10, 70, 18, 18);
+
+        labelCurrentBalanceIcon1.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        labelCurrentBalanceIcon1.setIcon(new javax.swing.ImageIcon("/Users/jay/NetBeansProjects/Monoproto3/src/main/resources/money.png")); // NOI18N
+        labelCurrentBalanceIcon1.setText("Player 1");
+        jInternalFrame1.getContentPane().add(labelCurrentBalanceIcon1);
+        labelCurrentBalanceIcon1.setBounds(10, 40, 18, 18);
 
         menuFile.setText("File");
 
@@ -1594,7 +1617,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
                     .addComponent(frameBoard)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jInternalFrame2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 249, Short.MAX_VALUE)
+                        .addGap(250, 250, 250)
                         .addComponent(jInternalFrame1, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -2365,7 +2388,9 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     public javax.swing.JSeparator jSeparator7;
     public javax.swing.JLabel labelBoardImage;
     public javax.swing.JLabel labelCurrentBalance;
+    public javax.swing.JLabel labelCurrentBalanceIcon1;
     public javax.swing.JLabel labelCurrentPlayer;
+    public javax.swing.JLabel labelCurrentPlayerIcon;
     public javax.swing.JLabel labelDie1;
     public javax.swing.JLabel labelDie2;
     public javax.swing.JLabel labelFriendlyName;
@@ -2378,7 +2403,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     public javax.swing.JLabel labelIsOwned;
     public javax.swing.JLabel labelOwnedBy;
     public javax.swing.JLabel labelPlayer1ActiveIcon;
-    public javax.swing.JLabel labelPlayer1ActiveIcon1;
     public javax.swing.JLabel labelPlayer1Name;
     public javax.swing.JLabel labelPlayer2Name;
     public javax.swing.JLabel labelPlayer3Name;
@@ -2403,7 +2427,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     public javax.swing.JPanel saveFileChoserPanel;
     public javax.swing.JSpinner spinnerStartingBalance;
     public javax.swing.JLabel staticLabelCurrentBalance;
-    public javax.swing.JLabel staticLabelCurrentBalance1;
     public javax.swing.JLabel staticLabelCurrentPlayer;
     public javax.swing.JLabel staticLabelFriendlyName;
     public javax.swing.JLabel staticLabelID;
@@ -2418,6 +2441,8 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     public javax.swing.JLabel staticLabelPlayersCount;
     public javax.swing.JLabel staticLabelPlayersCount1;
     public javax.swing.JLabel staticLabelPlayersCount2;
+    public javax.swing.JLabel staticLabelPosition;
+    public javax.swing.JLabel staticLabelPositionIcon;
     public javax.swing.JLabel staticLabelPropertyDecision;
     public javax.swing.JLabel staticLabelSpaceType;
     public javax.swing.JTextArea textAreaDebugLog;
