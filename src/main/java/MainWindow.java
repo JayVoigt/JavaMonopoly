@@ -10,6 +10,9 @@ import java.util.*;
 import java.lang.reflect.*;
 import java.lang.String;
 import java.io.File;
+import java.io.InputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -23,6 +26,7 @@ import java.io.File;
 public class MainWindow extends javax.swing.JFrame implements WindowListener, ActionListener {
 
 	Board board;
+	Font font;
 	GameLogicController controller;
 
 	ArrayList<JButton> spaceButtons;
@@ -40,7 +44,8 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		controller = new GameLogicController(board);
 
 		customInitComponents();
-
+		font = customInitFont();
+		labelFriendlyName.setFont(font); // NOI18N
 		initButtonAppearance();
 	}
 
@@ -209,6 +214,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         gameSetupDialog.setAlwaysOnTop(true);
         gameSetupDialog.setMinimumSize(new java.awt.Dimension(400, 300));
 
+        buttonStartGame.setIcon(new javax.swing.ImageIcon(getClass().getResource("/newgame.png"))); // NOI18N
         buttonStartGame.setText("Start Game");
         buttonStartGame.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -228,11 +234,13 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
             }
         });
 
+        staticLabelPlayersCount.setIcon(new javax.swing.ImageIcon(getClass().getResource("/player-generic.png"))); // NOI18N
         staticLabelPlayersCount.setText("Number of Players");
 
         staticLabelPlayersCount2.setFont(new java.awt.Font("Helvetica Neue", 3, 18)); // NOI18N
         staticLabelPlayersCount2.setText("Java Monopoly Prototype");
 
+        staticLabelPlayersCount1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/money.png"))); // NOI18N
         staticLabelPlayersCount1.setText("Starting Balance");
 
         spinnerStartingBalance.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
@@ -262,6 +270,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 
         textFieldPlayer4Name.setText("Player 4");
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bug.png"))); // NOI18N
         jButton1.setText("debug");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -307,7 +316,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
                     .addComponent(buttonStartGame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(gameSetupDialogLayout.createSequentialGroup()
                         .addComponent(staticLabelPlayersCount2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
                         .addComponent(jButton1))
                     .addGroup(gameSetupDialogLayout.createSequentialGroup()
                         .addGroup(gameSetupDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1386,8 +1395,9 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         jInternalFrame1.setVisible(true);
         jInternalFrame1.getContentPane().setLayout(null);
 
-        buttonEndTurn.setIcon(new javax.swing.ImageIcon("/Users/jay/NetBeansProjects/Monoproto3/src/main/resources/arrow.png")); // NOI18N
+        buttonEndTurn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/arrow.png"))); // NOI18N
         buttonEndTurn.setText("End Turn");
+        buttonEndTurn.setMargin(new java.awt.Insets(2, 6, 2, 6));
         buttonEndTurn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonEndTurnActionPerformed(evt);
@@ -1398,6 +1408,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 
         buttonRollDice.setIcon(new javax.swing.ImageIcon("/Users/jay/NetBeansProjects/Monoproto3/src/main/resources/dice-icon.png")); // NOI18N
         buttonRollDice.setText("Roll Dice");
+        buttonRollDice.setMargin(new java.awt.Insets(2, 6, 2, 6));
         buttonRollDice.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonRollDiceActionPerformed(evt);
@@ -1465,30 +1476,36 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         jSeparator7.setBounds(0, 100, 330, 10);
 
         buttonActionTrade.setText("Trade");
+        buttonActionTrade.setMargin(new java.awt.Insets(2, 6, 2, 6));
         jInternalFrame1.getContentPane().add(buttonActionTrade);
         buttonActionTrade.setBounds(10, 170, 140, 23);
 
         buttonActionMortgage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mortgage.png"))); // NOI18N
         buttonActionMortgage.setText("Mortgage");
+        buttonActionMortgage.setMargin(new java.awt.Insets(2, 6, 2, 6));
         jInternalFrame1.getContentPane().add(buttonActionMortgage);
         buttonActionMortgage.setBounds(10, 110, 140, 23);
 
         buttonActionImprovements.setIcon(new javax.swing.ImageIcon(getClass().getResource("/improvements.png"))); // NOI18N
         buttonActionImprovements.setText("Improvements");
+        buttonActionImprovements.setMargin(new java.awt.Insets(2, 6, 2, 6));
         jInternalFrame1.getContentPane().add(buttonActionImprovements);
         buttonActionImprovements.setBounds(10, 140, 140, 23);
 
         buttonActionMortgage1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/properties.png"))); // NOI18N
         buttonActionMortgage1.setText("Properties");
+        buttonActionMortgage1.setMargin(new java.awt.Insets(2, 6, 2, 6));
         jInternalFrame1.getContentPane().add(buttonActionMortgage1);
         buttonActionMortgage1.setBounds(180, 110, 140, 23);
 
         buttonActionImprovements1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/statistics.png"))); // NOI18N
         buttonActionImprovements1.setText("Statistics");
+        buttonActionImprovements1.setMargin(new java.awt.Insets(2, 6, 2, 6));
         jInternalFrame1.getContentPane().add(buttonActionImprovements1);
         buttonActionImprovements1.setBounds(180, 140, 140, 23);
 
         buttonActionTrade1.setText("Trade");
+        buttonActionTrade1.setMargin(new java.awt.Insets(2, 6, 2, 6));
         jInternalFrame1.getContentPane().add(buttonActionTrade1);
         buttonActionTrade1.setBounds(180, 170, 140, 23);
 
@@ -1617,7 +1634,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
                     .addComponent(frameBoard)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jInternalFrame2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(250, 250, 250)
+                        .addGap(257, 257, 257)
                         .addComponent(jInternalFrame1, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -1625,6 +1642,22 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+	private Font customInitFont() {
+		Font font;
+		try {
+			font = Font.createFont(Font.TRUETYPE_FONT, new File("/Users/jay/NetBeansProjects/Monoproto3/src/main/resources/NicoPups-Regular.ttf"));
+		} catch (FontFormatException ex) {
+			Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+			font = null;
+		} catch (IOException ex) {
+			Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+			font = null;
+		}
+		
+		//labelFriendlyName.setFont(font); // NOI18N
+		return font.deriveFont(24f);
+	}
+	
 	// <editor-fold desc="Update and helper methods">
 	public void update() {
 		initInfoUIForCurrentPlayer();

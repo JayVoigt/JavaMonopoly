@@ -19,7 +19,7 @@
                       <Component id="buttonStartGame" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="staticLabelPlayersCount2" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="101" max="32767" attributes="0"/>
+                          <EmptySpace pref="84" max="32767" attributes="0"/>
                           <Component id="jButton1" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
@@ -136,6 +136,9 @@
       <SubComponents>
         <Component class="javax.swing.JButton" name="buttonStartGame">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/newgame.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Start Game"/>
           </Properties>
           <Events>
@@ -163,6 +166,9 @@
         </Component>
         <Component class="javax.swing.JLabel" name="staticLabelPlayersCount">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/player-generic.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Number of Players"/>
           </Properties>
         </Component>
@@ -176,6 +182,9 @@
         </Component>
         <Component class="javax.swing.JLabel" name="staticLabelPlayersCount1">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/money.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Starting Balance"/>
           </Properties>
         </Component>
@@ -229,6 +238,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="jButton1">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/bug.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="debug"/>
           </Properties>
           <Events>
@@ -795,7 +807,7 @@
                   <Component id="frameBoard" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
                       <Component id="jInternalFrame2" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="250" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="257" max="-2" attributes="0"/>
                       <Component id="jInternalFrame1" min="-2" pref="376" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -2359,9 +2371,12 @@
         <Component class="javax.swing.JButton" name="buttonEndTurn">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="/Users/jay/NetBeansProjects/Monoproto3/src/main/resources/arrow.png"/>
+              <Image iconType="3" name="/arrow.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="End Turn"/>
+            <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
+              <Insets value="[2, 6, 2, 6]"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonEndTurnActionPerformed"/>
@@ -2378,6 +2393,9 @@
               <Image iconType="2" name="/Users/jay/NetBeansProjects/Monoproto3/src/main/resources/dice-icon.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Roll Dice"/>
+            <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
+              <Insets value="[2, 6, 2, 6]"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonRollDiceActionPerformed"/>
@@ -2537,6 +2555,9 @@
         <Component class="javax.swing.JButton" name="buttonActionTrade">
           <Properties>
             <Property name="text" type="java.lang.String" value="Trade"/>
+            <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
+              <Insets value="[2, 6, 2, 6]"/>
+            </Property>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -2550,6 +2571,9 @@
               <Image iconType="3" name="/mortgage.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Mortgage"/>
+            <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
+              <Insets value="[2, 6, 2, 6]"/>
+            </Property>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -2563,6 +2587,9 @@
               <Image iconType="3" name="/improvements.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Improvements"/>
+            <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
+              <Insets value="[2, 6, 2, 6]"/>
+            </Property>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -2576,6 +2603,9 @@
               <Image iconType="3" name="/properties.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Properties"/>
+            <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
+              <Insets value="[2, 6, 2, 6]"/>
+            </Property>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -2589,6 +2619,9 @@
               <Image iconType="3" name="/statistics.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Statistics"/>
+            <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
+              <Insets value="[2, 6, 2, 6]"/>
+            </Property>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -2599,6 +2632,9 @@
         <Component class="javax.swing.JButton" name="buttonActionTrade1">
           <Properties>
             <Property name="text" type="java.lang.String" value="Trade"/>
+            <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
+              <Insets value="[2, 6, 2, 6]"/>
+            </Property>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
