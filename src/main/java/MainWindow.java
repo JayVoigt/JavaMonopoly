@@ -45,7 +45,8 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 
 		customInitComponents();
 		font = customInitFont();
-		labelFriendlyName.setFont(font); // NOI18N
+		//labelFriendlyName.setFont(font); // NOI18N
+		//staticLabelCurrentPlayer.setFont(font);
 		initButtonAppearance();
 	}
 
@@ -1397,6 +1398,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 
         buttonEndTurn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/arrow.png"))); // NOI18N
         buttonEndTurn.setText("End Turn");
+        buttonEndTurn.setFocusPainted(false);
         buttonEndTurn.setMargin(new java.awt.Insets(2, 6, 2, 6));
         buttonEndTurn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1408,6 +1410,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 
         buttonRollDice.setIcon(new javax.swing.ImageIcon("/Users/jay/NetBeansProjects/Monoproto3/src/main/resources/dice-icon.png")); // NOI18N
         buttonRollDice.setText("Roll Dice");
+        buttonRollDice.setFocusPainted(false);
         buttonRollDice.setMargin(new java.awt.Insets(2, 6, 2, 6));
         buttonRollDice.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1476,35 +1479,41 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         jSeparator7.setBounds(0, 100, 330, 10);
 
         buttonActionTrade.setText("Trade");
+        buttonActionTrade.setFocusPainted(false);
         buttonActionTrade.setMargin(new java.awt.Insets(2, 6, 2, 6));
         jInternalFrame1.getContentPane().add(buttonActionTrade);
         buttonActionTrade.setBounds(10, 170, 140, 23);
 
         buttonActionMortgage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mortgage.png"))); // NOI18N
         buttonActionMortgage.setText("Mortgage");
+        buttonActionMortgage.setFocusPainted(false);
         buttonActionMortgage.setMargin(new java.awt.Insets(2, 6, 2, 6));
         jInternalFrame1.getContentPane().add(buttonActionMortgage);
         buttonActionMortgage.setBounds(10, 110, 140, 23);
 
         buttonActionImprovements.setIcon(new javax.swing.ImageIcon(getClass().getResource("/improvements.png"))); // NOI18N
         buttonActionImprovements.setText("Improvements");
+        buttonActionImprovements.setFocusPainted(false);
         buttonActionImprovements.setMargin(new java.awt.Insets(2, 6, 2, 6));
         jInternalFrame1.getContentPane().add(buttonActionImprovements);
         buttonActionImprovements.setBounds(10, 140, 140, 23);
 
         buttonActionMortgage1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/properties.png"))); // NOI18N
         buttonActionMortgage1.setText("Properties");
+        buttonActionMortgage1.setFocusPainted(false);
         buttonActionMortgage1.setMargin(new java.awt.Insets(2, 6, 2, 6));
         jInternalFrame1.getContentPane().add(buttonActionMortgage1);
         buttonActionMortgage1.setBounds(180, 110, 140, 23);
 
         buttonActionImprovements1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/statistics.png"))); // NOI18N
         buttonActionImprovements1.setText("Statistics");
+        buttonActionImprovements1.setFocusPainted(false);
         buttonActionImprovements1.setMargin(new java.awt.Insets(2, 6, 2, 6));
         jInternalFrame1.getContentPane().add(buttonActionImprovements1);
         buttonActionImprovements1.setBounds(180, 140, 140, 23);
 
         buttonActionTrade1.setText("Trade");
+        buttonActionTrade1.setFocusPainted(false);
         buttonActionTrade1.setMargin(new java.awt.Insets(2, 6, 2, 6));
         jInternalFrame1.getContentPane().add(buttonActionTrade1);
         buttonActionTrade1.setBounds(180, 170, 140, 23);
@@ -1522,7 +1531,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         staticLabelPositionIcon.setBounds(10, 70, 18, 18);
 
         labelCurrentBalanceIcon1.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        labelCurrentBalanceIcon1.setIcon(new javax.swing.ImageIcon("/Users/jay/NetBeansProjects/Monoproto3/src/main/resources/money.png")); // NOI18N
+        labelCurrentBalanceIcon1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/money.png"))); // NOI18N
         labelCurrentBalanceIcon1.setText("Player 1");
         jInternalFrame1.getContentPane().add(labelCurrentBalanceIcon1);
         labelCurrentBalanceIcon1.setBounds(10, 40, 18, 18);
@@ -1530,6 +1539,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         menuFile.setText("File");
 
         menuFileNewGame.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        menuFileNewGame.setIcon(new javax.swing.ImageIcon(getClass().getResource("/newgame.png"))); // NOI18N
         menuFileNewGame.setText("New Game...");
         menuFileNewGame.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1570,6 +1580,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         menuEdit.setText("Edit");
 
         menuEditGameEditor.setForeground(new java.awt.Color(255, 0, 0));
+        menuEditGameEditor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/statistics.png"))); // NOI18N
         menuEditGameEditor.setText("Game Editor...");
         menuEditGameEditor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1578,6 +1589,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         });
         menuEdit.add(menuEditGameEditor);
 
+        menuEditDebugTools.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bug.png"))); // NOI18N
         menuEditDebugTools.setText("Debug Tools");
         menuEditDebugTools.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1645,7 +1657,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 	private Font customInitFont() {
 		Font font;
 		try {
-			font = Font.createFont(Font.TRUETYPE_FONT, new File("/Users/jay/NetBeansProjects/Monoproto3/src/main/resources/NicoPups-Regular.ttf"));
+			font = Font.createFont(Font.TRUETYPE_FONT, new File("/Users/jay/NetBeansProjects/Monoproto3/src/main/resources/NicoClean-Regular.ttf"));
 		} catch (FontFormatException ex) {
 			Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
 			font = null;
@@ -1655,7 +1667,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		}
 		
 		//labelFriendlyName.setFont(font); // NOI18N
-		return font.deriveFont(24f);
+		return font.deriveFont(18f);
 	}
 	
 	// <editor-fold desc="Update and helper methods">

@@ -661,6 +661,9 @@
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="Ctrl+N"/>
                 </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/newgame.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="New Game..."/>
               </Properties>
               <Events>
@@ -712,6 +715,9 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="0" green="0" red="ff" type="rgb"/>
                 </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/statistics.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Game Editor..."/>
               </Properties>
               <Events>
@@ -720,6 +726,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menuEditDebugTools">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/bug.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Debug Tools"/>
               </Properties>
               <Events>
@@ -2374,6 +2383,7 @@
               <Image iconType="3" name="/arrow.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="End Turn"/>
+            <Property name="focusPainted" type="boolean" value="false"/>
             <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
               <Insets value="[2, 6, 2, 6]"/>
             </Property>
@@ -2393,6 +2403,7 @@
               <Image iconType="2" name="/Users/jay/NetBeansProjects/Monoproto3/src/main/resources/dice-icon.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Roll Dice"/>
+            <Property name="focusPainted" type="boolean" value="false"/>
             <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
               <Insets value="[2, 6, 2, 6]"/>
             </Property>
@@ -2555,6 +2566,7 @@
         <Component class="javax.swing.JButton" name="buttonActionTrade">
           <Properties>
             <Property name="text" type="java.lang.String" value="Trade"/>
+            <Property name="focusPainted" type="boolean" value="false"/>
             <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
               <Insets value="[2, 6, 2, 6]"/>
             </Property>
@@ -2571,6 +2583,7 @@
               <Image iconType="3" name="/mortgage.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Mortgage"/>
+            <Property name="focusPainted" type="boolean" value="false"/>
             <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
               <Insets value="[2, 6, 2, 6]"/>
             </Property>
@@ -2587,6 +2600,7 @@
               <Image iconType="3" name="/improvements.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Improvements"/>
+            <Property name="focusPainted" type="boolean" value="false"/>
             <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
               <Insets value="[2, 6, 2, 6]"/>
             </Property>
@@ -2603,6 +2617,7 @@
               <Image iconType="3" name="/properties.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Properties"/>
+            <Property name="focusPainted" type="boolean" value="false"/>
             <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
               <Insets value="[2, 6, 2, 6]"/>
             </Property>
@@ -2619,6 +2634,7 @@
               <Image iconType="3" name="/statistics.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Statistics"/>
+            <Property name="focusPainted" type="boolean" value="false"/>
             <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
               <Insets value="[2, 6, 2, 6]"/>
             </Property>
@@ -2632,6 +2648,7 @@
         <Component class="javax.swing.JButton" name="buttonActionTrade1">
           <Properties>
             <Property name="text" type="java.lang.String" value="Trade"/>
+            <Property name="focusPainted" type="boolean" value="false"/>
             <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
               <Insets value="[2, 6, 2, 6]"/>
             </Property>
@@ -2680,7 +2697,7 @@
               <Font name="Helvetica Neue" size="14" style="0"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="/Users/jay/NetBeansProjects/Monoproto3/src/main/resources/money.png"/>
+              <Image iconType="3" name="/money.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Player 1"/>
           </Properties>
