@@ -803,7 +803,7 @@
       <Properties>
         <Property name="title" type="java.lang.String" value="Board"/>
         <Property name="frameIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/board.png"/>
+          <Image iconType="0" name="null"/>
         </Property>
         <Property name="visible" type="boolean" value="true"/>
       </Properties>
@@ -2332,9 +2332,6 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Helvetica Neue" size="14" style="0"/>
             </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="/Users/jay/NetBeansProjects/Monoproto2/img/diceicon.png"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Player 1"/>
           </Properties>
         </Component>
@@ -2352,9 +2349,6 @@
       <SubComponents>
         <Component class="javax.swing.JButton" name="buttonEndTurn">
           <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/arrow.png"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="End Turn"/>
           </Properties>
           <Events>
@@ -2368,9 +2362,6 @@
         </Component>
         <Component class="javax.swing.JButton" name="buttonRollDice">
           <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/dice-icon.png"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Roll Dice"/>
           </Properties>
           <Events>
@@ -2482,7 +2473,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="170" y="0" width="10" height="100"/>
+              <AbsoluteConstraints x="160" y="0" width="10" height="100"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -2592,9 +2583,6 @@
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Helvetica Neue" size="14" style="0"/>
-            </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/money.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Player 1"/>
           </Properties>
