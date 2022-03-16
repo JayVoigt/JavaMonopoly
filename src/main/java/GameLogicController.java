@@ -209,6 +209,8 @@ public class GameLogicController {
 			currentProperty.setIsOwned(true);
 			currentProperty.setOwnerID(currentPlayer.getPlayerID());
 			currentPlayer.updateCurrentBalance(-1 * currentProperty.getPurchaseCost());
+			currentPlayer.setRequiredDecisionPropertyAction(false);
+			currentPlayer.setMadeDecisionPropertyAction(true);
 		}
 		else {
 

@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
@@ -17,6 +18,7 @@ public class JavaMonopoly {
 	MainWindow view;
 
 	public JavaMonopoly() throws IOException {
+		java.net.URL url = ClassLoader.getSystemResource("/board.png");
 		try {
 			board = new Board();
 		} catch (IOException ex) {
