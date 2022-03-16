@@ -13,6 +13,7 @@ import java.io.File;
 import java.io.InputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import com.formdev.flatlaf.*;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -35,7 +36,8 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 
 	public MainWindow(Board inputBoard) throws IOException {
 		try {
-			UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
+			UIManager.setLookAndFeel( new FlatLightLaf() );
+			//UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
 		} catch (Exception e) {
 		}
 		initComponents();
@@ -188,7 +190,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         jSeparator5 = new javax.swing.JSeparator();
         jSeparator6 = new javax.swing.JSeparator();
         staticLabelPosition = new javax.swing.JLabel();
-        lableCurrentBalance1 = new javax.swing.JLabel();
+        labelCurrentPosition = new javax.swing.JLabel();
         jSeparator7 = new javax.swing.JSeparator();
         buttonActionTrade = new javax.swing.JButton();
         buttonActionMortgage = new javax.swing.JButton();
@@ -620,7 +622,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         setBackground(new java.awt.Color(255, 255, 255));
 
         frameBoard.setTitle("Board");
-        frameBoard.setFrameIcon(new javax.swing.ImageIcon("/Users/jay/NetBeansProjects/Monoproto3/src/main/resources/board.png")); // NOI18N
+        frameBoard.setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/board.png"))); // NOI18N
         frameBoard.setVisible(true);
         frameBoard.getContentPane().setLayout(null);
 
@@ -1358,7 +1360,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         labelPlayer4Name.setText("Player 4");
 
         labelPlayer1ActiveIcon.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        labelPlayer1ActiveIcon.setIcon(new javax.swing.ImageIcon("/Users/jay/NetBeansProjects/Monoproto3/src/main/resources/dice-icon.png")); // NOI18N
+        labelPlayer1ActiveIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dice-icon.png"))); // NOI18N
         labelPlayer1ActiveIcon.setText("Player 1");
 
         javax.swing.GroupLayout jInternalFrame2Layout = new javax.swing.GroupLayout(jInternalFrame2.getContentPane());
@@ -1470,11 +1472,11 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         jInternalFrame1.getContentPane().add(staticLabelPosition);
         staticLabelPosition.setBounds(30, 70, 131, 20);
 
-        lableCurrentBalance1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        lableCurrentBalance1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lableCurrentBalance1.setText("n/a");
-        jInternalFrame1.getContentPane().add(lableCurrentBalance1);
-        lableCurrentBalance1.setBounds(170, 70, 140, 20);
+        labelCurrentPosition.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        labelCurrentPosition.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labelCurrentPosition.setText("n/a");
+        jInternalFrame1.getContentPane().add(labelCurrentPosition);
+        labelCurrentPosition.setBounds(170, 70, 140, 20);
         jInternalFrame1.getContentPane().add(jSeparator7);
         jSeparator7.setBounds(0, 100, 330, 10);
 
@@ -1489,7 +1491,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonActionMortgage.setFocusPainted(false);
         buttonActionMortgage.setMargin(new java.awt.Insets(2, 6, 2, 6));
         jInternalFrame1.getContentPane().add(buttonActionMortgage);
-        buttonActionMortgage.setBounds(10, 110, 140, 23);
+        buttonActionMortgage.setBounds(10, 110, 140, 24);
 
         buttonActionImprovements.setIcon(new javax.swing.ImageIcon(getClass().getResource("/improvements.png"))); // NOI18N
         buttonActionImprovements.setText("Improvements");
@@ -1510,7 +1512,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonActionImprovements1.setFocusPainted(false);
         buttonActionImprovements1.setMargin(new java.awt.Insets(2, 6, 2, 6));
         jInternalFrame1.getContentPane().add(buttonActionImprovements1);
-        buttonActionImprovements1.setBounds(180, 140, 140, 23);
+        buttonActionImprovements1.setBounds(180, 140, 140, 24);
 
         buttonActionTrade1.setText("Trade");
         buttonActionTrade1.setFocusPainted(false);
@@ -1549,6 +1551,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         menuFile.add(menuFileNewGame);
 
         menuFileLoadGame.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        menuFileLoadGame.setIcon(new javax.swing.ImageIcon(getClass().getResource("/floppygame.png"))); // NOI18N
         menuFileLoadGame.setText("Load Game...");
         menuFileLoadGame.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1558,6 +1561,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         menuFile.add(menuFileLoadGame);
 
         menuFileSaveGame.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        menuFileSaveGame.setIcon(new javax.swing.ImageIcon(getClass().getResource("/floppygame.png"))); // NOI18N
         menuFileSaveGame.setText("Save Game...");
         menuFileSaveGame.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1567,6 +1571,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         menuFile.add(menuFileSaveGame);
 
         menuFileQuit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        menuFileQuit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/red-x.png"))); // NOI18N
         menuFileQuit.setText("Quit");
         menuFileQuit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1646,7 +1651,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
                     .addComponent(frameBoard)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jInternalFrame2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(257, 257, 257)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 250, Short.MAX_VALUE)
                         .addComponent(jInternalFrame1, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -1688,7 +1693,8 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 	private void initInfoUIForCurrentPlayer() {
 		Player currentPlayer = board.players.get(board.getCurrentPlayerID());
 		labelCurrentPlayer.setText(currentPlayer.getCustomName());
-		labelCurrentBalance.setText(Integer.toString(currentPlayer.getCurrentBalance()));
+		labelCurrentBalance.setText("$" + Integer.toString(currentPlayer.getCurrentBalance()));
+		labelCurrentPosition.setText(board.spaces.get(currentPlayer.getCurrentPosition()).getFriendlyName());
 		appendToDebugLog("[initUIForCurrentPlayer] Current player: " + currentPlayer.getCustomName());
 	}
 
@@ -2436,6 +2442,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     public javax.swing.JLabel labelCurrentBalanceIcon1;
     public javax.swing.JLabel labelCurrentPlayer;
     public javax.swing.JLabel labelCurrentPlayerIcon;
+    public javax.swing.JLabel labelCurrentPosition;
     public javax.swing.JLabel labelDie1;
     public javax.swing.JLabel labelDie2;
     public javax.swing.JLabel labelFriendlyName;
@@ -2454,7 +2461,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     public javax.swing.JLabel labelPlayer4Name;
     public javax.swing.JLabel labelPropertyID;
     public javax.swing.JLabel labelSpaceType;
-    public javax.swing.JLabel lableCurrentBalance1;
     public javax.swing.JMenu menuEdit;
     public javax.swing.JMenuItem menuEditDebugTools;
     public javax.swing.JMenuItem menuEditGameEditor;

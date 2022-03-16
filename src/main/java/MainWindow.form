@@ -675,6 +675,9 @@
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="Ctrl+O"/>
                 </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/floppygame.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Load Game..."/>
               </Properties>
               <Events>
@@ -686,6 +689,9 @@
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="Ctrl+S"/>
                 </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/floppygame.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Save Game..."/>
               </Properties>
               <Events>
@@ -696,6 +702,9 @@
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="Ctrl+Q"/>
+                </Property>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/red-x.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Quit"/>
               </Properties>
@@ -813,10 +822,10 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="frameBoard" max="32767" attributes="0"/>
-                  <Group type="102" attributes="0">
+                  <Component id="frameBoard" alignment="0" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
                       <Component id="jInternalFrame2" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="257" max="-2" attributes="0"/>
+                      <EmptySpace pref="250" max="32767" attributes="0"/>
                       <Component id="jInternalFrame1" min="-2" pref="376" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -830,7 +839,7 @@
       <Properties>
         <Property name="title" type="java.lang.String" value="Board"/>
         <Property name="frameIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="/Users/jay/NetBeansProjects/Monoproto3/src/main/resources/board.png"/>
+          <Image iconType="3" name="/board.png"/>
         </Property>
         <Property name="visible" type="boolean" value="true"/>
       </Properties>
@@ -2360,7 +2369,7 @@
               <Font name="Helvetica Neue" size="14" style="0"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="/Users/jay/NetBeansProjects/Monoproto3/src/main/resources/dice-icon.png"/>
+              <Image iconType="3" name="/dice-icon.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Player 1"/>
           </Properties>
@@ -2542,7 +2551,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JLabel" name="lableCurrentBalance1">
+        <Component class="javax.swing.JLabel" name="labelCurrentPosition">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Helvetica Neue" size="18" style="0"/>
