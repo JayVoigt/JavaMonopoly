@@ -1713,22 +1713,22 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 	// <editor-fold desc="Button locking and unlocking">
 	private void unlockRollDice() {
 		buttonRollDice.setEnabled(true);
-		appendToDebugLog("diceRoll unlocked.");
+		controller.appendToDebugLog("diceRoll unlocked.");
 	}
 
 	private void lockRollDice() {
 		buttonRollDice.setEnabled(false);
-		appendToDebugLog("diceRoll locked.");
+		controller.appendToDebugLog("diceRoll locked.");
 	}
 
 	private void unlockEndTurn() {
 		buttonEndTurn.setEnabled(true);
-		appendToDebugLog("endTurn unlocked.");
+		controller.appendToDebugLog("endTurn unlocked.");
 	}
 
 	private void lockEndTurn() {
 		buttonEndTurn.setEnabled(false);
-		appendToDebugLog("endTurn locked.");
+		controller.appendToDebugLog("endTurn locked.");
 	}
 	// </editor-fold>
 
