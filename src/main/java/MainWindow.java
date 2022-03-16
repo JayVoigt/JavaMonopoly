@@ -1344,6 +1344,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         labelPlayer4Name.setText("Player 4");
 
         labelPlayer1ActiveIcon.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        labelPlayer1ActiveIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/mycompany/monoproto3/dice-icon.png"))); // NOI18N
         labelPlayer1ActiveIcon.setText("Player 1");
 
         javax.swing.GroupLayout jInternalFrame2Layout = new javax.swing.GroupLayout(jInternalFrame2.getContentPane());
