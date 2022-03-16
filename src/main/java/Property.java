@@ -93,6 +93,10 @@ public abstract class Property extends Space implements Serializable {
 	public void setOwnerID(int inputOwnerID) {
 		ownerID = inputOwnerID;
 	}
+	
+	public int getPurchaseCost() {
+		return purchaseCost;
+	}
 	// </editor-fold>
 	
 	/**

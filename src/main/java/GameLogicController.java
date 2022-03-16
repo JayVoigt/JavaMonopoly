@@ -204,4 +204,21 @@ public class GameLogicController {
 		turnCounter++;
 		initialEvaluator();
 	}
+	
+	public void playerDecisionPurchaseProperty() {
+		currentPlayer.setMadeDecisionPropertyAction(true);
+		currentPlayer.setResultDecisionPropertyAction(true);
+		
+		if (currentPlayer.getCurrentBalance() >= currentProperty.getPurchaseCost()) {
+			currentProperty.setOwnerID(currentPlayer.getPlayerID());
+			currentPlayer.updateCurrentBalance(-1 * currentProperty.getPurchaseCost());
+		}
+		else {
+			
+		}
+	}
+	
+	public void playerDecisionAuction() {
+		
+	}
 }

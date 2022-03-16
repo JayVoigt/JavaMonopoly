@@ -1605,6 +1605,8 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 			updateVisualPlayerIndicator(board.players.get(i));
 		}
 		
+		updatePromptPropertyDecision();
+		
 		textAreaDebugLog.setText(controller.getDebugLogContents());
 	}
 	
@@ -1646,8 +1648,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 
 		debugLogFrame.setVisible(false);
 		menuViewCheckBoxShowDebugLog.setState(false);
-
-		repaintVisualPlayerIndicators();
 
 		labelBoardImage.setSize(960, 960);
 
@@ -1707,6 +1707,19 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 	private void updateDiceView() {
 		labelDie1.setText(Integer.toString(currentPlayer.getDie1()));
 		labelDie2.setText(Integer.toString(currentPlayer.getDie2()));
+	}
+	
+	private void updatePromptPropertyDecision() {
+		askPropertyDecisionDialog.setVisible(false);
+		
+		if (currentPlayer.getRequiredDecisionPropertyAction() == true) {
+			if (currentPlayer.getMadeDecisionPropertyAction() == false) {
+				askPropertyDecisionDialog.setVisible(true);
+				lockRollDice();
+				lockEndTurn();
+				labelPropertyID.setText(board.spaces.get(currentPlayer.getCurrentPosition()).getFriendlyName());
+			}
+		}
 	}
 	// </editor-fold>
 
@@ -1995,7 +2008,8 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void buttonPropertyDecisionPurchaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPropertyDecisionPurchaseActionPerformed
-
+		controller.playerDecisionPurchaseProperty();
+		update();
     }//GEN-LAST:event_buttonPropertyDecisionPurchaseActionPerformed
 
 	// <editor-fold desc="Start game menu">
@@ -2144,6 +2158,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 			boolean localIsOwned = localSpace.getIsOwned();
 			labelIsOwned.setText(Boolean.toString(localIsOwned));
 			labelSpaceType.setText("Property");
+			labelOwnedBy.setText(board.players.get(localSpace.getOwnerID()).getCustomName());
 		}
 
 		// If space is of type GameEvent...
@@ -2157,8 +2172,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		else {
 			labelID.setText("undefined ID");
 		}
-
-		repaintVisualPlayerIndicators();
 
 	}
 
@@ -2251,12 +2264,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		else if (localCurrentPlayerID == 4) {
 			iconPlayer4Position.setLocation(destinationX, destinationY);
 
-		}
-	}
-
-	public void repaintVisualPlayerIndicators() {
-		for (int i = 1; i <= 4; i++) {
-			updateVisualPlayerIndicator(board.players.get(i));
 		}
 	}
 

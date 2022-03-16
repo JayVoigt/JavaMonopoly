@@ -175,6 +175,10 @@ public class Player implements Serializable {
         return madeDecisionPostedBail;
     }
 	
+	public boolean getResultDecisionPostedBail() {
+		return resultDecisionPostedBail;
+	}
+	
 	public boolean getRequiredDecisionPropertyAction() {
 		return requiredDecisionPropertyAction;
 	}
@@ -182,6 +186,10 @@ public class Player implements Serializable {
     public boolean getMadeDecisionPropertyAction() {
         return madeDecisionPropertyAction;
     }
+	
+	public boolean getResultDecisionPropertyAction() {
+		return resultDecisionPropertyAction;
+	}
 
     public boolean getHasRolledDoubles() {
         return hasRolledDoubles;
@@ -218,6 +226,10 @@ public class Player implements Serializable {
     public void setMadeDecisionPostedBail(boolean input) {
         madeDecisionPostedBail = input;
     }
+	
+	public void setResultDecisionPostedBail(boolean input) {
+		resultDecisionPostedBail = input;
+	}
 
 	public void setRequiredDecisionPropertyAction(boolean input) {
 		requiredDecisionPropertyAction = input;
@@ -226,6 +238,10 @@ public class Player implements Serializable {
     public void setMadeDecisionPropertyAction(boolean input) {
         madeDecisionPropertyAction = input;
     }
+	
+	public void setResultDecisionPropertyAction(boolean input) {
+		resultDecisionPropertyAction = input;
+	}
 
     public void setHasRolledDoubles(boolean input) {
         hasRolledDoubles = input;
