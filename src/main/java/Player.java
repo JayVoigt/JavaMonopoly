@@ -19,8 +19,6 @@ public class Player implements Serializable {
     // "Player n".
     String customName;
 
-    PlayerState state;
-
     int currentBalance,
         currentPosition;
 
@@ -66,8 +64,6 @@ public class Player implements Serializable {
     Player() {
         playerID = 0;
         customName = "";
-
-        state = new PlayerState();
 
         // The default balance for players is $1500.
         currentBalance = 1500;
@@ -221,6 +217,9 @@ public class Player implements Serializable {
 
 	public void setRequiredDecisionPostedBail(boolean input) {
 		requiredDecisionPostedBail = input;
+		if (input == true) {
+			isInMandatoryActionsExhaustedState = false;
+		}
 	}
 	
     public void setMadeDecisionPostedBail(boolean input) {
@@ -233,6 +232,9 @@ public class Player implements Serializable {
 
 	public void setRequiredDecisionPropertyAction(boolean input) {
 		requiredDecisionPropertyAction = input;
+		if (input == true) {
+			isInMandatoryActionsExhaustedState = false;
+		}
 	}
 	
     public void setMadeDecisionPropertyAction(boolean input) {

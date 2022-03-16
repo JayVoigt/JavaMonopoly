@@ -90,31 +90,27 @@ public class GameLogicController {
 			currentPlayer.setActionLockedEndTurn(false);
 		}
 		else {
-
-			if (currentPlayer.getHasRolledDice() == true) {
-
-				if (currentPlayer.getRequiredDecisionPropertyAction() == true) {
-					if (currentPlayer.getMadeDecisionPropertyAction() == true) {
-						appendToDebugLog("\t Suggested action: unlock endTurn");
-						appendToDebugLog("\t\t Reason: Player has made property decision.");
-						currentPlayer.setActionLockedEndTurn(false);
-					}
-					else {
-						propertyPurchaseManager();
-					}
+			if (currentPlayer.getRequiredDecisionPropertyAction() == true) {
+				if (currentPlayer.getMadeDecisionPropertyAction() == true) {
+					appendToDebugLog("\t Suggested action: unlock endTurn");
+					appendToDebugLog("\t\t Reason: Player has made property decision.");
+					currentPlayer.setActionLockedEndTurn(false);
 				}
 				else {
+					//propertyPurchaseManager();
+				}
+			}
+			else {
+				if (currentPlayer.getHasRolledDice() == true) {
 					appendToDebugLog("\t Suggested action: unlock endTurn");
 					appendToDebugLog("\t\t Reason: No property decision necessary.");
 					currentPlayer.setActionLockedEndTurn(false);
 				}
-			}
-			else {
-
-				appendToDebugLog("\t Suggested action: unlock rollDice");
-				appendToDebugLog("\t\t Reason: Player has not rolled dice.");
-				currentPlayer.setActionLockedRollDice(false);
-
+				else {
+					appendToDebugLog("\t Suggested action: unlock rollDice");
+					appendToDebugLog("\t\t Reason: Player has not rolled dice.");
+					currentPlayer.setActionLockedRollDice(false);
+				}
 			}
 		}
 	}
@@ -161,6 +157,7 @@ public class GameLogicController {
 		else {
 			propertyEvaluator();
 		}
+		maeStateEvaluator();
 	}
 
 	private void gameEventEvaluator() {
@@ -179,8 +176,6 @@ public class GameLogicController {
 			currentPlayer.setRequiredDecisionPropertyAction(false);
 			currentPlayer.setMadeDecisionPropertyAction(true);
 		}
-
-		maeStateEvaluator();
 	}
 
 	public void endTurnManager() {
@@ -204,21 +199,23 @@ public class GameLogicController {
 		turnCounter++;
 		initialEvaluator();
 	}
-	
+
 	public void playerDecisionPurchaseProperty() {
+		appendToDebugLog("-> executing playerDecisionPurchaseProperty");
 		currentPlayer.setMadeDecisionPropertyAction(true);
 		currentPlayer.setResultDecisionPropertyAction(true);
-		
+
 		if (currentPlayer.getCurrentBalance() >= currentProperty.getPurchaseCost()) {
+			currentProperty.setIsOwned(true);
 			currentProperty.setOwnerID(currentPlayer.getPlayerID());
 			currentPlayer.updateCurrentBalance(-1 * currentProperty.getPurchaseCost());
 		}
 		else {
-			
+
 		}
 	}
-	
+
 	public void playerDecisionAuction() {
-		
+		appendToDebugLog("-> executing playerDecisionAuction");
 	}
 }
