@@ -30,6 +30,7 @@ public class GameLogicController {
 
 	public GameLogicController(Board inputBoard) {
 		board = inputBoard;
+		gameLogContents = "";
 		debugLogContents = "";
 	}
 	
@@ -45,6 +46,8 @@ public class GameLogicController {
 		String currentTurn = Integer.toString(turnCounter);
 		String formattedPrefix;
 		formattedPrefix = "[" + datePrefix + "](" + currentTurn + "): ";
+		
+		gameLogContents.concat(formattedPrefix + input + "\n");
 	}
 
 	public String getDebugLogContents() {
@@ -212,6 +215,7 @@ public class GameLogicController {
 		}
 
 		currentPlayer = board.players.get(board.getCurrentPlayerID());
+		appendToGameLog("It is now " + currentPlayer.getCustomName() + "'s turn.");
 
 		appendToDebugLog("\t currentPlayerID: " + board.getCurrentPlayerID());
 		currentPlayer.initializePlayerForNewTurn();

@@ -51,6 +51,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		//labelFriendlyName.setFont(font); // NOI18N
 		//staticLabelCurrentPlayer.setFont(font);
 		initButtonAppearance();
+		update();
 	}
 
 	/**
@@ -1765,7 +1766,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 	
 	// <editor-fold desc="Update and helper methods">
 	public void update() {
-		updateGameLog();
 		initInfoUIForCurrentPlayer();
 		updateButtonLockStates();
 		updateDiceView();
@@ -1777,6 +1777,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		updatePromptPropertyDecision();
 		
 		textAreaDebugLog.setText(controller.getDebugLogContents());
+		updateGameLog();
 	}
 	
 	private void initInfoUIForCurrentPlayer() {
