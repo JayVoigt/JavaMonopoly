@@ -47,7 +47,10 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		controller = new GameLogicController(board);
 
 		customInitComponents();
-		font = customInitFont();
+    //font = customInitFont();
+		//labelFriendlyName.setFont(font); // NOI18N
+		//staticLabelCurrentPlayer.setFont(font);
+    
 		initButtonAppearance();
 		
 		controller.sendWelcomeMessage();
@@ -1846,21 +1849,21 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-	private Font customInitFont() {
-		Font font;
-		try {
-			font = Font.createFont(Font.TRUETYPE_FONT, new File("/Users/jay/NetBeansProjects/Monoproto3/src/main/resources/NicoClean-Regular.ttf"));
-		} catch (FontFormatException ex) {
-			Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
-			font = null;
-		} catch (IOException ex) {
-			Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
-			font = null;
-		}
-		
-		//labelFriendlyName.setFont(font); // NOI18N
-		return font.deriveFont(18f);
-	}
+//	private Font customInitFont() {
+//		Font font;
+//		try {
+//			font = Font.createFont(Font.TRUETYPE_FONT, new File("/NicoClean-Regular.ttf"));
+//		} catch (FontFormatException ex) {
+//			Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+//			font = null;
+//		} catch (IOException ex) {
+//			Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+//			font = null;
+//		}
+//		
+//		//labelFriendlyName.setFont(font); // NOI18N
+//		return font.deriveFont(18f);
+//	}
 	
 	// <editor-fold desc="Update and helper methods">
 	public void update() {
