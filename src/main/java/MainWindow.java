@@ -107,6 +107,11 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonPropertyDecisionAuction = new javax.swing.JButton();
         staticLabelPropertyDecision = new javax.swing.JLabel();
         labelPropertyName = new javax.swing.JLabel();
+        aboutPane = new javax.swing.JFrame();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
         frameBoard = new javax.swing.JInternalFrame();
         jScrollPane1 = new javax.swing.JScrollPane();
         textAreaGameLog = new javax.swing.JTextArea();
@@ -214,6 +219,8 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         menuView = new javax.swing.JMenu();
         menuViewCheckBoxShowDebugLog = new javax.swing.JCheckBoxMenuItem();
         menuViewManuallyUpdateView = new javax.swing.JMenuItem();
+        menuHelp = new javax.swing.JMenu();
+        menuHelpAbout = new javax.swing.JMenuItem();
 
         gameSetupDialog.setAlwaysOnTop(true);
         gameSetupDialog.setLocationByPlatform(true);
@@ -624,6 +631,59 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
                 .addContainerGap())
         );
 
+        aboutPane.setSize(new java.awt.Dimension(400, 300));
+
+        jLabel1.setFont(new java.awt.Font("Helvetica Neue", 3, 18)); // NOI18N
+        jLabel1.setText("Java Monopoly Prototype");
+
+        jLabel2.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/robot.png"))); // NOI18N
+        jLabel2.setText("by Jay Voigt");
+
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/red-x.png"))); // NOI18N
+        jButton3.setText("Close");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        jLabel3.setText("Created as final project for Spring 2022, CSCI 24000");
+
+        javax.swing.GroupLayout aboutPaneLayout = new javax.swing.GroupLayout(aboutPane.getContentPane());
+        aboutPane.getContentPane().setLayout(aboutPaneLayout);
+        aboutPaneLayout.setHorizontalGroup(
+            aboutPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(aboutPaneLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(aboutPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(aboutPaneLayout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                        .addComponent(jLabel2))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, aboutPaneLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton3))
+                    .addGroup(aboutPaneLayout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        aboutPaneLayout.setVerticalGroup(
+            aboutPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(aboutPaneLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(aboutPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 211, Short.MAX_VALUE)
+                .addComponent(jButton3)
+                .addContainerGap())
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Monopoly Game");
         setBackground(new java.awt.Color(255, 255, 255));
@@ -718,7 +778,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         frameBoard.getContentPane().add(jPanel1);
         jPanel1.setBounds(160, 150, 660, 220);
 
-        iconPlayer1Position.setIcon(new javax.swing.ImageIcon("/Users/jay/NetBeansProjects/Monoproto3/assets/player-icon-1-style2.png")); // NOI18N
+        iconPlayer1Position.setIcon(new javax.swing.ImageIcon(getClass().getResource("/player-sweater-top.png"))); // NOI18N
         iconPlayer1Position.setText("jLabel1");
         iconPlayer1Position.setAlignmentY(0.0F);
         iconPlayer1Position.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
@@ -1488,11 +1548,12 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         jInternalFrame1.getContentPane().add(jSeparator7);
         jSeparator7.setBounds(0, 100, 330, 10);
 
+        buttonActionTrade.setIcon(new javax.swing.ImageIcon(getClass().getResource("/trade.png"))); // NOI18N
         buttonActionTrade.setText("Trade");
         buttonActionTrade.setFocusPainted(false);
         buttonActionTrade.setMargin(new java.awt.Insets(2, 6, 2, 6));
         jInternalFrame1.getContentPane().add(buttonActionTrade);
-        buttonActionTrade.setBounds(10, 170, 140, 21);
+        buttonActionTrade.setBounds(10, 170, 140, 24);
 
         buttonActionMortgage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mortgage.png"))); // NOI18N
         buttonActionMortgage.setText("Mortgage");
@@ -1513,7 +1574,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonActionMortgage1.setFocusPainted(false);
         buttonActionMortgage1.setMargin(new java.awt.Insets(2, 6, 2, 6));
         jInternalFrame1.getContentPane().add(buttonActionMortgage1);
-        buttonActionMortgage1.setBounds(180, 110, 140, 22);
+        buttonActionMortgage1.setBounds(180, 110, 140, 23);
 
         buttonActionImprovements1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/statistics.png"))); // NOI18N
         buttonActionImprovements1.setText("Statistics");
@@ -1526,7 +1587,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonActionTrade1.setFocusPainted(false);
         buttonActionTrade1.setMargin(new java.awt.Insets(2, 6, 2, 6));
         jInternalFrame1.getContentPane().add(buttonActionTrade1);
-        buttonActionTrade1.setBounds(180, 170, 140, 21);
+        buttonActionTrade1.setBounds(180, 170, 140, 23);
 
         labelCurrentPlayerIcon.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         labelCurrentPlayerIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/player-generic.png"))); // NOI18N
@@ -1592,6 +1653,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 
         menuEdit.setText("Edit");
 
+        menuEditGameEditor.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         menuEditGameEditor.setForeground(new java.awt.Color(255, 0, 0));
         menuEditGameEditor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/matrix.png"))); // NOI18N
         menuEditGameEditor.setText("Game Editor...");
@@ -1602,6 +1664,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         });
         menuEdit.add(menuEditGameEditor);
 
+        menuEditDebugTools.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         menuEditDebugTools.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bug.png"))); // NOI18N
         menuEditDebugTools.setText("Debug Tools");
         menuEditDebugTools.addActionListener(new java.awt.event.ActionListener() {
@@ -1626,6 +1689,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         });
         menuView.add(menuViewCheckBoxShowDebugLog);
 
+        menuViewManuallyUpdateView.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         menuViewManuallyUpdateView.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bug.png"))); // NOI18N
         menuViewManuallyUpdateView.setText("Manually Update View");
         menuViewManuallyUpdateView.addActionListener(new java.awt.event.ActionListener() {
@@ -1636,6 +1700,20 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         menuView.add(menuViewManuallyUpdateView);
 
         jMenuBar1.add(menuView);
+
+        menuHelp.setText("Help");
+
+        menuHelpAbout.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        menuHelpAbout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/robot.png"))); // NOI18N
+        menuHelpAbout.setText("About");
+        menuHelpAbout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuHelpAboutActionPerformed(evt);
+            }
+        });
+        menuHelp.add(menuHelpAbout);
+
+        jMenuBar1.add(menuHelp);
 
         setJMenuBar(jMenuBar1);
 
@@ -1687,6 +1765,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 	
 	// <editor-fold desc="Update and helper methods">
 	public void update() {
+		updateGameLog();
 		initInfoUIForCurrentPlayer();
 		updateButtonLockStates();
 		updateDiceView();
@@ -1833,6 +1912,10 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 				labelPropertyName.setText(board.spaces.get(currentPlayer.getCurrentPosition()).getFriendlyName());
 			}
 		}
+	}
+	
+	private void updateGameLog() {
+		textAreaGameLog.setText(controller.getGameLogContents());
 	}
 	// </editor-fold>
 
@@ -2221,6 +2304,14 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         controller.initialEvaluator();
         update();
     }//GEN-LAST:event_buttonStartGameActionPerformed
+
+    private void menuHelpAboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuHelpAboutActionPerformed
+        aboutPane.setVisible(true);
+    }//GEN-LAST:event_menuHelpAboutActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        aboutPane.setVisible(false);
+    }//GEN-LAST:event_jButton3ActionPerformed
 	// </editor-fold>
 
 	public void spaceButtonAppearanceHighlight(int spaceID) {
@@ -2386,6 +2477,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 
 	//<editor-fold desc="Variables declaration (Swing)">
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JFrame aboutPane;
     public javax.swing.JDialog askPropertyDecisionDialog;
     public javax.swing.JButton buttonActionImprovements;
     public javax.swing.JButton buttonActionImprovements1;
@@ -2461,8 +2553,12 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     public javax.swing.JLabel iconPlayer4Position;
     public javax.swing.JButton jButton1;
     public javax.swing.JButton jButton2;
+    public javax.swing.JButton jButton3;
     public javax.swing.JInternalFrame jInternalFrame1;
     public javax.swing.JInternalFrame jInternalFrame2;
+    public javax.swing.JLabel jLabel1;
+    public javax.swing.JLabel jLabel2;
+    public javax.swing.JLabel jLabel3;
     public javax.swing.JMenuBar jMenuBar1;
     public javax.swing.JPanel jPanel1;
     public javax.swing.JPopupMenu jPopupMenu1;
@@ -2505,6 +2601,8 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     public javax.swing.JMenuItem menuFileNewGame;
     public javax.swing.JMenuItem menuFileQuit;
     public javax.swing.JMenuItem menuFileSaveGame;
+    public javax.swing.JMenu menuHelp;
+    public javax.swing.JMenuItem menuHelpAbout;
     public javax.swing.JMenu menuView;
     public javax.swing.JCheckBoxMenuItem menuViewCheckBoxShowDebugLog;
     public javax.swing.JMenuItem menuViewManuallyUpdateView;

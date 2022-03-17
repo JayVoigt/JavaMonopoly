@@ -7,6 +7,10 @@
  *
  * @author jay
  */
+
+import java.util.Date;
+import java.text.SimpleDateFormat;
+
 public class GameLogicController {
 
 	Board board;
@@ -16,6 +20,7 @@ public class GameLogicController {
 	GameEvent currentGameEvent;
 	Property currentProperty;
 
+	String gameLogContents;
 	String debugLogContents;
 
 	boolean isGameActive;
@@ -26,6 +31,20 @@ public class GameLogicController {
 	public GameLogicController(Board inputBoard) {
 		board = inputBoard;
 		debugLogContents = "";
+	}
+	
+	public String getGameLogContents() {
+		return gameLogContents;
+	}
+	
+	public void appendToGameLog(String input) {
+		Date currentDate = new Date();
+		SimpleDateFormat datePrefix = new SimpleDateFormat("yyyy-mm-dd HH:mm:ss");
+		
+		
+		String currentTurn = Integer.toString(turnCounter);
+		String formattedPrefix;
+		formattedPrefix = "[" + datePrefix + "](" + currentTurn + "): ";
 	}
 
 	public String getDebugLogContents() {
