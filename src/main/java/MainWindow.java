@@ -52,6 +52,8 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		//staticLabelCurrentPlayer.setFont(font);
 		initButtonAppearance();
 		update();
+		lockEndTurn();
+		lockRollDice();
 	}
 
 	/**
@@ -113,6 +115,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         jLabel2 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         frameBoard = new javax.swing.JInternalFrame();
         jScrollPane1 = new javax.swing.JScrollPane();
         textAreaGameLog = new javax.swing.JTextArea();
@@ -174,9 +177,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonSpace38 = new javax.swing.JButton();
         buttonSpace39 = new javax.swing.JButton();
         labelHouse1 = new javax.swing.JLabel();
-        labelHouse2 = new javax.swing.JLabel();
-        labelHouse3 = new javax.swing.JLabel();
-        labelHouse4 = new javax.swing.JLabel();
         labelHouse5 = new javax.swing.JLabel();
         labelBoardImage = new javax.swing.JLabel();
         jInternalFrame2 = new javax.swing.JInternalFrame();
@@ -435,12 +435,12 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 
         staticLabelPlayerSelection1.setFont(new java.awt.Font("Helvetica Neue", 3, 18)); // NOI18N
         staticLabelPlayerSelection1.setForeground(new java.awt.Color(255, 0, 0));
-        staticLabelPlayerSelection1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/matrix.png"))); // NOI18N
+        staticLabelPlayerSelection1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/matrix-anim.gif"))); // NOI18N
         staticLabelPlayerSelection1.setText("Game Editor");
         gameEditorDialog.getContentPane().add(staticLabelPlayerSelection1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         buttonGameEditorUpdate.setForeground(new java.awt.Color(255, 0, 0));
-        buttonGameEditorUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/statistics.png"))); // NOI18N
+        buttonGameEditorUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/alert.png"))); // NOI18N
         buttonGameEditorUpdate.setText("Update");
         gameEditorDialog.getContentPane().add(buttonGameEditorUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 270, -1, -1));
 
@@ -638,7 +638,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         jLabel1.setText("Java Monopoly Prototype");
 
         jLabel2.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/robot.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/robot2.gif"))); // NOI18N
         jLabel2.setText("by Jay Voigt");
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/red-x.png"))); // NOI18N
@@ -650,7 +650,10 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         });
 
         jLabel3.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        jLabel3.setText("Created as final project for Spring 2022, CSCI 24000");
+        jLabel3.setText("Created as final project for CSCI 24000, Spring 2022.");
+
+        jLabel4.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        jLabel4.setText("Assets created with Adobe Illustrator and Aesprite.");
 
         javax.swing.GroupLayout aboutPaneLayout = new javax.swing.GroupLayout(aboutPane.getContentPane());
         aboutPane.getContentPane().setLayout(aboutPaneLayout);
@@ -667,7 +670,9 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButton3))
                     .addGroup(aboutPaneLayout.createSequentialGroup()
-                        .addComponent(jLabel3)
+                        .addGroup(aboutPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -680,7 +685,9 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 211, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 181, Short.MAX_VALUE)
                 .addComponent(jButton3)
                 .addContainerGap())
         );
@@ -1383,32 +1390,18 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         frameBoard.getContentPane().add(buttonSpace39);
         buttonSpace39.setBounds(850, 770, 120, 80);
 
-        labelHouse1.setIcon(new javax.swing.ImageIcon("/Users/jay/NetBeansProjects/Monoproto2/img/board/1x/houseArtboard 1.png")); // NOI18N
+        labelHouse1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/house.png"))); // NOI18N
+        labelHouse1.setLocation(new java.awt.Point(108, 150));
         labelHouse1.setSize(new java.awt.Dimension(20, 20));
         frameBoard.getContentPane().add(labelHouse1);
         labelHouse1.setBounds(108, 130, 20, 20);
 
-        labelHouse2.setIcon(new javax.swing.ImageIcon("/Users/jay/NetBeansProjects/Monoproto2/img/board/1x/houseArtboard 1.png")); // NOI18N
-        labelHouse2.setSize(new java.awt.Dimension(20, 20));
-        frameBoard.getContentPane().add(labelHouse2);
-        labelHouse2.setBounds(108, 130, 20, 20);
-
-        labelHouse3.setIcon(new javax.swing.ImageIcon("/Users/jay/NetBeansProjects/Monoproto2/img/board/1x/houseArtboard 1.png")); // NOI18N
-        labelHouse3.setSize(new java.awt.Dimension(20, 20));
-        frameBoard.getContentPane().add(labelHouse3);
-        labelHouse3.setBounds(108, 130, 20, 20);
-
-        labelHouse4.setIcon(new javax.swing.ImageIcon("/Users/jay/NetBeansProjects/Monoproto2/img/board/1x/houseArtboard 1.png")); // NOI18N
-        labelHouse4.setSize(new java.awt.Dimension(20, 20));
-        frameBoard.getContentPane().add(labelHouse4);
-        labelHouse4.setBounds(108, 130, 20, 20);
-
-        labelHouse5.setIcon(new javax.swing.ImageIcon("/Users/jay/NetBeansProjects/Monoproto2/img/board/1x/hotelArtboard 1.png")); // NOI18N
+        labelHouse5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hotel.png"))); // NOI18N
         labelHouse5.setSize(new java.awt.Dimension(20, 20));
         frameBoard.getContentPane().add(labelHouse5);
         labelHouse5.setBounds(240, 850, 20, 20);
 
-        labelBoardImage.setIcon(new javax.swing.ImageIcon("/Users/jay/NetBeansProjects/Monoproto2/1x/boardArtboard 1.png")); // NOI18N
+        labelBoardImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/boardArtboard 1.png"))); // NOI18N
         labelBoardImage.setText("jLabel1");
         frameBoard.getContentPane().add(labelBoardImage);
         labelBoardImage.setBounds(10, 10, 960, 960);
@@ -1656,7 +1649,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 
         menuEditGameEditor.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         menuEditGameEditor.setForeground(new java.awt.Color(255, 0, 0));
-        menuEditGameEditor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/matrix.png"))); // NOI18N
+        menuEditGameEditor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/matrix-anim.gif"))); // NOI18N
         menuEditGameEditor.setText("Game Editor...");
         menuEditGameEditor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2560,6 +2553,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     public javax.swing.JLabel jLabel1;
     public javax.swing.JLabel jLabel2;
     public javax.swing.JLabel jLabel3;
+    public javax.swing.JLabel jLabel4;
     public javax.swing.JMenuBar jMenuBar1;
     public javax.swing.JPanel jPanel1;
     public javax.swing.JPopupMenu jPopupMenu1;
@@ -2580,9 +2574,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     public javax.swing.JLabel labelDie2;
     public javax.swing.JLabel labelFriendlyName;
     public javax.swing.JLabel labelHouse1;
-    public javax.swing.JLabel labelHouse2;
-    public javax.swing.JLabel labelHouse3;
-    public javax.swing.JLabel labelHouse4;
     public javax.swing.JLabel labelHouse5;
     public javax.swing.JLabel labelID;
     public javax.swing.JLabel labelIsOwned;

@@ -338,7 +338,7 @@
               <Color blue="0" green="0" red="ff" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/matrix.png"/>
+              <Image iconType="3" name="/matrix-anim.gif"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Game Editor"/>
           </Properties>
@@ -354,7 +354,7 @@
               <Color blue="0" green="0" red="ff" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/statistics.png"/>
+              <Image iconType="3" name="/alert.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Update"/>
           </Properties>
@@ -705,8 +705,11 @@
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           <Component id="jButton3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -724,7 +727,9 @@
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="211" max="32767" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="181" max="32767" attributes="0"/>
                   <Component id="jButton3" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -746,7 +751,7 @@
               <Font name="Helvetica Neue" size="18" style="0"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/robot.png"/>
+              <Image iconType="3" name="/robot2.gif"/>
             </Property>
             <Property name="text" type="java.lang.String" value="by Jay Voigt"/>
           </Properties>
@@ -767,7 +772,15 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Helvetica Neue" size="14" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Created as final project for Spring 2022, CSCI 24000"/>
+            <Property name="text" type="java.lang.String" value="Created as final project for CSCI 24000, Spring 2022."/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel4">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Helvetica Neue" size="14" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Assets created with Adobe Illustrator and Aesprite."/>
           </Properties>
         </Component>
       </SubComponents>
@@ -851,7 +864,7 @@
                   <Color blue="0" green="0" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/matrix.png"/>
+                  <Image iconType="3" name="/matrix-anim.gif"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Game Editor..."/>
               </Properties>
@@ -2361,52 +2374,10 @@
         <Component class="javax.swing.JLabel" name="labelHouse1">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="/Users/jay/NetBeansProjects/Monoproto2/img/board/1x/houseArtboard 1.png"/>
+              <Image iconType="3" name="/house.png"/>
             </Property>
-            <Property name="size" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-              <Dimension value="[20, 20]"/>
-            </Property>
-          </Properties>
-          <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="108" y="130" width="-1" height="-1"/>
-            </Constraint>
-          </Constraints>
-        </Component>
-        <Component class="javax.swing.JLabel" name="labelHouse2">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="/Users/jay/NetBeansProjects/Monoproto2/img/board/1x/houseArtboard 1.png"/>
-            </Property>
-            <Property name="size" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-              <Dimension value="[20, 20]"/>
-            </Property>
-          </Properties>
-          <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="108" y="130" width="-1" height="-1"/>
-            </Constraint>
-          </Constraints>
-        </Component>
-        <Component class="javax.swing.JLabel" name="labelHouse3">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="/Users/jay/NetBeansProjects/Monoproto2/img/board/1x/houseArtboard 1.png"/>
-            </Property>
-            <Property name="size" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-              <Dimension value="[20, 20]"/>
-            </Property>
-          </Properties>
-          <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="108" y="130" width="-1" height="-1"/>
-            </Constraint>
-          </Constraints>
-        </Component>
-        <Component class="javax.swing.JLabel" name="labelHouse4">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="/Users/jay/NetBeansProjects/Monoproto2/img/board/1x/houseArtboard 1.png"/>
+            <Property name="location" type="java.awt.Point" editor="org.netbeans.beaninfo.editors.PointEditor">
+              <Point value="[108, 150]"/>
             </Property>
             <Property name="size" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[20, 20]"/>
@@ -2421,7 +2392,7 @@
         <Component class="javax.swing.JLabel" name="labelHouse5">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="/Users/jay/NetBeansProjects/Monoproto2/img/board/1x/hotelArtboard 1.png"/>
+              <Image iconType="3" name="/hotel.png"/>
             </Property>
             <Property name="size" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[20, 20]"/>
@@ -2436,7 +2407,7 @@
         <Component class="javax.swing.JLabel" name="labelBoardImage">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="/Users/jay/NetBeansProjects/Monoproto2/1x/boardArtboard 1.png"/>
+              <Image iconType="3" name="/boardArtboard 1.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="jLabel1"/>
           </Properties>
