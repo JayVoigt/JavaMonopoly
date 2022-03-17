@@ -24,11 +24,12 @@ public class Utility extends Property {
 	
 	@Override
 	public int calculateRent() {
+		int diceSum = (int) (1 + Math.random() * 6);
 		if (isFullSetOwned == true) {
-			return 0;
+			return 10 * diceSum;
 		}
 		else {
-			return 0;
+			return 4 * diceSum;
 		}
 	}
 }

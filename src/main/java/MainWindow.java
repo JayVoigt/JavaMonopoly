@@ -47,10 +47,13 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		controller = new GameLogicController(board);
 
 		customInitComponents();
-//		font = customInitFont();
+    //font = customInitFont();
 		//labelFriendlyName.setFont(font); // NOI18N
 		//staticLabelCurrentPlayer.setFont(font);
+    
 		initButtonAppearance();
+		
+		controller.sendWelcomeMessage();
 		update();
 		lockEndTurn();
 		lockRollDice();
@@ -111,11 +114,10 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         staticLabelPropertyDecision = new javax.swing.JLabel();
         labelPropertyName = new javax.swing.JLabel();
         aboutPane = new javax.swing.JFrame();
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
         frameBoard = new javax.swing.JInternalFrame();
         jScrollPane1 = new javax.swing.JScrollPane();
         textAreaGameLog = new javax.swing.JTextArea();
@@ -124,14 +126,28 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         staticLabelFriendlyName = new javax.swing.JLabel();
         labelFriendlyName = new javax.swing.JLabel();
         staticLabelID = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
         staticLabelIsOwned = new javax.swing.JLabel();
         staticLabelSpaceType = new javax.swing.JLabel();
         staticLabelOwnedBy = new javax.swing.JLabel();
         labelIsOwned = new javax.swing.JLabel();
         labelSpaceType = new javax.swing.JLabel();
-        jSeparator2 = new javax.swing.JSeparator();
         labelID = new javax.swing.JLabel();
+        staticLabelPurchaseCost = new javax.swing.JLabel();
+        labelPurchaseCost = new javax.swing.JLabel();
+        jSeparator3 = new javax.swing.JSeparator();
+        jSeparator4 = new javax.swing.JSeparator();
+        staticLabelRentBase = new javax.swing.JLabel();
+        labelRentHotel = new javax.swing.JLabel();
+        staticLabelRentBase1 = new javax.swing.JLabel();
+        staticLabelRentBase2 = new javax.swing.JLabel();
+        staticLabelRentBase3 = new javax.swing.JLabel();
+        staticLabelRentBase4 = new javax.swing.JLabel();
+        staticLabelRentBase5 = new javax.swing.JLabel();
+        labelRentBase = new javax.swing.JLabel();
+        labelRent1House = new javax.swing.JLabel();
+        labelRent2Houses = new javax.swing.JLabel();
+        labelRent3Houses = new javax.swing.JLabel();
+        labelRent4Houses = new javax.swing.JLabel();
         iconPlayer1Position = new javax.swing.JLabel();
         iconPlayer2Position = new javax.swing.JLabel();
         iconPlayer3Position = new javax.swing.JLabel();
@@ -179,13 +195,13 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         labelHouse1 = new javax.swing.JLabel();
         labelHouse5 = new javax.swing.JLabel();
         labelBoardImage = new javax.swing.JLabel();
-        jInternalFrame2 = new javax.swing.JInternalFrame();
+        controlPanelGameInformation = new javax.swing.JInternalFrame();
         labelPlayer1Name = new javax.swing.JLabel();
         labelPlayer2Name = new javax.swing.JLabel();
         labelPlayer3Name = new javax.swing.JLabel();
         labelPlayer4Name = new javax.swing.JLabel();
         labelPlayer1ActiveIcon = new javax.swing.JLabel();
-        jInternalFrame1 = new javax.swing.JInternalFrame();
+        controlPanelActions = new javax.swing.JInternalFrame();
         buttonEndTurn = new javax.swing.JButton();
         buttonRollDice = new javax.swing.JButton();
         staticLabelCurrentPlayer = new javax.swing.JLabel();
@@ -220,6 +236,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         menuView = new javax.swing.JMenu();
         menuViewCheckBoxShowDebugLog = new javax.swing.JCheckBoxMenuItem();
         menuViewManuallyUpdateView = new javax.swing.JMenuItem();
+        menuViewToggleExtraPadding = new javax.swing.JMenuItem();
         menuHelp = new javax.swing.JMenu();
         menuHelpAbout = new javax.swing.JMenuItem();
 
@@ -634,26 +651,18 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 
         aboutPane.setSize(new java.awt.Dimension(400, 300));
 
-        jLabel1.setFont(new java.awt.Font("Helvetica Neue", 3, 18)); // NOI18N
-        jLabel1.setText("Java Monopoly Prototype");
-
         jLabel2.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/robot2.gif"))); // NOI18N
         jLabel2.setText("by Jay Voigt");
-
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/red-x.png"))); // NOI18N
-        jButton3.setText("Close");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
 
         jLabel3.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         jLabel3.setText("Created as final project for CSCI 24000, Spring 2022.");
 
         jLabel4.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         jLabel4.setText("Assets created with Adobe Illustrator and Aesprite.");
+
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logo.png"))); // NOI18N
 
         javax.swing.GroupLayout aboutPaneLayout = new javax.swing.GroupLayout(aboutPane.getContentPane());
         aboutPane.getContentPane().setLayout(aboutPaneLayout);
@@ -663,33 +672,31 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
                 .addContainerGap()
                 .addGroup(aboutPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(aboutPaneLayout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
-                        .addComponent(jLabel2))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, aboutPaneLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton3))
+                        .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
                     .addGroup(aboutPaneLayout.createSequentialGroup()
-                        .addGroup(aboutPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addComponent(jLabel4)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(aboutPaneLayout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(0, 55, Short.MAX_VALUE))))
+            .addGroup(aboutPaneLayout.createSequentialGroup()
+                .addGap(139, 139, 139)
+                .addComponent(jLabel2)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         aboutPaneLayout.setVerticalGroup(
             aboutPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(aboutPaneLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(aboutPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, aboutPaneLayout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 181, Short.MAX_VALUE)
-                .addComponent(jButton3)
-                .addContainerGap())
+                .addGap(89, 89, 89))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -698,6 +705,11 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 
         frameBoard.setTitle("Board");
         frameBoard.setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/board.png"))); // NOI18N
+        try {
+            frameBoard.setSelected(true);
+        } catch (java.beans.PropertyVetoException e1) {
+            e1.printStackTrace();
+        }
         frameBoard.setVisible(true);
         frameBoard.getContentPane().setLayout(null);
 
@@ -723,7 +735,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         labelOwnedBy.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         labelOwnedBy.setText("(no selection)");
         jPanel1.add(labelOwnedBy);
-        labelOwnedBy.setBounds(140, 130, 230, 20);
+        labelOwnedBy.setBounds(140, 130, 180, 20);
 
         staticLabelFriendlyName.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         staticLabelFriendlyName.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -734,17 +746,13 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         labelFriendlyName.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         labelFriendlyName.setText("(no selection)");
         jPanel1.add(labelFriendlyName);
-        labelFriendlyName.setBounds(140, 40, 230, 20);
+        labelFriendlyName.setBounds(140, 40, 180, 20);
 
         staticLabelID.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         staticLabelID.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         staticLabelID.setText("ID");
         jPanel1.add(staticLabelID);
         staticLabelID.setBounds(10, 10, 110, 20);
-
-        jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        jPanel1.add(jSeparator1);
-        jSeparator1.setBounds(340, 10, 10, 200);
 
         staticLabelIsOwned.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         staticLabelIsOwned.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -767,21 +775,102 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         labelIsOwned.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         labelIsOwned.setText("(no selection)");
         jPanel1.add(labelIsOwned);
-        labelIsOwned.setBounds(140, 70, 230, 20);
+        labelIsOwned.setBounds(140, 70, 180, 20);
 
         labelSpaceType.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         labelSpaceType.setText("(no selection)");
         jPanel1.add(labelSpaceType);
-        labelSpaceType.setBounds(140, 100, 230, 20);
-
-        jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        jPanel1.add(jSeparator2);
-        jSeparator2.setBounds(130, 10, 10, 200);
+        labelSpaceType.setBounds(140, 100, 180, 20);
 
         labelID.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         labelID.setText("(no selection)");
         jPanel1.add(labelID);
-        labelID.setBounds(140, 10, 230, 20);
+        labelID.setBounds(140, 10, 180, 20);
+
+        staticLabelPurchaseCost.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        staticLabelPurchaseCost.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        staticLabelPurchaseCost.setText("Price");
+        jPanel1.add(staticLabelPurchaseCost);
+        staticLabelPurchaseCost.setBounds(320, 10, 130, 20);
+
+        labelPurchaseCost.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        labelPurchaseCost.setText("(no selection)");
+        jPanel1.add(labelPurchaseCost);
+        labelPurchaseCost.setBounds(470, 10, 180, 20);
+
+        jSeparator3.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        jPanel1.add(jSeparator3);
+        jSeparator3.setBounds(130, 10, 10, 200);
+
+        jSeparator4.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        jPanel1.add(jSeparator4);
+        jSeparator4.setBounds(460, 10, 10, 200);
+
+        staticLabelRentBase.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        staticLabelRentBase.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        staticLabelRentBase.setText("Rent, hotel");
+        jPanel1.add(staticLabelRentBase);
+        staticLabelRentBase.setBounds(320, 190, 130, 20);
+
+        labelRentHotel.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        labelRentHotel.setText("(no selection)");
+        jPanel1.add(labelRentHotel);
+        labelRentHotel.setBounds(470, 190, 180, 20);
+
+        staticLabelRentBase1.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        staticLabelRentBase1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        staticLabelRentBase1.setText("Rent, base");
+        jPanel1.add(staticLabelRentBase1);
+        staticLabelRentBase1.setBounds(320, 40, 130, 20);
+
+        staticLabelRentBase2.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        staticLabelRentBase2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        staticLabelRentBase2.setText("Rent, 1 house");
+        jPanel1.add(staticLabelRentBase2);
+        staticLabelRentBase2.setBounds(320, 70, 130, 20);
+
+        staticLabelRentBase3.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        staticLabelRentBase3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        staticLabelRentBase3.setText("Rent, 2 houses");
+        jPanel1.add(staticLabelRentBase3);
+        staticLabelRentBase3.setBounds(320, 100, 130, 20);
+
+        staticLabelRentBase4.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        staticLabelRentBase4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        staticLabelRentBase4.setText("Rent, 3 houses");
+        jPanel1.add(staticLabelRentBase4);
+        staticLabelRentBase4.setBounds(320, 130, 130, 20);
+
+        staticLabelRentBase5.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        staticLabelRentBase5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        staticLabelRentBase5.setText("Rent, 4 houses");
+        jPanel1.add(staticLabelRentBase5);
+        staticLabelRentBase5.setBounds(320, 160, 130, 20);
+
+        labelRentBase.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        labelRentBase.setText("(no selection)");
+        jPanel1.add(labelRentBase);
+        labelRentBase.setBounds(470, 40, 180, 20);
+
+        labelRent1House.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        labelRent1House.setText("(no selection)");
+        jPanel1.add(labelRent1House);
+        labelRent1House.setBounds(470, 70, 180, 20);
+
+        labelRent2Houses.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        labelRent2Houses.setText("(no selection)");
+        jPanel1.add(labelRent2Houses);
+        labelRent2Houses.setBounds(470, 100, 180, 20);
+
+        labelRent3Houses.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        labelRent3Houses.setText("(no selection)");
+        jPanel1.add(labelRent3Houses);
+        labelRent3Houses.setBounds(470, 130, 180, 20);
+
+        labelRent4Houses.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        labelRent4Houses.setText("(no selection)");
+        jPanel1.add(labelRent4Houses);
+        labelRent4Houses.setBounds(470, 160, 180, 20);
 
         frameBoard.getContentPane().add(jPanel1);
         jPanel1.setBounds(160, 150, 660, 220);
@@ -1391,7 +1480,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonSpace39.setBounds(850, 770, 120, 80);
 
         labelHouse1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/house.png"))); // NOI18N
-        labelHouse1.setLocation(new java.awt.Point(108, 150));
         labelHouse1.setSize(new java.awt.Dimension(20, 20));
         frameBoard.getContentPane().add(labelHouse1);
         labelHouse1.setBounds(108, 130, 20, 20);
@@ -1406,9 +1494,14 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         frameBoard.getContentPane().add(labelBoardImage);
         labelBoardImage.setBounds(10, 10, 960, 960);
 
-        jInternalFrame2.setTitle("Game Information");
-        jInternalFrame2.setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/i.png"))); // NOI18N
-        jInternalFrame2.setVisible(true);
+        controlPanelGameInformation.setTitle("Game Information");
+        controlPanelGameInformation.setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/i.png"))); // NOI18N
+        try {
+            controlPanelGameInformation.setSelected(true);
+        } catch (java.beans.PropertyVetoException e1) {
+            e1.printStackTrace();
+        }
+        controlPanelGameInformation.setVisible(true);
 
         labelPlayer1Name.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         labelPlayer1Name.setText("Player 1");
@@ -1426,26 +1519,26 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         labelPlayer1ActiveIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dice-icon.png"))); // NOI18N
         labelPlayer1ActiveIcon.setText("Player 1");
 
-        javax.swing.GroupLayout jInternalFrame2Layout = new javax.swing.GroupLayout(jInternalFrame2.getContentPane());
-        jInternalFrame2.getContentPane().setLayout(jInternalFrame2Layout);
-        jInternalFrame2Layout.setHorizontalGroup(
-            jInternalFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jInternalFrame2Layout.createSequentialGroup()
+        javax.swing.GroupLayout controlPanelGameInformationLayout = new javax.swing.GroupLayout(controlPanelGameInformation.getContentPane());
+        controlPanelGameInformation.getContentPane().setLayout(controlPanelGameInformationLayout);
+        controlPanelGameInformationLayout.setHorizontalGroup(
+            controlPanelGameInformationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(controlPanelGameInformationLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(labelPlayer1ActiveIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jInternalFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(controlPanelGameInformationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(labelPlayer1Name)
                     .addComponent(labelPlayer2Name)
                     .addComponent(labelPlayer3Name)
                     .addComponent(labelPlayer4Name))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jInternalFrame2Layout.setVerticalGroup(
-            jInternalFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jInternalFrame2Layout.createSequentialGroup()
+        controlPanelGameInformationLayout.setVerticalGroup(
+            controlPanelGameInformationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(controlPanelGameInformationLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jInternalFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(controlPanelGameInformationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelPlayer1Name)
                     .addComponent(labelPlayer1ActiveIcon))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1457,10 +1550,15 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
                 .addContainerGap(255, Short.MAX_VALUE))
         );
 
-        jInternalFrame1.setTitle("Actions");
-        jInternalFrame1.setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/doc-with-pencil.png"))); // NOI18N
-        jInternalFrame1.setVisible(true);
-        jInternalFrame1.getContentPane().setLayout(null);
+        controlPanelActions.setTitle("Actions");
+        controlPanelActions.setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/doc-with-pencil.png"))); // NOI18N
+        try {
+            controlPanelActions.setSelected(true);
+        } catch (java.beans.PropertyVetoException e1) {
+            e1.printStackTrace();
+        }
+        controlPanelActions.setVisible(true);
+        controlPanelActions.getContentPane().setLayout(null);
 
         buttonEndTurn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/arrow.png"))); // NOI18N
         buttonEndTurn.setText("End Turn");
@@ -1471,7 +1569,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
                 buttonEndTurnActionPerformed(evt);
             }
         });
-        jInternalFrame1.getContentPane().add(buttonEndTurn);
+        controlPanelActions.getContentPane().add(buttonEndTurn);
         buttonEndTurn.setBounds(200, 270, 105, 58);
 
         buttonRollDice.setIcon(new javax.swing.ImageIcon("/Users/jay/NetBeansProjects/Monoproto3/src/main/resources/dice-icon.png")); // NOI18N
@@ -1483,122 +1581,122 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
                 buttonRollDiceActionPerformed(evt);
             }
         });
-        jInternalFrame1.getContentPane().add(buttonRollDice);
+        controlPanelActions.getContentPane().add(buttonRollDice);
         buttonRollDice.setBounds(10, 269, 110, 60);
 
         staticLabelCurrentPlayer.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         staticLabelCurrentPlayer.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         staticLabelCurrentPlayer.setText("Current Player");
-        jInternalFrame1.getContentPane().add(staticLabelCurrentPlayer);
+        controlPanelActions.getContentPane().add(staticLabelCurrentPlayer);
         staticLabelCurrentPlayer.setBounds(30, 10, 131, 20);
 
         labelCurrentPlayer.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         labelCurrentPlayer.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         labelCurrentPlayer.setText("n/a");
-        jInternalFrame1.getContentPane().add(labelCurrentPlayer);
+        controlPanelActions.getContentPane().add(labelCurrentPlayer);
         labelCurrentPlayer.setBounds(180, 10, 140, 20);
 
         labelDie2.setFont(new java.awt.Font("Courier", 0, 18)); // NOI18N
         labelDie2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelDie2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/die-50px-0pip.png"))); // NOI18N
-        jInternalFrame1.getContentPane().add(labelDie2);
+        controlPanelActions.getContentPane().add(labelDie2);
         labelDie2.setBounds(70, 210, 50, 50);
 
         labelDie1.setFont(new java.awt.Font("Courier", 0, 18)); // NOI18N
         labelDie1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelDie1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/die-50px-0pip.png"))); // NOI18N
-        jInternalFrame1.getContentPane().add(labelDie1);
+        controlPanelActions.getContentPane().add(labelDie1);
         labelDie1.setBounds(10, 210, 50, 50);
 
         staticLabelCurrentBalance.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         staticLabelCurrentBalance.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         staticLabelCurrentBalance.setText("Balance");
-        jInternalFrame1.getContentPane().add(staticLabelCurrentBalance);
+        controlPanelActions.getContentPane().add(staticLabelCurrentBalance);
         staticLabelCurrentBalance.setBounds(30, 40, 131, 20);
 
         labelCurrentBalance.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         labelCurrentBalance.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         labelCurrentBalance.setText("n/a");
-        jInternalFrame1.getContentPane().add(labelCurrentBalance);
+        controlPanelActions.getContentPane().add(labelCurrentBalance);
         labelCurrentBalance.setBounds(180, 40, 140, 20);
 
         jSeparator5.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        jInternalFrame1.getContentPane().add(jSeparator5);
+        controlPanelActions.getContentPane().add(jSeparator5);
         jSeparator5.setBounds(170, 0, 10, 100);
-        jInternalFrame1.getContentPane().add(jSeparator6);
+        controlPanelActions.getContentPane().add(jSeparator6);
         jSeparator6.setBounds(0, 200, 330, 20);
 
         staticLabelPosition.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         staticLabelPosition.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         staticLabelPosition.setText("Position");
-        jInternalFrame1.getContentPane().add(staticLabelPosition);
+        controlPanelActions.getContentPane().add(staticLabelPosition);
         staticLabelPosition.setBounds(30, 70, 131, 20);
 
         labelCurrentPosition.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         labelCurrentPosition.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         labelCurrentPosition.setText("n/a");
-        jInternalFrame1.getContentPane().add(labelCurrentPosition);
+        controlPanelActions.getContentPane().add(labelCurrentPosition);
         labelCurrentPosition.setBounds(180, 70, 140, 20);
-        jInternalFrame1.getContentPane().add(jSeparator7);
+        controlPanelActions.getContentPane().add(jSeparator7);
         jSeparator7.setBounds(0, 100, 330, 10);
 
         buttonActionTrade.setIcon(new javax.swing.ImageIcon(getClass().getResource("/trade.png"))); // NOI18N
         buttonActionTrade.setText("Trade");
         buttonActionTrade.setFocusPainted(false);
         buttonActionTrade.setMargin(new java.awt.Insets(2, 6, 2, 6));
-        jInternalFrame1.getContentPane().add(buttonActionTrade);
+        controlPanelActions.getContentPane().add(buttonActionTrade);
         buttonActionTrade.setBounds(10, 170, 140, 24);
 
         buttonActionMortgage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mortgage.png"))); // NOI18N
         buttonActionMortgage.setText("Mortgage");
         buttonActionMortgage.setFocusPainted(false);
         buttonActionMortgage.setMargin(new java.awt.Insets(2, 6, 2, 6));
-        jInternalFrame1.getContentPane().add(buttonActionMortgage);
+        controlPanelActions.getContentPane().add(buttonActionMortgage);
         buttonActionMortgage.setBounds(10, 110, 140, 24);
 
         buttonActionImprovements.setIcon(new javax.swing.ImageIcon(getClass().getResource("/improvements.png"))); // NOI18N
         buttonActionImprovements.setText("Improvements");
         buttonActionImprovements.setFocusPainted(false);
         buttonActionImprovements.setMargin(new java.awt.Insets(2, 6, 2, 6));
-        jInternalFrame1.getContentPane().add(buttonActionImprovements);
+        controlPanelActions.getContentPane().add(buttonActionImprovements);
         buttonActionImprovements.setBounds(10, 140, 140, 24);
 
         buttonActionMortgage1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/properties.png"))); // NOI18N
         buttonActionMortgage1.setText("Properties");
         buttonActionMortgage1.setFocusPainted(false);
         buttonActionMortgage1.setMargin(new java.awt.Insets(2, 6, 2, 6));
-        jInternalFrame1.getContentPane().add(buttonActionMortgage1);
+        controlPanelActions.getContentPane().add(buttonActionMortgage1);
         buttonActionMortgage1.setBounds(180, 110, 140, 23);
 
         buttonActionImprovements1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/statistics.png"))); // NOI18N
         buttonActionImprovements1.setText("Statistics");
         buttonActionImprovements1.setFocusPainted(false);
         buttonActionImprovements1.setMargin(new java.awt.Insets(2, 6, 2, 6));
-        jInternalFrame1.getContentPane().add(buttonActionImprovements1);
+        controlPanelActions.getContentPane().add(buttonActionImprovements1);
         buttonActionImprovements1.setBounds(180, 140, 140, 24);
 
         buttonActionTrade1.setText("Trade");
         buttonActionTrade1.setFocusPainted(false);
         buttonActionTrade1.setMargin(new java.awt.Insets(2, 6, 2, 6));
-        jInternalFrame1.getContentPane().add(buttonActionTrade1);
+        controlPanelActions.getContentPane().add(buttonActionTrade1);
         buttonActionTrade1.setBounds(180, 170, 140, 23);
 
         labelCurrentPlayerIcon.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        labelCurrentPlayerIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/player-generic.png"))); // NOI18N
+        labelCurrentPlayerIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/player-generic-anim.gif"))); // NOI18N
         labelCurrentPlayerIcon.setText("Player 1");
-        jInternalFrame1.getContentPane().add(labelCurrentPlayerIcon);
+        controlPanelActions.getContentPane().add(labelCurrentPlayerIcon);
         labelCurrentPlayerIcon.setBounds(10, 10, 18, 18);
 
         staticLabelPositionIcon.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         staticLabelPositionIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/position.png"))); // NOI18N
         staticLabelPositionIcon.setText("Player 1");
-        jInternalFrame1.getContentPane().add(staticLabelPositionIcon);
+        controlPanelActions.getContentPane().add(staticLabelPositionIcon);
         staticLabelPositionIcon.setBounds(10, 70, 18, 18);
 
         labelCurrentBalanceIcon1.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         labelCurrentBalanceIcon1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/money.png"))); // NOI18N
         labelCurrentBalanceIcon1.setText("Player 1");
-        jInternalFrame1.getContentPane().add(labelCurrentBalanceIcon1);
+        controlPanelActions.getContentPane().add(labelCurrentBalanceIcon1);
         labelCurrentBalanceIcon1.setBounds(10, 40, 18, 18);
 
         menuFile.setText("File");
@@ -1659,7 +1757,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         menuEdit.add(menuEditGameEditor);
 
         menuEditDebugTools.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        menuEditDebugTools.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bug.png"))); // NOI18N
+        menuEditDebugTools.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bug-anim.gif"))); // NOI18N
         menuEditDebugTools.setText("Debug Tools");
         menuEditDebugTools.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1675,7 +1773,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         menuViewCheckBoxShowDebugLog.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         menuViewCheckBoxShowDebugLog.setSelected(true);
         menuViewCheckBoxShowDebugLog.setText("Show Debug Log");
-        menuViewCheckBoxShowDebugLog.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bug-log.png"))); // NOI18N
+        menuViewCheckBoxShowDebugLog.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bug-log-anim.gif"))); // NOI18N
         menuViewCheckBoxShowDebugLog.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuViewCheckBoxShowDebugLogActionPerformed(evt);
@@ -1684,7 +1782,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         menuView.add(menuViewCheckBoxShowDebugLog);
 
         menuViewManuallyUpdateView.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        menuViewManuallyUpdateView.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bug.png"))); // NOI18N
+        menuViewManuallyUpdateView.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bug-anim.gif"))); // NOI18N
         menuViewManuallyUpdateView.setText("Manually Update View");
         menuViewManuallyUpdateView.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1692,6 +1790,16 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
             }
         });
         menuView.add(menuViewManuallyUpdateView);
+
+        menuViewToggleExtraPadding.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        menuViewToggleExtraPadding.setIcon(new javax.swing.ImageIcon(getClass().getResource("/i.png"))); // NOI18N
+        menuViewToggleExtraPadding.setText("Toggle Extra Text Padding in Game Log");
+        menuViewToggleExtraPadding.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuViewToggleExtraPaddingActionPerformed(evt);
+            }
+        });
+        menuView.add(menuViewToggleExtraPadding);
 
         jMenuBar1.add(menuView);
 
@@ -1721,9 +1829,9 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jInternalFrame2)
+                        .addComponent(controlPanelGameInformation)
                         .addContainerGap())
-                    .addComponent(jInternalFrame1, javax.swing.GroupLayout.DEFAULT_SIZE, 339, Short.MAX_VALUE)))
+                    .addComponent(controlPanelActions, javax.swing.GroupLayout.DEFAULT_SIZE, 339, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1732,9 +1840,9 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(frameBoard)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jInternalFrame2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(controlPanelGameInformation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 250, Short.MAX_VALUE)
-                        .addComponent(jInternalFrame1, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(controlPanelActions, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -1783,8 +1891,14 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 			labelCurrentPlayerIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/robot.png"))); // NOI18N
 		}
 		else {
-			labelCurrentPlayerIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/player-generic.png")));
-		}
+			if (Math.random() >= 0.9) {
+				// the player icon will blink at you sometimes
+				labelCurrentPlayerIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/player-generic-anim.gif")));
+			}
+			else {
+				labelCurrentPlayerIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/player-generic.png")));
+			}
+			}
 		
 		appendToDebugLog("[initUIForCurrentPlayer] Current player: " + currentPlayer.getCustomName());
 	}
@@ -1808,6 +1922,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 	}
 	
 	private void customInitComponents() {
+		
 		textFieldPlayer1Name.setEnabled(true);
 		textFieldPlayer2Name.setEnabled(false);
 		textFieldPlayer3Name.setEnabled(false);
@@ -1889,8 +2004,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		int die1Value = currentPlayer.getDie1();
 		int die2Value = currentPlayer.getDie2();
 		
-		//labelDie1.setText(Integer.toString(currentPlayer.getDie1()));
-		//labelDie2.setText(Integer.toString(currentPlayer.getDie2()));
 		labelDie1.setIcon(diceIcons.get(die1Value));
 		labelDie2.setIcon(diceIcons.get(die2Value));
 	}
@@ -1900,6 +2013,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		
 		if (currentPlayer.getRequiredDecisionPropertyAction() == true) {
 			if (currentPlayer.getMadeDecisionPropertyAction() == false) {
+				centerJDialog(askPropertyDecisionDialog);
 				askPropertyDecisionDialog.setVisible(true);
 				lockRollDice();
 				lockEndTurn();
@@ -1941,6 +2055,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     }//GEN-LAST:event_menuFileQuitActionPerformed
 
     private void menuFileNewGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuFileNewGameActionPerformed
+		centerJDialog(gameSetupDialog);
 		gameSetupDialog.setVisible(true);
 		appendToDebugLog("New game dialog opened.");
     }//GEN-LAST:event_menuFileNewGameActionPerformed
@@ -2116,6 +2231,26 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		updateSpaceSelection(39);
     }//GEN-LAST:event_buttonSpace39ActionPerformed
 	//</editor-fold>
+
+	// <editor-fold desc="Custom Swing helpers">
+	private void centerJDialog(JDialog inputDialog) {
+		int referenceX = frameBoard.getX();
+		int referenceY = frameBoard.getY();
+		int referenceWidth = frameBoard.getWidth();
+		int referenceHeight = frameBoard.getHeight();
+		
+		int innerWidth = inputDialog.getWidth();
+		int innerHeight = inputDialog.getHeight();
+		
+		int targetX = (int) (0.5 * (referenceWidth - innerWidth));
+		int targetY = (int) (0.5 * (referenceHeight - innerHeight));
+		
+		targetX += referenceX;
+		targetY += referenceY;
+
+		inputDialog.setLocation(targetX, targetY);
+	}
+	// </editor-fold>
 	
     private void comboBoxPlayerSelectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxPlayerSelectionActionPerformed
     }//GEN-LAST:event_comboBoxPlayerSelectionActionPerformed
@@ -2124,16 +2259,22 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     }//GEN-LAST:event_comboBoxPlayerSelectionPropertyChange
 
     private void menuEditGameEditorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuEditGameEditorActionPerformed
+		centerJDialog(gameEditorDialog);
 		gameEditorDialog.setVisible(true);
-		appendToGameLog("Game Editor was opened!");
+		controller.appendToGameLog("Game Editor was opened!");
     }//GEN-LAST:event_menuEditGameEditorActionPerformed
 
     private void buttonGameEditorCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGameEditorCloseActionPerformed
 		gameEditorDialog.setVisible(false);
     }//GEN-LAST:event_buttonGameEditorCloseActionPerformed
 
+	// <editor-fold desc="Sound helpers">
+
+	// </editor-fold>
+	
 	// <editor-fold desc="End turn/roll dice buttons">
     private void buttonRollDiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRollDiceActionPerformed
+
 		controller.diceRollManager();
 		update();
     }//GEN-LAST:event_buttonRollDiceActionPerformed
@@ -2145,6 +2286,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 	// </editor-fold>
 	
 	public void promptUserForPropertyDecision() {
+		centerJDialog(askPropertyDecisionDialog);
 		askPropertyDecisionDialog.setVisible(true);
 	}
 
@@ -2188,6 +2330,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 	// </editor-fold>
 	
     private void menuEditDebugToolsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuEditDebugToolsActionPerformed
+		centerJDialog(debugToolsDialog);
 		debugToolsDialog.setVisible(true);
     }//GEN-LAST:event_menuEditDebugToolsActionPerformed
 
@@ -2201,7 +2344,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		controller.playerDecisionPurchaseProperty();
 		update();
     }//GEN-LAST:event_buttonPropertyDecisionPurchaseActionPerformed
-
 
     private void menuViewManuallyUpdateViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuViewManuallyUpdateViewActionPerformed
         update();
@@ -2292,20 +2434,24 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         board.players.get(3).setCustomName(textFieldPlayer3Name.getText());
         board.players.get(4).setCustomName(textFieldPlayer4Name.getText());
 
-        appendToGameLog("New game started with " + inputPlayersCount + " players.");
-        appendToDebugLog("New game started.");
+		controller.sendInitGameMessage();
 
         controller.initialEvaluator();
         update();
     }//GEN-LAST:event_buttonStartGameActionPerformed
 
     private void menuHelpAboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuHelpAboutActionPerformed
-        aboutPane.setVisible(true);
+		aboutPane.setVisible(true);
     }//GEN-LAST:event_menuHelpAboutActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        aboutPane.setVisible(false);
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void menuViewToggleExtraPaddingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuViewToggleExtraPaddingActionPerformed
+        if (menuViewToggleExtraPadding.isEnabled() == true) {
+			controller.setExtraTextPadding(true);
+		}
+		else {
+			controller.setExtraTextPadding(false);
+		}
+    }//GEN-LAST:event_menuViewToggleExtraPaddingActionPerformed
 	// </editor-fold>
 
 	public void spaceButtonAppearanceHighlight(int spaceID) {
@@ -2357,10 +2503,24 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		// If space is of type Property, handle selection info accordingly
 		if (localSpaceType == Space.spaceTypeKeys.property) {
 			Property localSpace = (Property) board.spaces.get(spaceID);
+			
+			HashMap<String, Integer> localPropertyAttributes = localSpace.getPropertyAttributesMap();
+			
 			boolean localIsOwned = localSpace.getIsOwned();
 			labelIsOwned.setText(Boolean.toString(localIsOwned));
+			
 			labelSpaceType.setText("Property");
-			labelOwnedBy.setText(board.players.get(localSpace.getOwnerID()).getCustomName());
+			
+			if (localIsOwned == true) {
+				labelOwnedBy.setText(board.players.get(localSpace.getOwnerID()).getCustomName());
+			}
+			else {
+				labelOwnedBy.setText("n/a");
+			}
+			
+			labelPurchaseCost.setText(Integer.toString(localPropertyAttributes.get("purchaseCost")));
+			labelRentBase.setText(Integer.toString(localPropertyAttributes.get("rentBase")));
+			labelRent1House.setText(Integer.toString(localPropertyAttributes.get("rentHouse1")));
 		}
 
 		// If space is of type GameEvent...
@@ -2536,6 +2696,8 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     public javax.swing.JCheckBox checkBoxPlayer3ComputerControlled;
     public javax.swing.JComboBox<String> comboBoxPlayerSelection;
     public javax.swing.JComboBox<String> comboBoxPlayersCount;
+    public javax.swing.JInternalFrame controlPanelActions;
+    public javax.swing.JInternalFrame controlPanelGameInformation;
     public javax.swing.JFrame debugLogFrame;
     public javax.swing.JDialog debugToolsDialog;
     public javax.swing.JInternalFrame frameBoard;
@@ -2547,20 +2709,17 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     public javax.swing.JLabel iconPlayer4Position;
     public javax.swing.JButton jButton1;
     public javax.swing.JButton jButton2;
-    public javax.swing.JButton jButton3;
-    public javax.swing.JInternalFrame jInternalFrame1;
-    public javax.swing.JInternalFrame jInternalFrame2;
-    public javax.swing.JLabel jLabel1;
     public javax.swing.JLabel jLabel2;
     public javax.swing.JLabel jLabel3;
     public javax.swing.JLabel jLabel4;
+    public javax.swing.JLabel jLabel5;
     public javax.swing.JMenuBar jMenuBar1;
     public javax.swing.JPanel jPanel1;
     public javax.swing.JPopupMenu jPopupMenu1;
     public javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JScrollPane jScrollPane2;
-    public javax.swing.JSeparator jSeparator1;
-    public javax.swing.JSeparator jSeparator2;
+    public javax.swing.JSeparator jSeparator3;
+    public javax.swing.JSeparator jSeparator4;
     public javax.swing.JSeparator jSeparator5;
     public javax.swing.JSeparator jSeparator6;
     public javax.swing.JSeparator jSeparator7;
@@ -2584,6 +2743,13 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     public javax.swing.JLabel labelPlayer3Name;
     public javax.swing.JLabel labelPlayer4Name;
     public javax.swing.JLabel labelPropertyName;
+    public javax.swing.JLabel labelPurchaseCost;
+    public javax.swing.JLabel labelRent1House;
+    public javax.swing.JLabel labelRent2Houses;
+    public javax.swing.JLabel labelRent3Houses;
+    public javax.swing.JLabel labelRent4Houses;
+    public javax.swing.JLabel labelRentBase;
+    public javax.swing.JLabel labelRentHotel;
     public javax.swing.JLabel labelSpaceType;
     public javax.swing.JMenu menuEdit;
     public javax.swing.JMenuItem menuEditDebugTools;
@@ -2598,6 +2764,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     public javax.swing.JMenu menuView;
     public javax.swing.JCheckBoxMenuItem menuViewCheckBoxShowDebugLog;
     public javax.swing.JMenuItem menuViewManuallyUpdateView;
+    public javax.swing.JMenuItem menuViewToggleExtraPadding;
     public javax.swing.JFileChooser openFileChooser;
     public javax.swing.JPanel openFileChooserPanel;
     public javax.swing.JFileChooser saveFileChooser;
@@ -2621,6 +2788,13 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     public javax.swing.JLabel staticLabelPosition;
     public javax.swing.JLabel staticLabelPositionIcon;
     public javax.swing.JLabel staticLabelPropertyDecision;
+    public javax.swing.JLabel staticLabelPurchaseCost;
+    public javax.swing.JLabel staticLabelRentBase;
+    public javax.swing.JLabel staticLabelRentBase1;
+    public javax.swing.JLabel staticLabelRentBase2;
+    public javax.swing.JLabel staticLabelRentBase3;
+    public javax.swing.JLabel staticLabelRentBase4;
+    public javax.swing.JLabel staticLabelRentBase5;
     public javax.swing.JLabel staticLabelSpaceType;
     public javax.swing.JTextArea textAreaDebugLog;
     public javax.swing.JTextArea textAreaGameLog;

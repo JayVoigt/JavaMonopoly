@@ -25,7 +25,6 @@ public class JavaMonopoly {
 		
 		view = new MainWindow(board);
 		view.setVisible(true);
-		view.appendToGameLog("Successfully initialized");
 		
 		for ( int i = 0 ; i < board.spaces.size() ; i++ ) {
 			System.out.println(board.spaces.get(i).getFriendlyName());

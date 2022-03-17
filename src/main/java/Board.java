@@ -44,7 +44,7 @@ public class Board implements Serializable {
         // <editor-fold desc="Read CSV for Space data">
         // Read from CSV file for Space data
         String lineBuffer;
-        Map<String, Integer> propertyAttributes = new HashMap();
+        HashMap<String, Integer> propertyAttributes = new HashMap();
 
         try ( BufferedReader spacesConfig = new BufferedReader(new FileReader("assets/spaces.csv"))) {
             spacesConfig.readLine();
