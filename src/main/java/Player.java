@@ -144,6 +144,22 @@ public class Player implements Serializable {
 	public int getDie2() {
 		return die2;
 	}
+	
+	public void setPropertyOwnedState(boolean inputOwned, int inputPropertyID) {
+		ownedPropertyIDs[inputPropertyID] = inputOwned;
+	}
+	
+	public void setPropertyMortgagedState(boolean inputMortgaged, int inputPropertyID) {
+		mortgagedPropertyIDs[inputPropertyID] = inputMortgaged;
+	}
+	
+	public boolean[] getOwnedPropertyIDs() {
+		return ownedPropertyIDs;
+	}
+	
+	public boolean[] getMortgagedPropertyIDs() {
+		return mortgagedPropertyIDs;
+	}
     // </editor-fold>
 
     // <editor-fold desc="Setters and getters for state attributes">

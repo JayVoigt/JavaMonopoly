@@ -40,8 +40,6 @@ public abstract class Property extends Space implements Serializable {
 		mortgageValue,
 		houseCost,
 		hotelCost;
-
-	HashMap<String, Integer> localPropertyAttributes;
 	// </editor-fold>
 
 	// <editor-fold desc="Constructor">
@@ -53,8 +51,6 @@ public abstract class Property extends Space implements Serializable {
 		isMortgaged = false;
 
 		ownerID = 0;
-
-		localPropertyAttributes = propertyAttributes;
 	}
 	// </editor-fold>
 
@@ -101,10 +97,6 @@ public abstract class Property extends Space implements Serializable {
 
 	public int getPurchaseCost() {
 		return purchaseCost;
-	}
-
-	public HashMap<String, Integer> getPropertyAttributesMap() {
-		return localPropertyAttributes;
 	}
 	// </editor-fold>
 

@@ -622,6 +622,7 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="staticLabelPropertyDecision" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="labelPropertyName" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="labelCost" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="0" pref="92" max="32767" attributes="0"/>
                       </Group>
@@ -637,7 +638,9 @@
                   <Component id="staticLabelPropertyDecision" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="labelPropertyName" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="225" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="labelCost" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="202" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="buttonPropertyDecisionPurchase" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="buttonPropertyDecisionAuction" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -674,7 +677,12 @@
         </Component>
         <Component class="javax.swing.JLabel" name="labelPropertyName">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Would you like to purchase the following property?"/>
+            <Property name="text" type="java.lang.String" value="Property Name"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="labelCost">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Cost"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -764,6 +772,108 @@
               <Image iconType="3" name="/logo.png"/>
             </Property>
           </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Container class="javax.swing.JDialog" name="improvementsDialog">
+      <Properties>
+        <Property name="alwaysOnTop" type="boolean" value="true"/>
+        <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[400, 300]"/>
+        </Property>
+        <Property name="size" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[400, 300]"/>
+        </Property>
+      </Properties>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
+        <Property name="useNullLayout" type="boolean" value="true"/>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JLabel" name="staticLabelImprovementsTitle">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Helvetica Neue" size="18" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Improvements"/>
+          </Properties>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="10" y="10" width="380" height="-1"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="javax.swing.JLabel" name="labelSelectedProperty">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Property Name"/>
+          </Properties>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="150" y="50" width="-1" height="-1"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="javax.swing.JLabel" name="staticLabelSelectedProperty1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Selected Property:"/>
+          </Properties>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="10" y="50" width="-1" height="-1"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="javax.swing.JButton" name="buttonSellHouse">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/house.png"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Sell a House"/>
+          </Properties>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="10" y="130" width="150" height="-1"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="javax.swing.JButton" name="buttonBuildHouse">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/house.png"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Build a House"/>
+          </Properties>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="10" y="100" width="150" height="-1"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="javax.swing.JButton" name="buttonBuildHotel">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/hotel.png"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Build a Hotel"/>
+          </Properties>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="170" y="100" width="150" height="-1"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="javax.swing.JButton" name="buttonSellHotel">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/hotel.png"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Sell a Hotel"/>
+          </Properties>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="170" y="130" width="150" height="-1"/>
+            </Constraint>
+          </Constraints>
         </Component>
       </SubComponents>
     </Container>
@@ -1216,7 +1326,7 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="320" y="10" width="130" height="20"/>
+                  <AbsoluteConstraints x="10" y="190" width="110" height="20"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -1229,7 +1339,7 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="470" y="10" width="180" height="20"/>
+                  <AbsoluteConstraints x="140" y="190" width="180" height="20"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -1259,11 +1369,11 @@
                   <Font name="Helvetica Neue" size="18" style="1"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="4"/>
-                <Property name="text" type="java.lang.String" value="Rent, hotel"/>
+                <Property name="text" type="java.lang.String" value="+ hotel"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="320" y="190" width="130" height="20"/>
+                  <AbsoluteConstraints x="320" y="160" width="130" height="20"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -1276,7 +1386,7 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="470" y="190" width="180" height="20"/>
+                  <AbsoluteConstraints x="470" y="160" width="180" height="20"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -1286,11 +1396,11 @@
                   <Font name="Helvetica Neue" size="18" style="1"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="4"/>
-                <Property name="text" type="java.lang.String" value="Rent, base"/>
+                <Property name="text" type="java.lang.String" value="Rent"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="320" y="40" width="130" height="20"/>
+                  <AbsoluteConstraints x="320" y="10" width="130" height="20"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -1300,11 +1410,11 @@
                   <Font name="Helvetica Neue" size="18" style="1"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="4"/>
-                <Property name="text" type="java.lang.String" value="Rent, 1 house"/>
+                <Property name="text" type="java.lang.String" value="+ 1 house"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="320" y="70" width="130" height="20"/>
+                  <AbsoluteConstraints x="320" y="40" width="130" height="20"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -1314,11 +1424,11 @@
                   <Font name="Helvetica Neue" size="18" style="1"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="4"/>
-                <Property name="text" type="java.lang.String" value="Rent, 2 houses"/>
+                <Property name="text" type="java.lang.String" value="+ 2 houses"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="320" y="100" width="130" height="20"/>
+                  <AbsoluteConstraints x="320" y="70" width="130" height="20"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -1328,11 +1438,11 @@
                   <Font name="Helvetica Neue" size="18" style="1"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="4"/>
-                <Property name="text" type="java.lang.String" value="Rent, 3 houses"/>
+                <Property name="text" type="java.lang.String" value="+ 3 houses"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="320" y="130" width="130" height="20"/>
+                  <AbsoluteConstraints x="320" y="100" width="130" height="20"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -1342,11 +1452,11 @@
                   <Font name="Helvetica Neue" size="18" style="1"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="4"/>
-                <Property name="text" type="java.lang.String" value="Rent, 4 houses"/>
+                <Property name="text" type="java.lang.String" value="+ 4 houses"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="320" y="160" width="130" height="20"/>
+                  <AbsoluteConstraints x="320" y="130" width="130" height="20"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -1359,7 +1469,7 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="470" y="40" width="180" height="20"/>
+                  <AbsoluteConstraints x="470" y="10" width="180" height="20"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -1372,7 +1482,7 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="470" y="70" width="180" height="20"/>
+                  <AbsoluteConstraints x="470" y="40" width="180" height="20"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -1385,7 +1495,7 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="470" y="100" width="180" height="20"/>
+                  <AbsoluteConstraints x="470" y="70" width="180" height="20"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -1398,7 +1508,7 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="470" y="130" width="180" height="20"/>
+                  <AbsoluteConstraints x="470" y="100" width="180" height="20"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -1411,7 +1521,34 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="470" y="160" width="180" height="20"/>
+                  <AbsoluteConstraints x="470" y="130" width="180" height="20"/>
+                </Constraint>
+              </Constraints>
+            </Component>
+            <Component class="javax.swing.JLabel" name="staticLabelTimesLanded">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Helvetica Neue" size="18" style="1"/>
+                </Property>
+                <Property name="horizontalAlignment" type="int" value="4"/>
+                <Property name="text" type="java.lang.String" value="Landed"/>
+              </Properties>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                  <AbsoluteConstraints x="10" y="160" width="110" height="20"/>
+                </Constraint>
+              </Constraints>
+            </Component>
+            <Component class="javax.swing.JLabel" name="labelTimesLanded">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Helvetica Neue" size="18" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="(no selection)"/>
+              </Properties>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                  <AbsoluteConstraints x="140" y="160" width="180" height="20"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -1673,7 +1810,6 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Helvetica Neue" size="14" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="jButton1"/>
             <Property name="contentAreaFilled" type="boolean" value="false"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Hand Cursor"/>
@@ -2911,6 +3047,7 @@
               <Image iconType="3" name="/mortgage.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Mortgage"/>
+            <Property name="toolTipText" type="java.lang.String" value="Mortgage a property you own."/>
             <Property name="focusPainted" type="boolean" value="false"/>
             <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
               <Insets value="[2, 6, 2, 6]"/>
@@ -2928,28 +3065,36 @@
               <Image iconType="3" name="/improvements.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Improvements"/>
+            <Property name="toolTipText" type="java.lang.String" value="Build and sell houses and hotels."/>
             <Property name="focusPainted" type="boolean" value="false"/>
             <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
               <Insets value="[2, 6, 2, 6]"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonActionImprovementsActionPerformed"/>
+          </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="10" y="140" width="140" height="-1"/>
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JButton" name="buttonActionMortgage1">
+        <Component class="javax.swing.JButton" name="buttonProperties">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/properties.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Properties"/>
+            <Property name="toolTipText" type="java.lang.String" value="Highlight properties that you currently own."/>
             <Property name="focusPainted" type="boolean" value="false"/>
             <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
               <Insets value="[2, 6, 2, 6]"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonPropertiesActionPerformed"/>
+          </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="180" y="110" width="140" height="-1"/>
@@ -2962,6 +3107,7 @@
               <Image iconType="3" name="/statistics.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Statistics"/>
+            <Property name="toolTipText" type="java.lang.String" value=""/>
             <Property name="focusPainted" type="boolean" value="false"/>
             <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
               <Insets value="[2, 6, 2, 6]"/>

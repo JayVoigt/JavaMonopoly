@@ -113,11 +113,20 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonPropertyDecisionAuction = new javax.swing.JButton();
         staticLabelPropertyDecision = new javax.swing.JLabel();
         labelPropertyName = new javax.swing.JLabel();
+        labelCost = new javax.swing.JLabel();
         aboutPane = new javax.swing.JFrame();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        improvementsDialog = new javax.swing.JDialog();
+        staticLabelImprovementsTitle = new javax.swing.JLabel();
+        labelSelectedProperty = new javax.swing.JLabel();
+        staticLabelSelectedProperty1 = new javax.swing.JLabel();
+        buttonSellHouse = new javax.swing.JButton();
+        buttonBuildHouse = new javax.swing.JButton();
+        buttonBuildHotel = new javax.swing.JButton();
+        buttonSellHotel = new javax.swing.JButton();
         frameBoard = new javax.swing.JInternalFrame();
         jScrollPane1 = new javax.swing.JScrollPane();
         textAreaGameLog = new javax.swing.JTextArea();
@@ -148,6 +157,8 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         labelRent2Houses = new javax.swing.JLabel();
         labelRent3Houses = new javax.swing.JLabel();
         labelRent4Houses = new javax.swing.JLabel();
+        staticLabelTimesLanded = new javax.swing.JLabel();
+        labelTimesLanded = new javax.swing.JLabel();
         iconPlayer1Position = new javax.swing.JLabel();
         iconPlayer2Position = new javax.swing.JLabel();
         iconPlayer3Position = new javax.swing.JLabel();
@@ -218,7 +229,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonActionTrade = new javax.swing.JButton();
         buttonActionMortgage = new javax.swing.JButton();
         buttonActionImprovements = new javax.swing.JButton();
-        buttonActionMortgage1 = new javax.swing.JButton();
+        buttonProperties = new javax.swing.JButton();
         buttonActionImprovements1 = new javax.swing.JButton();
         buttonActionTrade1 = new javax.swing.JButton();
         labelCurrentPlayerIcon = new javax.swing.JLabel();
@@ -241,7 +252,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         menuHelpAbout = new javax.swing.JMenuItem();
 
         gameSetupDialog.setAlwaysOnTop(true);
-        gameSetupDialog.setLocationByPlatform(true);
         gameSetupDialog.setMinimumSize(new java.awt.Dimension(400, 300));
         gameSetupDialog.setResizable(false);
 
@@ -427,7 +437,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
                 .addGap(8, 8, 8))
         );
 
-        gameEditorDialog.setLocationByPlatform(true);
         gameEditorDialog.setMinimumSize(new java.awt.Dimension(400, 300));
         gameEditorDialog.setResizable(false);
         gameEditorDialog.setSize(new java.awt.Dimension(400, 350));
@@ -571,7 +580,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         );
 
         debugToolsDialog.setAlwaysOnTop(true);
-        debugToolsDialog.setLocationByPlatform(true);
 
         jButton2.setText("Space Button Highlight");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -599,7 +607,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 
         askPropertyDecisionDialog.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         askPropertyDecisionDialog.setAlwaysOnTop(true);
-        askPropertyDecisionDialog.setLocationByPlatform(true);
         askPropertyDecisionDialog.setSize(new java.awt.Dimension(400, 300));
 
         buttonPropertyDecisionPurchase.setIcon(new javax.swing.ImageIcon(getClass().getResource("/money.png"))); // NOI18N
@@ -615,7 +622,9 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 
         staticLabelPropertyDecision.setText("Would you like to purchase the following property?");
 
-        labelPropertyName.setText("Would you like to purchase the following property?");
+        labelPropertyName.setText("Property Name");
+
+        labelCost.setText("Cost");
 
         javax.swing.GroupLayout askPropertyDecisionDialogLayout = new javax.swing.GroupLayout(askPropertyDecisionDialog.getContentPane());
         askPropertyDecisionDialog.getContentPane().setLayout(askPropertyDecisionDialogLayout);
@@ -631,7 +640,8 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
                     .addGroup(askPropertyDecisionDialogLayout.createSequentialGroup()
                         .addGroup(askPropertyDecisionDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(staticLabelPropertyDecision)
-                            .addComponent(labelPropertyName))
+                            .addComponent(labelPropertyName)
+                            .addComponent(labelCost))
                         .addGap(0, 92, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -642,7 +652,9 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
                 .addComponent(staticLabelPropertyDecision)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelPropertyName)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 225, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labelCost)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 202, Short.MAX_VALUE)
                 .addGroup(askPropertyDecisionDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonPropertyDecisionPurchase)
                     .addComponent(buttonPropertyDecisionAuction))
@@ -698,6 +710,44 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
                 .addComponent(jLabel4)
                 .addGap(89, 89, 89))
         );
+
+        improvementsDialog.setAlwaysOnTop(true);
+        improvementsDialog.setMinimumSize(new java.awt.Dimension(400, 300));
+        improvementsDialog.setSize(new java.awt.Dimension(400, 300));
+        improvementsDialog.getContentPane().setLayout(null);
+
+        staticLabelImprovementsTitle.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        staticLabelImprovementsTitle.setText("Improvements");
+        improvementsDialog.getContentPane().add(staticLabelImprovementsTitle);
+        staticLabelImprovementsTitle.setBounds(10, 10, 380, 23);
+
+        labelSelectedProperty.setText("Property Name");
+        improvementsDialog.getContentPane().add(labelSelectedProperty);
+        labelSelectedProperty.setBounds(150, 50, 87, 17);
+
+        staticLabelSelectedProperty1.setText("Selected Property:");
+        improvementsDialog.getContentPane().add(staticLabelSelectedProperty1);
+        staticLabelSelectedProperty1.setBounds(10, 50, 108, 17);
+
+        buttonSellHouse.setIcon(new javax.swing.ImageIcon(getClass().getResource("/house.png"))); // NOI18N
+        buttonSellHouse.setText("Sell a House");
+        improvementsDialog.getContentPane().add(buttonSellHouse);
+        buttonSellHouse.setBounds(10, 130, 150, 26);
+
+        buttonBuildHouse.setIcon(new javax.swing.ImageIcon(getClass().getResource("/house.png"))); // NOI18N
+        buttonBuildHouse.setText("Build a House");
+        improvementsDialog.getContentPane().add(buttonBuildHouse);
+        buttonBuildHouse.setBounds(10, 100, 150, 26);
+
+        buttonBuildHotel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hotel.png"))); // NOI18N
+        buttonBuildHotel.setText("Build a Hotel");
+        improvementsDialog.getContentPane().add(buttonBuildHotel);
+        buttonBuildHotel.setBounds(170, 100, 150, 26);
+
+        buttonSellHotel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hotel.png"))); // NOI18N
+        buttonSellHotel.setText("Sell a Hotel");
+        improvementsDialog.getContentPane().add(buttonSellHotel);
+        buttonSellHotel.setBounds(170, 130, 150, 26);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Monopoly Game");
@@ -791,12 +841,12 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         staticLabelPurchaseCost.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         staticLabelPurchaseCost.setText("Price");
         jPanel1.add(staticLabelPurchaseCost);
-        staticLabelPurchaseCost.setBounds(320, 10, 130, 20);
+        staticLabelPurchaseCost.setBounds(10, 190, 110, 20);
 
         labelPurchaseCost.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         labelPurchaseCost.setText("(no selection)");
         jPanel1.add(labelPurchaseCost);
-        labelPurchaseCost.setBounds(470, 10, 180, 20);
+        labelPurchaseCost.setBounds(140, 190, 180, 20);
 
         jSeparator3.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jPanel1.add(jSeparator3);
@@ -808,69 +858,80 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 
         staticLabelRentBase.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         staticLabelRentBase.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        staticLabelRentBase.setText("Rent, hotel");
+        staticLabelRentBase.setText("+ hotel");
         jPanel1.add(staticLabelRentBase);
-        staticLabelRentBase.setBounds(320, 190, 130, 20);
+        staticLabelRentBase.setBounds(320, 160, 130, 20);
 
         labelRentHotel.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         labelRentHotel.setText("(no selection)");
         jPanel1.add(labelRentHotel);
-        labelRentHotel.setBounds(470, 190, 180, 20);
+        labelRentHotel.setBounds(470, 160, 180, 20);
 
         staticLabelRentBase1.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         staticLabelRentBase1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        staticLabelRentBase1.setText("Rent, base");
+        staticLabelRentBase1.setText("Rent");
         jPanel1.add(staticLabelRentBase1);
-        staticLabelRentBase1.setBounds(320, 40, 130, 20);
+        staticLabelRentBase1.setBounds(320, 10, 130, 20);
 
         staticLabelRentBase2.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         staticLabelRentBase2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        staticLabelRentBase2.setText("Rent, 1 house");
+        staticLabelRentBase2.setText("+ 1 house");
         jPanel1.add(staticLabelRentBase2);
-        staticLabelRentBase2.setBounds(320, 70, 130, 20);
+        staticLabelRentBase2.setBounds(320, 40, 130, 20);
 
         staticLabelRentBase3.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         staticLabelRentBase3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        staticLabelRentBase3.setText("Rent, 2 houses");
+        staticLabelRentBase3.setText("+ 2 houses");
         jPanel1.add(staticLabelRentBase3);
-        staticLabelRentBase3.setBounds(320, 100, 130, 20);
+        staticLabelRentBase3.setBounds(320, 70, 130, 20);
 
         staticLabelRentBase4.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         staticLabelRentBase4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        staticLabelRentBase4.setText("Rent, 3 houses");
+        staticLabelRentBase4.setText("+ 3 houses");
         jPanel1.add(staticLabelRentBase4);
-        staticLabelRentBase4.setBounds(320, 130, 130, 20);
+        staticLabelRentBase4.setBounds(320, 100, 130, 20);
 
         staticLabelRentBase5.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         staticLabelRentBase5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        staticLabelRentBase5.setText("Rent, 4 houses");
+        staticLabelRentBase5.setText("+ 4 houses");
         jPanel1.add(staticLabelRentBase5);
-        staticLabelRentBase5.setBounds(320, 160, 130, 20);
+        staticLabelRentBase5.setBounds(320, 130, 130, 20);
 
         labelRentBase.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         labelRentBase.setText("(no selection)");
         jPanel1.add(labelRentBase);
-        labelRentBase.setBounds(470, 40, 180, 20);
+        labelRentBase.setBounds(470, 10, 180, 20);
 
         labelRent1House.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         labelRent1House.setText("(no selection)");
         jPanel1.add(labelRent1House);
-        labelRent1House.setBounds(470, 70, 180, 20);
+        labelRent1House.setBounds(470, 40, 180, 20);
 
         labelRent2Houses.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         labelRent2Houses.setText("(no selection)");
         jPanel1.add(labelRent2Houses);
-        labelRent2Houses.setBounds(470, 100, 180, 20);
+        labelRent2Houses.setBounds(470, 70, 180, 20);
 
         labelRent3Houses.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         labelRent3Houses.setText("(no selection)");
         jPanel1.add(labelRent3Houses);
-        labelRent3Houses.setBounds(470, 130, 180, 20);
+        labelRent3Houses.setBounds(470, 100, 180, 20);
 
         labelRent4Houses.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         labelRent4Houses.setText("(no selection)");
         jPanel1.add(labelRent4Houses);
-        labelRent4Houses.setBounds(470, 160, 180, 20);
+        labelRent4Houses.setBounds(470, 130, 180, 20);
+
+        staticLabelTimesLanded.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        staticLabelTimesLanded.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        staticLabelTimesLanded.setText("Landed");
+        jPanel1.add(staticLabelTimesLanded);
+        staticLabelTimesLanded.setBounds(10, 160, 110, 20);
+
+        labelTimesLanded.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        labelTimesLanded.setText("(no selection)");
+        jPanel1.add(labelTimesLanded);
+        labelTimesLanded.setBounds(140, 160, 180, 20);
 
         frameBoard.getContentPane().add(jPanel1);
         jPanel1.setBounds(160, 150, 660, 220);
@@ -1003,7 +1064,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 
         buttonSpace7.setBackground(new java.awt.Color(255, 204, 153));
         buttonSpace7.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
-        buttonSpace7.setText("jButton1");
         buttonSpace7.setContentAreaFilled(false);
         buttonSpace7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonSpace7.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -1649,6 +1709,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 
         buttonActionMortgage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mortgage.png"))); // NOI18N
         buttonActionMortgage.setText("Mortgage");
+        buttonActionMortgage.setToolTipText("Mortgage a property you own.");
         buttonActionMortgage.setFocusPainted(false);
         buttonActionMortgage.setMargin(new java.awt.Insets(2, 6, 2, 6));
         controlPanelActions.getContentPane().add(buttonActionMortgage);
@@ -1656,20 +1717,33 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 
         buttonActionImprovements.setIcon(new javax.swing.ImageIcon(getClass().getResource("/improvements.png"))); // NOI18N
         buttonActionImprovements.setText("Improvements");
+        buttonActionImprovements.setToolTipText("Build and sell houses and hotels.");
         buttonActionImprovements.setFocusPainted(false);
         buttonActionImprovements.setMargin(new java.awt.Insets(2, 6, 2, 6));
+        buttonActionImprovements.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonActionImprovementsActionPerformed(evt);
+            }
+        });
         controlPanelActions.getContentPane().add(buttonActionImprovements);
         buttonActionImprovements.setBounds(10, 140, 140, 24);
 
-        buttonActionMortgage1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/properties.png"))); // NOI18N
-        buttonActionMortgage1.setText("Properties");
-        buttonActionMortgage1.setFocusPainted(false);
-        buttonActionMortgage1.setMargin(new java.awt.Insets(2, 6, 2, 6));
-        controlPanelActions.getContentPane().add(buttonActionMortgage1);
-        buttonActionMortgage1.setBounds(180, 110, 140, 23);
+        buttonProperties.setIcon(new javax.swing.ImageIcon(getClass().getResource("/properties.png"))); // NOI18N
+        buttonProperties.setText("Properties");
+        buttonProperties.setToolTipText("Highlight properties that you currently own.");
+        buttonProperties.setFocusPainted(false);
+        buttonProperties.setMargin(new java.awt.Insets(2, 6, 2, 6));
+        buttonProperties.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonPropertiesActionPerformed(evt);
+            }
+        });
+        controlPanelActions.getContentPane().add(buttonProperties);
+        buttonProperties.setBounds(180, 110, 140, 23);
 
         buttonActionImprovements1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/statistics.png"))); // NOI18N
         buttonActionImprovements1.setText("Statistics");
+        buttonActionImprovements1.setToolTipText("");
         buttonActionImprovements1.setFocusPainted(false);
         buttonActionImprovements1.setMargin(new java.awt.Insets(2, 6, 2, 6));
         controlPanelActions.getContentPane().add(buttonActionImprovements1);
@@ -2014,16 +2088,30 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		if (currentPlayer.getRequiredDecisionPropertyAction() == true) {
 			if (currentPlayer.getMadeDecisionPropertyAction() == false) {
 				centerJDialog(askPropertyDecisionDialog);
-				askPropertyDecisionDialog.setVisible(true);
+				
 				lockRollDice();
 				lockEndTurn();
-				labelPropertyName.setText(board.spaces.get(currentPlayer.getCurrentPosition()).getFriendlyName());
+				
+				Property localProperty = (Property) board.spaces.get(currentPlayer.getCurrentPosition());
+				
+				labelPropertyName.setText(localProperty.getFriendlyName());
+				labelPropertyName.setIcon(new javax.swing.ImageIcon(getClass().getResource("/properties.png")));
+				labelCost.setText("$" + localProperty.getPurchaseCost());
+				labelCost.setIcon(new javax.swing.ImageIcon(getClass().getResource("/money.png")));
+				
+				askPropertyDecisionDialog.setVisible(true);
 			}
 		}
 	}
 	
 	private void updateGameLog() {
 		textAreaGameLog.setText(controller.getGameLogContents());
+	}
+	
+	private void readyUIForNextPlayer() {
+		for ( int i = 0 ; i < 40 ; i++ ) {
+			spaceButtonAppearanceReset(i);
+		}
 	}
 	// </editor-fold>
 
@@ -2282,14 +2370,17 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     private void buttonEndTurnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEndTurnActionPerformed
 		controller.endTurnManager();
 		update();
+		readyUIForNextPlayer();
     }//GEN-LAST:event_buttonEndTurnActionPerformed
 	// </editor-fold>
 	
+	// <editor-fold desc="User prompts">
 	public void promptUserForPropertyDecision() {
 		centerJDialog(askPropertyDecisionDialog);
 		askPropertyDecisionDialog.setVisible(true);
 	}
-
+	// </editor-fold>
+	
     private void buttonSpace20MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonSpace20MouseEntered
 
     }//GEN-LAST:event_buttonSpace20MouseEntered
@@ -2452,14 +2543,45 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 			controller.setExtraTextPadding(false);
 		}
     }//GEN-LAST:event_menuViewToggleExtraPaddingActionPerformed
+
+    private void buttonActionImprovementsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonActionImprovementsActionPerformed
+        centerJDialog(improvementsDialog);
+		if (improvementsDialog.isVisible() == false) {
+			improvementsDialog.setVisible(true);
+		}
+		else {
+			improvementsDialog.setVisible(false);
+		}
+    }//GEN-LAST:event_buttonActionImprovementsActionPerformed
+
+    private void buttonPropertiesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPropertiesActionPerformed
+		boolean localOwnedPropertyIDs[] = currentPlayer.getOwnedPropertyIDs();
+		
+		for ( int i = 0 ; i < 40 ; i++ ) {
+			if (localOwnedPropertyIDs[i] == true) {
+				spaceButtonAppearanceHighlight(i);
+			}
+			else {
+				spaceButtonAppearanceReset(i);
+			}
+		}
+    }//GEN-LAST:event_buttonPropertiesActionPerformed
 	// </editor-fold>
 
 	public void spaceButtonAppearanceHighlight(int spaceID) {
-		spaceButtons.get(spaceID).setBorder(BorderFactory.createLineBorder(java.awt.Color.yellow, spaceID));
+		// Check if horizontally or vertically oriented on board
+		if ((spaceID > 0 && spaceID < 10) || (spaceID > 20 && spaceID < 30)) {
+			// Vertical sprite
+			spaceButtons.get(spaceID).setIcon(new javax.swing.ImageIcon(getClass().getResource("/space-highlight-80x120.png")));
+		}
+		else {
+			// Horizontal sprite
+			spaceButtons.get(spaceID).setIcon(new javax.swing.ImageIcon(getClass().getResource("/space-highlight-120x80.png")));
+		}
 	}
 
 	public void spaceButtonAppearanceReset(int spaceID) {
-		spaceButtons.get(spaceID).setText("1234");
+		spaceButtons.get(spaceID).setIcon(null);
 	}
 
 	// <editor-fold desc="Game logs">
@@ -2504,8 +2626,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		if (localSpaceType == Space.spaceTypeKeys.property) {
 			Property localSpace = (Property) board.spaces.get(spaceID);
 			
-			HashMap<String, Integer> localPropertyAttributes = localSpace.getPropertyAttributesMap();
-			
 			boolean localIsOwned = localSpace.getIsOwned();
 			labelIsOwned.setText(Boolean.toString(localIsOwned));
 			
@@ -2518,9 +2638,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 				labelOwnedBy.setText("n/a");
 			}
 			
-			labelPurchaseCost.setText(Integer.toString(localPropertyAttributes.get("purchaseCost")));
-			labelRentBase.setText(Integer.toString(localPropertyAttributes.get("rentBase")));
-			labelRent1House.setText(Integer.toString(localPropertyAttributes.get("rentHouse1")));
 		}
 
 		// If space is of type GameEvent...
@@ -2636,9 +2753,10 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     public javax.swing.JButton buttonActionImprovements;
     public javax.swing.JButton buttonActionImprovements1;
     public javax.swing.JButton buttonActionMortgage;
-    public javax.swing.JButton buttonActionMortgage1;
     public javax.swing.JButton buttonActionTrade;
     public javax.swing.JButton buttonActionTrade1;
+    public javax.swing.JButton buttonBuildHotel;
+    public javax.swing.JButton buttonBuildHouse;
     public javax.swing.JButton buttonEndTurn;
     public javax.swing.JButton buttonGameEditorAdvanceSpace;
     public javax.swing.JButton buttonGameEditorClose;
@@ -2646,9 +2764,12 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     public javax.swing.JButton buttonGameEditorUnlockEndTurn;
     public javax.swing.JButton buttonGameEditorUnlockRollDice1;
     public javax.swing.JButton buttonGameEditorUpdate;
+    public javax.swing.JButton buttonProperties;
     public javax.swing.JButton buttonPropertyDecisionAuction;
     public javax.swing.JButton buttonPropertyDecisionPurchase;
     public javax.swing.JButton buttonRollDice;
+    public javax.swing.JButton buttonSellHotel;
+    public javax.swing.JButton buttonSellHouse;
     public javax.swing.JButton buttonSpace0;
     public javax.swing.JButton buttonSpace1;
     public javax.swing.JButton buttonSpace10;
@@ -2707,6 +2828,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     public javax.swing.JLabel iconPlayer2Position;
     public javax.swing.JLabel iconPlayer3Position;
     public javax.swing.JLabel iconPlayer4Position;
+    public javax.swing.JDialog improvementsDialog;
     public javax.swing.JButton jButton1;
     public javax.swing.JButton jButton2;
     public javax.swing.JLabel jLabel2;
@@ -2724,6 +2846,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     public javax.swing.JSeparator jSeparator6;
     public javax.swing.JSeparator jSeparator7;
     public javax.swing.JLabel labelBoardImage;
+    public javax.swing.JLabel labelCost;
     public javax.swing.JLabel labelCurrentBalance;
     public javax.swing.JLabel labelCurrentBalanceIcon1;
     public javax.swing.JLabel labelCurrentPlayer;
@@ -2750,7 +2873,9 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     public javax.swing.JLabel labelRent4Houses;
     public javax.swing.JLabel labelRentBase;
     public javax.swing.JLabel labelRentHotel;
+    public javax.swing.JLabel labelSelectedProperty;
     public javax.swing.JLabel labelSpaceType;
+    public javax.swing.JLabel labelTimesLanded;
     public javax.swing.JMenu menuEdit;
     public javax.swing.JMenuItem menuEditDebugTools;
     public javax.swing.JMenuItem menuEditGameEditor;
@@ -2774,6 +2899,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     public javax.swing.JLabel staticLabelCurrentPlayer;
     public javax.swing.JLabel staticLabelFriendlyName;
     public javax.swing.JLabel staticLabelID;
+    public javax.swing.JLabel staticLabelImprovementsTitle;
     public javax.swing.JLabel staticLabelIsOwned;
     public javax.swing.JLabel staticLabelOwnedBy;
     public javax.swing.JLabel staticLabelPlayer1Name;
@@ -2795,7 +2921,9 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     public javax.swing.JLabel staticLabelRentBase3;
     public javax.swing.JLabel staticLabelRentBase4;
     public javax.swing.JLabel staticLabelRentBase5;
+    public javax.swing.JLabel staticLabelSelectedProperty1;
     public javax.swing.JLabel staticLabelSpaceType;
+    public javax.swing.JLabel staticLabelTimesLanded;
     public javax.swing.JTextArea textAreaDebugLog;
     public javax.swing.JTextArea textAreaGameLog;
     public javax.swing.JTextField textFieldPlayer1Name;

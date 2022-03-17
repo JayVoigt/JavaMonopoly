@@ -282,7 +282,10 @@ public class GameLogicController {
 		if (currentPlayer.getCurrentBalance() >= currentProperty.getPurchaseCost()) {
 			currentProperty.setIsOwned(true);
 			currentProperty.setOwnerID(currentPlayer.getPlayerID());
+			
 			currentPlayer.updateCurrentBalance(-1 * currentProperty.getPurchaseCost());
+			currentPlayer.setPropertyOwnedState(true, currentProperty.getID());
+			
 			currentPlayer.setRequiredDecisionPropertyAction(false);
 			currentPlayer.setMadeDecisionPropertyAction(true);
 			appendToGameLog(currentPlayer.getCustomName() + " has purchased " + currentProperty.getFriendlyName() + " for $" + currentProperty.getPurchaseCost() + ".");
