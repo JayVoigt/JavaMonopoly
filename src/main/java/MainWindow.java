@@ -31,6 +31,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 	GameLogicController controller;
 
 	ArrayList<JButton> spaceButtons;
+	ArrayList<javax.swing.ImageIcon> diceIcons;
 
 	Player currentPlayer;
 
@@ -105,7 +106,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonPropertyDecisionPurchase = new javax.swing.JButton();
         buttonPropertyDecisionAuction = new javax.swing.JButton();
         staticLabelPropertyDecision = new javax.swing.JLabel();
-        labelPropertyID = new javax.swing.JLabel();
+        labelPropertyName = new javax.swing.JLabel();
         frameBoard = new javax.swing.JInternalFrame();
         jScrollPane1 = new javax.swing.JScrollPane();
         textAreaGameLog = new javax.swing.JTextArea();
@@ -217,7 +218,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         gameSetupDialog.setAlwaysOnTop(true);
         gameSetupDialog.setLocationByPlatform(true);
         gameSetupDialog.setMinimumSize(new java.awt.Dimension(400, 300));
-        gameSetupDialog.setPreferredSize(new java.awt.Dimension(400, 300));
         gameSetupDialog.setResizable(false);
 
         buttonStartGame.setIcon(new javax.swing.ImageIcon(getClass().getResource("/newgame.png"))); // NOI18N
@@ -276,7 +276,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 
         textFieldPlayer4Name.setText("Player 4");
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bug.png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bug-log.png"))); // NOI18N
         jButton1.setText("debug");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -292,6 +292,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         });
 
         checkBoxPlayer1ComputerControlled.setText("Computer");
+        checkBoxPlayer1ComputerControlled.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         checkBoxPlayer1ComputerControlled.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 checkBoxPlayer1ComputerControlledActionPerformed(evt);
@@ -377,31 +378,25 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
                     .addComponent(staticLabelPlayersCount1)
                     .addComponent(spinnerStartingBalance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(gameSetupDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(gameSetupDialogLayout.createSequentialGroup()
-                        .addGroup(gameSetupDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(textFieldPlayer1Name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(staticLabelPlayer1Name))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(gameSetupDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(textFieldPlayer2Name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(staticLabelPlayer2Name))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(gameSetupDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(textFieldPlayer3Name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(staticLabelPlayer3Name))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(gameSetupDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(textFieldPlayer4Name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(staticLabelPlayer4Name)))
-                    .addGroup(gameSetupDialogLayout.createSequentialGroup()
-                        .addComponent(checkBoxPlayer1ComputerControlled)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(checkBoxPlayer2ComputerControlled)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(checkBoxPlayer2ComputerControlled1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(checkBoxPlayer2ComputerControlled2)))
+                .addGroup(gameSetupDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(textFieldPlayer1Name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(staticLabelPlayer1Name)
+                    .addComponent(checkBoxPlayer1ComputerControlled))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(gameSetupDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(textFieldPlayer2Name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(staticLabelPlayer2Name)
+                    .addComponent(checkBoxPlayer2ComputerControlled))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(gameSetupDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(textFieldPlayer3Name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(staticLabelPlayer3Name)
+                    .addComponent(checkBoxPlayer2ComputerControlled1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(gameSetupDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(textFieldPlayer4Name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(staticLabelPlayer4Name)
+                    .addComponent(checkBoxPlayer2ComputerControlled2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(buttonStartGame, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(8, 8, 8))
@@ -409,7 +404,10 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 
         gameEditorDialog.setLocationByPlatform(true);
         gameEditorDialog.setMinimumSize(new java.awt.Dimension(400, 300));
-        gameEditorDialog.getContentPane().setLayout(null);
+        gameEditorDialog.setPreferredSize(new java.awt.Dimension(400, 300));
+        gameEditorDialog.setResizable(false);
+        gameEditorDialog.setSize(new java.awt.Dimension(400, 350));
+        gameEditorDialog.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         comboBoxPlayerSelection.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4" }));
         comboBoxPlayerSelection.addActionListener(new java.awt.event.ActionListener() {
@@ -422,68 +420,67 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
                 comboBoxPlayerSelectionPropertyChange(evt);
             }
         });
-        gameEditorDialog.getContentPane().add(comboBoxPlayerSelection);
-        comboBoxPlayerSelection.setBounds(110, 40, 72, 23);
+        gameEditorDialog.getContentPane().add(comboBoxPlayerSelection, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 40, -1, -1));
 
+        staticLabelPlayerSelection.setIcon(new javax.swing.ImageIcon(getClass().getResource("/player-generic.png"))); // NOI18N
         staticLabelPlayerSelection.setText("Select Player");
-        gameEditorDialog.getContentPane().add(staticLabelPlayerSelection);
-        staticLabelPlayerSelection.setBounds(10, 40, 76, 17);
+        gameEditorDialog.getContentPane().add(staticLabelPlayerSelection, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, -1));
 
         staticLabelPlayerSelection1.setFont(new java.awt.Font("Helvetica Neue", 3, 18)); // NOI18N
         staticLabelPlayerSelection1.setForeground(new java.awt.Color(255, 0, 0));
+        staticLabelPlayerSelection1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/matrix.png"))); // NOI18N
         staticLabelPlayerSelection1.setText("Game Editor");
-        gameEditorDialog.getContentPane().add(staticLabelPlayerSelection1);
-        staticLabelPlayerSelection1.setBounds(10, 10, 108, 23);
+        gameEditorDialog.getContentPane().add(staticLabelPlayerSelection1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         buttonGameEditorUpdate.setForeground(new java.awt.Color(255, 0, 0));
+        buttonGameEditorUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/statistics.png"))); // NOI18N
         buttonGameEditorUpdate.setText("Update");
-        gameEditorDialog.getContentPane().add(buttonGameEditorUpdate);
-        buttonGameEditorUpdate.setBounds(320, 270, 73, 23);
+        gameEditorDialog.getContentPane().add(buttonGameEditorUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 270, -1, -1));
 
+        buttonGameEditorClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/red-x.png"))); // NOI18N
         buttonGameEditorClose.setText("Close");
         buttonGameEditorClose.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonGameEditorCloseActionPerformed(evt);
             }
         });
-        gameEditorDialog.getContentPane().add(buttonGameEditorClose);
-        buttonGameEditorClose.setBounds(240, 270, 72, 23);
+        gameEditorDialog.getContentPane().add(buttonGameEditorClose, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 270, -1, -1));
 
+        buttonGameEditorGoBackSpace.setIcon(new javax.swing.ImageIcon(getClass().getResource("/position.png"))); // NOI18N
         buttonGameEditorGoBackSpace.setText("Go back a space");
         buttonGameEditorGoBackSpace.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonGameEditorGoBackSpaceActionPerformed(evt);
             }
         });
-        gameEditorDialog.getContentPane().add(buttonGameEditorGoBackSpace);
-        buttonGameEditorGoBackSpace.setBounds(170, 210, 150, 23);
+        gameEditorDialog.getContentPane().add(buttonGameEditorGoBackSpace, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 210, 150, -1));
 
+        buttonGameEditorUnlockEndTurn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/arrow.png"))); // NOI18N
         buttonGameEditorUnlockEndTurn.setText("Unlock endTurn");
         buttonGameEditorUnlockEndTurn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonGameEditorUnlockEndTurnActionPerformed(evt);
             }
         });
-        gameEditorDialog.getContentPane().add(buttonGameEditorUnlockEndTurn);
-        buttonGameEditorUnlockEndTurn.setBounds(10, 270, 130, 23);
+        gameEditorDialog.getContentPane().add(buttonGameEditorUnlockEndTurn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, 150, -1));
 
+        buttonGameEditorUnlockRollDice1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dice-icon.png"))); // NOI18N
         buttonGameEditorUnlockRollDice1.setText("Unlock rollDice");
         buttonGameEditorUnlockRollDice1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonGameEditorUnlockRollDice1ActionPerformed(evt);
             }
         });
-        gameEditorDialog.getContentPane().add(buttonGameEditorUnlockRollDice1);
-        buttonGameEditorUnlockRollDice1.setBounds(10, 240, 130, 23);
+        gameEditorDialog.getContentPane().add(buttonGameEditorUnlockRollDice1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 150, -1));
 
+        buttonGameEditorAdvanceSpace.setIcon(new javax.swing.ImageIcon(getClass().getResource("/position.png"))); // NOI18N
         buttonGameEditorAdvanceSpace.setText("Advance a space");
         buttonGameEditorAdvanceSpace.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonGameEditorAdvanceSpaceActionPerformed(evt);
             }
         });
-        gameEditorDialog.getContentPane().add(buttonGameEditorAdvanceSpace);
-        buttonGameEditorAdvanceSpace.setBounds(10, 210, 150, 23);
+        gameEditorDialog.getContentPane().add(buttonGameEditorAdvanceSpace, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 150, -1));
 
         saveFileChoserPanel.setSize(new java.awt.Dimension(534, 338));
 
@@ -523,6 +520,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
                 .addContainerGap())
         );
 
+        debugLogFrame.setTitle("Debug Log");
         debugLogFrame.setAlwaysOnTop(true);
         debugLogFrame.setSize(new java.awt.Dimension(800, 400));
 
@@ -542,7 +540,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         );
         debugLogFrameLayout.setVerticalGroup(
             debugLogFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(debugLogFrameLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, debugLogFrameLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
                 .addContainerGap())
@@ -593,7 +591,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 
         staticLabelPropertyDecision.setText("Would you like to purchase the following property?");
 
-        labelPropertyID.setText("Would you like to purchase the following property?");
+        labelPropertyName.setText("Would you like to purchase the following property?");
 
         javax.swing.GroupLayout askPropertyDecisionDialogLayout = new javax.swing.GroupLayout(askPropertyDecisionDialog.getContentPane());
         askPropertyDecisionDialog.getContentPane().setLayout(askPropertyDecisionDialogLayout);
@@ -604,11 +602,14 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
                 .addGroup(askPropertyDecisionDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(askPropertyDecisionDialogLayout.createSequentialGroup()
                         .addComponent(buttonPropertyDecisionPurchase)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(buttonPropertyDecisionAuction))
-                    .addComponent(staticLabelPropertyDecision)
-                    .addComponent(labelPropertyID))
-                .addContainerGap(98, Short.MAX_VALUE))
+                    .addGroup(askPropertyDecisionDialogLayout.createSequentialGroup()
+                        .addGroup(askPropertyDecisionDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(staticLabelPropertyDecision)
+                            .addComponent(labelPropertyName))
+                        .addGap(0, 92, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         askPropertyDecisionDialogLayout.setVerticalGroup(
             askPropertyDecisionDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -616,7 +617,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
                 .addContainerGap()
                 .addComponent(staticLabelPropertyDecision)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(labelPropertyID)
+                .addComponent(labelPropertyName)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 225, Short.MAX_VALUE)
                 .addGroup(askPropertyDecisionDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonPropertyDecisionPurchase)
@@ -646,7 +647,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         jScrollPane1.setViewportView(textAreaGameLog);
 
         frameBoard.getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(160, 610, 660, 210);
+        jScrollPane1.setBounds(160, 390, 660, 430);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -716,7 +717,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         labelID.setBounds(140, 10, 230, 20);
 
         frameBoard.getContentPane().add(jPanel1);
-        jPanel1.setBounds(160, 370, 660, 220);
+        jPanel1.setBounds(160, 150, 660, 220);
 
         iconPlayer1Position.setIcon(new javax.swing.ImageIcon("/Users/jay/NetBeansProjects/Monoproto3/assets/player-icon-1-style2.png")); // NOI18N
         iconPlayer1Position.setText("jLabel1");
@@ -1352,6 +1353,8 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         frameBoard.getContentPane().add(labelBoardImage);
         labelBoardImage.setBounds(10, 10, 960, 960);
 
+        jInternalFrame2.setTitle("Game Information");
+        jInternalFrame2.setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/i.png"))); // NOI18N
         jInternalFrame2.setVisible(true);
 
         labelPlayer1Name.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
@@ -1402,6 +1405,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         );
 
         jInternalFrame1.setTitle("Actions");
+        jInternalFrame1.setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/doc-with-pencil.png"))); // NOI18N
         jInternalFrame1.setVisible(true);
         jInternalFrame1.getContentPane().setLayout(null);
 
@@ -1443,17 +1447,15 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 
         labelDie2.setFont(new java.awt.Font("Courier", 0, 18)); // NOI18N
         labelDie2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelDie2.setText("0");
-        labelDie2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        labelDie2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/die-50px-0pip.png"))); // NOI18N
         jInternalFrame1.getContentPane().add(labelDie2);
-        labelDie2.setBounds(70, 220, 50, 50);
+        labelDie2.setBounds(70, 210, 50, 50);
 
         labelDie1.setFont(new java.awt.Font("Courier", 0, 18)); // NOI18N
         labelDie1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelDie1.setText("0");
-        labelDie1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        labelDie1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/die-50px-0pip.png"))); // NOI18N
         jInternalFrame1.getContentPane().add(labelDie1);
-        labelDie1.setBounds(10, 220, 50, 50);
+        labelDie1.setBounds(10, 210, 50, 50);
 
         staticLabelCurrentBalance.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         staticLabelCurrentBalance.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -1491,7 +1493,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonActionTrade.setFocusPainted(false);
         buttonActionTrade.setMargin(new java.awt.Insets(2, 6, 2, 6));
         jInternalFrame1.getContentPane().add(buttonActionTrade);
-        buttonActionTrade.setBounds(10, 170, 140, 23);
+        buttonActionTrade.setBounds(10, 170, 140, 21);
 
         buttonActionMortgage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mortgage.png"))); // NOI18N
         buttonActionMortgage.setText("Mortgage");
@@ -1505,14 +1507,14 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonActionImprovements.setFocusPainted(false);
         buttonActionImprovements.setMargin(new java.awt.Insets(2, 6, 2, 6));
         jInternalFrame1.getContentPane().add(buttonActionImprovements);
-        buttonActionImprovements.setBounds(10, 140, 140, 23);
+        buttonActionImprovements.setBounds(10, 140, 140, 24);
 
         buttonActionMortgage1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/properties.png"))); // NOI18N
         buttonActionMortgage1.setText("Properties");
         buttonActionMortgage1.setFocusPainted(false);
         buttonActionMortgage1.setMargin(new java.awt.Insets(2, 6, 2, 6));
         jInternalFrame1.getContentPane().add(buttonActionMortgage1);
-        buttonActionMortgage1.setBounds(180, 110, 140, 23);
+        buttonActionMortgage1.setBounds(180, 110, 140, 22);
 
         buttonActionImprovements1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/statistics.png"))); // NOI18N
         buttonActionImprovements1.setText("Statistics");
@@ -1525,7 +1527,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonActionTrade1.setFocusPainted(false);
         buttonActionTrade1.setMargin(new java.awt.Insets(2, 6, 2, 6));
         jInternalFrame1.getContentPane().add(buttonActionTrade1);
-        buttonActionTrade1.setBounds(180, 170, 140, 23);
+        buttonActionTrade1.setBounds(180, 170, 140, 21);
 
         labelCurrentPlayerIcon.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         labelCurrentPlayerIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/player-generic.png"))); // NOI18N
@@ -1592,7 +1594,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         menuEdit.setText("Edit");
 
         menuEditGameEditor.setForeground(new java.awt.Color(255, 0, 0));
-        menuEditGameEditor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/statistics.png"))); // NOI18N
+        menuEditGameEditor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/matrix.png"))); // NOI18N
         menuEditGameEditor.setText("Game Editor...");
         menuEditGameEditor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1617,6 +1619,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         menuViewCheckBoxShowDebugLog.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         menuViewCheckBoxShowDebugLog.setSelected(true);
         menuViewCheckBoxShowDebugLog.setText("Show Debug Log");
+        menuViewCheckBoxShowDebugLog.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bug-log.png"))); // NOI18N
         menuViewCheckBoxShowDebugLog.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuViewCheckBoxShowDebugLogActionPerformed(evt);
@@ -1624,6 +1627,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         });
         menuView.add(menuViewCheckBoxShowDebugLog);
 
+        menuViewManuallyUpdateView.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bug.png"))); // NOI18N
         menuViewManuallyUpdateView.setText("Manually Update View");
         menuViewManuallyUpdateView.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1789,7 +1793,16 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		spaceButtons.add(buttonSpace37);
 		spaceButtons.add(buttonSpace38);
 		spaceButtons.add(buttonSpace39);
-
+		
+		diceIcons = new ArrayList<javax.swing.ImageIcon>();
+		
+		diceIcons.add(new javax.swing.ImageIcon(getClass().getResource("/die-50px-0pip.png")));
+		diceIcons.add(new javax.swing.ImageIcon(getClass().getResource("/die-50px-1pip.png")));
+		diceIcons.add(new javax.swing.ImageIcon(getClass().getResource("/die-50px-2pip.png")));
+		diceIcons.add(new javax.swing.ImageIcon(getClass().getResource("/die-50px-3pip.png")));
+		diceIcons.add(new javax.swing.ImageIcon(getClass().getResource("/die-50px-4pip.png")));
+		diceIcons.add(new javax.swing.ImageIcon(getClass().getResource("/die-50px-5pip.png")));
+		diceIcons.add(new javax.swing.ImageIcon(getClass().getResource("/die-50px-6pip.png")));
 	}
 
 	private void initButtonAppearance() {
@@ -1801,8 +1814,13 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 	}
 	
 	private void updateDiceView() {
-		labelDie1.setText(Integer.toString(currentPlayer.getDie1()));
-		labelDie2.setText(Integer.toString(currentPlayer.getDie2()));
+		int die1Value = currentPlayer.getDie1();
+		int die2Value = currentPlayer.getDie2();
+		
+		//labelDie1.setText(Integer.toString(currentPlayer.getDie1()));
+		//labelDie2.setText(Integer.toString(currentPlayer.getDie2()));
+		labelDie1.setIcon(diceIcons.get(die1Value));
+		labelDie2.setIcon(diceIcons.get(die2Value));
 	}
 	
 	private void updatePromptPropertyDecision() {
@@ -1813,7 +1831,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 				askPropertyDecisionDialog.setVisible(true);
 				lockRollDice();
 				lockEndTurn();
-				labelPropertyID.setText(board.spaces.get(currentPlayer.getCurrentPosition()).getFriendlyName());
+				labelPropertyName.setText(board.spaces.get(currentPlayer.getCurrentPosition()).getFriendlyName());
 			}
 		}
 	}
@@ -2474,7 +2492,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     public javax.swing.JLabel labelPlayer2Name;
     public javax.swing.JLabel labelPlayer3Name;
     public javax.swing.JLabel labelPlayer4Name;
-    public javax.swing.JLabel labelPropertyID;
+    public javax.swing.JLabel labelPropertyName;
     public javax.swing.JLabel labelSpaceType;
     public javax.swing.JMenu menuEdit;
     public javax.swing.JMenuItem menuEditDebugTools;
