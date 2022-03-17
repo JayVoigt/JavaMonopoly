@@ -7,7 +7,7 @@
  *
  * @author jay
  */
-
+import com.sun.tools.javac.util.PropagatedException;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 
@@ -20,57 +20,15 @@ public class GameLogicController {
 	GameEvent currentGameEvent;
 	Property currentProperty;
 
-	String gameLogContents;
-	String debugLogContents;
+	String gameLogContents,
+		debugLogContents;
 
 	boolean isGameActive;
-	
+
 	boolean useExtraTextPadding;
 
 	int playersCount,
 		turnCounter;
-
-	public GameLogicController(Board inputBoard) {
-		board = inputBoard;
-		gameLogContents = "";
-		debugLogContents = "";
-		
-		useExtraTextPadding = true;
-	}
-	
-	public String getGameLogContents() {
-		return gameLogContents;
-	}
-	
-	public void sendWelcomeMessage() {
-		appendToGameLog("Welcome to Java Monopoly Prototype!");
-		appendToGameLog("A new game can be started or loaded under the File menu.\n");
-	}
-	
-	public void sendInitGameMessage() {
-		appendToGameLog("A new game has been started with " + playersCount + " players.");
-	}
-	
-	public void appendToGameLog(String input) {
-		Date currentDate = new Date();
-		SimpleDateFormat datePrefix = new SimpleDateFormat("yyyy-mm-dd HH:mm:ss");
-		
-		String currentTurn = Integer.toString(turnCounter);
-		String formattedPrefix;
-		formattedPrefix = ("[" + currentDate + "] (" + currentTurn + "): ");
-		
-		gameLogContents = gameLogContents.concat(formattedPrefix + input + "\n");
-	}
-
-	public String getDebugLogContents() {
-		return debugLogContents;
-	}
-
-	public void appendToDebugLog(String input) {
-		String formattedPrefix = Integer.toString(turnCounter);
-		formattedPrefix = formattedPrefix.concat(": ");
-		debugLogContents = debugLogContents.concat(formattedPrefix + input + "\n");
-	}
 
 	// <editor-fold desc="Setters and getters">
 	public int getTurnCounter() {
@@ -88,20 +46,66 @@ public class GameLogicController {
 	public void setPlayersCount(int input) {
 		playersCount = input;
 	}
+
+	public void setExtraTextPadding(boolean input) {
+		useExtraTextPadding = input;
+	}
 	// </editor-fold>
+
+	public GameLogicController(Board inputBoard) {
+		board = inputBoard;
+		gameLogContents = "";
+		debugLogContents = "";
+
+		useExtraTextPadding = true;
+	}
+
+	public String getGameLogContents() {
+		return gameLogContents;
+	}
+
+	public void sendWelcomeMessage() {
+		appendToGameLog("Welcome to Java Monopoly Prototype!");
+		appendToGameLog("A new game can be started or loaded under the File menu.\n");
+	}
+
+	public void sendInitGameMessage() {
+		appendToGameLog("A new game has been started with " + playersCount + " players.");
+	}
+
+	public void appendToGameLog(String input) {
+		Date currentDate = new Date();
+		SimpleDateFormat datePrefix = new SimpleDateFormat("yyyy-mm-dd HH:mm:ss");
+
+		String currentTurn = Integer.toString(turnCounter);
+		String formattedPrefix;
+		formattedPrefix = ("[" + currentDate + "] (" + currentTurn + "): ");
+
+		gameLogContents = gameLogContents.concat(formattedPrefix + input + "\n");
+	}
+
+	public String getDebugLogContents() {
+		return debugLogContents;
+	}
+
+	public void appendToDebugLog(String input) {
+		String formattedPrefix = Integer.toString(turnCounter);
+		formattedPrefix = formattedPrefix.concat(": ");
+		debugLogContents = debugLogContents.concat(formattedPrefix + input + "\n");
+	}
 
 	public void initialEvaluator() {
 		appendToDebugLog("-> executing initialEvaluator");
 		turnCounter++;
 		currentPlayer = board.players.get(board.getCurrentPlayerID());
-		
+
 		String paddingPrefix = "";
 		if (useExtraTextPadding == true) {
 			gameLogContents = gameLogContents.concat("\n");
 		}
-		
+
 		appendToGameLog("It is now " + currentPlayer.getCustomName() + "'s turn.");
-		
+
 		if (currentPlayer.getIsJailed() == true) {
 			jailStateEvaluator();
 		}
@@ -131,12 +135,12 @@ public class GameLogicController {
 		appendToDebugLog("-> executing maeStateEvaluator");
 		currentPlayer.setActionLockedEndTurn(false);
 		currentPlayer.setActionLockedRollDice(true);
-		
+
 		if (currentPlayer.getHasRolledDoubles() == true) {
 			currentPlayer.setActionLockedRollDice(false);
 			currentPlayer.setActionLockedEndTurn(true);
 		}
-		
+
 		if (currentPlayer.getRequiredDecisionPropertyAction() == true) {
 			if (currentPlayer.getMadeDecisionPropertyAction() == true) {
 				appendToDebugLog("\t Suggested action: unlock endTurn");
@@ -180,9 +184,9 @@ public class GameLogicController {
 		else {
 			doublesSuffix = "";
 		}
-		
+
 		appendToGameLog(currentPlayer.getCustomName() + " rolled (" + currentPlayer.getDie1() + "," + currentPlayer.getDie2() + ")." + doublesSuffix);
-		
+
 		// Reset roll dice condition for doubles
 		if (currentPlayer.getHasRolledDoubles() == true) {
 			currentPlayer.setHasRolledDice(false);
@@ -198,7 +202,7 @@ public class GameLogicController {
 		appendToDebugLog("-> executing movementEvaluator");
 		int diceSum = currentPlayer.getDiceSum();
 		boolean playerPassedGo = currentPlayer.advancePosition(diceSum);
-		
+
 		// Issue GO bonus
 		if (playerPassedGo == true) {
 			currentPlayer.updateCurrentBalance(200);
@@ -209,7 +213,7 @@ public class GameLogicController {
 		currentSpace.incrementTimesLanded();
 
 		appendToGameLog(currentPlayer.getCustomName() + " has advanced to " + currentSpace.getFriendlyName() + ".");
-		
+
 		if (currentSpace.getSpaceType().equals(Space.spaceTypeKeys.gameEvent)) {
 			gameEventEvaluator();
 		}
@@ -236,6 +240,14 @@ public class GameLogicController {
 			appendToGameLog(currentProperty.getFriendlyName() + " is owned by " + board.players.get(currentProperty.getOwnerID()).getCustomName() + ".");
 			currentPlayer.setRequiredDecisionPropertyAction(false);
 			currentPlayer.setMadeDecisionPropertyAction(true);
+			
+			int rentOwed = currentProperty.calculateRent();
+			Player propertyOwner = board.players.get(currentProperty.getOwnerID());
+			
+			currentPlayer.updateCurrentBalance(-1 * rentOwed);
+			propertyOwner.updateCurrentBalance(rentOwed);
+			
+			appendToGameLog(currentPlayer.getCustomName() + " has paid $" + rentOwed + " in rent to " + propertyOwner.getCustomName() + ".");
 		}
 	}
 
@@ -243,7 +255,7 @@ public class GameLogicController {
 		appendToDebugLog("-> executing endTurnManager");
 		currentPlayer = board.players.get(board.getCurrentPlayerID());
 		currentPlayer.setActionLockedEndTurn(true);
-		
+
 		appendToGameLog(currentPlayer.getCustomName() + " has ended their turn.");
 
 		if (board.getCurrentPlayerID() == playersCount) {
@@ -283,8 +295,5 @@ public class GameLogicController {
 	public void playerDecisionAuction() {
 		appendToDebugLog("-> executing playerDecisionAuction");
 	}
-	
-	public void setExtraTextPadding(boolean input) {
-		useExtraTextPadding = input;
-	}
+
 }
