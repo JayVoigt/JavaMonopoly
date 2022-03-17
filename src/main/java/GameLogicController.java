@@ -110,6 +110,7 @@ public class GameLogicController {
 		appendToDebugLog("-> executing maeStateEvaluator");
 		if (currentPlayer.getIsInMAEState() == true) {
 			currentPlayer.setActionLockedEndTurn(false);
+			currentPlayer.setActionLockedRollDice(true);
 		}
 		else {
 			if (currentPlayer.getRequiredDecisionPropertyAction() == true) {
