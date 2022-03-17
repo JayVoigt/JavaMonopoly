@@ -108,32 +108,29 @@ public class GameLogicController {
 
 	private void maeStateEvaluator() {
 		appendToDebugLog("-> executing maeStateEvaluator");
-		if (currentPlayer.getIsInMAEState() == true) {
-			currentPlayer.setActionLockedEndTurn(false);
-			currentPlayer.setActionLockedRollDice(true);
-		}
-		else {
-			if (currentPlayer.getRequiredDecisionPropertyAction() == true) {
-				if (currentPlayer.getMadeDecisionPropertyAction() == true) {
-					appendToDebugLog("\t Suggested action: unlock endTurn");
-					appendToDebugLog("\t\t Reason: Player has made property decision.");
-					currentPlayer.setActionLockedEndTurn(false);
-				}
-				else {
-					//propertyPurchaseManager();
-				}
+		currentPlayer.setActionLockedEndTurn(false);
+		currentPlayer.setActionLockedRollDice(true);
+		
+		if (currentPlayer.getRequiredDecisionPropertyAction() == true) {
+			if (currentPlayer.getMadeDecisionPropertyAction() == true) {
+				appendToDebugLog("\t Suggested action: unlock endTurn");
+				appendToDebugLog("\t\t Reason: Player has made property decision.");
+				currentPlayer.setActionLockedEndTurn(false);
 			}
 			else {
-				if (currentPlayer.getHasRolledDice() == true) {
-					appendToDebugLog("\t Suggested action: unlock endTurn");
-					appendToDebugLog("\t\t Reason: No property decision necessary.");
-					currentPlayer.setActionLockedEndTurn(false);
-				}
-				else {
-					appendToDebugLog("\t Suggested action: unlock rollDice");
-					appendToDebugLog("\t\t Reason: Player has not rolled dice.");
-					currentPlayer.setActionLockedRollDice(false);
-				}
+				//propertyPurchaseManager();
+			}
+		}
+		else {
+			if (currentPlayer.getHasRolledDice() == true) {
+				appendToDebugLog("\t Suggested action: unlock endTurn");
+				appendToDebugLog("\t\t Reason: No property decision necessary.");
+				currentPlayer.setActionLockedEndTurn(false);
+			}
+			else {
+				appendToDebugLog("\t Suggested action: unlock rollDice");
+				appendToDebugLog("\t\t Reason: Player has not rolled dice.");
+				currentPlayer.setActionLockedRollDice(false);
 			}
 		}
 	}
