@@ -80,7 +80,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         jButton1 = new javax.swing.JButton();
         checkBoxPlayer2ComputerControlled = new javax.swing.JCheckBox();
         checkBoxPlayer1ComputerControlled = new javax.swing.JCheckBox();
-        checkBoxPlayer2ComputerControlled1 = new javax.swing.JCheckBox();
+        checkBoxPlayer3ComputerControlled = new javax.swing.JCheckBox();
         checkBoxPlayer2ComputerControlled2 = new javax.swing.JCheckBox();
         gameEditorDialog = new javax.swing.JDialog();
         comboBoxPlayerSelection = new javax.swing.JComboBox<>();
@@ -299,10 +299,10 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
             }
         });
 
-        checkBoxPlayer2ComputerControlled1.setText("Computer");
-        checkBoxPlayer2ComputerControlled1.addActionListener(new java.awt.event.ActionListener() {
+        checkBoxPlayer3ComputerControlled.setText("Computer");
+        checkBoxPlayer3ComputerControlled.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                checkBoxPlayer2ComputerControlled1ActionPerformed(evt);
+                checkBoxPlayer3ComputerControlledActionPerformed(evt);
             }
         });
 
@@ -357,7 +357,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
                             .addComponent(checkBoxPlayer1ComputerControlled)
                             .addComponent(checkBoxPlayer2ComputerControlled)
                             .addGroup(gameSetupDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(checkBoxPlayer2ComputerControlled1, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(checkBoxPlayer3ComputerControlled, javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(checkBoxPlayer2ComputerControlled2, javax.swing.GroupLayout.Alignment.TRAILING)))
                         .addGap(6, 6, 6)))
                 .addContainerGap())
@@ -391,7 +391,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
                 .addGroup(gameSetupDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(textFieldPlayer3Name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(staticLabelPlayer3Name)
-                    .addComponent(checkBoxPlayer2ComputerControlled1))
+                    .addComponent(checkBoxPlayer3ComputerControlled))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(gameSetupDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(textFieldPlayer4Name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -404,7 +404,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 
         gameEditorDialog.setLocationByPlatform(true);
         gameEditorDialog.setMinimumSize(new java.awt.Dimension(400, 300));
-        gameEditorDialog.setPreferredSize(new java.awt.Dimension(400, 300));
         gameEditorDialog.setResizable(false);
         gameEditorDialog.setSize(new java.awt.Dimension(400, 350));
         gameEditorDialog.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -2135,9 +2134,9 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
  
 //GEN-LAST:event_checkBoxPlayer2ComputerControlled2ActionPerformed
 
-    private void checkBoxPlayer2ComputerControlled1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBoxPlayer2ComputerControlled1ActionPerformed
+    private void checkBoxPlayer3ComputerControlledActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBoxPlayer3ComputerControlledActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_checkBoxPlayer2ComputerControlled1ActionPerformed
+    }//GEN-LAST:event_checkBoxPlayer3ComputerControlledActionPerformed
 
     private void checkBoxPlayer1ComputerControlledActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBoxPlayer1ComputerControlledActionPerformed
         if (checkBoxPlayer1ComputerControlled.isSelected() == true) {
@@ -2157,6 +2156,10 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         }
     }//GEN-LAST:event_checkBoxPlayer2ComputerControlledActionPerformed
 
+	private void checkBoxPlayer2ComputerControlled2ActionPerformed(java.awt.event.ActionEvent evt) {
+		
+	}
+	
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         appendToDebugLog("debug test");
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -2443,8 +2446,8 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     public javax.swing.JButton buttonStartGame;
     public javax.swing.JCheckBox checkBoxPlayer1ComputerControlled;
     public javax.swing.JCheckBox checkBoxPlayer2ComputerControlled;
-    public javax.swing.JCheckBox checkBoxPlayer2ComputerControlled1;
     public javax.swing.JCheckBox checkBoxPlayer2ComputerControlled2;
+    public javax.swing.JCheckBox checkBoxPlayer3ComputerControlled;
     public javax.swing.JComboBox<String> comboBoxPlayerSelection;
     public javax.swing.JComboBox<String> comboBoxPlayersCount;
     public javax.swing.JFrame debugLogFrame;

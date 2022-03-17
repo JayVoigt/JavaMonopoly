@@ -65,7 +65,7 @@
                               <Component id="checkBoxPlayer1ComputerControlled" min="-2" max="-2" attributes="0"/>
                               <Component id="checkBoxPlayer2ComputerControlled" min="-2" max="-2" attributes="0"/>
                               <Group type="103" alignment="0" groupAlignment="0" attributes="0">
-                                  <Component id="checkBoxPlayer2ComputerControlled1" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="checkBoxPlayer3ComputerControlled" alignment="1" min="-2" max="-2" attributes="0"/>
                                   <Component id="checkBoxPlayer2ComputerControlled2" alignment="1" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -110,7 +110,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="textFieldPlayer3Name" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="staticLabelPlayer3Name" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="checkBoxPlayer2ComputerControlled1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="checkBoxPlayer3ComputerControlled" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -258,12 +258,12 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="checkBoxPlayer1ComputerControlledActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JCheckBox" name="checkBoxPlayer2ComputerControlled1">
+        <Component class="javax.swing.JCheckBox" name="checkBoxPlayer3ComputerControlled">
           <Properties>
             <Property name="text" type="java.lang.String" value="Computer"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="checkBoxPlayer2ComputerControlled1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="checkBoxPlayer3ComputerControlledActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JCheckBox" name="checkBoxPlayer2ComputerControlled2">
@@ -280,9 +280,6 @@
       <Properties>
         <Property name="locationByPlatform" type="boolean" value="true"/>
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[400, 300]"/>
-        </Property>
-        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[400, 300]"/>
         </Property>
         <Property name="resizable" type="boolean" value="false"/>
