@@ -27,6 +27,8 @@ public class Player implements Serializable {
 
     // How many times the player has rolled doubles on a single turn.
     int consecutiveDoublesCount;
+	
+	int consecutiveTurnsJailed;
 
     // Sets of boolean values whose indices match to the corresponding
     // attribute of the space sharing the same ID.
@@ -42,7 +44,8 @@ public class Player implements Serializable {
     boolean hasRequestedEndTurn,
         hasRolledDice,
         isInMandatoryActionsExhaustedState,
-        isJailed;
+        isJailed,
+		initialJailTurn;
 
     // Decisions given by GUI prompts
     boolean requiredDecisionPostedBail,
@@ -179,6 +182,10 @@ public class Player implements Serializable {
         return isJailed;
     }
 	
+	public boolean getInitialJailTurn() {
+		return initialJailTurn;
+	}
+	
 	public boolean getRequiredDecisionPostedBail() {
 		return requiredDecisionPostedBail;
 	}
@@ -230,6 +237,10 @@ public class Player implements Serializable {
     public void setIsJailed(boolean input) {
         isJailed = input;
     }
+	
+	public void setInitialJailTurn(boolean input) {
+		initialJailTurn = input;
+	}
 
 	public void setRequiredDecisionPostedBail(boolean input) {
 		requiredDecisionPostedBail = input;
@@ -281,6 +292,8 @@ public class Player implements Serializable {
 
         madeDecisionPostedBail = false;
         madeDecisionPropertyAction = false;
+		
+		initialJailTurn = false;
 
         hasRolledDoubles = false;
 

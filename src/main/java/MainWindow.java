@@ -127,6 +127,14 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonBuildHouse = new javax.swing.JButton();
         buttonBuildHotel = new javax.swing.JButton();
         buttonSellHotel = new javax.swing.JButton();
+        statisticsDialog = new javax.swing.JDialog();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        statsTable = new javax.swing.JTable();
+        jailDialog = new javax.swing.JDialog();
+        staticLabelJailTitle = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        labelConsecutiveJailedTurns = new javax.swing.JLabel();
         frameBoard = new javax.swing.JInternalFrame();
         jScrollPane1 = new javax.swing.JScrollPane();
         textAreaGameLog = new javax.swing.JTextArea();
@@ -748,6 +756,74 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonSellHotel.setText("Sell a Hotel");
         improvementsDialog.getContentPane().add(buttonSellHotel);
         buttonSellHotel.setBounds(170, 130, 150, 26);
+
+        statisticsDialog.setSize(new java.awt.Dimension(400, 300));
+
+        statsTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2"
+            }
+        ));
+        jScrollPane3.setViewportView(statsTable);
+
+        javax.swing.GroupLayout statisticsDialogLayout = new javax.swing.GroupLayout(statisticsDialog.getContentPane());
+        statisticsDialog.getContentPane().setLayout(statisticsDialogLayout);
+        statisticsDialogLayout.setHorizontalGroup(
+            statisticsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+        );
+        statisticsDialogLayout.setVerticalGroup(
+            statisticsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+        );
+
+        jailDialog.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        jailDialog.setMinimumSize(new java.awt.Dimension(400, 300));
+
+        staticLabelJailTitle.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        staticLabelJailTitle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jail.png"))); // NOI18N
+        staticLabelJailTitle.setText("Jail");
+
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/money.png"))); // NOI18N
+        jButton3.setText("Post Bail ($50)");
+
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dice-icon.png"))); // NOI18N
+        jButton4.setText("Roll for Doubles");
+
+        labelConsecutiveJailedTurns.setText("jLabel1");
+
+        javax.swing.GroupLayout jailDialogLayout = new javax.swing.GroupLayout(jailDialog.getContentPane());
+        jailDialog.getContentPane().setLayout(jailDialogLayout);
+        jailDialogLayout.setHorizontalGroup(
+            jailDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jailDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jailDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(staticLabelJailTitle)
+                    .addGroup(jailDialogLayout.createSequentialGroup()
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton4))
+                    .addComponent(labelConsecutiveJailedTurns))
+                .addContainerGap(98, Short.MAX_VALUE))
+        );
+        jailDialogLayout.setVerticalGroup(
+            jailDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jailDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(staticLabelJailTitle)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labelConsecutiveJailedTurns)
+                .addGap(54, 54, 54)
+                .addGroup(jailDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton3)
+                    .addComponent(jButton4))
+                .addContainerGap(170, Short.MAX_VALUE))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Monopoly Game");
@@ -1756,7 +1832,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonActionTrade1.setBounds(180, 170, 140, 23);
 
         labelCurrentPlayerIcon.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        labelCurrentPlayerIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/player-generic-anim.gif"))); // NOI18N
+        labelCurrentPlayerIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/player-generic.png"))); // NOI18N
         labelCurrentPlayerIcon.setText("Player 1");
         controlPanelActions.getContentPane().add(labelCurrentPlayerIcon);
         labelCurrentPlayerIcon.setBounds(10, 10, 18, 18);
@@ -1943,6 +2019,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 	public void update() {
 		initInfoUIForCurrentPlayer();
 		updateButtonLockStates();
+		gameInactiveUILocker();
 		updateDiceView();
 		
 		for ( int i = 1 ; i <= 4 ; i++ ) {
@@ -1950,9 +2027,17 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		}
 		
 		updatePromptPropertyDecision();
+		updatePromptPostBailDecision();
 		
 		textAreaDebugLog.setText(controller.getDebugLogContents());
 		updateGameLog();
+	}
+	
+	private void gameInactiveUILocker() {
+		if (controller.getIsGameActive() == false) {
+			lockRollDice();
+			lockEndTurn();
+		}
 	}
 	
 	private void initInfoUIForCurrentPlayer() {
@@ -1964,15 +2049,25 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		if (currentPlayer.getIsComputerControlled() == true) {
 			labelCurrentPlayerIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/robot.png"))); // NOI18N
 		}
-		else {
-			if (Math.random() >= 0.9) {
-				// the player icon will blink at you sometimes
-				labelCurrentPlayerIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/player-generic-anim.gif")));
+		else if (currentPlayer.getCurrentBalance() < 10000) {
+			// Only set animated icon if player is not jailed
+			if (currentPlayer.getIsJailed() == false) {
+				if (Math.random() >= 0.9) {
+					// The player icon will blink at you sometimes
+					labelCurrentPlayerIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/player-generic-anim.gif")));
+				}
+				else {
+					labelCurrentPlayerIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/player-generic.png")));
+				}
 			}
 			else {
-				labelCurrentPlayerIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/player-generic.png")));
+				// Icon for jailed players
+				labelCurrentPlayerIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jail.png")));
 			}
-			}
+		}
+		else {
+			labelCurrentPlayerIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/wealthy.png")));
+		}
 		
 		appendToDebugLog("[initUIForCurrentPlayer] Current player: " + currentPlayer.getCustomName());
 	}
@@ -2100,6 +2195,21 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 				labelCost.setIcon(new javax.swing.ImageIcon(getClass().getResource("/money.png")));
 				
 				askPropertyDecisionDialog.setVisible(true);
+			}
+		}
+	}
+	
+	private void updatePromptPostBailDecision() {
+		jailDialog.setVisible(false);
+		
+		if (currentPlayer.getInitialJailTurn() == false) {
+			if (currentPlayer.getIsJailed() == true) {
+				centerJDialog(jailDialog);
+
+				lockRollDice();
+				lockEndTurn();
+
+				jailDialog.setVisible(true);
 			}
 		}
 	}
@@ -2381,6 +2491,12 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 	}
 	// </editor-fold>
 	
+	// <editor-fold desc="Statistics pane">
+	private void updateStatsPane() {
+		
+	}
+	// </editor-fold>
+	
     private void buttonSpace20MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonSpace20MouseEntered
 
     }//GEN-LAST:event_buttonSpace20MouseEntered
@@ -2548,6 +2664,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         centerJDialog(improvementsDialog);
 		if (improvementsDialog.isVisible() == false) {
 			improvementsDialog.setVisible(true);
+			buttonPropertiesActionPerformed(evt);
 		}
 		else {
 			improvementsDialog.setVisible(false);
@@ -2831,6 +2948,8 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     public javax.swing.JDialog improvementsDialog;
     public javax.swing.JButton jButton1;
     public javax.swing.JButton jButton2;
+    public javax.swing.JButton jButton3;
+    public javax.swing.JButton jButton4;
     public javax.swing.JLabel jLabel2;
     public javax.swing.JLabel jLabel3;
     public javax.swing.JLabel jLabel4;
@@ -2840,12 +2959,15 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     public javax.swing.JPopupMenu jPopupMenu1;
     public javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JScrollPane jScrollPane2;
+    public javax.swing.JScrollPane jScrollPane3;
     public javax.swing.JSeparator jSeparator3;
     public javax.swing.JSeparator jSeparator4;
     public javax.swing.JSeparator jSeparator5;
     public javax.swing.JSeparator jSeparator6;
     public javax.swing.JSeparator jSeparator7;
+    public javax.swing.JDialog jailDialog;
     public javax.swing.JLabel labelBoardImage;
+    public javax.swing.JLabel labelConsecutiveJailedTurns;
     public javax.swing.JLabel labelCost;
     public javax.swing.JLabel labelCurrentBalance;
     public javax.swing.JLabel labelCurrentBalanceIcon1;
@@ -2901,6 +3023,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     public javax.swing.JLabel staticLabelID;
     public javax.swing.JLabel staticLabelImprovementsTitle;
     public javax.swing.JLabel staticLabelIsOwned;
+    public javax.swing.JLabel staticLabelJailTitle;
     public javax.swing.JLabel staticLabelOwnedBy;
     public javax.swing.JLabel staticLabelPlayer1Name;
     public javax.swing.JLabel staticLabelPlayer2Name;
@@ -2924,6 +3047,8 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     public javax.swing.JLabel staticLabelSelectedProperty1;
     public javax.swing.JLabel staticLabelSpaceType;
     public javax.swing.JLabel staticLabelTimesLanded;
+    public javax.swing.JDialog statisticsDialog;
+    public javax.swing.JTable statsTable;
     public javax.swing.JTextArea textAreaDebugLog;
     public javax.swing.JTextArea textAreaGameLog;
     public javax.swing.JTextField textFieldPlayer1Name;

@@ -7,6 +7,7 @@
  *
  * @author jay
  */
+import com.formdev.flatlaf.extras.components.FlatTriStateCheckBox;
 import com.sun.tools.javac.util.PropagatedException;
 import java.util.Date;
 import java.text.SimpleDateFormat;
@@ -52,6 +53,7 @@ public class GameLogicController {
 	}
 	// </editor-fold>
 
+	// <editor-fold desc="Construcctor">
 	public GameLogicController(Board inputBoard) {
 		board = inputBoard;
 		gameLogContents = "";
@@ -59,7 +61,9 @@ public class GameLogicController {
 
 		useExtraTextPadding = true;
 	}
-
+	// </editor-fold>
+	
+	// <editor-fold desc="Misc helpers">
 	public String getGameLogContents() {
 		return gameLogContents;
 	}
@@ -93,7 +97,8 @@ public class GameLogicController {
 		formattedPrefix = formattedPrefix.concat(": ");
 		debugLogContents = debugLogContents.concat(formattedPrefix + input + "\n");
 	}
-
+	// </editor-fold>
+	
 	public void initialEvaluator() {
 		appendToDebugLog("-> executing initialEvaluator");
 		turnCounter++;
@@ -117,6 +122,8 @@ public class GameLogicController {
 	private void jailStateEvaluator() {
 		appendToDebugLog("-> executing jailStateEvaluator");
 		appendToGameLog(currentPlayer.getCustomName() + " is jailed!");
+		
+		
 	}
 
 	private void normalTurnEvaluator() {
@@ -195,9 +202,23 @@ public class GameLogicController {
 			currentPlayer.setHasRolledDice(true);
 		}
 
-		movementEvaluator();
+		if (currentPlayer.getConsecutiveDoublesCount() >= 3) {
+			appendToGameLog(currentPlayer.getCustomName() + " has rolled doubles 3 times, and is now jailed for speeding!");
+			jailPlayer();
+		}
+		else {
+			movementEvaluator();
+		}
 	}
 
+	private void jailPlayer() {
+		currentPlayer.setIsJailed(true);
+		currentPlayer.setHasRolledDice(true);
+		currentPlayer.setActionLockedEndTurn(false);
+		currentPlayer.setActionLockedRollDice(true);
+		currentPlayer.setInitialJailTurn(true);
+	}
+	
 	private void movementEvaluator() {
 		appendToDebugLog("-> executing movementEvaluator");
 		int diceSum = currentPlayer.getDiceSum();
