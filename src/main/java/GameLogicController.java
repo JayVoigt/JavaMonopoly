@@ -24,6 +24,8 @@ public class GameLogicController {
 	String debugLogContents;
 
 	boolean isGameActive;
+	
+	boolean useExtraTextPadding;
 
 	int playersCount,
 		turnCounter;
@@ -32,22 +34,32 @@ public class GameLogicController {
 		board = inputBoard;
 		gameLogContents = "";
 		debugLogContents = "";
+		
+		useExtraTextPadding = true;
 	}
 	
 	public String getGameLogContents() {
 		return gameLogContents;
 	}
 	
+	public void sendWelcomeMessage() {
+		appendToGameLog("Welcome to Java Monopoly Prototype!");
+		appendToGameLog("A new game can be started or loaded under the File menu.\n");
+	}
+	
+	public void sendInitGameMessage() {
+		appendToGameLog("A new game has been started with " + playersCount + " players.");
+	}
+	
 	public void appendToGameLog(String input) {
 		Date currentDate = new Date();
 		SimpleDateFormat datePrefix = new SimpleDateFormat("yyyy-mm-dd HH:mm:ss");
 		
-		
 		String currentTurn = Integer.toString(turnCounter);
 		String formattedPrefix;
-		formattedPrefix = "[" + datePrefix + "](" + currentTurn + "): ";
+		formattedPrefix = ("[" + currentDate + "] (" + currentTurn + "): ");
 		
-		gameLogContents.concat(formattedPrefix + input + "\n");
+		gameLogContents = gameLogContents.concat(formattedPrefix + input + "\n");
 	}
 
 	public String getDebugLogContents() {
@@ -80,8 +92,16 @@ public class GameLogicController {
 
 	public void initialEvaluator() {
 		appendToDebugLog("-> executing initialEvaluator");
+		turnCounter++;
 		currentPlayer = board.players.get(board.getCurrentPlayerID());
-
+		
+		String paddingPrefix = "";
+		if (useExtraTextPadding == true) {
+			gameLogContents = gameLogContents.concat("\n");
+		}
+		
+		appendToGameLog("It is now " + currentPlayer.getCustomName() + "'s turn.");
+		
 		if (currentPlayer.getIsJailed() == true) {
 			jailStateEvaluator();
 		}
@@ -92,6 +112,7 @@ public class GameLogicController {
 
 	private void jailStateEvaluator() {
 		appendToDebugLog("-> executing jailStateEvaluator");
+		appendToGameLog(currentPlayer.getCustomName() + " is jailed!");
 	}
 
 	private void normalTurnEvaluator() {
@@ -110,6 +131,11 @@ public class GameLogicController {
 		appendToDebugLog("-> executing maeStateEvaluator");
 		currentPlayer.setActionLockedEndTurn(false);
 		currentPlayer.setActionLockedRollDice(true);
+		
+		if (currentPlayer.getHasRolledDoubles() == true) {
+			currentPlayer.setActionLockedRollDice(false);
+			currentPlayer.setActionLockedEndTurn(true);
+		}
 		
 		if (currentPlayer.getRequiredDecisionPropertyAction() == true) {
 			if (currentPlayer.getMadeDecisionPropertyAction() == true) {
@@ -147,6 +173,16 @@ public class GameLogicController {
 
 		currentPlayer.rollDice();
 
+		String doublesSuffix;
+		if (currentPlayer.getHasRolledDoubles() == true) {
+			doublesSuffix = " Doubles!";
+		}
+		else {
+			doublesSuffix = "";
+		}
+		
+		appendToGameLog(currentPlayer.getCustomName() + " rolled (" + currentPlayer.getDie1() + "," + currentPlayer.getDie2() + ")." + doublesSuffix);
+		
 		// Reset roll dice condition for doubles
 		if (currentPlayer.getHasRolledDoubles() == true) {
 			currentPlayer.setHasRolledDice(false);
@@ -162,15 +198,18 @@ public class GameLogicController {
 		appendToDebugLog("-> executing movementEvaluator");
 		int diceSum = currentPlayer.getDiceSum();
 		boolean playerPassedGo = currentPlayer.advancePosition(diceSum);
-
+		
 		// Issue GO bonus
 		if (playerPassedGo == true) {
 			currentPlayer.updateCurrentBalance(200);
+			appendToGameLog(currentPlayer.getCustomName() + " has passed or landed on GO, and is rewarded a bonus of $200.");
 		}
 
 		currentSpace = board.spaces.get(currentPlayer.getCurrentPosition());
 		currentSpace.incrementTimesLanded();
 
+		appendToGameLog(currentPlayer.getCustomName() + " has advanced to " + currentSpace.getFriendlyName() + ".");
+		
 		if (currentSpace.getSpaceType().equals(Space.spaceTypeKeys.gameEvent)) {
 			gameEventEvaluator();
 		}
@@ -189,10 +228,12 @@ public class GameLogicController {
 		appendToDebugLog("-> executing propertyEvaluator");
 		currentProperty = (Property) currentSpace;
 		if (currentProperty.getIsOwned() == false) {
+			appendToGameLog(currentProperty.getFriendlyName() + " is not owned.");
 			currentPlayer.setRequiredDecisionPropertyAction(true);
 			currentPlayer.setMadeDecisionPropertyAction(false);
 		}
 		else {
+			appendToGameLog(currentProperty.getFriendlyName() + " is owned by " + board.players.get(currentProperty.getOwnerID()).getCustomName() + ".");
 			currentPlayer.setRequiredDecisionPropertyAction(false);
 			currentPlayer.setMadeDecisionPropertyAction(true);
 		}
@@ -202,6 +243,8 @@ public class GameLogicController {
 		appendToDebugLog("-> executing endTurnManager");
 		currentPlayer = board.players.get(board.getCurrentPlayerID());
 		currentPlayer.setActionLockedEndTurn(true);
+		
+		appendToGameLog(currentPlayer.getCustomName() + " has ended their turn.");
 
 		if (board.getCurrentPlayerID() == playersCount) {
 			board.setCurrentPlayerID(1);
@@ -213,11 +256,9 @@ public class GameLogicController {
 		}
 
 		currentPlayer = board.players.get(board.getCurrentPlayerID());
-		appendToGameLog("It is now " + currentPlayer.getCustomName() + "'s turn.");
 
 		appendToDebugLog("\t currentPlayerID: " + board.getCurrentPlayerID());
 		currentPlayer.initializePlayerForNewTurn();
-		turnCounter++;
 		initialEvaluator();
 	}
 
@@ -232,13 +273,18 @@ public class GameLogicController {
 			currentPlayer.updateCurrentBalance(-1 * currentProperty.getPurchaseCost());
 			currentPlayer.setRequiredDecisionPropertyAction(false);
 			currentPlayer.setMadeDecisionPropertyAction(true);
+			appendToGameLog(currentPlayer.getCustomName() + " has purchased " + currentProperty.getFriendlyName() + " for $" + currentProperty.getPurchaseCost() + ".");
 		}
 		else {
-
+			appendToGameLog(currentPlayer.getCustomName() + " cannot afford to purchase " + currentSpace.getFriendlyName() + ".");
 		}
 	}
 
 	public void playerDecisionAuction() {
 		appendToDebugLog("-> executing playerDecisionAuction");
+	}
+	
+	public void setExtraTextPadding(boolean input) {
+		useExtraTextPadding = input;
 	}
 }

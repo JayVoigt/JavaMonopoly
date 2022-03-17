@@ -14,7 +14,6 @@ import java.io.InputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import com.formdev.flatlaf.*;
-import java.beans.PropertyVetoException;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -49,9 +48,9 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 
 		customInitComponents();
 		font = customInitFont();
-		//labelFriendlyName.setFont(font); // NOI18N
-		//staticLabelCurrentPlayer.setFont(font);
 		initButtonAppearance();
+		
+		controller.sendWelcomeMessage();
 		update();
 		lockEndTurn();
 		lockRollDice();
@@ -220,6 +219,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         menuView = new javax.swing.JMenu();
         menuViewCheckBoxShowDebugLog = new javax.swing.JCheckBoxMenuItem();
         menuViewManuallyUpdateView = new javax.swing.JMenuItem();
+        menuViewToggleExtraPadding = new javax.swing.JMenuItem();
         menuHelp = new javax.swing.JMenu();
         menuHelpAbout = new javax.swing.JMenuItem();
 
@@ -1697,6 +1697,16 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         });
         menuView.add(menuViewManuallyUpdateView);
 
+        menuViewToggleExtraPadding.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        menuViewToggleExtraPadding.setIcon(new javax.swing.ImageIcon(getClass().getResource("/i.png"))); // NOI18N
+        menuViewToggleExtraPadding.setText("Toggle Extra Text Padding in Game Log");
+        menuViewToggleExtraPadding.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuViewToggleExtraPaddingActionPerformed(evt);
+            }
+        });
+        menuView.add(menuViewToggleExtraPadding);
+
         jMenuBar1.add(menuView);
 
         menuHelp.setText("Help");
@@ -2157,15 +2167,20 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     private void menuEditGameEditorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuEditGameEditorActionPerformed
 		centerJDialog(gameEditorDialog);
 		gameEditorDialog.setVisible(true);
-		appendToGameLog("Game Editor was opened!");
+		controller.appendToGameLog("Game Editor was opened!");
     }//GEN-LAST:event_menuEditGameEditorActionPerformed
 
     private void buttonGameEditorCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGameEditorCloseActionPerformed
 		gameEditorDialog.setVisible(false);
     }//GEN-LAST:event_buttonGameEditorCloseActionPerformed
 
+	// <editor-fold desc="Sound helpers">
+
+	// </editor-fold>
+	
 	// <editor-fold desc="End turn/roll dice buttons">
     private void buttonRollDiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRollDiceActionPerformed
+
 		controller.diceRollManager();
 		update();
     }//GEN-LAST:event_buttonRollDiceActionPerformed
@@ -2326,8 +2341,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         board.players.get(3).setCustomName(textFieldPlayer3Name.getText());
         board.players.get(4).setCustomName(textFieldPlayer4Name.getText());
 
-        appendToGameLog("New game started with " + inputPlayersCount + " players.");
-        appendToDebugLog("New game started.");
+		controller.sendInitGameMessage();
 
         controller.initialEvaluator();
         update();
@@ -2336,6 +2350,15 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     private void menuHelpAboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuHelpAboutActionPerformed
 		aboutPane.setVisible(true);
     }//GEN-LAST:event_menuHelpAboutActionPerformed
+
+    private void menuViewToggleExtraPaddingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuViewToggleExtraPaddingActionPerformed
+        if (menuViewToggleExtraPadding.isEnabled() == true) {
+			controller.setExtraTextPadding(true);
+		}
+		else {
+			controller.setExtraTextPadding(false);
+		}
+    }//GEN-LAST:event_menuViewToggleExtraPaddingActionPerformed
 	// </editor-fold>
 
 	public void spaceButtonAppearanceHighlight(int spaceID) {
@@ -2627,6 +2650,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     public javax.swing.JMenu menuView;
     public javax.swing.JCheckBoxMenuItem menuViewCheckBoxShowDebugLog;
     public javax.swing.JMenuItem menuViewManuallyUpdateView;
+    public javax.swing.JMenuItem menuViewToggleExtraPadding;
     public javax.swing.JFileChooser openFileChooser;
     public javax.swing.JPanel openFileChooserPanel;
     public javax.swing.JFileChooser saveFileChooser;
