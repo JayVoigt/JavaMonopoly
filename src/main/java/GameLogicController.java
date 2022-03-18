@@ -278,14 +278,31 @@ public class GameLogicController {
 		currentGameEvent = (GameEvent) currentSpace;
 		GameEvent.gameEventTypeKeys localGameEventType = currentGameEvent.getGameEventType();
 		
-		if (localGameEventType.equals(localGameEventType.jailPlayer)) {
-			jailPlayer();
-		}
-		else if (localGameEventType.equals(localGameEventType.drawCard)) {
+
+		if (localGameEventType.equals(localGameEventType.drawCard)) {
 			drawCardEvaluator();
+		}
+		else if (localGameEventType.equals(localGameEventType.updateBalance)) {
+			
 		}
 		else if (localGameEventType.equals(localGameEventType.teleport)) {
 			
+		}
+		else if (localGameEventType.equals(localGameEventType.jailPlayer)) {
+			jailPlayer();
+		}
+		else if (localGameEventType.equals(localGameEventType.tax)) {
+			// Using 2008 Monopoly rules that exclude 10% option
+			if (currentGameEvent.getFriendlyName() == "Income Tax") {
+				appendToGameLog(currentPlayer.getCustomName() + " has paid $200 in Income Tax.");
+				currentPlayer.updateCurrentBalance(-200);
+			}
+			
+			// Luxury Tax is the only other tax GameEvent
+			else {
+				appendToGameLog(currentPlayer.getCustomName() + " has paid $100 in Luxury Tax.");
+				currentPlayer.updateCurrentBalance(-100);
+			}
 		}
 		maeStateEvaluator();
 	}
@@ -306,7 +323,8 @@ public class GameLogicController {
 		appendToGameLog(gameLogDrawPrefix + currentDrawCard.getMessage());
 		
 		if (currentDrawCard.getDrawCardType() == DrawCard.drawCardTypeKeys.teleport) {
-			
+			int forwardMovementQuantity = (currentDrawCard.getDestinationSpace() - currentPlayer.getCurrentPosition());
+			movementEvaluatorAdvanced(true, forwardMovementQuantity);
 		}
 		
 		else if (currentDrawCard.getDrawCardType() == DrawCard.drawCardTypeKeys.teleportRelative) {
