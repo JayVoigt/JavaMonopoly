@@ -246,6 +246,20 @@ public class GameLogicController {
 
 	private void gameEventEvaluator() {
 		appendToDebugLog("-> executing gameEventEvaluator");
+		
+		currentGameEvent = (GameEvent) currentSpace;
+		GameEvent.gameEventTypeKeys localGameEventType = currentGameEvent.getGameEventType();
+		
+		if (localGameEventType.equals(localGameEventType.jailPlayer)) {
+			jailPlayer();
+		}
+		else if (localGameEventType.equals(localGameEventType.drawCard)) {
+			
+		}
+		else if (localGameEventType.equals(localGameEventType.teleport)) {
+			
+		}
+		
 		maeStateEvaluator();
 	}
 

@@ -135,6 +135,10 @@ public class Player implements Serializable {
     public int getConsecutiveDoublesCount() {
         return consecutiveDoublesCount;
     }
+	
+	public int getConsecutiveTurnsJailed() {
+		return consecutiveTurnsJailed;
+	}
     
     public int getDiceSum() {
         return die1 + die2;
@@ -334,4 +338,12 @@ public class Player implements Serializable {
 
         return die1 + die2;
     }
+	
+	public void incrementConsecutiveTurnsJailed() {
+		consecutiveTurnsJailed++;
+	}
+	
+	public void unjailPlayer() {
+		consecutiveTurnsJailed = 0;
+	}
 }	// end class
