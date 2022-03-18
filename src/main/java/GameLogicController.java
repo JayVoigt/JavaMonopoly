@@ -9,6 +9,7 @@
  */
 import com.formdev.flatlaf.extras.components.FlatTriStateCheckBox;
 import com.sun.tools.javac.util.PropagatedException;
+import java.awt.desktop.AppReopenedEvent;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 
@@ -112,6 +113,7 @@ public class GameLogicController {
 		appendToGameLog("It is now " + currentPlayer.getCustomName() + "'s turn.");
 
 		if (currentPlayer.getIsJailed() == true) {
+			currentPlayer.incrementConsecutiveTurnsJailed();
 			jailStateEvaluator();
 		}
 		else {
@@ -332,6 +334,54 @@ public class GameLogicController {
 
 	public void playerDecisionAuction() {
 		appendToDebugLog("-> executing playerDecisionAuction");
+	}
+	
+	public void playerDecisionJailPostBail() {
+		currentPlayer.setMadeDecisionPostedBail(true);
+		if (currentPlayer.getCurrentBalance() >= 50) {
+			currentPlayer.updateCurrentBalance(-50);
+			appendToGameLog(currentPlayer.getCustomName() + " has posted bail for $50.");
+			readyPlayerForJailRelease();
+		}
+		else {
+			appendToGameLog(currentPlayer.getCustomName() + " cannot afford to post bail.");
+		}
+	}
+	
+	public void playerDecisionJailRollDoubles() {
+		currentPlayer.setMadeDecisionPostedBail(true);
+		currentPlayer.rollDice();
+		
+		if (currentPlayer.getHasRolledDoubles() == true) {
+			appendToGameLog(currentPlayer.getCustomName() + " has rolled doubles, and is no longer jailed!");
+			readyPlayerForJailRelease();
+		}
+		else {
+			if (currentPlayer.getConsecutiveTurnsJailed() < 3) {
+				appendToGameLog(currentPlayer.getCustomName() + " has not rolled doubles, and will remain jailed.");
+				currentPlayer.setRequiredDecisionPostedBail(false);
+				currentPlayer.setInitialJailTurn(true);
+				currentPlayer.setActionLockedEndTurn(false);
+			}
+			else {
+				appendToGameLog(currentPlayer.getCustomName() + " has failed to roll doubles after 3 tries. Posting bail for $50 is now required.");
+				appendToDebugLog("[NOTICE]: need to implement edge case logic where balance < $50");
+				currentPlayer.updateCurrentBalance(-50);
+				readyPlayerForJailRelease();
+			}
+		}
+	}
+	
+	private void readyPlayerForJailRelease() {
+		currentPlayer.initializePlayerForNewTurn();
+		
+		currentPlayer.setRequiredDecisionPostedBail(false);
+		currentPlayer.setIsJailed(false);
+		
+		currentPlayer.setPosition(10);
+
+		currentPlayer.setActionLockedEndTurn(false);
+		currentPlayer.setActionLockedRollDice(false);
 	}
 
 }

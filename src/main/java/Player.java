@@ -323,6 +323,12 @@ public class Player implements Serializable {
             return false;
         }
     }
+	
+	public void setPosition(int spaceID) {
+		if ((spaceID >= 0) && (spaceID <= 39)) {
+			currentPosition = spaceID;
+		}
+	}
 
     public int rollDice() {
         die1 = (int) (1 + Math.random() * 6);

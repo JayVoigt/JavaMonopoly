@@ -138,8 +138,8 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         statsTable = new javax.swing.JTable();
         jailDialog = new javax.swing.JDialog();
         staticLabelJailTitle = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        buttonJailDialogPostBail = new javax.swing.JButton();
+        buttonJailDialogRollForDoubles = new javax.swing.JButton();
         labelConsecutiveJailedTurns = new javax.swing.JLabel();
         labelConsecutiveJailedTurns1 = new javax.swing.JLabel();
         frameBoard = new javax.swing.JInternalFrame();
@@ -830,11 +830,21 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         staticLabelJailTitle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jail.png"))); // NOI18N
         staticLabelJailTitle.setText("Jail");
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/money.png"))); // NOI18N
-        jButton3.setText("Post Bail ($50)");
+        buttonJailDialogPostBail.setIcon(new javax.swing.ImageIcon(getClass().getResource("/money.png"))); // NOI18N
+        buttonJailDialogPostBail.setText("Post Bail ($50)");
+        buttonJailDialogPostBail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonJailDialogPostBailActionPerformed(evt);
+            }
+        });
 
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dice-icon.png"))); // NOI18N
-        jButton4.setText("Roll for Doubles");
+        buttonJailDialogRollForDoubles.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dice-icon.png"))); // NOI18N
+        buttonJailDialogRollForDoubles.setText("Roll for Doubles");
+        buttonJailDialogRollForDoubles.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonJailDialogRollForDoublesActionPerformed(evt);
+            }
+        });
 
         labelConsecutiveJailedTurns.setText("You have been jailed for n turns.");
 
@@ -848,9 +858,9 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
                 .addContainerGap()
                 .addGroup(jailDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jailDialogLayout.createSequentialGroup()
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(buttonJailDialogPostBail, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton4))
+                        .addComponent(buttonJailDialogRollForDoubles))
                     .addGroup(jailDialogLayout.createSequentialGroup()
                         .addGroup(jailDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(staticLabelJailTitle)
@@ -870,8 +880,8 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
                 .addComponent(labelConsecutiveJailedTurns1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addGroup(jailDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4))
+                    .addComponent(buttonJailDialogPostBail)
+                    .addComponent(buttonJailDialogRollForDoubles))
                 .addContainerGap())
         );
 
@@ -2094,8 +2104,17 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		Player currentPlayer = board.players.get(board.getCurrentPlayerID());
 		labelCurrentPlayer.setText(currentPlayer.getCustomName());
 		labelCurrentBalance.setText("$" + Integer.toString(currentPlayer.getCurrentBalance()));
-		labelCurrentPosition.setText(board.spaces.get(currentPlayer.getCurrentPosition()).getFriendlyName());
-		
+		if (currentPlayer.getIsJailed() == true) {
+			labelCurrentPosition.setText("In Jail!");
+		}
+		else {
+			if (currentPlayer.getCurrentPosition() == 10) {
+				labelCurrentPosition.setText("Jail (just visiting)");
+			}
+			else {
+				labelCurrentPosition.setText(board.spaces.get(currentPlayer.getCurrentPosition()).getFriendlyName());
+			}
+		}
 		if (currentPlayer.getIsComputerControlled() == true) {
 			labelCurrentPlayerIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/robot.png"))); // NOI18N
 		}
@@ -2779,13 +2798,23 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		controller.initialEvaluator();
 		update();
     }//GEN-LAST:event_buttonGameEditorUpdateActionPerformed
+
+    private void buttonJailDialogPostBailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonJailDialogPostBailActionPerformed
+        controller.playerDecisionJailPostBail();
+		update();
+    }//GEN-LAST:event_buttonJailDialogPostBailActionPerformed
+
+    private void buttonJailDialogRollForDoublesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonJailDialogRollForDoublesActionPerformed
+        controller.playerDecisionJailRollDoubles();
+		update();
+    }//GEN-LAST:event_buttonJailDialogRollForDoublesActionPerformed
 	// </editor-fold>
 
 	public void spaceButtonAppearanceHighlight(int spaceID) {
 		// Check if horizontally or vertically oriented on board
 		if ((spaceID > 0 && spaceID < 10) || (spaceID > 20 && spaceID < 30)) {
 			// Vertical sprite
-			spaceButtons.get(spaceID).setIcon(new javax.swing.ImageIcon(getClass().getResource("/space-highlight-80x120.png")));
+			spaceButtons.get(spaceID).setIcon(new javax.swing.ImageIcon(getClass().getResource("/space-highlight-80x120-anim.gif")));
 		}
 		else {
 			// Horizontal sprite
@@ -3001,6 +3030,8 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     public javax.swing.JButton buttonGameEditorUnlockRollDice1;
     public javax.swing.JButton buttonGameEditorUpdate;
     public javax.swing.JButton buttonGive1000;
+    public javax.swing.JButton buttonJailDialogPostBail;
+    public javax.swing.JButton buttonJailDialogRollForDoubles;
     public javax.swing.JButton buttonJailPlayer;
     public javax.swing.JButton buttonProperties;
     public javax.swing.JButton buttonPropertyDecisionAuction;
@@ -3070,8 +3101,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     public javax.swing.JDialog improvementsDialog;
     public javax.swing.JButton jButton1;
     public javax.swing.JButton jButton2;
-    public javax.swing.JButton jButton3;
-    public javax.swing.JButton jButton4;
     public javax.swing.JLabel jLabel1;
     public javax.swing.JLabel jLabel2;
     public javax.swing.JLabel jLabel3;
