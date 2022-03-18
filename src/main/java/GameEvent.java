@@ -19,17 +19,12 @@ public class GameEvent extends Space implements Serializable {
 	}
 	gameEventTypeKeys gameEventType;
 	
-	GameEvent(int inputSpaceID, String inputFriendlyName) {
+	GameEvent(gameEventTypeKeys inputGameEventType, int inputSpaceID, String inputFriendlyName) {
 		id = inputSpaceID;
 		friendlyName = inputFriendlyName;
 		
 		spaceType = Space.spaceTypeKeys.gameEvent;
 		gameEventType = gameEventTypeKeys.unspecified;
-	}
-	
-	GameEvent(gameEventTypeKeys inputGameEventType) {
-		spaceType = Space.spaceTypeKeys.gameEvent;
-		gameEventType = inputGameEventType;
 	}
 	
 	// <editor-fold defaultstate="collapsed" desc="Setters and getters">

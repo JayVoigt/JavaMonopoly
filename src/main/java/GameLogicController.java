@@ -21,6 +21,8 @@ public class GameLogicController {
 	Space currentSpace;
 	GameEvent currentGameEvent;
 	Property currentProperty;
+	
+	DrawCard currentDrawCard;
 
 	String gameLogContents,
 		debugLogContents;
@@ -256,7 +258,7 @@ public class GameLogicController {
 			jailPlayer();
 		}
 		else if (localGameEventType.equals(localGameEventType.drawCard)) {
-			
+			drawCardEvaluator();
 		}
 		else if (localGameEventType.equals(localGameEventType.teleport)) {
 			
@@ -265,6 +267,23 @@ public class GameLogicController {
 		maeStateEvaluator();
 	}
 
+	private void drawCardEvaluator() {
+		int randomCardID = 0;
+		String gameLogDrawPrefix;
+		
+		if (currentSpace.getFriendlyName() == "Chance") {
+			currentDrawCard = board.chanceCards.get(randomCardID);
+			gameLogDrawPrefix = "The Chance card reads: ";
+		}
+		else {
+			currentDrawCard = board.communityChestCards.get(randomCardID);
+			gameLogDrawPrefix = "The Community Chest card reads: ";
+		}
+		System.out.println("card");
+		
+		appendToGameLog(gameLogDrawPrefix + currentDrawCard.getMessage());
+	}
+	
 	private void propertyEvaluator() {
 		appendToDebugLog("-> executing propertyEvaluator");
 		currentProperty = (Property) currentSpace;
