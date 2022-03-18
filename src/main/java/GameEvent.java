@@ -15,7 +15,10 @@ public class GameEvent extends Space implements Serializable {
 		drawCard,
 		updateBalance,
 		teleport,
-		jailPlayer
+		jailPlayer,
+		tax,
+		jail,
+		freeParking
 	}
 	gameEventTypeKeys gameEventType;
 	
@@ -24,7 +27,7 @@ public class GameEvent extends Space implements Serializable {
 		friendlyName = inputFriendlyName;
 		
 		spaceType = Space.spaceTypeKeys.gameEvent;
-		gameEventType = gameEventTypeKeys.unspecified;
+		gameEventType = inputGameEventType;
 	}
 	
 	// <editor-fold defaultstate="collapsed" desc="Setters and getters">

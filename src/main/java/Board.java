@@ -73,7 +73,7 @@ public class Board implements Serializable {
 				propertyAttributes.put("hotelCost", parseIntHandler(configLine[14]));
 
 				if (localSpaceType.equals("gameEvent")) {
-					spaces.add(localID, new GameEvent(localID, localFriendlyName));
+					spaces.add(localID, new GameEvent(GameEvent.gameEventTypeKeys.valueOf(localPropertyType), localID, localFriendlyName));
 				}
 				else if (localSpaceType.equals("property")) {
 
