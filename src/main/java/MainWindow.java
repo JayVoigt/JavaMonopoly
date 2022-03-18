@@ -836,7 +836,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dice-icon.png"))); // NOI18N
         jButton4.setText("Roll for Doubles");
 
-        labelConsecutiveJailedTurns.setText("jLabel1");
+        labelConsecutiveJailedTurns.setText("You have been jailed for n turns.");
 
         labelConsecutiveJailedTurns1.setText("<html>You may post bail to be freed from the start of your next turn.<br>\nAlternatively, you may choose to roll for doubles.</html>");
 

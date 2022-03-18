@@ -1093,7 +1093,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="labelConsecutiveJailedTurns">
           <Properties>
-            <Property name="text" type="java.lang.String" value="jLabel1"/>
+            <Property name="text" type="java.lang.String" value="You have been jailed for n turns."/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="labelConsecutiveJailedTurns1">
