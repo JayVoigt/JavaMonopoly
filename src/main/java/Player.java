@@ -37,6 +37,8 @@ public class Player implements Serializable {
 
     // Number that appears on the face of the dice
     int die1, die2;
+	
+	int getOutOfJailFreeCardCount;
     // </editor-fold>
 
     // <editor-fold desc="State attributes">
@@ -166,6 +168,14 @@ public class Player implements Serializable {
 	
 	public boolean[] getMortgagedPropertyIDs() {
 		return mortgagedPropertyIDs;
+	}
+	
+	public int getGetOutOfJailFreeCardCount() {
+		return getOutOfJailFreeCardCount;
+	}
+	
+	public void setGetOutOfJailFreeCardCount(int inputCount) {
+		getOutOfJailFreeCardCount = inputCount;
 	}
     // </editor-fold>
 

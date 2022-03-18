@@ -248,6 +248,30 @@ public class GameLogicController {
 		maeStateEvaluator();
 	}
 
+	private void movementEvaluatorAdvanced(boolean collectGoBonus, int movementQuantity) {
+		appendToDebugLog("-> executing movementEvaluatorAdvanced");
+		boolean playerPassedGo = currentPlayer.advancePosition(movementQuantity);
+
+		// Issue GO bonus
+		if ((playerPassedGo == true) && (collectGoBonus == true)) {
+			currentPlayer.updateCurrentBalance(200);
+			appendToGameLog(currentPlayer.getCustomName() + " has passed or landed on GO, and is rewarded a bonus of $200.");
+		}
+
+		currentSpace = board.spaces.get(currentPlayer.getCurrentPosition());
+		currentSpace.incrementTimesLanded();
+
+		appendToGameLog(currentPlayer.getCustomName() + " has advanced to " + currentSpace.getFriendlyName() + ".");
+
+		if (currentSpace.getSpaceType().equals(Space.spaceTypeKeys.gameEvent)) {
+			gameEventEvaluator();
+		}
+		else {
+			propertyEvaluator();
+		}
+		maeStateEvaluator();
+	}
+	
 	private void gameEventEvaluator() {
 		appendToDebugLog("-> executing gameEventEvaluator");
 		
@@ -263,12 +287,11 @@ public class GameLogicController {
 		else if (localGameEventType.equals(localGameEventType.teleport)) {
 			
 		}
-		
 		maeStateEvaluator();
 	}
 
 	private void drawCardEvaluator() {
-		int randomCardID = 0;
+		int randomCardID = (int) (Math.random() * board.chanceCards.size());
 		String gameLogDrawPrefix;
 		
 		if (currentSpace.getFriendlyName() == "Chance") {
@@ -279,9 +302,40 @@ public class GameLogicController {
 			currentDrawCard = board.communityChestCards.get(randomCardID);
 			gameLogDrawPrefix = "The Community Chest card reads: ";
 		}
-		System.out.println("card");
 		
 		appendToGameLog(gameLogDrawPrefix + currentDrawCard.getMessage());
+		
+		if (currentDrawCard.getDrawCardType() == DrawCard.drawCardTypeKeys.teleport) {
+			
+		}
+		
+		else if (currentDrawCard.getDrawCardType() == DrawCard.drawCardTypeKeys.teleportRelative) {
+			
+		}
+		
+		else if (currentDrawCard.getDrawCardType() == DrawCard.drawCardTypeKeys.teleportWithRentModifier) {
+			
+		}
+		
+		else if (currentDrawCard.getDrawCardType() == DrawCard.drawCardTypeKeys.balanceUpdate) {
+			currentPlayer.updateCurrentBalance(currentDrawCard.getQuantity());
+		}
+		
+		else if (currentDrawCard.getDrawCardType() == DrawCard.drawCardTypeKeys.getOutOfJailFreeCard) {
+			currentPlayer.setGetOutOfJailFreeCardCount(currentPlayer.getGetOutOfJailFreeCardCount() + 1);
+		}
+		
+		else if (currentDrawCard.getDrawCardType() == DrawCard.drawCardTypeKeys.jailPlayer) {
+			jailPlayer();
+		}
+		
+		else if (currentDrawCard.getDrawCardType() == DrawCard.drawCardTypeKeys.improvementRepairs) {
+			
+		}
+		
+		else if (currentDrawCard.getDrawCardType() == DrawCard.drawCardTypeKeys.distributedBalanceUpdate) {
+			
+		}
 	}
 	
 	private void propertyEvaluator() {
