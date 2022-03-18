@@ -25,10 +25,6 @@ public class JavaMonopoly {
 		
 		view = new MainWindow(board);
 		view.setVisible(true);
-		
-		for ( int i = 0 ; i < board.spaces.size() ; i++ ) {
-			System.out.println(board.spaces.get(i).getFriendlyName());
-		}
 	}
 	
 	public static void main(String args[]) throws IOException {

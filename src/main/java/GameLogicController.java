@@ -380,7 +380,7 @@ public class GameLogicController {
 		
 		currentPlayer.setPosition(10);
 
-		currentPlayer.setActionLockedEndTurn(false);
+		currentPlayer.setActionLockedEndTurn(true);
 		currentPlayer.setActionLockedRollDice(false);
 	}
 

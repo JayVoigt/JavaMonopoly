@@ -17,7 +17,6 @@ public class Railroad extends Property implements Serializable {
 		friendlyName = inputFriendlyName;
 		
 		purchaseCost = propertyAttributes.get("purchaseCost");
-		System.out.println("Railroad: " + purchaseCost);
 		rentHouse1 = propertyAttributes.get("rentHouse1");
 		rentHouse2 = propertyAttributes.get("rentHouse2");
 		rentHouse3 = propertyAttributes.get("rentHouse3");

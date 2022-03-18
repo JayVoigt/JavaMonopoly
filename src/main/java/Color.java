@@ -49,7 +49,6 @@ public class Color extends Property implements Serializable {
 		rentHotel = propertyAttributes.get("rentHotel");
 
 		purchaseCost = propertyAttributes.get("purchaseCost");
-		System.out.println("Color: " + purchaseCost);
 		mortgageValue = propertyAttributes.get("mortgageValue");
 		houseCost = propertyAttributes.get("houseCost");
 		hotelCost = propertyAttributes.get("hotelCost");

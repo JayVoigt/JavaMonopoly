@@ -2275,6 +2275,9 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 			if (currentPlayer.getIsJailed() == true) {
 				centerJDialog(jailDialog);
 				
+				buttonJailDialogPostBail.setEnabled(true);
+				buttonJailDialogRollForDoubles.setEnabled(true);
+				
 				int consecutiveJailedTurns = currentPlayer.getConsecutiveTurnsJailed();
 				
 				// Use (turn/turns) depending on grammatical context
@@ -2283,6 +2286,10 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 				}
 				else {
 					labelConsecutiveJailedTurns.setText("You have been jailed for " + consecutiveJailedTurns + " turns.");
+				}
+				
+				if (consecutiveJailedTurns >= 3) {
+					buttonJailDialogRollForDoubles.setEnabled(false);
 				}
 
 				lockRollDice();
@@ -2531,7 +2538,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 	
     private void comboBoxPlayerSelectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxPlayerSelectionActionPerformed
 		gameEditorPlayer = board.players.get(1 + comboBoxPlayerSelection.getSelectedIndex());
-		System.out.println(comboBoxPlayerSelection.getSelectedIndex());
     }//GEN-LAST:event_comboBoxPlayerSelectionActionPerformed
 
     private void comboBoxPlayerSelectionPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_comboBoxPlayerSelectionPropertyChange
