@@ -292,7 +292,9 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 
         gameSetupDialog.setTitle("Game Setup");
         gameSetupDialog.setAlwaysOnTop(true);
-        gameSetupDialog.setMinimumSize(new java.awt.Dimension(400, 310));
+        gameSetupDialog.setMinimumSize(new java.awt.Dimension(400, 304));
+        gameSetupDialog.setUndecorated(true);
+        gameSetupDialog.setSize(new java.awt.Dimension(400, 304));
 
         buttonStartGame.setIcon(new javax.swing.ImageIcon(getClass().getResource("/newgame.png"))); // NOI18N
         buttonStartGame.setText("Start Game");
@@ -517,6 +519,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         );
 
         gameEditorDialog.setMinimumSize(new java.awt.Dimension(400, 300));
+        gameEditorDialog.setUndecorated(true);
         gameEditorDialog.setResizable(false);
         gameEditorDialog.setSize(new java.awt.Dimension(400, 350));
         gameEditorDialog.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -719,6 +722,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 
         askPropertyDecisionDialog.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         askPropertyDecisionDialog.setAlwaysOnTop(true);
+        askPropertyDecisionDialog.setUndecorated(true);
         askPropertyDecisionDialog.setSize(new java.awt.Dimension(400, 300));
 
         buttonPropertyDecisionPurchase.setIcon(new javax.swing.ImageIcon(getClass().getResource("/money.png"))); // NOI18N
@@ -825,6 +829,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 
         improvementsDialog.setAlwaysOnTop(true);
         improvementsDialog.setMinimumSize(new java.awt.Dimension(400, 300));
+        improvementsDialog.setUndecorated(true);
         improvementsDialog.setSize(new java.awt.Dimension(400, 300));
         improvementsDialog.getContentPane().setLayout(null);
 
@@ -887,8 +892,10 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         );
 
         jailDialog.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        jailDialog.setMinimumSize(new java.awt.Dimension(400, 160));
-        jailDialog.setSize(new java.awt.Dimension(400, 160));
+        jailDialog.setAlwaysOnTop(true);
+        jailDialog.setUndecorated(true);
+        jailDialog.setPreferredSize(new java.awt.Dimension(380, 182));
+        jailDialog.setSize(new java.awt.Dimension(380, 182));
 
         staticLabelJailTitle.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         staticLabelJailTitle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jail.png"))); // NOI18N
@@ -931,17 +938,14 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
                 .addGroup(jailDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(buttonJailDialogUseGOOJFC, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jailDialogLayout.createSequentialGroup()
+                        .addComponent(buttonJailDialogPostBail, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(buttonJailDialogRollForDoubles))
+                    .addGroup(jailDialogLayout.createSequentialGroup()
                         .addGroup(jailDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jailDialogLayout.createSequentialGroup()
-                                .addComponent(buttonJailDialogPostBail, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(buttonJailDialogRollForDoubles))
-                            .addGroup(jailDialogLayout.createSequentialGroup()
-                                .addGroup(jailDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(staticLabelJailTitle)
-                                    .addComponent(labelConsecutiveJailedTurns)
-                                    .addComponent(labelConsecutiveJailedTurns1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE)))
+                            .addComponent(staticLabelJailTitle)
+                            .addComponent(labelConsecutiveJailedTurns)
+                            .addComponent(labelConsecutiveJailedTurns1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -960,10 +964,11 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
                     .addComponent(buttonJailDialogRollForDoubles))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(buttonJailDialogUseGOOJFC)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        playerIconSelector.setSize(new java.awt.Dimension(256, 256));
+        playerIconSelector.setUndecorated(true);
+        playerIconSelector.setSize(new java.awt.Dimension(72, 72));
         playerIconSelector.getContentPane().setLayout(new java.awt.GridLayout(3, 3));
 
         buttonIcon1.setIcon(new javax.swing.ImageIcon("/Users/jay/NetBeansProjects/Monoproto3/assets/player-generic.png")); // NOI18N
@@ -1038,6 +1043,8 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
             }
         });
         playerIconSelector.getContentPane().add(buttonIcon9);
+
+        mortgageDialog.setUndecorated(true);
 
         staticLabelMortgage.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         staticLabelMortgage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mortgage.png"))); // NOI18N
@@ -2473,6 +2480,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 	
 	private void updatePromptPostBailDecision() {
 		jailDialog.setVisible(false);
+		jailDialog.pack();
 		
 		if (currentPlayer.getInitialJailTurn() == false) {
 			if (currentPlayer.getIsJailed() == true) {
@@ -3094,6 +3102,8 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         iconSelectionPlayerID = 2;
 		buttonIcon5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/player-icon-2-px.png")));
 		playerIconSelector.setVisible(true);
+		playerIconSelector.setLocation(buttonPlayer2Icon.getLocation());
+		
     }//GEN-LAST:event_buttonPlayer2IconActionPerformed
 
     private void buttonIcon3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonIcon3ActionPerformed
