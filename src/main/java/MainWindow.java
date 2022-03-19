@@ -38,6 +38,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 	Player gameEditorPlayer;
 	
 	int iconSelectionPlayerID;
+	int currentSpaceSelectionID;
 
 	public MainWindow(Board inputBoard) throws IOException {
 		try {
@@ -157,6 +158,13 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonIcon7 = new javax.swing.JButton();
         buttonIcon8 = new javax.swing.JButton();
         buttonIcon9 = new javax.swing.JButton();
+        mortgageDialog = new javax.swing.JDialog();
+        staticLabelMortgage = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jSeparator2 = new javax.swing.JSeparator();
+        jLabel6 = new javax.swing.JLabel();
         frameBoard = new javax.swing.JInternalFrame();
         jScrollPane1 = new javax.swing.JScrollPane();
         textAreaGameLog = new javax.swing.JTextArea();
@@ -193,6 +201,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         iconPlayer2Position = new javax.swing.JLabel();
         iconPlayer3Position = new javax.swing.JLabel();
         iconPlayer4Position = new javax.swing.JLabel();
+        labelHouse1 = new javax.swing.JLabel();
         buttonSpace0 = new javax.swing.JButton();
         buttonSpace1 = new javax.swing.JButton();
         buttonSpace2 = new javax.swing.JButton();
@@ -233,7 +242,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonSpace37 = new javax.swing.JButton();
         buttonSpace38 = new javax.swing.JButton();
         buttonSpace39 = new javax.swing.JButton();
-        labelHouse1 = new javax.swing.JLabel();
         labelHouse5 = new javax.swing.JLabel();
         labelBoardImage = new javax.swing.JLabel();
         controlPanelGameInformation = new javax.swing.JInternalFrame();
@@ -1016,6 +1024,58 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         });
         playerIconSelector.getContentPane().add(buttonIcon9);
 
+        staticLabelMortgage.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        staticLabelMortgage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mortgage.png"))); // NOI18N
+        staticLabelMortgage.setText("Mortgage");
+
+        jLabel7.setText("Select a property you wish to mortgage or unmortgage.");
+
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mortgage.png"))); // NOI18N
+        jButton3.setText("Mortgage");
+
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mortgage.png"))); // NOI18N
+        jButton4.setText("Unmortgage");
+
+        jLabel6.setText("jLabel6");
+
+        javax.swing.GroupLayout mortgageDialogLayout = new javax.swing.GroupLayout(mortgageDialog.getContentPane());
+        mortgageDialog.getContentPane().setLayout(mortgageDialogLayout);
+        mortgageDialogLayout.setHorizontalGroup(
+            mortgageDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(mortgageDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(mortgageDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator2)
+                    .addGroup(mortgageDialogLayout.createSequentialGroup()
+                        .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(mortgageDialogLayout.createSequentialGroup()
+                        .addGroup(mortgageDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(staticLabelMortgage)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel6))
+                        .addGap(0, 68, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        mortgageDialogLayout.setVerticalGroup(
+            mortgageDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(mortgageDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(staticLabelMortgage)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel6)
+                .addGap(73, 73, 73)
+                .addGroup(mortgageDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton3)
+                    .addComponent(jButton4))
+                .addContainerGap(112, Short.MAX_VALUE))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Monopoly Game");
         setBackground(new java.awt.Color(255, 255, 255));
@@ -1203,30 +1263,35 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         frameBoard.getContentPane().add(jPanel1);
         jPanel1.setBounds(160, 150, 660, 220);
 
-        iconPlayer1Position.setIcon(new javax.swing.ImageIcon(getClass().getResource("/player-sweater-top.png"))); // NOI18N
+        iconPlayer1Position.setIcon(new javax.swing.ImageIcon(getClass().getResource("/player-icon-1-px.png"))); // NOI18N
         iconPlayer1Position.setText("jLabel1");
         iconPlayer1Position.setAlignmentY(0.0F);
         iconPlayer1Position.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
         frameBoard.getContentPane().add(iconPlayer1Position);
         iconPlayer1Position.setBounds(110, 850, 20, 20);
 
-        iconPlayer2Position.setIcon(new javax.swing.ImageIcon("/Users/jay/NetBeansProjects/Monoproto2/img/board/1x/2icon.png")); // NOI18N
+        iconPlayer2Position.setIcon(new javax.swing.ImageIcon(getClass().getResource("/player-icon-2-px.png"))); // NOI18N
         iconPlayer2Position.setText("jLabel1");
         iconPlayer2Position.setAlignmentY(0.0F);
         frameBoard.getContentPane().add(iconPlayer2Position);
         iconPlayer2Position.setBounds(10, 150, 20, 20);
 
-        iconPlayer3Position.setIcon(new javax.swing.ImageIcon("/Users/jay/NetBeansProjects/Monoproto2/img/board/1x/32icon.png")); // NOI18N
+        iconPlayer3Position.setIcon(new javax.swing.ImageIcon(getClass().getResource("/player-icon-3-px.png"))); // NOI18N
         iconPlayer3Position.setText("jLabel1");
         iconPlayer3Position.setAlignmentY(0.0F);
         frameBoard.getContentPane().add(iconPlayer3Position);
         iconPlayer3Position.setBounds(10, 170, 20, 20);
 
-        iconPlayer4Position.setIcon(new javax.swing.ImageIcon("/Users/jay/NetBeansProjects/Monoproto2/img/board/1x/42icon.png")); // NOI18N
+        iconPlayer4Position.setIcon(new javax.swing.ImageIcon(getClass().getResource("/player-icon-4-px.png"))); // NOI18N
         iconPlayer4Position.setText("jLabel1");
         iconPlayer4Position.setAlignmentY(0.0F);
         frameBoard.getContentPane().add(iconPlayer4Position);
         iconPlayer4Position.setBounds(10, 190, 20, 20);
+
+        labelHouse1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelHouse1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/house.png"))); // NOI18N
+        frameBoard.getContentPane().add(labelHouse1);
+        labelHouse1.setBounds(110, 130, 20, 20);
 
         buttonSpace0.setBackground(new java.awt.Color(249, 249, 249));
         buttonSpace0.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
@@ -1806,11 +1871,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         frameBoard.getContentPane().add(buttonSpace39);
         buttonSpace39.setBounds(850, 770, 120, 80);
 
-        labelHouse1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/house.png"))); // NOI18N
-        labelHouse1.setSize(new java.awt.Dimension(20, 20));
-        frameBoard.getContentPane().add(labelHouse1);
-        labelHouse1.setBounds(108, 130, 20, 20);
-
         labelHouse5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hotel.png"))); // NOI18N
         labelHouse5.setSize(new java.awt.Dimension(20, 20));
         frameBoard.getContentPane().add(labelHouse5);
@@ -1979,6 +2039,11 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonActionMortgage.setToolTipText("Mortgage a property you own.");
         buttonActionMortgage.setFocusPainted(false);
         buttonActionMortgage.setMargin(new java.awt.Insets(2, 6, 2, 6));
+        buttonActionMortgage.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonActionMortgageActionPerformed(evt);
+            }
+        });
         controlPanelActions.getContentPane().add(buttonActionMortgage);
         buttonActionMortgage.setBounds(10, 110, 140, 24);
 
@@ -3003,13 +3068,13 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 
     private void buttonPlayer1IconActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPlayer1IconActionPerformed
         iconSelectionPlayerID = 1;
-		buttonIcon5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/player-icon-1.png")));
+		buttonIcon5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/player-icon-1-px.png")));
 		playerIconSelector.setVisible(true);
     }//GEN-LAST:event_buttonPlayer1IconActionPerformed
 
     private void buttonPlayer2IconActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPlayer2IconActionPerformed
         iconSelectionPlayerID = 2;
-		buttonIcon5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/player-icon-2.png")));
+		buttonIcon5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/player-icon-2-px.png")));
 		playerIconSelector.setVisible(true);
     }//GEN-LAST:event_buttonPlayer2IconActionPerformed
 
@@ -3032,6 +3097,15 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     private void buttonIcon9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonIcon9ActionPerformed
         setPlayerIcon(iconSelectionPlayerID, buttonIcon9.getIcon());
     }//GEN-LAST:event_buttonIcon9ActionPerformed
+
+    private void buttonActionMortgageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonActionMortgageActionPerformed
+        if (mortgageDialog.isVisible() == false) {
+			mortgageDialog.setVisible(true);
+		}
+		else {
+			mortgageDialog.setVisible(false);
+		}
+    }//GEN-LAST:event_buttonActionMortgageActionPerformed
 	// </editor-fold>
 
 	public void spaceButtonAppearanceHighlight(int spaceID) {
@@ -3078,6 +3152,8 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 	// Update contents of selection viewer according to what button was pressed
 	public void updateSpaceSelection(int spaceID) {
 		appendToDebugLog("Space with ID:" + spaceID + " selected.");
+		
+		currentSpaceSelectionID = spaceID;
 
 		Space.spaceTypeKeys localSpaceType;
 		localSpaceType = board.spaces.get(spaceID).getSpaceType();
@@ -3337,11 +3413,15 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     public javax.swing.JDialog improvementsDialog;
     public javax.swing.JButton jButton1;
     public javax.swing.JButton jButton2;
+    public javax.swing.JButton jButton3;
+    public javax.swing.JButton jButton4;
     public javax.swing.JLabel jLabel1;
     public javax.swing.JLabel jLabel2;
     public javax.swing.JLabel jLabel3;
     public javax.swing.JLabel jLabel4;
     public javax.swing.JLabel jLabel5;
+    public javax.swing.JLabel jLabel6;
+    public javax.swing.JLabel jLabel7;
     public javax.swing.JMenuBar jMenuBar1;
     public javax.swing.JPanel jPanel1;
     public javax.swing.JPopupMenu jPopupMenu1;
@@ -3349,6 +3429,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     public javax.swing.JScrollPane jScrollPane2;
     public javax.swing.JScrollPane jScrollPane3;
     public javax.swing.JSeparator jSeparator1;
+    public javax.swing.JSeparator jSeparator2;
     public javax.swing.JSeparator jSeparator3;
     public javax.swing.JSeparator jSeparator4;
     public javax.swing.JSeparator jSeparator5;
@@ -3402,6 +3483,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     public javax.swing.JCheckBoxMenuItem menuViewCheckBoxShowDebugLog;
     public javax.swing.JMenuItem menuViewManuallyUpdateView;
     public javax.swing.JMenuItem menuViewToggleExtraPadding;
+    public javax.swing.JDialog mortgageDialog;
     public javax.swing.JFileChooser openFileChooser;
     public javax.swing.JPanel openFileChooserPanel;
     public javax.swing.JDialog playerIconSelector;
@@ -3415,6 +3497,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     public javax.swing.JLabel staticLabelImprovementsTitle;
     public javax.swing.JLabel staticLabelIsOwned;
     public javax.swing.JLabel staticLabelJailTitle;
+    public javax.swing.JLabel staticLabelMortgage;
     public javax.swing.JLabel staticLabelOwnedBy;
     public javax.swing.JLabel staticLabelPlayer1Name;
     public javax.swing.JLabel staticLabelPlayerIcon;
