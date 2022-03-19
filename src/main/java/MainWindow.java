@@ -153,10 +153,10 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonIcon3 = new javax.swing.JButton();
         buttonIcon4 = new javax.swing.JButton();
         buttonIcon5 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
+        buttonIcon6 = new javax.swing.JButton();
+        buttonIcon7 = new javax.swing.JButton();
+        buttonIcon8 = new javax.swing.JButton();
+        buttonIcon9 = new javax.swing.JButton();
         frameBoard = new javax.swing.JInternalFrame();
         jScrollPane1 = new javax.swing.JScrollPane();
         textAreaGameLog = new javax.swing.JTextArea();
@@ -984,27 +984,37 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         });
         playerIconSelector.getContentPane().add(buttonIcon5);
 
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bug-log.png"))); // NOI18N
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        buttonIcon6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bug-log.png"))); // NOI18N
+        buttonIcon6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                buttonIcon6ActionPerformed(evt);
             }
         });
-        playerIconSelector.getContentPane().add(jButton7);
+        playerIconSelector.getContentPane().add(buttonIcon6);
 
-        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/i.png"))); // NOI18N
-        playerIconSelector.getContentPane().add(jButton9);
-
-        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cat.png"))); // NOI18N
-        jButton10.addActionListener(new java.awt.event.ActionListener() {
+        buttonIcon7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/i.png"))); // NOI18N
+        buttonIcon7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton10ActionPerformed(evt);
+                buttonIcon7ActionPerformed(evt);
             }
         });
-        playerIconSelector.getContentPane().add(jButton10);
+        playerIconSelector.getContentPane().add(buttonIcon7);
 
-        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/worm.gif"))); // NOI18N
-        playerIconSelector.getContentPane().add(jButton11);
+        buttonIcon8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cat.png"))); // NOI18N
+        buttonIcon8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonIcon8ActionPerformed(evt);
+            }
+        });
+        playerIconSelector.getContentPane().add(buttonIcon8);
+
+        buttonIcon9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/worm.gif"))); // NOI18N
+        buttonIcon9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonIcon9ActionPerformed(evt);
+            }
+        });
+        playerIconSelector.getContentPane().add(buttonIcon9);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Monopoly Game");
@@ -2945,9 +2955,9 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		update();
     }//GEN-LAST:event_buttonForfeitActionPerformed
 
-    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton10ActionPerformed
+    private void buttonIcon8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonIcon8ActionPerformed
+        setPlayerIcon(iconSelectionPlayerID, buttonIcon8.getIcon());
+    }//GEN-LAST:event_buttonIcon8ActionPerformed
 
 	private void setPlayerIcon(int playerID, Icon inputIcon) {
 		
@@ -3011,9 +3021,17 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         setPlayerIcon(iconSelectionPlayerID, buttonIcon5.getIcon());
     }//GEN-LAST:event_buttonIcon5ActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        //setPlayerIcon(iconSelectionPlayerID, buttonIcon7.getIcon());
-    }//GEN-LAST:event_jButton7ActionPerformed
+    private void buttonIcon6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonIcon6ActionPerformed
+		setPlayerIcon(iconSelectionPlayerID, buttonIcon6.getIcon());
+    }//GEN-LAST:event_buttonIcon6ActionPerformed
+
+    private void buttonIcon7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonIcon7ActionPerformed
+        setPlayerIcon(iconSelectionPlayerID, buttonIcon7.getIcon());
+    }//GEN-LAST:event_buttonIcon7ActionPerformed
+	
+    private void buttonIcon9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonIcon9ActionPerformed
+        setPlayerIcon(iconSelectionPlayerID, buttonIcon9.getIcon());
+    }//GEN-LAST:event_buttonIcon9ActionPerformed
 	// </editor-fold>
 
 	public void spaceButtonAppearanceHighlight(int spaceID) {
@@ -3240,6 +3258,10 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     public javax.swing.JButton buttonIcon3;
     public javax.swing.JButton buttonIcon4;
     public javax.swing.JButton buttonIcon5;
+    public javax.swing.JButton buttonIcon6;
+    public javax.swing.JButton buttonIcon7;
+    public javax.swing.JButton buttonIcon8;
+    public javax.swing.JButton buttonIcon9;
     public javax.swing.JButton buttonJailDialogPostBail;
     public javax.swing.JButton buttonJailDialogRollForDoubles;
     public javax.swing.JButton buttonJailPlayer;
@@ -3314,11 +3336,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     public javax.swing.JLabel iconPlayer4Position;
     public javax.swing.JDialog improvementsDialog;
     public javax.swing.JButton jButton1;
-    public javax.swing.JButton jButton10;
-    public javax.swing.JButton jButton11;
     public javax.swing.JButton jButton2;
-    public javax.swing.JButton jButton7;
-    public javax.swing.JButton jButton9;
     public javax.swing.JLabel jLabel1;
     public javax.swing.JLabel jLabel2;
     public javax.swing.JLabel jLabel3;
