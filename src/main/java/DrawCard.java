@@ -47,10 +47,10 @@ public class DrawCard implements Serializable {
 
 	public DrawCard(drawCardTypeKeys inputDrawCardType, destinationRelativeTypeKeys inputDestinationRelativeType,
 					String inputMessage, int inputDestinationSpaceID, int inputQuantity) {
-		
+
 		drawCardType = inputDrawCardType;
 		destinationRelativeType = inputDestinationRelativeType;
-		
+
 		message = inputMessage;
 		destinationSpaceID = inputDestinationSpaceID;
 		quantity = inputQuantity;
@@ -59,19 +59,19 @@ public class DrawCard implements Serializable {
 	public String getMessage() {
 		return message;
 	}
-	
+
 	public drawCardTypeKeys getDrawCardType() {
 		return drawCardType;
 	}
-	
+
 	public destinationRelativeTypeKeys getDestinationRelativeType() {
 		return destinationRelativeType;
 	}
-	
+
 	public int getDestinationSpace() {
 		return destinationSpaceID;
 	}
-	
+
 	public int getQuantity() {
 		return quantity;
 	}

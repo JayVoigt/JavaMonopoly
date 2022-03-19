@@ -104,9 +104,9 @@ public class Board implements Serializable {
 				int localDestination = parseIntHandler(configLine[3]);
 				int localQuantity = parseIntHandler(configLine[4]);
 				DrawCard.destinationRelativeTypeKeys localDestinationRelativeType;
-				
+
 				if (configLine[5] != "") {
-						localDestinationRelativeType = DrawCard.destinationRelativeTypeKeys.valueOf(configLine[5]);
+					localDestinationRelativeType = DrawCard.destinationRelativeTypeKeys.valueOf(configLine[5]);
 				}
 				else {
 					localDestinationRelativeType = DrawCard.destinationRelativeTypeKeys.unspecified;
@@ -117,7 +117,7 @@ public class Board implements Serializable {
 			}
 		}
 		// </editor-fold>
-		
+
 		// <editor-fold desc="Read CSV for communityChestCards data">
 		try ( BufferedReader chanceCardsConfig = new BufferedReader(new FileReader("assets/communityChestCards.csv"))) {
 			chanceCardsConfig.readLine();
@@ -131,7 +131,7 @@ public class Board implements Serializable {
 				int localDestination = parseIntHandler(configLine[3]);
 				int localQuantity = parseIntHandler(configLine[4]);
 				DrawCard.destinationRelativeTypeKeys localDestinationRelativeType;
-				
+
 				localDestinationRelativeType = DrawCard.destinationRelativeTypeKeys.unspecified;
 
 				communityChestCards.add(localID, new DrawCard(localDrawCardType, localDestinationRelativeType,

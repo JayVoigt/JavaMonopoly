@@ -11,53 +11,53 @@ import java.io.Serializable;
  */
 public abstract class Space implements Serializable {
 
-    int id;
-    String friendlyName;
+	int id;
+	String friendlyName;
 
-    public enum spaceTypeKeys {
-        unspecified,
-        property,
-        gameEvent
-    }
-    spaceTypeKeys spaceType;
-    int timesLanded;
+	public enum spaceTypeKeys {
+		unspecified,
+		property,
+		gameEvent
+	}
+	spaceTypeKeys spaceType;
+	int timesLanded;
 
-    Space() {
-        id = -1;
-        friendlyName = "";
-        spaceType = spaceTypeKeys.unspecified;
-        timesLanded = 0;
-    }
+	Space() {
+		id = -1;
+		friendlyName = "";
+		spaceType = spaceTypeKeys.unspecified;
+		timesLanded = 0;
+	}
 
-    Space(int inputID, spaceTypeKeys inputSpaceType, String inputFriendlyName) {
-        id = inputID;
-        spaceType = inputSpaceType;
-        friendlyName = inputFriendlyName;
-        timesLanded = 0;
-    }
+	Space(int inputID, spaceTypeKeys inputSpaceType, String inputFriendlyName) {
+		id = inputID;
+		spaceType = inputSpaceType;
+		friendlyName = inputFriendlyName;
+		timesLanded = 0;
+	}
 
-    public int getID() {
-        return id;
-    }
+	public int getID() {
+		return id;
+	}
 
-    public void setID(int inputID) {
-        id = inputID;
-    }
+	public void setID(int inputID) {
+		id = inputID;
+	}
 
-    public String getFriendlyName() {
-        return friendlyName;
-    }
+	public String getFriendlyName() {
+		return friendlyName;
+	}
 
-    public void setFriendlyName(String inputFriendlyName) {
-        friendlyName = inputFriendlyName;
-    }
-    
-    public void incrementTimesLanded() {
-        timesLanded++;
-    }
-    
-    public spaceTypeKeys getSpaceType() {
-        return spaceType;
-    }
+	public void setFriendlyName(String inputFriendlyName) {
+		friendlyName = inputFriendlyName;
+	}
+
+	public void incrementTimesLanded() {
+		timesLanded++;
+	}
+
+	public spaceTypeKeys getSpaceType() {
+		return spaceType;
+	}
 
 }

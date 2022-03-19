@@ -21,7 +21,7 @@ public class GameLogicController {
 	Space currentSpace;
 	GameEvent currentGameEvent;
 	Property currentProperty;
-	
+
 	DrawCard currentDrawCard;
 
 	String gameLogContents,
@@ -65,7 +65,7 @@ public class GameLogicController {
 		useExtraTextPadding = true;
 	}
 	// </editor-fold>
-	
+
 	// <editor-fold desc="Misc helpers">
 	public String getGameLogContents() {
 		return gameLogContents;
@@ -101,7 +101,7 @@ public class GameLogicController {
 		debugLogContents = debugLogContents.concat(formattedPrefix + input + "\n");
 	}
 	// </editor-fold>
-	
+
 	public void initialEvaluator() {
 		appendToDebugLog("-> executing initialEvaluator");
 		turnCounter++;
@@ -126,8 +126,7 @@ public class GameLogicController {
 	private void jailStateEvaluator() {
 		appendToDebugLog("-> executing jailStateEvaluator");
 		appendToGameLog(currentPlayer.getCustomName() + " is jailed!");
-		
-		
+
 	}
 
 	private void normalTurnEvaluator() {
@@ -222,7 +221,7 @@ public class GameLogicController {
 		currentPlayer.setActionLockedRollDice(true);
 		currentPlayer.setInitialJailTurn(true);
 	}
-	
+
 	private void movementEvaluator() {
 		appendToDebugLog("-> executing movementEvaluator");
 		int diceSum = currentPlayer.getDiceSum();
@@ -271,22 +270,21 @@ public class GameLogicController {
 		}
 		maeStateEvaluator();
 	}
-	
+
 	private void gameEventEvaluator() {
 		appendToDebugLog("-> executing gameEventEvaluator");
-		
+
 		currentGameEvent = (GameEvent) currentSpace;
 		GameEvent.gameEventTypeKeys localGameEventType = currentGameEvent.getGameEventType();
-		
 
 		if (localGameEventType.equals(localGameEventType.drawCard)) {
 			drawCardEvaluator();
 		}
 		else if (localGameEventType.equals(localGameEventType.updateBalance)) {
-			
+
 		}
 		else if (localGameEventType.equals(localGameEventType.teleport)) {
-			
+
 		}
 		else if (localGameEventType.equals(localGameEventType.jailPlayer)) {
 			jailPlayer();
@@ -297,7 +295,7 @@ public class GameLogicController {
 				appendToGameLog(currentPlayer.getCustomName() + " has paid $200 in Income Tax.");
 				currentPlayer.updateCurrentBalance(-200);
 			}
-			
+
 			// Luxury Tax is the only other tax GameEvent
 			else {
 				appendToGameLog(currentPlayer.getCustomName() + " has paid $100 in Luxury Tax.");
@@ -310,7 +308,7 @@ public class GameLogicController {
 	private void drawCardEvaluator() {
 		int randomCardID = (int) (Math.random() * board.chanceCards.size());
 		String gameLogDrawPrefix;
-		
+
 		if (currentSpace.getFriendlyName() == "Chance") {
 			currentDrawCard = board.chanceCards.get(randomCardID);
 			gameLogDrawPrefix = "The Chance card reads: ";
@@ -319,43 +317,43 @@ public class GameLogicController {
 			currentDrawCard = board.communityChestCards.get(randomCardID);
 			gameLogDrawPrefix = "The Community Chest card reads: ";
 		}
-		
+
 		appendToGameLog(gameLogDrawPrefix + currentDrawCard.getMessage());
-		
+
 		if (currentDrawCard.getDrawCardType() == DrawCard.drawCardTypeKeys.teleport) {
 			int forwardMovementQuantity = (currentDrawCard.getDestinationSpace() - currentPlayer.getCurrentPosition());
 			movementEvaluatorAdvanced(true, forwardMovementQuantity);
 		}
-		
+
 		else if (currentDrawCard.getDrawCardType() == DrawCard.drawCardTypeKeys.teleportRelative) {
-			
+
 		}
-		
+
 		else if (currentDrawCard.getDrawCardType() == DrawCard.drawCardTypeKeys.teleportWithRentModifier) {
-			
+
 		}
-		
+
 		else if (currentDrawCard.getDrawCardType() == DrawCard.drawCardTypeKeys.balanceUpdate) {
 			currentPlayer.updateCurrentBalance(currentDrawCard.getQuantity());
 		}
-		
+
 		else if (currentDrawCard.getDrawCardType() == DrawCard.drawCardTypeKeys.getOutOfJailFreeCard) {
 			currentPlayer.setGetOutOfJailFreeCardCount(currentPlayer.getGetOutOfJailFreeCardCount() + 1);
 		}
-		
+
 		else if (currentDrawCard.getDrawCardType() == DrawCard.drawCardTypeKeys.jailPlayer) {
 			jailPlayer();
 		}
-		
+
 		else if (currentDrawCard.getDrawCardType() == DrawCard.drawCardTypeKeys.improvementRepairs) {
-			
+
 		}
-		
+
 		else if (currentDrawCard.getDrawCardType() == DrawCard.drawCardTypeKeys.distributedBalanceUpdate) {
-			
+
 		}
 	}
-	
+
 	private void propertyEvaluator() {
 		appendToDebugLog("-> executing propertyEvaluator");
 		currentProperty = (Property) currentSpace;
@@ -368,13 +366,13 @@ public class GameLogicController {
 			appendToGameLog(currentProperty.getFriendlyName() + " is owned by " + board.players.get(currentProperty.getOwnerID()).getCustomName() + ".");
 			currentPlayer.setRequiredDecisionPropertyAction(false);
 			currentPlayer.setMadeDecisionPropertyAction(true);
-			
+
 			int rentOwed = currentProperty.calculateRent();
 			Player propertyOwner = board.players.get(currentProperty.getOwnerID());
-			
+
 			currentPlayer.updateCurrentBalance(-1 * rentOwed);
 			propertyOwner.updateCurrentBalance(rentOwed);
-			
+
 			appendToGameLog(currentPlayer.getCustomName() + " has paid $" + rentOwed + " in rent to " + propertyOwner.getCustomName() + ".");
 		}
 	}
@@ -410,10 +408,10 @@ public class GameLogicController {
 		if (currentPlayer.getCurrentBalance() >= currentProperty.getPurchaseCost()) {
 			currentProperty.setIsOwned(true);
 			currentProperty.setOwnerID(currentPlayer.getPlayerID());
-			
+
 			currentPlayer.updateCurrentBalance(-1 * currentProperty.getPurchaseCost());
 			currentPlayer.setPropertyOwnedState(true, currentProperty.getID());
-			
+
 			currentPlayer.setRequiredDecisionPropertyAction(false);
 			currentPlayer.setMadeDecisionPropertyAction(true);
 			appendToGameLog(currentPlayer.getCustomName() + " has purchased " + currentProperty.getFriendlyName() + " for $" + currentProperty.getPurchaseCost() + ".");
@@ -426,7 +424,7 @@ public class GameLogicController {
 	public void playerDecisionAuction() {
 		appendToDebugLog("-> executing playerDecisionAuction");
 	}
-	
+
 	public void playerDecisionJailPostBail() {
 		currentPlayer.setMadeDecisionPostedBail(true);
 		if (currentPlayer.getCurrentBalance() >= 50) {
@@ -438,11 +436,11 @@ public class GameLogicController {
 			appendToGameLog(currentPlayer.getCustomName() + " cannot afford to post bail.");
 		}
 	}
-	
+
 	public void playerDecisionJailRollDoubles() {
 		currentPlayer.setMadeDecisionPostedBail(true);
 		currentPlayer.rollDice();
-		
+
 		if (currentPlayer.getHasRolledDoubles() == true) {
 			appendToGameLog(currentPlayer.getCustomName() + " has rolled doubles, and is no longer jailed!");
 			readyPlayerForJailRelease();
@@ -462,13 +460,13 @@ public class GameLogicController {
 			}
 		}
 	}
-	
+
 	private void readyPlayerForJailRelease() {
 		currentPlayer.initializePlayerForNewTurn();
-		
+
 		currentPlayer.setRequiredDecisionPostedBail(false);
 		currentPlayer.setIsJailed(false);
-		
+
 		currentPlayer.setPosition(10);
 
 		currentPlayer.setActionLockedEndTurn(true);
@@ -476,6 +474,6 @@ public class GameLogicController {
 	}
 
 	public void forfeitManager() {
-		
+
 	}
 }

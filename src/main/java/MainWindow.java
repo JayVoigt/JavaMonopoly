@@ -19,42 +19,41 @@ import com.formdev.flatlaf.*;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-
 /**
  *
  * @author jay
  */
 public class MainWindow extends javax.swing.JFrame implements WindowListener, ActionListener {
-
+	
 	Board board;
 	Font font;
 	GameLogicController controller;
-
+	
 	ArrayList<JButton> spaceButtons;
 	ArrayList<javax.swing.ImageIcon> diceIcons;
-
+	
 	Player currentPlayer;
 	
 	Player gameEditorPlayer;
 	
 	int iconSelectionPlayerID;
 	int currentSpaceSelectionID;
-
+	
 	public MainWindow(Board inputBoard) throws IOException {
 		try {
-			UIManager.setLookAndFeel( new FlatLightLaf() );
+			UIManager.setLookAndFeel(new FlatLightLaf());
 			//UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
 		} catch (Exception e) {
 		}
 		initComponents();
-
+		
 		board = inputBoard;
 		controller = new GameLogicController(board);
-
+		
 		customInitComponents();
 		
 		gameEditorPlayer = board.players.get(1);
-    
+		
 		initButtonAppearance();
 		
 		controller.sendWelcomeMessage();
@@ -2408,7 +2407,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-	
+
 	// <editor-fold desc="Update and helper methods">
 	public void update() {
 		initInfoUIForCurrentPlayer();
@@ -2416,7 +2415,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		gameInactiveUILocker();
 		updateDiceView();
 		
-		for ( int i = 1 ; i <= 4 ; i++ ) {
+		for (int i = 1; i <= 4; i++) {
 			updateVisualPlayerIndicator(board.players.get(i));
 		}
 		
@@ -2474,17 +2473,17 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		
 		appendToDebugLog("[initUIForCurrentPlayer] Current player: " + currentPlayer.getCustomName());
 	}
-
+	
 	private void updateButtonLockStates() {
 		currentPlayer = board.players.get(board.getCurrentPlayerID());
-
+		
 		if (currentPlayer.getActionLockedEndTurn() == false) {
 			unlockEndTurn();
 		}
 		else {
 			lockEndTurn();
 		}
-
+		
 		if (currentPlayer.getActionLockedRollDice() == false) {
 			unlockRollDice();
 		}
@@ -2499,19 +2498,19 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		textFieldPlayer2Name.setEnabled(false);
 		textFieldPlayer3Name.setEnabled(false);
 		textFieldPlayer4Name.setEnabled(false);
-
+		
 		buttonEndTurn.setEnabled(false);
 		buttonRollDice.setEnabled(false);
-
+		
 		spinnerStartingBalance.setValue(1500);
-
+		
 		debugLogFrame.setVisible(false);
 		menuViewCheckBoxShowDebugLog.setState(false);
-
+		
 		labelBoardImage.setSize(960, 960);
-
+		
 		spaceButtons = new ArrayList<JButton>();
-
+		
 		spaceButtons.add(buttonSpace0);
 		spaceButtons.add(buttonSpace1);
 		spaceButtons.add(buttonSpace2);
@@ -2563,7 +2562,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		diceIcons.add(new javax.swing.ImageIcon(getClass().getResource("/die-50px-5pip.png")));
 		diceIcons.add(new javax.swing.ImageIcon(getClass().getResource("/die-50px-6pip.png")));
 	}
-
+	
 	private void initButtonAppearance() {
 
 		// Set text in all space buttons to blank
@@ -2598,7 +2597,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 					labelCost.setText("$" + localProperty.getPurchaseCost());
 					labelCost.setIcon(new javax.swing.ImageIcon(getClass().getResource("/money.png")));
 				}
-			
+				
 				askPropertyDecisionDialog.setVisible(true);
 			}
 		}
@@ -2623,7 +2622,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 				}
 				
 				int consecutiveJailedTurns = currentPlayer.getConsecutiveTurnsJailed();
-				
+
 				// Use (turn/turns) depending on grammatical context
 				if (consecutiveJailedTurns == 1) {
 					labelConsecutiveJailedTurns.setText("You have been jailed for 1 turn.");
@@ -2635,10 +2634,10 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 				if (consecutiveJailedTurns >= 3) {
 					buttonJailDialogRollForDoubles.setEnabled(false);
 				}
-
+				
 				lockRollDice();
 				lockEndTurn();
-
+				
 				jailDialog.setVisible(true);
 			}
 		}
@@ -2649,7 +2648,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 	}
 	
 	private void readyUIForNextPlayer() {
-		for ( int i = 0 ; i < 40 ; i++ ) {
+		for (int i = 0; i < 40; i++) {
 			spaceButtonAppearanceReset(i);
 		}
 	}
@@ -2660,17 +2659,17 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		buttonRollDice.setEnabled(true);
 		controller.appendToDebugLog("diceRoll unlocked.");
 	}
-
+	
 	private void lockRollDice() {
 		buttonRollDice.setEnabled(false);
 		controller.appendToDebugLog("diceRoll locked.");
 	}
-
+	
 	private void unlockEndTurn() {
 		buttonEndTurn.setEnabled(true);
 		controller.appendToDebugLog("endTurn unlocked.");
 	}
-
+	
 	private void lockEndTurn() {
 		buttonEndTurn.setEnabled(false);
 		controller.appendToDebugLog("endTurn locked.");
@@ -2698,7 +2697,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		File gameStateOutputFile = saveFileChooser.getSelectedFile();
     }//GEN-LAST:event_menuFileSaveGameActionPerformed
 	// </editor-fold>
-	
+
 	// <editor-fold desc="buttonSpace<N>ActionPerformed">
     private void buttonSpace0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSpace0ActionPerformed
 		updateSpaceSelection(0);
@@ -2875,7 +2874,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		
 		targetX += referenceX;
 		targetY += referenceY;
-
+		
 		inputDialog.setLocation(targetX, targetY);
 	}
 	// </editor-fold>
@@ -2887,12 +2886,10 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     }//GEN-LAST:event_menuEditGameEditorActionPerformed
 
 	// <editor-fold desc="Sound helpers">
-
 	// </editor-fold>
-	
 	// <editor-fold desc="End turn/roll dice buttons">
     private void buttonRollDiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRollDiceActionPerformed
-
+		
 		controller.diceRollManager();
 		update();
     }//GEN-LAST:event_buttonRollDiceActionPerformed
@@ -2903,14 +2900,14 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		readyUIForNextPlayer();
     }//GEN-LAST:event_buttonEndTurnActionPerformed
 	// </editor-fold>
-	
+
 	// <editor-fold desc="User prompts">
 	public void promptUserForPropertyDecision() {
 		centerJDialog(askPropertyDecisionDialog);
 		askPropertyDecisionDialog.setVisible(true);
 	}
 	// </editor-fold>
-	
+
 	// <editor-fold desc="Statistics pane">
 	private void updateStatsPane() {
 		
@@ -2948,41 +2945,41 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     }//GEN-LAST:event_buttonPropertyDecisionPurchaseActionPerformed
 
     private void menuViewManuallyUpdateViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuViewManuallyUpdateViewActionPerformed
-        update();
+		update();
     }//GEN-LAST:event_menuViewManuallyUpdateViewActionPerformed
 
     private void checkBoxPlayer3ComputerControlledActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBoxPlayer3ComputerControlledActionPerformed
-        // TODO add your handling code here:
+		// TODO add your handling code here:
     }//GEN-LAST:event_checkBoxPlayer3ComputerControlledActionPerformed
 
     private void checkBoxPlayer1ComputerControlledActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBoxPlayer1ComputerControlledActionPerformed
-        if (checkBoxPlayer1ComputerControlled.isSelected() == true) {
-            board.players.get(1).setIsComputerControlled(true);
-        }
-        else {
-            board.players.get(1).setIsComputerControlled(false);
-        }
+		if (checkBoxPlayer1ComputerControlled.isSelected() == true) {
+			board.players.get(1).setIsComputerControlled(true);
+		}
+		else {
+			board.players.get(1).setIsComputerControlled(false);
+		}
     }//GEN-LAST:event_checkBoxPlayer1ComputerControlledActionPerformed
 
     private void checkBoxPlayer2ComputerControlledActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBoxPlayer2ComputerControlledActionPerformed
-        if (checkBoxPlayer2ComputerControlled.isSelected() == true) {
-            board.players.get(2).setIsComputerControlled(true);
-        }
-        else {
-            board.players.get(2).setIsComputerControlled(false);
-        }
+		if (checkBoxPlayer2ComputerControlled.isSelected() == true) {
+			board.players.get(2).setIsComputerControlled(true);
+		}
+		else {
+			board.players.get(2).setIsComputerControlled(false);
+		}
     }//GEN-LAST:event_checkBoxPlayer2ComputerControlledActionPerformed
 	
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        appendToDebugLog("debug test");
+		appendToDebugLog("debug test");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void textFieldPlayer1NameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldPlayer1NameActionPerformed
-        // TODO add your handling code here:
+		// TODO add your handling code here:
     }//GEN-LAST:event_textFieldPlayer1NameActionPerformed
 
     private void spinnerStartingBalancePropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_spinnerStartingBalancePropertyChange
-        int inputStartingBalance = (int) spinnerStartingBalance.getValue();
+		int inputStartingBalance = (int) spinnerStartingBalance.getValue();
     }//GEN-LAST:event_spinnerStartingBalancePropertyChange
 
     private void comboBoxPlayersCountPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_comboBoxPlayersCountPropertyChange
@@ -2990,37 +2987,37 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     }//GEN-LAST:event_comboBoxPlayersCountPropertyChange
 
     private void comboBoxPlayersCountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxPlayersCountActionPerformed
-        String inputPlayersCount = comboBoxPlayersCount.getSelectedItem().toString();
-        if (inputPlayersCount.equals("1")) {
-            textFieldPlayer1Name.setEnabled(true);
-            textFieldPlayer2Name.setEnabled(false);
-            textFieldPlayer3Name.setEnabled(false);
-            textFieldPlayer4Name.setEnabled(false);
-        }
-        else if (inputPlayersCount.equals("2")) {
-            textFieldPlayer1Name.setEnabled(true);
-            textFieldPlayer2Name.setEnabled(true);
-            textFieldPlayer3Name.setEnabled(false);
-            textFieldPlayer4Name.setEnabled(false);
-        }
-        else if (inputPlayersCount.equals("3")) {
-            textFieldPlayer1Name.setEnabled(true);
-            textFieldPlayer2Name.setEnabled(true);
-            textFieldPlayer3Name.setEnabled(true);
-            textFieldPlayer4Name.setEnabled(false);
-        }
-        else if (inputPlayersCount.equals("4")) {
-            textFieldPlayer1Name.setEnabled(true);
-            textFieldPlayer2Name.setEnabled(true);
-            textFieldPlayer3Name.setEnabled(true);
-            textFieldPlayer4Name.setEnabled(true);
-        }
+		String inputPlayersCount = comboBoxPlayersCount.getSelectedItem().toString();
+		if (inputPlayersCount.equals("1")) {
+			textFieldPlayer1Name.setEnabled(true);
+			textFieldPlayer2Name.setEnabled(false);
+			textFieldPlayer3Name.setEnabled(false);
+			textFieldPlayer4Name.setEnabled(false);
+		}
+		else if (inputPlayersCount.equals("2")) {
+			textFieldPlayer1Name.setEnabled(true);
+			textFieldPlayer2Name.setEnabled(true);
+			textFieldPlayer3Name.setEnabled(false);
+			textFieldPlayer4Name.setEnabled(false);
+		}
+		else if (inputPlayersCount.equals("3")) {
+			textFieldPlayer1Name.setEnabled(true);
+			textFieldPlayer2Name.setEnabled(true);
+			textFieldPlayer3Name.setEnabled(true);
+			textFieldPlayer4Name.setEnabled(false);
+		}
+		else if (inputPlayersCount.equals("4")) {
+			textFieldPlayer1Name.setEnabled(true);
+			textFieldPlayer2Name.setEnabled(true);
+			textFieldPlayer3Name.setEnabled(true);
+			textFieldPlayer4Name.setEnabled(true);
+		}
     }//GEN-LAST:event_comboBoxPlayersCountActionPerformed
 
     private void buttonStartGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonStartGameActionPerformed
-        controller.setIsGameActive(true);
-        String inputPlayersCount = comboBoxPlayersCount.getSelectedItem().toString();
-        
+		controller.setIsGameActive(true);
+		String inputPlayersCount = comboBoxPlayersCount.getSelectedItem().toString();
+		
 		int localPlayersCount = Integer.parseInt(inputPlayersCount);
 		controller.setPlayersCount(localPlayersCount);
 		
@@ -3037,17 +3034,17 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 			iconPlayer4Position.setVisible(false);
 		}
 		
-        gameSetupDialog.setVisible(false);
-
-        board.players.get(1).setCustomName(textFieldPlayer1Name.getText());
-        board.players.get(2).setCustomName(textFieldPlayer2Name.getText());
-        board.players.get(3).setCustomName(textFieldPlayer3Name.getText());
-        board.players.get(4).setCustomName(textFieldPlayer4Name.getText());
-
+		gameSetupDialog.setVisible(false);
+		
+		board.players.get(1).setCustomName(textFieldPlayer1Name.getText());
+		board.players.get(2).setCustomName(textFieldPlayer2Name.getText());
+		board.players.get(3).setCustomName(textFieldPlayer3Name.getText());
+		board.players.get(4).setCustomName(textFieldPlayer4Name.getText());
+		
 		controller.sendInitGameMessage();
-
-        controller.initialEvaluator();
-        update();
+		
+		controller.initialEvaluator();
+		update();
     }//GEN-LAST:event_buttonStartGameActionPerformed
 
     private void menuHelpAboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuHelpAboutActionPerformed
@@ -3056,7 +3053,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     }//GEN-LAST:event_menuHelpAboutActionPerformed
 
     private void menuViewToggleExtraPaddingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuViewToggleExtraPaddingActionPerformed
-        if (menuViewToggleExtraPadding.isEnabled() == true) {
+		if (menuViewToggleExtraPadding.isEnabled() == true) {
 			controller.setExtraTextPadding(true);
 		}
 		else {
@@ -3065,7 +3062,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     }//GEN-LAST:event_menuViewToggleExtraPaddingActionPerformed
 
     private void buttonActionImprovementsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonActionImprovementsActionPerformed
-        centerJDialog(improvementsDialog);
+		centerJDialog(improvementsDialog);
 		if (improvementsDialog.isVisible() == false) {
 			improvementsDialog.setVisible(true);
 			buttonPropertiesActionPerformed(evt);
@@ -3078,7 +3075,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     private void buttonPropertiesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPropertiesActionPerformed
 		boolean localOwnedPropertyIDs[] = currentPlayer.getOwnedPropertyIDs();
 		
-		for ( int i = 0 ; i < 40 ; i++ ) {
+		for (int i = 0; i < 40; i++) {
 			if (localOwnedPropertyIDs[i] == true) {
 				spaceButtonAppearanceHighlight(i);
 			}
@@ -3089,24 +3086,24 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     }//GEN-LAST:event_buttonPropertiesActionPerformed
 
     private void buttonJailDialogPostBailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonJailDialogPostBailActionPerformed
-        controller.playerDecisionJailPostBail();
+		controller.playerDecisionJailPostBail();
 		update();
     }//GEN-LAST:event_buttonJailDialogPostBailActionPerformed
 
     private void buttonJailDialogRollForDoublesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonJailDialogRollForDoublesActionPerformed
-        controller.playerDecisionJailRollDoubles();
+		controller.playerDecisionJailRollDoubles();
 		update();
     }//GEN-LAST:event_buttonJailDialogRollForDoublesActionPerformed
 
     private void buttonForfeitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonForfeitActionPerformed
-        controller.forfeitManager();
+		controller.forfeitManager();
 		update();
     }//GEN-LAST:event_buttonForfeitActionPerformed
 
     private void buttonIcon8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonIcon8ActionPerformed
-        setPlayerIcon(iconSelectionPlayerID, buttonIcon8.getIcon());
+		setPlayerIcon(iconSelectionPlayerID, buttonIcon8.getIcon());
     }//GEN-LAST:event_buttonIcon8ActionPerformed
-
+	
 	private void setPlayerIcon(int playerID, Icon inputIcon) {
 		
 		JLabel localPlayerIcon = new JLabel();
@@ -3134,15 +3131,15 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 	}
 	
     private void buttonIcon1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonIcon1ActionPerformed
-        setPlayerIcon(iconSelectionPlayerID, buttonIcon1.getIcon());
+		setPlayerIcon(iconSelectionPlayerID, buttonIcon1.getIcon());
     }//GEN-LAST:event_buttonIcon1ActionPerformed
 
     private void buttonIcon4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonIcon4ActionPerformed
-        setPlayerIcon(iconSelectionPlayerID, buttonIcon4.getIcon());
+		setPlayerIcon(iconSelectionPlayerID, buttonIcon4.getIcon());
     }//GEN-LAST:event_buttonIcon4ActionPerformed
 
     private void buttonIcon2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonIcon2ActionPerformed
-        setPlayerIcon(iconSelectionPlayerID, buttonIcon2.getIcon());
+		setPlayerIcon(iconSelectionPlayerID, buttonIcon2.getIcon());
     }//GEN-LAST:event_buttonIcon2ActionPerformed
 
     private void checkBoxPlayer4ComputerControlledActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBoxPlayer4ComputerControlledActionPerformed
@@ -3150,13 +3147,13 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     }//GEN-LAST:event_checkBoxPlayer4ComputerControlledActionPerformed
 
     private void buttonPlayer1IconActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPlayer1IconActionPerformed
-        iconSelectionPlayerID = 1;
+		iconSelectionPlayerID = 1;
 		buttonIcon5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/player-icon-1-px.png")));
 		playerIconSelector.setVisible(true);
     }//GEN-LAST:event_buttonPlayer1IconActionPerformed
 
     private void buttonPlayer2IconActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPlayer2IconActionPerformed
-        iconSelectionPlayerID = 2;
+		iconSelectionPlayerID = 2;
 		buttonIcon5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/player-icon-2-px.png")));
 		playerIconSelector.setVisible(true);
 		playerIconSelector.setLocation(buttonPlayer2Icon.getLocation());
@@ -3164,11 +3161,11 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     }//GEN-LAST:event_buttonPlayer2IconActionPerformed
 
     private void buttonIcon3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonIcon3ActionPerformed
-        setPlayerIcon(iconSelectionPlayerID, buttonIcon3.getIcon());
+		setPlayerIcon(iconSelectionPlayerID, buttonIcon3.getIcon());
     }//GEN-LAST:event_buttonIcon3ActionPerformed
 
     private void buttonIcon5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonIcon5ActionPerformed
-        setPlayerIcon(iconSelectionPlayerID, buttonIcon5.getIcon());
+		setPlayerIcon(iconSelectionPlayerID, buttonIcon5.getIcon());
     }//GEN-LAST:event_buttonIcon5ActionPerformed
 
     private void buttonIcon6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonIcon6ActionPerformed
@@ -3176,15 +3173,15 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     }//GEN-LAST:event_buttonIcon6ActionPerformed
 
     private void buttonIcon7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonIcon7ActionPerformed
-        setPlayerIcon(iconSelectionPlayerID, buttonIcon7.getIcon());
+		setPlayerIcon(iconSelectionPlayerID, buttonIcon7.getIcon());
     }//GEN-LAST:event_buttonIcon7ActionPerformed
 	
     private void buttonIcon9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonIcon9ActionPerformed
-        setPlayerIcon(iconSelectionPlayerID, buttonIcon9.getIcon());
+		setPlayerIcon(iconSelectionPlayerID, buttonIcon9.getIcon());
     }//GEN-LAST:event_buttonIcon9ActionPerformed
 
     private void buttonActionMortgageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonActionMortgageActionPerformed
-        if (mortgageDialog.isVisible() == false) {
+		if (mortgageDialog.isVisible() == false) {
 			mortgageDialog.setVisible(true);
 		}
 		else {
@@ -3193,73 +3190,73 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     }//GEN-LAST:event_buttonActionMortgageActionPerformed
 
     private void buttonJailDialogUseGOOJFCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonJailDialogUseGOOJFCActionPerformed
-        // TODO add your handling code here:
+		// TODO add your handling code here:
     }//GEN-LAST:event_buttonJailDialogUseGOOJFCActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        aboutDialog.setVisible(false);
+		aboutDialog.setVisible(false);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void buttonJailPlayerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonJailPlayerActionPerformed
-        gameEditorPlayer.setIsJailed(true);
-        gameEditorPlayer.setInitialJailTurn(true);
-        controller.appendToGameLog("[Game Editor]: Jailed " + gameEditorPlayer.getCustomName() + ".");
-        update();
+		gameEditorPlayer.setIsJailed(true);
+		gameEditorPlayer.setInitialJailTurn(true);
+		controller.appendToGameLog("[Game Editor]: Jailed " + gameEditorPlayer.getCustomName() + ".");
+		update();
     }//GEN-LAST:event_buttonJailPlayerActionPerformed
 
     private void buttonReleasePlayerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonReleasePlayerActionPerformed
-        gameEditorPlayer.setIsJailed(false);
-        gameEditorPlayer.setInitialJailTurn(false);
-        controller.appendToGameLog("[Game Editor]: Released " + gameEditorPlayer.getCustomName() + " from jail.");
-        update();
+		gameEditorPlayer.setIsJailed(false);
+		gameEditorPlayer.setInitialJailTurn(false);
+		controller.appendToGameLog("[Game Editor]: Released " + gameEditorPlayer.getCustomName() + " from jail.");
+		update();
     }//GEN-LAST:event_buttonReleasePlayerActionPerformed
 
     private void buttonDeduct1000ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDeduct1000ActionPerformed
-        gameEditorPlayer.updateCurrentBalance(-1000);
-        controller.appendToGameLog("[Game Editor]: Gave " + gameEditorPlayer.getCustomName() + " $-1000.");
-        update();
+		gameEditorPlayer.updateCurrentBalance(-1000);
+		controller.appendToGameLog("[Game Editor]: Gave " + gameEditorPlayer.getCustomName() + " $-1000.");
+		update();
     }//GEN-LAST:event_buttonDeduct1000ActionPerformed
 
     private void buttonGive1000ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGive1000ActionPerformed
-        gameEditorPlayer.updateCurrentBalance(1000);
-        controller.appendToGameLog("[Game Editor]: Gave " + gameEditorPlayer.getCustomName() + " $1000.");
-        update();
+		gameEditorPlayer.updateCurrentBalance(1000);
+		controller.appendToGameLog("[Game Editor]: Gave " + gameEditorPlayer.getCustomName() + " $1000.");
+		update();
     }//GEN-LAST:event_buttonGive1000ActionPerformed
 
     private void buttonGameEditorAdvanceSpaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGameEditorAdvanceSpaceActionPerformed
-        Player currentPlayer = board.players.get(1);
-        currentPlayer.advancePosition(1);
-        //updateVisualPlayerIndicator(currentPlayer);
-        update();
+		Player currentPlayer = board.players.get(1);
+		currentPlayer.advancePosition(1);
+		//updateVisualPlayerIndicator(currentPlayer);
+		update();
     }//GEN-LAST:event_buttonGameEditorAdvanceSpaceActionPerformed
 
     private void buttonGameEditorUnlockRollDice1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGameEditorUnlockRollDice1ActionPerformed
-        appendToDebugLog("[Game Editor] Calling unlockDiceRoll");
-        unlockRollDice();
-        update();
+		appendToDebugLog("[Game Editor] Calling unlockDiceRoll");
+		unlockRollDice();
+		update();
     }//GEN-LAST:event_buttonGameEditorUnlockRollDice1ActionPerformed
 
     private void buttonGameEditorUnlockEndTurnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGameEditorUnlockEndTurnActionPerformed
-        appendToDebugLog("[Game Editor] Calling unlockNextTurn");
-        unlockEndTurn();
-        update();
+		appendToDebugLog("[Game Editor] Calling unlockNextTurn");
+		unlockEndTurn();
+		update();
     }//GEN-LAST:event_buttonGameEditorUnlockEndTurnActionPerformed
 
 	// <editor-fold desc="Game editor">
     private void buttonGameEditorGoBackSpaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGameEditorGoBackSpaceActionPerformed
-        Player currentPlayer = board.players.get(1);
-        currentPlayer.advancePosition(-1);
-        //updateVisualPlayerIndicator(currentPlayer);
-        update();
+		Player currentPlayer = board.players.get(1);
+		currentPlayer.advancePosition(-1);
+		//updateVisualPlayerIndicator(currentPlayer);
+		update();
     }//GEN-LAST:event_buttonGameEditorGoBackSpaceActionPerformed
 
     private void buttonGameEditorCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGameEditorCloseActionPerformed
-        gameEditorDialog.setVisible(false);
+		gameEditorDialog.setVisible(false);
     }//GEN-LAST:event_buttonGameEditorCloseActionPerformed
 
     private void buttonGameEditorUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGameEditorUpdateActionPerformed
-        controller.initialEvaluator();
-        update();
+		controller.initialEvaluator();
+		update();
     }//GEN-LAST:event_buttonGameEditorUpdateActionPerformed
 
     private void comboBoxPlayerSelectionPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_comboBoxPlayerSelectionPropertyChange
@@ -3267,7 +3264,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     }//GEN-LAST:event_comboBoxPlayerSelectionPropertyChange
 
     private void comboBoxPlayerSelectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxPlayerSelectionActionPerformed
-        gameEditorPlayer = board.players.get(1 + comboBoxPlayerSelection.getSelectedIndex());
+		gameEditorPlayer = board.players.get(1 + comboBoxPlayerSelection.getSelectedIndex());
     }//GEN-LAST:event_comboBoxPlayerSelectionActionPerformed
 	// </editor-fold>
 
@@ -3282,7 +3279,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 			spaceButtons.get(spaceID).setIcon(new javax.swing.ImageIcon(getClass().getResource("/space-highlight-120x80.png")));
 		}
 	}
-
+	
 	public void spaceButtonAppearanceReset(int spaceID) {
 		spaceButtons.get(spaceID).setIcon(null);
 	}
@@ -3292,7 +3289,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		return "<html><body style=\\\"text-align: justify;  text-justify: "
 			+ "inter-word;\\\"><center><p>" + inputText + "</p></center></body></html>";
 	}
-
+	
 	public void appendToGameLog(String input) {
 		Date outputTimeStamp;
 		outputTimeStamp = new Date();
@@ -3302,7 +3299,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		textAreaGameLog.append(formattedLogEntry);
 		//textAreaGameLog.moveCaretPosition(logBoxTotalChars);
 	}
-
+	
 	public void appendToDebugLog(String input) {
 		Date outputTimeStamp;
 		outputTimeStamp = new Date();
@@ -3317,13 +3314,13 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		appendToDebugLog("Space with ID:" + spaceID + " selected.");
 		
 		currentSpaceSelectionID = spaceID;
-
+		
 		Space.spaceTypeKeys localSpaceType;
 		localSpaceType = board.spaces.get(spaceID).getSpaceType();
-
+		
 		int localID = board.spaces.get(spaceID).getID();
 		String localFriendlyName = board.spaces.get(spaceID).getFriendlyName();
-
+		
 		labelID.setText(Integer.toString(localID));
 		labelFriendlyName.setText(localFriendlyName);
 
@@ -3352,28 +3349,28 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 			labelOwnedBy.setForeground(java.awt.Color.gray);
 			labelSpaceType.setText("Game Event");
 		}
-
+		
 		else {
 			labelID.setText("undefined ID");
 		}
-
+		
 	}
-
+	
 	public void updateVisualPlayerIndicator(Player currentPlayer) {
 		int localCurrentPlayerID = currentPlayer.getPlayerID();
 		int localDestinationSpaceID = currentPlayer.getCurrentPosition();
-
+		
 		int destinationX = 0,
 			destinationY = 0;
 		
 		int playerStandardXOffset = 0,
 			playerCornerXOffset = 0;
-
+		
 		playerStandardXOffset = 20 * (currentPlayer.getPlayerID() - 1);
 		playerCornerXOffset = 30 * (currentPlayer.getPlayerID() - 1);
-
+		
 		int yOffset = -2;
-
+		
 		if (currentPlayer.getIsJailed() == true) {
 			if (localCurrentPlayerID == 1) {
 				destinationX = 90;
@@ -3392,7 +3389,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 				destinationY = 870;
 			}
 		}
-		
+
 		// All "fourths" exclude corner spaces
 		// Bottom fourth of board
 		else if (localDestinationSpaceID > 0 && localDestinationSpaceID < 10) {
@@ -3461,11 +3458,11 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		}
 		else if (localCurrentPlayerID == 2) {
 			iconPlayer2Position.setLocation(destinationX, destinationY);
-
+			
 		}
 		else if (localCurrentPlayerID == 3) {
 			iconPlayer3Position.setLocation(destinationX, destinationY);
-
+			
 		}
 		else if (localCurrentPlayerID == 4) {
 			iconPlayer4Position.setLocation(destinationX, destinationY);
@@ -3704,37 +3701,37 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 	public void windowOpened(WindowEvent e) {
 		throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
 	}
-
+	
 	@Override
 	public void windowClosing(WindowEvent e) {
 		throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
 	}
-
+	
 	@Override
 	public void windowClosed(WindowEvent e) {
 		throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
 	}
-
+	
 	@Override
 	public void windowIconified(WindowEvent e) {
 		throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
 	}
-
+	
 	@Override
 	public void windowDeiconified(WindowEvent e) {
 		throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
 	}
-
+	
 	@Override
 	public void windowActivated(WindowEvent e) {
 		throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
 	}
-
+	
 	@Override
 	public void windowDeactivated(WindowEvent e) {
 		throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
 	}
-
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
