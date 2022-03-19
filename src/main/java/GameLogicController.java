@@ -293,7 +293,7 @@ public class GameLogicController {
 		}
 		else if (localGameEventType.equals(localGameEventType.tax)) {
 			// Using 2008 Monopoly rules that exclude 10% option
-			if (currentGameEvent.getFriendlyName() == "Income Tax") {
+			if (currentGameEvent.getFriendlyName().contains("Income")) {
 				appendToGameLog(currentPlayer.getCustomName() + " has paid $200 in Income Tax.");
 				currentPlayer.updateCurrentBalance(-200);
 			}
@@ -475,4 +475,7 @@ public class GameLogicController {
 		currentPlayer.setActionLockedRollDice(false);
 	}
 
+	public void forfeitManager() {
+		
+	}
 }

@@ -246,7 +246,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonActionImprovements = new javax.swing.JButton();
         buttonProperties = new javax.swing.JButton();
         buttonActionImprovements1 = new javax.swing.JButton();
-        buttonActionTrade1 = new javax.swing.JButton();
+        buttonForfeit = new javax.swing.JButton();
         labelCurrentPlayerIcon = new javax.swing.JLabel();
         staticLabelPositionIcon = new javax.swing.JLabel();
         labelCurrentBalanceIcon1 = new javax.swing.JLabel();
@@ -1885,11 +1885,17 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         controlPanelActions.getContentPane().add(buttonActionImprovements1);
         buttonActionImprovements1.setBounds(180, 140, 140, 24);
 
-        buttonActionTrade1.setText("Trade");
-        buttonActionTrade1.setFocusPainted(false);
-        buttonActionTrade1.setMargin(new java.awt.Insets(2, 6, 2, 6));
-        controlPanelActions.getContentPane().add(buttonActionTrade1);
-        buttonActionTrade1.setBounds(180, 170, 140, 23);
+        buttonForfeit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/surrender.png"))); // NOI18N
+        buttonForfeit.setText("Forfeit");
+        buttonForfeit.setFocusPainted(false);
+        buttonForfeit.setMargin(new java.awt.Insets(2, 6, 2, 6));
+        buttonForfeit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonForfeitActionPerformed(evt);
+            }
+        });
+        controlPanelActions.getContentPane().add(buttonForfeit);
+        buttonForfeit.setBounds(180, 170, 140, 24);
 
         labelCurrentPlayerIcon.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         labelCurrentPlayerIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/player-generic.png"))); // NOI18N
@@ -2256,13 +2262,15 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 				lockRollDice();
 				lockEndTurn();
 				
-				Property localProperty = (Property) board.spaces.get(currentPlayer.getCurrentPosition());
-				
-				labelPropertyName.setText(localProperty.getFriendlyName());
-				labelPropertyName.setIcon(new javax.swing.ImageIcon(getClass().getResource("/properties.png")));
-				labelCost.setText("$" + localProperty.getPurchaseCost());
-				labelCost.setIcon(new javax.swing.ImageIcon(getClass().getResource("/money.png")));
-				
+				if (board.spaces.get(currentPlayer.getCurrentPosition()).getSpaceType() == Space.spaceTypeKeys.property) {
+					Property localProperty = (Property) board.spaces.get(currentPlayer.getCurrentPosition());
+					
+					labelPropertyName.setText(localProperty.getFriendlyName());
+					labelPropertyName.setIcon(new javax.swing.ImageIcon(getClass().getResource("/properties.png")));
+					labelCost.setText("$" + localProperty.getPurchaseCost());
+					labelCost.setIcon(new javax.swing.ImageIcon(getClass().getResource("/money.png")));
+				}
+			
 				askPropertyDecisionDialog.setVisible(true);
 			}
 		}
@@ -2814,6 +2822,11 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         controller.playerDecisionJailRollDoubles();
 		update();
     }//GEN-LAST:event_buttonJailDialogRollForDoublesActionPerformed
+
+    private void buttonForfeitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonForfeitActionPerformed
+        controller.forfeitManager();
+		update();
+    }//GEN-LAST:event_buttonForfeitActionPerformed
 	// </editor-fold>
 
 	public void spaceButtonAppearanceHighlight(int spaceID) {
@@ -3024,11 +3037,11 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     public javax.swing.JButton buttonActionImprovements1;
     public javax.swing.JButton buttonActionMortgage;
     public javax.swing.JButton buttonActionTrade;
-    public javax.swing.JButton buttonActionTrade1;
     public javax.swing.JButton buttonBuildHotel;
     public javax.swing.JButton buttonBuildHouse;
     public javax.swing.JButton buttonDeduct1000;
     public javax.swing.JButton buttonEndTurn;
+    public javax.swing.JButton buttonForfeit;
     public javax.swing.JButton buttonGameEditorAdvanceSpace;
     public javax.swing.JButton buttonGameEditorClose;
     public javax.swing.JButton buttonGameEditorGoBackSpace;
