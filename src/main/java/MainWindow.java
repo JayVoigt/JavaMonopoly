@@ -148,6 +148,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonJailDialogRollForDoubles = new javax.swing.JButton();
         labelConsecutiveJailedTurns = new javax.swing.JLabel();
         labelConsecutiveJailedTurns1 = new javax.swing.JLabel();
+        buttonJailDialogUseGOOJFC = new javax.swing.JButton();
         playerIconSelector = new javax.swing.JDialog();
         buttonIcon1 = new javax.swing.JButton();
         buttonIcon2 = new javax.swing.JButton();
@@ -913,6 +914,14 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 
         labelConsecutiveJailedTurns1.setText("<html>You may post bail to be freed from the start of your next turn.<br>\nAlternatively, you may choose to roll for doubles.</html>");
 
+        buttonJailDialogUseGOOJFC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/goojfc.png"))); // NOI18N
+        buttonJailDialogUseGOOJFC.setText("Use Get Out of Jail Free Card");
+        buttonJailDialogUseGOOJFC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonJailDialogUseGOOJFCActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jailDialogLayout = new javax.swing.GroupLayout(jailDialog.getContentPane());
         jailDialog.getContentPane().setLayout(jailDialogLayout);
         jailDialogLayout.setHorizontalGroup(
@@ -920,16 +929,20 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
             .addGroup(jailDialogLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jailDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jailDialogLayout.createSequentialGroup()
-                        .addComponent(buttonJailDialogPostBail, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(buttonJailDialogRollForDoubles))
+                    .addComponent(buttonJailDialogUseGOOJFC, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jailDialogLayout.createSequentialGroup()
                         .addGroup(jailDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(staticLabelJailTitle)
-                            .addComponent(labelConsecutiveJailedTurns)
-                            .addComponent(labelConsecutiveJailedTurns1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 29, Short.MAX_VALUE)))
+                            .addGroup(jailDialogLayout.createSequentialGroup()
+                                .addComponent(buttonJailDialogPostBail, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(buttonJailDialogRollForDoubles))
+                            .addGroup(jailDialogLayout.createSequentialGroup()
+                                .addGroup(jailDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(staticLabelJailTitle)
+                                    .addComponent(labelConsecutiveJailedTurns)
+                                    .addComponent(labelConsecutiveJailedTurns1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jailDialogLayout.setVerticalGroup(
@@ -941,11 +954,13 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
                 .addComponent(labelConsecutiveJailedTurns)
                 .addGap(18, 18, 18)
                 .addComponent(labelConsecutiveJailedTurns1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(jailDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonJailDialogPostBail)
                     .addComponent(buttonJailDialogRollForDoubles))
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(buttonJailDialogUseGOOJFC)
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         playerIconSelector.setSize(new java.awt.Dimension(256, 256));
@@ -2260,22 +2275,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-//	private Font customInitFont() {
-//		Font font;
-//		try {
-//			font = Font.createFont(Font.TRUETYPE_FONT, new File("/NicoClean-Regular.ttf"));
-//		} catch (FontFormatException ex) {
-//			Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
-//			font = null;
-//		} catch (IOException ex) {
-//			Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
-//			font = null;
-//		}
-//		
-//		//labelFriendlyName.setFont(font); // NOI18N
-//		return font.deriveFont(18f);
-//	}
 	
 	// <editor-fold desc="Update and helper methods">
 	public void update() {
@@ -2481,6 +2480,13 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 				
 				buttonJailDialogPostBail.setEnabled(true);
 				buttonJailDialogRollForDoubles.setEnabled(true);
+				
+				if (currentPlayer.getGetOutOfJailFreeCardCount() > 0) {
+					buttonJailDialogUseGOOJFC.setEnabled(true);
+				}
+				else {
+					buttonJailDialogUseGOOJFC.setEnabled(false);
+				}
 				
 				int consecutiveJailedTurns = currentPlayer.getConsecutiveTurnsJailed();
 				
@@ -2871,10 +2877,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
             board.players.get(2).setIsComputerControlled(false);
         }
     }//GEN-LAST:event_checkBoxPlayer2ComputerControlledActionPerformed
-
-	private void checkBoxPlayer2ComputerControlled2ActionPerformed(java.awt.event.ActionEvent evt) {
-		
-	}
 	
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         appendToDebugLog("debug test");
@@ -3122,6 +3124,10 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 			mortgageDialog.setVisible(false);
 		}
     }//GEN-LAST:event_buttonActionMortgageActionPerformed
+
+    private void buttonJailDialogUseGOOJFCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonJailDialogUseGOOJFCActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonJailDialogUseGOOJFCActionPerformed
 	// </editor-fold>
 
 	public void spaceButtonAppearanceHighlight(int spaceID) {
@@ -3356,6 +3362,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     public javax.swing.JButton buttonIcon9;
     public javax.swing.JButton buttonJailDialogPostBail;
     public javax.swing.JButton buttonJailDialogRollForDoubles;
+    public javax.swing.JButton buttonJailDialogUseGOOJFC;
     public javax.swing.JButton buttonJailPlayer;
     public javax.swing.JButton buttonPlayer1Icon;
     public javax.swing.JButton buttonPlayer2Icon;

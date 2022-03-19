@@ -1085,9 +1085,10 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="buttonJailDialogUseGOOJFC" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="buttonJailDialogPostBail" min="-2" pref="145" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
@@ -1099,7 +1100,7 @@
                               <Component id="labelConsecutiveJailedTurns" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="labelConsecutiveJailedTurns1" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="0" pref="29" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -1115,12 +1116,14 @@
                   <Component id="labelConsecutiveJailedTurns" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="labelConsecutiveJailedTurns1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="26" max="32767" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="buttonJailDialogPostBail" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="buttonJailDialogRollForDoubles" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
+                  <Component id="buttonJailDialogUseGOOJFC" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="17" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -1168,6 +1171,17 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="&lt;html&gt;You may post bail to be freed from the start of your next turn.&lt;br&gt;&#xa;Alternatively, you may choose to roll for doubles.&lt;/html&gt;"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="buttonJailDialogUseGOOJFC">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/goojfc.png"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Use Get Out of Jail Free Card"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonJailDialogUseGOOJFCActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
