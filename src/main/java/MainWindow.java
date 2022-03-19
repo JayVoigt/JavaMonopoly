@@ -36,6 +36,8 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 	Player currentPlayer;
 	
 	Player gameEditorPlayer;
+	
+	int iconSelectionPlayerID;
 
 	public MainWindow(Board inputBoard) throws IOException {
 		try {
@@ -78,17 +80,20 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         spinnerStartingBalance = new javax.swing.JSpinner();
         textFieldPlayer1Name = new javax.swing.JTextField();
         staticLabelPlayer1Name = new javax.swing.JLabel();
-        staticLabelPlayer2Name = new javax.swing.JLabel();
+        staticLabelPlayerIcon = new javax.swing.JLabel();
         textFieldPlayer2Name = new javax.swing.JTextField();
-        staticLabelPlayer3Name = new javax.swing.JLabel();
         textFieldPlayer3Name = new javax.swing.JTextField();
-        staticLabelPlayer4Name = new javax.swing.JLabel();
         textFieldPlayer4Name = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         checkBoxPlayer2ComputerControlled = new javax.swing.JCheckBox();
         checkBoxPlayer1ComputerControlled = new javax.swing.JCheckBox();
         checkBoxPlayer3ComputerControlled = new javax.swing.JCheckBox();
-        checkBoxPlayer2ComputerControlled2 = new javax.swing.JCheckBox();
+        checkBoxPlayer4ComputerControlled = new javax.swing.JCheckBox();
+        buttonPlayer1Icon = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
+        buttonPlayer2Icon = new javax.swing.JButton();
+        buttonPlayer3Icon = new javax.swing.JButton();
+        buttonPlayer4Icon = new javax.swing.JButton();
         gameEditorDialog = new javax.swing.JDialog();
         comboBoxPlayerSelection = new javax.swing.JComboBox<>();
         staticLabelPlayerSelection = new javax.swing.JLabel();
@@ -142,6 +147,16 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonJailDialogRollForDoubles = new javax.swing.JButton();
         labelConsecutiveJailedTurns = new javax.swing.JLabel();
         labelConsecutiveJailedTurns1 = new javax.swing.JLabel();
+        playerIconSelector = new javax.swing.JDialog();
+        buttonIcon1 = new javax.swing.JButton();
+        buttonIcon2 = new javax.swing.JButton();
+        buttonIcon3 = new javax.swing.JButton();
+        buttonIcon4 = new javax.swing.JButton();
+        buttonIcon5 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
+        jButton9 = new javax.swing.JButton();
+        jButton10 = new javax.swing.JButton();
+        jButton11 = new javax.swing.JButton();
         frameBoard = new javax.swing.JInternalFrame();
         jScrollPane1 = new javax.swing.JScrollPane();
         textAreaGameLog = new javax.swing.JTextArea();
@@ -266,9 +281,9 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         menuHelp = new javax.swing.JMenu();
         menuHelpAbout = new javax.swing.JMenuItem();
 
+        gameSetupDialog.setTitle("Game Setup");
         gameSetupDialog.setAlwaysOnTop(true);
-        gameSetupDialog.setMinimumSize(new java.awt.Dimension(400, 300));
-        gameSetupDialog.setResizable(false);
+        gameSetupDialog.setMinimumSize(new java.awt.Dimension(400, 310));
 
         buttonStartGame.setIcon(new javax.swing.ImageIcon(getClass().getResource("/newgame.png"))); // NOI18N
         buttonStartGame.setText("Start Game");
@@ -312,21 +327,17 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
             }
         });
 
-        staticLabelPlayer1Name.setText("Player 1 Name");
+        staticLabelPlayer1Name.setText("Player Name");
 
-        staticLabelPlayer2Name.setText("Player 2 Name");
+        staticLabelPlayerIcon.setText("Player Icon");
 
         textFieldPlayer2Name.setText("Player 2");
 
-        staticLabelPlayer3Name.setText("Player 3 Name");
-
         textFieldPlayer3Name.setText("Player 3");
-
-        staticLabelPlayer4Name.setText("Player 4 Name");
 
         textFieldPlayer4Name.setText("Player 4");
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bug-log.png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bug-log-anim.gif"))); // NOI18N
         jButton1.setText("debug");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -356,100 +367,144 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
             }
         });
 
-        checkBoxPlayer2ComputerControlled2.setText("Computer");
-        checkBoxPlayer2ComputerControlled2.addActionListener(new java.awt.event.ActionListener() {
+        checkBoxPlayer4ComputerControlled.setText("Computer");
+        checkBoxPlayer4ComputerControlled.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                checkBoxPlayer2ComputerControlled2ActionPerformed(evt);
+                checkBoxPlayer4ComputerControlledActionPerformed(evt);
             }
         });
+
+        buttonPlayer1Icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/player-generic.png"))); // NOI18N
+        buttonPlayer1Icon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonPlayer1IconActionPerformed(evt);
+            }
+        });
+
+        buttonPlayer2Icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/player-generic.png"))); // NOI18N
+        buttonPlayer2Icon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonPlayer2IconActionPerformed(evt);
+            }
+        });
+
+        buttonPlayer3Icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/player-generic.png"))); // NOI18N
+
+        buttonPlayer4Icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/player-generic.png"))); // NOI18N
 
         javax.swing.GroupLayout gameSetupDialogLayout = new javax.swing.GroupLayout(gameSetupDialog.getContentPane());
         gameSetupDialog.getContentPane().setLayout(gameSetupDialogLayout);
         gameSetupDialogLayout.setHorizontalGroup(
             gameSetupDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(gameSetupDialogLayout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(gameSetupDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(buttonStartGame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(gameSetupDialogLayout.createSequentialGroup()
-                        .addComponent(staticLabelPlayersCount2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
-                        .addComponent(jButton1))
+                        .addGap(6, 6, 6)
+                        .addGroup(gameSetupDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(buttonStartGame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, gameSetupDialogLayout.createSequentialGroup()
+                                .addGroup(gameSetupDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(textFieldPlayer3Name)
+                                    .addComponent(textFieldPlayer4Name))
+                                .addGap(6, 6, 6)
+                                .addGroup(gameSetupDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(buttonPlayer3Icon)
+                                    .addComponent(buttonPlayer4Icon, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(gameSetupDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(checkBoxPlayer4ComputerControlled)
+                                    .addComponent(checkBoxPlayer3ComputerControlled)))
+                            .addGroup(gameSetupDialogLayout.createSequentialGroup()
+                                .addComponent(staticLabelPlayersCount1)
+                                .addGap(18, 18, 18)
+                                .addComponent(spinnerStartingBalance, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(gameSetupDialogLayout.createSequentialGroup()
+                                .addComponent(staticLabelPlayersCount2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
+                                .addComponent(jButton1))))
                     .addGroup(gameSetupDialogLayout.createSequentialGroup()
-                        .addGroup(gameSetupDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(staticLabelPlayersCount)
-                            .addComponent(staticLabelPlayersCount1))
-                        .addGap(18, 18, 18)
-                        .addGroup(gameSetupDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(spinnerStartingBalance, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(comboBoxPlayersCount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap()
+                        .addComponent(staticLabelPlayersCount)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(comboBoxPlayersCount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, gameSetupDialogLayout.createSequentialGroup()
-                        .addGroup(gameSetupDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(gameSetupDialogLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jSeparator1))
+                    .addGroup(gameSetupDialogLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(gameSetupDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(textFieldPlayer1Name)
                             .addGroup(gameSetupDialogLayout.createSequentialGroup()
-                                .addComponent(staticLabelPlayer4Name)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(textFieldPlayer4Name))
-                            .addGroup(gameSetupDialogLayout.createSequentialGroup()
-                                .addComponent(staticLabelPlayer3Name)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(textFieldPlayer3Name))
-                            .addGroup(gameSetupDialogLayout.createSequentialGroup()
-                                .addGroup(gameSetupDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(staticLabelPlayer1Name)
-                                    .addComponent(staticLabelPlayer2Name))
-                                .addGap(12, 12, 12)
-                                .addGroup(gameSetupDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(textFieldPlayer2Name)
-                                    .addComponent(textFieldPlayer1Name))))
+                                .addComponent(staticLabelPlayer1Name)
+                                .addGap(0, 0, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(gameSetupDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(checkBoxPlayer1ComputerControlled)
-                            .addComponent(checkBoxPlayer2ComputerControlled)
-                            .addGroup(gameSetupDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(checkBoxPlayer3ComputerControlled, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(checkBoxPlayer2ComputerControlled2, javax.swing.GroupLayout.Alignment.TRAILING)))
-                        .addGap(6, 6, 6)))
+                            .addGroup(gameSetupDialogLayout.createSequentialGroup()
+                                .addComponent(buttonPlayer1Icon)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(checkBoxPlayer1ComputerControlled))
+                            .addComponent(staticLabelPlayerIcon)))
+                    .addGroup(gameSetupDialogLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(textFieldPlayer2Name)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(buttonPlayer2Icon)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(checkBoxPlayer2ComputerControlled)))
                 .addContainerGap())
         );
         gameSetupDialogLayout.setVerticalGroup(
             gameSetupDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, gameSetupDialogLayout.createSequentialGroup()
-                .addContainerGap(21, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(gameSetupDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(staticLabelPlayersCount2)
                     .addComponent(jButton1))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(gameSetupDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(comboBoxPlayersCount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(staticLabelPlayersCount))
+                    .addComponent(staticLabelPlayersCount)
+                    .addComponent(comboBoxPlayersCount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(gameSetupDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(staticLabelPlayersCount1)
                     .addComponent(spinnerStartingBalance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(gameSetupDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(textFieldPlayer1Name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(staticLabelPlayer1Name)
-                    .addComponent(checkBoxPlayer1ComputerControlled))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(gameSetupDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(textFieldPlayer2Name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(staticLabelPlayer2Name)
-                    .addComponent(checkBoxPlayer2ComputerControlled))
+                .addGroup(gameSetupDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(gameSetupDialogLayout.createSequentialGroup()
+                        .addGroup(gameSetupDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(gameSetupDialogLayout.createSequentialGroup()
+                                .addGroup(gameSetupDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(gameSetupDialogLayout.createSequentialGroup()
+                                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(gameSetupDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(staticLabelPlayer1Name)
+                                            .addComponent(staticLabelPlayerIcon))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(gameSetupDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(textFieldPlayer1Name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(checkBoxPlayer1ComputerControlled)
+                                            .addComponent(buttonPlayer1Icon))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(gameSetupDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(textFieldPlayer2Name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(checkBoxPlayer2ComputerControlled)))
+                                    .addComponent(buttonPlayer2Icon))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(gameSetupDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(textFieldPlayer3Name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(checkBoxPlayer3ComputerControlled)))
+                            .addComponent(buttonPlayer3Icon))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(gameSetupDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(textFieldPlayer4Name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(checkBoxPlayer4ComputerControlled)))
+                    .addComponent(buttonPlayer4Icon))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(gameSetupDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(textFieldPlayer3Name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(staticLabelPlayer3Name)
-                    .addComponent(checkBoxPlayer3ComputerControlled))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(gameSetupDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(textFieldPlayer4Name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(staticLabelPlayer4Name)
-                    .addComponent(checkBoxPlayer2ComputerControlled2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(buttonStartGame, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(8, 8, 8))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         gameEditorDialog.setMinimumSize(new java.awt.Dimension(400, 300));
@@ -884,6 +939,72 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
                     .addComponent(buttonJailDialogRollForDoubles))
                 .addContainerGap())
         );
+
+        playerIconSelector.setSize(new java.awt.Dimension(256, 256));
+        playerIconSelector.getContentPane().setLayout(new java.awt.GridLayout(3, 3));
+
+        buttonIcon1.setIcon(new javax.swing.ImageIcon("/Users/jay/NetBeansProjects/Monoproto3/assets/player-generic.png")); // NOI18N
+        buttonIcon1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonIcon1ActionPerformed(evt);
+            }
+        });
+        playerIconSelector.getContentPane().add(buttonIcon1);
+
+        buttonIcon2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/player-sweater-top.png"))); // NOI18N
+        buttonIcon2.setToolTipText("");
+        buttonIcon2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonIcon2ActionPerformed(evt);
+            }
+        });
+        playerIconSelector.getContentPane().add(buttonIcon2);
+
+        buttonIcon3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/wealthy.png"))); // NOI18N
+        buttonIcon3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonIcon3ActionPerformed(evt);
+            }
+        });
+        playerIconSelector.getContentPane().add(buttonIcon3);
+
+        buttonIcon4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bug.png"))); // NOI18N
+        buttonIcon4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonIcon4ActionPerformed(evt);
+            }
+        });
+        playerIconSelector.getContentPane().add(buttonIcon4);
+
+        buttonIcon5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/robot2.gif"))); // NOI18N
+        buttonIcon5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonIcon5ActionPerformed(evt);
+            }
+        });
+        playerIconSelector.getContentPane().add(buttonIcon5);
+
+        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bug-log.png"))); // NOI18N
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+        playerIconSelector.getContentPane().add(jButton7);
+
+        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/i.png"))); // NOI18N
+        playerIconSelector.getContentPane().add(jButton9);
+
+        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cat.png"))); // NOI18N
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
+        playerIconSelector.getContentPane().add(jButton10);
+
+        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/worm.gif"))); // NOI18N
+        playerIconSelector.getContentPane().add(jButton11);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Monopoly Game");
@@ -2654,10 +2775,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         update();
     }//GEN-LAST:event_menuViewManuallyUpdateViewActionPerformed
 
-//GEN-FIRST:event_checkBoxPlayer2ComputerControlled2ActionPerformed
- 
-//GEN-LAST:event_checkBoxPlayer2ComputerControlled2ActionPerformed
-
     private void checkBoxPlayer3ComputerControlledActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBoxPlayer3ComputerControlledActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_checkBoxPlayer3ComputerControlledActionPerformed
@@ -2827,6 +2944,76 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         controller.forfeitManager();
 		update();
     }//GEN-LAST:event_buttonForfeitActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton10ActionPerformed
+
+	private void setPlayerIcon(int playerID, Icon inputIcon) {
+		
+		JLabel localPlayerIcon = new JLabel();
+		
+		if (playerID == 1) {
+			localPlayerIcon = iconPlayer1Position;
+			buttonPlayer1Icon.setIcon(inputIcon);
+		}
+		else if (playerID == 2) {
+			localPlayerIcon = iconPlayer2Position;
+			buttonPlayer2Icon.setIcon(inputIcon);
+		}
+		else if (playerID == 3) {
+			localPlayerIcon = iconPlayer3Position;
+			buttonPlayer3Icon.setIcon(inputIcon);
+		}
+		else if (playerID == 4) {
+			localPlayerIcon = iconPlayer4Position;
+			buttonPlayer4Icon.setIcon(inputIcon);
+		}
+		
+		localPlayerIcon.setIcon(inputIcon);
+		
+		playerIconSelector.setVisible(false);
+	}
+	
+    private void buttonIcon1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonIcon1ActionPerformed
+        setPlayerIcon(iconSelectionPlayerID, buttonIcon1.getIcon());
+    }//GEN-LAST:event_buttonIcon1ActionPerformed
+
+    private void buttonIcon4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonIcon4ActionPerformed
+        setPlayerIcon(iconSelectionPlayerID, buttonIcon4.getIcon());
+    }//GEN-LAST:event_buttonIcon4ActionPerformed
+
+    private void buttonIcon2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonIcon2ActionPerformed
+        setPlayerIcon(iconSelectionPlayerID, buttonIcon2.getIcon());
+    }//GEN-LAST:event_buttonIcon2ActionPerformed
+
+    private void checkBoxPlayer4ComputerControlledActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBoxPlayer4ComputerControlledActionPerformed
+
+    }//GEN-LAST:event_checkBoxPlayer4ComputerControlledActionPerformed
+
+    private void buttonPlayer1IconActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPlayer1IconActionPerformed
+        iconSelectionPlayerID = 1;
+		buttonIcon5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/player-icon-1.png")));
+		playerIconSelector.setVisible(true);
+    }//GEN-LAST:event_buttonPlayer1IconActionPerformed
+
+    private void buttonPlayer2IconActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPlayer2IconActionPerformed
+        iconSelectionPlayerID = 2;
+		buttonIcon5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/player-icon-2.png")));
+		playerIconSelector.setVisible(true);
+    }//GEN-LAST:event_buttonPlayer2IconActionPerformed
+
+    private void buttonIcon3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonIcon3ActionPerformed
+        setPlayerIcon(iconSelectionPlayerID, buttonIcon3.getIcon());
+    }//GEN-LAST:event_buttonIcon3ActionPerformed
+
+    private void buttonIcon5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonIcon5ActionPerformed
+        setPlayerIcon(iconSelectionPlayerID, buttonIcon5.getIcon());
+    }//GEN-LAST:event_buttonIcon5ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        //setPlayerIcon(iconSelectionPlayerID, buttonIcon7.getIcon());
+    }//GEN-LAST:event_jButton7ActionPerformed
 	// </editor-fold>
 
 	public void spaceButtonAppearanceHighlight(int spaceID) {
@@ -3025,7 +3212,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		}
 		else if (localCurrentPlayerID == 4) {
 			iconPlayer4Position.setLocation(destinationX, destinationY);
-
 		}
 	}
 
@@ -3049,9 +3235,18 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     public javax.swing.JButton buttonGameEditorUnlockRollDice1;
     public javax.swing.JButton buttonGameEditorUpdate;
     public javax.swing.JButton buttonGive1000;
+    public javax.swing.JButton buttonIcon1;
+    public javax.swing.JButton buttonIcon2;
+    public javax.swing.JButton buttonIcon3;
+    public javax.swing.JButton buttonIcon4;
+    public javax.swing.JButton buttonIcon5;
     public javax.swing.JButton buttonJailDialogPostBail;
     public javax.swing.JButton buttonJailDialogRollForDoubles;
     public javax.swing.JButton buttonJailPlayer;
+    public javax.swing.JButton buttonPlayer1Icon;
+    public javax.swing.JButton buttonPlayer2Icon;
+    public javax.swing.JButton buttonPlayer3Icon;
+    public javax.swing.JButton buttonPlayer4Icon;
     public javax.swing.JButton buttonProperties;
     public javax.swing.JButton buttonPropertyDecisionAuction;
     public javax.swing.JButton buttonPropertyDecisionPurchase;
@@ -3102,8 +3297,8 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     public javax.swing.JButton buttonStartGame;
     public javax.swing.JCheckBox checkBoxPlayer1ComputerControlled;
     public javax.swing.JCheckBox checkBoxPlayer2ComputerControlled;
-    public javax.swing.JCheckBox checkBoxPlayer2ComputerControlled2;
     public javax.swing.JCheckBox checkBoxPlayer3ComputerControlled;
+    public javax.swing.JCheckBox checkBoxPlayer4ComputerControlled;
     public javax.swing.JComboBox<String> comboBoxPlayerSelection;
     public javax.swing.JComboBox<String> comboBoxPlayersCount;
     public javax.swing.JInternalFrame controlPanelActions;
@@ -3119,7 +3314,11 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     public javax.swing.JLabel iconPlayer4Position;
     public javax.swing.JDialog improvementsDialog;
     public javax.swing.JButton jButton1;
+    public javax.swing.JButton jButton10;
+    public javax.swing.JButton jButton11;
     public javax.swing.JButton jButton2;
+    public javax.swing.JButton jButton7;
+    public javax.swing.JButton jButton9;
     public javax.swing.JLabel jLabel1;
     public javax.swing.JLabel jLabel2;
     public javax.swing.JLabel jLabel3;
@@ -3131,6 +3330,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     public javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JScrollPane jScrollPane2;
     public javax.swing.JScrollPane jScrollPane3;
+    public javax.swing.JSeparator jSeparator1;
     public javax.swing.JSeparator jSeparator3;
     public javax.swing.JSeparator jSeparator4;
     public javax.swing.JSeparator jSeparator5;
@@ -3186,6 +3386,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     public javax.swing.JMenuItem menuViewToggleExtraPadding;
     public javax.swing.JFileChooser openFileChooser;
     public javax.swing.JPanel openFileChooserPanel;
+    public javax.swing.JDialog playerIconSelector;
     public javax.swing.JFileChooser saveFileChooser;
     public javax.swing.JPanel saveFileChoserPanel;
     public javax.swing.JSpinner spinnerStartingBalance;
@@ -3198,9 +3399,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     public javax.swing.JLabel staticLabelJailTitle;
     public javax.swing.JLabel staticLabelOwnedBy;
     public javax.swing.JLabel staticLabelPlayer1Name;
-    public javax.swing.JLabel staticLabelPlayer2Name;
-    public javax.swing.JLabel staticLabelPlayer3Name;
-    public javax.swing.JLabel staticLabelPlayer4Name;
+    public javax.swing.JLabel staticLabelPlayerIcon;
     public javax.swing.JLabel staticLabelPlayerSelection;
     public javax.swing.JLabel staticLabelPlayerSelection1;
     public javax.swing.JLabel staticLabelPlayersCount;
