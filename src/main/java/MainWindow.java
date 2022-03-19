@@ -2923,7 +2923,23 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     private void buttonStartGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonStartGameActionPerformed
         controller.setIsGameActive(true);
         String inputPlayersCount = comboBoxPlayersCount.getSelectedItem().toString();
-        controller.setPlayersCount(Integer.parseInt(inputPlayersCount));
+        
+		int localPlayersCount = Integer.parseInt(inputPlayersCount);
+		controller.setPlayersCount(localPlayersCount);
+		
+		if (localPlayersCount == 1) {
+			iconPlayer2Position.setVisible(false);
+			iconPlayer3Position.setVisible(false);
+			iconPlayer4Position.setVisible(false);
+		}
+		else if (localPlayersCount == 2) {
+			iconPlayer3Position.setVisible(false);
+			iconPlayer4Position.setVisible(false);
+		}
+		else if (localPlayersCount == 3) {
+			iconPlayer4Position.setVisible(false);
+		}
+		
         gameSetupDialog.setVisible(false);
 
         board.players.get(1).setCustomName(textFieldPlayer1Name.getText());
