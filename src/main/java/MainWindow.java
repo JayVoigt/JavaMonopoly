@@ -2584,7 +2584,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		
 		if (currentPlayer.getRequiredDecisionPropertyAction() == true) {
 			if (currentPlayer.getMadeDecisionPropertyAction() == false) {
-				centerJDialog(askPropertyDecisionDialog);
+				customAppearanceJDialog(askPropertyDecisionDialog);
 				
 				lockRollDice();
 				lockEndTurn();
@@ -2609,7 +2609,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		
 		if (currentPlayer.getInitialJailTurn() == false) {
 			if (currentPlayer.getIsJailed() == true) {
-				centerJDialog(jailDialog);
+				customAppearanceJDialog(jailDialog);
 				
 				buttonJailDialogPostBail.setEnabled(true);
 				buttonJailDialogRollForDoubles.setEnabled(true);
@@ -2682,7 +2682,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     }//GEN-LAST:event_menuFileQuitActionPerformed
 
     private void menuFileNewGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuFileNewGameActionPerformed
-		centerJDialog(gameSetupDialog);
+		customAppearanceJDialog(gameSetupDialog);
 		gameSetupDialog.setVisible(true);
 		appendToDebugLog("New game dialog opened.");
     }//GEN-LAST:event_menuFileNewGameActionPerformed
@@ -2877,10 +2877,20 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		
 		inputDialog.setLocation(targetX, targetY);
 	}
+	
+	private void drawBorderJDialog(JDialog inputDialog) {
+		inputDialog.getRootPane().setBorder(BorderFactory.createLineBorder(java.awt.Color.BLACK));
+	}
+	
+	private void customAppearanceJDialog(JDialog inputDialog) {
+		centerJDialog(inputDialog);
+		drawBorderJDialog(inputDialog);
+	}
 	// </editor-fold>
 	
     private void menuEditGameEditorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuEditGameEditorActionPerformed
-		centerJDialog(gameEditorDialog);
+		customAppearanceJDialog(gameEditorDialog);
+		gameEditorDialog.getRootPane().setBorder(BorderFactory.createLineBorder(java.awt.Color.RED));
 		gameEditorDialog.setVisible(true);
 		controller.appendToGameLog("Game Editor was opened!");
     }//GEN-LAST:event_menuEditGameEditorActionPerformed
@@ -2903,7 +2913,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 
 	// <editor-fold desc="User prompts">
 	public void promptUserForPropertyDecision() {
-		centerJDialog(askPropertyDecisionDialog);
+		customAppearanceJDialog(askPropertyDecisionDialog);
 		askPropertyDecisionDialog.setVisible(true);
 	}
 	// </editor-fold>
@@ -2929,7 +2939,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 	// </editor-fold>
 	
     private void menuEditDebugToolsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuEditDebugToolsActionPerformed
-		centerJDialog(debugToolsDialog);
+		customAppearanceJDialog(debugToolsDialog);
 		debugToolsDialog.setVisible(true);
     }//GEN-LAST:event_menuEditDebugToolsActionPerformed
 
@@ -3048,7 +3058,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     }//GEN-LAST:event_buttonStartGameActionPerformed
 
     private void menuHelpAboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuHelpAboutActionPerformed
-		centerJDialog(aboutDialog);
+		customAppearanceJDialog(aboutDialog);
 		aboutDialog.setVisible(true);
     }//GEN-LAST:event_menuHelpAboutActionPerformed
 
@@ -3062,7 +3072,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     }//GEN-LAST:event_menuViewToggleExtraPaddingActionPerformed
 
     private void buttonActionImprovementsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonActionImprovementsActionPerformed
-		centerJDialog(improvementsDialog);
+		customAppearanceJDialog(improvementsDialog);
 		if (improvementsDialog.isVisible() == false) {
 			improvementsDialog.setVisible(true);
 			buttonPropertiesActionPerformed(evt);
