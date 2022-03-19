@@ -1496,7 +1496,7 @@
         <Component class="javax.swing.JLabel" name="jLabel10">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="&lt;html&gt;&#xa;&lt;/center&gt;&#xa;Created as a final project for CSCI 24000, Spring 2022.&#xa;&lt;br&gt;&#xa;Visual assets created with Aesprite.&#xa;&lt;/center&gt;&#xa;&lt;/html&gt;"/>
+            <Property name="text" type="java.lang.String" value="&lt;html&gt;&#xa;&lt;/center&gt;&#xa;Created as a final project for CSCI 24000, Spring 2022.&#xa;&lt;br&gt;&#xa;Visual assets created with Adobe Illustrator and Aesprite.&#xa;&lt;/center&gt;&#xa;&lt;/html&gt;"/>
             <Property name="toolTipText" type="java.lang.String" value=""/>
           </Properties>
         </Component>

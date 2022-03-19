@@ -1180,7 +1180,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         jLabel9.setText("by Jay Voigt");
 
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel10.setText("<html>\n</center>\nCreated as a final project for CSCI 24000, Spring 2022.\n<br>\nVisual assets created with Aesprite.\n</center>\n</html>");
+        jLabel10.setText("<html>\n</center>\nCreated as a final project for CSCI 24000, Spring 2022.\n<br>\nVisual assets created with Adobe Illustrator and Aesprite.\n</center>\n</html>");
         jLabel10.setToolTipText("");
 
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/red-x.png"))); // NOI18N
