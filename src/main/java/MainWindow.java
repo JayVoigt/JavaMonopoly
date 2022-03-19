@@ -126,7 +126,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         staticLabelPropertyDecision = new javax.swing.JLabel();
         labelPropertyName = new javax.swing.JLabel();
         labelCost = new javax.swing.JLabel();
-        aboutPane = new javax.swing.JFrame();
+        aboutPaneOld = new javax.swing.JFrame();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -166,6 +166,13 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         jButton4 = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
         jLabel6 = new javax.swing.JLabel();
+        aboutDialog = new javax.swing.JDialog();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jSeparator8 = new javax.swing.JSeparator();
+        jLabel10 = new javax.swing.JLabel();
+        jButton5 = new javax.swing.JButton();
+        jProgressBar1 = new javax.swing.JProgressBar();
         frameBoard = new javax.swing.JInternalFrame();
         jScrollPane1 = new javax.swing.JScrollPane();
         textAreaGameLog = new javax.swing.JTextArea();
@@ -292,9 +299,8 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 
         gameSetupDialog.setTitle("Game Setup");
         gameSetupDialog.setAlwaysOnTop(true);
-        gameSetupDialog.setMinimumSize(new java.awt.Dimension(400, 304));
+        gameSetupDialog.setMinimumSize(new java.awt.Dimension(400, 310));
         gameSetupDialog.setUndecorated(true);
-        gameSetupDialog.setSize(new java.awt.Dimension(400, 304));
 
         buttonStartGame.setIcon(new javax.swing.ImageIcon(getClass().getResource("/newgame.png"))); // NOI18N
         buttonStartGame.setText("Start Game");
@@ -518,11 +524,12 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        gameEditorDialog.setMinimumSize(new java.awt.Dimension(400, 300));
+        gameEditorDialog.setBounds(new java.awt.Rectangle(0, 25, 370, 280));
+        gameEditorDialog.setMinimumSize(new java.awt.Dimension(370, 280));
         gameEditorDialog.setUndecorated(true);
+        gameEditorDialog.setPreferredSize(new java.awt.Dimension(380, 280));
         gameEditorDialog.setResizable(false);
-        gameEditorDialog.setSize(new java.awt.Dimension(400, 350));
-        gameEditorDialog.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        gameEditorDialog.setSize(new java.awt.Dimension(380, 280));
 
         comboBoxPlayerSelection.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4" }));
         comboBoxPlayerSelection.addActionListener(new java.awt.event.ActionListener() {
@@ -535,17 +542,14 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
                 comboBoxPlayerSelectionPropertyChange(evt);
             }
         });
-        gameEditorDialog.getContentPane().add(comboBoxPlayerSelection, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 40, -1, -1));
 
         staticLabelPlayerSelection.setIcon(new javax.swing.ImageIcon(getClass().getResource("/player-generic.png"))); // NOI18N
         staticLabelPlayerSelection.setText("Select Player");
-        gameEditorDialog.getContentPane().add(staticLabelPlayerSelection, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, -1));
 
         staticLabelPlayerSelection1.setFont(new java.awt.Font("Helvetica Neue", 3, 18)); // NOI18N
         staticLabelPlayerSelection1.setForeground(new java.awt.Color(255, 0, 0));
         staticLabelPlayerSelection1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/matrix-anim.gif"))); // NOI18N
         staticLabelPlayerSelection1.setText("Game Editor");
-        gameEditorDialog.getContentPane().add(staticLabelPlayerSelection1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         buttonGameEditorUpdate.setForeground(new java.awt.Color(255, 0, 0));
         buttonGameEditorUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/alert.png"))); // NOI18N
@@ -555,7 +559,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
                 buttonGameEditorUpdateActionPerformed(evt);
             }
         });
-        gameEditorDialog.getContentPane().add(buttonGameEditorUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 250, -1, -1));
 
         buttonGameEditorClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/red-x.png"))); // NOI18N
         buttonGameEditorClose.setText("Close");
@@ -564,7 +567,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
                 buttonGameEditorCloseActionPerformed(evt);
             }
         });
-        gameEditorDialog.getContentPane().add(buttonGameEditorClose, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 250, -1, -1));
 
         buttonGameEditorGoBackSpace.setIcon(new javax.swing.ImageIcon(getClass().getResource("/position.png"))); // NOI18N
         buttonGameEditorGoBackSpace.setText("Go back a space");
@@ -573,7 +575,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
                 buttonGameEditorGoBackSpaceActionPerformed(evt);
             }
         });
-        gameEditorDialog.getContentPane().add(buttonGameEditorGoBackSpace, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 160, 170, -1));
 
         buttonGameEditorUnlockEndTurn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/arrow.png"))); // NOI18N
         buttonGameEditorUnlockEndTurn.setText("Unlock endTurn");
@@ -582,7 +583,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
                 buttonGameEditorUnlockEndTurnActionPerformed(evt);
             }
         });
-        gameEditorDialog.getContentPane().add(buttonGameEditorUnlockEndTurn, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 190, 170, -1));
 
         buttonGameEditorUnlockRollDice1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dice-icon.png"))); // NOI18N
         buttonGameEditorUnlockRollDice1.setText("Unlock rollDice");
@@ -591,7 +591,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
                 buttonGameEditorUnlockRollDice1ActionPerformed(evt);
             }
         });
-        gameEditorDialog.getContentPane().add(buttonGameEditorUnlockRollDice1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 170, -1));
 
         buttonGameEditorAdvanceSpace.setIcon(new javax.swing.ImageIcon(getClass().getResource("/position.png"))); // NOI18N
         buttonGameEditorAdvanceSpace.setText("Advance a space");
@@ -600,7 +599,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
                 buttonGameEditorAdvanceSpaceActionPerformed(evt);
             }
         });
-        gameEditorDialog.getContentPane().add(buttonGameEditorAdvanceSpace, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 170, -1));
 
         buttonGive1000.setIcon(new javax.swing.ImageIcon(getClass().getResource("/money.png"))); // NOI18N
         buttonGive1000.setText("Give $1000");
@@ -609,7 +607,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
                 buttonGive1000ActionPerformed(evt);
             }
         });
-        gameEditorDialog.getContentPane().add(buttonGive1000, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 170, -1));
 
         buttonDeduct1000.setIcon(new javax.swing.ImageIcon(getClass().getResource("/money.png"))); // NOI18N
         buttonDeduct1000.setText("Deduct $1000");
@@ -618,7 +615,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
                 buttonDeduct1000ActionPerformed(evt);
             }
         });
-        gameEditorDialog.getContentPane().add(buttonDeduct1000, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 100, 170, -1));
 
         buttonReleasePlayer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jail.png"))); // NOI18N
         buttonReleasePlayer.setText("Release player");
@@ -627,7 +623,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
                 buttonReleasePlayerActionPerformed(evt);
             }
         });
-        gameEditorDialog.getContentPane().add(buttonReleasePlayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 130, 170, -1));
 
         buttonJailPlayer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jail.png"))); // NOI18N
         buttonJailPlayer.setText("Jail player");
@@ -636,7 +631,82 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
                 buttonJailPlayerActionPerformed(evt);
             }
         });
-        gameEditorDialog.getContentPane().add(buttonJailPlayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 170, -1));
+
+        javax.swing.GroupLayout gameEditorDialogLayout = new javax.swing.GroupLayout(gameEditorDialog.getContentPane());
+        gameEditorDialog.getContentPane().setLayout(gameEditorDialogLayout);
+        gameEditorDialogLayout.setHorizontalGroup(
+            gameEditorDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(gameEditorDialogLayout.createSequentialGroup()
+                .addGroup(gameEditorDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(gameEditorDialogLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(staticLabelPlayerSelection1))
+                    .addGroup(gameEditorDialogLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(staticLabelPlayerSelection)
+                        .addGap(12, 12, 12)
+                        .addComponent(comboBoxPlayerSelection, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(gameEditorDialogLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(buttonGive1000, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)
+                        .addComponent(buttonDeduct1000, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(gameEditorDialogLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(buttonJailPlayer, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)
+                        .addComponent(buttonReleasePlayer, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(gameEditorDialogLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(buttonGameEditorAdvanceSpace, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)
+                        .addComponent(buttonGameEditorGoBackSpace, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(gameEditorDialogLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(buttonGameEditorUnlockRollDice1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)
+                        .addComponent(buttonGameEditorUnlockEndTurn, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(gameEditorDialogLayout.createSequentialGroup()
+                        .addGap(156, 156, 156)
+                        .addComponent(buttonGameEditorUpdate)
+                        .addGap(12, 12, 12)
+                        .addComponent(buttonGameEditorClose, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(12, Short.MAX_VALUE))
+        );
+        gameEditorDialogLayout.setVerticalGroup(
+            gameEditorDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(gameEditorDialogLayout.createSequentialGroup()
+                .addGap(6, 6, 6)
+                .addComponent(staticLabelPlayerSelection1)
+                .addGap(15, 15, 15)
+                .addGroup(gameEditorDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(gameEditorDialogLayout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(staticLabelPlayerSelection))
+                    .addComponent(comboBoxPlayerSelection, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
+                .addGroup(gameEditorDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(buttonGive1000)
+                    .addComponent(buttonDeduct1000))
+                .addGap(6, 6, 6)
+                .addGroup(gameEditorDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(buttonJailPlayer)
+                    .addComponent(buttonReleasePlayer))
+                .addGap(6, 6, 6)
+                .addGroup(gameEditorDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(buttonGameEditorAdvanceSpace)
+                    .addComponent(buttonGameEditorGoBackSpace))
+                .addGap(5, 5, 5)
+                .addGroup(gameEditorDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(buttonGameEditorUnlockRollDice1)
+                    .addGroup(gameEditorDialogLayout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(buttonGameEditorUnlockEndTurn)))
+                .addGap(37, 37, 37)
+                .addGroup(gameEditorDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(buttonGameEditorUpdate)
+                    .addComponent(buttonGameEditorClose)))
+        );
 
         saveFileChoserPanel.setSize(new java.awt.Dimension(534, 338));
 
@@ -777,7 +847,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
                 .addContainerGap())
         );
 
-        aboutPane.setSize(new java.awt.Dimension(400, 300));
+        aboutPaneOld.setSize(new java.awt.Dimension(400, 300));
 
         jLabel2.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/robot2.gif"))); // NOI18N
@@ -792,30 +862,31 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logo.png"))); // NOI18N
 
-        javax.swing.GroupLayout aboutPaneLayout = new javax.swing.GroupLayout(aboutPane.getContentPane());
-        aboutPane.getContentPane().setLayout(aboutPaneLayout);
-        aboutPaneLayout.setHorizontalGroup(
-            aboutPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(aboutPaneLayout.createSequentialGroup()
+        javax.swing.GroupLayout aboutPaneOldLayout = new javax.swing.GroupLayout(aboutPaneOld.getContentPane());
+        aboutPaneOld.getContentPane().setLayout(aboutPaneOldLayout);
+        aboutPaneOldLayout.setHorizontalGroup(
+            aboutPaneOldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(aboutPaneOldLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(aboutPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(aboutPaneLayout.createSequentialGroup()
-                        .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(aboutPaneLayout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(aboutPaneLayout.createSequentialGroup()
+                .addGroup(aboutPaneOldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(aboutPaneOldLayout.createSequentialGroup()
                         .addComponent(jLabel3)
-                        .addGap(0, 55, Short.MAX_VALUE))))
-            .addGroup(aboutPaneLayout.createSequentialGroup()
+                        .addGap(0, 55, Short.MAX_VALUE))
+                    .addGroup(aboutPaneOldLayout.createSequentialGroup()
+                        .addGroup(aboutPaneOldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(aboutPaneOldLayout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap())))
+            .addGroup(aboutPaneOldLayout.createSequentialGroup()
                 .addGap(139, 139, 139)
                 .addComponent(jLabel2)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
-        aboutPaneLayout.setVerticalGroup(
-            aboutPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, aboutPaneLayout.createSequentialGroup()
+        aboutPaneOldLayout.setVerticalGroup(
+            aboutPaneOldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, aboutPaneOldLayout.createSequentialGroup()
                 .addGap(36, 36, 36)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -893,9 +964,9 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 
         jailDialog.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         jailDialog.setAlwaysOnTop(true);
+        jailDialog.setIconImage(null);
         jailDialog.setUndecorated(true);
-        jailDialog.setPreferredSize(new java.awt.Dimension(380, 182));
-        jailDialog.setSize(new java.awt.Dimension(380, 182));
+        jailDialog.setSize(new java.awt.Dimension(380, 190));
 
         staticLabelJailTitle.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         staticLabelJailTitle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jail.png"))); // NOI18N
@@ -968,7 +1039,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         );
 
         playerIconSelector.setUndecorated(true);
-        playerIconSelector.setSize(new java.awt.Dimension(72, 72));
+        playerIconSelector.setSize(new java.awt.Dimension(256, 256));
         playerIconSelector.getContentPane().setLayout(new java.awt.GridLayout(3, 3));
 
         buttonIcon1.setIcon(new javax.swing.ImageIcon("/Users/jay/NetBeansProjects/Monoproto3/assets/player-generic.png")); // NOI18N
@@ -1096,6 +1167,61 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
                     .addComponent(jButton3)
                     .addComponent(jButton4))
                 .addContainerGap(112, Short.MAX_VALUE))
+        );
+
+        aboutDialog.setUndecorated(true);
+        aboutDialog.setSize(new java.awt.Dimension(400, 257));
+
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logo.png"))); // NOI18N
+
+        jLabel9.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/robot2.gif"))); // NOI18N
+        jLabel9.setText("by Jay Voigt");
+
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel10.setText("<html>\n</center>\nCreated as a final project for CSCI 24000, Spring 2022.\n<br>\nVisual assets created with Aesprite.\n</center>\n</html>");
+        jLabel10.setToolTipText("");
+
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/red-x.png"))); // NOI18N
+        jButton5.setText("Close");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout aboutDialogLayout = new javax.swing.GroupLayout(aboutDialog.getContentPane());
+        aboutDialog.getContentPane().setLayout(aboutDialogLayout);
+        aboutDialogLayout.setHorizontalGroup(
+            aboutDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(aboutDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(aboutDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jSeparator8)
+                    .addComponent(jLabel10)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, aboutDialogLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton5)))
+                .addContainerGap())
+        );
+        aboutDialogLayout.setVerticalGroup(
+            aboutDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(aboutDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator8, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addComponent(jButton5)
+                .addContainerGap())
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -2754,23 +2880,11 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 	}
 	// </editor-fold>
 	
-    private void comboBoxPlayerSelectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxPlayerSelectionActionPerformed
-		gameEditorPlayer = board.players.get(1 + comboBoxPlayerSelection.getSelectedIndex());
-    }//GEN-LAST:event_comboBoxPlayerSelectionActionPerformed
-
-    private void comboBoxPlayerSelectionPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_comboBoxPlayerSelectionPropertyChange
-
-    }//GEN-LAST:event_comboBoxPlayerSelectionPropertyChange
-
     private void menuEditGameEditorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuEditGameEditorActionPerformed
 		centerJDialog(gameEditorDialog);
 		gameEditorDialog.setVisible(true);
 		controller.appendToGameLog("Game Editor was opened!");
     }//GEN-LAST:event_menuEditGameEditorActionPerformed
-
-    private void buttonGameEditorCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGameEditorCloseActionPerformed
-		gameEditorDialog.setVisible(false);
-    }//GEN-LAST:event_buttonGameEditorCloseActionPerformed
 
 	// <editor-fold desc="Sound helpers">
 
@@ -2815,33 +2929,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 			debugLogFrame.setVisible(false);
 		}
     }//GEN-LAST:event_menuViewCheckBoxShowDebugLogActionPerformed
-
-	// <editor-fold desc="Game editor">
-    private void buttonGameEditorGoBackSpaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGameEditorGoBackSpaceActionPerformed
-		Player currentPlayer = board.players.get(1);
-		currentPlayer.advancePosition(-1);
-		//updateVisualPlayerIndicator(currentPlayer);
-		update();
-    }//GEN-LAST:event_buttonGameEditorGoBackSpaceActionPerformed
-
-    private void buttonGameEditorUnlockEndTurnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGameEditorUnlockEndTurnActionPerformed
-		appendToDebugLog("[Game Editor] Calling unlockNextTurn");
-		unlockEndTurn();
-		update();
-    }//GEN-LAST:event_buttonGameEditorUnlockEndTurnActionPerformed
-
-    private void buttonGameEditorUnlockRollDice1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGameEditorUnlockRollDice1ActionPerformed
-		appendToDebugLog("[Game Editor] Calling unlockDiceRoll");
-		unlockRollDice();
-		update();
-    }//GEN-LAST:event_buttonGameEditorUnlockRollDice1ActionPerformed
-
-    private void buttonGameEditorAdvanceSpaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGameEditorAdvanceSpaceActionPerformed
-		Player currentPlayer = board.players.get(1);
-		currentPlayer.advancePosition(1);
-		//updateVisualPlayerIndicator(currentPlayer);
-		update();
-    }//GEN-LAST:event_buttonGameEditorAdvanceSpaceActionPerformed
 	// </editor-fold>
 	
     private void menuEditDebugToolsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuEditDebugToolsActionPerformed
@@ -2964,7 +3051,8 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     }//GEN-LAST:event_buttonStartGameActionPerformed
 
     private void menuHelpAboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuHelpAboutActionPerformed
-		aboutPane.setVisible(true);
+		centerJDialog(aboutDialog);
+		aboutDialog.setVisible(true);
     }//GEN-LAST:event_menuHelpAboutActionPerformed
 
     private void menuViewToggleExtraPaddingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuViewToggleExtraPaddingActionPerformed
@@ -2999,37 +3087,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 			}
 		}
     }//GEN-LAST:event_buttonPropertiesActionPerformed
-
-    private void buttonDeduct1000ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDeduct1000ActionPerformed
-        gameEditorPlayer.updateCurrentBalance(-1000);
-		controller.appendToGameLog("[Game Editor]: Gave " + gameEditorPlayer.getCustomName() + " $-1000.");
-		update();
-    }//GEN-LAST:event_buttonDeduct1000ActionPerformed
-
-    private void buttonGive1000ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGive1000ActionPerformed
-        gameEditorPlayer.updateCurrentBalance(1000);
-		controller.appendToGameLog("[Game Editor]: Gave " + gameEditorPlayer.getCustomName() + " $1000.");
-		update();
-    }//GEN-LAST:event_buttonGive1000ActionPerformed
-
-    private void buttonJailPlayerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonJailPlayerActionPerformed
-        gameEditorPlayer.setIsJailed(true);
-		gameEditorPlayer.setInitialJailTurn(true);
-		controller.appendToGameLog("[Game Editor]: Jailed " + gameEditorPlayer.getCustomName() + ".");
-		update();
-    }//GEN-LAST:event_buttonJailPlayerActionPerformed
-
-    private void buttonReleasePlayerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonReleasePlayerActionPerformed
-        gameEditorPlayer.setIsJailed(false);
-		gameEditorPlayer.setInitialJailTurn(false);
-		controller.appendToGameLog("[Game Editor]: Released " + gameEditorPlayer.getCustomName() + " from jail.");
-		update();
-    }//GEN-LAST:event_buttonReleasePlayerActionPerformed
-
-    private void buttonGameEditorUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGameEditorUpdateActionPerformed
-		controller.initialEvaluator();
-		update();
-    }//GEN-LAST:event_buttonGameEditorUpdateActionPerformed
 
     private void buttonJailDialogPostBailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonJailDialogPostBailActionPerformed
         controller.playerDecisionJailPostBail();
@@ -3138,6 +3195,80 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     private void buttonJailDialogUseGOOJFCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonJailDialogUseGOOJFCActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_buttonJailDialogUseGOOJFCActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        aboutDialog.setVisible(false);
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void buttonJailPlayerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonJailPlayerActionPerformed
+        gameEditorPlayer.setIsJailed(true);
+        gameEditorPlayer.setInitialJailTurn(true);
+        controller.appendToGameLog("[Game Editor]: Jailed " + gameEditorPlayer.getCustomName() + ".");
+        update();
+    }//GEN-LAST:event_buttonJailPlayerActionPerformed
+
+    private void buttonReleasePlayerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonReleasePlayerActionPerformed
+        gameEditorPlayer.setIsJailed(false);
+        gameEditorPlayer.setInitialJailTurn(false);
+        controller.appendToGameLog("[Game Editor]: Released " + gameEditorPlayer.getCustomName() + " from jail.");
+        update();
+    }//GEN-LAST:event_buttonReleasePlayerActionPerformed
+
+    private void buttonDeduct1000ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDeduct1000ActionPerformed
+        gameEditorPlayer.updateCurrentBalance(-1000);
+        controller.appendToGameLog("[Game Editor]: Gave " + gameEditorPlayer.getCustomName() + " $-1000.");
+        update();
+    }//GEN-LAST:event_buttonDeduct1000ActionPerformed
+
+    private void buttonGive1000ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGive1000ActionPerformed
+        gameEditorPlayer.updateCurrentBalance(1000);
+        controller.appendToGameLog("[Game Editor]: Gave " + gameEditorPlayer.getCustomName() + " $1000.");
+        update();
+    }//GEN-LAST:event_buttonGive1000ActionPerformed
+
+    private void buttonGameEditorAdvanceSpaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGameEditorAdvanceSpaceActionPerformed
+        Player currentPlayer = board.players.get(1);
+        currentPlayer.advancePosition(1);
+        //updateVisualPlayerIndicator(currentPlayer);
+        update();
+    }//GEN-LAST:event_buttonGameEditorAdvanceSpaceActionPerformed
+
+    private void buttonGameEditorUnlockRollDice1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGameEditorUnlockRollDice1ActionPerformed
+        appendToDebugLog("[Game Editor] Calling unlockDiceRoll");
+        unlockRollDice();
+        update();
+    }//GEN-LAST:event_buttonGameEditorUnlockRollDice1ActionPerformed
+
+    private void buttonGameEditorUnlockEndTurnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGameEditorUnlockEndTurnActionPerformed
+        appendToDebugLog("[Game Editor] Calling unlockNextTurn");
+        unlockEndTurn();
+        update();
+    }//GEN-LAST:event_buttonGameEditorUnlockEndTurnActionPerformed
+
+	// <editor-fold desc="Game editor">
+    private void buttonGameEditorGoBackSpaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGameEditorGoBackSpaceActionPerformed
+        Player currentPlayer = board.players.get(1);
+        currentPlayer.advancePosition(-1);
+        //updateVisualPlayerIndicator(currentPlayer);
+        update();
+    }//GEN-LAST:event_buttonGameEditorGoBackSpaceActionPerformed
+
+    private void buttonGameEditorCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGameEditorCloseActionPerformed
+        gameEditorDialog.setVisible(false);
+    }//GEN-LAST:event_buttonGameEditorCloseActionPerformed
+
+    private void buttonGameEditorUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGameEditorUpdateActionPerformed
+        controller.initialEvaluator();
+        update();
+    }//GEN-LAST:event_buttonGameEditorUpdateActionPerformed
+
+    private void comboBoxPlayerSelectionPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_comboBoxPlayerSelectionPropertyChange
+
+    }//GEN-LAST:event_comboBoxPlayerSelectionPropertyChange
+
+    private void comboBoxPlayerSelectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxPlayerSelectionActionPerformed
+        gameEditorPlayer = board.players.get(1 + comboBoxPlayerSelection.getSelectedIndex());
+    }//GEN-LAST:event_comboBoxPlayerSelectionActionPerformed
 	// </editor-fold>
 
 	public void spaceButtonAppearanceHighlight(int spaceID) {
@@ -3343,7 +3474,8 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 
 	//<editor-fold desc="Variables declaration (Swing)">
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JFrame aboutPane;
+    public javax.swing.JDialog aboutDialog;
+    public javax.swing.JFrame aboutPaneOld;
     public javax.swing.JDialog askPropertyDecisionDialog;
     public javax.swing.JButton buttonActionImprovements;
     public javax.swing.JButton buttonActionImprovements1;
@@ -3448,16 +3580,21 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     public javax.swing.JButton jButton2;
     public javax.swing.JButton jButton3;
     public javax.swing.JButton jButton4;
+    public javax.swing.JButton jButton5;
     public javax.swing.JLabel jLabel1;
+    public javax.swing.JLabel jLabel10;
     public javax.swing.JLabel jLabel2;
     public javax.swing.JLabel jLabel3;
     public javax.swing.JLabel jLabel4;
     public javax.swing.JLabel jLabel5;
     public javax.swing.JLabel jLabel6;
     public javax.swing.JLabel jLabel7;
+    public javax.swing.JLabel jLabel8;
+    public javax.swing.JLabel jLabel9;
     public javax.swing.JMenuBar jMenuBar1;
     public javax.swing.JPanel jPanel1;
     public javax.swing.JPopupMenu jPopupMenu1;
+    public javax.swing.JProgressBar jProgressBar1;
     public javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JScrollPane jScrollPane2;
     public javax.swing.JScrollPane jScrollPane3;
@@ -3468,6 +3605,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     public javax.swing.JSeparator jSeparator5;
     public javax.swing.JSeparator jSeparator6;
     public javax.swing.JSeparator jSeparator7;
+    public javax.swing.JSeparator jSeparator8;
     public javax.swing.JDialog jailDialog;
     public javax.swing.JLabel labelBoardImage;
     public javax.swing.JLabel labelConsecutiveJailedTurns;
