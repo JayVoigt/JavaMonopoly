@@ -1442,7 +1442,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 
         buttonSpace0.setBackground(new java.awt.Color(249, 249, 249));
         buttonSpace0.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
-        buttonSpace0.setText("<html><center>GO</center></html>");
         buttonSpace0.setContentAreaFilled(false);
         buttonSpace0.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonSpace0.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -1457,7 +1456,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonSpace1.setBackground(new java.awt.Color(102, 51, 0));
         buttonSpace1.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         buttonSpace1.setForeground(new java.awt.Color(255, 255, 255));
-        buttonSpace1.setText("jButton1");
         buttonSpace1.setContentAreaFilled(false);
         buttonSpace1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonSpace1.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -1471,7 +1469,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 
         buttonSpace2.setBackground(new java.awt.Color(204, 255, 255));
         buttonSpace2.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
-        buttonSpace2.setText("jButton1");
         buttonSpace2.setContentAreaFilled(false);
         buttonSpace2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonSpace2.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -1486,7 +1483,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonSpace3.setBackground(new java.awt.Color(102, 51, 0));
         buttonSpace3.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         buttonSpace3.setForeground(new java.awt.Color(255, 255, 255));
-        buttonSpace3.setText("jButton1");
         buttonSpace3.setContentAreaFilled(false);
         buttonSpace3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonSpace3.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -1500,7 +1496,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 
         buttonSpace4.setBackground(new java.awt.Color(249, 249, 249));
         buttonSpace4.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
-        buttonSpace4.setText("jButton1");
         buttonSpace4.setContentAreaFilled(false);
         buttonSpace4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonSpace4.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -1515,7 +1510,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonSpace5.setBackground(new java.awt.Color(51, 51, 51));
         buttonSpace5.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         buttonSpace5.setForeground(new java.awt.Color(255, 255, 255));
-        buttonSpace5.setText("jButton1");
         buttonSpace5.setContentAreaFilled(false);
         buttonSpace5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonSpace5.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -1529,7 +1523,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 
         buttonSpace6.setBackground(new java.awt.Color(153, 204, 255));
         buttonSpace6.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
-        buttonSpace6.setText("jButton1");
         buttonSpace6.setContentAreaFilled(false);
         buttonSpace6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonSpace6.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -1556,7 +1549,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 
         buttonSpace8.setBackground(new java.awt.Color(153, 204, 255));
         buttonSpace8.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
-        buttonSpace8.setText("jButton1");
         buttonSpace8.setContentAreaFilled(false);
         buttonSpace8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonSpace8.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -1570,7 +1562,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 
         buttonSpace9.setBackground(new java.awt.Color(153, 204, 255));
         buttonSpace9.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
-        buttonSpace9.setText("jButton1");
         buttonSpace9.setContentAreaFilled(false);
         buttonSpace9.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonSpace9.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -1584,7 +1575,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 
         buttonSpace10.setBackground(new java.awt.Color(204, 204, 204));
         buttonSpace10.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
-        buttonSpace10.setText("jButton1");
         buttonSpace10.setContentAreaFilled(false);
         buttonSpace10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonSpace10.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -1598,7 +1588,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 
         buttonSpace11.setBackground(new java.awt.Color(255, 102, 153));
         buttonSpace11.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
-        buttonSpace11.setText("jButton1");
         buttonSpace11.setContentAreaFilled(false);
         buttonSpace11.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonSpace11.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -1612,7 +1601,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 
         buttonSpace12.setBackground(new java.awt.Color(249, 249, 249));
         buttonSpace12.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
-        buttonSpace12.setText("jButton1");
         buttonSpace12.setContentAreaFilled(false);
         buttonSpace12.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonSpace12.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -1626,7 +1614,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 
         buttonSpace13.setBackground(new java.awt.Color(255, 102, 153));
         buttonSpace13.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
-        buttonSpace13.setText("jButton1");
         buttonSpace13.setContentAreaFilled(false);
         buttonSpace13.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonSpace13.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -1640,7 +1627,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 
         buttonSpace14.setBackground(new java.awt.Color(255, 102, 153));
         buttonSpace14.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
-        buttonSpace14.setText("jButton1");
         buttonSpace14.setContentAreaFilled(false);
         buttonSpace14.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonSpace14.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -1655,7 +1641,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonSpace15.setBackground(new java.awt.Color(51, 51, 51));
         buttonSpace15.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         buttonSpace15.setForeground(new java.awt.Color(255, 255, 255));
-        buttonSpace15.setText("jButton1");
         buttonSpace15.setContentAreaFilled(false);
         buttonSpace15.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonSpace15.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -1669,7 +1654,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 
         buttonSpace16.setBackground(new java.awt.Color(255, 153, 0));
         buttonSpace16.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
-        buttonSpace16.setText("jButton1");
         buttonSpace16.setContentAreaFilled(false);
         buttonSpace16.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonSpace16.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -1683,7 +1667,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 
         buttonSpace17.setBackground(new java.awt.Color(204, 255, 255));
         buttonSpace17.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
-        buttonSpace17.setText("jButton1");
         buttonSpace17.setContentAreaFilled(false);
         buttonSpace17.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonSpace17.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -1697,7 +1680,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 
         buttonSpace18.setBackground(new java.awt.Color(255, 153, 0));
         buttonSpace18.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
-        buttonSpace18.setText("jButton1");
         buttonSpace18.setContentAreaFilled(false);
         buttonSpace18.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonSpace18.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -1711,7 +1693,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 
         buttonSpace19.setBackground(new java.awt.Color(255, 153, 0));
         buttonSpace19.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
-        buttonSpace19.setText("jButton1");
         buttonSpace19.setContentAreaFilled(false);
         buttonSpace19.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonSpace19.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -1725,7 +1706,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 
         buttonSpace20.setBackground(new java.awt.Color(249, 249, 249));
         buttonSpace20.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
-        buttonSpace20.setText("jButton1");
         buttonSpace20.setContentAreaFilled(false);
         buttonSpace20.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonSpace20.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -1745,7 +1725,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonSpace21.setBackground(new java.awt.Color(255, 102, 102));
         buttonSpace21.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         buttonSpace21.setForeground(new java.awt.Color(255, 255, 255));
-        buttonSpace21.setText("jButton1");
         buttonSpace21.setContentAreaFilled(false);
         buttonSpace21.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonSpace21.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -1759,7 +1738,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 
         buttonSpace22.setBackground(new java.awt.Color(255, 204, 153));
         buttonSpace22.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
-        buttonSpace22.setText("jButton1");
         buttonSpace22.setContentAreaFilled(false);
         buttonSpace22.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonSpace22.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -1774,7 +1752,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonSpace23.setBackground(new java.awt.Color(255, 101, 101));
         buttonSpace23.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         buttonSpace23.setForeground(new java.awt.Color(255, 255, 255));
-        buttonSpace23.setText("jButton1");
         buttonSpace23.setContentAreaFilled(false);
         buttonSpace23.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonSpace23.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -1789,7 +1766,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonSpace24.setBackground(new java.awt.Color(255, 102, 102));
         buttonSpace24.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         buttonSpace24.setForeground(new java.awt.Color(255, 255, 255));
-        buttonSpace24.setText("jButton1");
         buttonSpace24.setContentAreaFilled(false);
         buttonSpace24.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonSpace24.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -1804,7 +1780,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonSpace25.setBackground(new java.awt.Color(51, 51, 51));
         buttonSpace25.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         buttonSpace25.setForeground(new java.awt.Color(255, 255, 255));
-        buttonSpace25.setText("jButton1");
         buttonSpace25.setContentAreaFilled(false);
         buttonSpace25.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonSpace25.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -1818,7 +1793,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 
         buttonSpace26.setBackground(new java.awt.Color(255, 255, 51));
         buttonSpace26.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
-        buttonSpace26.setText("jButton1");
         buttonSpace26.setContentAreaFilled(false);
         buttonSpace26.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonSpace26.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -1832,7 +1806,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 
         buttonSpace27.setBackground(new java.awt.Color(255, 255, 51));
         buttonSpace27.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
-        buttonSpace27.setText("jButton1");
         buttonSpace27.setContentAreaFilled(false);
         buttonSpace27.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonSpace27.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -1846,7 +1819,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 
         buttonSpace28.setBackground(new java.awt.Color(249, 249, 249));
         buttonSpace28.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
-        buttonSpace28.setText("jButton1");
         buttonSpace28.setContentAreaFilled(false);
         buttonSpace28.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonSpace28.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -1860,7 +1832,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 
         buttonSpace29.setBackground(new java.awt.Color(255, 255, 51));
         buttonSpace29.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
-        buttonSpace29.setText("jButton1");
         buttonSpace29.setContentAreaFilled(false);
         buttonSpace29.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonSpace29.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -1874,7 +1845,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 
         buttonSpace30.setBackground(new java.awt.Color(204, 204, 204));
         buttonSpace30.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
-        buttonSpace30.setText("jButton1");
         buttonSpace30.setContentAreaFilled(false);
         buttonSpace30.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonSpace30.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -1889,7 +1859,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonSpace31.setBackground(new java.awt.Color(0, 153, 0));
         buttonSpace31.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         buttonSpace31.setForeground(new java.awt.Color(255, 255, 255));
-        buttonSpace31.setText("jButton1");
         buttonSpace31.setContentAreaFilled(false);
         buttonSpace31.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonSpace31.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -1904,7 +1873,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonSpace32.setBackground(new java.awt.Color(0, 153, 0));
         buttonSpace32.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         buttonSpace32.setForeground(new java.awt.Color(255, 255, 255));
-        buttonSpace32.setText("jButton1");
         buttonSpace32.setContentAreaFilled(false);
         buttonSpace32.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonSpace32.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -1918,7 +1886,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 
         buttonSpace33.setBackground(new java.awt.Color(204, 255, 255));
         buttonSpace33.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
-        buttonSpace33.setText("jButton1");
         buttonSpace33.setContentAreaFilled(false);
         buttonSpace33.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonSpace33.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -1933,7 +1900,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonSpace34.setBackground(new java.awt.Color(0, 153, 0));
         buttonSpace34.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         buttonSpace34.setForeground(new java.awt.Color(255, 255, 255));
-        buttonSpace34.setText("jButton1");
         buttonSpace34.setContentAreaFilled(false);
         buttonSpace34.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonSpace34.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -1948,7 +1914,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonSpace35.setBackground(new java.awt.Color(51, 51, 51));
         buttonSpace35.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         buttonSpace35.setForeground(new java.awt.Color(255, 255, 255));
-        buttonSpace35.setText("jButton1");
         buttonSpace35.setContentAreaFilled(false);
         buttonSpace35.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonSpace35.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -1962,7 +1927,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 
         buttonSpace36.setBackground(new java.awt.Color(255, 204, 153));
         buttonSpace36.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
-        buttonSpace36.setText("jButton1");
         buttonSpace36.setContentAreaFilled(false);
         buttonSpace36.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonSpace36.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -1977,7 +1941,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonSpace37.setBackground(new java.awt.Color(0, 51, 153));
         buttonSpace37.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         buttonSpace37.setForeground(new java.awt.Color(255, 255, 255));
-        buttonSpace37.setText("jButton1");
         buttonSpace37.setContentAreaFilled(false);
         buttonSpace37.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonSpace37.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -1991,7 +1954,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 
         buttonSpace38.setBackground(new java.awt.Color(249, 249, 249));
         buttonSpace38.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
-        buttonSpace38.setText("jButton1");
         buttonSpace38.setContentAreaFilled(false);
         buttonSpace38.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonSpace38.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -2006,7 +1968,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonSpace39.setBackground(new java.awt.Color(0, 51, 153));
         buttonSpace39.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         buttonSpace39.setForeground(new java.awt.Color(255, 255, 255));
-        buttonSpace39.setText("jButton1");
         buttonSpace39.setContentAreaFilled(false);
         buttonSpace39.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonSpace39.setMargin(new java.awt.Insets(1, 1, 1, 1));
