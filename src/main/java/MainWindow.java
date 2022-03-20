@@ -526,7 +526,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         gameEditorDialog.setBounds(new java.awt.Rectangle(0, 25, 370, 280));
         gameEditorDialog.setMinimumSize(new java.awt.Dimension(370, 280));
         gameEditorDialog.setUndecorated(true);
-        gameEditorDialog.setPreferredSize(new java.awt.Dimension(380, 280));
         gameEditorDialog.setResizable(false);
         gameEditorDialog.setSize(new java.awt.Dimension(380, 280));
 
@@ -1225,7 +1224,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Monopoly Game");
-        setBackground(new java.awt.Color(255, 255, 255));
 
         frameBoard.setTitle("Board");
         frameBoard.setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/board.png"))); // NOI18N
@@ -1604,6 +1602,14 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonSpace12.setContentAreaFilled(false);
         buttonSpace12.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonSpace12.setMargin(new java.awt.Insets(1, 1, 1, 1));
+        buttonSpace12.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                buttonSpace12MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                buttonSpace12MouseExited(evt);
+            }
+        });
         buttonSpace12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonSpace12ActionPerformed(evt);
@@ -1822,6 +1828,14 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonSpace28.setContentAreaFilled(false);
         buttonSpace28.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonSpace28.setMargin(new java.awt.Insets(1, 1, 1, 1));
+        buttonSpace28.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                buttonSpace28MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                buttonSpace28MouseExited(evt);
+            }
+        });
         buttonSpace28.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonSpace28ActionPerformed(evt);
@@ -3237,6 +3251,22 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     private void comboBoxPlayerSelectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxPlayerSelectionActionPerformed
 		gameEditorPlayer = board.players.get(1 + comboBoxPlayerSelection.getSelectedIndex());
     }//GEN-LAST:event_comboBoxPlayerSelectionActionPerformed
+
+    private void buttonSpace12MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonSpace12MouseEntered
+        buttonSpace12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/electric-company-anim.gif")));
+    }//GEN-LAST:event_buttonSpace12MouseEntered
+
+    private void buttonSpace12MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonSpace12MouseExited
+        buttonSpace12.setIcon(null);
+    }//GEN-LAST:event_buttonSpace12MouseExited
+
+    private void buttonSpace28MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonSpace28MouseEntered
+		buttonSpace28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/waterworks-anim.gif")));
+    }//GEN-LAST:event_buttonSpace28MouseEntered
+
+    private void buttonSpace28MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonSpace28MouseExited
+        buttonSpace28.setIcon(null);
+    }//GEN-LAST:event_buttonSpace28MouseExited
 	// </editor-fold>
 
 	public void spaceButtonAppearanceHighlight(int spaceID) {
