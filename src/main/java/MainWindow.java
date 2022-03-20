@@ -31,6 +31,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 	
 	ArrayList<JButton> spaceButtons;
 	ArrayList<javax.swing.ImageIcon> diceIcons;
+	ArrayList<JDialog> jDialogs;
 	
 	Player currentPlayer;
 	
@@ -46,6 +47,8 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		} catch (Exception e) {
 		}
 		initComponents();
+		
+		jDialogs = new ArrayList<>();
 		
 		board = inputBoard;
 		controller = new GameLogicController(board);
@@ -1224,6 +1227,11 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Monopoly Game");
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentMoved(java.awt.event.ComponentEvent evt) {
+                formComponentMoved(evt);
+            }
+        });
 
         frameBoard.setTitle("Board");
         frameBoard.setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/board.png"))); // NOI18N
@@ -1971,6 +1979,14 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonSpace38.setContentAreaFilled(false);
         buttonSpace38.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonSpace38.setMargin(new java.awt.Insets(1, 1, 1, 1));
+        buttonSpace38.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                buttonSpace38MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                buttonSpace38MouseExited(evt);
+            }
+        });
         buttonSpace38.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonSpace38ActionPerformed(evt);
@@ -2389,6 +2405,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		updateButtonLockStates();
 		gameInactiveUILocker();
 		updateDiceView();
+		updateCustomSpaceAppearances();
 		
 		for (int i = 1; i <= 4; i++) {
 			updateVisualPlayerIndicator(board.players.get(i));
@@ -2536,6 +2553,17 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		diceIcons.add(new javax.swing.ImageIcon(getClass().getResource("/die-50px-4pip.png")));
 		diceIcons.add(new javax.swing.ImageIcon(getClass().getResource("/die-50px-5pip.png")));
 		diceIcons.add(new javax.swing.ImageIcon(getClass().getResource("/die-50px-6pip.png")));
+		
+		jDialogs.add(gameSetupDialog);
+		jDialogs.add(gameEditorDialog);
+		jDialogs.add(debugToolsDialog);
+		jDialogs.add(askPropertyDecisionDialog);
+		jDialogs.add(improvementsDialog);
+		jDialogs.add(statisticsDialog);
+		jDialogs.add(jailDialog);
+		jDialogs.add(playerIconSelector);
+		jDialogs.add(mortgageDialog);
+		jDialogs.add(aboutDialog);
 	}
 	
 	private void initButtonAppearance() {
@@ -2573,6 +2601,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 					labelCost.setIcon(new javax.swing.ImageIcon(getClass().getResource("/money.png")));
 				}
 				
+				customAppearanceJDialog(askPropertyDecisionDialog);
 				askPropertyDecisionDialog.setVisible(true);
 			}
 		}
@@ -2613,6 +2642,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 				lockRollDice();
 				lockEndTurn();
 				
+				customAppearanceJDialog(jailDialog);
 				jailDialog.setVisible(true);
 			}
 		}
@@ -2625,6 +2655,17 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 	private void readyUIForNextPlayer() {
 		for (int i = 0; i < 40; i++) {
 			spaceButtonAppearanceReset(i);
+		}
+	}
+	
+	private void updateCustomSpaceAppearances() {
+		Property localProperty = (Property) board.spaces.get(12);
+		
+		if (localProperty.getIsMortgaged() == false) {
+			buttonSpace12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/electric-company-mortgaged.png")));
+		}
+		else {
+			buttonSpace12.setIcon(null);
 		}
 	}
 	// </editor-fold>
@@ -2836,8 +2877,9 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 
 	// <editor-fold desc="Custom Swing helpers">
 	private void centerJDialog(JDialog inputDialog) {
-		int referenceX = frameBoard.getX();
-		int referenceY = frameBoard.getY();
+		
+		int referenceX = frameBoard.getLocationOnScreen().x;
+		int referenceY = frameBoard.getLocationOnScreen().y;
 		int referenceWidth = frameBoard.getWidth();
 		int referenceHeight = frameBoard.getHeight();
 		
@@ -2854,7 +2896,12 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 	}
 	
 	private void drawBorderJDialog(JDialog inputDialog) {
-		inputDialog.getRootPane().setBorder(BorderFactory.createLineBorder(java.awt.Color.BLACK));
+		if (inputDialog.equals(gameEditorDialog)) {
+			gameEditorDialog.getRootPane().setBorder(BorderFactory.createLineBorder(java.awt.Color.RED));
+		}
+		else {
+			inputDialog.getRootPane().setBorder(BorderFactory.createLineBorder(java.awt.Color.BLACK));
+		}
 	}
 	
 	private void customAppearanceJDialog(JDialog inputDialog) {
@@ -2865,7 +2912,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 	
     private void menuEditGameEditorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuEditGameEditorActionPerformed
 		customAppearanceJDialog(gameEditorDialog);
-		gameEditorDialog.getRootPane().setBorder(BorderFactory.createLineBorder(java.awt.Color.RED));
+		
 		gameEditorDialog.setVisible(true);
 		controller.appendToGameLog("Game Editor was opened!");
     }//GEN-LAST:event_menuEditGameEditorActionPerformed
@@ -3034,6 +3081,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 
     private void menuHelpAboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuHelpAboutActionPerformed
 		customAppearanceJDialog(aboutDialog);
+		aboutDialog.setLocation(frameBoard.getLocationOnScreen().x, frameBoard.getLocationOnScreen().y);
 		aboutDialog.setVisible(true);
     }//GEN-LAST:event_menuHelpAboutActionPerformed
 
@@ -3267,6 +3315,23 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     private void buttonSpace28MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonSpace28MouseExited
         buttonSpace28.setIcon(null);
     }//GEN-LAST:event_buttonSpace28MouseExited
+
+    private void buttonSpace38MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonSpace38MouseEntered
+		buttonSpace38.setIcon(new javax.swing.ImageIcon(getClass().getResource("/luxury-tax-anim.gif")));
+    }//GEN-LAST:event_buttonSpace38MouseEntered
+
+    private void buttonSpace38MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonSpace38MouseExited
+        buttonSpace38.setIcon(null);
+    }//GEN-LAST:event_buttonSpace38MouseExited
+
+    private void formComponentMoved(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentMoved
+        
+		for (JDialog d : jDialogs) {
+			customAppearanceJDialog(d);
+			d.requestFocus();
+		}
+		
+    }//GEN-LAST:event_formComponentMoved
 	// </editor-fold>
 
 	public void spaceButtonAppearanceHighlight(int spaceID) {
