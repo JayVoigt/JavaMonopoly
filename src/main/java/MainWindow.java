@@ -1249,6 +1249,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         frameBoard.setVisible(true);
         frameBoard.getContentPane().setLayout(null);
 
+        jScrollPane1.setBorder(null);
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         jScrollPane1.setAutoscrolls(true);
@@ -1258,6 +1259,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         textAreaGameLog.setColumns(20);
         textAreaGameLog.setLineWrap(true);
         textAreaGameLog.setRows(5);
+        textAreaGameLog.setBorder(null);
         textAreaGameLog.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jScrollPane1.setViewportView(textAreaGameLog);
 
@@ -1265,7 +1267,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         jScrollPane1.setBounds(160, 390, 660, 430);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel1.setLayout(null);
 
         labelOwnedBy.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
@@ -1732,6 +1733,9 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonSpace20.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 buttonSpace20MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                buttonSpace20MouseExited(evt);
             }
         });
         buttonSpace20.addActionListener(new java.awt.event.ActionListener() {
@@ -2989,7 +2993,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 	// </editor-fold>
 	
     private void buttonSpace20MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonSpace20MouseEntered
-
+		buttonSpace20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/free-parking-anim.gif")));
     }//GEN-LAST:event_buttonSpace20MouseEntered
 
     private void menuViewCheckBoxShowDebugLogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuViewCheckBoxShowDebugLogActionPerformed
@@ -3374,6 +3378,10 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		}
 		
     }//GEN-LAST:event_formComponentMoved
+
+    private void buttonSpace20MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonSpace20MouseExited
+        buttonSpace20.setIcon(null);
+    }//GEN-LAST:event_buttonSpace20MouseExited
 	// </editor-fold>
 
 	public void spaceButtonAppearanceHighlight(int spaceID) {
