@@ -2529,7 +2529,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 			lockEndTurn();
 		}
 	}
-	
+
 	private void initInfoUIForCurrentPlayer() {
 		Player currentPlayer = board.players.get(board.getCurrentPlayerID());
 		labelCurrentPlayer.setText(currentPlayer.getCustomName());
@@ -2567,20 +2567,20 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		else {
 			labelCurrentPlayerIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/wealthy.png")));
 		}
-		
+
 		appendToDebugLog("[initUIForCurrentPlayer] Current player: " + currentPlayer.getCustomName());
 	}
-	
+
 	private void updateButtonLockStates() {
 		currentPlayer = board.players.get(board.getCurrentPlayerID());
-		
+
 		if (currentPlayer.getActionLockedEndTurn() == false) {
 			unlockEndTurn();
 		}
 		else {
 			lockEndTurn();
 		}
-		
+
 		if (currentPlayer.getActionLockedRollDice() == false) {
 			unlockRollDice();
 		}
@@ -2588,26 +2588,26 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 			lockRollDice();
 		}
 	}
-	
+
 	private void customInitComponents() {
-		
+
 		textFieldPlayer1Name.setEnabled(true);
 		textFieldPlayer2Name.setEnabled(false);
 		textFieldPlayer3Name.setEnabled(false);
 		textFieldPlayer4Name.setEnabled(false);
-		
+
 		buttonEndTurn.setEnabled(false);
 		buttonRollDice.setEnabled(false);
-		
+
 		spinnerStartingBalance.setValue(1500);
-		
+
 		debugLogFrame.setVisible(false);
 		menuViewCheckBoxShowDebugLog.setState(false);
-		
+
 		labelBoardImage.setSize(960, 960);
-		
+
 		spaceButtons = new ArrayList<JButton>();
-		
+
 		spaceButtons.add(buttonSpace0);
 		spaceButtons.add(buttonSpace1);
 		spaceButtons.add(buttonSpace2);
@@ -2648,9 +2648,9 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		spaceButtons.add(buttonSpace37);
 		spaceButtons.add(buttonSpace38);
 		spaceButtons.add(buttonSpace39);
-		
+
 		diceIcons = new ArrayList<javax.swing.ImageIcon>();
-		
+
 		diceIcons.add(new javax.swing.ImageIcon(getClass().getResource("/die-50px-0pip.png")));
 		diceIcons.add(new javax.swing.ImageIcon(getClass().getResource("/die-50px-1pip.png")));
 		diceIcons.add(new javax.swing.ImageIcon(getClass().getResource("/die-50px-2pip.png")));
@@ -2658,7 +2658,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		diceIcons.add(new javax.swing.ImageIcon(getClass().getResource("/die-50px-4pip.png")));
 		diceIcons.add(new javax.swing.ImageIcon(getClass().getResource("/die-50px-5pip.png")));
 		diceIcons.add(new javax.swing.ImageIcon(getClass().getResource("/die-50px-6pip.png")));
-		
+
 		jDialogs.add(gameSetupDialog);
 		jDialogs.add(gameEditorDialog);
 		jDialogs.add(debugToolsDialog);
@@ -2671,7 +2671,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		jDialogs.add(aboutDialog);
 		jDialogs.add(forfeitDialog);
 	}
-	
+
 	private void initButtonAppearance() {
 
 		// Set text in all space buttons to blank
@@ -2679,58 +2679,58 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 			b.setText("");
 		}
 	}
-	
+
 	private void updateDiceView() {
 		int die1Value = currentPlayer.getDie1();
 		int die2Value = currentPlayer.getDie2();
-		
+
 		labelDie1.setIcon(diceIcons.get(die1Value));
 		labelDie2.setIcon(diceIcons.get(die2Value));
 	}
-	
+
 	private void updatePromptPropertyDecision() {
 		askPropertyDecisionDialog.setVisible(false);
-		
+
 		if (currentPlayer.getRequiredDecisionPropertyAction() == true) {
 			if (currentPlayer.getMadeDecisionPropertyAction() == false) {
 				customAppearanceJDialog(askPropertyDecisionDialog);
-				
+
 				lockRollDice();
 				lockEndTurn();
-				
+
 				if (board.spaces.get(currentPlayer.getCurrentPosition()).getSpaceType() == Space.spaceTypeKeys.property) {
 					Property localProperty = (Property) board.spaces.get(currentPlayer.getCurrentPosition());
-					
+
 					labelPropertyName.setText(localProperty.getFriendlyName());
 					labelPropertyName.setIcon(new javax.swing.ImageIcon(getClass().getResource("/properties.png")));
 					labelCost.setText("$" + localProperty.getPurchaseCost());
 					labelCost.setIcon(new javax.swing.ImageIcon(getClass().getResource("/money.png")));
 				}
-				
+
 				customAppearanceJDialog(askPropertyDecisionDialog);
 				askPropertyDecisionDialog.setVisible(true);
 			}
 		}
 	}
-	
+
 	private void updatePromptPostBailDecision() {
 		jailDialog.setVisible(false);
 		jailDialog.pack();
-		
+
 		if (currentPlayer.getInitialJailTurn() == false) {
 			if (currentPlayer.getIsJailed() == true) {
 				customAppearanceJDialog(jailDialog);
-				
+
 				buttonJailDialogPostBail.setEnabled(true);
 				buttonJailDialogRollForDoubles.setEnabled(true);
-				
+
 				if (currentPlayer.getGetOutOfJailFreeCardCount() > 0) {
 					buttonJailDialogUseGOOJFC.setEnabled(true);
 				}
 				else {
 					buttonJailDialogUseGOOJFC.setEnabled(false);
 				}
-				
+
 				int consecutiveJailedTurns = currentPlayer.getConsecutiveTurnsJailed();
 
 				// Use (turn/turns) depending on grammatical context
@@ -2740,33 +2740,33 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 				else {
 					labelConsecutiveJailedTurns.setText("You have been jailed for " + consecutiveJailedTurns + " turns.");
 				}
-				
+
 				if (consecutiveJailedTurns >= 3) {
 					buttonJailDialogRollForDoubles.setEnabled(false);
 				}
-				
+
 				lockRollDice();
 				lockEndTurn();
-				
+
 				customAppearanceJDialog(jailDialog);
 				jailDialog.setVisible(true);
 			}
 		}
 	}
-	
+
 	private void updateGameLog() {
 		textAreaGameLog.setText(controller.getGameLogContents());
 	}
-	
+
 	private void readyUIForNextPlayer() {
 		for (int i = 0; i < 40; i++) {
 			spaceButtonAppearanceReset(i);
 		}
 	}
-	
+
 	private void updateCustomSpaceAppearances() {
 		Property localProperty = (Property) board.spaces.get(12);
-		
+
 		if (localProperty.getIsMortgaged() == true) {
 			buttonSpace12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/electric-company-mortgaged.png")));
 		}
