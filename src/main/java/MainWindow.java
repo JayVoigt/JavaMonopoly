@@ -182,6 +182,11 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         jLabel10 = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
         jProgressBar1 = new javax.swing.JProgressBar();
+        forfeitDialog = new javax.swing.JDialog();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        forfeitDialogButtonYes = new javax.swing.JButton();
+        forfeitDialogButtonNo = new javax.swing.JButton();
         frameBoard = new javax.swing.JInternalFrame();
         jScrollPane1 = new javax.swing.JScrollPane();
         textAreaGameLog = new javax.swing.JTextArea();
@@ -813,6 +818,11 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 
         buttonPropertyDecisionAuction.setIcon(new javax.swing.ImageIcon(getClass().getResource("/auction.png"))); // NOI18N
         buttonPropertyDecisionAuction.setText("Auction");
+        buttonPropertyDecisionAuction.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonPropertyDecisionAuctionActionPerformed(evt);
+            }
+        });
 
         staticLabelPropertyDecision.setText("Would you like to purchase the following property?");
 
@@ -1259,6 +1269,60 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addComponent(jButton5)
+                .addContainerGap())
+        );
+
+        forfeitDialog.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        forfeitDialog.setAlwaysOnTop(true);
+        forfeitDialog.setUndecorated(true);
+        forfeitDialog.setSize(new java.awt.Dimension(321, 197));
+
+        jLabel11.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/surrender.png"))); // NOI18N
+        jLabel11.setText("Forfeit");
+
+        jLabel12.setText("<html> <b>Are you sure you want to forfeit the game?</b><br> You will be removed from the game, and your assets<br> will be sold to the Bank. </html>");
+
+        forfeitDialogButtonYes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/surrender.png"))); // NOI18N
+        forfeitDialogButtonYes.setText("Yes");
+
+        forfeitDialogButtonNo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/red-x.png"))); // NOI18N
+        forfeitDialogButtonNo.setText("No");
+        forfeitDialogButtonNo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                forfeitDialogButtonNoActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout forfeitDialogLayout = new javax.swing.GroupLayout(forfeitDialog.getContentPane());
+        forfeitDialog.getContentPane().setLayout(forfeitDialogLayout);
+        forfeitDialogLayout.setHorizontalGroup(
+            forfeitDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(forfeitDialogLayout.createSequentialGroup()
+                .addGroup(forfeitDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(forfeitDialogLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(forfeitDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel11))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(forfeitDialogLayout.createSequentialGroup()
+                        .addComponent(forfeitDialogButtonYes, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(forfeitDialogButtonNo, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        forfeitDialogLayout.setVerticalGroup(
+            forfeitDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(forfeitDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
+                .addGroup(forfeitDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(forfeitDialogButtonYes)
+                    .addComponent(forfeitDialogButtonNo))
                 .addContainerGap())
         );
 
@@ -2605,6 +2669,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		jDialogs.add(playerIconSelector);
 		jDialogs.add(mortgageDialog);
 		jDialogs.add(aboutDialog);
+		jDialogs.add(forfeitDialog);
 	}
 	
 	private void initButtonAppearance() {
@@ -3173,6 +3238,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 
     private void buttonActionImprovementsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonActionImprovementsActionPerformed
 		customAppearanceJDialog(improvementsDialog);
+		updateImprovementsDialog();
 		
 		labelSelectedProperty.setText("Select a property.");
 		labelImprovementInfo.setText("No property selected.");
@@ -3191,6 +3257,8 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		Property localProperty;
 		Color localColorProperty;
 		
+		boolean improvementsButtonLockState = true;
+		
 		controller.setPlayerCanBuildImprovements(false);
 		
 		labelSelectedProperty.setText("Selected property: " + localSpace.getFriendlyName());
@@ -3200,7 +3268,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		}
 		else {
 			localProperty = (Property) localSpace;
-			System.out.println(localProperty.getPropertyType());
 			if (localProperty.getPropertyType() != Property.propertyTypeKeys.color) {
 				labelImprovementInfo.setText("Selected space is not a color property.");
 			}
@@ -3220,10 +3287,24 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 						else {
 							labelImprovementInfo.setText("You may construct improvements on this property.");
 							controller.setPlayerCanBuildImprovements(true);
+							improvementsButtonLockState = false;
 						}
 					}
 				}
 			}
+		}
+		
+		if (improvementsButtonLockState == true) {
+			buttonBuildHotel.setEnabled(false);
+			buttonBuildHouse.setEnabled(false);
+			buttonSellHouse.setEnabled(false);
+			buttonSellHotel.setEnabled(false);
+		}
+		else {
+			buttonBuildHotel.setEnabled(true);
+			buttonBuildHouse.setEnabled(true);
+			buttonSellHouse.setEnabled(true);
+			buttonSellHotel.setEnabled(true);
 		}
 	}
 	
@@ -3251,6 +3332,9 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     }//GEN-LAST:event_buttonJailDialogRollForDoublesActionPerformed
 
     private void buttonForfeitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonForfeitActionPerformed
+		customAppearanceJDialog(forfeitDialog);
+		
+		forfeitDialog.setVisible(true);
 		controller.forfeitManager();
 		update();
     }//GEN-LAST:event_buttonForfeitActionPerformed
@@ -3458,6 +3542,14 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     private void buttonSpace20MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonSpace20MouseExited
         buttonSpace20.setIcon(null);
     }//GEN-LAST:event_buttonSpace20MouseExited
+
+    private void buttonPropertyDecisionAuctionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPropertyDecisionAuctionActionPerformed
+        appendToGameLog("Auctions are not yet implemented.");
+    }//GEN-LAST:event_buttonPropertyDecisionAuctionActionPerformed
+
+    private void forfeitDialogButtonNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_forfeitDialogButtonNoActionPerformed
+        forfeitDialog.setVisible(false);
+    }//GEN-LAST:event_forfeitDialogButtonNoActionPerformed
 	// </editor-fold>
 
 	public void spaceButtonAppearanceHighlight(int spaceID) {
@@ -3758,6 +3850,9 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     public javax.swing.JInternalFrame controlPanelGameInformation;
     public javax.swing.JFrame debugLogFrame;
     public javax.swing.JDialog debugToolsDialog;
+    public javax.swing.JDialog forfeitDialog;
+    public javax.swing.JButton forfeitDialogButtonNo;
+    public javax.swing.JButton forfeitDialogButtonYes;
     public javax.swing.JInternalFrame frameBoard;
     public javax.swing.JDialog gameEditorDialog;
     public javax.swing.JDialog gameSetupDialog;
@@ -3773,6 +3868,8 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     public javax.swing.JButton jButton5;
     public javax.swing.JLabel jLabel1;
     public javax.swing.JLabel jLabel10;
+    public javax.swing.JLabel jLabel11;
+    public javax.swing.JLabel jLabel12;
     public javax.swing.JLabel jLabel2;
     public javax.swing.JLabel jLabel3;
     public javax.swing.JLabel jLabel4;
