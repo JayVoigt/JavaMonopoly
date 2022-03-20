@@ -35,6 +35,8 @@ public class GameLogicController implements Serializable {
 
 	int playersCount,
 		turnCounter;
+	
+	boolean playerCanBuildImprovements;
 
 	// <editor-fold desc="Setters and getters">
 	public int getTurnCounter() {
@@ -56,6 +58,10 @@ public class GameLogicController implements Serializable {
 	public void setExtraTextPadding(boolean input) {
 		useExtraTextPadding = input;
 	}
+	
+	public void setPlayerCanBuildImprovements(boolean input) {
+		playerCanBuildImprovements = input;
+	}
 	// </editor-fold>
 
 	// <editor-fold desc="Construcctor">
@@ -65,6 +71,8 @@ public class GameLogicController implements Serializable {
 		debugLogContents = "";
 
 		useExtraTextPadding = true;
+		
+		playerCanBuildImprovements = false;
 	}
 	// </editor-fold>
 

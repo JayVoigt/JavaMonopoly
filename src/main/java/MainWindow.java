@@ -142,11 +142,12 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         improvementsDialog = new javax.swing.JDialog();
         staticLabelImprovementsTitle = new javax.swing.JLabel();
         labelSelectedProperty = new javax.swing.JLabel();
-        staticLabelSelectedProperty1 = new javax.swing.JLabel();
         buttonSellHouse = new javax.swing.JButton();
         buttonBuildHouse = new javax.swing.JButton();
         buttonBuildHotel = new javax.swing.JButton();
         buttonSellHotel = new javax.swing.JButton();
+        jSeparator9 = new javax.swing.JSeparator();
+        labelImprovementInfo = new javax.swing.JLabel();
         statisticsDialog = new javax.swing.JDialog();
         jScrollPane3 = new javax.swing.JScrollPane();
         statsTable = new javax.swing.JTable();
@@ -906,44 +907,74 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         );
 
         improvementsDialog.setAlwaysOnTop(true);
-        improvementsDialog.setMinimumSize(new java.awt.Dimension(400, 300));
         improvementsDialog.setUndecorated(true);
-        improvementsDialog.setSize(new java.awt.Dimension(400, 300));
-        improvementsDialog.getContentPane().setLayout(null);
+        improvementsDialog.setSize(new java.awt.Dimension(392, 200));
 
         staticLabelImprovementsTitle.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         staticLabelImprovementsTitle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/improvements.png"))); // NOI18N
         staticLabelImprovementsTitle.setText("Improvements");
-        improvementsDialog.getContentPane().add(staticLabelImprovementsTitle);
-        staticLabelImprovementsTitle.setBounds(10, 10, 380, 23);
 
         labelSelectedProperty.setText("Property Name");
-        improvementsDialog.getContentPane().add(labelSelectedProperty);
-        labelSelectedProperty.setBounds(150, 50, 87, 17);
-
-        staticLabelSelectedProperty1.setText("Selected Property:");
-        improvementsDialog.getContentPane().add(staticLabelSelectedProperty1);
-        staticLabelSelectedProperty1.setBounds(10, 50, 108, 17);
 
         buttonSellHouse.setIcon(new javax.swing.ImageIcon(getClass().getResource("/house.png"))); // NOI18N
         buttonSellHouse.setText("Sell a House");
-        improvementsDialog.getContentPane().add(buttonSellHouse);
-        buttonSellHouse.setBounds(10, 130, 150, 26);
 
         buttonBuildHouse.setIcon(new javax.swing.ImageIcon(getClass().getResource("/house.png"))); // NOI18N
         buttonBuildHouse.setText("Build a House");
-        improvementsDialog.getContentPane().add(buttonBuildHouse);
-        buttonBuildHouse.setBounds(10, 100, 150, 26);
 
         buttonBuildHotel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hotel.png"))); // NOI18N
         buttonBuildHotel.setText("Build a Hotel");
-        improvementsDialog.getContentPane().add(buttonBuildHotel);
-        buttonBuildHotel.setBounds(170, 100, 150, 26);
 
         buttonSellHotel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hotel.png"))); // NOI18N
         buttonSellHotel.setText("Sell a Hotel");
-        improvementsDialog.getContentPane().add(buttonSellHotel);
-        buttonSellHotel.setBounds(170, 130, 150, 26);
+
+        labelImprovementInfo.setText("Property Name");
+
+        javax.swing.GroupLayout improvementsDialogLayout = new javax.swing.GroupLayout(improvementsDialog.getContentPane());
+        improvementsDialog.getContentPane().setLayout(improvementsDialogLayout);
+        improvementsDialogLayout.setHorizontalGroup(
+            improvementsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(improvementsDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(improvementsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator9, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(improvementsDialogLayout.createSequentialGroup()
+                        .addGroup(improvementsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(buttonBuildHouse, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(buttonSellHouse, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(improvementsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(buttonSellHotel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(buttonBuildHotel, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)))
+                    .addGroup(improvementsDialogLayout.createSequentialGroup()
+                        .addGroup(improvementsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelSelectedProperty)
+                            .addComponent(staticLabelImprovementsTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelImprovementInfo))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        improvementsDialogLayout.setVerticalGroup(
+            improvementsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(improvementsDialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(staticLabelImprovementsTitle)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labelSelectedProperty)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labelImprovementInfo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSeparator9, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(2, 2, 2)
+                .addGroup(improvementsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(buttonBuildHouse)
+                    .addComponent(buttonBuildHotel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(improvementsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(buttonSellHouse)
+                    .addComponent(buttonSellHotel))
+                .addContainerGap(20, Short.MAX_VALUE))
+        );
 
         statisticsDialog.setSize(new java.awt.Dimension(400, 300));
 
@@ -3142,6 +3173,10 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 
     private void buttonActionImprovementsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonActionImprovementsActionPerformed
 		customAppearanceJDialog(improvementsDialog);
+		
+		labelSelectedProperty.setText("Select a property.");
+		labelImprovementInfo.setText("No property selected.");
+		
 		if (improvementsDialog.isVisible() == false) {
 			improvementsDialog.setVisible(true);
 			buttonPropertiesActionPerformed(evt);
@@ -3151,6 +3186,47 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		}
     }//GEN-LAST:event_buttonActionImprovementsActionPerformed
 
+	private void updateImprovementsDialog() {
+		Space localSpace = board.spaces.get(currentSpaceSelectionID);
+		Property localProperty;
+		Color localColorProperty;
+		
+		controller.setPlayerCanBuildImprovements(false);
+		
+		labelSelectedProperty.setText("Selected property: " + localSpace.getFriendlyName());
+		
+		if (localSpace.getSpaceType() != Space.spaceTypeKeys.property) {
+			labelImprovementInfo.setText("Selected space is not a property.");
+		}
+		else {
+			localProperty = (Property) localSpace;
+			System.out.println(localProperty.getPropertyType());
+			if (localProperty.getPropertyType() != Property.propertyTypeKeys.color) {
+				labelImprovementInfo.setText("Selected space is not a color property.");
+			}
+			else {
+				localColorProperty = (Color) localProperty;
+				if (localColorProperty.getIsOwned() == false) {
+					labelImprovementInfo.setText("Selected color property is not owned.");
+				}
+				else {
+					if (localColorProperty.getOwnerID() != currentPlayer.getPlayerID()) {
+						labelImprovementInfo.setText("You do not own this property.");
+					}
+					else {
+						if (localColorProperty.getIsFullSetOwned() == false) {
+							labelImprovementInfo.setText("You do not own all properties within this color set.");
+						}
+						else {
+							labelImprovementInfo.setText("You may construct improvements on this property.");
+							controller.setPlayerCanBuildImprovements(true);
+						}
+					}
+				}
+			}
+		}
+	}
+	
     private void buttonPropertiesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPropertiesActionPerformed
 		boolean localOwnedPropertyIDs[] = currentPlayer.getOwnedPropertyIDs();
 		
@@ -3470,6 +3546,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 			labelID.setText("undefined ID");
 		}
 		
+		updateImprovementsDialog();
 	}
 	
 	public void updateVisualPlayerIndicator(Player currentPlayer) {
@@ -3719,6 +3796,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     public javax.swing.JSeparator jSeparator6;
     public javax.swing.JSeparator jSeparator7;
     public javax.swing.JSeparator jSeparator8;
+    public javax.swing.JSeparator jSeparator9;
     public javax.swing.JDialog jailDialog;
     public javax.swing.JLabel labelBoardImage;
     public javax.swing.JLabel labelConsecutiveJailedTurns;
@@ -3735,6 +3813,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     public javax.swing.JLabel labelHouse1;
     public javax.swing.JLabel labelHouse5;
     public javax.swing.JLabel labelID;
+    public javax.swing.JLabel labelImprovementInfo;
     public javax.swing.JLabel labelIsOwned;
     public javax.swing.JLabel labelOwnedBy;
     public javax.swing.JLabel labelPlayer1ActiveIcon;
@@ -3800,7 +3879,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     public javax.swing.JLabel staticLabelRentBase3;
     public javax.swing.JLabel staticLabelRentBase4;
     public javax.swing.JLabel staticLabelRentBase5;
-    public javax.swing.JLabel staticLabelSelectedProperty1;
     public javax.swing.JLabel staticLabelSpaceType;
     public javax.swing.JLabel staticLabelTimesLanded;
     public javax.swing.JDialog statisticsDialog;
