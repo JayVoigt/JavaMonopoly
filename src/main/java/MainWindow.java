@@ -14,6 +14,12 @@ import java.io.InputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import com.formdev.flatlaf.*;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutput;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -23,7 +29,7 @@ import com.formdev.flatlaf.*;
  *
  * @author jay
  */
-public class MainWindow extends javax.swing.JFrame implements WindowListener, ActionListener {
+public class MainWindow extends javax.swing.JFrame implements WindowListener, ActionListener, Serializable {
 	
 	Board board;
 	Font font;
@@ -2661,7 +2667,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 	private void updateCustomSpaceAppearances() {
 		Property localProperty = (Property) board.spaces.get(12);
 		
-		if (localProperty.getIsMortgaged() == false) {
+		if (localProperty.getIsMortgaged() == true) {
 			buttonSpace12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/electric-company-mortgaged.png")));
 		}
 		else {
@@ -2704,14 +2710,50 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     }//GEN-LAST:event_menuFileNewGameActionPerformed
 
     private void menuFileLoadGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuFileLoadGameActionPerformed
-		openFileChooser.showSaveDialog(openFileChooserPanel);
-		File gameStateInputFile = saveFileChooser.getSelectedFile();
+		int openGameReturn = openFileChooser.showOpenDialog(openFileChooserPanel);
+		if (openGameReturn == JFileChooser.APPROVE_OPTION) {
+			File gameStateInputFile = openFileChooser.getSelectedFile();
+			try {
+				openGameState(gameStateInputFile);
+			} catch (IOException ex) {
+				Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+			} catch (ClassNotFoundException ex) {
+				Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+			}
+		}
     }//GEN-LAST:event_menuFileLoadGameActionPerformed
 
     private void menuFileSaveGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuFileSaveGameActionPerformed
-		saveFileChooser.showSaveDialog(saveFileChoserPanel);
-		File gameStateOutputFile = saveFileChooser.getSelectedFile();
+		int saveGameReturn = saveFileChooser.showSaveDialog(saveFileChoserPanel);
+		if (saveGameReturn == JFileChooser.APPROVE_OPTION) {
+			File gameStateOutputFile = saveFileChooser.getSelectedFile();
+			try {
+				saveGameState(gameStateOutputFile);
+			} catch (IOException ex) {
+				Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+			}
+		}
     }//GEN-LAST:event_menuFileSaveGameActionPerformed
+	
+	private void saveGameState(File saveOutputFile) throws IOException {
+		System.out.println(saveOutputFile);
+		
+		FileOutputStream f = new FileOutputStream("game.jmsg");
+		ObjectOutput s = new ObjectOutputStream(f);
+		s.writeObject(board);
+		s.writeObject(controller);
+		s.flush();
+	}
+
+	private void openGameState(File saveInputFile) throws IOException, ClassNotFoundException {
+		System.out.println(saveInputFile);
+		
+		FileInputStream in = new FileInputStream("game.jmsg");
+		ObjectInputStream s = new ObjectInputStream(in);
+		board = (Board) s.readObject();
+		controller = (GameLogicController) s.readObject();
+	}
+	
 	// </editor-fold>
 
 	// <editor-fold desc="buttonSpace<N>ActionPerformed">

@@ -10,10 +10,12 @@
 import com.formdev.flatlaf.extras.components.FlatTriStateCheckBox;
 import com.sun.tools.javac.util.PropagatedException;
 import java.awt.desktop.AppReopenedEvent;
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 
-public class GameLogicController {
+public class GameLogicController implements Serializable {
 
 	Board board;
 
