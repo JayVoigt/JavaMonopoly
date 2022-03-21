@@ -1,3 +1,5 @@
+package cc.jayv.monopoly3;
+
 
 import java.awt.*;
 import java.awt.event.*;

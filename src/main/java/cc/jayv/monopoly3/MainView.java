@@ -1,3 +1,5 @@
+package cc.jayv.monopoly3;
+
 
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
