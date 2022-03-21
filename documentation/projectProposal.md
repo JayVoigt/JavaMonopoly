@@ -20,12 +20,15 @@ Someone who wishes to play Monopoly. (?)
 A game of Monopoly can be decomposed into a single, large data structure, and this comprises the core of this project. A set of objects which contain certain attributes are affected throughout gameplay, either randomly, or by user decision.
 
 The primary element of the game data is the board. It contains information about both the players and board spaces. Both the players and spaces are represented in an `ArrayList`. In the case of spaces, this `ArrayList` can contain several different object types, all derived from the base `Space` class. Consequently, each space can have its own methods that are called during a generic event, e.g., calculating rent.
+<p style="padding: 10px; border 2px solid;">
 <center>
 <figure>
     <img src="main-uml.svg">
 <figcaption><i>The full UML diagram for the project. <br>If you are unable to read this clearly, the full size image is available as <code>main-uml.svg</code> or <code>main-uml.png</code>.</i><figcaption>
 </center>
 </figure>
+<br>
+</p>
 
 ---
 &nbsp;
@@ -78,7 +81,17 @@ The primary data of the application is stored in a single serializable class, `B
 ---
 **User interface**
 
-A GUI front-end is provided to the user. This indicates much of the essential information needed for gameplay, including:
+The user interface for this application is inspired and informed by [a commercial implementation](https://archive.org/details/MonopolyMacPlay) of the game - <i>Monopoly</i> (1993) by MacPlay, for the original Macintosh platform.
+<figure>
+    <img src="gui-inspiration.png">
+    <figcaption>A screenshot of <i>Monopoly</i> on the Macintosh.
+</figure>
+
+A key attribute of this implementation is the simplicity of the user interface - given that the Macintosh has a resolution of 512x342 with 2 colors, this serves as a good template for a simpler design.
+
+---
+
+In the Java implementation, a GUI front-end is provided to the user. This indicates much of the essential information needed for gameplay, including:
 - All properties and game event spaces that exist on the board
 - Position of each player
 - Balance of each player
@@ -86,8 +99,11 @@ A GUI front-end is provided to the user. This indicates much of the essential in
 - Whether a specific property is owned, and if so, by whom
 - A log containing information about all previous turns, and the actions taken during those turns
 
----
-![](gui-diagram.svg)
+<figure>
+    <img src="gui-diagram.svg">
+    <figcaption>An abstract diagram of how the user interface interacts with the data of the program.<figcaption>
+</figure>
+
 ---
 
 The GUI provides mechanisms for controlling this core data structure of the game. Examples of actions through this interface include:
