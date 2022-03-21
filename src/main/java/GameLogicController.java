@@ -60,7 +60,7 @@ public class GameLogicController implements Serializable {
 	}
 	// </editor-fold>
 
-	// <editor-fold desc="Construcctor">
+	// <editor-fold desc="Constructor">
 	public GameLogicController(Board inputBoard) {
 		board = inputBoard;
 		gameLogContents = "";

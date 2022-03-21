@@ -4,8 +4,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1253</x>
-      <y>483</y>
+      <x>917</x>
+      <y>224</y>
       <w>350</w>
       <h>189</h>
     </coordinates>
@@ -31,8 +31,8 @@ Board
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1806</x>
-      <y>581</y>
+      <x>1470</x>
+      <y>322</y>
       <w>378</w>
       <h>105</h>
     </coordinates>
@@ -51,8 +51,8 @@ style=wordwrap</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1806</x>
-      <y>728</y>
+      <x>1470</x>
+      <y>469</y>
       <w>385</w>
       <h>245</h>
     </coordinates>
@@ -84,8 +84,8 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1988</x>
-      <y>679</y>
+      <x>1652</x>
+      <y>420</y>
       <w>63</w>
       <h>63</h>
     </coordinates>
@@ -96,8 +96,8 @@ extends</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1855</x>
-      <y>1015</y>
+      <x>1519</x>
+      <y>756</y>
       <w>266</w>
       <h>119</h>
     </coordinates>
@@ -117,8 +117,8 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1981</x>
-      <y>966</y>
+      <x>1645</x>
+      <y>707</y>
       <w>63</w>
       <h>63</h>
     </coordinates>
@@ -129,8 +129,8 @@ extends</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2135</x>
-      <y>1015</y>
+      <x>1799</x>
+      <y>756</y>
       <w>231</w>
       <h>119</h>
     </coordinates>
@@ -146,8 +146,8 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2121</x>
-      <y>966</y>
+      <x>1785</x>
+      <y>707</y>
       <w>161</w>
       <h>63</h>
     </coordinates>
@@ -158,8 +158,8 @@ extends</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1568</x>
-      <y>1015</y>
+      <x>1232</x>
+      <y>756</y>
       <w>273</w>
       <h>119</h>
     </coordinates>
@@ -175,8 +175,8 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1694</x>
-      <y>966</y>
+      <x>1358</x>
+      <y>707</y>
       <w>182</w>
       <h>63</h>
     </coordinates>
@@ -187,8 +187,8 @@ extends</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1596</x>
-      <y>595</y>
+      <x>1260</x>
+      <y>336</y>
       <w>224</w>
       <h>28</h>
     </coordinates>
@@ -199,8 +199,8 @@ m2=40</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>511</x>
-      <y>483</y>
+      <x>175</x>
+      <y>224</y>
       <w>350</w>
       <h>329</h>
     </coordinates>
@@ -237,8 +237,8 @@ m2=40</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>854</x>
-      <y>588</y>
+      <x>518</x>
+      <y>329</y>
       <w>413</w>
       <h>28</h>
     </coordinates>
@@ -249,8 +249,8 @@ m2=5</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>511</x>
-      <y>840</y>
+      <x>175</x>
+      <y>581</y>
       <w>350</w>
       <h>189</h>
     </coordinates>
@@ -262,55 +262,107 @@ m2=5</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>966</x>
-      <y>735</y>
+      <x>630</x>
+      <y>476</y>
       <w>539</w>
-      <h>189</h>
+      <h>497</h>
     </coordinates>
-    <panel_attributes>GameLogicController</panel_attributes>
+    <panel_attributes>style=wordwrap
+GameLogicController
+--
+- board: Board
+
+- currentPlayer: Player
+- currentSpace: Space
+- currentGameEvent: GameEvent
+- currentProperty: Property
+- currentDrawCard: DrawCard
+
+- gameLogContents: String
+- debugLogContents: String
+
+- isGameActive: boolean
+
+- playersCount: int
+- turnCounter: int
+
+- playerCanBuildImprovements: boolean
+--
+&lt;&lt;Constructor&gt;&gt; GameLogicController(Board inputBoard)
+
++ initialEvaluator(): void
++ diceRollManager(): void
++ endTurnManager(): void
++ playerDecisionPurchaseProperty(): void
++ playerDecisionAuction(): void
++ playerDecisionJailPostBail(): void
++ playerDecisionJailRollDoubles(): void
++ forfeitManager(): void
+
+- jailStateEvaluator(): void
+- normalTurnEvaluator(): void
+- maeStateEvaluator(): void
+- propertyPurchaseManager(): void
+- jailPlayer(): void
+- movementEvaluator(): void
+- movementEvaluatorAdvanced(boolean collectGoBonus, int movementQuantity): void
+- gameEventEvaluator(): void
+- drawCardEvaluator(): void
+- propertyEvaluator(): void
+- readyPlayerForJailRelease(): void
+</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2310</x>
+      <x>917</x>
       <y>0</y>
-      <w>350</w>
-      <h>189</h>
+      <w>217</w>
+      <h>140</h>
     </coordinates>
-    <panel_attributes>JavaMonopoly</panel_attributes>
+    <panel_attributes>JavaMonopoly
+--
+- board: Board
+- view: MainWindow
+--
+&lt;&lt;Constructor&gt;&gt; JavaMonopoly()
+
+</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2422</x>
-      <y>182</y>
+      <x>980</x>
+      <y>133</y>
       <w>21</w>
-      <h>98</h>
+      <h>105</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;120.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;130.0</additional_attributes>
   </element>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>1099</x>
-      <y>462</y>
+      <x>763</x>
+      <y>203</y>
       <w>140</w>
       <h>112</h>
     </coordinates>
     <panel_attributes>style=wordwrap
-Board includes 5 Players, such that they can be accessed with 1-indexed values.
+*Board*
+includes 5 Players, such that they can be accessed with 1-indexed values.
 
-Player 0 is not a usable player.</panel_attributes>
+Player 0 is not a usable player.
+bg=yellow</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1183</x>
-      <y>567</y>
+      <x>847</x>
+      <y>308</y>
       <w>21</w>
       <h>42</h>
     </coordinates>
@@ -320,8 +372,8 @@ Player 0 is not a usable player.</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1414</x>
-      <y>665</y>
+      <x>1078</x>
+      <y>406</y>
       <w>21</w>
       <h>84</h>
     </coordinates>
@@ -331,8 +383,8 @@ Player 0 is not a usable player.</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1302</x>
-      <y>665</y>
+      <x>966</x>
+      <y>406</y>
       <w>77</w>
       <h>84</h>
     </coordinates>
@@ -343,8 +395,8 @@ can access</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2254</x>
-      <y>581</y>
+      <x>1918</x>
+      <y>322</y>
       <w>294</w>
       <h>119</h>
     </coordinates>
@@ -359,8 +411,8 @@ GameEvent
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2177</x>
-      <y>609</y>
+      <x>1841</x>
+      <y>350</y>
       <w>91</w>
       <h>28</h>
     </coordinates>
@@ -371,8 +423,8 @@ extends</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>861</x>
-      <y>868</y>
+      <x>525</x>
+      <y>609</y>
       <w>119</w>
       <h>28</h>
     </coordinates>
@@ -383,20 +435,22 @@ can access</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>336</x>
-      <y>840</y>
+      <x>0</x>
+      <y>581</y>
       <w>161</w>
       <h>112</h>
     </coordinates>
     <panel_attributes>style=wordwrap
-MainView contains all logic for displaying the GUI, as well as for sending commands to GameLogicController.</panel_attributes>
+*MainView*
+contains all logic for displaying the GUI, as well as for sending commands to GameLogicController.
+bg=yellow</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>490</x>
-      <y>889</y>
+      <x>154</x>
+      <y>630</y>
       <w>35</w>
       <h>21</h>
     </coordinates>
@@ -406,24 +460,62 @@ MainView contains all logic for displaying the GUI, as well as for sending comma
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>1085</x>
-      <y>609</y>
+      <x>749</x>
+      <y>350</y>
       <w>140</w>
       <h>112</h>
     </coordinates>
     <panel_attributes>style=wordwrap
-GameLogicController can access the Board object. Consequently, this includes access to all Space and Player objects within their respective ArrayLists.</panel_attributes>
+*GameLogicController*
+can access the Board object. Consequently, this includes access to all Space and Player objects within their respective ArrayLists.
+bg=yellow</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1218</x>
-      <y>686</y>
+      <x>882</x>
+      <y>427</y>
       <w>105</w>
       <h>21</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>10.0;10.0;130.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>518</x>
+      <y>91</y>
+      <w>413</w>
+      <h>518</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>570.0;10.0;60.0;10.0;60.0;720.0;10.0;720.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>1169</x>
+      <y>0</y>
+      <w>140</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+bg=yellow
+*JavaMonopoly*
+serves as the "orchestration" class for the program - it contains the main method which then constructs an instance of itself.</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1127</x>
+      <y>28</y>
+      <w>56</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;60.0;10.0</additional_attributes>
   </element>
 </diagram>
