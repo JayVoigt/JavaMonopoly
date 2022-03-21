@@ -20,19 +20,23 @@ Someone who wishes to play Monopoly. (?)
 A game of Monopoly can be decomposed into a single, large data structure, and this comprises the core of this project. A set of objects which contain certain attributes are affected throughout gameplay, either randomly, or by user decision.
 
 The primary element of the game data is the board. It contains information about both the players and board spaces. Both the players and spaces are represented in an `ArrayList`. In the case of spaces, this `ArrayList` can contain several different object types, all derived from the base `Space` class. Consequently, each space can have its own methods that are called during a generic event, e.g., calculating rent.
+<center>
 <figure>
-    <a href="main-uml.svg"><img src="main-uml.svg"></a>
-<figcaption><center><i>The full UML diagram for the project. <br>If you are unable to read this clearly, the full size image is available as <code>main-uml.svg</code> or <code>main-uml.png</code>.</i><figcaption>
+    <img src="main-uml.svg">
+<figcaption><i>The full UML diagram for the project. <br>If you are unable to read this clearly, the full size image is available as <code>main-uml.svg</code> or <code>main-uml.png</code>.</i><figcaption>
+</center>
 </figure>
 
 ---
 &nbsp;
 **Representing and manipulating data**
 
+<center>
 <figure>
     <img src="simple-main.svg">
     <figcaption><center><i>A simplified view of the data and access structure.</i></figcaption>
 </figure>
+</center>
 
 The primary structure of the program is demonstrated in the above diagram. It uses elements of MVC (model, view, controller) structures, but is not necessarily defined as one.
 
