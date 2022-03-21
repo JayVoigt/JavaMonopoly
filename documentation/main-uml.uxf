@@ -4,8 +4,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1490</x>
-      <y>560</y>
+      <x>1330</x>
+      <y>390</y>
       <w>500</w>
       <h>270</h>
     </coordinates>
@@ -32,8 +32,8 @@ Board
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2280</x>
-      <y>700</y>
+      <x>2120</x>
+      <y>530</y>
       <w>540</w>
       <h>150</h>
     </coordinates>
@@ -52,8 +52,8 @@ style=wordwrap</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2280</x>
-      <y>910</y>
+      <x>2120</x>
+      <y>740</y>
       <w>550</w>
       <h>350</h>
     </coordinates>
@@ -85,8 +85,8 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2540</x>
-      <y>840</y>
+      <x>2380</x>
+      <y>670</y>
       <w>90</w>
       <h>90</h>
     </coordinates>
@@ -97,8 +97,8 @@ extends</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2350</x>
-      <y>1320</y>
+      <x>2190</x>
+      <y>1150</y>
       <w>380</w>
       <h>170</h>
     </coordinates>
@@ -118,8 +118,8 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2530</x>
-      <y>1250</y>
+      <x>2370</x>
+      <y>1080</y>
       <w>90</w>
       <h>90</h>
     </coordinates>
@@ -130,8 +130,8 @@ extends</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2750</x>
-      <y>1320</y>
+      <x>2590</x>
+      <y>1150</y>
       <w>330</w>
       <h>170</h>
     </coordinates>
@@ -147,8 +147,8 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2730</x>
-      <y>1250</y>
+      <x>2570</x>
+      <y>1080</y>
       <w>230</w>
       <h>90</h>
     </coordinates>
@@ -159,8 +159,8 @@ extends</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1940</x>
-      <y>1320</y>
+      <x>1780</x>
+      <y>1150</y>
       <w>390</w>
       <h>170</h>
     </coordinates>
@@ -176,8 +176,8 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2120</x>
-      <y>1250</y>
+      <x>1960</x>
+      <y>1080</y>
       <w>260</w>
       <h>90</h>
     </coordinates>
@@ -188,8 +188,8 @@ extends</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1980</x>
-      <y>720</y>
+      <x>1820</x>
+      <y>550</y>
       <w>320</w>
       <h>40</h>
     </coordinates>
@@ -200,8 +200,8 @@ m2=40</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>430</x>
-      <y>560</y>
+      <x>270</x>
+      <y>390</y>
       <w>500</w>
       <h>470</h>
     </coordinates>
@@ -238,8 +238,8 @@ m2=40</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>920</x>
-      <y>710</y>
+      <x>760</x>
+      <y>540</y>
       <w>590</w>
       <h>40</h>
     </coordinates>
@@ -251,24 +251,51 @@ fg=red</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>430</x>
-      <y>1070</y>
+      <x>270</x>
+      <y>900</y>
       <w>500</w>
-      <h>270</h>
+      <h>520</h>
     </coordinates>
     <panel_attributes>MainWindow
 --
 - controller: GameLogicController
-- </panel_attributes>
+
+- spaceButtons: ArrayList&lt;JButton&gt;
+- jDialogs: ArrayList&lt;JDialog&gt;
+- diceIcons: ArrayList&lt;javax.swing.ImageIcon&gt;
+
+- iconSelectionPlayerID: int
+- currentSpaceSelectionID: int
+--
+&lt;&lt;Constructor&gt;&gt; MainWindow(Board inputBoard)
+
+/Update and helper methods/
++ update(): void
+- gameInactiveUILocker(): void
+- initInfoUIForCurrentPlayer(): void
+- updateButtonLockStates(): void
+- customInitComponents(): void
+- initButtonAppearance(): void
+- updateDiceView(): void
+- updatePromptPropertyDecision(): void
+- updatePromptPostBailDecision(): void
+- updateGameLog(): void
+- readyUIForNextPlayer(): void
+- updateCustomSpaceAppearances(): void
+
+/Custom Swing helpers/
+- centerJDialog(JDialog inputDialog: void
+- drawBorderJDialog(JDialog inputDialog): void
+- customAppearanceJDialog(JDialog inputDialog): void</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1080</x>
-      <y>920</y>
+      <x>920</x>
+      <y>750</y>
       <w>770</w>
-      <h>710</h>
+      <h>670</h>
     </coordinates>
     <panel_attributes>style=wordwrap
 GameLogicController
@@ -319,8 +346,8 @@ GameLogicController
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1490</x>
-      <y>240</y>
+      <x>1330</x>
+      <y>70</y>
       <w>310</w>
       <h>200</h>
     </coordinates>
@@ -337,8 +364,8 @@ GameLogicController
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1580</x>
-      <y>430</y>
+      <x>1420</x>
+      <y>260</y>
       <w>30</w>
       <h>150</h>
     </coordinates>
@@ -348,8 +375,8 @@ GameLogicController
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>1000</x>
-      <y>530</y>
+      <x>840</x>
+      <y>360</y>
       <w>200</w>
       <h>160</h>
     </coordinates>
@@ -364,8 +391,8 @@ bg=red</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1120</x>
-      <y>680</y>
+      <x>960</x>
+      <y>510</y>
       <w>30</w>
       <h>60</h>
     </coordinates>
@@ -376,8 +403,8 @@ fg=red</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>920</x>
-      <y>1130</y>
+      <x>760</x>
+      <y>960</y>
       <w>180</w>
       <h>30</h>
     </coordinates>
@@ -387,20 +414,21 @@ fg=red</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1560</x>
-      <y>820</y>
+      <x>1400</x>
+      <y>650</y>
       <w>110</w>
       <h>120</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
-can access</panel_attributes>
+can access
+fg=red</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;100.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2920</x>
-      <y>700</y>
+      <x>2760</x>
+      <y>530</y>
       <w>420</w>
       <h>170</h>
     </coordinates>
@@ -415,8 +443,8 @@ GameEvent
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2810</x>
-      <y>740</y>
+      <x>2650</x>
+      <y>570</y>
       <w>130</w>
       <h>40</h>
     </coordinates>
@@ -427,8 +455,8 @@ extends</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>160</x>
-      <y>1070</y>
+      <x>0</x>
+      <y>900</y>
       <w>230</w>
       <h>160</h>
     </coordinates>
@@ -441,8 +469,8 @@ bg=yellow</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>380</x>
-      <y>1140</y>
+      <x>220</x>
+      <y>970</y>
       <w>70</w>
       <h>30</h>
     </coordinates>
@@ -452,33 +480,34 @@ bg=yellow</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>1250</x>
-      <y>740</y>
+      <x>1090</x>
+      <y>570</y>
       <w>200</w>
       <h>160</h>
     </coordinates>
     <panel_attributes>style=wordwrap
 *GameLogicController*
 can access the Board object. Consequently, this includes access to all Space and Player objects within their respective ArrayLists.
-bg=yellow</panel_attributes>
+bg=red</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1440</x>
-      <y>850</y>
+      <x>1280</x>
+      <y>680</y>
       <w>150</w>
       <h>30</h>
     </coordinates>
-    <panel_attributes>lt=.</panel_attributes>
+    <panel_attributes>lt=.
+fg=red</panel_attributes>
     <additional_attributes>10.0;10.0;130.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>920</x>
-      <y>370</y>
+      <x>760</x>
+      <y>200</y>
       <w>590</w>
       <h>740</h>
     </coordinates>
@@ -488,8 +517,8 @@ bg=yellow</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>1850</x>
-      <y>240</y>
+      <x>1690</x>
+      <y>70</y>
       <w>200</w>
       <h>160</h>
     </coordinates>
@@ -502,8 +531,8 @@ serves as the "orchestration" class for the program - it contains the main metho
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1790</x>
-      <y>280</y>
+      <x>1630</x>
+      <y>110</y>
       <w>80</w>
       <h>30</h>
     </coordinates>
@@ -513,8 +542,8 @@ serves as the "orchestration" class for the program - it contains the main metho
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>160</x>
-      <y>560</y>
+      <x>0</x>
+      <y>390</y>
       <w>230</w>
       <h>160</h>
     </coordinates>
@@ -527,8 +556,8 @@ contains all data and methods used to determine and control the state for a part
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>380</x>
-      <y>610</y>
+      <x>220</x>
+      <y>440</y>
       <w>70</w>
       <h>30</h>
     </coordinates>
@@ -538,8 +567,8 @@ contains all data and methods used to determine and control the state for a part
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2370</x>
-      <y>350</y>
+      <x>2210</x>
+      <y>180</y>
       <w>570</w>
       <h>270</h>
     </coordinates>
@@ -557,8 +586,8 @@ DrawCard
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1980</x>
-      <y>570</y>
+      <x>1820</x>
+      <y>400</y>
       <w>410</w>
       <h>40</h>
     </coordinates>
@@ -570,8 +599,8 @@ fg=red</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1980</x>
-      <y>600</y>
+      <x>1820</x>
+      <y>430</y>
       <w>410</w>
       <h>40</h>
     </coordinates>
@@ -583,8 +612,8 @@ fg=red</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>2090</x>
-      <y>350</y>
+      <x>1930</x>
+      <y>180</y>
       <w>250</w>
       <h>200</h>
     </coordinates>
@@ -599,8 +628,8 @@ bg=red</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2260</x>
-      <y>540</y>
+      <x>2100</x>
+      <y>370</y>
       <w>30</w>
       <h>60</h>
     </coordinates>
@@ -611,8 +640,8 @@ fg=red</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2240</x>
-      <y>560</y>
+      <x>2080</x>
+      <y>390</y>
       <w>50</w>
       <h>70</h>
     </coordinates>
@@ -623,8 +652,8 @@ fg=red</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>200</x>
-      <y>170</y>
+      <x>40</x>
+      <y>0</y>
       <w>230</w>
       <h>150</h>
     </coordinates>
@@ -637,8 +666,8 @@ bg=cyan</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>1250</x>
-      <y>530</y>
+      <x>1090</x>
+      <y>360</y>
       <w>200</w>
       <h>160</h>
     </coordinates>
@@ -651,8 +680,8 @@ bg=yellow</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1440</x>
-      <y>600</y>
+      <x>1280</x>
+      <y>430</y>
       <w>70</w>
       <h>30</h>
     </coordinates>
@@ -662,8 +691,8 @@ bg=yellow</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>700</x>
-      <y>200</y>
+      <x>540</x>
+      <y>30</y>
       <w>200</w>
       <h>70</h>
     </coordinates>
@@ -676,8 +705,8 @@ bg=yellow</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>700</x>
-      <y>280</y>
+      <x>540</x>
+      <y>110</y>
       <w>200</w>
       <h>70</h>
     </coordinates>
@@ -690,8 +719,8 @@ bg=red</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>450</x>
-      <y>170</y>
+      <x>290</x>
+      <y>0</y>
       <w>480</w>
       <h>200</h>
     </coordinates>
@@ -702,8 +731,8 @@ lt=.</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>520</x>
-      <y>290</y>
+      <x>360</x>
+      <y>120</y>
       <w>200</w>
       <h>50</h>
     </coordinates>
@@ -716,8 +745,8 @@ fg=red</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>460</x>
-      <y>290</y>
+      <x>300</x>
+      <y>120</y>
       <w>70</w>
       <h>50</h>
     </coordinates>
