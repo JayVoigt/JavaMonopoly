@@ -23,7 +23,7 @@ The primary element of the game data is the board. It contains information about
 <div align="center">
 <figure>
     <img src="main-uml.svg">
-<figcaption><i>The full UML diagram for the project. <br>If you are unable to read this clearly, the full size image is available as <code>main-uml.svg</code> or <code>main-uml.png</code>.</i><figcaption>
+<figcaption><br>The full UML diagram for the project. <br>If you are unable to read this clearly, the full size image is available as <code>main-uml.svg</code> or <code>main-uml.png</code>.<figcaption>
 </figure>
 </div>
 <br>
@@ -35,7 +35,7 @@ The primary element of the game data is the board. It contains information about
 <div align="center">
 <figure>
     <img src="simple-main.svg">
-    <figcaption><center><i>A simplified view of the data and access structure.</i></figcaption>
+    <figcaption><br>A simplified view of the data and access structure.</figcaption>
 </figure>
 </div>
 <br>
@@ -84,7 +84,7 @@ The user interface for this application is inspired and informed by [a commercia
 <div align="center">
 <figure>
     <img src="gui-inspiration.png">
-    <figcaption>A screenshot of <i>Monopoly</i> on the Macintosh.
+    <figcaption><br>A screenshot of <i>Monopoly</i> on the Macintosh.
 </figure>
 </div>
 <br>
@@ -104,7 +104,7 @@ In the Java implementation, a GUI front-end is provided to the user. This indica
 <div align="center">
 <figure>
     <img src="gui-diagram.svg">
-    <figcaption>An abstract diagram of how the user interface interacts with the data of the program.<figcaption>
+    <figcaption><br>An abstract diagram of how the user interface interacts with the data of the program.<figcaption>
 </figure>
 </div>
 <br>
