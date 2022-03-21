@@ -4,7 +4,7 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1330</x>
+      <x>1690</x>
       <y>390</y>
       <w>500</w>
       <h>270</h>
@@ -32,7 +32,7 @@ Board
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2120</x>
+      <x>2480</x>
       <y>530</y>
       <w>540</w>
       <h>150</h>
@@ -52,7 +52,7 @@ style=wordwrap</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2120</x>
+      <x>2480</x>
       <y>740</y>
       <w>550</w>
       <h>350</h>
@@ -85,7 +85,7 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2380</x>
+      <x>2740</x>
       <y>670</y>
       <w>90</w>
       <h>90</h>
@@ -97,7 +97,7 @@ extends</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2190</x>
+      <x>2550</x>
       <y>1150</y>
       <w>380</w>
       <h>170</h>
@@ -118,7 +118,7 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2370</x>
+      <x>2730</x>
       <y>1080</y>
       <w>90</w>
       <h>90</h>
@@ -130,7 +130,7 @@ extends</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2590</x>
+      <x>2950</x>
       <y>1150</y>
       <w>330</w>
       <h>170</h>
@@ -147,7 +147,7 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2570</x>
+      <x>2930</x>
       <y>1080</y>
       <w>230</w>
       <h>90</h>
@@ -159,7 +159,7 @@ extends</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1780</x>
+      <x>2140</x>
       <y>1150</y>
       <w>390</w>
       <h>170</h>
@@ -176,7 +176,7 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1960</x>
+      <x>2320</x>
       <y>1080</y>
       <w>260</w>
       <h>90</h>
@@ -188,7 +188,7 @@ extends</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1820</x>
+      <x>2180</x>
       <y>550</y>
       <w>320</w>
       <h>40</h>
@@ -200,7 +200,7 @@ m2=40</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>270</x>
+      <x>630</x>
       <y>390</y>
       <w>500</w>
       <h>470</h>
@@ -238,7 +238,7 @@ m2=40</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>760</x>
+      <x>1120</x>
       <y>540</y>
       <w>590</w>
       <h>40</h>
@@ -251,7 +251,7 @@ fg=red</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>270</x>
+      <x>630</x>
       <y>900</y>
       <w>500</w>
       <h>520</h>
@@ -292,7 +292,7 @@ fg=red</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>920</x>
+      <x>1280</x>
       <y>750</y>
       <w>770</w>
       <h>670</h>
@@ -346,7 +346,7 @@ GameLogicController
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1330</x>
+      <x>1690</x>
       <y>70</y>
       <w>310</w>
       <h>200</h>
@@ -364,7 +364,7 @@ GameLogicController
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1420</x>
+      <x>1780</x>
       <y>260</y>
       <w>30</w>
       <h>150</h>
@@ -375,7 +375,7 @@ GameLogicController
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>840</x>
+      <x>1200</x>
       <y>360</y>
       <w>200</w>
       <h>160</h>
@@ -391,7 +391,7 @@ bg=red</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>960</x>
+      <x>1320</x>
       <y>510</y>
       <w>30</w>
       <h>60</h>
@@ -403,7 +403,7 @@ fg=red</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>760</x>
+      <x>1120</x>
       <y>960</y>
       <w>180</w>
       <h>30</h>
@@ -414,7 +414,7 @@ fg=red</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1400</x>
+      <x>1760</x>
       <y>650</y>
       <w>110</w>
       <h>120</h>
@@ -427,7 +427,7 @@ fg=red</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2760</x>
+      <x>3120</x>
       <y>530</y>
       <w>420</w>
       <h>170</h>
@@ -443,7 +443,7 @@ GameEvent
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2650</x>
+      <x>3010</x>
       <y>570</y>
       <w>130</w>
       <h>40</h>
@@ -455,7 +455,7 @@ extends</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>0</x>
+      <x>360</x>
       <y>900</y>
       <w>230</w>
       <h>160</h>
@@ -469,7 +469,7 @@ bg=yellow</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>220</x>
+      <x>580</x>
       <y>970</y>
       <w>70</w>
       <h>30</h>
@@ -480,7 +480,7 @@ bg=yellow</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>1090</x>
+      <x>1450</x>
       <y>570</y>
       <w>200</w>
       <h>160</h>
@@ -494,7 +494,7 @@ bg=red</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1280</x>
+      <x>1640</x>
       <y>680</y>
       <w>150</w>
       <h>30</h>
@@ -506,7 +506,7 @@ fg=red</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>760</x>
+      <x>1120</x>
       <y>200</y>
       <w>590</w>
       <h>740</h>
@@ -517,7 +517,7 @@ fg=red</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>1690</x>
+      <x>2050</x>
       <y>70</y>
       <w>200</w>
       <h>160</h>
@@ -531,7 +531,7 @@ serves as the "orchestration" class for the program - it contains the main metho
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1630</x>
+      <x>1990</x>
       <y>110</y>
       <w>80</w>
       <h>30</h>
@@ -542,7 +542,7 @@ serves as the "orchestration" class for the program - it contains the main metho
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>0</x>
+      <x>360</x>
       <y>390</y>
       <w>230</w>
       <h>160</h>
@@ -556,7 +556,7 @@ contains all data and methods used to determine and control the state for a part
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>220</x>
+      <x>580</x>
       <y>440</y>
       <w>70</w>
       <h>30</h>
@@ -567,7 +567,7 @@ contains all data and methods used to determine and control the state for a part
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2210</x>
+      <x>2570</x>
       <y>180</y>
       <w>570</w>
       <h>270</h>
@@ -586,7 +586,7 @@ DrawCard
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1820</x>
+      <x>2180</x>
       <y>400</y>
       <w>410</w>
       <h>40</h>
@@ -599,7 +599,7 @@ fg=red</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1820</x>
+      <x>2180</x>
       <y>430</y>
       <w>410</w>
       <h>40</h>
@@ -612,7 +612,7 @@ fg=red</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>1930</x>
+      <x>2290</x>
       <y>180</y>
       <w>250</w>
       <h>200</h>
@@ -628,7 +628,7 @@ bg=red</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2100</x>
+      <x>2460</x>
       <y>370</y>
       <w>30</w>
       <h>60</h>
@@ -640,7 +640,7 @@ fg=red</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2080</x>
+      <x>2440</x>
       <y>390</y>
       <w>50</w>
       <h>70</h>
@@ -652,7 +652,7 @@ fg=red</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>40</x>
+      <x>400</x>
       <y>0</y>
       <w>230</w>
       <h>150</h>
@@ -666,7 +666,7 @@ bg=cyan</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>1090</x>
+      <x>1450</x>
       <y>360</y>
       <w>200</w>
       <h>160</h>
@@ -680,7 +680,7 @@ bg=yellow</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1280</x>
+      <x>1640</x>
       <y>430</y>
       <w>70</w>
       <h>30</h>
@@ -691,7 +691,7 @@ bg=yellow</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>540</x>
+      <x>900</x>
       <y>30</y>
       <w>200</w>
       <h>70</h>
@@ -705,7 +705,7 @@ bg=yellow</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>540</x>
+      <x>900</x>
       <y>110</y>
       <w>200</w>
       <h>70</h>
@@ -719,7 +719,7 @@ bg=red</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>290</x>
+      <x>650</x>
       <y>0</y>
       <w>480</w>
       <h>200</h>
@@ -731,7 +731,7 @@ lt=.</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>360</x>
+      <x>720</x>
       <y>120</y>
       <w>200</w>
       <h>50</h>
@@ -745,7 +745,7 @@ fg=red</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>300</x>
+      <x>660</x>
       <y>120</y>
       <w>70</w>
       <h>50</h>

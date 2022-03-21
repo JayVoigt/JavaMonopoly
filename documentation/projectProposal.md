@@ -48,7 +48,12 @@ An important note to make is that much of a player's success in Monopoly is simp
 
 **Technologies needed**
 
+**Data**
+
 The primary data of the application is stored in a single serializable class, `Board`. This class can then be saved to a file to preserve the game state, and can be used by a future instance of the program to resume gameplay. Basic file I/O is needed as a result of this functionality.
+
+---
+**User interface**
 
 A GUI front-end is provided to the user. This indicates much of the essential information needed for gameplay, including:
 - All properties and game event spaces that exist on the board
@@ -58,8 +63,21 @@ A GUI front-end is provided to the user. This indicates much of the essential in
 - Whether a specific property is owned, and if so, by whom
 - A log containing information about all previous turns, and the actions taken during those turns
 
-The GUI additionally proves mechanisms for controlling the central data structure of the game. Examples of actions through this interface include:
+The GUI provides mechanisms for controlling this core data structure of the game. Examples of actions through this interface include:
 - Rolling dice
 - Ending turn
 - Viewing information about a specific property
 
+Additionally, the GUI has several elements that provide simpler functions, and these can be displayed either automatically or manually.
+
+Automatic elements are necessary when it is mandatory that a player takes action. Examples include:
+- When landing on a property, asking the player if they wish to purchase or auction a property
+- When jailed, asking the player if they wish to post bail, roll for doubles, or use a *Get Out of Jail Free Card*.
+
+Manual elements are provided for optional actions. It is often useful to perform validation on a given selection, and to ask for confirmation. Examples include:
+- Mortgaging properties
+- Displaying which properties the player currently owns
+- Constructing improvements (houses, hotels)
+- Viewing statistics about the current game
+- Trading with another player
+- Forfeiting the game
