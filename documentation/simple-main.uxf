@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>760</x>
+      <y>280</y>
+      <w>370</w>
+      <h>330</h>
+    </coordinates>
+    <panel_attributes>Board
+
+valign=top</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>770</x>
+      <y>320</y>
+      <w>310</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>Players
+valign=top
+bg=light_gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>790</x>
+      <y>370</y>
+      <w>90</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>*Player*
+data + state
+bg=yellow
+layer=1
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>340</x>
+      <y>280</y>
+      <w>240</w>
+      <h>330</h>
+    </coordinates>
+    <panel_attributes>Controller
+valign=top</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>810</x>
+      <y>470</y>
+      <w>310</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>Spaces
+valign=top
+bg=light_gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>880</x>
+      <y>370</y>
+      <w>90</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>*Player*
+data + state
+bg=yellow
+layer=1
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>970</x>
+      <y>370</y>
+      <w>90</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>...
+bg=yellow
+layer=1
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>830</x>
+      <y>510</y>
+      <w>90</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>*Color*
+data
+bg=yellow
+layer=1
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>920</x>
+      <y>510</y>
+      <w>100</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>*GameEvent*
+data
+bg=yellow
+layer=1
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>1020</x>
+      <y>510</y>
+      <w>80</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>...
+bg=yellow
+layer=1
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>570</x>
+      <y>320</y>
+      <w>210</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+Controller
+can access Board</panel_attributes>
+    <additional_attributes>190.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>340</x>
+      <y>690</y>
+      <w>300</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>View
+valign=top</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>530</x>
+      <y>600</y>
+      <w>190</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+View can trigger
+event in Controller</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;120.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>510</x>
+      <y>720</y>
+      <w>120</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>User input
+bg=red</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>360</x>
+      <y>330</y>
+      <w>140</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>Event type 1
+bg=blue</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>380</x>
+      <y>380</y>
+      <w>140</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>Event type 2
+bg=blue</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>400</x>
+      <y>430</y>
+      <w>140</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>Event type 3
+bg=blue</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>430</x>
+      <y>480</y>
+      <w>140</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>...
+bg=blue</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>490</x>
+      <y>330</y>
+      <w>110</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>90.0;10.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>510</x>
+      <y>330</y>
+      <w>90</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>70.0;10.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>530</x>
+      <y>330</y>
+      <w>70</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>50.0;10.0;10.0;110.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>350</x>
+      <y>720</y>
+      <w>120</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>Data display
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>400</x>
+      <y>600</y>
+      <w>440</w>
+      <h>250</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+View can gather
+information from Board</panel_attributes>
+    <additional_attributes>10.0;160.0;10.0;220.0;420.0;220.0;420.0;10.0</additional_attributes>
+  </element>
+</diagram>

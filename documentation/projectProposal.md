@@ -21,6 +21,17 @@ A game of Monopoly can be decomposed into a single, large data structure, and th
 
 The primary element of the game data is the board. It contains information about both the players and board spaces. Both the players and spaces are represented in an `ArrayList`. In the case of spaces, this `ArrayList` can contain several different object types, all derived from the base `Space` class. Consequently, each space can have its own methods that are called during a generic event, e.g., calculating rent.
 
+---
+&nbsp;
+**Representing and manipulating data**
+
+![](simple-main.svg)
+
+The primary structure of the program is demonstrated in the above diagram. It uses elements of MVC (model, view, controller) structures, but is not necessarily defined as one.
+
+- `Board` contains the game data.
+- `Controller` provides an interface for user input to be converted into an altered game state.
+- `View` provides an interactive and graphical representation of the current game state.
 
 ---
 &nbsp;
@@ -51,6 +62,7 @@ An important note to make is that much of a player's success in Monopoly is simp
 **Data**
 
 The primary data of the application is stored in a single serializable class, `Board`. This class can then be saved to a file to preserve the game state, and can be used by a future instance of the program to resume gameplay. Basic file I/O is needed as a result of this functionality.
+
 
 ---
 **User interface**
