@@ -15,10 +15,15 @@ import java.util.Map;
 
 public class Board implements Serializable {
 
-	List<Space> spaces = new ArrayList<>();
-	List<Player> players = new ArrayList<>();
-	List<DrawCard> chanceCards = new ArrayList<>();
-	List<DrawCard> communityChestCards = new ArrayList<>();
+	/**
+	 * Spaces
+	 */
+	public List<Space> spaces = new ArrayList<>();
+	
+	/* players */
+	public List<Player> players = new ArrayList<>();
+	public List<DrawCard> chanceCards = new ArrayList<>();
+	public List<DrawCard> communityChestCards = new ArrayList<>();
 
 	int currentPlayerID;
 	int bankHouseCount,

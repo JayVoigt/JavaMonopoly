@@ -34,7 +34,7 @@ public class DrawCard implements Serializable {
 
 	String message;
 	int destinationSpaceID,
-		quantity;
+		movementQuantity;
 
 	public DrawCard() {
 		drawCardType = drawCardTypeKeys.unspecified;
@@ -42,18 +42,18 @@ public class DrawCard implements Serializable {
 
 		message = "";
 		destinationSpaceID = 0;
-		quantity = 0;
+		movementQuantity = 0;
 	}
 
 	public DrawCard(drawCardTypeKeys inputDrawCardType, destinationRelativeTypeKeys inputDestinationRelativeType,
-					String inputMessage, int inputDestinationSpaceID, int inputQuantity) {
+					String inputMessage, int inputDestinationSpaceID, int inputMovementQuantity) {
 
 		drawCardType = inputDrawCardType;
 		destinationRelativeType = inputDestinationRelativeType;
 
 		message = inputMessage;
 		destinationSpaceID = inputDestinationSpaceID;
-		quantity = inputQuantity;
+		movementQuantity = inputMovementQuantity;
 	}
 
 	public String getMessage() {
@@ -73,6 +73,6 @@ public class DrawCard implements Serializable {
 	}
 
 	public int getQuantity() {
-		return quantity;
+		return movementQuantity;
 	}
 }

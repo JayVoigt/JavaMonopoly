@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>850</x>
+      <y>300</y>
+      <w>530</w>
+      <h>580</h>
+    </coordinates>
+    <panel_attributes>*Board*
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1400</x>
+      <y>620</y>
+      <w>320</w>
+      <h>260</h>
+    </coordinates>
+    <panel_attributes>*Controls*
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1400</x>
+      <y>300</y>
+      <w>320</w>
+      <h>310</h>
+    </coordinates>
+    <panel_attributes>*Information*
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>910</x>
+      <y>600</y>
+      <w>410</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>fg=red
+*Game log*</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1430</x>
+      <y>820</y>
+      <w>120</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+bg=light_gray
+*Roll dice*</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1570</x>
+      <y>820</y>
+      <w>120</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+bg=light_gray
+*End turn*</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1690</x>
+      <y>810</y>
+      <w>420</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+send message to</panel_attributes>
+    <additional_attributes>400.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1430</x>
+      <y>670</y>
+      <w>120</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+*Mortgage*
+bg=pink</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1570</x>
+      <y>670</y>
+      <w>120</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+*Properties*
+bg=cyan</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1570</x>
+      <y>710</y>
+      <w>120</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+*Statistics*
+bg=pink</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1430</x>
+      <y>710</y>
+      <w>120</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+*Improvements*
+bg=pink</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1570</x>
+      <y>750</y>
+      <w>120</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+*Forfeit*
+bg=pink</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1430</x>
+      <y>750</y>
+      <w>120</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+*Trade*
+bg=pink</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1690</x>
+      <y>700</y>
+      <w>310</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+display GUI element</panel_attributes>
+    <additional_attributes>290.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1420</x>
+      <y>660</y>
+      <w>280</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>
+fg=pink
+lt=.</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1420</x>
+      <y>810</y>
+      <w>280</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+fg=light_gray
+lt=.</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>2090</x>
+      <y>810</y>
+      <w>100</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>controller</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1980</x>
+      <y>600</y>
+      <w>300</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>*Information*
+--
+halign=center
+
+&lt;&lt;Message&gt;&gt;
+
+
+group=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2000</x>
+      <y>700</y>
+      <w>120</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+*Yes*
+group=1
+bg=light_gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2140</x>
+      <y>700</y>
+      <w>120</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+*No*
+group=1
+bg=light_gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2040</x>
+      <y>730</y>
+      <w>30</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;100.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1990</x>
+      <y>690</y>
+      <w>280</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+fg=light_gray
+lt=.
+group=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1610</x>
+      <y>890</y>
+      <w>240</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+retrieve information from</panel_attributes>
+    <additional_attributes>10.0;80.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>1550</x>
+      <y>970</y>
+      <w>100</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>board</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1640</x>
+      <y>840</y>
+      <w>520</w>
+      <h>170</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+update</panel_attributes>
+    <additional_attributes>10.0;150.0;500.0;150.0;500.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>830</x>
+      <y>260</y>
+      <w>910</w>
+      <h>640</h>
+    </coordinates>
+    <panel_attributes>*Game View*
+--
+fg=gray
+lt=-</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>1760</x>
+      <y>450</y>
+      <w>180</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>Note:
+The Properties UI element updates the Board view element. It does not interact with the controller.
+bg=cyan
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1680</x>
+      <y>580</y>
+      <w>100</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;90.0;80.0;10.0</additional_attributes>
+  </element>
+</diagram>
