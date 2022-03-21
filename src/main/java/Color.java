@@ -7,12 +7,16 @@ import java.util.Map;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 /**
- *
+ * 
  * @author jay
  */
 public class Color extends Property implements Serializable {
 
 	// <editor-fold desc="Attributes">
+	/**
+	 * Which color group the Color object belongs to.<br>
+	 * The default value is <code>unspecified</code>.
+	 */
 	public enum colorGroupKeys {
 		unspecified,
 		brown,
@@ -31,6 +35,11 @@ public class Color extends Property implements Serializable {
 
 	// </editor-fold>
 	// <editor-fold desc="Constructor">
+	/**
+	 * @param propertyAttributes
+	 * @param inputSpaceID The ID of the Space to become a Color type.
+	 * @param inputFriendlyName The name of the Color property, e.g., "Boardwalk".
+	 */
 	Color(Map<String, Integer> propertyAttributes, int inputSpaceID, String inputFriendlyName) {
 		super(null);
 
@@ -74,6 +83,16 @@ public class Color extends Property implements Serializable {
 	}
 	// </editor-fold>
 
+	
+	/**
+	 * Calculate the rent that needs to be paid if a player lands on this space.<br>
+	 * The calculation is dependent on:<br>
+	 * - if the property is mortgaged<br>
+	 * - if any improvements are constructed<br>
+	 * - if the full color set is owned<br>
+	 * 
+	 * @return The amount of rent that needs to be paid.
+	 */
 	@Override
 	public int calculateRent() {
 		if (isMortgaged == true) {

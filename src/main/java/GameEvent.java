@@ -11,6 +11,10 @@ import java.io.Serializable;
  */
 public class GameEvent extends Space implements Serializable {
 
+	/** 
+	 * The type of GameEvent that describes this object.<br>
+	 * The default value is <code>unspecified</code>.
+	 */
 	public enum gameEventTypeKeys {
 		unspecified,
 		drawCard,
@@ -23,6 +27,12 @@ public class GameEvent extends Space implements Serializable {
 	}
 	gameEventTypeKeys gameEventType;
 
+	/**
+	 * Parameterized constructor
+	 * @param inputGameEventType
+	 * @param inputSpaceID
+	 * @param inputFriendlyName 
+	 */
 	GameEvent(gameEventTypeKeys inputGameEventType, int inputSpaceID, String inputFriendlyName) {
 		id = inputSpaceID;
 		friendlyName = inputFriendlyName;

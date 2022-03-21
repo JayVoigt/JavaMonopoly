@@ -11,6 +11,10 @@ import java.io.Serializable;
  */
 public class DrawCard implements Serializable {
 
+	/**
+	 * The type of DrawCard event that describes this object.<br>
+	 * The default value is <code>unspecified</code>.
+	 */
 	public enum drawCardTypeKeys {
 		unspecified,
 		teleport,
@@ -24,6 +28,11 @@ public class DrawCard implements Serializable {
 	}
 	drawCardTypeKeys drawCardType;
 
+	/**
+	 * For DrawCard objects of type <code>teleportRelative</code>, this describes the target teleport destination,
+	 * relative to the player, to be calculated given the player's position.<br>
+	 * The default value is <code>unspecified</code>.
+	 */
 	public enum destinationRelativeTypeKeys {
 		unspecified,
 		railroad,
@@ -32,10 +41,17 @@ public class DrawCard implements Serializable {
 	}
 	destinationRelativeTypeKeys destinationRelativeType;
 
+	/**
+	 * The message which will be displayed in the game log when a player "draws" this card.
+	 */
 	String message;
+	
 	int destinationSpaceID,
 		movementQuantity;
 
+	/**
+	 * Default constructor
+	 */
 	public DrawCard() {
 		drawCardType = drawCardTypeKeys.unspecified;
 		destinationRelativeType = destinationRelativeTypeKeys.unspecified;
@@ -45,6 +61,14 @@ public class DrawCard implements Serializable {
 		movementQuantity = 0;
 	}
 
+	/**
+	 * Parameterized constructor
+	 * @param inputDrawCardType
+	 * @param inputDestinationRelativeType
+	 * @param inputMessage
+	 * @param inputDestinationSpaceID
+	 * @param inputMovementQuantity 
+	 */
 	public DrawCard(drawCardTypeKeys inputDrawCardType, destinationRelativeTypeKeys inputDestinationRelativeType,
 					String inputMessage, int inputDestinationSpaceID, int inputMovementQuantity) {
 

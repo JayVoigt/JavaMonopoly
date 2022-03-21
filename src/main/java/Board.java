@@ -19,9 +19,8 @@ public class Board implements Serializable {
 	 * Spaces
 	 */
 	public List<Space> spaces = new ArrayList<>();
-	
-	/* players */
 	public List<Player> players = new ArrayList<>();
+	
 	public List<DrawCard> chanceCards = new ArrayList<>();
 	public List<DrawCard> communityChestCards = new ArrayList<>();
 
@@ -30,6 +29,11 @@ public class Board implements Serializable {
 		bankHotelCount;
 
 	// <editor-fold desc="Constructor">
+	/**
+	 * 
+	 * @throws FileNotFoundException
+	 * @throws IOException 
+	 */
 	Board() throws FileNotFoundException, IOException {
 		// Using defaults from standard rules
 		bankHouseCount = 32;
