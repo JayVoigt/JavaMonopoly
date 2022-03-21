@@ -1,4 +1,4 @@
-#### Project Proposal: Java Monopoly Prototype
+#### Project Proposal: Java Monopoly
 ---
 
 **Description**
@@ -12,22 +12,21 @@ The program seeks to implement a playable version of the board game, Monopoly.
 Someone who wishes to play Monopoly. (?)
 
 &nbsp;
-
+---
 #### Problems to solve
 
 **Data**
 
-A game of Monopoly can be decomposed into a single, large data structure, and this comprises the core of this project. A set of objects which contain certain attributes are affected throughout gameplay, either randomly, or by user decision.
+A game of Monopoly can be decomposed into a large data structure, and this comprises the core of this project. A set of objects which contain certain attributes are affected throughout gameplay, either randomly, or by user decision.
 
-The primary element of the game data is the board. It contains information about both the players and board spaces. Both the players and spaces are represented in an `ArrayList`. In the case of spaces, this `ArrayList` can contain several different object types, all derived from the base `Space` class. Consequently, each space can have its own methods that are called during a generic event, e.g., calculating rent.
-
+The primary element of the game data is the board. It contains sets of information about both the players and board spaces. Both the players and spaces are represented in an `ArrayList`. In the case of spaces, this `ArrayList` can contain several different object types, all derived from the base `Space` class. Consequently, each space can have its own methods that are called during a generic event, e.g., calculating rent.
 
 ---
 &nbsp;
 
 **CPU players**
 
-Implementing an extremely basic CPU player is not difficult, wherein the player automatically performs its necessary actions, and executes any required decision as `true`.
+Implementing an extremely basic CPU player is trivial, wherein the player automatically performs its necessary actions, and executes any required decision as `true`.
 
 A more advanced CPU player can be manifested through several styles:
 
@@ -48,12 +47,7 @@ An important note to make is that much of a player's success in Monopoly is simp
 
 **Technologies needed**
 
-**Data**
-
 The primary data of the application is stored in a single serializable class, `Board`. This class can then be saved to a file to preserve the game state, and can be used by a future instance of the program to resume gameplay. Basic file I/O is needed as a result of this functionality.
-
----
-**User interface**
 
 A GUI front-end is provided to the user. This indicates much of the essential information needed for gameplay, including:
 - All properties and game event spaces that exist on the board
@@ -63,25 +57,9 @@ A GUI front-end is provided to the user. This indicates much of the essential in
 - Whether a specific property is owned, and if so, by whom
 - A log containing information about all previous turns, and the actions taken during those turns
 
----
-![](gui-diagram.svg)
----
-
-The GUI provides mechanisms for controlling this core data structure of the game. Examples of actions through this interface include:
+The GUI additionally provides mechanisms for controlling the central data structure of the game. Examples of actions through this interface include:
 - Rolling dice
 - Ending turn
 - Viewing information about a specific property
 
-Additionally, the GUI has several elements that provide simpler functions, and these can be displayed either automatically or manually.
-
-Automatic elements are necessary when it is mandatory that a player takes action. Examples include:
-- When landing on a property, asking the player if they wish to purchase or auction a property
-- When jailed, asking the player if they wish to post bail, roll for doubles, or use a *Get Out of Jail Free Card*.
-
-Manual elements are provided for optional actions. It is often useful to perform validation on a given selection, and to ask for confirmation. Examples include:
-- Mortgaging properties
-- Displaying which properties the player currently owns
-- Constructing improvements (houses, hotels)
-- Viewing statistics about the current game
-- Trading with another player
-- Forfeiting the game
+![](/gui-diagram.png)
