@@ -59,7 +59,7 @@ public class Board implements Serializable {
 		String lineBuffer;
 		HashMap<String, Integer> propertyAttributes = new HashMap();
 
-		try ( BufferedReader spacesConfig = new BufferedReader(new FileReader("assets/spaces.csv"))) {
+		try ( BufferedReader spacesConfig = new BufferedReader(new InputStreamReader(getClass().getClassLoader().getResourceAsStream("spaces.csv")))) {
 			spacesConfig.readLine();
 
 			while ((lineBuffer = spacesConfig.readLine()) != null) {
@@ -103,7 +103,7 @@ public class Board implements Serializable {
 		// </editor-fold>
 
 		// <editor-fold desc="Read CSV for chanceCards data">
-		try ( BufferedReader chanceCardsConfig = new BufferedReader(new FileReader("assets/chanceCards.csv"))) {
+		try ( BufferedReader chanceCardsConfig = new BufferedReader(new InputStreamReader(getClass().getClassLoader().getResourceAsStream("chanceCards.csv")))) {
 			chanceCardsConfig.readLine();
 
 			while ((lineBuffer = chanceCardsConfig.readLine()) != null) {
@@ -130,10 +130,10 @@ public class Board implements Serializable {
 		// </editor-fold>
 
 		// <editor-fold desc="Read CSV for communityChestCards data">
-		try ( BufferedReader chanceCardsConfig = new BufferedReader(new FileReader("assets/communityChestCards.csv"))) {
-			chanceCardsConfig.readLine();
+		try ( BufferedReader communityChestCardsConfig = new BufferedReader(new InputStreamReader(getClass().getClassLoader().getResourceAsStream("communityChestCards.csv")))) {
+			communityChestCardsConfig.readLine();
 
-			while ((lineBuffer = chanceCardsConfig.readLine()) != null) {
+			while ((lineBuffer = communityChestCardsConfig.readLine()) != null) {
 				String[] configLine = lineBuffer.split(",", -1);
 
 				int localID = parseIntHandler(configLine[0]);
@@ -170,5 +170,6 @@ public class Board implements Serializable {
 			return Integer.parseInt(inputString);
 		}
 	}	// end parseIntHandler()
+
 
 }
