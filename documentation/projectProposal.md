@@ -137,6 +137,7 @@ Manual elements are provided for optional actions. It is often useful to perform
 ---
 Below are some sample screenshots from an early build of the game, demonstrating the different  types of GUI elements needed. Not all required elements are included, but the basic structure is present:
 
+<br>
 <div align="center">
 <figure>
     <img src="gui-example-main-2022-03-22.png">
@@ -145,6 +146,7 @@ Below are some sample screenshots from an early build of the game, demonstrating
 </div>
 <br>
 
+<br>
 <div align="center">
 <figure>
     <img src="gui-example-propertypurchase-2022-03-22.png" width=400>
@@ -153,6 +155,7 @@ Below are some sample screenshots from an early build of the game, demonstrating
 </div>
 <br>
 
+<br>
 <div align="center">
 <figure>
     <img src="gui-example-gameeditor-2022-03-22.png" width=400>
