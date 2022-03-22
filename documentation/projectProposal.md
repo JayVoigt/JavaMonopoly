@@ -149,7 +149,7 @@ Below are some sample screenshots from an early build of the game, demonstrating
 <br>
 <div align="center">
 <figure>
-    <img src="gui-example-propertypurchase-2022-03-22.png" width=400>
+    <img src="gui-example-propertypurchase-2022-03-22.png" width="400">
     <figcaption>A prompt that the user must respond to when they land on a property that is not owned (last updated 2022-03-22)<br><figcaption>
 </figure>
 </div>
@@ -158,7 +158,7 @@ Below are some sample screenshots from an early build of the game, demonstrating
 <br>
 <div align="center">
 <figure>
-    <img src="gui-example-gameeditor-2022-03-22.png" width=400>
+    <img src="gui-example-gameeditor-2022-03-22.png" width="400">
     <figcaption>A utility window primarily for debugging purposes, allowing the user to edit attributes of the current game (last updated 2022-03-22)<br><figcaption>
 </figure>
 </div>
