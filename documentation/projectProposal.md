@@ -30,7 +30,7 @@ The primary element of the game data is the board. It contains information about
 
 <div align="center">
 <figure>
-    <img src="simple-main.svg">
+    <img src="documentation/simple-main.svg">
     <figcaption><br>A simplified view of the data and access structure.</figcaption>
 </figure>
 </div>
