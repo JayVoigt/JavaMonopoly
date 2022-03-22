@@ -116,7 +116,7 @@ public class Board implements Serializable {
 				int localQuantity = parseIntHandler(configLine[4]);
 				DrawCard.destinationRelativeTypeKeys localDestinationRelativeType;
 
-				if (configLine[5] != "") {
+				if (configLine[5] != "") {					
 					localDestinationRelativeType = DrawCard.destinationRelativeTypeKeys.valueOf(configLine[5]);
 				}
 				else {

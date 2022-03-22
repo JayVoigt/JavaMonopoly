@@ -7,12 +7,6 @@ The program seeks to implement a playable version of the board game, Monopoly.
 
 &nbsp;
 
-**Intended user**
-
-Someone who wishes to play Monopoly. (?)
-
-&nbsp;
-
 #### Problems to solve
 
 **Data**
@@ -28,6 +22,8 @@ The primary element of the game data is the board. It contains information about
 </div>
 <br>
 
+*The data structure is of maximum priority for this project.* Its implementation is essential to the remainder of the project's functionality, and is the most demonstrative of object-oriented principles covered in this course.
+
 ---
 &nbsp;
 **Representing and manipulating data**
@@ -42,9 +38,9 @@ The primary element of the game data is the board. It contains information about
 
 The primary structure of the program is demonstrated in the above diagram. It uses elements of MVC (model, view, controller) structures, but is not necessarily defined as one.
 
-- `Board` contains the game data.
-- `Controller` provides an interface for user input to be converted into an altered game state.
-- `View` provides an interactive and graphical representation of the current game state.
+- `Board` contains the game data, with only essential or basic logic implementation.
+- `Controller` provides an interface for user input to be converted into an altered game state. It contains the majority of logic for the application, including the code which implements game rules and enforcement.
+- `View` provides an interactive and graphical representation of the current game state. It allows the player to perform an action from a set whose restrictions are context-dependent on the game state.
 
 ---
 &nbsp;
@@ -67,6 +63,8 @@ A statistically-based CPU player could make decisions similarly to that of the r
 
 An important note to make is that much of a player's success in Monopoly is simply luck. The dice roll is the primary engine of the game, and there is an inherent amount of randomness that cannot be surpassed entirely with skill. One benefit to this is that the ability of any CPU player is not entirely dependent on its code - the luck will sometimes skew the game state in its favor regardless.
 
+*The inclusion of a CPU player is of low priority for this project.* It would certainly improve the program, but is not essential.
+
 ---
 &nbsp;
 
@@ -76,8 +74,13 @@ An important note to make is that much of a player's success in Monopoly is simp
 
 The primary data of the application is stored in a single serializable class, `Board`. This class can then be saved to a file to preserve the game state, and can be used by a future instance of the program to resume gameplay. Basic file I/O is needed as a result of this functionality.
 
+Supplementary data is required for the program, such as property costs, names of spaces, and Community Chest/Chance card event data. This data is static during the execution of the program, and is not intended to be modified. It can be loaded from a file format such as `.csv`, and then loaded into appropriate class attributes.
+
+File I/O exceptions will need to be handled for both of these operation types.
 
 ---
+&nbsp;
+
 **User interface**
 
 The user interface for this application is inspired and informed by [a commercial implementation](https://archive.org/details/MonopolyMacPlay) of the game - <i>Monopoly</i> (1993) by MacPlay, for the original Macintosh platform.
@@ -109,6 +112,8 @@ In the Java implementation, a GUI front-end is provided to the user. This indica
 </div>
 <br>
 
+*The visual representation of data is of medium priority for this project.* 
+
 ---
 
 The GUI provides mechanisms for controlling this core data structure of the game. Examples of actions through this interface include:
@@ -129,3 +134,33 @@ Manual elements are provided for optional actions. It is often useful to perform
 - Viewing statistics about the current game
 - Trading with another player
 - Forfeiting the game
+---
+Below are some sample screenshots from an early build of the game, demonstrating the different  types of GUI elements needed. Not all required elements are included, but the basic structure is present:
+
+<div align="center">
+<figure>
+    <img src="gui-example-main-2022-03-22.png">
+    <figcaption>The primary user interface for the game (last updated 2022-03-22)<br><figcaption>
+</figure>
+</div>
+<br>
+
+<div align="center">
+<figure>
+    <img src="gui-example-propertypurchase-2022-03-22.png">
+    <figcaption>A prompt that the user must respond to when they land on a property that is not owned (last updated 2022-03-22)<br><figcaption>
+</figure>
+</div>
+<br>
+
+<div align="center">
+<figure>
+    <img src="gui-example-gameeditor-2022-03-22.png">
+    <figcaption>A utility window primarily for debugging purposes, allowing the user to edit attributes of the current game (last updated 2022-03-22)<br><figcaption>
+</figure>
+</div>
+<br>
+
+---
+
+
