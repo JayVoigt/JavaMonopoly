@@ -30,6 +30,14 @@ The primary element of the game data is the board. It contains information about
 </div>
 <br>
 
+<div align="center">
+<figure>
+    <img src="data-diagram.png">
+<figcaption><br>A simplified representation of the Space data.<figcaption>
+</figure>
+</div>
+<br>
+
 
 
 *The data structure is of maximum priority for this project.* Its implementation is essential to the remainder of the project's functionality, and is the most demonstrative of object-oriented principles covered in this course.
