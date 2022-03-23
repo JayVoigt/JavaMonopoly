@@ -83,6 +83,14 @@ public class Color extends Property implements Serializable {
 	public void setHouseCount(int inputHouseCount) {
 		houseCount = inputHouseCount;
 	}
+	
+	public int getHotelCount() {
+		return hotelCount;
+	}
+	
+	public void setHotelCount(int inputHotelCount) {
+		hotelCount = inputHotelCount;
+	}
 	// </editor-fold>
 
 	

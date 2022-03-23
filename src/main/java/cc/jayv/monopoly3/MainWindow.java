@@ -2513,6 +2513,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		gameInactiveUILocker();
 		updateDiceView();
 		updateCustomSpaceAppearances();
+		updateImprovementIcons();
 		
 		for (int i = 1; i <= 4; i++) {
 			updateVisualPlayerIndicator(board.players.get(i));
@@ -2775,6 +2776,50 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		else {
 			buttonSpace12.setIcon(null);
 		}
+	}
+	
+	private void updateImprovementIcons() {
+		Color localColor;
+		int houseCount;
+		int hotelCount;
+		
+		for (Space s : board.spaces) {
+			if (s instanceof Color) {
+				localColor = (Color) s;
+				
+				
+				houseCount = localColor.getHouseCount();
+				hotelCount = localColor.getHotelCount();
+				
+				// Color property is improved
+				if ((houseCount > 0) || (hotelCount > 0)) {
+					
+				}
+			}
+		}
+	}
+	
+	private Point getPositionForImprovementIcon(Color improvedColor, boolean isHotel, int improvementIndex) {
+		Point iconPosition = new Point();
+		
+		if (improvedColor.getID() > 0 && improvedColor.getID() < 10) {
+			
+		}
+		else if (improvedColor.getID() > 10 && improvedColor.getID() < 20) {
+			
+		}
+		else if (improvedColor.getID() > 20 && improvedColor.getID() < 30) {
+			
+		}
+		else if (improvedColor.getID() > 30 && improvedColor.getID() < 40) {
+			
+		}
+		else {
+			iconPosition.setLocation(0, 0);
+			System.err.print("Invalid spaceID for Color space.");
+		}
+		
+		return iconPosition;
 	}
 	// </editor-fold>
 
