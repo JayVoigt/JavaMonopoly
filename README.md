@@ -1,4 +1,4 @@
-#### Project Proposal: Java Monopoly Prototype
+# Project Proposal: Java Monopoly Prototype
 ---
 
 **Description**
@@ -7,7 +7,7 @@ The program seeks to implement a playable version of the board game, Monopoly.
 
 &nbsp;
 
-#### Problems to solve
+## Problems to solve
 
 **Data**
 
@@ -70,7 +70,7 @@ An important note to make is that much of a player's success in Monopoly is simp
 ---
 &nbsp;
 
-**Technologies needed**
+## Technologies needed
 
 **Data**
 
