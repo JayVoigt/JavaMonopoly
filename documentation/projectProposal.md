@@ -1,5 +1,4 @@
 # Project Proposal: Java Monopoly Prototype
----
 
 <div align="center">
 <figure>
