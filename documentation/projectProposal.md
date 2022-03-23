@@ -1,6 +1,14 @@
 # Project Proposal: Java Monopoly Prototype
 ---
 
+<div align="center">
+<figure>
+    <img src="logo.png">
+</figure>
+</div>
+<br>
+
+
 **Description**
 
 The program seeks to implement a playable version of the board game, Monopoly.

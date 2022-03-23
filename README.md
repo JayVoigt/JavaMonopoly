@@ -1,6 +1,14 @@
 # Project Proposal: Java Monopoly Prototype
 ---
 
+<div align="center">
+<figure>
+    <img src="documentation/logo.png">
+</figure>
+</div>
+<br>
+
+
 **Description**
 
 The program seeks to implement a playable version of the board game, Monopoly.
@@ -70,6 +78,15 @@ An important note to make is that much of a player's success in Monopoly is simp
 ---
 &nbsp;
 
+**Synchronization between objects**
+
+Given that the `Board`, `Controller`, and `View` classes comprise the core of the game, an issue arises regarding how they should interact.
+
+This is resolved by allowing the view to inherit the controller, enabling any user input to be validated and sent to the controller when appropriate. Once a method from the controller is finished executing, the view updates itself by accessing the now-modified contents of the board. Effectively, this creates a system where actions only occur when strictly necessary; there is no "main game loop" in the application.
+
+---
+&nbsp;
+
 ## Technologies needed
 
 **Data**
@@ -113,6 +130,8 @@ In the Java implementation, a GUI front-end is provided to the user. This indica
 </figure>
 </div>
 <br>
+
+The key technology required for the GUI is Java Swing.
 
 *The visual representation of data is of medium priority for this project.* The game can still be played without it, provided that a more primitive representation was given. 
 
