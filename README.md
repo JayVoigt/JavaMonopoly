@@ -195,4 +195,27 @@ Below are some sample screenshots from an early build of the game, demonstrating
 
 ---
 
+## Notes
 
+Below is a list of how the project specifically demonstrates principles of CSCI 24000:
+
+**Object-oriented programming**
+
+- Given that the project is written in Java, the code base is inherently object-oriented.
+- OOP is specifically useful for this project, as the main data of the game is readily decomposed into a tree structure.
+
+**Inheritance**
+
+- The board class effectively contains three types of inherited classes:
+    - players
+    - spaces
+    - draw card events
+
+**Abstraction and Polymorphism**
+
+- Properties contain an abstract method for calculating rent.
+- This method is then defined by the individual space, where the return type remains the same for all properties, but the calculation algorithm is independent.
+
+**Data structures**
+
+- The data objects for players and spaces are each stored in a Java `ArrayList`.
