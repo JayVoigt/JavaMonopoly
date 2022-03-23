@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="14.3.0">
-  <zoom_level>10</zoom_level>
+  <zoom_level>3</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1350</x>
-      <y>390</y>
-      <w>500</w>
-      <h>270</h>
+      <x>495</x>
+      <y>240</y>
+      <w>150</w>
+      <h>81</h>
     </coordinates>
     <panel_attributes>style=wordwrap
 Board
@@ -32,10 +32,10 @@ Board
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2140</x>
-      <y>530</y>
-      <w>540</w>
-      <h>150</h>
+      <x>732</x>
+      <y>282</y>
+      <w>162</w>
+      <h>45</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Abstract&gt;&gt;
 Space
@@ -52,10 +52,10 @@ style=wordwrap</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2140</x>
-      <y>740</y>
-      <w>550</w>
-      <h>350</h>
+      <x>732</x>
+      <y>345</y>
+      <w>165</w>
+      <h>105</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Abstract&gt;&gt;
 Property
@@ -85,10 +85,10 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2400</x>
-      <y>670</y>
-      <w>90</w>
-      <h>90</h>
+      <x>810</x>
+      <y>324</y>
+      <w>27</w>
+      <h>27</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 extends</panel_attributes>
@@ -97,10 +97,10 @@ extends</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2210</x>
-      <y>1150</y>
-      <w>380</w>
-      <h>170</h>
+      <x>753</x>
+      <y>468</y>
+      <w>114</w>
+      <h>51</h>
     </coordinates>
     <panel_attributes>Color
 --
@@ -118,10 +118,10 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2390</x>
-      <y>1080</y>
-      <w>90</w>
-      <h>90</h>
+      <x>807</x>
+      <y>447</y>
+      <w>27</w>
+      <h>27</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 extends</panel_attributes>
@@ -130,10 +130,10 @@ extends</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2610</x>
-      <y>1150</y>
-      <w>330</w>
-      <h>170</h>
+      <x>873</x>
+      <y>468</y>
+      <w>99</w>
+      <h>51</h>
     </coordinates>
     <panel_attributes>Utility
 --
@@ -147,10 +147,10 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2590</x>
-      <y>1080</y>
-      <w>230</w>
-      <h>90</h>
+      <x>867</x>
+      <y>447</y>
+      <w>69</w>
+      <h>27</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 extends</panel_attributes>
@@ -159,10 +159,10 @@ extends</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1800</x>
-      <y>1150</y>
-      <w>390</w>
-      <h>170</h>
+      <x>630</x>
+      <y>468</y>
+      <w>117</w>
+      <h>51</h>
     </coordinates>
     <panel_attributes>Railroad
 --
@@ -176,10 +176,10 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1980</x>
-      <y>1080</y>
-      <w>260</w>
-      <h>90</h>
+      <x>684</x>
+      <y>447</y>
+      <w>78</w>
+      <h>27</h>
     </coordinates>
     <panel_attributes>lt=-&gt;
 extends</panel_attributes>
@@ -188,10 +188,10 @@ extends</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1840</x>
-      <y>550</y>
-      <w>320</w>
-      <h>40</h>
+      <x>642</x>
+      <y>288</y>
+      <w>96</w>
+      <h>12</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m2=40</panel_attributes>
@@ -200,10 +200,10 @@ m2=40</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>290</x>
-      <y>390</y>
-      <w>500</w>
-      <h>470</h>
+      <x>177</x>
+      <y>240</y>
+      <w>150</w>
+      <h>141</h>
     </coordinates>
     <panel_attributes>Player
 --
@@ -238,10 +238,10 @@ m2=40</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>780</x>
-      <y>540</y>
-      <w>590</w>
-      <h>40</h>
+      <x>324</x>
+      <y>285</y>
+      <w>177</w>
+      <h>12</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m2=5
@@ -251,10 +251,10 @@ fg=red</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>290</x>
-      <y>900</y>
-      <w>500</w>
-      <h>520</h>
+      <x>177</x>
+      <y>393</y>
+      <w>150</w>
+      <h>156</h>
     </coordinates>
     <panel_attributes>MainWindow
 --
@@ -292,10 +292,10 @@ fg=red</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>940</x>
-      <y>750</y>
-      <w>770</w>
-      <h>670</h>
+      <x>372</x>
+      <y>348</y>
+      <w>231</w>
+      <h>201</h>
     </coordinates>
     <panel_attributes>style=wordwrap
 GameLogicController
@@ -346,10 +346,10 @@ GameLogicController
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1350</x>
-      <y>70</y>
-      <w>310</w>
-      <h>200</h>
+      <x>495</x>
+      <y>144</y>
+      <w>93</w>
+      <h>60</h>
     </coordinates>
     <panel_attributes>JavaMonopoly
 --
@@ -364,10 +364,10 @@ GameLogicController
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1440</x>
-      <y>260</y>
-      <w>30</w>
-      <h>150</h>
+      <x>522</x>
+      <y>201</y>
+      <w>9</w>
+      <h>45</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;130.0</additional_attributes>
@@ -375,10 +375,10 @@ GameLogicController
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>860</x>
-      <y>360</y>
-      <w>200</w>
-      <h>160</h>
+      <x>348</x>
+      <y>231</y>
+      <w>60</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>style=wordwrap
 *Board*
@@ -391,10 +391,10 @@ bg=red</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>980</x>
-      <y>510</y>
-      <w>30</w>
-      <h>60</h>
+      <x>384</x>
+      <y>276</y>
+      <w>9</w>
+      <h>18</h>
     </coordinates>
     <panel_attributes>lt=.
 fg=red</panel_attributes>
@@ -403,10 +403,10 @@ fg=red</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>780</x>
-      <y>960</y>
-      <w>180</w>
-      <h>30</h>
+      <x>324</x>
+      <y>411</y>
+      <w>54</w>
+      <h>9</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
     <additional_attributes>160.0;10.0;10.0;10.0</additional_attributes>
@@ -414,10 +414,10 @@ fg=red</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1420</x>
-      <y>650</y>
-      <w>110</w>
-      <h>120</h>
+      <x>516</x>
+      <y>318</y>
+      <w>33</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
 can access
@@ -427,10 +427,10 @@ fg=red</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2780</x>
-      <y>530</y>
-      <w>420</w>
-      <h>170</h>
+      <x>924</x>
+      <y>282</y>
+      <w>126</w>
+      <h>51</h>
     </coordinates>
     <panel_attributes>style=wordwrap
 GameEvent
@@ -443,10 +443,10 @@ GameEvent
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2670</x>
-      <y>570</y>
-      <w>130</w>
-      <h>40</h>
+      <x>891</x>
+      <y>294</y>
+      <w>39</w>
+      <h>12</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 extends</panel_attributes>
@@ -455,10 +455,10 @@ extends</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>20</x>
-      <y>900</y>
-      <w>230</w>
-      <h>160</h>
+      <x>96</x>
+      <y>393</y>
+      <w>69</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>style=wordwrap
 *MainView*
@@ -469,10 +469,10 @@ bg=yellow</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>240</x>
-      <y>970</y>
-      <w>70</w>
-      <h>30</h>
+      <x>162</x>
+      <y>414</y>
+      <w>21</w>
+      <h>9</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>10.0;10.0;50.0;10.0</additional_attributes>
@@ -480,10 +480,10 @@ bg=yellow</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>1110</x>
-      <y>570</y>
-      <w>200</w>
-      <h>160</h>
+      <x>423</x>
+      <y>294</y>
+      <w>60</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>style=wordwrap
 *GameLogicController*
@@ -494,10 +494,10 @@ bg=red</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1300</x>
-      <y>680</y>
-      <w>150</w>
-      <h>30</h>
+      <x>480</x>
+      <y>327</y>
+      <w>45</w>
+      <h>9</h>
     </coordinates>
     <panel_attributes>lt=.
 fg=red</panel_attributes>
@@ -506,10 +506,10 @@ fg=red</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>780</x>
-      <y>200</y>
-      <w>590</w>
-      <h>740</h>
+      <x>324</x>
+      <y>183</y>
+      <w>177</w>
+      <h>222</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
     <additional_attributes>570.0;10.0;60.0;10.0;60.0;720.0;10.0;720.0</additional_attributes>
@@ -517,10 +517,10 @@ fg=red</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>1710</x>
-      <y>70</y>
-      <w>200</w>
-      <h>160</h>
+      <x>603</x>
+      <y>144</y>
+      <w>60</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>style=wordwrap
 bg=yellow
@@ -531,10 +531,10 @@ serves as the "orchestration" class for the program - it contains the main metho
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1650</x>
-      <y>110</y>
-      <w>80</w>
-      <h>30</h>
+      <x>585</x>
+      <y>156</y>
+      <w>24</w>
+      <h>9</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>10.0;10.0;60.0;10.0</additional_attributes>
@@ -542,10 +542,10 @@ serves as the "orchestration" class for the program - it contains the main metho
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>20</x>
-      <y>390</y>
-      <w>230</w>
-      <h>160</h>
+      <x>96</x>
+      <y>240</y>
+      <w>69</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>style=wordwrap
 bg=yellow
@@ -556,10 +556,10 @@ contains all data and methods used to determine and control the state for a part
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>240</x>
-      <y>440</y>
-      <w>70</w>
-      <h>30</h>
+      <x>162</x>
+      <y>255</y>
+      <w>21</w>
+      <h>9</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>10.0;10.0;50.0;10.0</additional_attributes>
@@ -567,10 +567,10 @@ contains all data and methods used to determine and control the state for a part
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2230</x>
-      <y>180</y>
-      <w>570</w>
-      <h>270</h>
+      <x>759</x>
+      <y>177</y>
+      <w>171</w>
+      <h>81</h>
     </coordinates>
     <panel_attributes>style=wordwrap
 DrawCard
@@ -586,10 +586,10 @@ DrawCard
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1840</x>
-      <y>400</y>
-      <w>410</w>
-      <h>40</h>
+      <x>642</x>
+      <y>243</y>
+      <w>123</w>
+      <h>12</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m2=16
@@ -599,10 +599,10 @@ fg=red</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1840</x>
-      <y>430</y>
-      <w>410</w>
-      <h>40</h>
+      <x>642</x>
+      <y>252</y>
+      <w>123</w>
+      <h>12</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m2=16
@@ -612,10 +612,10 @@ fg=red</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>1950</x>
-      <y>180</y>
-      <w>250</w>
-      <h>200</h>
+      <x>675</x>
+      <y>177</y>
+      <w>75</w>
+      <h>60</h>
     </coordinates>
     <panel_attributes>style=wordwrap
 *DrawCard*
@@ -628,10 +628,10 @@ bg=red</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2120</x>
-      <y>370</y>
-      <w>30</w>
-      <h>60</h>
+      <x>726</x>
+      <y>234</y>
+      <w>9</w>
+      <h>18</h>
     </coordinates>
     <panel_attributes>lt=.
 fg=red</panel_attributes>
@@ -640,10 +640,10 @@ fg=red</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2100</x>
-      <y>390</y>
-      <w>50</w>
-      <h>70</h>
+      <x>720</x>
+      <y>240</y>
+      <w>15</w>
+      <h>21</h>
     </coordinates>
     <panel_attributes>lt=.
 fg=red</panel_attributes>
@@ -652,10 +652,10 @@ fg=red</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>60</x>
-      <y>0</y>
-      <w>230</w>
-      <h>150</h>
+      <x>108</x>
+      <y>123</y>
+      <w>69</w>
+      <h>45</h>
     </coordinates>
     <panel_attributes>style=wordwrap
 *Note:*
@@ -666,10 +666,10 @@ bg=cyan</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>1110</x>
-      <y>360</y>
-      <w>200</w>
-      <h>160</h>
+      <x>423</x>
+      <y>231</y>
+      <w>60</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>style=wordwrap
 *Board*
@@ -680,10 +680,10 @@ bg=yellow</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1300</x>
-      <y>430</y>
-      <w>70</w>
-      <h>30</h>
+      <x>480</x>
+      <y>252</y>
+      <w>21</w>
+      <h>9</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>10.0;10.0;50.0;10.0</additional_attributes>
@@ -691,10 +691,10 @@ bg=yellow</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>560</x>
-      <y>30</y>
-      <w>200</w>
-      <h>70</h>
+      <x>258</x>
+      <y>132</y>
+      <w>60</w>
+      <h>21</h>
     </coordinates>
     <panel_attributes>style=wordwrap
 *Class name*
@@ -705,10 +705,10 @@ bg=yellow</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>560</x>
-      <y>110</y>
-      <w>200</w>
-      <h>70</h>
+      <x>258</x>
+      <y>156</y>
+      <w>60</w>
+      <h>21</h>
     </coordinates>
     <panel_attributes>style=wordwrap
 *Connection annotation*
@@ -719,10 +719,10 @@ bg=red</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>310</x>
-      <y>0</y>
-      <w>480</w>
-      <h>200</h>
+      <x>183</x>
+      <y>123</y>
+      <w>144</w>
+      <h>60</h>
     </coordinates>
     <panel_attributes>Templates
 lt=.</panel_attributes>
@@ -731,10 +731,10 @@ lt=.</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>380</x>
-      <y>120</y>
-      <w>200</w>
-      <h>50</h>
+      <x>204</x>
+      <y>159</y>
+      <w>60</w>
+      <h>15</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 /aggregation with/
@@ -745,14 +745,26 @@ fg=red</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>320</x>
-      <y>120</y>
-      <w>70</w>
-      <h>50</h>
+      <x>186</x>
+      <y>159</y>
+      <w>21</w>
+      <h>15</h>
     </coordinates>
     <panel_attributes>Class
 --
 </panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLObject</id>
+    <coordinates>
+      <x>87</x>
+      <y>111</y>
+      <w>972</w>
+      <h>450</h>
+    </coordinates>
+    <panel_attributes>layer=-99
+bg=white</panel_attributes>
     <additional_attributes/>
   </element>
 </diagram>
