@@ -22,6 +22,8 @@ The primary element of the game data is the board. It contains information about
 </div>
 <br>
 
+
+
 *The data structure is of maximum priority for this project.* Its implementation is essential to the remainder of the project's functionality, and is the most demonstrative of object-oriented principles covered in this course.
 
 ---
@@ -30,7 +32,7 @@ The primary element of the game data is the board. It contains information about
 
 <div align="center">
 <figure>
-    <img src="documentation/simple-main.svg">
+    <img src="simple-main.svg">
     <figcaption><br>A simplified view of the data and access structure.</figcaption>
 </figure>
 </div>
@@ -38,7 +40,7 @@ The primary element of the game data is the board. It contains information about
 
 The primary structure of the program is demonstrated in the above diagram. It uses elements of MVC (model, view, controller) structures, but is not necessarily defined as one.
 
-- `Board` contains the game data, with only essential or basic logic implementation.
+- `Board` contains the game data, with only basic logic implementation.
 - `Controller` provides an interface for user input to be converted into an altered game state. It contains the majority of logic for the application, including the code which implements game rules and enforcement.
 - `View` provides an interactive and graphical representation of the current game state. It allows the player to perform an action from a set whose restrictions are context-dependent on the game state.
 
@@ -112,7 +114,7 @@ In the Java implementation, a GUI front-end is provided to the user. This indica
 </div>
 <br>
 
-*The visual representation of data is of medium priority for this project.* 
+*The visual representation of data is of medium priority for this project.* The game can still be played without it, provided that a more primitive representation was given. 
 
 ---
 
@@ -141,7 +143,7 @@ Below are some sample screenshots from an early build of the game, demonstrating
 <div align="center">
 <figure>
     <img src="gui-example-main-2022-03-22.png">
-    <figcaption><br>The primary user interface for the game (last updated 2022-03-22)<br><figcaption>
+    <figcaption><br>The primary user interface for the game.<br><figcaption>
 </figure>
 </div>
 <br>
@@ -150,7 +152,7 @@ Below are some sample screenshots from an early build of the game, demonstrating
 <div align="center">
 <figure>
     <img src="gui-example-propertypurchase-2022-03-22.png" width="400">
-    <figcaption><br>A prompt that the user must respond to when they land on a property that is not owned (last updated 2022-03-22)<br><figcaption>
+    <figcaption><br>A prompt that the user must respond to when they land on a property that is not owned.<br><figcaption>
 </figure>
 </div>
 <br>
@@ -159,7 +161,7 @@ Below are some sample screenshots from an early build of the game, demonstrating
 <div align="center">
 <figure>
     <img src="gui-example-gameeditor-2022-03-22.png" width="400">
-    <figcaption><br>A utility window primarily for debugging purposes, allowing the user to edit attributes of the current game (last updated 2022-03-22)<br><figcaption>
+    <figcaption><br>A utility window primarily for debugging purposes, allowing the user to edit attributes of the current game.<br><figcaption>
 </figure>
 </div>
 <br>
