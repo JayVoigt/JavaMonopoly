@@ -16,7 +16,7 @@ A game of Monopoly can be decomposed into a single, large data structure, and th
 The primary element of the game data is the board. It contains information about both the players and board spaces. Both the players and spaces are represented in an `ArrayList`. In the case of spaces, this `ArrayList` can contain several different object types, all derived from the base `Space` class. Consequently, each space can have its own methods that are called during a generic event, e.g., calculating rent.
 <div align="center">
 <figure>
-    <img src="documentation/main-uml.svg">
+    <img src="main-uml.svg">
 <figcaption><br>The full UML diagram for the project. <br>If you are unable to read this clearly, the full size image is available as <code>main-uml.svg</code> or <code>main-uml.png</code>.<figcaption>
 </figure>
 </div>
@@ -32,7 +32,7 @@ The primary element of the game data is the board. It contains information about
 
 <div align="center">
 <figure>
-    <img src="documentation/simple-main.svg">
+    <img src="simple-main.svg">
     <figcaption><br>A simplified view of the data and access structure.</figcaption>
 </figure>
 </div>
@@ -70,6 +70,15 @@ An important note to make is that much of a player's success in Monopoly is simp
 ---
 &nbsp;
 
+**Synchronization between objects**
+
+Given that the `Board`, `Controller`, and `View` classes comprise the core of the game, an issue arises regarding how they should interact.
+
+This is resolved by allowing the view to inherit the controller, enabling any user input to be validated and sent to the controller when appropriate. Once a method from the controller is finished executing, the view updates itself by accessing the now-modified contents of the board. Effectively, this creates a system where actions only occur when strictly necessary; there is no "main game loop" in the application.
+
+---
+&nbsp;
+
 ## Technologies needed
 
 **Data**
@@ -88,7 +97,7 @@ File I/O exceptions will need to be handled for both of these operation types.
 The user interface for this application is inspired and informed by [a commercial implementation](https://archive.org/details/MonopolyMacPlay) of the game - <i>Monopoly</i> (1993) by MacPlay, for the original Macintosh platform.
 <div align="center">
 <figure>
-    <img src="documentation/gui-inspiration.png">
+    <img src="gui-inspiration.png">
     <figcaption><br>A screenshot of <i>Monopoly</i> on the Macintosh.
 </figure>
 </div>
@@ -108,11 +117,13 @@ In the Java implementation, a GUI front-end is provided to the user. This indica
 
 <div align="center">
 <figure>
-    <img src="documentation/gui-diagram.svg">
+    <img src="gui-diagram.svg">
     <figcaption><br>An abstract diagram of how the user interface interacts with the data of the program.<figcaption>
 </figure>
 </div>
 <br>
+
+The key technology required for the GUI is Java Swing.
 
 *The visual representation of data is of medium priority for this project.* The game can still be played without it, provided that a more primitive representation was given. 
 
@@ -142,7 +153,7 @@ Below are some sample screenshots from an early build of the game, demonstrating
 <br>
 <div align="center">
 <figure>
-    <img src="documentation/gui-example-main-2022-03-22.png">
+    <img src="gui-example-main-2022-03-22.png">
     <figcaption><br>The primary user interface for the game.<br><figcaption>
 </figure>
 </div>
@@ -151,7 +162,7 @@ Below are some sample screenshots from an early build of the game, demonstrating
 <br>
 <div align="center">
 <figure>
-    <img src="documentation/gui-example-propertypurchase-2022-03-22.png" width="400">
+    <img src="gui-example-propertypurchase-2022-03-22.png" width="400">
     <figcaption><br>A prompt that the user must respond to when they land on a property that is not owned.<br><figcaption>
 </figure>
 </div>
@@ -160,7 +171,7 @@ Below are some sample screenshots from an early build of the game, demonstrating
 <br>
 <div align="center">
 <figure>
-    <img src="documentation/gui-example-gameeditor-2022-03-22.png" width="400">
+    <img src="gui-example-gameeditor-2022-03-22.png" width="400">
     <figcaption><br>A utility window primarily for debugging purposes, allowing the user to edit attributes of the current game.<br><figcaption>
 </figure>
 </div>
