@@ -2522,7 +2522,8 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		updatePromptPropertyDecision();
 		updatePromptPostBailDecision();
 		
-		textAreaDebugLog.setText(controller.getDebugLogContents());
+		//textAreaDebugLog.setText(controller.getDebugLogContents());
+		updateDebugLogFromController();
 		updateGameLog();
 	}
 	
@@ -2826,22 +2827,22 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 	// <editor-fold desc="Button locking and unlocking">
 	private void unlockRollDice() {
 		buttonRollDice.setEnabled(true);
-		controller.appendToDebugLog("diceRoll unlocked.");
+		appendToDebugLog("diceRoll unlocked.");
 	}
 	
 	private void lockRollDice() {
 		buttonRollDice.setEnabled(false);
-		controller.appendToDebugLog("diceRoll locked.");
+		appendToDebugLog("diceRoll locked.");
 	}
 	
 	private void unlockEndTurn() {
 		buttonEndTurn.setEnabled(true);
-		controller.appendToDebugLog("endTurn unlocked.");
+		appendToDebugLog("endTurn unlocked.");
 	}
 	
 	private void lockEndTurn() {
 		buttonEndTurn.setEnabled(false);
-		controller.appendToDebugLog("endTurn locked.");
+		appendToDebugLog("endTurn locked.");
 	}
 	// </editor-fold>
 
@@ -3192,7 +3193,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     }//GEN-LAST:event_checkBoxPlayer2ComputerControlledActionPerformed
 	
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-		appendToDebugLog("debug test");
+		appendToDebugLog("Debug test button pressed.");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void textFieldPlayer1NameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldPlayer1NameActionPerformed
@@ -3638,6 +3639,10 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		//logBoxTotalChars += formattedLogEntry.length();
 		textAreaDebugLog.append(formattedLogEntry);
 	}
+	
+	private void updateDebugLogFromController() {
+		textAreaDebugLog.append(controller.getDebugLogContents());
+	}
 	// </editor-fold>
 
 	// Update contents of selection viewer according to what button was pressed
@@ -3671,6 +3676,10 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 				labelOwnedBy.setText("n/a");
 			}
 			
+			if (localSpace instanceof Color) {
+				Color localColor = (Color) localSpace;
+				appendToDebugLog(localFriendlyName + " house:hotel, " + localColor.getHouseCount() + ":" + localColor.getHotelCount());
+			}
 		}
 
 		// If space is of type GameEvent...
