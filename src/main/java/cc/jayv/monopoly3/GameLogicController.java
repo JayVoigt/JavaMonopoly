@@ -442,10 +442,15 @@ public class GameLogicController implements Serializable {
 			int rentOwed = currentProperty.calculateRent();
 			Player propertyOwner = board.players.get(currentProperty.getOwnerID());
 
-			currentPlayer.updateCurrentBalance(-1 * rentOwed);
-			propertyOwner.updateCurrentBalance(rentOwed);
+			if (propertyOwner != currentPlayer) {
+				currentPlayer.updateCurrentBalance(-1 * rentOwed);
+				propertyOwner.updateCurrentBalance(rentOwed);
 
-			appendToGameLog(currentPlayer.getCustomName() + " has paid $" + rentOwed + " in rent to " + propertyOwner.getCustomName() + ".");
+				appendToGameLog(currentPlayer.getCustomName() + " has paid $" + rentOwed + " in rent to " + propertyOwner.getCustomName() + ".");
+			}
+			else {
+				appendToGameLog("No rent needs to be paid.");
+			}
 		}
 	}
 
