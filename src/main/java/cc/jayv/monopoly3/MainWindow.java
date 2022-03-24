@@ -119,6 +119,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonDeduct1000 = new javax.swing.JButton();
         buttonReleasePlayer = new javax.swing.JButton();
         buttonJailPlayer = new javax.swing.JButton();
+        buttonGameEditorGiveAllProperties = new javax.swing.JButton();
         jPopupMenu1 = new javax.swing.JPopupMenu();
         saveFileChoserPanel = new javax.swing.JPanel();
         saveFileChooser = new javax.swing.JFileChooser();
@@ -647,6 +648,14 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
             }
         });
 
+        buttonGameEditorGiveAllProperties.setIcon(new javax.swing.ImageIcon(getClass().getResource("/properties.png"))); // NOI18N
+        buttonGameEditorGiveAllProperties.setText("Give all properties");
+        buttonGameEditorGiveAllProperties.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonGameEditorGiveAllPropertiesActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout gameEditorDialogLayout = new javax.swing.GroupLayout(gameEditorDialog.getContentPane());
         gameEditorDialog.getContentPane().setLayout(gameEditorDialogLayout);
         gameEditorDialogLayout.setHorizontalGroup(
@@ -677,15 +686,17 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
                         .addGap(12, 12, 12)
                         .addComponent(buttonGameEditorGoBackSpace, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(gameEditorDialogLayout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(buttonGameEditorUnlockRollDice1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(buttonGameEditorUnlockEndTurn, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(gameEditorDialogLayout.createSequentialGroup()
                         .addGap(156, 156, 156)
                         .addComponent(buttonGameEditorUpdate)
                         .addGap(12, 12, 12)
-                        .addComponent(buttonGameEditorClose, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(buttonGameEditorClose, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(gameEditorDialogLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(gameEditorDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(buttonGameEditorGiveAllProperties, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(buttonGameEditorUnlockRollDice1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(12, 12, 12)
+                        .addComponent(buttonGameEditorUnlockEndTurn, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(12, Short.MAX_VALUE))
         );
         gameEditorDialogLayout.setVerticalGroup(
@@ -717,7 +728,9 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
                     .addGroup(gameEditorDialogLayout.createSequentialGroup()
                         .addGap(1, 1, 1)
                         .addComponent(buttonGameEditorUnlockEndTurn)))
-                .addGap(37, 37, 37)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(buttonGameEditorGiveAllProperties)
+                .addGap(8, 8, 8)
                 .addGroup(gameEditorDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(buttonGameEditorUpdate)
                     .addComponent(buttonGameEditorClose)))
@@ -3598,6 +3611,11 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     private void forfeitDialogButtonNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_forfeitDialogButtonNoActionPerformed
         forfeitDialog.setVisible(false);
     }//GEN-LAST:event_forfeitDialogButtonNoActionPerformed
+
+    private void buttonGameEditorGiveAllPropertiesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGameEditorGiveAllPropertiesActionPerformed
+        controller.debugToolsGiveAllProperties(gameEditorPlayer.getPlayerID());
+		update();
+    }//GEN-LAST:event_buttonGameEditorGiveAllPropertiesActionPerformed
 	// </editor-fold>
 
 	public void spaceButtonAppearanceHighlight(int spaceID) {
@@ -3826,6 +3844,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     public javax.swing.JButton buttonForfeit;
     public javax.swing.JButton buttonGameEditorAdvanceSpace;
     public javax.swing.JButton buttonGameEditorClose;
+    public javax.swing.JButton buttonGameEditorGiveAllProperties;
     public javax.swing.JButton buttonGameEditorGoBackSpace;
     public javax.swing.JButton buttonGameEditorUnlockEndTurn;
     public javax.swing.JButton buttonGameEditorUnlockRollDice1;
