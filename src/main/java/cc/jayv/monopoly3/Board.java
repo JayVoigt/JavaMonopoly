@@ -29,8 +29,11 @@ public class Board implements Serializable {
 	int bankHouseCount,
 		bankHotelCount;
 	
+//	enum SpaceAttributeKeys {
+//		colorSet,
+//		ownerID
+//	}
 	
-
 	// <editor-fold desc="Constructor">
 	/**
 	 *
@@ -174,24 +177,33 @@ public class Board implements Serializable {
 
 	public void updatePropertyOwnershipRelationships() {
 		Color localColor;
-		int setOwnerIDs[] = new int[3];
-		
-		// Set default ownerIDs to null player
-		for (int i : setOwnerIDs) {
-			setOwnerIDs[i] = 0;
-		}
 		
 		for (Space s : spaces) {
 			if (s instanceof Color) {
 				localColor = (Color) s;
-				
-				if (localColor.getIsOwned() == true) {
-					getAllColorPropertiesFromColorSet(localColor);
-				}
-
+				//updateColorPropertyOwnershipRelationships();
 			}
 		}
 	}
+	
+	private ArrayList<Space> getSpacesByColorGroup(Color.colorGroupKeys inputColorGroup) {
+		ArrayList<Space> spacesByAttribute = new ArrayList<>();
+		Color localColor;
+		
+		for (Space s : spaces) {
+				if (s instanceof Color) {
+					localColor = (Color) s;
+					
+					if (localColor.getColorGroup().equals(inputColorGroup)) {
+						spacesByAttribute.add(localColor);
+					}
+				
+			}
+		}
+		
+		return spacesByAttribute;
+	}
+
 	
 	private ArrayList<Color> updateColorPropertyOwnershipRelationships(Color inputColor) {
 		ArrayList<Color> colorSetArray = new ArrayList<>();
