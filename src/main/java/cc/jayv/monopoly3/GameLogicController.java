@@ -561,12 +561,16 @@ public class GameLogicController implements Serializable {
 	 * Ready the state of the current player to be released from jail; release the player from jail.
 	 */
 	private void readyPlayerForJailRelease() {
+		
+		// Should clean up this method by moving some logic into Player.unjailPlayer()
 		currentPlayer.initializePlayerForNewTurn();
 
 		currentPlayer.setRequiredDecisionPostedBail(false);
 		currentPlayer.setIsJailed(false);
 
 		currentPlayer.setPosition(10);
+		
+		currentPlayer.unjailPlayer();
 
 		currentPlayer.setActionLockedEndTurn(true);
 		currentPlayer.setActionLockedRollDice(false);
