@@ -3681,8 +3681,8 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		int localID = localSpace.getID();
 		String localFriendlyName = localSpace.getFriendlyName();
 		
-		labelSpaceSelectionID.setText(Integer.toString(localID));
-		labelFriendlyName.setText(localFriendlyName);
+		formatLabel(labelSpaceSelectionID, Integer.toString(localID));
+		formatLabel(labelFriendlyName, localFriendlyName);
 		
 		// Correct for grammar: (1 time) or (n times), where n != 1
 		String timesLandedSuffix;
@@ -3694,21 +3694,21 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		else {
 			timesLandedSuffix = " times";
 		}
-		labelTimesLanded.setText(Integer.toString(localSpace.getTimesLanded()) + timesLandedSuffix);
+		formatLabel(labelTimesLanded, Integer.toString(localSpace.getTimesLanded()) + timesLandedSuffix);
 
 		if (localSpace instanceof Property) {
 			Property localProperty = (Property) board.spaces.get(spaceID);
 			
 			boolean localIsOwned = localProperty.getIsOwned();
-			labelIsOwned.setText(Boolean.toString(localIsOwned));
+			formatLabel(labelIsOwned, Boolean.toString(localIsOwned));
 			
-			labelSpaceType.setText("Property");
+			formatLabel(labelSpaceType, "Property");
 			
 			if (localIsOwned == true) {
-				labelOwnedBy.setText(board.players.get(localProperty.getOwnerID()).getCustomName());
+				formatLabel(labelOwnedBy, board.players.get(localProperty.getOwnerID()).getCustomName());
 			}
 			else {
-				labelOwnedBy.setText("not owned");
+				formatLabel(labelOwnedBy, "not owned");
 			}
 			
 			labelCost.setText(Integer.toString(localProperty.getPurchaseCost()));
@@ -3716,7 +3716,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 			if (localSpace instanceof Color) {
 				Color localColor = (Color) localSpace;
 				
-				labelSpaceType.setText("Property, Color");
+				formatLabel(labelSpaceType, "Property, Color");
 				appendToDebugLog(localFriendlyName + " house:hotel, " + localColor.getHouseCount() + ":" + localColor.getHotelCount());
 			}
 			
@@ -3729,32 +3729,44 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 			else if (localSpace instanceof Railroad) {
 				Railroad localRailroad = (Railroad) localSpace;
 				
-				labelSpaceType.setText("Property, Railroad");
+				formatLabel(labelSpaceType, "Property, Railroad");
 			}
 		}
 
 		else if (localSpace instanceof GameEvent) {
 			GameEvent localGameEvent = (GameEvent) board.spaces.get(spaceID);
-			labelOwnedBy.setText("n/a");
-			labelOwnedBy.setForeground(java.awt.Color.gray);
-			labelSpaceType.setText("Game Event");
+			formatLabel(labelIsOwned);
+			formatLabel(labelOwnedBy);
+			formatLabel(labelSpaceType, "Game Event");
 		}
 		
 		else {
-			labelSpaceSelectionID.setText("undefined ID");
+			formatLabel(labelSpaceSelectionID, "undefined ID");
 		}
 		
 		updateImprovementsDialog();
 	}
 	
-	private void formatLabelForContent(JLabel inputLabel, boolean hasContent) {
-		if (hasContent == true) {
-			inputLabel.setForeground(java.awt.Color.gray);
-			inputLabel.setText("<html><i>none</i></html>");
-		}
-		else {
-			inputLabel.setForeground(java.awt.Color.black);
-		}
+	/**
+	 * Format a JLabel that contains content.<br>
+	 * The text of the label is set to the standard style, and its value is
+	 * set to the contents of <code>inputContent</code>.
+	 * @param inputLabel The JLabel to modify
+	 * @param inputContent The contents of the label message
+	 */
+	private void formatLabel(JLabel inputLabel, String inputContent) {
+		inputLabel.setForeground(java.awt.Color.black);
+		inputLabel.setText(inputContent);
+	}
+	
+	/**
+	 * Format a JLabel that contains no content.<br>
+	 * The text of the label is stylized and set to indicate it has no value.
+	 * @param inputLabel The JLabel to modify
+	 */
+	private void formatLabel(JLabel inputLabel) {
+		inputLabel.setForeground(java.awt.Color.gray);
+		inputLabel.setText("<html><i>n/a</i></html>");
 	}
 	
 	public void updateVisualPlayerIndicator(Player currentPlayer) {
