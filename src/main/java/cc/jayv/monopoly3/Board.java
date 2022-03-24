@@ -31,12 +31,6 @@ public class Board implements Serializable {
 	
 	ArrayList<Color> spacesByColorGroup = new ArrayList<>();
 
-	
-//	enum SpaceAttributeKeys {
-//		colorSet,
-//		ownerID
-//	}
-	
 	// <editor-fold desc="Constructor">
 	/**
 	 *
@@ -160,6 +154,10 @@ public class Board implements Serializable {
 
 	}	// end Board()
 	// </editor-fold>
+	
+	public void forceBoardSelfCheck() {
+		updatePropertyOwnershipRelationships();
+	}
 
 	public int getCurrentPlayerID() {
 		return currentPlayerID;
@@ -202,9 +200,17 @@ public class Board implements Serializable {
 					localColor.setIsFullSetOwned(true);
 				}
 			}
-			
-			System.err.println(isFullSetOwnedBySinglePlayer);
-		}
+		}	// end for (Color)
+		
+		for (Space s : spaces) {
+			if (s instanceof Property) {
+				Property localProperty = (Property) s;
+				
+				if (localProperty.getIsOwned() == true) {
+					players.get(localProperty.getOwnerID()).setPropertyOwnedState(true, localProperty.getID());
+				}
+			}
+		}	// end for (Space)
 		
 	}
 	
@@ -243,5 +249,5 @@ public class Board implements Serializable {
 		
 		return colorSetArray;
 	}
-
+	
 }

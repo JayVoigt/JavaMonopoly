@@ -296,9 +296,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonProperties = new javax.swing.JButton();
         buttonActionImprovements1 = new javax.swing.JButton();
         buttonForfeit = new javax.swing.JButton();
-        labelCurrentPlayerIcon = new javax.swing.JLabel();
-        staticLabelPositionIcon = new javax.swing.JLabel();
-        labelCurrentBalanceIcon1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuFile = new javax.swing.JMenu();
         menuFileNewGame = new javax.swing.JMenuItem();
@@ -1568,6 +1565,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonSpace0.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         buttonSpace0.setContentAreaFilled(false);
         buttonSpace0.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buttonSpace0.setFocusable(false);
         buttonSpace0.setMargin(new java.awt.Insets(1, 1, 1, 1));
         buttonSpace0.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1582,6 +1580,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonSpace1.setForeground(new java.awt.Color(255, 255, 255));
         buttonSpace1.setContentAreaFilled(false);
         buttonSpace1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buttonSpace1.setFocusable(false);
         buttonSpace1.setMargin(new java.awt.Insets(1, 1, 1, 1));
         buttonSpace1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1595,6 +1594,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonSpace2.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         buttonSpace2.setContentAreaFilled(false);
         buttonSpace2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buttonSpace2.setFocusable(false);
         buttonSpace2.setMargin(new java.awt.Insets(1, 1, 1, 1));
         buttonSpace2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1609,6 +1609,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonSpace3.setForeground(new java.awt.Color(255, 255, 255));
         buttonSpace3.setContentAreaFilled(false);
         buttonSpace3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buttonSpace3.setFocusable(false);
         buttonSpace3.setMargin(new java.awt.Insets(1, 1, 1, 1));
         buttonSpace3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1622,6 +1623,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonSpace4.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         buttonSpace4.setContentAreaFilled(false);
         buttonSpace4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buttonSpace4.setFocusable(false);
         buttonSpace4.setMargin(new java.awt.Insets(1, 1, 1, 1));
         buttonSpace4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1636,6 +1638,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonSpace5.setForeground(new java.awt.Color(255, 255, 255));
         buttonSpace5.setContentAreaFilled(false);
         buttonSpace5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buttonSpace5.setFocusable(false);
         buttonSpace5.setMargin(new java.awt.Insets(1, 1, 1, 1));
         buttonSpace5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1649,6 +1652,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonSpace6.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         buttonSpace6.setContentAreaFilled(false);
         buttonSpace6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buttonSpace6.setFocusable(false);
         buttonSpace6.setMargin(new java.awt.Insets(1, 1, 1, 1));
         buttonSpace6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1662,6 +1666,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonSpace7.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         buttonSpace7.setContentAreaFilled(false);
         buttonSpace7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buttonSpace7.setFocusable(false);
         buttonSpace7.setMargin(new java.awt.Insets(1, 1, 1, 1));
         buttonSpace7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1675,6 +1680,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonSpace8.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         buttonSpace8.setContentAreaFilled(false);
         buttonSpace8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buttonSpace8.setFocusable(false);
         buttonSpace8.setMargin(new java.awt.Insets(1, 1, 1, 1));
         buttonSpace8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1688,6 +1694,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonSpace9.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         buttonSpace9.setContentAreaFilled(false);
         buttonSpace9.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buttonSpace9.setFocusable(false);
         buttonSpace9.setMargin(new java.awt.Insets(1, 1, 1, 1));
         buttonSpace9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1701,6 +1708,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonSpace10.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         buttonSpace10.setContentAreaFilled(false);
         buttonSpace10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buttonSpace10.setFocusable(false);
         buttonSpace10.setMargin(new java.awt.Insets(1, 1, 1, 1));
         buttonSpace10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1714,6 +1722,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonSpace11.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         buttonSpace11.setContentAreaFilled(false);
         buttonSpace11.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buttonSpace11.setFocusable(false);
         buttonSpace11.setMargin(new java.awt.Insets(1, 1, 1, 1));
         buttonSpace11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1727,6 +1736,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonSpace12.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         buttonSpace12.setContentAreaFilled(false);
         buttonSpace12.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buttonSpace12.setFocusable(false);
         buttonSpace12.setMargin(new java.awt.Insets(1, 1, 1, 1));
         buttonSpace12.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -1748,6 +1758,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonSpace13.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         buttonSpace13.setContentAreaFilled(false);
         buttonSpace13.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buttonSpace13.setFocusable(false);
         buttonSpace13.setMargin(new java.awt.Insets(1, 1, 1, 1));
         buttonSpace13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1761,6 +1772,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonSpace14.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         buttonSpace14.setContentAreaFilled(false);
         buttonSpace14.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buttonSpace14.setFocusable(false);
         buttonSpace14.setMargin(new java.awt.Insets(1, 1, 1, 1));
         buttonSpace14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1775,6 +1787,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonSpace15.setForeground(new java.awt.Color(255, 255, 255));
         buttonSpace15.setContentAreaFilled(false);
         buttonSpace15.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buttonSpace15.setFocusable(false);
         buttonSpace15.setMargin(new java.awt.Insets(1, 1, 1, 1));
         buttonSpace15.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1788,6 +1801,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonSpace16.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         buttonSpace16.setContentAreaFilled(false);
         buttonSpace16.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buttonSpace16.setFocusable(false);
         buttonSpace16.setMargin(new java.awt.Insets(1, 1, 1, 1));
         buttonSpace16.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1801,6 +1815,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonSpace17.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         buttonSpace17.setContentAreaFilled(false);
         buttonSpace17.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buttonSpace17.setFocusable(false);
         buttonSpace17.setMargin(new java.awt.Insets(1, 1, 1, 1));
         buttonSpace17.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1814,6 +1829,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonSpace18.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         buttonSpace18.setContentAreaFilled(false);
         buttonSpace18.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buttonSpace18.setFocusable(false);
         buttonSpace18.setMargin(new java.awt.Insets(1, 1, 1, 1));
         buttonSpace18.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1827,6 +1843,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonSpace19.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         buttonSpace19.setContentAreaFilled(false);
         buttonSpace19.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buttonSpace19.setFocusable(false);
         buttonSpace19.setMargin(new java.awt.Insets(1, 1, 1, 1));
         buttonSpace19.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1840,6 +1857,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonSpace20.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         buttonSpace20.setContentAreaFilled(false);
         buttonSpace20.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buttonSpace20.setFocusable(false);
         buttonSpace20.setMargin(new java.awt.Insets(1, 1, 1, 1));
         buttonSpace20.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -1862,6 +1880,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonSpace21.setForeground(new java.awt.Color(255, 255, 255));
         buttonSpace21.setContentAreaFilled(false);
         buttonSpace21.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buttonSpace21.setFocusable(false);
         buttonSpace21.setMargin(new java.awt.Insets(1, 1, 1, 1));
         buttonSpace21.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1875,6 +1894,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonSpace22.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         buttonSpace22.setContentAreaFilled(false);
         buttonSpace22.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buttonSpace22.setFocusable(false);
         buttonSpace22.setMargin(new java.awt.Insets(1, 1, 1, 1));
         buttonSpace22.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1889,6 +1909,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonSpace23.setForeground(new java.awt.Color(255, 255, 255));
         buttonSpace23.setContentAreaFilled(false);
         buttonSpace23.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buttonSpace23.setFocusable(false);
         buttonSpace23.setMargin(new java.awt.Insets(1, 1, 1, 1));
         buttonSpace23.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1903,6 +1924,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonSpace24.setForeground(new java.awt.Color(255, 255, 255));
         buttonSpace24.setContentAreaFilled(false);
         buttonSpace24.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buttonSpace24.setFocusable(false);
         buttonSpace24.setMargin(new java.awt.Insets(1, 1, 1, 1));
         buttonSpace24.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1917,6 +1939,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonSpace25.setForeground(new java.awt.Color(255, 255, 255));
         buttonSpace25.setContentAreaFilled(false);
         buttonSpace25.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buttonSpace25.setFocusable(false);
         buttonSpace25.setMargin(new java.awt.Insets(1, 1, 1, 1));
         buttonSpace25.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1930,6 +1953,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonSpace26.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         buttonSpace26.setContentAreaFilled(false);
         buttonSpace26.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buttonSpace26.setFocusable(false);
         buttonSpace26.setMargin(new java.awt.Insets(1, 1, 1, 1));
         buttonSpace26.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1943,6 +1967,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonSpace27.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         buttonSpace27.setContentAreaFilled(false);
         buttonSpace27.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buttonSpace27.setFocusable(false);
         buttonSpace27.setMargin(new java.awt.Insets(1, 1, 1, 1));
         buttonSpace27.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1956,6 +1981,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonSpace28.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         buttonSpace28.setContentAreaFilled(false);
         buttonSpace28.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buttonSpace28.setFocusable(false);
         buttonSpace28.setMargin(new java.awt.Insets(1, 1, 1, 1));
         buttonSpace28.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -1977,6 +2003,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonSpace29.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         buttonSpace29.setContentAreaFilled(false);
         buttonSpace29.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buttonSpace29.setFocusable(false);
         buttonSpace29.setMargin(new java.awt.Insets(1, 1, 1, 1));
         buttonSpace29.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1990,6 +2017,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonSpace30.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         buttonSpace30.setContentAreaFilled(false);
         buttonSpace30.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buttonSpace30.setFocusable(false);
         buttonSpace30.setMargin(new java.awt.Insets(1, 1, 1, 1));
         buttonSpace30.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2004,6 +2032,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonSpace31.setForeground(new java.awt.Color(255, 255, 255));
         buttonSpace31.setContentAreaFilled(false);
         buttonSpace31.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buttonSpace31.setFocusable(false);
         buttonSpace31.setMargin(new java.awt.Insets(1, 1, 1, 1));
         buttonSpace31.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2018,6 +2047,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonSpace32.setForeground(new java.awt.Color(255, 255, 255));
         buttonSpace32.setContentAreaFilled(false);
         buttonSpace32.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buttonSpace32.setFocusable(false);
         buttonSpace32.setMargin(new java.awt.Insets(1, 1, 1, 1));
         buttonSpace32.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2031,6 +2061,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonSpace33.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         buttonSpace33.setContentAreaFilled(false);
         buttonSpace33.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buttonSpace33.setFocusable(false);
         buttonSpace33.setMargin(new java.awt.Insets(1, 1, 1, 1));
         buttonSpace33.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2045,6 +2076,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonSpace34.setForeground(new java.awt.Color(255, 255, 255));
         buttonSpace34.setContentAreaFilled(false);
         buttonSpace34.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buttonSpace34.setFocusable(false);
         buttonSpace34.setMargin(new java.awt.Insets(1, 1, 1, 1));
         buttonSpace34.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2059,6 +2091,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonSpace35.setForeground(new java.awt.Color(255, 255, 255));
         buttonSpace35.setContentAreaFilled(false);
         buttonSpace35.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buttonSpace35.setFocusable(false);
         buttonSpace35.setMargin(new java.awt.Insets(1, 1, 1, 1));
         buttonSpace35.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2072,6 +2105,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonSpace36.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         buttonSpace36.setContentAreaFilled(false);
         buttonSpace36.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buttonSpace36.setFocusable(false);
         buttonSpace36.setMargin(new java.awt.Insets(1, 1, 1, 1));
         buttonSpace36.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2086,6 +2120,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonSpace37.setForeground(new java.awt.Color(255, 255, 255));
         buttonSpace37.setContentAreaFilled(false);
         buttonSpace37.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buttonSpace37.setFocusable(false);
         buttonSpace37.setMargin(new java.awt.Insets(1, 1, 1, 1));
         buttonSpace37.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2099,6 +2134,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonSpace38.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         buttonSpace38.setContentAreaFilled(false);
         buttonSpace38.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buttonSpace38.setFocusable(false);
         buttonSpace38.setMargin(new java.awt.Insets(1, 1, 1, 1));
         buttonSpace38.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -2121,6 +2157,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonSpace39.setForeground(new java.awt.Color(255, 255, 255));
         buttonSpace39.setContentAreaFilled(false);
         buttonSpace39.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buttonSpace39.setFocusable(false);
         buttonSpace39.setMargin(new java.awt.Insets(1, 1, 1, 1));
         buttonSpace39.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2178,7 +2215,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
                     .addComponent(labelPlayer2Name)
                     .addComponent(labelPlayer3Name)
                     .addComponent(labelPlayer4Name))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(254, Short.MAX_VALUE))
         );
         controlPanelGameInformationLayout.setVerticalGroup(
             controlPanelGameInformationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2204,171 +2241,144 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
             e1.printStackTrace();
         }
         controlPanelActions.setVisible(true);
-        controlPanelActions.getContentPane().setLayout(null);
+        controlPanelActions.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         buttonEndTurn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/arrow.png"))); // NOI18N
         buttonEndTurn.setText("End Turn");
         buttonEndTurn.setFocusPainted(false);
         buttonEndTurn.setMargin(new java.awt.Insets(2, 6, 2, 6));
+        buttonEndTurn.setNextFocusableComponent(buttonRollDice);
         buttonEndTurn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonEndTurnActionPerformed(evt);
             }
         });
-        controlPanelActions.getContentPane().add(buttonEndTurn);
-        buttonEndTurn.setBounds(200, 270, 105, 58);
+        controlPanelActions.getContentPane().add(buttonEndTurn, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 280, 105, 58));
 
         buttonRollDice.setIcon(new javax.swing.ImageIcon("/Users/jay/NetBeansProjects/Monoproto3/src/main/resources/dice-icon.png")); // NOI18N
         buttonRollDice.setText("Roll Dice");
-        buttonRollDice.setFocusPainted(false);
         buttonRollDice.setMargin(new java.awt.Insets(2, 6, 2, 6));
+        buttonRollDice.setNextFocusableComponent(buttonEndTurn);
         buttonRollDice.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonRollDiceActionPerformed(evt);
             }
         });
-        controlPanelActions.getContentPane().add(buttonRollDice);
-        buttonRollDice.setBounds(10, 269, 110, 60);
+        controlPanelActions.getContentPane().add(buttonRollDice, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, 110, 60));
 
         staticLabelCurrentPlayer.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         staticLabelCurrentPlayer.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        staticLabelCurrentPlayer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/player-generic.png"))); // NOI18N
         staticLabelCurrentPlayer.setText("Current Player");
-        controlPanelActions.getContentPane().add(staticLabelCurrentPlayer);
-        staticLabelCurrentPlayer.setBounds(30, 10, 131, 20);
+        controlPanelActions.getContentPane().add(staticLabelCurrentPlayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 150, 18));
 
         labelCurrentPlayer.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         labelCurrentPlayer.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         labelCurrentPlayer.setText("n/a");
-        controlPanelActions.getContentPane().add(labelCurrentPlayer);
-        labelCurrentPlayer.setBounds(180, 10, 140, 20);
+        controlPanelActions.getContentPane().add(labelCurrentPlayer, new org.netbeans.lib.awtextra.AbsoluteConstraints(188, 10, 130, 20));
 
         labelDie2.setFont(new java.awt.Font("Courier", 0, 18)); // NOI18N
         labelDie2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelDie2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/die-50px-0pip.png"))); // NOI18N
-        controlPanelActions.getContentPane().add(labelDie2);
-        labelDie2.setBounds(70, 210, 50, 50);
+        controlPanelActions.getContentPane().add(labelDie2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 220, -1, -1));
 
         labelDie1.setFont(new java.awt.Font("Courier", 0, 18)); // NOI18N
         labelDie1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelDie1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/die-50px-0pip.png"))); // NOI18N
-        controlPanelActions.getContentPane().add(labelDie1);
-        labelDie1.setBounds(10, 210, 50, 50);
+        controlPanelActions.getContentPane().add(labelDie1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, -1, -1));
 
         staticLabelCurrentBalance.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         staticLabelCurrentBalance.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        staticLabelCurrentBalance.setIcon(new javax.swing.ImageIcon(getClass().getResource("/money.png"))); // NOI18N
         staticLabelCurrentBalance.setText("Balance");
-        controlPanelActions.getContentPane().add(staticLabelCurrentBalance);
-        staticLabelCurrentBalance.setBounds(30, 40, 131, 20);
+        controlPanelActions.getContentPane().add(staticLabelCurrentBalance, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 150, 20));
 
         labelCurrentBalance.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         labelCurrentBalance.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         labelCurrentBalance.setText("n/a");
-        controlPanelActions.getContentPane().add(labelCurrentBalance);
-        labelCurrentBalance.setBounds(180, 40, 140, 20);
+        controlPanelActions.getContentPane().add(labelCurrentBalance, new org.netbeans.lib.awtextra.AbsoluteConstraints(188, 40, 130, 20));
 
         jSeparator5.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        controlPanelActions.getContentPane().add(jSeparator5);
-        jSeparator5.setBounds(170, 0, 10, 100);
-        controlPanelActions.getContentPane().add(jSeparator6);
-        jSeparator6.setBounds(0, 200, 330, 20);
+        controlPanelActions.getContentPane().add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 0, 10, 100));
+        controlPanelActions.getContentPane().add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 207, 330, 20));
 
         staticLabelPosition.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         staticLabelPosition.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        staticLabelPosition.setIcon(new javax.swing.ImageIcon(getClass().getResource("/position.png"))); // NOI18N
         staticLabelPosition.setText("Position");
-        controlPanelActions.getContentPane().add(staticLabelPosition);
-        staticLabelPosition.setBounds(30, 70, 131, 20);
+        controlPanelActions.getContentPane().add(staticLabelPosition, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 150, 20));
 
         labelCurrentPosition.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         labelCurrentPosition.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         labelCurrentPosition.setText("n/a");
-        controlPanelActions.getContentPane().add(labelCurrentPosition);
-        labelCurrentPosition.setBounds(180, 70, 140, 20);
-        controlPanelActions.getContentPane().add(jSeparator7);
-        jSeparator7.setBounds(0, 100, 330, 10);
+        controlPanelActions.getContentPane().add(labelCurrentPosition, new org.netbeans.lib.awtextra.AbsoluteConstraints(188, 70, 130, 26));
+        controlPanelActions.getContentPane().add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 106, 330, 10));
 
         buttonActionTrade.setIcon(new javax.swing.ImageIcon(getClass().getResource("/trade.png"))); // NOI18N
         buttonActionTrade.setText("Trade");
         buttonActionTrade.setFocusPainted(false);
+        buttonActionTrade.setFocusable(false);
         buttonActionTrade.setMargin(new java.awt.Insets(2, 6, 2, 6));
-        controlPanelActions.getContentPane().add(buttonActionTrade);
-        buttonActionTrade.setBounds(10, 170, 140, 24);
+        controlPanelActions.getContentPane().add(buttonActionTrade, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 140, -1));
 
         buttonActionMortgage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mortgage.png"))); // NOI18N
         buttonActionMortgage.setText("Mortgage");
         buttonActionMortgage.setToolTipText("Mortgage a property you own.");
         buttonActionMortgage.setFocusPainted(false);
+        buttonActionMortgage.setFocusable(false);
         buttonActionMortgage.setMargin(new java.awt.Insets(2, 6, 2, 6));
         buttonActionMortgage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonActionMortgageActionPerformed(evt);
             }
         });
-        controlPanelActions.getContentPane().add(buttonActionMortgage);
-        buttonActionMortgage.setBounds(10, 110, 140, 24);
+        controlPanelActions.getContentPane().add(buttonActionMortgage, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 140, -1));
 
         buttonActionImprovements.setIcon(new javax.swing.ImageIcon(getClass().getResource("/improvements.png"))); // NOI18N
         buttonActionImprovements.setText("Improvements");
         buttonActionImprovements.setToolTipText("Build and sell houses and hotels.");
         buttonActionImprovements.setFocusPainted(false);
+        buttonActionImprovements.setFocusable(false);
         buttonActionImprovements.setMargin(new java.awt.Insets(2, 6, 2, 6));
         buttonActionImprovements.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonActionImprovementsActionPerformed(evt);
             }
         });
-        controlPanelActions.getContentPane().add(buttonActionImprovements);
-        buttonActionImprovements.setBounds(10, 140, 140, 24);
+        controlPanelActions.getContentPane().add(buttonActionImprovements, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 140, -1));
 
         buttonProperties.setIcon(new javax.swing.ImageIcon(getClass().getResource("/properties.png"))); // NOI18N
         buttonProperties.setText("Properties");
         buttonProperties.setToolTipText("Highlight properties that you currently own.");
         buttonProperties.setFocusPainted(false);
+        buttonProperties.setFocusable(false);
         buttonProperties.setMargin(new java.awt.Insets(2, 6, 2, 6));
         buttonProperties.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonPropertiesActionPerformed(evt);
             }
         });
-        controlPanelActions.getContentPane().add(buttonProperties);
-        buttonProperties.setBounds(180, 110, 140, 23);
+        controlPanelActions.getContentPane().add(buttonProperties, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 120, 140, -1));
 
         buttonActionImprovements1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/statistics.png"))); // NOI18N
         buttonActionImprovements1.setText("Statistics");
         buttonActionImprovements1.setToolTipText("");
         buttonActionImprovements1.setFocusPainted(false);
+        buttonActionImprovements1.setFocusable(false);
         buttonActionImprovements1.setMargin(new java.awt.Insets(2, 6, 2, 6));
-        controlPanelActions.getContentPane().add(buttonActionImprovements1);
-        buttonActionImprovements1.setBounds(180, 140, 140, 24);
+        controlPanelActions.getContentPane().add(buttonActionImprovements1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 150, 140, -1));
 
         buttonForfeit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/surrender.png"))); // NOI18N
         buttonForfeit.setText("Forfeit");
         buttonForfeit.setFocusPainted(false);
+        buttonForfeit.setFocusable(false);
         buttonForfeit.setMargin(new java.awt.Insets(2, 6, 2, 6));
         buttonForfeit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonForfeitActionPerformed(evt);
             }
         });
-        controlPanelActions.getContentPane().add(buttonForfeit);
-        buttonForfeit.setBounds(180, 170, 140, 24);
-
-        labelCurrentPlayerIcon.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        labelCurrentPlayerIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/player-generic.png"))); // NOI18N
-        labelCurrentPlayerIcon.setText("Player 1");
-        controlPanelActions.getContentPane().add(labelCurrentPlayerIcon);
-        labelCurrentPlayerIcon.setBounds(10, 10, 18, 18);
-
-        staticLabelPositionIcon.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        staticLabelPositionIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/position.png"))); // NOI18N
-        staticLabelPositionIcon.setText("Player 1");
-        controlPanelActions.getContentPane().add(staticLabelPositionIcon);
-        staticLabelPositionIcon.setBounds(10, 70, 18, 18);
-
-        labelCurrentBalanceIcon1.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        labelCurrentBalanceIcon1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/money.png"))); // NOI18N
-        labelCurrentBalanceIcon1.setText("Player 1");
-        controlPanelActions.getContentPane().add(labelCurrentBalanceIcon1);
-        labelCurrentBalanceIcon1.setBounds(10, 40, 18, 18);
+        controlPanelActions.getContentPane().add(buttonForfeit, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 180, 140, -1));
 
         menuFile.setText("File");
 
@@ -2499,10 +2509,11 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
                 .addComponent(frameBoard, javax.swing.GroupLayout.PREFERRED_SIZE, 985, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(controlPanelGameInformation)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(controlPanelGameInformation)
-                        .addContainerGap())
-                    .addComponent(controlPanelActions, javax.swing.GroupLayout.DEFAULT_SIZE, 339, Short.MAX_VALUE)))
+                        .addComponent(controlPanelActions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2512,8 +2523,8 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
                     .addComponent(frameBoard)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(controlPanelGameInformation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 250, Short.MAX_VALUE)
-                        .addComponent(controlPanelActions, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 222, Short.MAX_VALUE)
+                        .addComponent(controlPanelActions, javax.swing.GroupLayout.PREFERRED_SIZE, 404, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -2564,26 +2575,26 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 			}
 		}
 		if (currentPlayer.getIsComputerControlled() == true) {
-			labelCurrentPlayerIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/robot.png"))); // NOI18N
+			staticLabelCurrentPlayer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/robot.png"))); // NOI18N
 		}
 		else if (currentPlayer.getCurrentBalance() < 10000) {
 			// Only set animated icon if player is not jailed
 			if (currentPlayer.getIsJailed() == false) {
 				if (Math.random() >= 0.9) {
 					// The player icon will blink at you sometimes
-					labelCurrentPlayerIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/player-generic-anim.gif")));
+					staticLabelCurrentPlayer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/player-generic-anim.gif")));
 				}
 				else {
-					labelCurrentPlayerIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/player-generic.png")));
+					staticLabelCurrentPlayer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/player-generic.png")));
 				}
 			}
 			else {
 				// Icon for jailed players
-				labelCurrentPlayerIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jail.png")));
+				staticLabelCurrentPlayer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jail.png")));
 			}
 		}
 		else {
-			labelCurrentPlayerIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/wealthy.png")));
+			staticLabelCurrentPlayer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/wealthy.png")));
 		}
 
 		appendToDebugLog("[initUIForCurrentPlayer] Current player: " + currentPlayer.getCustomName());
@@ -3124,21 +3135,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		controller.appendToGameLog("Game Editor was opened!");
     }//GEN-LAST:event_menuEditGameEditorActionPerformed
 
-	// <editor-fold desc="Sound helpers">
-	// </editor-fold>
-	// <editor-fold desc="End turn/roll dice buttons">
-    private void buttonRollDiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRollDiceActionPerformed
-		
-		controller.diceRollManager();
-		update();
-    }//GEN-LAST:event_buttonRollDiceActionPerformed
-
-    private void buttonEndTurnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEndTurnActionPerformed
-		controller.endTurnManager();
-		update();
-		readyUIForNextPlayer();
-    }//GEN-LAST:event_buttonEndTurnActionPerformed
-	// </editor-fold>
+// </editor-fold>
 
 	// <editor-fold desc="User prompts">
 	public void promptUserForPropertyDecision() {
@@ -3301,22 +3298,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		}
     }//GEN-LAST:event_menuViewToggleExtraPaddingActionPerformed
 
-    private void buttonActionImprovementsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonActionImprovementsActionPerformed
-		customAppearanceJDialog(improvementsDialog);
-		updateImprovementsDialog();
-		
-		labelSelectedProperty.setText("Select a property.");
-		labelImprovementInfo.setText("No property selected.");
-		
-		if (improvementsDialog.isVisible() == false) {
-			improvementsDialog.setVisible(true);
-			buttonPropertiesActionPerformed(evt);
-		}
-		else {
-			improvementsDialog.setVisible(false);
-		}
-    }//GEN-LAST:event_buttonActionImprovementsActionPerformed
-
 	private void updateImprovementsDialog() {
 		Space localSpace = board.spaces.get(currentSpaceSelectionID);
 		Property localProperty;
@@ -3373,19 +3354,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		}
 	}
 	
-    private void buttonPropertiesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPropertiesActionPerformed
-		boolean localOwnedPropertyIDs[] = currentPlayer.getOwnedPropertyIDs();
-		
-		for (int i = 0; i < 40; i++) {
-			if (localOwnedPropertyIDs[i] == true) {
-				spaceButtonAppearanceHighlight(i);
-			}
-			else {
-				spaceButtonAppearanceReset(i);
-			}
-		}
-    }//GEN-LAST:event_buttonPropertiesActionPerformed
-
     private void buttonJailDialogPostBailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonJailDialogPostBailActionPerformed
 		controller.playerDecisionJailPostBail();
 		update();
@@ -3395,14 +3363,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		controller.playerDecisionJailRollDoubles();
 		update();
     }//GEN-LAST:event_buttonJailDialogRollForDoublesActionPerformed
-
-    private void buttonForfeitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonForfeitActionPerformed
-		customAppearanceJDialog(forfeitDialog);
-		
-		forfeitDialog.setVisible(true);
-		controller.forfeitManager();
-		update();
-    }//GEN-LAST:event_buttonForfeitActionPerformed
 
     private void buttonIcon8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonIcon8ActionPerformed
 		setPlayerIcon(iconSelectionPlayerID, buttonIcon8.getIcon());
@@ -3483,15 +3443,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     private void buttonIcon9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonIcon9ActionPerformed
 		setPlayerIcon(iconSelectionPlayerID, buttonIcon9.getIcon());
     }//GEN-LAST:event_buttonIcon9ActionPerformed
-
-    private void buttonActionMortgageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonActionMortgageActionPerformed
-		if (mortgageDialog.isVisible() == false) {
-			mortgageDialog.setVisible(true);
-		}
-		else {
-			mortgageDialog.setVisible(false);
-		}
-    }//GEN-LAST:event_buttonActionMortgageActionPerformed
 
     private void buttonJailDialogUseGOOJFCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonJailDialogUseGOOJFCActionPerformed
 		// TODO add your handling code here:
@@ -3620,6 +3571,62 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         controller.debugToolsGiveAllProperties(gameEditorPlayer.getPlayerID());
 		update();
     }//GEN-LAST:event_buttonGameEditorGiveAllPropertiesActionPerformed
+
+    private void buttonForfeitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonForfeitActionPerformed
+        customAppearanceJDialog(forfeitDialog);
+
+        forfeitDialog.setVisible(true);
+        controller.forfeitManager();
+        update();
+    }//GEN-LAST:event_buttonForfeitActionPerformed
+
+    private void buttonPropertiesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPropertiesActionPerformed
+        boolean localOwnedPropertyIDs[] = currentPlayer.getOwnedPropertyIDs();
+
+        for (int i = 0; i < 40; i++) {
+            if (localOwnedPropertyIDs[i] == true) {
+                spaceButtonAppearanceHighlight(i);
+            }
+            else {
+                spaceButtonAppearanceReset(i);
+            }
+        }
+    }//GEN-LAST:event_buttonPropertiesActionPerformed
+
+    private void buttonActionImprovementsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonActionImprovementsActionPerformed
+        customAppearanceJDialog(improvementsDialog);
+        updateImprovementsDialog();
+
+        labelSelectedProperty.setText("Select a property.");
+        labelImprovementInfo.setText("No property selected.");
+
+        if (improvementsDialog.isVisible() == false) {
+            improvementsDialog.setVisible(true);
+            buttonPropertiesActionPerformed(evt);
+        }
+        else {
+            improvementsDialog.setVisible(false);
+        }
+    }//GEN-LAST:event_buttonActionImprovementsActionPerformed
+
+    private void buttonActionMortgageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonActionMortgageActionPerformed
+        if (mortgageDialog.isVisible() == false) {
+            mortgageDialog.setVisible(true);
+        }
+        else {
+            mortgageDialog.setVisible(false);
+        }
+    }//GEN-LAST:event_buttonActionMortgageActionPerformed
+
+//GEN-FIRST:event_buttonRollDiceActionPerformed
+ 
+//GEN-LAST:event_buttonRollDiceActionPerformed
+
+    private void buttonEndTurnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEndTurnActionPerformed
+        controller.endTurnManager();
+        update();
+        readyUIForNextPlayer();
+    }//GEN-LAST:event_buttonEndTurnActionPerformed
 	// </editor-fold>
 
 	public void spaceButtonAppearanceHighlight(int spaceID) {
@@ -4028,9 +4035,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     public javax.swing.JLabel labelConsecutiveJailedTurns1;
     public javax.swing.JLabel labelCost;
     public javax.swing.JLabel labelCurrentBalance;
-    public javax.swing.JLabel labelCurrentBalanceIcon1;
     public javax.swing.JLabel labelCurrentPlayer;
-    public javax.swing.JLabel labelCurrentPlayerIcon;
     public javax.swing.JLabel labelCurrentPosition;
     public javax.swing.JLabel labelDie1;
     public javax.swing.JLabel labelDie2;
@@ -4096,7 +4101,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     public javax.swing.JLabel staticLabelPlayersCount1;
     public javax.swing.JLabel staticLabelPlayersCount2;
     public javax.swing.JLabel staticLabelPosition;
-    public javax.swing.JLabel staticLabelPositionIcon;
     public javax.swing.JLabel staticLabelPropertyDecision;
     public javax.swing.JLabel staticLabelPurchaseCost;
     public javax.swing.JLabel staticLabelRentBase;
