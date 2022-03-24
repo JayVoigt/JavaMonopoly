@@ -40,6 +40,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 	ArrayList<JButton> spaceButtons;
 	ArrayList<javax.swing.ImageIcon> diceIcons;
 	ArrayList<JDialog> jDialogs;
+	ArrayList<JLabel> labelGroupSpaceSelection;
 	
 	Player currentPlayer;
 	
@@ -193,7 +194,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         frameBoard = new javax.swing.JInternalFrame();
         jScrollPane1 = new javax.swing.JScrollPane();
         textAreaGameLog = new javax.swing.JTextArea();
-        jPanel1 = new javax.swing.JPanel();
+        spaceSelectionInformation = new javax.swing.JPanel();
         labelOwnedBy = new javax.swing.JLabel();
         staticLabelFriendlyName = new javax.swing.JLabel();
         labelFriendlyName = new javax.swing.JLabel();
@@ -203,7 +204,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         staticLabelOwnedBy = new javax.swing.JLabel();
         labelIsOwned = new javax.swing.JLabel();
         labelSpaceType = new javax.swing.JLabel();
-        labelID = new javax.swing.JLabel();
+        labelSpaceSelectionID = new javax.swing.JLabel();
         staticLabelPurchaseCost = new javax.swing.JLabel();
         labelPurchaseCost = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
@@ -1376,162 +1377,162 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         frameBoard.getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(160, 390, 660, 430);
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setLayout(null);
+        spaceSelectionInformation.setBackground(new java.awt.Color(255, 255, 255));
+        spaceSelectionInformation.setLayout(null);
 
         labelOwnedBy.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         labelOwnedBy.setText("(no selection)");
-        jPanel1.add(labelOwnedBy);
+        spaceSelectionInformation.add(labelOwnedBy);
         labelOwnedBy.setBounds(140, 130, 180, 20);
 
         staticLabelFriendlyName.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         staticLabelFriendlyName.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         staticLabelFriendlyName.setText("Name");
-        jPanel1.add(staticLabelFriendlyName);
+        spaceSelectionInformation.add(staticLabelFriendlyName);
         staticLabelFriendlyName.setBounds(10, 40, 110, 20);
 
         labelFriendlyName.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         labelFriendlyName.setText("(no selection)");
-        jPanel1.add(labelFriendlyName);
+        spaceSelectionInformation.add(labelFriendlyName);
         labelFriendlyName.setBounds(140, 40, 180, 20);
 
         staticLabelID.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         staticLabelID.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         staticLabelID.setText("ID");
-        jPanel1.add(staticLabelID);
+        spaceSelectionInformation.add(staticLabelID);
         staticLabelID.setBounds(10, 10, 110, 20);
 
         staticLabelIsOwned.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         staticLabelIsOwned.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         staticLabelIsOwned.setText("Is Owned");
-        jPanel1.add(staticLabelIsOwned);
+        spaceSelectionInformation.add(staticLabelIsOwned);
         staticLabelIsOwned.setBounds(10, 70, 110, 20);
 
         staticLabelSpaceType.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         staticLabelSpaceType.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         staticLabelSpaceType.setText("Space Type");
-        jPanel1.add(staticLabelSpaceType);
+        spaceSelectionInformation.add(staticLabelSpaceType);
         staticLabelSpaceType.setBounds(10, 100, 110, 20);
 
         staticLabelOwnedBy.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         staticLabelOwnedBy.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         staticLabelOwnedBy.setText("Owned By");
-        jPanel1.add(staticLabelOwnedBy);
+        spaceSelectionInformation.add(staticLabelOwnedBy);
         staticLabelOwnedBy.setBounds(10, 130, 110, 20);
 
         labelIsOwned.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         labelIsOwned.setText("(no selection)");
-        jPanel1.add(labelIsOwned);
+        spaceSelectionInformation.add(labelIsOwned);
         labelIsOwned.setBounds(140, 70, 180, 20);
 
         labelSpaceType.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         labelSpaceType.setText("(no selection)");
-        jPanel1.add(labelSpaceType);
+        spaceSelectionInformation.add(labelSpaceType);
         labelSpaceType.setBounds(140, 100, 180, 20);
 
-        labelID.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        labelID.setText("(no selection)");
-        jPanel1.add(labelID);
-        labelID.setBounds(140, 10, 180, 20);
+        labelSpaceSelectionID.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        labelSpaceSelectionID.setText("(no selection)");
+        spaceSelectionInformation.add(labelSpaceSelectionID);
+        labelSpaceSelectionID.setBounds(140, 10, 180, 20);
 
         staticLabelPurchaseCost.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         staticLabelPurchaseCost.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         staticLabelPurchaseCost.setText("Price");
-        jPanel1.add(staticLabelPurchaseCost);
+        spaceSelectionInformation.add(staticLabelPurchaseCost);
         staticLabelPurchaseCost.setBounds(10, 190, 110, 20);
 
         labelPurchaseCost.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         labelPurchaseCost.setText("(no selection)");
-        jPanel1.add(labelPurchaseCost);
+        spaceSelectionInformation.add(labelPurchaseCost);
         labelPurchaseCost.setBounds(140, 190, 180, 20);
 
         jSeparator3.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        jPanel1.add(jSeparator3);
+        spaceSelectionInformation.add(jSeparator3);
         jSeparator3.setBounds(130, 10, 10, 200);
 
         jSeparator4.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        jPanel1.add(jSeparator4);
+        spaceSelectionInformation.add(jSeparator4);
         jSeparator4.setBounds(460, 10, 10, 200);
 
         staticLabelRentBase.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         staticLabelRentBase.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         staticLabelRentBase.setText("+ hotel");
-        jPanel1.add(staticLabelRentBase);
+        spaceSelectionInformation.add(staticLabelRentBase);
         staticLabelRentBase.setBounds(320, 160, 130, 20);
 
         labelRentHotel.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         labelRentHotel.setText("(no selection)");
-        jPanel1.add(labelRentHotel);
+        spaceSelectionInformation.add(labelRentHotel);
         labelRentHotel.setBounds(470, 160, 180, 20);
 
         staticLabelRentBase1.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         staticLabelRentBase1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         staticLabelRentBase1.setText("Rent");
-        jPanel1.add(staticLabelRentBase1);
+        spaceSelectionInformation.add(staticLabelRentBase1);
         staticLabelRentBase1.setBounds(320, 10, 130, 20);
 
         staticLabelRentBase2.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         staticLabelRentBase2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         staticLabelRentBase2.setText("+ 1 house");
-        jPanel1.add(staticLabelRentBase2);
+        spaceSelectionInformation.add(staticLabelRentBase2);
         staticLabelRentBase2.setBounds(320, 40, 130, 20);
 
         staticLabelRentBase3.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         staticLabelRentBase3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         staticLabelRentBase3.setText("+ 2 houses");
-        jPanel1.add(staticLabelRentBase3);
+        spaceSelectionInformation.add(staticLabelRentBase3);
         staticLabelRentBase3.setBounds(320, 70, 130, 20);
 
         staticLabelRentBase4.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         staticLabelRentBase4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         staticLabelRentBase4.setText("+ 3 houses");
-        jPanel1.add(staticLabelRentBase4);
+        spaceSelectionInformation.add(staticLabelRentBase4);
         staticLabelRentBase4.setBounds(320, 100, 130, 20);
 
         staticLabelRentBase5.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         staticLabelRentBase5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         staticLabelRentBase5.setText("+ 4 houses");
-        jPanel1.add(staticLabelRentBase5);
+        spaceSelectionInformation.add(staticLabelRentBase5);
         staticLabelRentBase5.setBounds(320, 130, 130, 20);
 
         labelRentBase.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         labelRentBase.setText("(no selection)");
-        jPanel1.add(labelRentBase);
+        spaceSelectionInformation.add(labelRentBase);
         labelRentBase.setBounds(470, 10, 180, 20);
 
         labelRent1House.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         labelRent1House.setText("(no selection)");
-        jPanel1.add(labelRent1House);
+        spaceSelectionInformation.add(labelRent1House);
         labelRent1House.setBounds(470, 40, 180, 20);
 
         labelRent2Houses.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         labelRent2Houses.setText("(no selection)");
-        jPanel1.add(labelRent2Houses);
+        spaceSelectionInformation.add(labelRent2Houses);
         labelRent2Houses.setBounds(470, 70, 180, 20);
 
         labelRent3Houses.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         labelRent3Houses.setText("(no selection)");
-        jPanel1.add(labelRent3Houses);
+        spaceSelectionInformation.add(labelRent3Houses);
         labelRent3Houses.setBounds(470, 100, 180, 20);
 
         labelRent4Houses.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         labelRent4Houses.setText("(no selection)");
-        jPanel1.add(labelRent4Houses);
+        spaceSelectionInformation.add(labelRent4Houses);
         labelRent4Houses.setBounds(470, 130, 180, 20);
 
         staticLabelTimesLanded.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         staticLabelTimesLanded.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         staticLabelTimesLanded.setText("Landed");
-        jPanel1.add(staticLabelTimesLanded);
+        spaceSelectionInformation.add(staticLabelTimesLanded);
         staticLabelTimesLanded.setBounds(10, 160, 110, 20);
 
         labelTimesLanded.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         labelTimesLanded.setText("(no selection)");
-        jPanel1.add(labelTimesLanded);
+        spaceSelectionInformation.add(labelTimesLanded);
         labelTimesLanded.setBounds(140, 160, 180, 20);
 
-        frameBoard.getContentPane().add(jPanel1);
-        jPanel1.setBounds(160, 150, 660, 220);
+        frameBoard.getContentPane().add(spaceSelectionInformation);
+        spaceSelectionInformation.setBounds(160, 150, 660, 220);
 
         iconPlayer1Position.setIcon(new javax.swing.ImageIcon(getClass().getResource("/player-icon-1-px.png"))); // NOI18N
         iconPlayer1Position.setText("jLabel1");
@@ -2687,6 +2688,9 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		jDialogs.add(mortgageDialog);
 		jDialogs.add(aboutDialog);
 		jDialogs.add(forfeitDialog);
+		
+//		labelGroupSpaceSelection.add(labelSelectedProperty);
+//		labelGroupSpaceSelection.add(labelFriendlyName);
 	}
 
 	private void initButtonAppearance() {
@@ -3668,51 +3672,89 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		appendToDebugLog("Space with ID:" + spaceID + " selected.");
 		
 		currentSpaceSelectionID = spaceID;
+		Space localSpace = board.spaces.get(spaceID);
 		
+		// Attributes applying to all spaces
 		Space.spaceTypeKeys localSpaceType;
-		localSpaceType = board.spaces.get(spaceID).getSpaceType();
+		localSpaceType = localSpace.getSpaceType();
 		
-		int localID = board.spaces.get(spaceID).getID();
-		String localFriendlyName = board.spaces.get(spaceID).getFriendlyName();
+		int localID = localSpace.getID();
+		String localFriendlyName = localSpace.getFriendlyName();
 		
-		labelID.setText(Integer.toString(localID));
+		labelSpaceSelectionID.setText(Integer.toString(localID));
 		labelFriendlyName.setText(localFriendlyName);
+		
+		// Correct for grammar: (1 time) or (n times), where n != 1
+		String timesLandedSuffix;
+		int timesLandedQuantity = localSpace.getTimesLanded();
+		
+		if (timesLandedQuantity == 1) {
+			timesLandedSuffix = " time";
+		}
+		else {
+			timesLandedSuffix = " times";
+		}
+		labelTimesLanded.setText(Integer.toString(localSpace.getTimesLanded()) + timesLandedSuffix);
 
-		// If space is of type Property, handle selection info accordingly
-		if (localSpaceType == Space.spaceTypeKeys.property) {
-			Property localSpace = (Property) board.spaces.get(spaceID);
+		if (localSpace instanceof Property) {
+			Property localProperty = (Property) board.spaces.get(spaceID);
 			
-			boolean localIsOwned = localSpace.getIsOwned();
+			boolean localIsOwned = localProperty.getIsOwned();
 			labelIsOwned.setText(Boolean.toString(localIsOwned));
 			
 			labelSpaceType.setText("Property");
 			
 			if (localIsOwned == true) {
-				labelOwnedBy.setText(board.players.get(localSpace.getOwnerID()).getCustomName());
+				labelOwnedBy.setText(board.players.get(localProperty.getOwnerID()).getCustomName());
 			}
 			else {
-				labelOwnedBy.setText("n/a");
+				labelOwnedBy.setText("not owned");
 			}
+			
+			labelCost.setText(Integer.toString(localProperty.getPurchaseCost()));
 			
 			if (localSpace instanceof Color) {
 				Color localColor = (Color) localSpace;
+				
+				labelSpaceType.setText("Property, Color");
 				appendToDebugLog(localFriendlyName + " house:hotel, " + localColor.getHouseCount() + ":" + localColor.getHotelCount());
+			}
+			
+			else if (localSpace instanceof Utility) {
+				Utility localUtility = (Utility) localSpace;
+				
+				labelSpaceType.setText("Property, Utility");
+			}
+			
+			else if (localSpace instanceof Railroad) {
+				Railroad localRailroad = (Railroad) localSpace;
+				
+				labelSpaceType.setText("Property, Railroad");
 			}
 		}
 
-		// If space is of type GameEvent...
-		else if (localSpaceType == Space.spaceTypeKeys.gameEvent) {
-			GameEvent localSpace = (GameEvent) board.spaces.get(spaceID);
+		else if (localSpace instanceof GameEvent) {
+			GameEvent localGameEvent = (GameEvent) board.spaces.get(spaceID);
 			labelOwnedBy.setText("n/a");
 			labelOwnedBy.setForeground(java.awt.Color.gray);
 			labelSpaceType.setText("Game Event");
 		}
 		
 		else {
-			labelID.setText("undefined ID");
+			labelSpaceSelectionID.setText("undefined ID");
 		}
 		
 		updateImprovementsDialog();
+	}
+	
+	private void formatLabelForContent(JLabel inputLabel, boolean hasContent) {
+		if (hasContent == true) {
+			inputLabel.setForeground(java.awt.Color.gray);
+			inputLabel.setText("<html><i>none</i></html>");
+		}
+		else {
+			inputLabel.setForeground(java.awt.Color.black);
+		}
 	}
 	
 	public void updateVisualPlayerIndicator(Player currentPlayer) {
@@ -3954,7 +3996,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     public javax.swing.JLabel jLabel8;
     public javax.swing.JLabel jLabel9;
     public javax.swing.JMenuBar jMenuBar1;
-    public javax.swing.JPanel jPanel1;
     public javax.swing.JPopupMenu jPopupMenu1;
     public javax.swing.JProgressBar jProgressBar1;
     public javax.swing.JScrollPane jScrollPane1;
@@ -3984,7 +4025,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     public javax.swing.JLabel labelFriendlyName;
     public javax.swing.JLabel labelHouse1;
     public javax.swing.JLabel labelHouse5;
-    public javax.swing.JLabel labelID;
     public javax.swing.JLabel labelImprovementInfo;
     public javax.swing.JLabel labelIsOwned;
     public javax.swing.JLabel labelOwnedBy;
@@ -4002,6 +4042,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     public javax.swing.JLabel labelRentBase;
     public javax.swing.JLabel labelRentHotel;
     public javax.swing.JLabel labelSelectedProperty;
+    public javax.swing.JLabel labelSpaceSelectionID;
     public javax.swing.JLabel labelSpaceType;
     public javax.swing.JLabel labelTimesLanded;
     public javax.swing.JMenu menuEdit;
@@ -4024,6 +4065,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     public javax.swing.JDialog playerIconSelector;
     public javax.swing.JFileChooser saveFileChooser;
     public javax.swing.JPanel saveFileChoserPanel;
+    public javax.swing.JPanel spaceSelectionInformation;
     public javax.swing.JSpinner spinnerStartingBalance;
     public javax.swing.JLabel staticLabelCurrentBalance;
     public javax.swing.JLabel staticLabelCurrentPlayer;
