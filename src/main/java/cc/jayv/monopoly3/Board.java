@@ -4,7 +4,6 @@ package cc.jayv.monopoly3;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-
 /**
  *
  * @author jay
@@ -22,19 +21,27 @@ public class Board implements Serializable {
 	 */
 	public List<Space> spaces = new ArrayList<>();
 	public List<Player> players = new ArrayList<>();
-	
+
 	public List<DrawCard> chanceCards = new ArrayList<>();
 	public List<DrawCard> communityChestCards = new ArrayList<>();
 
 	int currentPlayerID;
 	int bankHouseCount,
 		bankHotelCount;
+	
+	ArrayList<Color> spacesByColorGroup = new ArrayList<>();
 
+	
+//	enum SpaceAttributeKeys {
+//		colorSet,
+//		ownerID
+//	}
+	
 	// <editor-fold desc="Constructor">
 	/**
-	 * 
+	 *
 	 * @throws FileNotFoundException
-	 * @throws IOException 
+	 * @throws IOException
 	 */
 	Board() throws FileNotFoundException, IOException {
 		// Using defaults from standard rules
@@ -116,7 +123,7 @@ public class Board implements Serializable {
 				int localQuantity = parseIntHandler(configLine[4]);
 				DrawCard.destinationRelativeTypeKeys localDestinationRelativeType;
 
-				if (configLine[5] != "") {					
+				if (configLine[5] != "") {
 					localDestinationRelativeType = DrawCard.destinationRelativeTypeKeys.valueOf(configLine[5]);
 				}
 				else {
@@ -171,5 +178,70 @@ public class Board implements Serializable {
 		}
 	}	// end parseIntHandler()
 
+	public void updatePropertyOwnershipRelationships() {
+		for (Color.colorGroupKeys colorGroup : Color.colorGroupKeys.values()) {
+			getSpacesByColorGroup(colorGroup);
+			boolean isFullSetOwnedBySinglePlayer = false;
+			
+			if (colorGroup != Color.colorGroupKeys.unspecified) {
+				int localColorOwnerID = spacesByColorGroup.get(0).getOwnerID();
+				
+				for (Color localColor : spacesByColorGroup) {
+					if (localColor.getOwnerID() != localColorOwnerID) {
+						isFullSetOwnedBySinglePlayer = false;
+					}
+					else {
+						isFullSetOwnedBySinglePlayer = true;
+					}
+				}	// end for
+			}	// end if
+			
+			if (isFullSetOwnedBySinglePlayer == true) {
+				for (Color localColor : spacesByColorGroup) {
+					localColor.setOwnerID(spacesByColorGroup.get(0).getOwnerID());
+					localColor.setIsFullSetOwned(true);
+				}
+			}
+			
+			System.err.println(isFullSetOwnedBySinglePlayer);
+		}
+		
+	}
+	
+	private ArrayList<Color> getSpacesByColorGroup(Color.colorGroupKeys inputColorGroup) {
+		Color localColor;
+		
+		for (Space s : spaces) {
+				if (s instanceof Color) {
+					localColor = (Color) s;
+					
+					if (localColor.getColorGroup().equals(inputColorGroup)) {
+						spacesByColorGroup.add(localColor);
+					}
+			}
+		}
+		
+		return spacesByColorGroup;
+	}
+	
+	private ArrayList<Color> updateColorPropertyOwnershipRelationships(Color inputColor) {
+		ArrayList<Color> colorSetArray = new ArrayList<>();
+		Color localColor;
+		Color.colorGroupKeys inputColorGroup = inputColor.getColorGroup();
+		
+		for (Space s : spaces) {
+			if (s instanceof Color) {
+				localColor = (Color) s;
+				
+				// If the Color property that is currently being iterated
+				// has the same color group as the input, add it to the ArrayList
+				if (localColor.getColorGroup().equals(inputColorGroup)) {
+					colorSetArray.add(localColor);
+				}
+			}
+		}
+		
+		return colorSetArray;
+	}
 
 }

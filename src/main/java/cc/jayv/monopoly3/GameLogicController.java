@@ -18,6 +18,8 @@ public class GameLogicController implements Serializable {
 	Board board;
 
 	Player currentPlayer;
+	Player currentDebugPlayer;
+	
 	Space currentSpace;
 	GameEvent currentGameEvent;
 	Property currentProperty;
@@ -568,5 +570,20 @@ public class GameLogicController implements Serializable {
 	 */
 	public void forfeitManager() {
 
+	}
+	
+	public void debugToolsGiveAllProperties(int playerID) {
+		currentDebugPlayer = board.players.get(playerID);
+		appendToDebugLog("Giving " + currentDebugPlayer.getCustomName() + " all properties.");
+		
+		Property localProperty;
+		for (Space s : board.spaces) {
+			if (s instanceof Property) {
+				localProperty = (Property) s;
+				
+				localProperty.setIsOwned(true);
+				localProperty.setOwnerID(playerID);
+			}
+		}
 	}
 }
