@@ -29,6 +29,9 @@ public class Board implements Serializable {
 	int bankHouseCount,
 		bankHotelCount;
 	
+	ArrayList<Color> spacesByColorGroup = new ArrayList<>();
+
+	
 //	enum SpaceAttributeKeys {
 //		colorSet,
 //		ownerID
@@ -176,18 +179,36 @@ public class Board implements Serializable {
 	}	// end parseIntHandler()
 
 	public void updatePropertyOwnershipRelationships() {
-		Color localColor;
-		
-		for (Space s : spaces) {
-			if (s instanceof Color) {
-				localColor = (Color) s;
-				//updateColorPropertyOwnershipRelationships();
+		for (Color.colorGroupKeys colorGroup : Color.colorGroupKeys.values()) {
+			getSpacesByColorGroup(colorGroup);
+			boolean isFullSetOwnedBySinglePlayer = false;
+			
+			if (colorGroup != Color.colorGroupKeys.unspecified) {
+				int localColorOwnerID = spacesByColorGroup.get(0).getOwnerID();
+				
+				for (Color localColor : spacesByColorGroup) {
+					if (localColor.getOwnerID() != localColorOwnerID) {
+						isFullSetOwnedBySinglePlayer = false;
+					}
+					else {
+						isFullSetOwnedBySinglePlayer = true;
+					}
+				}	// end for
+			}	// end if
+			
+			if (isFullSetOwnedBySinglePlayer == true) {
+				for (Color localColor : spacesByColorGroup) {
+					localColor.setOwnerID(spacesByColorGroup.get(0).getOwnerID());
+					localColor.setIsFullSetOwned(true);
+				}
 			}
+			
+			System.err.println(isFullSetOwnedBySinglePlayer);
 		}
+		
 	}
 	
-	private ArrayList<Space> getSpacesByColorGroup(Color.colorGroupKeys inputColorGroup) {
-		ArrayList<Space> spacesByAttribute = new ArrayList<>();
+	private ArrayList<Color> getSpacesByColorGroup(Color.colorGroupKeys inputColorGroup) {
 		Color localColor;
 		
 		for (Space s : spaces) {
@@ -195,15 +216,13 @@ public class Board implements Serializable {
 					localColor = (Color) s;
 					
 					if (localColor.getColorGroup().equals(inputColorGroup)) {
-						spacesByAttribute.add(localColor);
+						spacesByColorGroup.add(localColor);
 					}
-				
 			}
 		}
 		
-		return spacesByAttribute;
+		return spacesByColorGroup;
 	}
-
 	
 	private ArrayList<Color> updateColorPropertyOwnershipRelationships(Color inputColor) {
 		ArrayList<Color> colorSetArray = new ArrayList<>();
