@@ -11,6 +11,7 @@ package cc.jayv.monopoly3;
  */
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.util.Date;
 
 public class GameLogicController implements Serializable {
@@ -136,6 +137,12 @@ public class GameLogicController implements Serializable {
 		turnCounter++;
 		currentPlayer = board.players.get(board.getCurrentPlayerID());
 
+		long startTime = System.nanoTime();
+		board.forceBoardSelfCheck();
+		long endTime = System.nanoTime();
+		
+		System.out.println((endTime - startTime) * 1E-9 + "seconds");
+		
 		String paddingPrefix = "";
 		if (useExtraTextPadding == true) {
 			gameLogContents = gameLogContents.concat("\n");
@@ -591,6 +598,6 @@ public class GameLogicController implements Serializable {
 			}
 		}
 		
-		board.updatePropertyOwnershipRelationships();
+		board.forceBoardSelfCheck();
 	}
 }
