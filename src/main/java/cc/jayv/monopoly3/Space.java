@@ -54,6 +54,10 @@ public abstract class Space implements Serializable {
 		friendlyName = inputFriendlyName;
 	}
 
+	public int getTimesLanded() {
+		return timesLanded;
+	}
+	
 	public void incrementTimesLanded() {
 		timesLanded++;
 	}

@@ -585,5 +585,7 @@ public class GameLogicController implements Serializable {
 				localProperty.setOwnerID(playerID);
 			}
 		}
+		
+		board.updatePropertyOwnershipRelationships();
 	}
 }
