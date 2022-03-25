@@ -28,13 +28,15 @@ public class Board implements Serializable {
 	int currentPlayerID;
 	int bankHouseCount,
 		bankHotelCount;
-	
+
 	ArrayList<Color> spacesByColorGroup = new ArrayList<>();
+	ArrayList<Property> spacesByOwnerID = new ArrayList<>();
 
 	public void forceBoardSelfCheck() {
 		updatePropertyOwnershipRelationships();
+		updateImprovementEligibility();
 	}
-	
+
 	// <editor-fold desc="Constructor">
 	/**
 	 *
@@ -167,6 +169,14 @@ public class Board implements Serializable {
 		currentPlayerID = inputCurrentPlayerID;
 	}
 
+	public int getBankHouseCount() {
+		return bankHouseCount;
+	}
+
+	public int getBankHotelCount() {
+		return bankHotelCount;
+	}
+
 	private int parseIntHandler(String inputString) {
 		if (inputString.isEmpty()) {
 			return 0;
@@ -177,13 +187,34 @@ public class Board implements Serializable {
 	}	// end parseIntHandler()
 
 	public void updatePropertyOwnershipRelationships() {
+		updateColorPropertyOwnershipRelationships();
+		updateRailroadPropertyOwnershipRelationships();
+	}
+
+	public ArrayList<Color> getSpacesByColorGroup(Color.colorGroupKeys inputColorGroup) {
+		Color localColor;
+
+		for (Space s : spaces) {
+			if (s instanceof Color) {
+				localColor = (Color) s;
+
+				if (localColor.getColorGroup().equals(inputColorGroup)) {
+					spacesByColorGroup.add(localColor);
+				}
+			}
+		}
+
+		return spacesByColorGroup;
+	}
+
+	private void updateColorPropertyOwnershipRelationships() {
 		for (Color.colorGroupKeys colorGroup : Color.colorGroupKeys.values()) {
 			getSpacesByColorGroup(colorGroup);
 			boolean isFullSetOwnedBySinglePlayer = false;
-			
+
 			if (colorGroup != Color.colorGroupKeys.unspecified) {
 				int localColorOwnerID = spacesByColorGroup.get(0).getOwnerID();
-				
+
 				for (Color localColor : spacesByColorGroup) {
 					if (localColor.getOwnerID() != localColorOwnerID) {
 						isFullSetOwnedBySinglePlayer = false;
@@ -193,70 +224,73 @@ public class Board implements Serializable {
 					}
 				}	// end for
 			}	// end if
-			
+
 			if (isFullSetOwnedBySinglePlayer == true) {
 				for (Color localColor : spacesByColorGroup) {
 					localColor.setOwnerID(spacesByColorGroup.get(0).getOwnerID());
 					localColor.setIsFullSetOwned(true);
-				}
-			}
-			
-			System.err.println(isFullSetOwnedBySinglePlayer);
-		}
-		
-	}
-	
-	private ArrayList<Color> getSpacesByColorGroup(Color.colorGroupKeys inputColorGroup) {
-		Color localColor;
-		
-		for (Space s : spaces) {
-				if (s instanceof Color) {
-					localColor = (Color) s;
-					
-					if (localColor.getColorGroup().equals(inputColorGroup)) {
-						spacesByColorGroup.add(localColor);
-					}
-			}
-		}
-		
-		return spacesByColorGroup;
-	}
-	
-	private ArrayList<Color> updateColorPropertyOwnershipRelationships(Color inputColor) {
-		ArrayList<Color> colorSetArray = new ArrayList<>();
-		Color localColor;
-		Color.colorGroupKeys inputColorGroup = inputColor.getColorGroup();
-		
-		for (Space s : spaces) {
-			if (s instanceof Color) {
-				localColor = (Color) s;
-				
-				// If the Color property that is currently being iterated
-				// has the same color group as the input, add it to the ArrayList
-				if (localColor.getColorGroup().equals(inputColorGroup)) {
-					colorSetArray.add(localColor);
-				}
-			}
-		}
-		
-		return colorSetArray;
+				}	// end for
+			}	// end if
+		}	// end for
 	}
 
-//	private void updateImprovementEligibility() {
-//		for (Color.colorGroupKeys colorGroup : Color.colorGroupKeys.values()) {
-//			getSpacesByColorGroup(colorGroup);
-//			
-//			if (colorGroup != Color.colorGroupKeys.unspecified) {
-//
-//			}
-//		}
-//		
-//		for (Space s : spaces) {
-//			if (s instanceof Color) {
-//				Color localColor = (Color) s;
-//				
-//			}
-//		}
-//	}
-	
-}
+	private void updateRailroadPropertyOwnershipRelationships() {
+		int ownedRailroads = 0;
+		
+		for (Space s : spaces) {
+			if (s instanceof Railroad) {
+				Railroad localRailroad = (Railroad) s;
+
+				if (localRailroad.getIsOwned()) {
+					getSpacesByOwnerID(localRailroad.getOwnerID());
+					
+					ownedRailroads = 0;
+					
+					for (Property p : spacesByOwnerID) {
+						if (p instanceof Railroad) {
+							ownedRailroads++;
+						}
+					}
+				}	// end if
+				
+				localRailroad.setOwnedRailroads(ownedRailroads);
+			}	// end if
+		}	// end for
+		
+	}
+
+	public ArrayList<Property> getSpacesByOwnerID(int ownerID) {
+		Property localProperty;
+
+		for (Space s : spaces) {
+			if (s instanceof Property) {
+				localProperty = (Property) s;
+
+				if (localProperty.getOwnerID() == ownerID) {
+					spacesByOwnerID.add(localProperty);
+				}
+			}
+		}
+
+		return spacesByOwnerID;
+	}
+
+	private void updateImprovementEligibility() {
+		for (Color.colorGroupKeys colorGroup : Color.colorGroupKeys.values()) {
+			getSpacesByColorGroup(colorGroup);
+
+			if (colorGroup != Color.colorGroupKeys.unspecified) {
+
+				// This logic depends on the execution of updateColorPropertyOwnershipRelationships
+				if (spacesByColorGroup.get(0).getIsFullSetOwned()) {
+					for (Color c : spacesByColorGroup) {
+
+					}	// end for
+				}	// end if
+			}	// end if
+
+		}	// end for
+
+	}
+
+}	// end class
