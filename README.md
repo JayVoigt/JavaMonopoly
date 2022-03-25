@@ -7,7 +7,24 @@
 </div>
 <br>
 
+#### Table of contents
+1. [Description](#description)
+2. [Problems to solve](#problems-to-solve)
+    1. [General data structures](#data)
+    2. [Manipulating data](#data-manipulation)
+        1. [Example scenario](#manip-example)
+    3. [Synchronization between objects](#sync)
+3. [Technologies needed](#technologies-needed)
+    1. [Data technologies](#data-technologies)
+    2. [User interface](#user-interface)
+    3. [CPU players](#cpu-players)
+4. [Notes](#notes)
+    1. [Further description of data structures](#further-data)
 
+&nbsp;
+---
+
+<a name="description"></a>
 **Description**
 
 The program seeks to implement a playable version of the board game, Monopoly.
@@ -21,9 +38,11 @@ This document may not appear correctly if exported to another format. The origin
 
 &nbsp;
 
+<a name="problems-to-solve"></a>
 ## Problems to solve
 
-**Data**
+<a name="data"></a>
+**General data structures**
 
 A game of Monopoly can be decomposed into a single, large data structure, and this comprises the core of this project. A set of objects which contain certain attributes are affected throughout gameplay, either randomly, or by user decision.
 
@@ -49,6 +68,7 @@ The primary element of the game data is the board. It contains information about
 
 ---
 &nbsp;
+<a name="data-manipulation"></a>
 **Manipulating data**
 
 <div align="center">
@@ -65,6 +85,7 @@ The primary structure of the program is demonstrated in the above diagram. It us
 - `Controller` provides an interface for user input to be converted into an altered game state. It contains the majority of logic for the application, including the code which implements game rules and enforcement.
 - `View` provides an interactive and graphical representation of the current game state. It allows the player to perform an action from a set whose restrictions are context-dependent on the game state.
 
+<a name="manip-example"></a>
 To provide an example of how a specific action would affect these components, suppose it is the beginning of a new turn, and the current player rolls the dice:
 
 - The roll dice button, presented as a Swing element from the `View` class, calls a method inside the `Controller` class.
@@ -76,6 +97,7 @@ To provide an example of how a specific action would affect these components, su
 ---
 &nbsp;
 
+<a name="sync"></a>
 **Synchronization between objects**
 
 Given that the `Board`, `Controller`, and `View` classes comprise the core of the game, an issue arises regarding how they should interact.
@@ -85,9 +107,11 @@ This is resolved by allowing the view to inherit the controller, enabling any us
 ---
 &nbsp;
 
+<a name="technologies-needed"></a>
 ## Technologies needed
 
-**Data**
+<a name="data-technologies"></a>
+**Data technologies**
 
 The primary data of the application is stored in a single serializable class, `Board`. This class can then be saved to a file to preserve the game state, and can be used by a future instance of the program to resume gameplay. Basic file I/O is needed as a result of this functionality.
 
@@ -95,37 +119,13 @@ Supplementary data is required for the program, such as property costs, names of
 
 File I/O exceptions will need to be handled for both of these operation types.
 
----
-
-Other components of the project utilize `ArrayList` data structures heavily.
-
----
-&nbsp;
-
-**CPU players**
-
-Implementing an extremely basic CPU player is not difficult, wherein the player automatically performs its necessary actions, and executes any required decision as `true`.
-
-A more advanced CPU player can be manifested through several styles:
-
-<u>Random probability</u>: For each mandatory binary decision that the player encounters, a probability is assigned to one option. When an action is required, the execution of this decision is dependent on its probability. This effectively makes all actions random, where the probability could be determined at the start of the game by a seed.
-
-<u>Basic statistical model</u>: When running simulations of Monopoly, particular patterns begin to appear. For example, the Jail space is often a 'trap' for players - this means that the spaces immediately following the Jail space have the highest probability of landing out of any other spaces on the board.
-
-As a consequence of this land-probability distribution, some properties have a measurably higher return on investment (ROI) when improvements are constructed on them.
-
-A statistically-based CPU player could make decisions similarly to that of the random probability model, but with a multiplicative factor based on the estimated ROI of a particular space.
-
-<u>Machine-learning model</u>: While an ML-based model would undoubtedly perform very well compared to the other models listed, this is simply out of scope for this project. An implementation could be possible by using a relatively simple training method such as (framework here)
-
-An important note to make is that much of a player's success in Monopoly is simply luck. The dice roll is the primary engine of the game, and there is an inherent amount of randomness that cannot be surpassed entirely with skill. One benefit to this is that the ability of any CPU player is not entirely dependent on its code - the luck will sometimes skew the game state in its favor regardless.
-
-*The inclusion of a CPU player is of low priority for this project.* It would certainly improve the program, but is not essential.
+Other components of the project utilize `ArrayList` data structures heavily, mostly for intra-class organization.
 
 ---
 &nbsp;
 
 
+<a name="user-interface"></a>
 **User interface**
 
 The user interface for this application is inspired and informed by [a commercial implementation](https://archive.org/details/MonopolyMacPlay) of the game - <i>Monopoly</i> (1993) by MacPlay, for the original Macintosh platform.
@@ -182,6 +182,7 @@ Manual elements are provided for optional actions. It is often useful to perform
 - Trading with another player
 - Forfeiting the game
 ---
+<a name="gui-screenshots"></a>
 Below are some sample screenshots from an early build of the game, demonstrating the different  types of GUI elements needed. Not all required elements are included, but the basic structure is present:
 
 <br>
@@ -212,7 +213,32 @@ Below are some sample screenshots from an early build of the game, demonstrating
 <br>
 
 ---
+&nbsp;
 
+<a name="cpu-players"></a>
+**CPU players**
+
+Implementing an extremely basic CPU player is not difficult, wherein the player automatically performs its necessary actions, and executes any required decision as `true`.
+
+A more advanced CPU player can be manifested through several styles:
+
+<u>Random probability</u>: For each mandatory binary decision that the player encounters, a probability is assigned to one option. When an action is required, the execution of this decision is dependent on its probability. This effectively makes all actions random, where the probability could be determined at the start of the game by a seed.
+
+<u>Basic statistical model</u>: When running simulations of Monopoly, particular patterns begin to appear. For example, the Jail space is often a 'trap' for players - this means that the spaces immediately following the Jail space have the highest probability of landing out of any other spaces on the board.
+
+As a consequence of this land-probability distribution, some properties have a measurably higher return on investment (ROI) when improvements are constructed on them.
+
+A statistically-based CPU player could make decisions similarly to that of the random probability model, but with a multiplicative factor based on the estimated ROI of a particular space.
+
+<u>Machine-learning model</u>: While an ML-based model would undoubtedly perform very well compared to the other models listed, this is simply out of scope for this project. An implementation could be possible by using a relatively simple training method such as (framework here)
+
+An important note to make is that much of a player's success in Monopoly is simply luck. The dice roll is the primary engine of the game, and there is an inherent amount of randomness that cannot be surpassed entirely with skill. One benefit to this is that the ability of any CPU player is not entirely dependent on its code - the luck will sometimes skew the game state in its favor regardless.
+
+*The inclusion of a CPU player is of low priority for this project.* It would certainly improve the program, but is not essential.
+
+&nbsp;
+
+<a name="notes"></a>
 ## Notes
 
 Below is a list of how the project specifically demonstrates principles of CSCI 24000:
@@ -223,6 +249,7 @@ Below is a list of how the project specifically demonstrates principles of CSCI 
 - OOP is particularly useful for this project, as the main data of the game is readily decomposed into a tree structure.
 - A game of Monopoly can be architected with many "black boxes," i.e., most of the concern is about what a specific object does, rather than what it contains.
 
+<a name="further-data"></a>
 **Inheritance and data structures**
 
 - The `Board` class contains three primary types of inherited classes, each contained within an `ArrayList`:
