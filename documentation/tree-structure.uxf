@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLHierarchy</id>
+    <coordinates>
+      <x>450</x>
+      <y>60</y>
+      <w>350</w>
+      <h>820</h>
+    </coordinates>
+    <panel_attributes>type=Package
+Board
+	*Space*
+		*Game event*
+			GO
+			Jail
+			Free Parking
+			Draw Card
+				Community Chest
+				Chance
+			...
+		*Property*
+			Color
+				Boardwalk
+				Park Place
+				...
+			Utility
+				Electric Co.
+				Water Works
+			Railroad
+				Short Line
+				...
+	Player
+		Player 1
+		Player 2
+		...</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLHierarchy</id>
+    <coordinates>
+      <x>240</x>
+      <y>60</y>
+      <w>200</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>type=Package
+*Abstract*
+	Instantiated</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

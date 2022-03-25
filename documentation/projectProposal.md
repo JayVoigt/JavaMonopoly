@@ -12,9 +12,12 @@
 
 The program seeks to implement a playable version of the board game, Monopoly.
 
-&nbsp;
 
-[JavaDocs for this project are available on GitHub Pages.](https://pages.github.iu.edu/jayvoigt/cc/jayv/monopoly3/package-summary.html)
+[JavaDocs for this project are available on GitHub Pages.](https://pages.github.iu.edu/jayvoigt/cc/jayv/monopoly3/package-summary.html) For more specific information about the codebase, please refer to this page.
+
+This document may not appear correctly if exported to another format. The original documentation file is available at:
+
+`https://github.iu.edu/jayvoigt/Monoproto3/blob/master/documentation/projectProposal.md` ([link](https://github.iu.edu/jayvoigt/Monoproto3/blob/master/documentation/projectProposal.md))
 
 &nbsp;
 
@@ -25,6 +28,7 @@ The program seeks to implement a playable version of the board game, Monopoly.
 A game of Monopoly can be decomposed into a single, large data structure, and this comprises the core of this project. A set of objects which contain certain attributes are affected throughout gameplay, either randomly, or by user decision.
 
 The primary element of the game data is the board. It contains information about both the players and board spaces. Both the players and spaces are represented in an `ArrayList`. In the case of spaces, this `ArrayList` can contain several different object types, all derived from the base `Space` class. Consequently, each space can have its own methods that are called during a generic event, e.g., calculating rent.
+
 <div align="center">
 <figure>
     <img src="main-uml.svg">
@@ -41,13 +45,11 @@ The primary element of the game data is the board. It contains information about
 </div>
 <br>
 
-
-
 *The data structure is of maximum priority for this project.* Its implementation is essential to the remainder of the project's functionality, and is the most demonstrative of object-oriented principles covered in this course.
 
 ---
 &nbsp;
-**Representing and manipulating data**
+**Manipulating data**
 
 <div align="center">
 <figure>
@@ -62,6 +64,40 @@ The primary structure of the program is demonstrated in the above diagram. It us
 - `Board` contains the game data, with only basic logic implementation.
 - `Controller` provides an interface for user input to be converted into an altered game state. It contains the majority of logic for the application, including the code which implements game rules and enforcement.
 - `View` provides an interactive and graphical representation of the current game state. It allows the player to perform an action from a set whose restrictions are context-dependent on the game state.
+
+To provide an example of how a specific action would affect these components, suppose it is the beginning of a new turn, and the current player rolls the dice:
+
+- The roll dice button, presented as a Swing element from the `View` class, calls a method inside the `Controller` class.
+- The `Controller` queries data about the `Board` and its players.
+- The `Controller` evaluates the player's new position according to the result of the dice roll.
+- The `Board` is updated with new information determined by the `Controller`.
+- The `View` queries data about the `Board`, and updates its visual elements accordingly.
+
+---
+&nbsp;
+
+**Synchronization between objects**
+
+Given that the `Board`, `Controller`, and `View` classes comprise the core of the game, an issue arises regarding how they should interact.
+
+This is resolved by allowing the view to inherit the controller, enabling any user input to be validated and sent to the controller when appropriate. Once a method from the controller is finished executing, the view updates itself by accessing the now-modified contents of the board. Effectively, this creates a system where actions only occur when strictly necessary; there is no "main game loop" in the application.
+
+---
+&nbsp;
+
+## Technologies needed
+
+**Data**
+
+The primary data of the application is stored in a single serializable class, `Board`. This class can then be saved to a file to preserve the game state, and can be used by a future instance of the program to resume gameplay. Basic file I/O is needed as a result of this functionality.
+
+Supplementary data is required for the program, such as property costs, names of spaces, and Community Chest/Chance card event data. This data is static during the execution of the program, and is not intended to be modified. It can be loaded from a file format such as `.csv`, and then loaded into appropriate class attributes.
+
+File I/O exceptions will need to be handled for both of these operation types.
+
+---
+
+Other components of the project utilize `ArrayList` data structures heavily.
 
 ---
 &nbsp;
@@ -89,27 +125,6 @@ An important note to make is that much of a player's success in Monopoly is simp
 ---
 &nbsp;
 
-**Synchronization between objects**
-
-Given that the `Board`, `Controller`, and `View` classes comprise the core of the game, an issue arises regarding how they should interact.
-
-This is resolved by allowing the view to inherit the controller, enabling any user input to be validated and sent to the controller when appropriate. Once a method from the controller is finished executing, the view updates itself by accessing the now-modified contents of the board. Effectively, this creates a system where actions only occur when strictly necessary; there is no "main game loop" in the application.
-
----
-&nbsp;
-
-## Technologies needed
-
-**Data**
-
-The primary data of the application is stored in a single serializable class, `Board`. This class can then be saved to a file to preserve the game state, and can be used by a future instance of the program to resume gameplay. Basic file I/O is needed as a result of this functionality.
-
-Supplementary data is required for the program, such as property costs, names of spaces, and Community Chest/Chance card event data. This data is static during the execution of the program, and is not intended to be modified. It can be loaded from a file format such as `.csv`, and then loaded into appropriate class attributes.
-
-File I/O exceptions will need to be handled for both of these operation types.
-
----
-&nbsp;
 
 **User interface**
 
@@ -202,23 +217,33 @@ Below are some sample screenshots from an early build of the game, demonstrating
 
 Below is a list of how the project specifically demonstrates principles of CSCI 24000:
 
-**Object-oriented programming**
+**Object-oriented programming (OOP)**
 
-- Given that the project is written in Java, the code base is inherently object-oriented.
-- OOP is specifically useful for this project, as the main data of the game is readily decomposed into a tree structure.
+- Given that the project is written in Java, the codebase is inherently comprised of objects.
+- OOP is particularly useful for this project, as the main data of the game is readily decomposed into a tree structure.
+- A game of Monopoly can be architected with many "black boxes," i.e., most of the concern is about what a specific object does, rather than what it contains.
 
-**Inheritance**
+**Inheritance and data structures**
 
-- The board class effectively contains three types of inherited classes:
+- The `Board` class contains three primary types of inherited classes, each contained within an `ArrayList`:
     - players
     - spaces
     - draw card events
+- Each object in the `ArrayList` of spaces must be downcast to a subclass.
 
-**Abstraction and Polymorphism**
+The set of spaces can be considered a tree:
+<br>
+<div align="center">
+<figure>
+    <img src="tree-structure.svg">
+</figure>
+</div>
+<br>
+
+**Abstraction and polymorphism**
 
 - Properties contain an abstract method for calculating rent.
-- This method is then defined by the individual space, where the return type remains the same for all properties, but the calculation algorithm is independent.
-
-**Data structures**
-
-- The data objects for players and spaces are each stored in a Java `ArrayList`.
+    - This method is then defined by the individual space, where the return type remains the same for all properties, but the calculation algorithm is independent.
+- Spaces are abstract, as there exist no spaces on the board that do not fit into a subcategory.
+    - All spaces share certain properties, such as a position and name.
+    - Properties are also abstract for this reason.
