@@ -944,15 +944,35 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 
         buttonSellHouse.setIcon(new javax.swing.ImageIcon(getClass().getResource("/house.png"))); // NOI18N
         buttonSellHouse.setText("Sell a House");
+        buttonSellHouse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonSellHouseActionPerformed(evt);
+            }
+        });
 
         buttonBuildHouse.setIcon(new javax.swing.ImageIcon(getClass().getResource("/house.png"))); // NOI18N
         buttonBuildHouse.setText("Build a House");
+        buttonBuildHouse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonBuildHouseActionPerformed(evt);
+            }
+        });
 
         buttonBuildHotel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hotel.png"))); // NOI18N
         buttonBuildHotel.setText("Build a Hotel");
+        buttonBuildHotel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonBuildHotelActionPerformed(evt);
+            }
+        });
 
         buttonSellHotel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hotel.png"))); // NOI18N
         buttonSellHotel.setText("Sell a Hotel");
+        buttonSellHotel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonSellHotelActionPerformed(evt);
+            }
+        });
 
         labelImprovementInfo.setText("Property Name");
 
@@ -3620,6 +3640,26 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         controller.debugToolsGiveAllProperties(gameEditorPlayer.getPlayerID());
 		update();
     }//GEN-LAST:event_buttonGameEditorGiveAllPropertiesActionPerformed
+
+    private void buttonBuildHouseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBuildHouseActionPerformed
+        controller.improvementsManager(currentSpaceSelectionID, GameLogicController.ImprovementsActions.buildHouse);
+		update();
+    }//GEN-LAST:event_buttonBuildHouseActionPerformed
+
+    private void buttonSellHouseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSellHouseActionPerformed
+        controller.improvementsManager(currentSpaceSelectionID, GameLogicController.ImprovementsActions.sellHouse);
+		update();
+    }//GEN-LAST:event_buttonSellHouseActionPerformed
+
+    private void buttonBuildHotelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBuildHotelActionPerformed
+        controller.improvementsManager(currentSpaceSelectionID, GameLogicController.ImprovementsActions.buildHotel);
+		update();
+    }//GEN-LAST:event_buttonBuildHotelActionPerformed
+
+    private void buttonSellHotelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSellHotelActionPerformed
+        controller.improvementsManager(currentSpaceSelectionID, GameLogicController.ImprovementsActions.sellHotel);
+		update();
+    }//GEN-LAST:event_buttonSellHotelActionPerformed
 	// </editor-fold>
 
 	public void spaceButtonAppearanceHighlight(int spaceID) {

@@ -38,6 +38,13 @@ public class GameLogicController implements Serializable {
 		turnCounter;
 	
 	boolean playerCanBuildImprovements;
+	
+	public enum ImprovementsActions {
+		buildHouse,
+		sellHouse,
+		buildHotel,
+		sellHotel
+	}
 
 	// <editor-fold desc="Setters and getters">
 	public int getTurnCounter() {
@@ -599,5 +606,47 @@ public class GameLogicController implements Serializable {
 		}
 		
 		board.forceBoardSelfCheck();
+	}
+	
+	public void improvementsManager(int spaceID, ImprovementsActions inputAction) {
+		Space localSpace = board.spaces.get(spaceID);
+		Color localColor = null;
+		
+		if (localSpace instanceof Color) {
+			localColor = (Color) localSpace;
+		}
+		else {
+			System.err.println("Improvements: property not Color.");
+		}
+		
+		if (inputAction.equals(ImprovementsActions.buildHouse)) {
+			if (localColor.getIsEligibleForImprovements()) {
+				if (currentPlayer.getCurrentBalance() >= localColor.getHouseCost()) {
+					localColor.buildHouse();
+				}
+				else {
+					appendToGameLog("You do not have sufficient funds to construct "
+						+ "a house on this property. House cost for " + localColor.getFriendlyName()
+						+ ": " + localColor.getHouseCost());
+				}
+
+			}
+		}
+		else if (inputAction.equals(ImprovementsActions.sellHouse)) {
+			localColor.sellHouse();
+		}
+		else if (inputAction.equals(ImprovementsActions.buildHotel)) {
+			if (localColor.getIsEligibleForImprovements()) {
+				localColor.buildHotel();
+			}
+			else {
+					appendToGameLog("You do not have sufficient funds to construct "
+						+ "a hotel on this property. House cost for " + localColor.getFriendlyName()
+						+ ": " + localColor.getHotelCost());
+			}
+		}
+		else if (inputAction.equals(ImprovementsActions.sellHotel)) {
+			localColor.sellHotel();
+		}
 	}
 }

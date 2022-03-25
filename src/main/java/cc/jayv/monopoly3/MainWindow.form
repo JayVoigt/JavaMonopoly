@@ -1052,6 +1052,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Sell a House"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonSellHouseActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="buttonBuildHouse">
           <Properties>
@@ -1060,6 +1063,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Build a House"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonBuildHouseActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="buttonBuildHotel">
           <Properties>
@@ -1068,6 +1074,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Build a Hotel"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonBuildHotelActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="buttonSellHotel">
           <Properties>
@@ -1076,6 +1085,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Sell a Hotel"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonSellHotelActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JSeparator" name="jSeparator9">
         </Component>
