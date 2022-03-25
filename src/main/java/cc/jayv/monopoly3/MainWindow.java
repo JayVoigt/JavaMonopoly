@@ -47,6 +47,8 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 	
 	JLabel testHouse;
 	
+	public javax.swing.JLabel labelBoardImage;
+	
 	Player currentPlayer;
 	
 	Player gameEditorPlayer;
@@ -79,6 +81,8 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		update();
 		lockEndTurn();
 		lockRollDice();
+		
+		addBoardBackground();
 	}
 
 	/**
@@ -276,7 +280,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonSpace38 = new javax.swing.JButton();
         buttonSpace39 = new javax.swing.JButton();
         labelHouse5 = new javax.swing.JLabel();
-        labelBoardImage = new javax.swing.JLabel();
+        labelBoardImageReference = new javax.swing.JLabel();
         controlPanelGameInformation = new javax.swing.JInternalFrame();
         labelPlayer1Name = new javax.swing.JLabel();
         labelPlayer2Name = new javax.swing.JLabel();
@@ -2161,10 +2165,10 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         frameBoard.getContentPane().add(labelHouse5);
         labelHouse5.setBounds(240, 850, 20, 20);
 
-        labelBoardImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/board-px-template.png"))); // NOI18N
-        labelBoardImage.setText("jLabel1");
-        frameBoard.getContentPane().add(labelBoardImage);
-        labelBoardImage.setBounds(10, 10, 960, 960);
+        labelBoardImageReference.setIcon(new javax.swing.ImageIcon(getClass().getResource("/board-px-template.png"))); // NOI18N
+        labelBoardImageReference.setText("jLabel1");
+        frameBoard.getContentPane().add(labelBoardImageReference);
+        labelBoardImageReference.setBounds(10, 10, 960, 960);
 
         controlPanelGameInformation.setTitle("Game Information");
         controlPanelGameInformation.setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/i.png"))); // NOI18N
@@ -2570,6 +2574,15 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		updateGameLog();
 	}
 	
+	private void addBoardBackground() {
+		labelBoardImage = new javax.swing.JLabel();
+		
+		labelBoardImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/board-px-template.png"))); // NOI18N
+        labelBoardImage.setText("jLabel1");
+        frameBoard.getContentPane().add(labelBoardImage);
+        labelBoardImage.setBounds(10, 10, 960, 960);
+	}
+	
 	private void gameInactiveUILocker() {
 		if (controller.getIsGameActive() == false) {
 			lockRollDice();
@@ -2651,7 +2664,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		debugLogFrame.setVisible(false);
 		menuViewCheckBoxShowDebugLog.setState(false);
 
-		labelBoardImage.setSize(960, 960);
+		labelBoardImageReference.setSize(960, 960);
 
 		spaceButtons = new ArrayList<JButton>();
 
@@ -2724,18 +2737,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		Icon houseIcon = new javax.swing.ImageIcon(getClass().getResource("/house.png"));
 		Icon hotelIcon = new javax.swing.ImageIcon(getClass().getResource("/hotel.png"));
 
-//		testHouse = new JLabel();
-//		
-//		testHouse.setIcon(houseIcon);
-//		testHouse.setLocation(130, 150);
-//		testHouse.setBounds(130, 150, 20, 20);
-//		
-		labelBoardImage.setVisible(false);
-//		frameBoard.add(testHouse);
-//		testHouse.repaint();
-//		testHouse.setVisible(true);
-//		testHouse.repaint();
-
+		labelBoardImageReference.setVisible(false);
 		for ( int i = 0 ; i < board.getBankHouseCount() ; i++ ) { 
 			Map<JLabel, Boolean> localMap = new HashMap<>();
 			JLabel localJLabel = new JLabel();
@@ -2749,18 +2751,17 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 			improvementIconsHouses.add(localMap);
 			frameBoard.add(localJLabel);
 		}
+		
+		
 	}
 	
 	private void what() {
-		Icon houseIcon = new javax.swing.ImageIcon(getClass().getResource("/house.png"));
-		testHouse.setIcon(houseIcon);
-		testHouse.setLocation(130, 150);
-		testHouse.setBounds(130, 150, 20, 20);
-		
-		frameBoard.add(testHouse);
-		testHouse.repaint();
-		testHouse.setVisible(true);
-		testHouse.repaint();
+		if (labelBoardImage.isVisible() == true) {
+			labelBoardImage.setVisible(false);
+		}
+		else {
+			labelBoardImage.setVisible(true);
+		}
 	}
 
 	private void initButtonAppearance() {
@@ -4117,7 +4118,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     public javax.swing.JSeparator jSeparator8;
     public javax.swing.JSeparator jSeparator9;
     public javax.swing.JDialog jailDialog;
-    public javax.swing.JLabel labelBoardImage;
+    public javax.swing.JLabel labelBoardImageReference;
     public javax.swing.JLabel labelConsecutiveJailedTurns;
     public javax.swing.JLabel labelConsecutiveJailedTurns1;
     public javax.swing.JLabel labelCost;
