@@ -42,6 +42,11 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 	ArrayList<JDialog> jDialogs;
 	ArrayList<JLabel> labelGroupSpaceSelection;
 	
+	ArrayList<Map> improvementIconsHouses;
+	ArrayList<Map> improvementIconsHotels;
+	
+	JLabel testHouse;
+	
 	Player currentPlayer;
 	
 	Player gameEditorPlayer;
@@ -58,6 +63,8 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		initComponents();
 		
 		jDialogs = new ArrayList<>();
+		improvementIconsHouses = new ArrayList<>();
+		improvementIconsHotels = new ArrayList<>();
 		
 		board = inputBoard;
 		controller = new GameLogicController(board);
@@ -2151,7 +2158,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonSpace39.setBounds(850, 770, 120, 80);
 
         labelHouse5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hotel.png"))); // NOI18N
-        labelHouse5.setSize(new java.awt.Dimension(20, 20));
         frameBoard.getContentPane().add(labelHouse5);
         labelHouse5.setBounds(240, 850, 20, 20);
 
@@ -2198,7 +2204,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
                     .addComponent(labelPlayer2Name)
                     .addComponent(labelPlayer3Name)
                     .addComponent(labelPlayer4Name))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(248, Short.MAX_VALUE))
         );
         controlPanelGameInformationLayout.setVerticalGroup(
             controlPanelGameInformationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2310,6 +2316,11 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonActionTrade.setText("Trade");
         buttonActionTrade.setFocusPainted(false);
         buttonActionTrade.setMargin(new java.awt.Insets(2, 6, 2, 6));
+        buttonActionTrade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonActionTradeActionPerformed(evt);
+            }
+        });
         controlPanelActions.getContentPane().add(buttonActionTrade);
         buttonActionTrade.setBounds(10, 170, 140, 24);
 
@@ -2516,13 +2527,11 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(frameBoard, javax.swing.GroupLayout.PREFERRED_SIZE, 985, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(frameBoard, javax.swing.GroupLayout.PREFERRED_SIZE, 990, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(controlPanelGameInformation)
-                        .addContainerGap())
-                    .addComponent(controlPanelActions, javax.swing.GroupLayout.DEFAULT_SIZE, 339, Short.MAX_VALUE)))
+                    .addComponent(controlPanelGameInformation)
+                    .addComponent(controlPanelActions)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2711,6 +2720,47 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		
 //		labelGroupSpaceSelection.add(labelSelectedProperty);
 //		labelGroupSpaceSelection.add(labelFriendlyName);
+
+		Icon houseIcon = new javax.swing.ImageIcon(getClass().getResource("/house.png"));
+		Icon hotelIcon = new javax.swing.ImageIcon(getClass().getResource("/hotel.png"));
+
+//		testHouse = new JLabel();
+//		
+//		testHouse.setIcon(houseIcon);
+//		testHouse.setLocation(130, 150);
+//		testHouse.setBounds(130, 150, 20, 20);
+//		
+		labelBoardImage.setVisible(false);
+//		frameBoard.add(testHouse);
+//		testHouse.repaint();
+//		testHouse.setVisible(true);
+//		testHouse.repaint();
+
+		for ( int i = 0 ; i < board.getBankHouseCount() ; i++ ) { 
+			Map<JLabel, Boolean> localMap = new HashMap<>();
+			JLabel localJLabel = new JLabel();
+			localJLabel.setIcon(houseIcon);
+			localJLabel.setVisible(true);
+			localJLabel.setEnabled(true);
+			localJLabel.setSize(20, 20);
+			localJLabel.setLocation(130 + 10*i, 150 + 10*i);
+			
+			localMap.put(localJLabel, false);
+			improvementIconsHouses.add(localMap);
+			frameBoard.add(localJLabel);
+		}
+	}
+	
+	private void what() {
+		Icon houseIcon = new javax.swing.ImageIcon(getClass().getResource("/house.png"));
+		testHouse.setIcon(houseIcon);
+		testHouse.setLocation(130, 150);
+		testHouse.setBounds(130, 150, 20, 20);
+		
+		frameBoard.add(testHouse);
+		testHouse.repaint();
+		testHouse.setVisible(true);
+		testHouse.repaint();
 	}
 
 	private void initButtonAppearance() {
@@ -3660,6 +3710,10 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         controller.improvementsManager(currentSpaceSelectionID, GameLogicController.ImprovementsActions.sellHotel);
 		update();
     }//GEN-LAST:event_buttonSellHotelActionPerformed
+
+    private void buttonActionTradeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonActionTradeActionPerformed
+        what();
+    }//GEN-LAST:event_buttonActionTradeActionPerformed
 	// </editor-fold>
 
 	public void spaceButtonAppearanceHighlight(int spaceID) {

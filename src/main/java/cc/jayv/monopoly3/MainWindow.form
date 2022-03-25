@@ -1855,14 +1855,11 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="frameBoard" min="-2" pref="985" max="-2" attributes="0"/>
+              <Component id="frameBoard" min="-2" pref="990" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Component id="controlPanelGameInformation" max="32767" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                  </Group>
-                  <Component id="controlPanelActions" pref="339" max="32767" attributes="0"/>
+                  <Component id="controlPanelGameInformation" max="32767" attributes="0"/>
+                  <Component id="controlPanelActions" max="32767" attributes="0"/>
               </Group>
           </Group>
       </Group>
@@ -3452,9 +3449,6 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/hotel.png"/>
             </Property>
-            <Property name="size" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-              <Dimension value="[20, 20]"/>
-            </Property>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -3500,7 +3494,7 @@
                       <Component id="labelPlayer3Name" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="labelPlayer4Name" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="248" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -3774,6 +3768,9 @@
               <Insets value="[2, 6, 2, 6]"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonActionTradeActionPerformed"/>
+          </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="10" y="170" width="140" height="-1"/>
