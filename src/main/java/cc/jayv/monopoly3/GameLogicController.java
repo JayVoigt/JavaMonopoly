@@ -99,7 +99,6 @@ public class GameLogicController implements Serializable {
 	public ArrayList<String> getGameLogContentsFiltered(String inputQuery) {
 		gameLogContentsFiltered.clear();
 
-		System.err.println(inputQuery);
 		for (String s : gameLogContents) {
 			String lowerString = s.toLowerCase();
 			String lowerQuery = inputQuery.toLowerCase();

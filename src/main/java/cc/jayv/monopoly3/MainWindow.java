@@ -2599,6 +2599,20 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		updatePromptPropertyDecision();
 		updatePromptPostBailDecision();
 		
+		boolean searchFieldEnabled = true;
+		for (JDialog d : jDialogs) {
+			if (d.isVisible() == true) {
+				searchFieldEnabled = false;
+			}
+		}
+		
+		if (searchFieldEnabled == false) {
+			formattedTextFieldGameLogSearch.setEnabled(false);
+		}
+		else {
+			formattedTextFieldGameLogSearch.setEnabled(true);
+		}
+		
 		updateDebugLogFromController();
 		updateGameLog();
 	}
@@ -3234,6 +3248,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		
 		gameEditorDialog.setVisible(true);
 		controller.appendToGameLog("Game Editor was opened!");
+		update();
     }//GEN-LAST:event_menuEditGameEditorActionPerformed
 
 	// <editor-fold desc="Sound helpers">
