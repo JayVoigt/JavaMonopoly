@@ -2,6 +2,7 @@ package cc.jayv.monopoly3;
 
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Map;
 
 /*
@@ -37,6 +38,9 @@ public class Color extends Property implements Serializable {
 	
 	boolean isEligibleForImprovements;
 
+	ArrayList<Integer> hasHouseID;
+	ArrayList<Integer> hasHotelID;
+	
 	// </editor-fold>
 	// <editor-fold desc="Constructor">
 	/**
@@ -117,12 +121,14 @@ public class Color extends Property implements Serializable {
 	public void buildHotel() {
 		if (hotelCount == 0) {
 			hotelCount = 1;
+			houseCount = 0;
 		}
 	}
 	
 	public void sellHotel() {
 		if (hotelCount == 1) {
 			hotelCount = 0;
+			houseCount = 4;
 		}
 	}
 	

@@ -237,24 +237,21 @@ public class Board implements Serializable {
 	private void updateRailroadPropertyOwnershipRelationships() {
 		int ownedRailroads = 0;
 		
-		for (Space s : spaces) {
-			if (s instanceof Railroad) {
-				Railroad localRailroad = (Railroad) s;
-
-				if (localRailroad.getIsOwned()) {
-					getSpacesByOwnerID(localRailroad.getOwnerID());
-					
-					ownedRailroads = 0;
-					
-					for (Property p : spacesByOwnerID) {
-						if (p instanceof Railroad) {
-							ownedRailroads++;
-						}
-					}
-				}	// end if
-				
-				localRailroad.setOwnedRailroads(ownedRailroads);
+		for (Player p : players) {
+			ownedRailroads = 0;
+			ArrayList<Railroad> railroadsOwnedBySamePlayer = new ArrayList<>();
+			
+			if (p.getPlayerID() != 0) {
+				for (Space s : spaces) {
+					if (s instanceof Railroad) {
+						railroadsOwnedBySamePlayer.add((Railroad) s);
+					}	// end if
+				}	// end for
 			}	// end if
+			
+			for (Railroad r : railroadsOwnedBySamePlayer) {
+				r.setOwnedRailroads(railroadsOwnedBySamePlayer.size());
+			}
 		}	// end for
 		
 	}
