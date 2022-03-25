@@ -2740,11 +2740,29 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		jDialogs.add(aboutDialog);
 		jDialogs.add(forfeitDialog);
 		
+		improvementIconsNorth.add(new javax.swing.ImageIcon(getClass().getResource("/hotel-label-north.png")));
+		improvementIconsNorth.add(new javax.swing.ImageIcon(getClass().getResource("/house-label-1-north.png")));
+		improvementIconsNorth.add(new javax.swing.ImageIcon(getClass().getResource("/house-label-2-north.png")));
+		improvementIconsNorth.add(new javax.swing.ImageIcon(getClass().getResource("/house-label-3-north.png")));
+		improvementIconsNorth.add(new javax.swing.ImageIcon(getClass().getResource("/house-label-4-north.png")));
+
+		improvementIconsEast.add(new javax.swing.ImageIcon(getClass().getResource("/hotel-label-east.png")));
+		improvementIconsEast.add(new javax.swing.ImageIcon(getClass().getResource("/house-label-1-east.png")));
+		improvementIconsEast.add(new javax.swing.ImageIcon(getClass().getResource("/house-label-2-east.png")));
+		improvementIconsEast.add(new javax.swing.ImageIcon(getClass().getResource("/house-label-3-east.png")));
+		improvementIconsEast.add(new javax.swing.ImageIcon(getClass().getResource("/house-label-4-east.png")));
+		
 		improvementIconsSouth.add(new javax.swing.ImageIcon(getClass().getResource("/hotel-label-south.png")));
 		improvementIconsSouth.add(new javax.swing.ImageIcon(getClass().getResource("/house-label-1-south.png")));
 		improvementIconsSouth.add(new javax.swing.ImageIcon(getClass().getResource("/house-label-2-south.png")));
 		improvementIconsSouth.add(new javax.swing.ImageIcon(getClass().getResource("/house-label-3-south.png")));
 		improvementIconsSouth.add(new javax.swing.ImageIcon(getClass().getResource("/house-label-4-south.png")));
+		
+		improvementIconsWest.add(new javax.swing.ImageIcon(getClass().getResource("/hotel-label-west.png")));
+		improvementIconsWest.add(new javax.swing.ImageIcon(getClass().getResource("/house-label-1-west.png")));
+		improvementIconsWest.add(new javax.swing.ImageIcon(getClass().getResource("/house-label-2-west.png")));
+		improvementIconsWest.add(new javax.swing.ImageIcon(getClass().getResource("/house-label-3-west.png")));
+		improvementIconsWest.add(new javax.swing.ImageIcon(getClass().getResource("/house-label-4-west.png")));
 		
 		labelBoardImageReference.setVisible(false);
 		
@@ -2866,9 +2884,28 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		Color localColor;
 		int houseCount;
 		int hotelCount;
-		
+		ArrayList<Icon> localIconSet;
+		int localID;
 		
 		for (Space s : board.spaces) {
+			localID = s.getID();
+			
+			if (localID > 0 && localID < 10) {
+				localIconSet = improvementIconsSouth;
+			}
+			else if (localID > 10 && localID < 20) {
+				localIconSet = improvementIconsWest;
+			}
+			else if (localID > 20 && localID < 30) {
+				localIconSet = improvementIconsNorth;
+			}
+			else if (localID > 30 && localID < 40) {
+				localIconSet = improvementIconsEast;
+			}
+			else {
+				localIconSet = null;
+			}
+			
 			if (s instanceof Color) {
 				localColor = (Color) s;
 				JButton localJButton = spaceButtons.get(localColor.getID());
@@ -2880,10 +2917,10 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 					localJButton.setIcon(null);
 				}
 				else if (hotelCount == 1) {
-					localJButton.setIcon(improvementIconsSouth.get(0));
+					localJButton.setIcon(localIconSet.get(0));
 				}
 				else { 
-					localJButton.setIcon(improvementIconsSouth.get(houseCount));
+					localJButton.setIcon(localIconSet.get(houseCount));
 				}
 			}
 		}

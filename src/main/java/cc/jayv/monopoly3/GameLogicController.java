@@ -11,7 +11,6 @@ package cc.jayv.monopoly3;
  */
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
-import java.time.Instant;
 import java.util.Date;
 
 public class GameLogicController implements Serializable {
@@ -602,6 +601,7 @@ public class GameLogicController implements Serializable {
 				
 				localProperty.setIsOwned(true);
 				localProperty.setOwnerID(playerID);
+				currentPlayer.setPropertyOwnedState(true, localProperty.getID());
 			}
 		}
 		
@@ -621,7 +621,13 @@ public class GameLogicController implements Serializable {
 		
 		if (inputAction.equals(ImprovementsActions.buildHouse)) {
 			if (localColor.getIsEligibleForImprovements()) {
-				if (currentPlayer.getCurrentBalance() >= localColor.getHouseCost()) {
+				if (localColor.getHouseCount() == 4) {
+					appendToGameLog(localColor.getFriendlyName() + " already has the maximum number of houses.");
+				}
+				else if (localColor.getHotelCount() == 1) {
+					appendToGameLog(localColor.getFriendlyName() + " cannot have houses constructed when a hotel is already present.");
+				}
+				else if (currentPlayer.getCurrentBalance() >= localColor.getHouseCost()) {
 					if (board.getBankHouseCount() > 0) {
 						localColor.buildHouse();
 						currentPlayer.updateCurrentBalance(-1 * localColor.getHouseCost());
@@ -640,6 +646,7 @@ public class GameLogicController implements Serializable {
 		}
 		else if (inputAction.equals(ImprovementsActions.sellHouse)) {
 			localColor.sellHouse();
+			currentPlayer.updateCurrentBalance((int) 0.5 * localColor.getHouseCost());
 		}
 		else if (inputAction.equals(ImprovementsActions.buildHotel)) {
 			if (localColor.getIsEligibleForImprovements()) {
@@ -653,6 +660,7 @@ public class GameLogicController implements Serializable {
 		}
 		else if (inputAction.equals(ImprovementsActions.sellHotel)) {
 			localColor.sellHotel();
+			currentPlayer.updateCurrentBalance((int) 0.5 * localColor.getHotelCost());
 		}
 	}
 }
