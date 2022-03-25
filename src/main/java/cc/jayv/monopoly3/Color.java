@@ -34,6 +34,8 @@ public class Color extends Property implements Serializable {
 
 	int houseCount,
 		hotelCount;
+	
+	boolean isEligibleForImprovements;
 
 	// </editor-fold>
 	// <editor-fold desc="Constructor">
@@ -64,6 +66,8 @@ public class Color extends Property implements Serializable {
 		mortgageValue = propertyAttributes.get("mortgageValue");
 		houseCost = propertyAttributes.get("houseCost");
 		hotelCost = propertyAttributes.get("hotelCost");
+		
+		isEligibleForImprovements = false;
 	}
 	// </editor-fold>
 
@@ -84,6 +88,22 @@ public class Color extends Property implements Serializable {
 		houseCount = inputHouseCount;
 	}
 	
+	public void buildHouse() {
+		if (houseCount <= 4 && houseCount >= 0) {
+			houseCount++;
+		}
+	}
+	
+	public void sellHouse() {
+		if (houseCount <= 4 && houseCount >= 0) {
+			houseCount--;
+		}
+	}
+	
+	public int getHouseCost() {
+		return houseCost;
+	}
+	
 	public int getHotelCount() {
 		return hotelCount;
 	}
@@ -91,6 +111,32 @@ public class Color extends Property implements Serializable {
 	public void setHotelCount(int inputHotelCount) {
 		hotelCount = inputHotelCount;
 	}
+	
+	public void buildHotel() {
+		if (hotelCount == 0) {
+			hotelCount = 1;
+		}
+	}
+	
+	public void sellHotel() {
+		if (hotelCount == 1) {
+			hotelCount = 0;
+		}
+	}
+	
+	public int getHotelCost() {
+		return hotelCost;
+	}
+	
+	public boolean getIsEligibleForImprovements() {
+		return isEligibleForImprovements;
+	}
+	
+	public void setIsEligibleForImprovements() {
+		
+	}
+	
+	
 	// </editor-fold>
 
 	
