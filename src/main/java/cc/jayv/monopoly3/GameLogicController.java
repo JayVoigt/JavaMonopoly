@@ -440,7 +440,33 @@ public class GameLogicController implements Serializable {
 		}
 
 		else if (currentDrawCard.getDrawCardType() == DrawCard.drawCardTypeKeys.improvementRepairs) {
+			int ownedHouses = 0, ownedHotels = 0;
+			int paymentQuantity = 0;
+			
+			for (Space s : board.spaces) {
+				if (s instanceof Color) {
+					Color localColor = (Color) s;
 
+					if (currentPlayer.getOwnsPropertyByID(localColor.getID())) {
+						ownedHouses += localColor.getHouseCount();
+						ownedHotels += localColor.getHotelCount();
+					}
+				}
+			}
+			
+			paymentQuantity = ((board.getRepairCostHouse() * ownedHouses) + (board.getRepairCostHotel() * ownedHotels));
+			
+			if ((ownedHouses + ownedHotels) == 0) {
+				appendToGameLog(currentPlayer.getCustomName() + " owns no improvements."
+					+ " No payment needs to be made.");
+			}
+			else {
+				appendToGameLog(currentPlayer.getCustomName() + " owns " + ownedHouses
+				+ "houses and " + ownedHotels + " hotels. A payment of " + paymentQuantity
+				+ " is required.");
+				
+				currentPlayer.updateCurrentBalance(-1 * paymentQuantity);
+			}
 		}
 
 		else if (currentDrawCard.getDrawCardType() == DrawCard.drawCardTypeKeys.distributedBalanceUpdate) {

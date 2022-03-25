@@ -28,6 +28,9 @@ public class Board implements Serializable {
 	int currentPlayerID;
 	int bankHouseCount,
 		bankHotelCount;
+	
+	int repairCostHouse,
+		repairCostHotel;
 
 	ArrayList<Color> spacesByColorGroup = new ArrayList<>();
 	ArrayList<Property> spacesByOwnerID = new ArrayList<>();
@@ -47,6 +50,8 @@ public class Board implements Serializable {
 		// Using defaults from standard rules
 		bankHouseCount = 32;
 		bankHotelCount = 12;
+		repairCostHouse = 25;
+		repairCostHotel = 100;
 
 		players.add(0, new Player());	// null player
 		players.add(1, new Player());
@@ -194,6 +199,14 @@ public class Board implements Serializable {
 		}
 		return bankHotelCount;
 	}
+	
+	public int getRepairCostHouse() {
+		return repairCostHouse;
+	}
+	
+	public int getRepairCostHotel() {
+		return repairCostHotel;
+	}
 
 	private int parseIntHandler(String inputString) {
 		if (inputString.isEmpty()) {
@@ -297,10 +310,10 @@ public class Board implements Serializable {
 			if (colorGroup != Color.colorGroupKeys.unspecified) {
 
 				// This logic depends on the execution of updateColorPropertyOwnershipRelationships
-				if (spacesByColorGroup.get(0).getIsFullSetOwned()) {
-					for (Color c : spacesByColorGroup) {
-
-					}	// end for
+				if (spacesByColorGroup.get(0).getIsFullSetOwned() == true) {
+					for ( int i = 0 ; i < spacesByColorGroup.size() ; i++ ) {
+						
+					}
 				}	// end if
 			}	// end if
 

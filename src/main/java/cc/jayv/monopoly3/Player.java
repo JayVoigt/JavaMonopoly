@@ -166,6 +166,10 @@ public class Player implements Serializable {
 	public boolean[] getOwnedPropertyIDs() {
 		return ownedPropertyIDs;
 	}
+	
+	public boolean getOwnsPropertyByID(int inputPropertyID) {
+		return ownedPropertyIDs[inputPropertyID];
+	}
 
 	public boolean[] getMortgagedPropertyIDs() {
 		return mortgagedPropertyIDs;
