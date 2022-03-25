@@ -31,11 +31,9 @@ public class Board implements Serializable {
 	
 	ArrayList<Color> spacesByColorGroup = new ArrayList<>();
 
-	
-//	enum SpaceAttributeKeys {
-//		colorSet,
-//		ownerID
-//	}
+	public void forceBoardSelfCheck() {
+		updatePropertyOwnershipRelationships();
+	}
 	
 	// <editor-fold desc="Constructor">
 	/**
