@@ -242,4 +242,21 @@ public class Board implements Serializable {
 		return colorSetArray;
 	}
 
+//	private void updateImprovementEligibility() {
+//		for (Color.colorGroupKeys colorGroup : Color.colorGroupKeys.values()) {
+//			getSpacesByColorGroup(colorGroup);
+//			
+//			if (colorGroup != Color.colorGroupKeys.unspecified) {
+//
+//			}
+//		}
+//		
+//		for (Space s : spaces) {
+//			if (s instanceof Color) {
+//				Color localColor = (Color) s;
+//				
+//			}
+//		}
+//	}
+	
 }
