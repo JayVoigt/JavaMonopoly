@@ -42,10 +42,11 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 	ArrayList<JDialog> jDialogs;
 	ArrayList<JLabel> labelGroupSpaceSelection;
 	
-	ArrayList<JLabel> improvementIconsHouses;
-	ArrayList<Boolean> improvementIconsHousesCurrentlyUtilized;
-	ArrayList<JLabel> improvementIconsHotels;
-	ArrayList<Boolean> improvementIconsHotelsCurrentlyUtilized;
+	ArrayList<Icon> improvementIconsNorth = new ArrayList<>();
+	ArrayList<Icon> improvementIconsEast = new ArrayList<>();
+	ArrayList<Icon> improvementIconsSouth = new ArrayList<>();
+	ArrayList<Icon> improvementIconsWest = new ArrayList<>();
+
 	
 	public javax.swing.JLabel labelBoardImage;
 	
@@ -64,10 +65,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		initComponents();
 		
 		jDialogs = new ArrayList<>();
-		improvementIconsHouses = new ArrayList<>();
-		improvementIconsHousesCurrentlyUtilized = new ArrayList<>();
-		improvementIconsHotels = new ArrayList<>();
-		improvementIconsHotelsCurrentlyUtilized = new ArrayList<>();
 		
 		board = inputBoard;
 		controller = new GameLogicController(board);
@@ -221,8 +218,8 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         labelPurchaseCost = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
         jSeparator4 = new javax.swing.JSeparator();
-        staticLabelRentBase = new javax.swing.JLabel();
-        labelRentHotel = new javax.swing.JLabel();
+        staticLabelCurrentRent = new javax.swing.JLabel();
+        labelCurrentRent = new javax.swing.JLabel();
         staticLabelRentBase1 = new javax.swing.JLabel();
         staticLabelRentBase2 = new javax.swing.JLabel();
         staticLabelRentBase3 = new javax.swing.JLabel();
@@ -235,6 +232,8 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         labelRent4Houses = new javax.swing.JLabel();
         staticLabelTimesLanded = new javax.swing.JLabel();
         labelTimesLanded = new javax.swing.JLabel();
+        staticLabelRentBase6 = new javax.swing.JLabel();
+        labelRentHotel1 = new javax.swing.JLabel();
         iconPlayer1Position = new javax.swing.JLabel();
         iconPlayer2Position = new javax.swing.JLabel();
         iconPlayer3Position = new javax.swing.JLabel();
@@ -1486,16 +1485,16 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         spaceSelectionInformation.add(jSeparator4);
         jSeparator4.setBounds(460, 10, 10, 200);
 
-        staticLabelRentBase.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        staticLabelRentBase.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        staticLabelRentBase.setText("+ hotel");
-        spaceSelectionInformation.add(staticLabelRentBase);
-        staticLabelRentBase.setBounds(320, 160, 130, 20);
+        staticLabelCurrentRent.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        staticLabelCurrentRent.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        staticLabelCurrentRent.setText("Current Rent");
+        spaceSelectionInformation.add(staticLabelCurrentRent);
+        staticLabelCurrentRent.setBounds(320, 190, 130, 20);
 
-        labelRentHotel.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        labelRentHotel.setText("(no selection)");
-        spaceSelectionInformation.add(labelRentHotel);
-        labelRentHotel.setBounds(470, 160, 180, 20);
+        labelCurrentRent.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        labelCurrentRent.setText("(no selection)");
+        spaceSelectionInformation.add(labelCurrentRent);
+        labelCurrentRent.setBounds(470, 190, 180, 20);
 
         staticLabelRentBase1.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         staticLabelRentBase1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -1505,25 +1504,33 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 
         staticLabelRentBase2.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         staticLabelRentBase2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        staticLabelRentBase2.setText("+ 1 house");
+        staticLabelRentBase2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/house-label-1-horiz-rightalign.png"))); // NOI18N
+        staticLabelRentBase2.setText("+");
+        staticLabelRentBase2.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         spaceSelectionInformation.add(staticLabelRentBase2);
         staticLabelRentBase2.setBounds(320, 40, 130, 20);
 
         staticLabelRentBase3.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         staticLabelRentBase3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        staticLabelRentBase3.setText("+ 2 houses");
+        staticLabelRentBase3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/house-label-2-horiz-rightalign.png"))); // NOI18N
+        staticLabelRentBase3.setText("+");
+        staticLabelRentBase3.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         spaceSelectionInformation.add(staticLabelRentBase3);
         staticLabelRentBase3.setBounds(320, 70, 130, 20);
 
         staticLabelRentBase4.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         staticLabelRentBase4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        staticLabelRentBase4.setText("+ 3 houses");
+        staticLabelRentBase4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/house-label-3-horiz-rightalign.png"))); // NOI18N
+        staticLabelRentBase4.setText("+");
+        staticLabelRentBase4.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         spaceSelectionInformation.add(staticLabelRentBase4);
         staticLabelRentBase4.setBounds(320, 100, 130, 20);
 
         staticLabelRentBase5.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         staticLabelRentBase5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        staticLabelRentBase5.setText("+ 4 houses");
+        staticLabelRentBase5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/house-label-4-horiz-rightalign.png"))); // NOI18N
+        staticLabelRentBase5.setText("+");
+        staticLabelRentBase5.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         spaceSelectionInformation.add(staticLabelRentBase5);
         staticLabelRentBase5.setBounds(320, 130, 130, 20);
 
@@ -1562,6 +1569,19 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         labelTimesLanded.setText("(no selection)");
         spaceSelectionInformation.add(labelTimesLanded);
         labelTimesLanded.setBounds(140, 160, 180, 20);
+
+        staticLabelRentBase6.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
+        staticLabelRentBase6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        staticLabelRentBase6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hotel-label-1-horiz-rightalign.png"))); // NOI18N
+        staticLabelRentBase6.setText("+");
+        staticLabelRentBase6.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        spaceSelectionInformation.add(staticLabelRentBase6);
+        staticLabelRentBase6.setBounds(320, 160, 130, 20);
+
+        labelRentHotel1.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        labelRentHotel1.setText("(no selection)");
+        spaceSelectionInformation.add(labelRentHotel1);
+        labelRentHotel1.setBounds(470, 160, 180, 20);
 
         frameBoard.getContentPane().add(spaceSelectionInformation);
         spaceSelectionInformation.setBounds(160, 150, 660, 220);
@@ -2732,27 +2752,13 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		jDialogs.add(aboutDialog);
 		jDialogs.add(forfeitDialog);
 		
-//		labelGroupSpaceSelection.add(labelSelectedProperty);
-//		labelGroupSpaceSelection.add(labelFriendlyName);
-
-		Icon houseIcon = new javax.swing.ImageIcon(getClass().getResource("/house.png"));
-		Icon hotelIcon = new javax.swing.ImageIcon(getClass().getResource("/hotel.png"));
-
-		labelBoardImageReference.setVisible(false);
-		for ( int i = 0 ; i < board.getBankHouseCount() ; i++ ) { 
-
-			JLabel localJLabel = new JLabel();
-			localJLabel.setIcon(houseIcon);
-			localJLabel.setVisible(false);
-			localJLabel.setEnabled(true);
-			localJLabel.setSize(20, 20);
-			localJLabel.setLocation(0, 0);
-			
-			improvementIconsHouses.add(localJLabel);
-			improvementIconsHotelsCurrentlyUtilized.add(false);
-			frameBoard.add(localJLabel);
-		}
+		improvementIconsSouth.add(new javax.swing.ImageIcon(getClass().getResource("/hotel-label-south.png")));
+		improvementIconsSouth.add(new javax.swing.ImageIcon(getClass().getResource("/house-label-1-south.png")));
+		improvementIconsSouth.add(new javax.swing.ImageIcon(getClass().getResource("/house-label-2-south.png")));
+		improvementIconsSouth.add(new javax.swing.ImageIcon(getClass().getResource("/house-label-3-south.png")));
+		improvementIconsSouth.add(new javax.swing.ImageIcon(getClass().getResource("/house-label-4-south.png")));
 		
+		labelBoardImageReference.setVisible(false);
 		
 	}
 	
@@ -2868,79 +2874,33 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		}
 	}
 	
-	private JLabel requestImprovementIconObject(boolean isHotel) {
-		JLabel returnLabel = null;
-		
-		if (isHotel == false) {
-			for ( int i = 0 ; i < improvementIconsHouses.size(); i++ )  {
-				if (improvementIconsHousesCurrentlyUtilized.get(i) == false) {
-					improvementIconsHousesCurrentlyUtilized.set(i, true);
-					return improvementIconsHouses.get(i);
-				}
-			}
-		}
-		
-		else {
-			
-		}
-		
-		return returnLabel;
-	}
-	
-	private void releaseImprovementIconObject() {
-		
-	}
-	
 	private void updateImprovementIcons() {
 		Color localColor;
 		int houseCount;
 		int hotelCount;
 		
+		
 		for (Space s : board.spaces) {
 			if (s instanceof Color) {
 				localColor = (Color) s;
-				
+				JButton localJButton = spaceButtons.get(localColor.getID());
 				
 				houseCount = localColor.getHouseCount();
 				hotelCount = localColor.getHotelCount();
 				
-				// Color property is improved
-				if ((houseCount > 0) || (hotelCount > 0)) {
-					for ( int i = 0 ; i < houseCount ; i++ ) {
-						
-					}
+				if ((houseCount == 0) && (hotelCount == 0)) {
+					localJButton.setIcon(null);
+				}
+				else if (hotelCount == 1) {
+					localJButton.setIcon(improvementIconsSouth.get(0));
+				}
+				else { 
+					localJButton.setIcon(improvementIconsSouth.get(houseCount));
 				}
 			}
 		}
 	}
 	
-	private Point getPositionForImprovementIcon(Color improvedColor, boolean isHotel, int improvementIndex) {
-		Point iconPosition = new Point();
-		int targetX = 0, targetY = 0;
-		int localHouseCount = improvedColor.getHouseCount();
-		
-		// need to fix use of magic numbers
-		if (improvedColor.getID() > 0 && improvedColor.getID() < 10) {
-			targetY = 850;
-			targetX = 850 - (80 * improvedColor.getID()) - (improvementIndex*20);
-		}
-		else if (improvedColor.getID() > 10 && improvedColor.getID() < 20) {
-			targetX = 110;
-		}
-		else if (improvedColor.getID() > 20 && improvedColor.getID() < 30) {
-			targetY = 110;
-		}
-		else if (improvedColor.getID() > 30 && improvedColor.getID() < 40) {
-			targetX = 850;
-		}
-		else {
-			iconPosition.setLocation(0, 0);
-			System.err.print("Invalid spaceID for Color space.");
-		}
-		
-		iconPosition.setLocation(targetX, targetY);
-		return iconPosition;
-	}
 	// </editor-fold>
 
 	// <editor-fold desc="Button locking and unlocking">
@@ -3838,7 +3798,9 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 				formatLabel(labelOwnedBy, "not owned");
 			}
 			
-			labelCost.setText(Integer.toString(localProperty.getPurchaseCost()));
+			formatLabel(labelPurchaseCost, "$" + Integer.toString(localProperty.getPurchaseCost()));
+			
+			formatLabel(labelCurrentRent, "$" + Integer.toString(localProperty.calculateRent()));
 			
 			if (localSpace instanceof Color) {
 				Color localColor = (Color) localSpace;
@@ -3865,6 +3827,14 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 			formatLabel(labelIsOwned);
 			formatLabel(labelOwnedBy);
 			formatLabel(labelSpaceType, "Game Event");
+			formatLabel(labelPurchaseCost);
+			formatLabel(labelCurrentRent);
+			formatLabel(labelRent1House);
+			formatLabel(labelRent2Houses);
+			formatLabel(labelRent3Houses);
+			formatLabel(labelRent4Houses);
+			
+			buttonSpace11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bug-log-anim.gif")));
 		}
 		
 		else {
@@ -4159,6 +4129,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     public javax.swing.JLabel labelCurrentPlayer;
     public javax.swing.JLabel labelCurrentPlayerIcon;
     public javax.swing.JLabel labelCurrentPosition;
+    public javax.swing.JLabel labelCurrentRent;
     public javax.swing.JLabel labelDie1;
     public javax.swing.JLabel labelDie2;
     public javax.swing.JLabel labelFriendlyName;
@@ -4179,7 +4150,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     public javax.swing.JLabel labelRent3Houses;
     public javax.swing.JLabel labelRent4Houses;
     public javax.swing.JLabel labelRentBase;
-    public javax.swing.JLabel labelRentHotel;
+    public javax.swing.JLabel labelRentHotel1;
     public javax.swing.JLabel labelSelectedProperty;
     public javax.swing.JLabel labelSpaceSelectionID;
     public javax.swing.JLabel labelSpaceType;
@@ -4208,6 +4179,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     public javax.swing.JSpinner spinnerStartingBalance;
     public javax.swing.JLabel staticLabelCurrentBalance;
     public javax.swing.JLabel staticLabelCurrentPlayer;
+    public javax.swing.JLabel staticLabelCurrentRent;
     public javax.swing.JLabel staticLabelFriendlyName;
     public javax.swing.JLabel staticLabelID;
     public javax.swing.JLabel staticLabelImprovementsTitle;
@@ -4226,12 +4198,12 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     public javax.swing.JLabel staticLabelPositionIcon;
     public javax.swing.JLabel staticLabelPropertyDecision;
     public javax.swing.JLabel staticLabelPurchaseCost;
-    public javax.swing.JLabel staticLabelRentBase;
     public javax.swing.JLabel staticLabelRentBase1;
     public javax.swing.JLabel staticLabelRentBase2;
     public javax.swing.JLabel staticLabelRentBase3;
     public javax.swing.JLabel staticLabelRentBase4;
     public javax.swing.JLabel staticLabelRentBase5;
+    public javax.swing.JLabel staticLabelRentBase6;
     public javax.swing.JLabel staticLabelSpaceType;
     public javax.swing.JLabel staticLabelTimesLanded;
     public javax.swing.JDialog statisticsDialog;
