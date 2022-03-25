@@ -42,15 +42,14 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 	ArrayList<JDialog> jDialogs;
 	ArrayList<JLabel> labelGroupSpaceSelection;
 	
-	ArrayList<Map> improvementIconsHouses;
-	ArrayList<Map> improvementIconsHotels;
-	
-	JLabel testHouse;
+	ArrayList<JLabel> improvementIconsHouses;
+	ArrayList<Boolean> improvementIconsHousesCurrentlyUtilized;
+	ArrayList<JLabel> improvementIconsHotels;
+	ArrayList<Boolean> improvementIconsHotelsCurrentlyUtilized;
 	
 	public javax.swing.JLabel labelBoardImage;
 	
 	Player currentPlayer;
-	
 	Player gameEditorPlayer;
 	
 	int iconSelectionPlayerID;
@@ -66,7 +65,9 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		
 		jDialogs = new ArrayList<>();
 		improvementIconsHouses = new ArrayList<>();
+		improvementIconsHousesCurrentlyUtilized = new ArrayList<>();
 		improvementIconsHotels = new ArrayList<>();
+		improvementIconsHotelsCurrentlyUtilized = new ArrayList<>();
 		
 		board = inputBoard;
 		controller = new GameLogicController(board);
@@ -1593,7 +1594,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         labelHouse1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelHouse1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/house.png"))); // NOI18N
         frameBoard.getContentPane().add(labelHouse1);
-        labelHouse1.setBounds(110, 130, 20, 20);
+        labelHouse1.setBounds(850, 130, 20, 20);
 
         buttonSpace0.setBackground(new java.awt.Color(249, 249, 249));
         buttonSpace0.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
@@ -2739,23 +2740,23 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 
 		labelBoardImageReference.setVisible(false);
 		for ( int i = 0 ; i < board.getBankHouseCount() ; i++ ) { 
-			Map<JLabel, Boolean> localMap = new HashMap<>();
+
 			JLabel localJLabel = new JLabel();
 			localJLabel.setIcon(houseIcon);
-			localJLabel.setVisible(true);
+			localJLabel.setVisible(false);
 			localJLabel.setEnabled(true);
 			localJLabel.setSize(20, 20);
-			localJLabel.setLocation(130 + 10*i, 150 + 10*i);
+			localJLabel.setLocation(0, 0);
 			
-			localMap.put(localJLabel, false);
-			improvementIconsHouses.add(localMap);
+			improvementIconsHouses.add(localJLabel);
+			improvementIconsHotelsCurrentlyUtilized.add(false);
 			frameBoard.add(localJLabel);
 		}
 		
 		
 	}
 	
-	private void what() {
+	private void toggleBoardVisibility() {
 		if (labelBoardImage.isVisible() == true) {
 			labelBoardImage.setVisible(false);
 		}
@@ -2867,6 +2868,29 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		}
 	}
 	
+	private JLabel requestImprovementIconObject(boolean isHotel) {
+		JLabel returnLabel = null;
+		
+		if (isHotel == false) {
+			for ( int i = 0 ; i < improvementIconsHouses.size(); i++ )  {
+				if (improvementIconsHousesCurrentlyUtilized.get(i) == false) {
+					improvementIconsHousesCurrentlyUtilized.set(i, true);
+					return improvementIconsHouses.get(i);
+				}
+			}
+		}
+		
+		else {
+			
+		}
+		
+		return returnLabel;
+	}
+	
+	private void releaseImprovementIconObject() {
+		
+	}
+	
 	private void updateImprovementIcons() {
 		Color localColor;
 		int houseCount;
@@ -2882,7 +2906,9 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 				
 				// Color property is improved
 				if ((houseCount > 0) || (hotelCount > 0)) {
-					
+					for ( int i = 0 ; i < houseCount ; i++ ) {
+						
+					}
 				}
 			}
 		}
@@ -2890,24 +2916,29 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 	
 	private Point getPositionForImprovementIcon(Color improvedColor, boolean isHotel, int improvementIndex) {
 		Point iconPosition = new Point();
+		int targetX = 0, targetY = 0;
+		int localHouseCount = improvedColor.getHouseCount();
 		
+		// need to fix use of magic numbers
 		if (improvedColor.getID() > 0 && improvedColor.getID() < 10) {
-			
+			targetY = 850;
+			targetX = 850 - (80 * improvedColor.getID()) - (improvementIndex*20);
 		}
 		else if (improvedColor.getID() > 10 && improvedColor.getID() < 20) {
-			
+			targetX = 110;
 		}
 		else if (improvedColor.getID() > 20 && improvedColor.getID() < 30) {
-			
+			targetY = 110;
 		}
 		else if (improvedColor.getID() > 30 && improvedColor.getID() < 40) {
-			
+			targetX = 850;
 		}
 		else {
 			iconPosition.setLocation(0, 0);
 			System.err.print("Invalid spaceID for Color space.");
 		}
 		
+		iconPosition.setLocation(targetX, targetY);
 		return iconPosition;
 	}
 	// </editor-fold>
@@ -3197,6 +3228,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 
 	// <editor-fold desc="Sound helpers">
 	// </editor-fold>
+	
 	// <editor-fold desc="End turn/roll dice buttons">
     private void buttonRollDiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRollDiceActionPerformed
 		
@@ -3713,7 +3745,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     }//GEN-LAST:event_buttonSellHotelActionPerformed
 
     private void buttonActionTradeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonActionTradeActionPerformed
-        what();
+        toggleBoardVisibility();
     }//GEN-LAST:event_buttonActionTradeActionPerformed
 	// </editor-fold>
 
