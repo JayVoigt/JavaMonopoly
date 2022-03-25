@@ -4,7 +4,6 @@ package cc.jayv.monopoly3;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-
 /**
  *
  * @author jay
@@ -19,7 +18,7 @@ public class GameLogicController implements Serializable {
 
 	Player currentPlayer;
 	Player currentDebugPlayer;
-	
+
 	Space currentSpace;
 	GameEvent currentGameEvent;
 	Property currentProperty;
@@ -35,9 +34,9 @@ public class GameLogicController implements Serializable {
 
 	int playersCount,
 		turnCounter;
-	
+
 	boolean playerCanBuildImprovements;
-	
+
 	public enum ImprovementsActions {
 		buildHouse,
 		sellHouse,
@@ -65,7 +64,7 @@ public class GameLogicController implements Serializable {
 	public void setExtraTextPadding(boolean input) {
 		useExtraTextPadding = input;
 	}
-	
+
 	public void setPlayerCanBuildImprovements(boolean input) {
 		playerCanBuildImprovements = input;
 	}
@@ -78,7 +77,7 @@ public class GameLogicController implements Serializable {
 		debugLogContents = "";
 
 		useExtraTextPadding = true;
-		
+
 		playerCanBuildImprovements = false;
 	}
 	// </editor-fold>
@@ -89,7 +88,8 @@ public class GameLogicController implements Serializable {
 	}
 
 	/**
-	 * Send a welcome message to the game log when the application is first launched.
+	 * Send a welcome message to the game log when the application is first
+	 * launched.
 	 */
 	public void sendWelcomeMessage() {
 		appendToGameLog("Welcome to Java Monopoly Prototype!");
@@ -97,7 +97,8 @@ public class GameLogicController implements Serializable {
 	}
 
 	/**
-	 * Send a message to the game log when the game has started, including information about the number of players specified.
+	 * Send a message to the game log when the game has started, including
+	 * information about the number of players specified.
 	 */
 	public void sendInitGameMessage() {
 		appendToGameLog("A new game has been started with " + playersCount + " players.");
@@ -105,7 +106,9 @@ public class GameLogicController implements Serializable {
 
 	/**
 	 * Append the input to the game log as a formatted line.<br>
-	 * Entries are prefixed with the current date and time, as well as the current turn number.<br>
+	 * Entries are prefixed with the current date and time, as well as the
+	 * current turn number.<br>
+	 *
 	 * @param input The contents of the message.
 	 */
 	public void appendToGameLog(String input) {
@@ -125,6 +128,7 @@ public class GameLogicController implements Serializable {
 
 	/**
 	 * Append the input to the debug log.
+	 *
 	 * @param input The contents of the message.
 	 */
 	public void appendToDebugLog(String input) {
@@ -144,7 +148,7 @@ public class GameLogicController implements Serializable {
 		currentPlayer = board.players.get(board.getCurrentPlayerID());
 
 		board.forceBoardSelfCheck();
-		
+
 		String paddingPrefix = "";
 		if (useExtraTextPadding == true) {
 			gameLogContents = gameLogContents.concat("\n");
@@ -171,7 +175,8 @@ public class GameLogicController implements Serializable {
 	}
 
 	/**
-	 * Evaluator which is run if no special conditions apply to the current player.
+	 * Evaluator which is run if no special conditions apply to the current
+	 * player.
 	 */
 	private void normalTurnEvaluator() {
 		appendToDebugLog("-> executing normalTurnEvaluator");
@@ -186,10 +191,12 @@ public class GameLogicController implements Serializable {
 	}
 
 	/**
-	 * Evaluator which is run when the player is in mandatory actions exhausted (MAE) state.<br>
-	 * This occurs when the player has no remaining mandatory actions, such as rolling the dice
-	 * or ending their turn, but they are still permitted to perform optional actions, such as
-	 * mortgaging a property or building improvements.
+	 * Evaluator which is run when the player is in mandatory actions exhausted
+	 * (MAE) state.<br>
+	 * This occurs when the player has no remaining mandatory actions, such as
+	 * rolling the dice or ending their turn, but they are still permitted to
+	 * perform optional actions, such as mortgaging a property or building
+	 * improvements.
 	 */
 	private void maeStateEvaluator() {
 		appendToDebugLog("-> executing maeStateEvaluator");
@@ -236,8 +243,9 @@ public class GameLogicController implements Serializable {
 
 	/**
 	 * Manager which is executed when the current player rolls the dice.<br>
-	 * Note: this does not execute for special dice roll conditions, such as rolling
-	 * for doubles when jailed, or rolling to determine the rent paid when landing on an owned Utility.
+	 * Note: this does not execute for special dice roll conditions, such as
+	 * rolling for doubles when jailed, or rolling to determine the rent paid
+	 * when landing on an owned Utility.
 	 */
 	public void diceRollManager() {
 		appendToDebugLog("-> executing diceRollManager");
@@ -284,8 +292,10 @@ public class GameLogicController implements Serializable {
 	}
 
 	/**
-	 * Evaluator which executes when the current player rolls the dice, and a roll quantity is determined.<br>
-	 * Determines where the player should move, and then executes the appropriate evaluator for the destination space.
+	 * Evaluator which executes when the current player rolls the dice, and a
+	 * roll quantity is determined.<br>
+	 * Determines where the player should move, and then executes the
+	 * appropriate evaluator for the destination space.
 	 */
 	private void movementEvaluator() {
 		appendToDebugLog("-> executing movementEvaluator");
@@ -313,10 +323,14 @@ public class GameLogicController implements Serializable {
 	}
 
 	/**
-	 * An advanced evaluator, derived from <code>movementEvaluator</code>, which executes when more precise
-	 * movement of a player's position is required.<br>
-	 * This occurs when a player requires a <code>teleportRelative</code> event from <code>DrawCard</code> to be executed.
-	 * @param collectGoBonus Whether the player should collect a bonus if they pass or land on GO.
+	 * An advanced evaluator, derived from <code>movementEvaluator</code>, which
+	 * executes when more precise movement of a player's position is
+	 * required.<br>
+	 * This occurs when a player requires a <code>teleportRelative</code> event
+	 * from <code>DrawCard</code> to be executed.
+	 *
+	 * @param collectGoBonus Whether the player should collect a bonus if they
+	 * pass or land on GO.
 	 * @param movementQuantity The number of spaces to move.
 	 */
 	private void movementEvaluatorAdvanced(boolean collectGoBonus, int movementQuantity) {
@@ -344,7 +358,8 @@ public class GameLogicController implements Serializable {
 	}
 
 	/**
-	 * Evaluator which executes when the landed space is of <code>GameEvent</code> type.
+	 * Evaluator which executes when the landed space is of
+	 * <code>GameEvent</code> type.
 	 */
 	private void gameEventEvaluator() {
 		appendToDebugLog("-> executing gameEventEvaluator");
@@ -381,7 +396,8 @@ public class GameLogicController implements Serializable {
 	}
 
 	/**
-	 * Evaluator which executes when the landed space is of <code>DrawCard</code> type.
+	 * Evaluator which executes when the landed space is of
+	 * <code>DrawCard</code> type.
 	 */
 	private void drawCardEvaluator() {
 		int randomCardID = (int) (Math.random() * board.chanceCards.size());
@@ -433,7 +449,8 @@ public class GameLogicController implements Serializable {
 	}
 
 	/**
-	 * Evaluator which executes when the landed space is of <code>Property</code> type.
+	 * Evaluator which executes when the landed space is of
+	 * <code>Property</code> type.
 	 */
 	private void propertyEvaluator() {
 		appendToDebugLog("-> executing propertyEvaluator");
@@ -490,7 +507,8 @@ public class GameLogicController implements Serializable {
 	}
 
 	/**
-	 * Decision evaluator which executes when the current player decides to purchase a property.
+	 * Decision evaluator which executes when the current player decides to
+	 * purchase a property.
 	 */
 	public void playerDecisionPurchaseProperty() {
 		appendToDebugLog("-> executing playerDecisionPurchaseProperty");
@@ -514,15 +532,17 @@ public class GameLogicController implements Serializable {
 	}
 
 	/**
-	 * Decision evaluator which executes when the player decides to send a landed property to auction.<br>
+	 * Decision evaluator which executes when the player decides to send a
+	 * landed property to auction.<br>
 	 * <b>Not implemented.</b>
 	 */
 	public void playerDecisionAuction() {
 		appendToDebugLog("-> executing playerDecisionAuction");
 	}
 
-	/** 
-	 * Decision evaluator which executes when the current player decides to post bail when jailed.
+	/**
+	 * Decision evaluator which executes when the current player decides to post
+	 * bail when jailed.
 	 */
 	public void playerDecisionJailPostBail() {
 		currentPlayer.setMadeDecisionPostedBail(true);
@@ -537,7 +557,8 @@ public class GameLogicController implements Serializable {
 	}
 
 	/**
-	 * Decision evaluator which executes when the current player decides to roll for doubles when jailed.
+	 * Decision evaluator which executes when the current player decides to roll
+	 * for doubles when jailed.
 	 */
 	public void playerDecisionJailRollDoubles() {
 		currentPlayer.setMadeDecisionPostedBail(true);
@@ -564,10 +585,11 @@ public class GameLogicController implements Serializable {
 	}
 
 	/**
-	 * Ready the state of the current player to be released from jail; release the player from jail.
+	 * Ready the state of the current player to be released from jail; release
+	 * the player from jail.
 	 */
 	private void readyPlayerForJailRelease() {
-		
+
 		// Should clean up this method by moving some logic into Player.unjailPlayer()
 		currentPlayer.initializePlayerForNewTurn();
 
@@ -575,7 +597,7 @@ public class GameLogicController implements Serializable {
 		currentPlayer.setIsJailed(false);
 
 		currentPlayer.setPosition(10);
-		
+
 		currentPlayer.unjailPlayer();
 
 		currentPlayer.setActionLockedEndTurn(true);
@@ -583,84 +605,107 @@ public class GameLogicController implements Serializable {
 	}
 
 	/**
-	 * Manager which is executed when the player decides to forfeit the game.<br>
+	 * Manager which is executed when the player decides to forfeit the
+	 * game.<br>
 	 * <b>Not implemented.</b>
 	 */
 	public void forfeitManager() {
 
 	}
-	
+
 	public void debugToolsGiveAllProperties(int playerID) {
 		currentDebugPlayer = board.players.get(playerID);
 		appendToDebugLog("Giving " + currentDebugPlayer.getCustomName() + " all properties.");
-		
+
 		Property localProperty;
 		for (Space s : board.spaces) {
 			if (s instanceof Property) {
 				localProperty = (Property) s;
-				
+
 				localProperty.setIsOwned(true);
 				localProperty.setOwnerID(playerID);
 				currentPlayer.setPropertyOwnedState(true, localProperty.getID());
 			}
 		}
-		
+
 		board.forceBoardSelfCheck();
 	}
-	
+
 	public void improvementsManager(int spaceID, ImprovementsActions inputAction) {
 		Space localSpace = board.spaces.get(spaceID);
 		Color localColor = null;
-		
+
 		if (localSpace instanceof Color) {
 			localColor = (Color) localSpace;
 		}
 		else {
 			System.err.println("Improvements: property not Color.");
 		}
-		
+
+		// Build house
 		if (inputAction.equals(ImprovementsActions.buildHouse)) {
 			if (localColor.getIsEligibleForImprovements()) {
+				// Maximum houses on space
 				if (localColor.getHouseCount() == 4) {
 					appendToGameLog(localColor.getFriendlyName() + " already has the maximum number of houses.");
 				}
+				
 				else if (localColor.getHotelCount() == 1) {
-					appendToGameLog(localColor.getFriendlyName() + " cannot have houses constructed when a hotel is already present.");
+					appendToGameLog(localColor.getFriendlyName() + " cannot have "
+						+ "houses constructed when a hotel is already present.");
 				}
+				
 				else if (currentPlayer.getCurrentBalance() >= localColor.getHouseCost()) {
 					if (board.getBankHouseCount() > 0) {
 						localColor.buildHouse();
+
+						// Debit player
 						currentPlayer.updateCurrentBalance(-1 * localColor.getHouseCost());
 					}
 					else {
 						appendToGameLog("There are no available houses to purchase from the Bank.");
 					}
 				}
+				
 				else {
 					appendToGameLog("You do not have sufficient funds to construct "
-						+ "a house on this property. House cost for " + localColor.getFriendlyName()
-						+ ": " + localColor.getHouseCost());
+						+ "a house on this property.");
 				}
 
 			}
 		}
+
+		// Sell house
 		else if (inputAction.equals(ImprovementsActions.sellHouse)) {
-			localColor.sellHouse();
-			currentPlayer.updateCurrentBalance((int) 0.5 * localColor.getHouseCost());
+			if (localColor.getHouseCount() > 0) {
+				localColor.sellHouse();
+				currentPlayer.updateCurrentBalance((int) (localColor.getHouseCost() * 0.5));
+			}
+			else {
+				appendToGameLog(localColor.getFriendlyName() + " does not have any houses to sell.");
+			}
 		}
+
+		// Build hotel
 		else if (inputAction.equals(ImprovementsActions.buildHotel)) {
 			if (localColor.getIsEligibleForImprovements()) {
 				localColor.buildHotel();
 			}
 			else {
-					appendToGameLog("You do not have sufficient funds to construct "
-						+ "a hotel on this property. House cost for " + localColor.getFriendlyName()
-						+ ": " + localColor.getHotelCost());
+				appendToGameLog("You do not have sufficient funds to construct "
+					+ "a hotel on this property.");
 			}
 		}
+
+		// Sell hotel
 		else if (inputAction.equals(ImprovementsActions.sellHotel)) {
-			localColor.sellHotel();
-			currentPlayer.updateCurrentBalance((int) 0.5 * localColor.getHotelCost());
+			if (localColor.getHotelCount() > 0) {
+				localColor.sellHotel();
+				currentPlayer.updateCurrentBalance((int) (localColor.getHotelCost() * 0.5));
+			}
+			else {
+				appendToGameLog(localColor.getFriendlyName() + " does not have any hotels to sell.");
+			}
 		}
 	}
 }
