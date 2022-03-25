@@ -56,6 +56,9 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 	int iconSelectionPlayerID;
 	int currentSpaceSelectionID;
 	
+	ArrayList<String> gameLogContents;
+	ArrayList<String> gameLogContentsFiltered;
+	
 	public MainWindow(Board inputBoard) throws IOException {
 		try {
 			UIManager.setLookAndFeel(new FlatLightLaf());
@@ -68,6 +71,9 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		
 		board = inputBoard;
 		controller = new GameLogicController(board);
+		
+		gameLogContents = new ArrayList<>();
+		gameLogContentsFiltered = new ArrayList<>();
 		
 		customInitComponents();
 		
@@ -278,6 +284,8 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonSpace37 = new javax.swing.JButton();
         buttonSpace38 = new javax.swing.JButton();
         buttonSpace39 = new javax.swing.JButton();
+        staticLabelSearchGameLog = new javax.swing.JLabel();
+        formattedTextFieldGameLogSearch = new javax.swing.JFormattedTextField();
         labelBoardImageReference = new javax.swing.JLabel();
         controlPanelGameInformation = new javax.swing.JInternalFrame();
         labelPlayer1Name = new javax.swing.JLabel();
@@ -1404,7 +1412,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         jScrollPane1.setViewportView(textAreaGameLog);
 
         frameBoard.getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(160, 390, 660, 430);
+        jScrollPane1.setBounds(160, 420, 660, 400);
 
         spaceSelectionInformation.setBackground(new java.awt.Color(255, 255, 255));
         spaceSelectionInformation.setLayout(null);
@@ -2175,6 +2183,18 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         frameBoard.getContentPane().add(buttonSpace39);
         buttonSpace39.setBounds(850, 770, 120, 80);
 
+        staticLabelSearchGameLog.setText("Search game log:");
+        frameBoard.getContentPane().add(staticLabelSearchGameLog);
+        staticLabelSearchGameLog.setBounds(470, 390, 110, 20);
+
+        formattedTextFieldGameLogSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                formattedTextFieldGameLogSearchActionPerformed(evt);
+            }
+        });
+        frameBoard.getContentPane().add(formattedTextFieldGameLogSearch);
+        formattedTextFieldGameLogSearch.setBounds(580, 390, 240, 23);
+
         labelBoardImageReference.setIcon(new javax.swing.ImageIcon(getClass().getResource("/board-px-template.png"))); // NOI18N
         labelBoardImageReference.setText("jLabel1");
         frameBoard.getContentPane().add(labelBoardImageReference);
@@ -2860,7 +2880,12 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 	}
 
 	private void updateGameLog() {
-		textAreaGameLog.setText(controller.getGameLogContents());
+		String combinedGameLog = "";
+		
+		for (String s : controller.getGameLogContents()) {
+			combinedGameLog = combinedGameLog.concat(s);
+		}
+		textAreaGameLog.setText(combinedGameLog);
 	}
 
 	private void readyUIForNextPlayer() {
@@ -3732,7 +3757,22 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     private void buttonActionTradeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonActionTradeActionPerformed
         toggleBoardVisibility();
     }//GEN-LAST:event_buttonActionTradeActionPerformed
+
+    private void formattedTextFieldGameLogSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_formattedTextFieldGameLogSearchActionPerformed
+        updateGameLogWithSearchQuery(formattedTextFieldGameLogSearch.getText());
+    }//GEN-LAST:event_formattedTextFieldGameLogSearchActionPerformed
 	// </editor-fold>
+	
+	private void updateGameLogWithSearchQuery(String inputQuery) {
+		gameLogContentsFiltered = controller.getGameLogContentsFiltered(inputQuery);
+		String combinedGameLog = "";
+		
+		for (String s : gameLogContentsFiltered) {
+			combinedGameLog = combinedGameLog.concat(s);
+		}
+		
+		textAreaGameLog.setText(combinedGameLog);
+	}
 
 	public void spaceButtonAppearanceHighlight(int spaceID) {
 		// Check if horizontally or vertically oriented on board
@@ -3775,7 +3815,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 	}
 	
 	private void updateDebugLogFromController() {
-		textAreaDebugLog.append(controller.getDebugLogContents());
+		//textAreaDebugLog.append(controller.getDebugLogContents());
 	}
 	// </editor-fold>
 
@@ -4102,6 +4142,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     public javax.swing.JDialog forfeitDialog;
     public javax.swing.JButton forfeitDialogButtonNo;
     public javax.swing.JButton forfeitDialogButtonYes;
+    public javax.swing.JFormattedTextField formattedTextFieldGameLogSearch;
     public javax.swing.JInternalFrame frameBoard;
     public javax.swing.JDialog gameEditorDialog;
     public javax.swing.JDialog gameSetupDialog;
@@ -4225,6 +4266,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     public javax.swing.JLabel staticLabelRentBase4;
     public javax.swing.JLabel staticLabelRentBase5;
     public javax.swing.JLabel staticLabelRentBase6;
+    public javax.swing.JLabel staticLabelSearchGameLog;
     public javax.swing.JLabel staticLabelSpaceType;
     public javax.swing.JLabel staticLabelTimesLanded;
     public javax.swing.JDialog statisticsDialog;

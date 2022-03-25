@@ -11,6 +11,9 @@ package cc.jayv.monopoly3;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
+import java.util.ArrayList;
 
 public class GameLogicController implements Serializable {
 
@@ -25,9 +28,10 @@ public class GameLogicController implements Serializable {
 
 	DrawCard currentDrawCard;
 
-	String gameLogContents,
+	ArrayList<String> gameLogContents,
+		gameLogContentsFiltered,
 		debugLogContents;
-
+	
 	boolean isGameActive;
 
 	boolean useExtraTextPadding;
@@ -73,8 +77,13 @@ public class GameLogicController implements Serializable {
 	// <editor-fold desc="Constructor">
 	public GameLogicController(Board inputBoard) {
 		board = inputBoard;
-		gameLogContents = "";
-		debugLogContents = "";
+		gameLogContents = new ArrayList<>();
+		gameLogContentsFiltered = new ArrayList<>();
+		debugLogContents = new ArrayList<>();
+		String initString = "";
+		gameLogContents.add(initString);
+		
+		debugLogContents.add(initString);
 
 		useExtraTextPadding = true;
 
@@ -83,10 +92,25 @@ public class GameLogicController implements Serializable {
 	// </editor-fold>
 
 	// <editor-fold desc="Misc helpers">
-	public String getGameLogContents() {
+	public ArrayList<String> getGameLogContents() {
 		return gameLogContents;
 	}
 
+	public ArrayList<String> getGameLogContentsFiltered(String inputQuery) {
+		gameLogContentsFiltered.clear();
+
+		System.err.println(inputQuery);
+		for (String s : gameLogContents) {
+			String lowerString = s.toLowerCase();
+			String lowerQuery = inputQuery.toLowerCase();
+			
+			if (lowerString.contains(lowerQuery) == true) {
+				gameLogContentsFiltered.add(s);
+			}
+		}
+		return gameLogContentsFiltered;
+	}
+	
 	/**
 	 * Send a welcome message to the game log when the application is first
 	 * launched.
@@ -119,10 +143,11 @@ public class GameLogicController implements Serializable {
 		String formattedPrefix;
 		formattedPrefix = ("[" + currentDate + "] (" + currentTurn + "): ");
 
-		gameLogContents = gameLogContents.concat(formattedPrefix + input + "\n");
+		String output = (formattedPrefix + input + "\n");
+		gameLogContents.add(output);
 	}
 
-	public String getDebugLogContents() {
+	public ArrayList<String> getDebugLogContents() {
 		return debugLogContents;
 	}
 
@@ -134,7 +159,8 @@ public class GameLogicController implements Serializable {
 	public void appendToDebugLog(String input) {
 		String formattedPrefix = Integer.toString(turnCounter);
 		formattedPrefix = formattedPrefix.concat(": ");
-		debugLogContents = debugLogContents.concat(formattedPrefix + input + "\n");
+		String output = (formattedPrefix + input + "\n");
+		debugLogContents.add(output);
 	}
 	// </editor-fold>
 
@@ -151,7 +177,8 @@ public class GameLogicController implements Serializable {
 
 		String paddingPrefix = "";
 		if (useExtraTextPadding == true) {
-			gameLogContents = gameLogContents.concat("\n");
+			String newLine = "\n";
+			gameLogContents.add(newLine);
 		}
 
 		appendToGameLog("It is now " + currentPlayer.getCustomName() + "'s turn.");
@@ -441,7 +468,7 @@ public class GameLogicController implements Serializable {
 
 		else if (currentDrawCard.getDrawCardType() == DrawCard.drawCardTypeKeys.improvementRepairs) {
 			int ownedHouses = 0, ownedHotels = 0;
-			int paymentQuantity = 0;
+			int paymentQuantity;
 			
 			for (Space s : board.spaces) {
 				if (s instanceof Color) {
@@ -462,7 +489,7 @@ public class GameLogicController implements Serializable {
 			}
 			else {
 				appendToGameLog(currentPlayer.getCustomName() + " owns " + ownedHouses
-				+ "houses and " + ownedHotels + " hotels. A payment of " + paymentQuantity
+				+ " houses and " + ownedHotels + " hotels. A payment of $" + paymentQuantity
 				+ " is required.");
 				
 				currentPlayer.updateCurrentBalance(-1 * paymentQuantity);
@@ -715,7 +742,13 @@ public class GameLogicController implements Serializable {
 		// Build hotel
 		else if (inputAction.equals(ImprovementsActions.buildHotel)) {
 			if (localColor.getIsEligibleForImprovements()) {
-				localColor.buildHotel();
+				if (localColor.getHouseCount() == 4) {
+					localColor.buildHotel();
+				}
+				else {
+					appendToGameLog(localColor.getFriendlyName() + " does not have enough houses "
+					+ "for a hotel to be constructed.");
+				}
 			}
 			else {
 				appendToGameLog("You do not have sufficient funds to construct "
