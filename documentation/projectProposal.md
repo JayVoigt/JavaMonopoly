@@ -14,6 +14,12 @@ The program seeks to implement a playable version of the board game, Monopoly.
 
 &nbsp;
 
+<div align="center">
+![JavaDocs for this project are available on GitHub Pages.](https://pages.github.iu.edu/jayvoigt/cc/jayv/monopoly3/package-summary.html)
+</div>
+
+&nbsp;
+
 ## Problems to solve
 
 **Data**
