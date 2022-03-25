@@ -238,7 +238,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         iconPlayer2Position = new javax.swing.JLabel();
         iconPlayer3Position = new javax.swing.JLabel();
         iconPlayer4Position = new javax.swing.JLabel();
-        labelHouse1 = new javax.swing.JLabel();
         buttonSpace0 = new javax.swing.JButton();
         buttonSpace1 = new javax.swing.JButton();
         buttonSpace2 = new javax.swing.JButton();
@@ -279,7 +278,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonSpace37 = new javax.swing.JButton();
         buttonSpace38 = new javax.swing.JButton();
         buttonSpace39 = new javax.swing.JButton();
-        labelHouse5 = new javax.swing.JLabel();
         labelBoardImageReference = new javax.swing.JLabel();
         controlPanelGameInformation = new javax.swing.JInternalFrame();
         labelPlayer1Name = new javax.swing.JLabel();
@@ -1611,11 +1609,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         frameBoard.getContentPane().add(iconPlayer4Position);
         iconPlayer4Position.setBounds(10, 190, 20, 20);
 
-        labelHouse1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelHouse1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/house.png"))); // NOI18N
-        frameBoard.getContentPane().add(labelHouse1);
-        labelHouse1.setBounds(850, 130, 20, 20);
-
         buttonSpace0.setBackground(new java.awt.Color(249, 249, 249));
         buttonSpace0.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         buttonSpace0.setContentAreaFilled(false);
@@ -2182,10 +2175,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         frameBoard.getContentPane().add(buttonSpace39);
         buttonSpace39.setBounds(850, 770, 120, 80);
 
-        labelHouse5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hotel.png"))); // NOI18N
-        frameBoard.getContentPane().add(labelHouse5);
-        labelHouse5.setBounds(240, 850, 20, 20);
-
         labelBoardImageReference.setIcon(new javax.swing.ImageIcon(getClass().getResource("/board-px-template.png"))); // NOI18N
         labelBoardImageReference.setText("jLabel1");
         frameBoard.getContentPane().add(labelBoardImageReference);
@@ -2590,7 +2579,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		updatePromptPropertyDecision();
 		updatePromptPostBailDecision();
 		
-		//textAreaDebugLog.setText(controller.getDebugLogContents());
 		updateDebugLogFromController();
 		updateGameLog();
 	}
@@ -3199,7 +3187,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     private void buttonEndTurnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEndTurnActionPerformed
 		controller.endTurnManager();
 		update();
-		readyUIForNextPlayer();
+//		readyUIForNextPlayer();
     }//GEN-LAST:event_buttonEndTurnActionPerformed
 	// </editor-fold>
 
@@ -3833,8 +3821,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 			formatLabel(labelRent2Houses);
 			formatLabel(labelRent3Houses);
 			formatLabel(labelRent4Houses);
-			
-			buttonSpace11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bug-log-anim.gif")));
 		}
 		
 		else {
@@ -4133,8 +4119,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     public javax.swing.JLabel labelDie1;
     public javax.swing.JLabel labelDie2;
     public javax.swing.JLabel labelFriendlyName;
-    public javax.swing.JLabel labelHouse1;
-    public javax.swing.JLabel labelHouse5;
     public javax.swing.JLabel labelImprovementInfo;
     public javax.swing.JLabel labelIsOwned;
     public javax.swing.JLabel labelOwnedBy;
