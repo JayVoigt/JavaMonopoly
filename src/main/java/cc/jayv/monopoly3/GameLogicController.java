@@ -622,7 +622,13 @@ public class GameLogicController implements Serializable {
 		if (inputAction.equals(ImprovementsActions.buildHouse)) {
 			if (localColor.getIsEligibleForImprovements()) {
 				if (currentPlayer.getCurrentBalance() >= localColor.getHouseCost()) {
-					localColor.buildHouse();
+					if (board.getBankHouseCount() > 0) {
+						localColor.buildHouse();
+						currentPlayer.updateCurrentBalance(-1 * localColor.getHouseCost());
+					}
+					else {
+						appendToGameLog("There are no available houses to purchase from the Bank.");
+					}
 				}
 				else {
 					appendToGameLog("You do not have sufficient funds to construct "

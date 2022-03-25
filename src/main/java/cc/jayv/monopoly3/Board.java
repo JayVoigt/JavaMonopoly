@@ -170,10 +170,28 @@ public class Board implements Serializable {
 	}
 
 	public int getBankHouseCount() {
+		bankHouseCount = 32;
+		
+		for (Space s : spaces) {
+			if (s instanceof Color) {
+				Color localColor = (Color) s;
+
+				bankHouseCount -= (localColor.getHouseCount());
+			}
+		}
 		return bankHouseCount;
 	}
 
 	public int getBankHotelCount() {
+		bankHotelCount = 12;
+		
+		for (Space s : spaces) {
+			if (s instanceof Color) {
+				Color localColor = (Color) s;
+
+				bankHotelCount -= (localColor.getHotelCount());
+			}
+		}
 		return bankHotelCount;
 	}
 
@@ -236,11 +254,11 @@ public class Board implements Serializable {
 
 	private void updateRailroadPropertyOwnershipRelationships() {
 		int ownedRailroads = 0;
-		
+
 		for (Player p : players) {
 			ownedRailroads = 0;
 			ArrayList<Railroad> railroadsOwnedBySamePlayer = new ArrayList<>();
-			
+
 			if (p.getPlayerID() != 0) {
 				for (Space s : spaces) {
 					if (s instanceof Railroad) {
@@ -248,12 +266,12 @@ public class Board implements Serializable {
 					}	// end if
 				}	// end for
 			}	// end if
-			
+
 			for (Railroad r : railroadsOwnedBySamePlayer) {
 				r.setOwnedRailroads(railroadsOwnedBySamePlayer.size());
 			}
 		}	// end for
-		
+
 	}
 
 	public ArrayList<Property> getSpacesByOwnerID(int ownerID) {
