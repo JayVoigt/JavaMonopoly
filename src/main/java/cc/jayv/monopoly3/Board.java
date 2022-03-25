@@ -35,6 +35,10 @@ public class Board implements Serializable {
 	ArrayList<Color> spacesByColorGroup = new ArrayList<>();
 	ArrayList<Property> spacesByOwnerID = new ArrayList<>();
 
+	/**
+	 * Call all methods which evaluate the state of the board, and update
+	 * relationships between Spaces.
+	 */
 	public void forceBoardSelfCheck() {
 		updatePropertyOwnershipRelationships();
 		updateImprovementEligibility();
@@ -208,6 +212,12 @@ public class Board implements Serializable {
 		return repairCostHotel;
 	}
 
+	/**
+	 * Convert a string to an integer, where the returned value is set to 0
+	 * if the string is empty.
+	 * @param inputString A string to be converted to an integer.
+	 * @return An integer value.
+	 */
 	private int parseIntHandler(String inputString) {
 		if (inputString.isEmpty()) {
 			return 0;
@@ -217,11 +227,20 @@ public class Board implements Serializable {
 		}
 	}	// end parseIntHandler()
 
+	/**
+	 * Call all methods that evaluate the state of Properties.
+	 */
 	public void updatePropertyOwnershipRelationships() {
 		updateColorPropertyOwnershipRelationships();
 		updateRailroadPropertyOwnershipRelationships();
 	}
 
+	/**
+	 * Return all spaces which match the color group given as a parameter.
+	 * @param inputColorGroup The color group to return all Color spaces belonging to.
+	 * @return An ArrayList of Color spaces, where all elements belong to the
+	 * color group specified as a parameter.
+	 */
 	public ArrayList<Color> getSpacesByColorGroup(Color.colorGroupKeys inputColorGroup) {
 		Color localColor;
 
@@ -238,6 +257,10 @@ public class Board implements Serializable {
 		return spacesByColorGroup;
 	}
 
+	/**
+	 * Update the relationships between Color spaces, including setting an
+	 * indicator within the Color object if all spaces are owned by the same player.
+	 */
 	private void updateColorPropertyOwnershipRelationships() {
 		for (Color.colorGroupKeys colorGroup : Color.colorGroupKeys.values()) {
 			getSpacesByColorGroup(colorGroup);
@@ -265,6 +288,10 @@ public class Board implements Serializable {
 		}	// end for
 	}
 
+	/**
+	 * Update the relationships between Railroad spaces, including setting an
+	 * indicator within the Railroad object if all spaces are owned by the same player.
+	 */
 	private void updateRailroadPropertyOwnershipRelationships() {
 		int ownedRailroads = 0;
 
@@ -287,6 +314,11 @@ public class Board implements Serializable {
 
 	}
 
+	/**
+	 * Return all properties whose ownerID matches the given parameter.
+	 * @param ownerID
+	 * @return An ArrayList of Property objects.
+	 */
 	public ArrayList<Property> getSpacesByOwnerID(int ownerID) {
 		Property localProperty;
 
@@ -303,6 +335,10 @@ public class Board implements Serializable {
 		return spacesByOwnerID;
 	}
 
+	/**
+	 * Update each Color space and determine if it is able to have improvements
+	 * constructed on it.
+	 */
 	private void updateImprovementEligibility() {
 		for (Color.colorGroupKeys colorGroup : Color.colorGroupKeys.values()) {
 			getSpacesByColorGroup(colorGroup);

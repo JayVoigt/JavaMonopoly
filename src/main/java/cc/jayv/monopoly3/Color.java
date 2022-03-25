@@ -92,6 +92,9 @@ public class Color extends Property implements Serializable {
 		houseCount = inputHouseCount;
 	}
 	
+	/**
+	 * Update the quantity of houses as necessary when one is constructed.
+	 */
 	public void buildHouse() {
 		// houseCount: [0, 4)
 		if ((houseCount < 4) && (houseCount >= 0)) {
@@ -99,6 +102,9 @@ public class Color extends Property implements Serializable {
 		}
 	}
 	
+	/**
+	 * Update the quantity of houses as necessary when one is sold.
+	 */
 	public void sellHouse() {
 		// houseCount: (0, 4]
 		if ((houseCount <= 4) && (houseCount > 0)) {
@@ -118,6 +124,9 @@ public class Color extends Property implements Serializable {
 		hotelCount = inputHotelCount;
 	}
 	
+	/**
+	 * Update the quantity of hotels as necessary when one is constructed.
+	 */
 	public void buildHotel() {
 		if (hotelCount == 0) {
 			hotelCount = 1;
@@ -125,6 +134,9 @@ public class Color extends Property implements Serializable {
 		}
 	}
 	
+	/**
+	 * Update the quantity of hotels as necessary when one is sold.
+	 */
 	public void sellHotel() {
 		if (hotelCount == 1) {
 			hotelCount = 0;
@@ -146,7 +158,6 @@ public class Color extends Property implements Serializable {
 	
 	
 	// </editor-fold>
-
 	
 	/**
 	 * Calculate the rent that needs to be paid if a player lands on this space.<br>

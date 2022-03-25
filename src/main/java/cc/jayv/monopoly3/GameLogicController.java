@@ -39,6 +39,10 @@ public class GameLogicController implements Serializable {
 
 	boolean playerCanBuildImprovements;
 
+	/**
+	 * Possible actions that a player can execute when modifying improvements
+	 * on a Color space.
+	 */
 	public enum ImprovementsActions {
 		buildHouse,
 		sellHouse,
@@ -90,10 +94,23 @@ public class GameLogicController implements Serializable {
 	// </editor-fold>
 
 	// <editor-fold desc="Misc helpers">
+	/**
+	 * Return the elements of the game log.
+	 * @return An ArrayList of String objects, where each element
+	 * is one line in the log.
+	 */
 	public ArrayList<String> getGameLogContents() {
 		return gameLogContents;
 	}
 
+	/**
+	 * Return the elements of the game log that match the given
+	 * query.
+	 * @param inputQuery The case-insensitive query for all elements in
+	 * gameLogContents to be matched against.
+	 * @return An ArrayList of String objects, where each element is one
+	 * line in the log, matching the given query parameter.
+	 */
 	public ArrayList<String> getGameLogContentsFiltered(String inputQuery) {
 		gameLogContentsFiltered.clear();
 
