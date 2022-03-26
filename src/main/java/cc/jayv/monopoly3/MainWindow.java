@@ -121,6 +121,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonPlayer2Icon = new javax.swing.JButton();
         buttonPlayer3Icon = new javax.swing.JButton();
         buttonPlayer4Icon = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
         gameEditorDialog = new javax.swing.JDialog();
         comboBoxPlayerSelection = new javax.swing.JComboBox<>();
         staticLabelPlayerSelection = new javax.swing.JLabel();
@@ -444,6 +445,14 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 
         buttonPlayer4Icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/player-generic.png"))); // NOI18N
 
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/red-x.png"))); // NOI18N
+        jButton6.setText("Close");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout gameSetupDialogLayout = new javax.swing.GroupLayout(gameSetupDialog.getContentPane());
         gameSetupDialog.getContentPane().setLayout(gameSetupDialogLayout);
         gameSetupDialogLayout.setHorizontalGroup(
@@ -474,13 +483,14 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
                             .addGroup(gameSetupDialogLayout.createSequentialGroup()
                                 .addComponent(staticLabelPlayersCount2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
-                                .addComponent(jButton1))))
+                                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(gameSetupDialogLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(staticLabelPlayersCount)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(comboBoxPlayersCount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1))
                     .addGroup(gameSetupDialogLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jSeparator1))
@@ -513,11 +523,12 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
                 .addContainerGap()
                 .addGroup(gameSetupDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(staticLabelPlayersCount2)
-                    .addComponent(jButton1))
+                    .addComponent(jButton6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(gameSetupDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(staticLabelPlayersCount)
-                    .addComponent(comboBoxPlayersCount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comboBoxPlayersCount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(gameSetupDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(staticLabelPlayersCount1)
@@ -2044,6 +2055,14 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonSpace30.setContentAreaFilled(false);
         buttonSpace30.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonSpace30.setMargin(new java.awt.Insets(1, 1, 1, 1));
+        buttonSpace30.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                buttonSpace30MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                buttonSpace30MouseExited(evt);
+            }
+        });
         buttonSpace30.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonSpace30ActionPerformed(evt);
@@ -2599,19 +2618,19 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		updatePromptPropertyDecision();
 		updatePromptPostBailDecision();
 		
-		boolean searchFieldEnabled = true;
-		for (JDialog d : jDialogs) {
-			if (d.isVisible() == true) {
-				searchFieldEnabled = false;
-			}
-		}
-		
-		if (searchFieldEnabled == false) {
-			formattedTextFieldGameLogSearch.setEnabled(false);
-		}
-		else {
-			formattedTextFieldGameLogSearch.setEnabled(true);
-		}
+//		boolean searchFieldEnabled = true;
+//		for (JDialog d : jDialogs) {
+//			if (d.isVisible() == true) {
+//				searchFieldEnabled = false;
+//			}
+//		}
+//		
+//		if (searchFieldEnabled == false) {
+//			formattedTextFieldGameLogSearch.setEnabled(false);
+//		}
+//		else {
+//			formattedTextFieldGameLogSearch.setEnabled(true);
+//		}
 		
 		updateDebugLogFromController();
 		updateGameLog();
@@ -3776,6 +3795,18 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     private void formattedTextFieldGameLogSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_formattedTextFieldGameLogSearchActionPerformed
         updateGameLogWithSearchQuery(formattedTextFieldGameLogSearch.getText());
     }//GEN-LAST:event_formattedTextFieldGameLogSearchActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        gameSetupDialog.setVisible(false);
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void buttonSpace30MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonSpace30MouseEntered
+		buttonSpace30.setIcon(new javax.swing.ImageIcon(getClass().getResource("/go-to-jail-anim.gif")));
+    }//GEN-LAST:event_buttonSpace30MouseEntered
+
+    private void buttonSpace30MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonSpace30MouseExited
+        buttonSpace30.setIcon(null);
+    }//GEN-LAST:event_buttonSpace30MouseExited
 	// </editor-fold>
 	
 	private void updateGameLogWithSearchQuery(String inputQuery) {
@@ -4171,6 +4202,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     public javax.swing.JButton jButton3;
     public javax.swing.JButton jButton4;
     public javax.swing.JButton jButton5;
+    public javax.swing.JButton jButton6;
     public javax.swing.JLabel jLabel1;
     public javax.swing.JLabel jLabel10;
     public javax.swing.JLabel jLabel11;
