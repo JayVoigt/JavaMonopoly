@@ -106,6 +106,8 @@ public class Board implements Serializable {
 
 					if (localPropertyType.equals("color")) {
 						spaces.add(localID, new Color(propertyAttributes, localID, localFriendlyName));
+						Color localColor = (Color) spaces.get(localID);
+						localColor.setColorGroup(Color.colorGroupKeys.valueOf(localColorGroup));
 					}
 					else if (localPropertyType.equals("railroad")) {
 						spaces.add(localID, new Railroad(propertyAttributes, localID, localFriendlyName));
@@ -243,6 +245,7 @@ public class Board implements Serializable {
 	 */
 	public ArrayList<Color> getSpacesByColorGroup(Color.colorGroupKeys inputColorGroup) {
 		Color localColor;
+		spacesByColorGroup.clear();
 
 		for (Space s : spaces) {
 			if (s instanceof Color) {
@@ -263,14 +266,14 @@ public class Board implements Serializable {
 	 */
 	private void updateColorPropertyOwnershipRelationships() {
 		for (Color.colorGroupKeys colorGroup : Color.colorGroupKeys.values()) {
-			getSpacesByColorGroup(colorGroup);
 			boolean isFullSetOwnedBySinglePlayer = false;
 
 			if (colorGroup != Color.colorGroupKeys.unspecified) {
+				getSpacesByColorGroup(colorGroup);
 				int localColorOwnerID = spacesByColorGroup.get(0).getOwnerID();
 
 				for (Color localColor : spacesByColorGroup) {
-					if (localColor.getOwnerID() != localColorOwnerID) {
+					if ((localColor.getOwnerID() != localColorOwnerID) && (localColor.getOwnerID() != 0)) {
 						isFullSetOwnedBySinglePlayer = false;
 					}
 					else {
@@ -279,9 +282,13 @@ public class Board implements Serializable {
 				}	// end for
 			}	// end if
 
+			// bug is probably this
 			if (isFullSetOwnedBySinglePlayer == true) {
 				for (Color localColor : spacesByColorGroup) {
-					localColor.setOwnerID(spacesByColorGroup.get(0).getOwnerID());
+					int localOwnerID = spacesByColorGroup.get(0).getOwnerID();
+					if (localOwnerID != 0) {
+						localColor.setOwnerID(localOwnerID);
+					}
 					localColor.setIsFullSetOwned(true);
 				}	// end for
 			}	// end if
@@ -298,7 +305,11 @@ public class Board implements Serializable {
 		for (Player p : players) {
 			ownedRailroads = 0;
 			ArrayList<Railroad> railroadsOwnedBySamePlayer = new ArrayList<>();
-
+			railroadsOwnedBySamePlayer.clear();
+			
+			// Ref: https://stackoverflow.com/questions/4819635/how-to-efficiently-remove-all-null-elements-from-a-arraylist-or-string-array
+			while(railroadsOwnedBySamePlayer.remove(null));
+			
 			if (p.getPlayerID() != 0) {
 				for (Space s : spaces) {
 					if (s instanceof Railroad) {
@@ -321,6 +332,8 @@ public class Board implements Serializable {
 	 */
 	public ArrayList<Property> getSpacesByOwnerID(int ownerID) {
 		Property localProperty;
+		spacesByOwnerID.clear();
+		while(spacesByOwnerID.remove(null));
 
 		for (Space s : spaces) {
 			if (s instanceof Property) {
