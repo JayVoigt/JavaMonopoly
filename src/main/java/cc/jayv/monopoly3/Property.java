@@ -51,6 +51,7 @@ public abstract class Property extends Space implements Serializable {
 
 		isOwned = false;
 		isMortgaged = false;
+		isFullSetOwned = false;
 
 		ownerID = 0;
 	}
@@ -86,7 +87,12 @@ public abstract class Property extends Space implements Serializable {
 	}
 
 	public void setIsFullSetOwned(boolean inputIsFullSetOwned) {
-		isFullSetOwned = inputIsFullSetOwned;
+		if (ownerID != 0) {
+			isFullSetOwned = inputIsFullSetOwned;
+		}
+		else {
+			isFullSetOwned = false;
+		}
 	}
 
 	public int getOwnerID() {

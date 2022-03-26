@@ -280,17 +280,18 @@ public class Board implements Serializable {
 						isFullSetOwnedBySinglePlayer = true;
 					}
 				}	// end for
-			}	// end if
+			
 
-			// bug is probably this
-			if (isFullSetOwnedBySinglePlayer == true) {
-				for (Color localColor : spacesByColorGroup) {
-					int localOwnerID = spacesByColorGroup.get(0).getOwnerID();
-					if (localOwnerID != 0) {
-						localColor.setOwnerID(localOwnerID);
-					}
-					localColor.setIsFullSetOwned(true);
-				}	// end for
+				// bug is probably this
+				if (isFullSetOwnedBySinglePlayer == true) {
+					for (Color localColor : spacesByColorGroup) {
+						int localOwnerID = localColor.getOwnerID();
+						if (localOwnerID != 0) {
+							localColor.setOwnerID(localOwnerID);
+						}
+						localColor.setIsFullSetOwned(true);
+					}	// end for
+				}	// end if
 			}	// end if
 		}	// end for
 	}
