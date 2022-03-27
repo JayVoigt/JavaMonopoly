@@ -3,16 +3,13 @@ package cc.jayv.monopoly3;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.io.BufferedWriter;
 import java.io.IOException;
 import javax.swing.UIManager;
 import java.util.Date;
 import javax.swing.*;
 import java.util.*;
-import java.lang.reflect.*;
 import java.lang.String;
 import java.io.File;
-import java.io.InputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import com.formdev.flatlaf.*;
@@ -48,7 +45,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 	ArrayList<Icon> improvementIconsSouth = new ArrayList<>();
 	ArrayList<Icon> improvementIconsWest = new ArrayList<>();
 
-	SwingHelper swingHelper = new SwingHelper();
+	SwingHelper swingHelper;
 	
 	public javax.swing.JLabel labelBoardImage;
 	
@@ -73,7 +70,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		} catch (Exception e) {
 		}
 		initComponents();
-		
+		swingHelper = new SwingHelper(frameBoard);
 		jDialogs = new ArrayList<>();
 		
 		board = inputBoard;
@@ -2713,21 +2710,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		
 		updatePromptPropertyDecision();
 		updatePromptPostBailDecision();
-		
-//		boolean searchFieldEnabled = true;
-//		for (JDialog d : jDialogs) {
-//			if (d.isVisible() == true) {
-//				searchFieldEnabled = false;
-//			}
-//		}
-//		
-//		if (searchFieldEnabled == false) {
-//			formattedTextFieldGameLogSearch.setEnabled(false);
-//		}
-//		else {
-//			formattedTextFieldGameLogSearch.setEnabled(true);
-//		}
-		
+
 		updateDebugLogFromController();
 		updateGameLog();
 	}
@@ -2951,7 +2934,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 
 		if (currentPlayer.getRequiredDecisionPropertyAction() == true) {
 			if (currentPlayer.getMadeDecisionPropertyAction() == false) {
-				customAppearanceJDialog(askPropertyDecisionDialog);
+				swingHelper.setCustomAppearanceJDialog(askPropertyDecisionDialog);
 
 				lockRollDice();
 				lockEndTurn();
@@ -2965,7 +2948,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 					labelCost.setIcon(new javax.swing.ImageIcon(getClass().getResource("/money.png")));
 				}
 
-				customAppearanceJDialog(askPropertyDecisionDialog);
+				swingHelper.setCustomAppearanceJDialog(askPropertyDecisionDialog);
 				askPropertyDecisionDialog.setVisible(true);
 			}
 		}
@@ -2977,7 +2960,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 
 		if (currentPlayer.getInitialJailTurn() == false) {
 			if (currentPlayer.getIsJailed() == true) {
-				customAppearanceJDialog(jailDialog);
+				swingHelper.setCustomAppearanceJDialog(jailDialog);
 
 				buttonJailDialogPostBail.setEnabled(true);
 				buttonJailDialogRollForDoubles.setEnabled(true);
@@ -3007,7 +2990,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 				lockRollDice();
 				lockEndTurn();
 
-				customAppearanceJDialog(jailDialog);
+				swingHelper.setCustomAppearanceJDialog(jailDialog);
 				jailDialog.setVisible(true);
 			}
 		}
@@ -3134,7 +3117,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     }//GEN-LAST:event_menuFileQuitActionPerformed
 
     private void menuFileNewGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuFileNewGameActionPerformed
-		customAppearanceJDialog(gameSetupDialog);
+		swingHelper.setCustomAppearanceJDialog(gameSetupDialog);
 		gameSetupDialog.setVisible(true);
 		appendToDebugLog("New game dialog opened.");
     }//GEN-LAST:event_menuFileNewGameActionPerformed
@@ -3348,42 +3331,33 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 	//</editor-fold>
 
 	// <editor-fold desc="Custom Swing helpers">
-	private void centerJDialog(JDialog inputDialog) {
-		
-		int referenceX = frameBoard.getLocationOnScreen().x;
-		int referenceY = frameBoard.getLocationOnScreen().y;
-		int referenceWidth = frameBoard.getWidth();
-		int referenceHeight = frameBoard.getHeight();
-		
-		int innerWidth = inputDialog.getWidth();
-		int innerHeight = inputDialog.getHeight();
-		
-		int targetX = (int) (0.5 * (referenceWidth - innerWidth));
-		int targetY = (int) (0.5 * (referenceHeight - innerHeight));
-		
-		targetX += referenceX;
-		targetY += referenceY;
-		
-		inputDialog.setLocation(targetX, targetY);
-	}
+//	private void centerJDialog(JDialog inputDialog) {
+//		
+//		int referenceX = frameBoard.getLocationOnScreen().x;
+//		int referenceY = frameBoard.getLocationOnScreen().y;
+//		int referenceWidth = frameBoard.getWidth();
+//		int referenceHeight = frameBoard.getHeight();
+//		
+//		int innerWidth = inputDialog.getWidth();
+//		int innerHeight = inputDialog.getHeight();
+//		
+//		int targetX = (int) (0.5 * (referenceWidth - innerWidth));
+//		int targetY = (int) (0.5 * (referenceHeight - innerHeight));
+//		
+//		targetX += referenceX;
+//		targetY += referenceY;
+//		
+//		inputDialog.setLocation(targetX, targetY);
+//	}
 	
-	private void drawBorderJDialog(JDialog inputDialog) {
-		if (inputDialog.equals(gameEditorDialog)) {
-			gameEditorDialog.getRootPane().setBorder(BorderFactory.createLineBorder(java.awt.Color.RED));
-		}
-		else {
-			inputDialog.getRootPane().setBorder(BorderFactory.createLineBorder(java.awt.Color.BLACK));
-		}
-	}
-	
-	private void customAppearanceJDialog(JDialog inputDialog) {
-		centerJDialog(inputDialog);
-		drawBorderJDialog(inputDialog);
-	}
+//	private void swingHelper.setCustomAppearanceJDialog(JDialog inputDialog) {
+//		centerJDialog(inputDialog);
+//		swingHelper.drawBorderJDialog(inputDialog);
+//	}
 	// </editor-fold>
 	
     private void menuEditGameEditorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuEditGameEditorActionPerformed
-		customAppearanceJDialog(gameEditorDialog);
+		swingHelper.setCustomAppearanceJDialog(gameEditorDialog);
 		
 		gameEditorDialog.setVisible(true);
 		controller.appendToGameLog("Game Editor was opened!");
@@ -3408,7 +3382,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 
 	// <editor-fold desc="User prompts">
 	public void promptUserForPropertyDecision() {
-		customAppearanceJDialog(askPropertyDecisionDialog);
+		swingHelper.setCustomAppearanceJDialog(askPropertyDecisionDialog);
 		askPropertyDecisionDialog.setVisible(true);
 	}
 	// </editor-fold>
@@ -3434,7 +3408,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 	// </editor-fold>
 	
     private void menuEditDebugToolsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuEditDebugToolsActionPerformed
-		customAppearanceJDialog(debugToolsDialog);
+		swingHelper.setCustomAppearanceJDialog(debugToolsDialog);
 		debugToolsDialog.setVisible(true);
     }//GEN-LAST:event_menuEditDebugToolsActionPerformed
 
@@ -3547,7 +3521,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     }//GEN-LAST:event_buttonGameSetupStartGameActionPerformed
 
     private void menuHelpAboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuHelpAboutActionPerformed
-		customAppearanceJDialog(aboutDialog);
+		swingHelper.setCustomAppearanceJDialog(aboutDialog);
 		aboutDialog.setLocation(frameBoard.getLocationOnScreen().x, frameBoard.getLocationOnScreen().y);
 		aboutDialog.setVisible(true);
     }//GEN-LAST:event_menuHelpAboutActionPerformed
@@ -3562,7 +3536,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     }//GEN-LAST:event_menuViewToggleExtraPaddingActionPerformed
 
     private void buttonActionImprovementsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonActionImprovementsActionPerformed
-		customAppearanceJDialog(improvementsDialog);
+		swingHelper.setCustomAppearanceJDialog(improvementsDialog);
 		updateImprovementsDialog();
 		
 		labelSelectedProperty.setText("Select a property.");
@@ -3657,7 +3631,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     }//GEN-LAST:event_buttonJailDialogRollForDoublesActionPerformed
 
     private void buttonForfeitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonForfeitActionPerformed
-		customAppearanceJDialog(forfeitDialog);
+		swingHelper.setCustomAppearanceJDialog(forfeitDialog);
 		
 		forfeitDialog.setVisible(true);
 		controller.forfeitManager();
@@ -3859,7 +3833,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     private void formComponentMoved(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentMoved
         
 		for (JDialog d : jDialogs) {
-			customAppearanceJDialog(d);
+			swingHelper.setCustomAppearanceJDialog(d);
 			d.requestFocus();
 		}
 		
