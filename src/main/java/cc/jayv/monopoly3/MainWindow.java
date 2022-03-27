@@ -60,6 +60,11 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 	ArrayList<String> gameLogContents;
 	ArrayList<String> gameLogContentsFiltered;
 	
+	Border yellowHighlightBorder;
+	Border redHighlightBorder;
+	Border previousSpaceBorder;
+	Border currentSpaceBorder;
+	
 	public MainWindow(Board inputBoard) throws IOException {
 		try {
 			UIManager.setLookAndFeel(new FlatLightLaf());
@@ -2616,6 +2621,8 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 	// <editor-fold desc="Update and helper methods">
 	public void update() {
 		initInfoUIForCurrentPlayer();
+		// currentPlayer now set
+		
 		updateButtonLockStates();
 		gameInactiveUILocker();
 		updateDiceView();
@@ -2828,8 +2835,11 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		improvementIconsWest.add(new javax.swing.ImageIcon(getClass().getResource("/house-label-3-west.png")));
 		improvementIconsWest.add(new javax.swing.ImageIcon(getClass().getResource("/house-label-4-west.png")));
 		
-		labelBoardImageReference.setVisible(false);
+		previousSpaceBorder = spaceButtonAppearanceHighlight(java.awt.Color.gray);
+		currentSpaceBorder = spaceButtonAppearanceHighlight(java.awt.Color.yellow);
 		
+		
+		labelBoardImageReference.setVisible(false);
 		
 	}
 	
@@ -2948,6 +2958,25 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		else {
 			buttonSpace12.setIcon(null);
 		}
+	
+		Space.buttonAppearanceKeys localAppearance;
+		for ( int i = 0 ; i < spaceButtons.size() ; i++ ) {
+			localAppearance = board.spaces.get(i).getButtonAppearance();
+			
+			if (localAppearance.equals(Space.buttonAppearanceKeys.none)) {
+				spaceButtons.get(i).setBorder(null);
+			}
+			else if (localAppearance.equals(Space.buttonAppearanceKeys.previousSpace)) {
+				spaceButtons.get(i).setBorder(previousSpaceBorder);
+			}
+			else if (localAppearance.equals(Space.buttonAppearanceKeys.newSpace)) {
+				spaceButtons.get(i).setBorder(currentSpaceBorder);
+			}
+			else {
+				spaceButtons.get(i).setBorder(null);
+			}
+		}
+		
 	}
 	
 	private void updateImprovementIcons() {

@@ -188,6 +188,10 @@ public class GameLogicController implements Serializable {
 		currentPlayer = board.players.get(board.getCurrentPlayerID());
 
 		board.forceBoardSelfCheck();
+		
+		for (Space s : board.spaces) {
+			s.setButtonAppearance(Space.buttonAppearanceKeys.none);
+		}
 
 		String paddingPrefix = "";
 		if (useExtraTextPadding == true) {
@@ -341,8 +345,11 @@ public class GameLogicController implements Serializable {
 	private void movementEvaluator() {
 		appendToDebugLog("-> executing movementEvaluator");
 		int diceSum = currentPlayer.getDiceSum();
+		
+		board.spaces.get(currentPlayer.getCurrentPosition()).setButtonAppearance(Space.buttonAppearanceKeys.previousSpace);
 		boolean playerPassedGo = currentPlayer.advancePosition(diceSum);
-
+		board.spaces.get(currentPlayer.getCurrentPosition()).setButtonAppearance(Space.buttonAppearanceKeys.newSpace);
+		
 		// Issue GO bonus
 		if (playerPassedGo == true) {
 			currentPlayer.updateCurrentBalance(200);
