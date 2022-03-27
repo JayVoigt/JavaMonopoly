@@ -19,11 +19,11 @@ import javax.swing.border.Border;
 public class SwingHelper {
 
 	JInternalFrame frameBoard;
-	
+
 	public SwingHelper(JInternalFrame frameBoardInput) {
 		frameBoard = frameBoardInput;
 	}
-	
+
 	private void drawBorderJDialog(JDialog inputDialog) {
 		if (inputDialog.getName().equals("gameEditorDialog")) {
 			inputDialog.getRootPane().setBorder(BorderFactory.createLineBorder(java.awt.Color.RED));
@@ -38,24 +38,24 @@ public class SwingHelper {
 		int referenceY = frameBoard.getLocationOnScreen().y;
 		int referenceWidth = frameBoard.getWidth();
 		int referenceHeight = frameBoard.getHeight();
-		
+
 		int innerWidth = inputDialog.getWidth();
 		int innerHeight = inputDialog.getHeight();
-		
+
 		int targetX = (int) (0.5 * (referenceWidth - innerWidth));
 		int targetY = (int) (0.5 * (referenceHeight - innerHeight));
-		
+
 		targetX += referenceX;
 		targetY += referenceY;
-		
+
 		inputDialog.setLocation(targetX, targetY);
 	}
-	
+
 	public void setCustomAppearanceJDialog(JDialog inputDialog) {
 		centerJDialog(inputDialog);
 		drawBorderJDialog(inputDialog);
 	}
-	
+
 	// <editor-fold desc="JLabel formatting">
 	/**
 	 * Format a JLabel that contains content.<br>
@@ -81,7 +81,7 @@ public class SwingHelper {
 		inputLabel.setText("<html><i>n/a</i></html>");
 	}
 	// </editor-fold>
-	
+
 	// <editor-fold desc="Highlights and borders">
 	public Border createBorderStyleHighlight(java.awt.Color baseShade) {
 		Border highlightBorder, innerBorder, outerBorder;
@@ -108,11 +108,11 @@ public class SwingHelper {
 
 		return finalBorder;
 	}
-	
+
 	public void resetBorder(JButton inputButton) {
 		inputButton.setBorder(null);
 	}
-	
+
 	public java.awt.Color getHighlightModifiedColor(java.awt.Color inputAWTColor) {
 		int newR, newG, newB, newA;
 		float highightFactor = 0.8f;

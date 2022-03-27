@@ -1,6 +1,5 @@
 package cc.jayv.monopoly3;
 
-
 import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
@@ -30,66 +29,70 @@ import javax.swing.border.Border;
  * @author jay
  */
 public class MainWindow extends javax.swing.JFrame implements WindowListener, ActionListener, Serializable {
-	
+
 	Board board;
 	Font font;
 	GameLogicController controller;
-	
+
 	ArrayList<JButton> spaceButtons;
 	ArrayList<javax.swing.ImageIcon> diceIcons;
 	ArrayList<JDialog> jDialogs;
 	ArrayList<JLabel> labelGroupSpaceSelection;
-	
+
 	ArrayList<Icon> improvementIconsNorth = new ArrayList<>();
 	ArrayList<Icon> improvementIconsEast = new ArrayList<>();
 	ArrayList<Icon> improvementIconsSouth = new ArrayList<>();
 	ArrayList<Icon> improvementIconsWest = new ArrayList<>();
 
 	SwingHelper swingHelper;
-	
+	LogHelper logHelper;
+
 	public javax.swing.JLabel labelBoardImage;
-	
+
 	Player currentPlayer;
 	Player gameEditorPlayer;
-	
+
 	int iconSelectionPlayerID;
 	int currentSpaceSelectionID;
-	
+
 	ArrayList<String> gameLogContents;
 	ArrayList<String> gameLogContentsFiltered;
-	
+
 	Border yellowHighlightBorder;
 	Border redHighlightBorder;
 	Border previousSpaceBorder;
 	Border currentSpaceBorder;
-	
-	public MainWindow(Board inputBoard) throws IOException {
+
+	public MainWindow(Board inputBoard, LogHelper inputLogHelper) throws IOException {
 		try {
 			UIManager.setLookAndFeel(new FlatLightLaf());
 			//UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
 		} catch (Exception e) {
 		}
 		initComponents();
+
 		swingHelper = new SwingHelper(frameBoard);
+		logHelper = inputLogHelper;
+
 		jDialogs = new ArrayList<>();
-		
+
 		board = inputBoard;
 		controller = new GameLogicController(board);
-		
+
 		gameLogContents = new ArrayList<>();
 		gameLogContentsFiltered = new ArrayList<>();
-		
+
 		customInitComponents();
-		
+
 		gameEditorPlayer = board.players.get(1);
-		
+
 		initButtonAppearance();
-		
+
 		controller.sendWelcomeMessage();
 		update();
 		lockEndTurn();
 		lockRollDice();
-		
+
 		addBoardBackground();
 	}
 
@@ -2697,33 +2700,33 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 	public void update() {
 		initInfoUIForCurrentPlayer();
 		// currentPlayer now set
-		
+
 		updateButtonLockStates();
 		gameInactiveUILocker();
 		updateDiceView();
 		updateCustomSpaceAppearances();
 		updateImprovementIcons();
-		
+
 		for (int i = 1; i <= 4; i++) {
 			updateVisualPlayerIndicator(board.players.get(i));
 		}
-		
+
 		updatePromptPropertyDecision();
 		updatePromptPostBailDecision();
 
 		updateDebugLogFromController();
 		updateGameLog();
 	}
-	
+
 	private void addBoardBackground() {
 		labelBoardImage = new javax.swing.JLabel();
-		
+
 		labelBoardImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/board-px-template.png"))); // NOI18N
-        labelBoardImage.setText("jLabel1");
-        frameBoard.getContentPane().add(labelBoardImage);
-        labelBoardImage.setBounds(10, 10, 960, 960);
+		labelBoardImage.setText("jLabel1");
+		frameBoard.getContentPane().add(labelBoardImage);
+		labelBoardImage.setBounds(10, 10, 960, 960);
 	}
-	
+
 	private void gameInactiveUILocker() {
 		if (controller.getIsGameActive() == false) {
 			lockRollDice();
@@ -2871,7 +2874,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		jDialogs.add(mortgageDialog);
 		jDialogs.add(aboutDialog);
 		jDialogs.add(forfeitDialog);
-		
+
 		improvementIconsNorth.add(new javax.swing.ImageIcon(getClass().getResource("/hotel-label-north.png")));
 		improvementIconsNorth.add(new javax.swing.ImageIcon(getClass().getResource("/house-label-1-north.png")));
 		improvementIconsNorth.add(new javax.swing.ImageIcon(getClass().getResource("/house-label-2-north.png")));
@@ -2883,27 +2886,26 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		improvementIconsEast.add(new javax.swing.ImageIcon(getClass().getResource("/house-label-2-east.png")));
 		improvementIconsEast.add(new javax.swing.ImageIcon(getClass().getResource("/house-label-3-east.png")));
 		improvementIconsEast.add(new javax.swing.ImageIcon(getClass().getResource("/house-label-4-east.png")));
-		
+
 		improvementIconsSouth.add(new javax.swing.ImageIcon(getClass().getResource("/hotel-label-south.png")));
 		improvementIconsSouth.add(new javax.swing.ImageIcon(getClass().getResource("/house-label-1-south.png")));
 		improvementIconsSouth.add(new javax.swing.ImageIcon(getClass().getResource("/house-label-2-south.png")));
 		improvementIconsSouth.add(new javax.swing.ImageIcon(getClass().getResource("/house-label-3-south.png")));
 		improvementIconsSouth.add(new javax.swing.ImageIcon(getClass().getResource("/house-label-4-south.png")));
-		
+
 		improvementIconsWest.add(new javax.swing.ImageIcon(getClass().getResource("/hotel-label-west.png")));
 		improvementIconsWest.add(new javax.swing.ImageIcon(getClass().getResource("/house-label-1-west.png")));
 		improvementIconsWest.add(new javax.swing.ImageIcon(getClass().getResource("/house-label-2-west.png")));
 		improvementIconsWest.add(new javax.swing.ImageIcon(getClass().getResource("/house-label-3-west.png")));
 		improvementIconsWest.add(new javax.swing.ImageIcon(getClass().getResource("/house-label-4-west.png")));
-		
+
 		previousSpaceBorder = swingHelper.createBorderStyleHighlight(java.awt.Color.gray);
 		currentSpaceBorder = swingHelper.createBorderStyleHighlight(java.awt.Color.yellow);
-		
-		
+
 		labelBoardImageReference.setVisible(false);
-		
+
 	}
-	
+
 	private void toggleBoardVisibility() {
 		if (labelBoardImage.isVisible() == true) {
 			labelBoardImage.setVisible(false);
@@ -2998,7 +3000,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 
 	private void updateGameLog() {
 		String combinedGameLog = "";
-		
+
 		for (String s : controller.getGameLogContents()) {
 			combinedGameLog = combinedGameLog.concat(s);
 		}
@@ -3006,8 +3008,8 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 	}
 
 	private void readyUIForNextPlayer() {
-		for (int i = 0; i < 40; i++) {
-			spaceButtonAppearanceReset(i);
+		for (JButton b : spaceButtons) {
+			swingHelper.resetBorder(b);
 		}
 	}
 
@@ -3020,11 +3022,11 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		else {
 			buttonSpace12.setIcon(null);
 		}
-	
+
 		Space.buttonAppearanceKeys localAppearance;
-		for ( int i = 0 ; i < spaceButtons.size() ; i++ ) {
+		for (int i = 0; i < spaceButtons.size(); i++) {
 			localAppearance = board.spaces.get(i).getButtonAppearance();
-			
+
 			if (localAppearance.equals(Space.buttonAppearanceKeys.none)) {
 				spaceButtons.get(i).setBorder(null);
 			}
@@ -3038,19 +3040,19 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 				spaceButtons.get(i).setBorder(null);
 			}
 		}
-		
+
 	}
-	
+
 	private void updateImprovementIcons() {
 		Color localColor;
 		int houseCount;
 		int hotelCount;
 		ArrayList<Icon> localIconSet;
 		int localID;
-		
+
 		for (Space s : board.spaces) {
 			localID = s.getID();
-			
+
 			if (localID > 0 && localID < 10) {
 				localIconSet = improvementIconsSouth;
 			}
@@ -3066,45 +3068,45 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 			else {
 				localIconSet = null;
 			}
-			
+
 			if (s instanceof Color) {
 				localColor = (Color) s;
 				JButton localJButton = spaceButtons.get(localColor.getID());
-				
+
 				houseCount = localColor.getHouseCount();
 				hotelCount = localColor.getHotelCount();
-				
+
 				if ((houseCount == 0) && (hotelCount == 0)) {
 					localJButton.setIcon(null);
 				}
 				else if (hotelCount == 1) {
 					localJButton.setIcon(localIconSet.get(0));
 				}
-				else { 
+				else {
 					localJButton.setIcon(localIconSet.get(houseCount));
 				}
 			}
 		}
 	}
-	
-	// </editor-fold>
 
+	// </editor-fold>
+	
 	// <editor-fold desc="Button locking and unlocking">
 	private void unlockRollDice() {
 		buttonRollDice.setEnabled(true);
 		appendToDebugLog("diceRoll unlocked.");
 	}
-	
+
 	private void lockRollDice() {
 		buttonRollDice.setEnabled(false);
 		appendToDebugLog("diceRoll locked.");
 	}
-	
+
 	private void unlockEndTurn() {
 		buttonEndTurn.setEnabled(true);
 		appendToDebugLog("endTurn unlocked.");
 	}
-	
+
 	private void lockEndTurn() {
 		buttonEndTurn.setEnabled(false);
 		appendToDebugLog("endTurn locked.");
@@ -3147,10 +3149,10 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 			}
 		}
     }//GEN-LAST:event_menuFileSaveGameActionPerformed
-	
+
 	private void saveGameState(File saveOutputFile) throws IOException {
 		System.out.println(saveOutputFile);
-		
+
 		FileOutputStream f = new FileOutputStream("game.jmsg");
 		ObjectOutput s = new ObjectOutputStream(f);
 		s.writeObject(board);
@@ -3160,15 +3162,15 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 
 	private void openGameState(File saveInputFile) throws IOException, ClassNotFoundException {
 		System.out.println(saveInputFile);
-		
+
 		FileInputStream in = new FileInputStream("game.jmsg");
 		ObjectInputStream s = new ObjectInputStream(in);
 		board = (Board) s.readObject();
 		controller = (GameLogicController) s.readObject();
 	}
-	
-	// </editor-fold>
 
+	// </editor-fold>
+	
 	// <editor-fold desc="buttonSpace<N>ActionPerformed">
     private void buttonSpace0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSpace0ActionPerformed
 		updateSpaceSelection(0);
@@ -3330,43 +3332,14 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     }//GEN-LAST:event_buttonSpace39ActionPerformed
 	//</editor-fold>
 
-	// <editor-fold desc="Custom Swing helpers">
-//	private void centerJDialog(JDialog inputDialog) {
-//		
-//		int referenceX = frameBoard.getLocationOnScreen().x;
-//		int referenceY = frameBoard.getLocationOnScreen().y;
-//		int referenceWidth = frameBoard.getWidth();
-//		int referenceHeight = frameBoard.getHeight();
-//		
-//		int innerWidth = inputDialog.getWidth();
-//		int innerHeight = inputDialog.getHeight();
-//		
-//		int targetX = (int) (0.5 * (referenceWidth - innerWidth));
-//		int targetY = (int) (0.5 * (referenceHeight - innerHeight));
-//		
-//		targetX += referenceX;
-//		targetY += referenceY;
-//		
-//		inputDialog.setLocation(targetX, targetY);
-//	}
-	
-//	private void swingHelper.setCustomAppearanceJDialog(JDialog inputDialog) {
-//		centerJDialog(inputDialog);
-//		swingHelper.drawBorderJDialog(inputDialog);
-//	}
-	// </editor-fold>
-	
     private void menuEditGameEditorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuEditGameEditorActionPerformed
 		swingHelper.setCustomAppearanceJDialog(gameEditorDialog);
-		
+
 		gameEditorDialog.setVisible(true);
 		controller.appendToGameLog("Game Editor was opened!");
 		update();
     }//GEN-LAST:event_menuEditGameEditorActionPerformed
 
-	// <editor-fold desc="Sound helpers">
-	// </editor-fold>
-	
 	// <editor-fold desc="End turn/roll dice buttons">
     private void buttonRollDiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRollDiceActionPerformed
 		controller.diceRollManager();
@@ -3389,10 +3362,10 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 
 	// <editor-fold desc="Statistics pane">
 	private void updateStatsPane() {
-		
+
 	}
 	// </editor-fold>
-	
+
     private void buttonSpace20MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonSpace20MouseEntered
 		buttonSpace20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/free-parking-anim.gif")));
     }//GEN-LAST:event_buttonSpace20MouseEntered
@@ -3406,7 +3379,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		}
     }//GEN-LAST:event_menuViewCheckBoxShowDebugLogActionPerformed
 	// </editor-fold>
-	
+
     private void menuEditDebugToolsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuEditDebugToolsActionPerformed
 		swingHelper.setCustomAppearanceJDialog(debugToolsDialog);
 		debugToolsDialog.setVisible(true);
@@ -3442,7 +3415,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 			board.players.get(2).setIsComputerControlled(false);
 		}
     }//GEN-LAST:event_checkBoxGameSetupPlayer2ComputerControlledActionPerformed
-	
+
     private void buttonGameSetupTriggerDebugMessageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGameSetupTriggerDebugMessageActionPerformed
 		appendToDebugLog("Debug test button pressed.");
     }//GEN-LAST:event_buttonGameSetupTriggerDebugMessageActionPerformed
@@ -3490,10 +3463,10 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     private void buttonGameSetupStartGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGameSetupStartGameActionPerformed
 		controller.setIsGameActive(true);
 		String inputPlayersCount = comboBoxPlayersCount.getSelectedItem().toString();
-		
+
 		int localPlayersCount = Integer.parseInt(inputPlayersCount);
 		controller.setPlayersCount(localPlayersCount);
-		
+
 		if (localPlayersCount == 1) {
 			iconPlayer2Position.setVisible(false);
 			iconPlayer3Position.setVisible(false);
@@ -3506,16 +3479,16 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		else if (localPlayersCount == 3) {
 			iconPlayer4Position.setVisible(false);
 		}
-		
+
 		gameSetupDialog.setVisible(false);
-		
+
 		board.players.get(1).setCustomName(textFieldGameSetupPlayer1CustomName.getText());
 		board.players.get(2).setCustomName(textFieldGameSetupPlayer2CustomName.getText());
 		board.players.get(3).setCustomName(textFieldGameSetupPlayer3CustomName.getText());
 		board.players.get(4).setCustomName(textFieldGameSetupPlayer4CustomName.getText());
-		
+
 		controller.sendInitGameMessage();
-		
+
 		controller.initialEvaluator();
 		update();
     }//GEN-LAST:event_buttonGameSetupStartGameActionPerformed
@@ -3538,10 +3511,10 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     private void buttonActionImprovementsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonActionImprovementsActionPerformed
 		swingHelper.setCustomAppearanceJDialog(improvementsDialog);
 		updateImprovementsDialog();
-		
+
 		labelSelectedProperty.setText("Select a property.");
 		labelImprovementInfo.setText("No property selected.");
-		
+
 		if (improvementsDialog.isVisible() == false) {
 			improvementsDialog.setVisible(true);
 			buttonPropertiesActionPerformed(evt);
@@ -3555,13 +3528,13 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		Space localSpace = board.spaces.get(currentSpaceSelectionID);
 		Property localProperty;
 		Color localColorProperty;
-		
+
 		boolean improvementsButtonLockState = true;
-		
+
 		controller.setPlayerCanBuildImprovements(false);
-		
+
 		labelSelectedProperty.setText("Selected property: " + localSpace.getFriendlyName());
-		
+
 		if (localSpace.getSpaceType() != Space.spaceTypeKeys.property) {
 			labelImprovementInfo.setText("Selected space is not a property.");
 		}
@@ -3592,7 +3565,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 				}
 			}
 		}
-		
+
 		if (improvementsButtonLockState == true) {
 			buttonBuildHotel.setEnabled(false);
 			buttonBuildHouse.setEnabled(false);
@@ -3606,18 +3579,9 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 			buttonSellHotel.setEnabled(true);
 		}
 	}
-	
+
     private void buttonPropertiesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPropertiesActionPerformed
-		boolean localOwnedPropertyIDs[] = currentPlayer.getOwnedPropertyIDs();
-		
-		for (int i = 0; i < 40; i++) {
-			if (localOwnedPropertyIDs[i] == true) {
-				swingHelper.createBorderStyleHighlight(java.awt.Color.yellow);
-			}
-			else {
-				spaceButtonAppearanceReset(i);
-			}
-		}
+
     }//GEN-LAST:event_buttonPropertiesActionPerformed
 
     private void buttonJailDialogPostBailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonJailDialogPostBailActionPerformed
@@ -3632,7 +3596,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 
     private void buttonForfeitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonForfeitActionPerformed
 		swingHelper.setCustomAppearanceJDialog(forfeitDialog);
-		
+
 		forfeitDialog.setVisible(true);
 		controller.forfeitManager();
 		update();
@@ -3641,11 +3605,11 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     private void buttonIcon8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonIcon8ActionPerformed
 		setPlayerIcon(iconSelectionPlayerID, buttonIcon8.getIcon());
     }//GEN-LAST:event_buttonIcon8ActionPerformed
-	
+
 	private void setPlayerIcon(int playerID, Icon inputIcon) {
-		
+
 		JLabel localPlayerIcon = new JLabel();
-		
+
 		if (playerID == 1) {
 			localPlayerIcon = iconPlayer1Position;
 			buttonGameSetupPlayer1Icon.setIcon(inputIcon);
@@ -3662,12 +3626,12 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 			localPlayerIcon = iconPlayer4Position;
 			buttonGameSetupPlayer4Icon.setIcon(inputIcon);
 		}
-		
+
 		localPlayerIcon.setIcon(inputIcon);
-		
+
 		playerIconSelector.setVisible(false);
 	}
-	
+
     private void buttonIcon1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonIcon1ActionPerformed
 		setPlayerIcon(iconSelectionPlayerID, buttonIcon1.getIcon());
     }//GEN-LAST:event_buttonIcon1ActionPerformed
@@ -3695,7 +3659,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		buttonIcon5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/player-icon-2-px.png")));
 		playerIconSelector.setVisible(true);
 		playerIconSelector.setLocation(buttonGameSetupPlayer2Icon.getLocation());
-		
+
     }//GEN-LAST:event_buttonGameSetupPlayer2IconActionPerformed
 
     private void buttonIcon3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonIcon3ActionPerformed
@@ -3713,7 +3677,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     private void buttonIcon7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonIcon7ActionPerformed
 		setPlayerIcon(iconSelectionPlayerID, buttonIcon7.getIcon());
     }//GEN-LAST:event_buttonIcon7ActionPerformed
-	
+
     private void buttonIcon9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonIcon9ActionPerformed
 		setPlayerIcon(iconSelectionPlayerID, buttonIcon9.getIcon());
     }//GEN-LAST:event_buttonIcon9ActionPerformed
@@ -3807,11 +3771,11 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     }//GEN-LAST:event_comboBoxPlayerSelectionActionPerformed
 
     private void buttonSpace12MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonSpace12MouseEntered
-        buttonSpace12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/electric-company-anim.gif")));
+		buttonSpace12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/electric-company-anim.gif")));
     }//GEN-LAST:event_buttonSpace12MouseEntered
 
     private void buttonSpace12MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonSpace12MouseExited
-        buttonSpace12.setIcon(null);
+		buttonSpace12.setIcon(null);
     }//GEN-LAST:event_buttonSpace12MouseExited
 
     private void buttonSpace28MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonSpace28MouseEntered
@@ -3819,7 +3783,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     }//GEN-LAST:event_buttonSpace28MouseEntered
 
     private void buttonSpace28MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonSpace28MouseExited
-        buttonSpace28.setIcon(null);
+		buttonSpace28.setIcon(null);
     }//GEN-LAST:event_buttonSpace28MouseExited
 
     private void buttonSpace38MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonSpace38MouseEntered
@@ -3827,65 +3791,65 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     }//GEN-LAST:event_buttonSpace38MouseEntered
 
     private void buttonSpace38MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonSpace38MouseExited
-        buttonSpace38.setIcon(null);
+		buttonSpace38.setIcon(null);
     }//GEN-LAST:event_buttonSpace38MouseExited
 
     private void formComponentMoved(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentMoved
-        
+
 		for (JDialog d : jDialogs) {
 			swingHelper.setCustomAppearanceJDialog(d);
 			d.requestFocus();
 		}
-		
+
     }//GEN-LAST:event_formComponentMoved
 
     private void buttonSpace20MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonSpace20MouseExited
-        buttonSpace20.setIcon(null);
+		buttonSpace20.setIcon(null);
     }//GEN-LAST:event_buttonSpace20MouseExited
 
     private void buttonPropertyDecisionAuctionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPropertyDecisionAuctionActionPerformed
-        appendToGameLog("Auctions are not yet implemented.");
+		appendToGameLog("Auctions are not yet implemented.");
     }//GEN-LAST:event_buttonPropertyDecisionAuctionActionPerformed
 
     private void forfeitDialogButtonNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_forfeitDialogButtonNoActionPerformed
-        forfeitDialog.setVisible(false);
+		forfeitDialog.setVisible(false);
     }//GEN-LAST:event_forfeitDialogButtonNoActionPerformed
 
     private void buttonGameEditorGiveAllPropertiesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGameEditorGiveAllPropertiesActionPerformed
-        controller.debugToolsGiveAllProperties(gameEditorPlayer.getPlayerID());
+		controller.debugToolsGiveAllProperties(gameEditorPlayer.getPlayerID());
 		update();
     }//GEN-LAST:event_buttonGameEditorGiveAllPropertiesActionPerformed
 
     private void buttonBuildHouseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBuildHouseActionPerformed
-        controller.improvementsManager(currentSpaceSelectionID, GameLogicController.ImprovementsActions.buildHouse);
+		controller.improvementsManager(currentSpaceSelectionID, GameLogicController.ImprovementsActions.buildHouse);
 		update();
     }//GEN-LAST:event_buttonBuildHouseActionPerformed
 
     private void buttonSellHouseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSellHouseActionPerformed
-        controller.improvementsManager(currentSpaceSelectionID, GameLogicController.ImprovementsActions.sellHouse);
+		controller.improvementsManager(currentSpaceSelectionID, GameLogicController.ImprovementsActions.sellHouse);
 		update();
     }//GEN-LAST:event_buttonSellHouseActionPerformed
 
     private void buttonBuildHotelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBuildHotelActionPerformed
-        controller.improvementsManager(currentSpaceSelectionID, GameLogicController.ImprovementsActions.buildHotel);
+		controller.improvementsManager(currentSpaceSelectionID, GameLogicController.ImprovementsActions.buildHotel);
 		update();
     }//GEN-LAST:event_buttonBuildHotelActionPerformed
 
     private void buttonSellHotelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSellHotelActionPerformed
-        controller.improvementsManager(currentSpaceSelectionID, GameLogicController.ImprovementsActions.sellHotel);
+		controller.improvementsManager(currentSpaceSelectionID, GameLogicController.ImprovementsActions.sellHotel);
 		update();
     }//GEN-LAST:event_buttonSellHotelActionPerformed
 
     private void buttonActionTradeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonActionTradeActionPerformed
-        toggleBoardVisibility();
+		toggleBoardVisibility();
     }//GEN-LAST:event_buttonActionTradeActionPerformed
 
     private void formattedTextFieldGameLogSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_formattedTextFieldGameLogSearchActionPerformed
-        updateGameLogWithSearchQuery(formattedTextFieldGameLogSearch.getText());
+		updateGameLogWithSearchQuery(formattedTextFieldGameLogSearch.getText());
     }//GEN-LAST:event_formattedTextFieldGameLogSearchActionPerformed
 
     private void buttonGameSetupCloseDialogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGameSetupCloseDialogActionPerformed
-        gameSetupDialog.setVisible(false);
+		gameSetupDialog.setVisible(false);
     }//GEN-LAST:event_buttonGameSetupCloseDialogActionPerformed
 
     private void buttonSpace30MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonSpace30MouseEntered
@@ -3893,11 +3857,11 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     }//GEN-LAST:event_buttonSpace30MouseEntered
 
     private void buttonSpace30MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonSpace30MouseExited
-        buttonSpace30.setIcon(null);
+		buttonSpace30.setIcon(null);
     }//GEN-LAST:event_buttonSpace30MouseExited
 
     private void buttonPartyModeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPartyModeActionPerformed
-        partyMode();
+		partyMode();
     }//GEN-LAST:event_buttonPartyModeActionPerformed
 
     private void buttonResetHighlightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonResetHighlightActionPerformed
@@ -3907,7 +3871,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     }//GEN-LAST:event_buttonResetHighlightActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        debugToolsDialog.setVisible(false);
+		debugToolsDialog.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -3915,34 +3879,25 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        int localBasePosition = currentPlayer.getCurrentPosition();
-		
-		
+		int localBasePosition = currentPlayer.getCurrentPosition();
+
+
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        controller.clearLogs();
+		controller.clearLogs();
     }//GEN-LAST:event_jButton6ActionPerformed
 	// </editor-fold>
-	
+
 	private void updateGameLogWithSearchQuery(String inputQuery) {
 		gameLogContentsFiltered = controller.getGameLogContentsFiltered(inputQuery);
 		String combinedGameLog = "";
-		
+
 		for (String s : gameLogContentsFiltered) {
 			combinedGameLog = combinedGameLog.concat(s);
 		}
-		
-		textAreaGameLog.setText(combinedGameLog);
-	}
 
-	public void spaceButtonAppearanceIndicateOldSpace(int spaceID) {
-		Border oldSpaceBorder = swingHelper.createBorderStyleHighlight(java.awt.Color.magenta);
-		spaceButtons.get(spaceID).setBorder(oldSpaceBorder);
-	}
-	
-	public void spaceButtonAppearanceReset(int spaceID) {
-		spaceButtons.get(spaceID).setIcon(null);
+		textAreaGameLog.setText(combinedGameLog);
 	}
 
 	public void partyMode() {
@@ -3952,35 +3907,35 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 			randomR = (int) (Math.random() * 256);
 			randomG = (int) (Math.random() * 256);
 			randomB = (int) (Math.random() * 256);
-			
+
 			java.awt.Color randomColor = new java.awt.Color(randomR, randomG, randomB);
-			
+
 			Border partyBorder = swingHelper.createBorderStyleHighlight(randomColor);
 			spaceButtons.get(s.getID()).setBorder(partyBorder);
 		}
-		
+
 	}
-	
+
 	public void spaceButtonHighlightSpectrum(int startSpaceID, int endSpaceID) {
 		float hueShiftFactor = (float) (1f / (endSpaceID - startSpaceID));
 		System.out.println(hueShiftFactor);
-		
-		for ( int i = 0 ; i < spaceButtons.size() ; i++ ) {
+
+		for (int i = 0; i < spaceButtons.size(); i++) {
 			if ((i >= startSpaceID) && (i <= endSpaceID)) {
 				int localRGB = java.awt.Color.HSBtoRGB((i * hueShiftFactor), 1, 1);
 				java.awt.Color localAWTColor = new java.awt.Color(localRGB);
-				
+
 				spaceButtons.get(i).setBorder(swingHelper.createBorderStyleHighlight(localAWTColor));
 			}
 		}
 	}
-	
+
 	// <editor-fold desc="Game logs">
 	public String formatButtonText(String inputText) {
 		return "<html><body style=\\\"text-align: justify;  text-justify: "
 			+ "inter-word;\\\"><center><p>" + inputText + "</p></center></body></html>";
 	}
-	
+
 	public void appendToGameLog(String input) {
 		Date outputTimeStamp;
 		outputTimeStamp = new Date();
@@ -3990,7 +3945,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		textAreaGameLog.append(formattedLogEntry);
 		//textAreaGameLog.moveCaretPosition(logBoxTotalChars);
 	}
-	
+
 	public void appendToDebugLog(String input) {
 		Date outputTimeStamp;
 		outputTimeStamp = new Date();
@@ -3998,7 +3953,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		//logBoxTotalChars += formattedLogEntry.length();
 		textAreaDebugLog.append(formattedLogEntry);
 	}
-	
+
 	private void updateDebugLogFromController() {
 		//textAreaDebugLog.append(controller.getDebugLogContents());
 	}
@@ -4007,25 +3962,25 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 	// Update contents of selection viewer according to what button was pressed
 	public void updateSpaceSelection(int spaceID) {
 		appendToDebugLog("Space with ID:" + spaceID + " selected.");
-		
+
 		currentSpaceSelectionID = spaceID;
 		Space localSpace = board.spaces.get(spaceID);
-		
+
 		// Attributes applying to all spaces
 		Space.spaceTypeKeys localSpaceType;
 		localSpaceType = localSpace.getSpaceType();
-		
+
 		int localID = localSpace.getID();
 		String localFriendlyName = localSpace.getFriendlyName();
 		//SwingHelper helper = new SwingHelper();
-		
+
 		swingHelper.formatLabel(labelSpaceSelectionID, Integer.toString(localID));
 		swingHelper.formatLabel(labelFriendlyName, localFriendlyName);
-		
+
 		// Correct for grammar: (1 time) or (n times), where n != 1
 		String timesLandedSuffix;
 		int timesLandedQuantity = localSpace.getTimesLanded();
-		
+
 		if (timesLandedQuantity == 1) {
 			timesLandedSuffix = " time";
 		}
@@ -4036,39 +3991,39 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 
 		if (localSpace instanceof Property) {
 			Property localProperty = (Property) board.spaces.get(spaceID);
-			
+
 			boolean localIsOwned = localProperty.getIsOwned();
 			swingHelper.formatLabel(labelIsOwned, Boolean.toString(localIsOwned));
-			
+
 			swingHelper.formatLabel(labelSpaceType, "Property");
-			
+
 			if (localIsOwned == true) {
 				swingHelper.formatLabel(labelOwnedBy, board.players.get(localProperty.getOwnerID()).getCustomName());
 			}
 			else {
 				swingHelper.formatLabel(labelOwnedBy, "not owned");
 			}
-			
+
 			swingHelper.formatLabel(labelPurchaseCost, "$" + Integer.toString(localProperty.getPurchaseCost()));
-			
+
 			swingHelper.formatLabel(labelCurrentRent, "$" + Integer.toString(localProperty.calculateRent()));
-			
+
 			if (localSpace instanceof Color) {
 				Color localColor = (Color) localSpace;
-				
+
 				swingHelper.formatLabel(labelSpaceType, "Property, Color");
 				appendToDebugLog(localFriendlyName + " house:hotel, " + localColor.getHouseCount() + ":" + localColor.getHotelCount());
 			}
-			
+
 			else if (localSpace instanceof Utility) {
 				Utility localUtility = (Utility) localSpace;
-				
+
 				labelSpaceType.setText("Property, Utility");
 			}
-			
+
 			else if (localSpace instanceof Railroad) {
 				Railroad localRailroad = (Railroad) localSpace;
-				
+
 				swingHelper.formatLabel(labelSpaceType, "Property, Railroad");
 			}
 		}
@@ -4085,29 +4040,29 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 			swingHelper.formatLabel(labelRent3Houses);
 			swingHelper.formatLabel(labelRent4Houses);
 		}
-		
+
 		else {
 			swingHelper.formatLabel(labelSpaceSelectionID, "undefined ID");
 		}
-		
+
 		updateImprovementsDialog();
 	}
-	
+
 	public void updateVisualPlayerIndicator(Player currentPlayer) {
 		int localCurrentPlayerID = currentPlayer.getPlayerID();
 		int localDestinationSpaceID = currentPlayer.getCurrentPosition();
-		
+
 		int destinationX = 0,
 			destinationY = 0;
-		
+
 		int playerStandardXOffset = 0,
 			playerCornerXOffset = 0;
-		
+
 		playerStandardXOffset = 20 * (currentPlayer.getPlayerID() - 1);
 		playerCornerXOffset = 30 * (currentPlayer.getPlayerID() - 1);
-		
+
 		int yOffset = -2;
-		
+
 		if (currentPlayer.getIsJailed() == true) {
 			if (localCurrentPlayerID == 1) {
 				destinationX = 90;
@@ -4195,11 +4150,11 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		}
 		else if (localCurrentPlayerID == 2) {
 			iconPlayer2Position.setLocation(destinationX, destinationY);
-			
+
 		}
 		else if (localCurrentPlayerID == 3) {
 			iconPlayer3Position.setLocation(destinationX, destinationY);
-			
+
 		}
 		else if (localCurrentPlayerID == 4) {
 			iconPlayer4Position.setLocation(destinationX, destinationY);
@@ -4453,37 +4408,37 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 	public void windowOpened(WindowEvent e) {
 		throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
 	}
-	
+
 	@Override
 	public void windowClosing(WindowEvent e) {
 		throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
 	}
-	
+
 	@Override
 	public void windowClosed(WindowEvent e) {
 		throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
 	}
-	
+
 	@Override
 	public void windowIconified(WindowEvent e) {
 		throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
 	}
-	
+
 	@Override
 	public void windowDeiconified(WindowEvent e) {
 		throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
 	}
-	
+
 	@Override
 	public void windowActivated(WindowEvent e) {
 		throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
 	}
-	
+
 	@Override
 	public void windowDeactivated(WindowEvent e) {
 		throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
 	}
-	
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody

@@ -17,6 +17,7 @@ public class JavaMonopoly {
 
 	Board board;
 	MainWindow view;
+	LogHelper logHelper;
 
 	public JavaMonopoly() throws IOException {
 		try {
@@ -24,8 +25,10 @@ public class JavaMonopoly {
 		} catch (IOException ex) {
 			Logger.getLogger(JavaMonopoly.class.getName()).log(Level.SEVERE, null, ex);
 		}
+		
+		logHelper = new LogHelper();
 
-		view = new MainWindow(board);
+		view = new MainWindow(board, logHelper);
 		view.setVisible(true);
 	}
 
