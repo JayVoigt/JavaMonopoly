@@ -20,43 +20,43 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="buttonStartGame" max="32767" attributes="0"/>
+                              <Component id="buttonGameSetupStartGame" max="32767" attributes="0"/>
                               <Group type="102" alignment="1" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="textFieldPlayer3Name" max="32767" attributes="0"/>
-                                      <Component id="textFieldPlayer4Name" max="32767" attributes="0"/>
+                                      <Component id="textFieldGameSetupPlayer3CustomName" max="32767" attributes="0"/>
+                                      <Component id="textFieldGameSetupPlayer4CustomName" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="buttonPlayer3Icon" min="-2" max="-2" attributes="0"/>
-                                      <Component id="buttonPlayer4Icon" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="buttonGameSetupPlayer3Icon" min="-2" max="-2" attributes="0"/>
+                                      <Component id="buttonGameSetupPlayer4Icon" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="checkBoxPlayer4ComputerControlled" min="-2" max="-2" attributes="0"/>
-                                      <Component id="checkBoxPlayer3ComputerControlled" min="-2" max="-2" attributes="0"/>
+                                      <Component id="checkBoxGameSetupPlayer4ComputerControlled" min="-2" max="-2" attributes="0"/>
+                                      <Component id="checkBoxGameSetupPlayer3ComputerControlled" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <Group type="102" attributes="0">
-                                  <Component id="staticLabelPlayersCount1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelStaticGameSetupStartingBalance" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="spinnerStartingBalance" min="-2" pref="73" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="staticLabelPlayersCount2" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelStaticGameSetupDialogTitle" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace pref="80" max="32767" attributes="0"/>
-                                  <Component id="jButton6" min="-2" pref="89" max="-2" attributes="0"/>
+                                  <Component id="buttonGameSetupCloseDialog" min="-2" pref="89" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
                       <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="staticLabelPlayersCount" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelStaticGameSetupPlayersCount" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="comboBoxPlayersCount" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
-                          <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                          <Component id="buttonGameSetupTriggerDebugMessage" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
@@ -65,29 +65,29 @@
                       <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="textFieldPlayer1Name" max="32767" attributes="0"/>
+                              <Component id="textFieldGameSetupPlayer1CustomName" max="32767" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="staticLabelPlayer1Name" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelStaticGameSetupPlayerName" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
-                                  <Component id="buttonPlayer1Icon" min="-2" max="-2" attributes="0"/>
+                                  <Component id="buttonGameSetupPlayer1Icon" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="checkBoxPlayer1ComputerControlled" min="-2" max="-2" attributes="0"/>
+                                  <Component id="checkBoxGameSetupPlayer1ComputerControlled" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="staticLabelPlayerIcon" min="-2" max="-2" attributes="0"/>
+                              <Component id="labelStaticGameSetupPlayerIcon" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="textFieldPlayer2Name" max="32767" attributes="0"/>
+                          <Component id="textFieldGameSetupPlayer2CustomName" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="buttonPlayer2Icon" min="-2" max="-2" attributes="0"/>
+                          <Component id="buttonGameSetupPlayer2Icon" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="checkBoxPlayer2ComputerControlled" min="-2" max="-2" attributes="0"/>
+                          <Component id="checkBoxGameSetupPlayer2ComputerControlled" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -99,18 +99,18 @@
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="staticLabelPlayersCount2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jButton6" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="labelStaticGameSetupDialogTitle" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="buttonGameSetupCloseDialog" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="staticLabelPlayersCount" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="labelStaticGameSetupPlayersCount" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="comboBoxPlayersCount" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="buttonGameSetupTriggerDebugMessage" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="staticLabelPlayersCount1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="labelStaticGameSetupStartingBalance" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="spinnerStartingBalance" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -123,48 +123,48 @@
                                           <Component id="jSeparator1" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="3" attributes="0">
-                                              <Component id="staticLabelPlayer1Name" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="staticLabelPlayerIcon" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="labelStaticGameSetupPlayerName" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="labelStaticGameSetupPlayerIcon" alignment="3" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="3" attributes="0">
-                                              <Component id="textFieldPlayer1Name" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="checkBoxPlayer1ComputerControlled" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="buttonPlayer1Icon" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="textFieldGameSetupPlayer1CustomName" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="checkBoxGameSetupPlayer1ComputerControlled" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="buttonGameSetupPlayer1Icon" alignment="3" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="3" attributes="0">
-                                              <Component id="textFieldPlayer2Name" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="checkBoxPlayer2ComputerControlled" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="textFieldGameSetupPlayer2CustomName" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="checkBoxGameSetupPlayer2ComputerControlled" alignment="3" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
-                                      <Component id="buttonPlayer2Icon" min="-2" max="-2" attributes="0"/>
+                                      <Component id="buttonGameSetupPlayer2Icon" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="textFieldPlayer3Name" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="checkBoxPlayer3ComputerControlled" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="textFieldGameSetupPlayer3CustomName" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="checkBoxGameSetupPlayer3ComputerControlled" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <Component id="buttonPlayer3Icon" min="-2" max="-2" attributes="0"/>
+                              <Component id="buttonGameSetupPlayer3Icon" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="textFieldPlayer4Name" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="checkBoxPlayer4ComputerControlled" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="textFieldGameSetupPlayer4CustomName" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="checkBoxGameSetupPlayer4ComputerControlled" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <Component id="buttonPlayer4Icon" min="-2" max="-2" attributes="0"/>
+                      <Component id="buttonGameSetupPlayer4Icon" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="buttonStartGame" min="-2" pref="54" max="-2" attributes="0"/>
+                  <Component id="buttonGameSetupStartGame" min="-2" pref="54" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="buttonStartGame">
+        <Component class="javax.swing.JButton" name="buttonGameSetupStartGame">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/newgame.png"/>
@@ -172,7 +172,7 @@
             <Property name="text" type="java.lang.String" value="Start Game"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonStartGameActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonGameSetupStartGameActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JComboBox" name="comboBoxPlayersCount">
@@ -194,7 +194,7 @@
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JLabel" name="staticLabelPlayersCount">
+        <Component class="javax.swing.JLabel" name="labelStaticGameSetupPlayersCount">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/player-generic.png"/>
@@ -202,7 +202,7 @@
             <Property name="text" type="java.lang.String" value="Number of Players"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="staticLabelPlayersCount2">
+        <Component class="javax.swing.JLabel" name="labelStaticGameSetupDialogTitle">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Helvetica Neue" size="18" style="3"/>
@@ -210,7 +210,7 @@
             <Property name="text" type="java.lang.String" value="Java Monopoly Prototype"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="staticLabelPlayersCount1">
+        <Component class="javax.swing.JLabel" name="labelStaticGameSetupStartingBalance">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/money.png"/>
@@ -223,40 +223,40 @@
             <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="spinnerStartingBalancePropertyChange"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="textFieldPlayer1Name">
+        <Component class="javax.swing.JTextField" name="textFieldGameSetupPlayer1CustomName">
           <Properties>
             <Property name="text" type="java.lang.String" value="Player 1"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textFieldPlayer1NameActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textFieldGameSetupPlayer1CustomNameActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="staticLabelPlayer1Name">
+        <Component class="javax.swing.JLabel" name="labelStaticGameSetupPlayerName">
           <Properties>
             <Property name="text" type="java.lang.String" value="Player Name"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="staticLabelPlayerIcon">
+        <Component class="javax.swing.JLabel" name="labelStaticGameSetupPlayerIcon">
           <Properties>
             <Property name="text" type="java.lang.String" value="Player Icon"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="textFieldPlayer2Name">
+        <Component class="javax.swing.JTextField" name="textFieldGameSetupPlayer2CustomName">
           <Properties>
             <Property name="text" type="java.lang.String" value="Player 2"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="textFieldPlayer3Name">
+        <Component class="javax.swing.JTextField" name="textFieldGameSetupPlayer3CustomName">
           <Properties>
             <Property name="text" type="java.lang.String" value="Player 3"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="textFieldPlayer4Name">
+        <Component class="javax.swing.JTextField" name="textFieldGameSetupPlayer4CustomName">
           <Properties>
             <Property name="text" type="java.lang.String" value="Player 4"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton1">
+        <Component class="javax.swing.JButton" name="buttonGameSetupTriggerDebugMessage">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/bug-log-anim.gif"/>
@@ -264,18 +264,18 @@
             <Property name="text" type="java.lang.String" value="debug"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonGameSetupTriggerDebugMessageActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JCheckBox" name="checkBoxPlayer2ComputerControlled">
+        <Component class="javax.swing.JCheckBox" name="checkBoxGameSetupPlayer2ComputerControlled">
           <Properties>
             <Property name="text" type="java.lang.String" value="Computer"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="checkBoxPlayer2ComputerControlledActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="checkBoxGameSetupPlayer2ComputerControlledActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JCheckBox" name="checkBoxPlayer1ComputerControlled">
+        <Component class="javax.swing.JCheckBox" name="checkBoxGameSetupPlayer1ComputerControlled">
           <Properties>
             <Property name="text" type="java.lang.String" value="Computer"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -283,62 +283,62 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="checkBoxPlayer1ComputerControlledActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="checkBoxGameSetupPlayer1ComputerControlledActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JCheckBox" name="checkBoxPlayer3ComputerControlled">
+        <Component class="javax.swing.JCheckBox" name="checkBoxGameSetupPlayer3ComputerControlled">
           <Properties>
             <Property name="text" type="java.lang.String" value="Computer"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="checkBoxPlayer3ComputerControlledActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="checkBoxGameSetupPlayer3ComputerControlledActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JCheckBox" name="checkBoxPlayer4ComputerControlled">
+        <Component class="javax.swing.JCheckBox" name="checkBoxGameSetupPlayer4ComputerControlled">
           <Properties>
             <Property name="text" type="java.lang.String" value="Computer"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="checkBoxPlayer4ComputerControlledActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="checkBoxGameSetupPlayer4ComputerControlledActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="buttonPlayer1Icon">
+        <Component class="javax.swing.JButton" name="buttonGameSetupPlayer1Icon">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/player-generic.png"/>
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonPlayer1IconActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonGameSetupPlayer1IconActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JSeparator" name="jSeparator1">
         </Component>
-        <Component class="javax.swing.JButton" name="buttonPlayer2Icon">
+        <Component class="javax.swing.JButton" name="buttonGameSetupPlayer2Icon">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/player-generic.png"/>
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonPlayer2IconActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonGameSetupPlayer2IconActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="buttonPlayer3Icon">
+        <Component class="javax.swing.JButton" name="buttonGameSetupPlayer3Icon">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/player-generic.png"/>
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="buttonPlayer4Icon">
+        <Component class="javax.swing.JButton" name="buttonGameSetupPlayer4Icon">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/player-generic.png"/>
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton6">
+        <Component class="javax.swing.JButton" name="buttonGameSetupCloseDialog">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/red-x.png"/>
@@ -346,7 +346,7 @@
             <Property name="text" type="java.lang.String" value="Close"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton6ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonGameSetupCloseDialogActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
@@ -383,9 +383,9 @@
                       </Group>
                       <Group type="102" attributes="0">
                           <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                          <Component id="buttonGive1000" min="-2" pref="170" max="-2" attributes="0"/>
+                          <Component id="buttonGameEditorGive1000" min="-2" pref="170" max="-2" attributes="0"/>
                           <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
-                          <Component id="buttonDeduct1000" min="-2" pref="170" max="-2" attributes="0"/>
+                          <Component id="buttonGameEditorDeduct1000" min="-2" pref="170" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
                           <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
@@ -434,8 +434,8 @@
                   </Group>
                   <EmptySpace min="27" pref="27" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="buttonGive1000" min="-2" max="-2" attributes="0"/>
-                      <Component id="buttonDeduct1000" min="-2" max="-2" attributes="0"/>
+                      <Component id="buttonGameEditorGive1000" min="-2" max="-2" attributes="0"/>
+                      <Component id="buttonGameEditorDeduct1000" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -577,7 +577,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonGameEditorAdvanceSpaceActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="buttonGive1000">
+        <Component class="javax.swing.JButton" name="buttonGameEditorGive1000">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/money.png"/>
@@ -585,10 +585,10 @@
             <Property name="text" type="java.lang.String" value="Give $1000"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonGive1000ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonGameEditorGive1000ActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="buttonDeduct1000">
+        <Component class="javax.swing.JButton" name="buttonGameEditorDeduct1000">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/money.png"/>
@@ -596,7 +596,7 @@
             <Property name="text" type="java.lang.String" value="Deduct $1000"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonDeduct1000ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonGameEditorDeduct1000ActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="buttonReleasePlayer">
@@ -1421,13 +1421,13 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jSeparator2" max="32767" attributes="0"/>
                       <Group type="102" attributes="0">
-                          <Component id="jButton3" max="32767" attributes="0"/>
+                          <Component id="buttonMortgageDialogDecisionMortgage" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jButton4" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="staticLabelMortgage" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="buttonMortgageDialogDecisionUnmortgage" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel7" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -1442,7 +1442,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="staticLabelMortgage" min="-2" max="-2" attributes="0"/>
+                  <Component id="buttonMortgageDialogDecisionUnmortgage" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
@@ -1451,7 +1451,7 @@
                   <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jButton3" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="buttonMortgageDialogDecisionMortgage" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jButton4" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="112" max="32767" attributes="0"/>
@@ -1460,7 +1460,7 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="staticLabelMortgage">
+        <Component class="javax.swing.JLabel" name="buttonMortgageDialogDecisionUnmortgage">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Helvetica Neue" size="18" style="1"/>
@@ -1476,7 +1476,7 @@
             <Property name="text" type="java.lang.String" value="Select a property you wish to mortgage or unmortgage."/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton3">
+        <Component class="javax.swing.JButton" name="buttonMortgageDialogDecisionMortgage">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/mortgage.png"/>

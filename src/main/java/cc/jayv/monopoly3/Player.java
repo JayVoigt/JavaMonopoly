@@ -41,6 +41,9 @@ public class Player implements Serializable {
 	int die1, die2;
 
 	int getOutOfJailFreeCardCount;
+	
+	// In a bankruptcy state, the player who is owed money/assets
+	int creditorPlayerID;
 	// </editor-fold>
 
 	// <editor-fold desc="State attributes">
