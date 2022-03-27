@@ -2913,8 +2913,8 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		improvementIconsWest.add(new javax.swing.ImageIcon(getClass().getResource("/house-label-3-west.png")));
 		improvementIconsWest.add(new javax.swing.ImageIcon(getClass().getResource("/house-label-4-west.png")));
 		
-		previousSpaceBorder = spaceButtonAppearanceHighlight(java.awt.Color.gray);
-		currentSpaceBorder = spaceButtonAppearanceHighlight(java.awt.Color.yellow);
+		previousSpaceBorder = swingHelper.createBorderStyleHighlight(java.awt.Color.gray);
+		currentSpaceBorder = swingHelper.createBorderStyleHighlight(java.awt.Color.yellow);
 		
 		
 		labelBoardImageReference.setVisible(false);
@@ -3638,7 +3638,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		
 		for (int i = 0; i < 40; i++) {
 			if (localOwnedPropertyIDs[i] == true) {
-				spaceButtonAppearanceHighlight(java.awt.Color.yellow);
+				swingHelper.createBorderStyleHighlight(java.awt.Color.yellow);
 			}
 			else {
 				spaceButtonAppearanceReset(i);
@@ -3963,61 +3963,8 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 	}
 
 	public void spaceButtonAppearanceIndicateOldSpace(int spaceID) {
-		Border oldSpaceBorder = spaceButtonAppearanceHighlight(java.awt.Color.magenta);
+		Border oldSpaceBorder = swingHelper.createBorderStyleHighlight(java.awt.Color.magenta);
 		spaceButtons.get(spaceID).setBorder(oldSpaceBorder);
-	}
-	
-	public Border spaceButtonAppearanceHighlight(java.awt.Color baseShade) {
-		Border highlightBorder, innerBorder, outerBorder;
-		Border highlightInnerShadow;
-		Border nestedOuter, nestedInner, finalBorder;
-		
-		Border mainHighlight, fadeLevel1, fadeLevel2, fadeLevel3;
-		
-		innerBorder = BorderFactory.createLineBorder(baseShade, 1, false);
-		outerBorder = BorderFactory.createLineBorder(java.awt.Color.black, 1, false);
-		mainHighlight = BorderFactory.createCompoundBorder(outerBorder, innerBorder);
-		
-		java.awt.Color yellowFade1 = getHighlightModifiedColor(baseShade);
-		java.awt.Color yellowFade2 = getHighlightModifiedColor(yellowFade1);
-		java.awt.Color yellowFade3 = getHighlightModifiedColor(yellowFade2);
-		
-		fadeLevel1 = BorderFactory.createLineBorder(yellowFade1, 1);
-		fadeLevel2 = BorderFactory.createLineBorder(yellowFade2, 1);
-		fadeLevel3 = BorderFactory.createLineBorder(yellowFade3, 1);
-		
-		nestedOuter = BorderFactory.createCompoundBorder(mainHighlight, fadeLevel1);
-		nestedInner = BorderFactory.createCompoundBorder(fadeLevel2, fadeLevel3);
-		finalBorder = BorderFactory.createCompoundBorder(nestedOuter, nestedInner);
-		
-		return finalBorder;
-	}
-	
-	private java.awt.Color getHighlightModifiedColor(java.awt.Color inputAWTColor) {
-		int newR, newG, newB, newA;
-		float highightFactor = 0.8f;
-
-		
-		newR = (int) (((256 - inputAWTColor.getRed()) * highightFactor) + inputAWTColor.getRed());
-		newG = (int) (((256 - inputAWTColor.getGreen()) * highightFactor) + inputAWTColor.getGreen());
-		newB = (int) (((256 - inputAWTColor.getBlue()) * highightFactor) + inputAWTColor.getBlue());
-		newA = (int) ((inputAWTColor.getAlpha()) * highightFactor);
-		
-		java.awt.Color newColor = new java.awt.Color(newR, newG, newB, newA);
-		return newColor;
-	}
-	
-	private java.awt.Color getShadowModifiedColor(java.awt.Color inputAWTColor) {
-		int newR, newG, newB, newA;
-		float shadowFactor = 0.8f;
-		
-		newR = (int) (shadowFactor * inputAWTColor.getRed());
-		newG = (int) (shadowFactor * inputAWTColor.getGreen());
-		newB = (int) (shadowFactor * inputAWTColor.getBlue());
-		newA = (int) (shadowFactor * inputAWTColor.getAlpha());
-		
-		java.awt.Color newColor = new java.awt.Color(newR, newG, newB, newA);
-		return newColor;
 	}
 	
 	public void spaceButtonAppearanceReset(int spaceID) {
@@ -4034,7 +3981,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 			
 			java.awt.Color randomColor = new java.awt.Color(randomR, randomG, randomB);
 			
-			Border partyBorder = spaceButtonAppearanceHighlight(randomColor);
+			Border partyBorder = swingHelper.createBorderStyleHighlight(randomColor);
 			spaceButtons.get(s.getID()).setBorder(partyBorder);
 		}
 		
@@ -4049,7 +3996,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 				int localRGB = java.awt.Color.HSBtoRGB((i * hueShiftFactor), 1, 1);
 				java.awt.Color localAWTColor = new java.awt.Color(localRGB);
 				
-				spaceButtons.get(i).setBorder(spaceButtonAppearanceHighlight(localAWTColor));
+				spaceButtons.get(i).setBorder(swingHelper.createBorderStyleHighlight(localAWTColor));
 			}
 		}
 	}
@@ -4171,13 +4118,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		
 		updateImprovementsDialog();
 	}
-	
-	/**
-	 * Format a JLabel that contains no content.<br>
-	 * The text of the label is stylized and set to indicate it has no value.
-	 * @param inputLabel The JLabel to modify
-	 */
-	
 	
 	public void updateVisualPlayerIndicator(Player currentPlayer) {
 		int localCurrentPlayerID = currentPlayer.getPlayerID();
