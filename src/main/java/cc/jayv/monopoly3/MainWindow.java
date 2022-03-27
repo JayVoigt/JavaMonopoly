@@ -48,6 +48,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 	ArrayList<Icon> improvementIconsSouth = new ArrayList<>();
 	ArrayList<Icon> improvementIconsWest = new ArrayList<>();
 
+	SwingHelper swingHelper = new SwingHelper();
 	
 	public javax.swing.JLabel labelBoardImage;
 	
@@ -4095,9 +4096,10 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		
 		int localID = localSpace.getID();
 		String localFriendlyName = localSpace.getFriendlyName();
+		//SwingHelper helper = new SwingHelper();
 		
-		formatLabel(labelSpaceSelectionID, Integer.toString(localID));
-		formatLabel(labelFriendlyName, localFriendlyName);
+		swingHelper.formatLabel(labelSpaceSelectionID, Integer.toString(localID));
+		swingHelper.formatLabel(labelFriendlyName, localFriendlyName);
 		
 		// Correct for grammar: (1 time) or (n times), where n != 1
 		String timesLandedSuffix;
@@ -4109,31 +4111,31 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		else {
 			timesLandedSuffix = " times";
 		}
-		formatLabel(labelTimesLanded, Integer.toString(localSpace.getTimesLanded()) + timesLandedSuffix);
+		swingHelper.formatLabel(labelTimesLanded, Integer.toString(localSpace.getTimesLanded()) + timesLandedSuffix);
 
 		if (localSpace instanceof Property) {
 			Property localProperty = (Property) board.spaces.get(spaceID);
 			
 			boolean localIsOwned = localProperty.getIsOwned();
-			formatLabel(labelIsOwned, Boolean.toString(localIsOwned));
+			swingHelper.formatLabel(labelIsOwned, Boolean.toString(localIsOwned));
 			
-			formatLabel(labelSpaceType, "Property");
+			swingHelper.formatLabel(labelSpaceType, "Property");
 			
 			if (localIsOwned == true) {
-				formatLabel(labelOwnedBy, board.players.get(localProperty.getOwnerID()).getCustomName());
+				swingHelper.formatLabel(labelOwnedBy, board.players.get(localProperty.getOwnerID()).getCustomName());
 			}
 			else {
-				formatLabel(labelOwnedBy, "not owned");
+				swingHelper.formatLabel(labelOwnedBy, "not owned");
 			}
 			
-			formatLabel(labelPurchaseCost, "$" + Integer.toString(localProperty.getPurchaseCost()));
+			swingHelper.formatLabel(labelPurchaseCost, "$" + Integer.toString(localProperty.getPurchaseCost()));
 			
-			formatLabel(labelCurrentRent, "$" + Integer.toString(localProperty.calculateRent()));
+			swingHelper.formatLabel(labelCurrentRent, "$" + Integer.toString(localProperty.calculateRent()));
 			
 			if (localSpace instanceof Color) {
 				Color localColor = (Color) localSpace;
 				
-				formatLabel(labelSpaceType, "Property, Color");
+				swingHelper.formatLabel(labelSpaceType, "Property, Color");
 				appendToDebugLog(localFriendlyName + " house:hotel, " + localColor.getHouseCount() + ":" + localColor.getHotelCount());
 			}
 			
@@ -4146,40 +4148,28 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 			else if (localSpace instanceof Railroad) {
 				Railroad localRailroad = (Railroad) localSpace;
 				
-				formatLabel(labelSpaceType, "Property, Railroad");
+				swingHelper.formatLabel(labelSpaceType, "Property, Railroad");
 			}
 		}
 
 		else if (localSpace instanceof GameEvent) {
 			GameEvent localGameEvent = (GameEvent) board.spaces.get(spaceID);
-			formatLabel(labelIsOwned);
-			formatLabel(labelOwnedBy);
-			formatLabel(labelSpaceType, "Game Event");
-			formatLabel(labelPurchaseCost);
-			formatLabel(labelCurrentRent);
-			formatLabel(labelRent1House);
-			formatLabel(labelRent2Houses);
-			formatLabel(labelRent3Houses);
-			formatLabel(labelRent4Houses);
+			swingHelper.formatLabel(labelIsOwned);
+			swingHelper.formatLabel(labelOwnedBy);
+			swingHelper.formatLabel(labelSpaceType, "Game Event");
+			swingHelper.formatLabel(labelPurchaseCost);
+			swingHelper.formatLabel(labelCurrentRent);
+			swingHelper.formatLabel(labelRent1House);
+			swingHelper.formatLabel(labelRent2Houses);
+			swingHelper.formatLabel(labelRent3Houses);
+			swingHelper.formatLabel(labelRent4Houses);
 		}
 		
 		else {
-			formatLabel(labelSpaceSelectionID, "undefined ID");
+			swingHelper.formatLabel(labelSpaceSelectionID, "undefined ID");
 		}
 		
 		updateImprovementsDialog();
-	}
-	
-	/**
-	 * Format a JLabel that contains content.<br>
-	 * The text of the label is set to the standard style, and its value is
-	 * set to the contents of <code>inputContent</code>.
-	 * @param inputLabel The JLabel to modify
-	 * @param inputContent The contents of the label message
-	 */
-	private void formatLabel(JLabel inputLabel, String inputContent) {
-		inputLabel.setForeground(java.awt.Color.black);
-		inputLabel.setText(inputContent);
 	}
 	
 	/**
@@ -4187,10 +4177,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 	 * The text of the label is stylized and set to indicate it has no value.
 	 * @param inputLabel The JLabel to modify
 	 */
-	private void formatLabel(JLabel inputLabel) {
-		inputLabel.setForeground(java.awt.Color.gray);
-		inputLabel.setText("<html><i>n/a</i></html>");
-	}
+	
 	
 	public void updateVisualPlayerIndicator(Player currentPlayer) {
 		int localCurrentPlayerID = currentPlayer.getPlayerID();
