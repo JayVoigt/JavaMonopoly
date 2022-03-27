@@ -22,6 +22,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import javax.swing.border.Border;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -2297,7 +2298,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         controlPanelActions.getContentPane().add(buttonEndTurn);
         buttonEndTurn.setBounds(200, 270, 105, 58);
 
-        buttonRollDice.setIcon(new javax.swing.ImageIcon("/Users/jay/NetBeansProjects/Monoproto3/src/main/resources/dice-icon.png")); // NOI18N
+        buttonRollDice.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dice-icon.png"))); // NOI18N
         buttonRollDice.setText("Roll Dice");
         buttonRollDice.setFocusPainted(false);
         buttonRollDice.setMargin(new java.awt.Insets(2, 6, 2, 6));
@@ -3821,14 +3822,35 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 	}
 
 	public void spaceButtonAppearanceHighlight(int spaceID) {
+		Border highlightBorder, innerBorder, outerBorder;
+		Border highlightInnerShadow;
+		Border finalBorder;
+		
+		java.awt.Color yellowShade = new java.awt.Color(255, 224, 102);
+		java.awt.Color yellowInner = new java.awt.Color(223, 192, 70);
+		
+		innerBorder = BorderFactory.createLineBorder(yellowShade, 2, false);
+		outerBorder = BorderFactory.createLineBorder(java.awt.Color.black, 1, false);
+		highlightBorder = BorderFactory.createCompoundBorder(outerBorder, innerBorder);
+		
+		highlightInnerShadow = BorderFactory.createLineBorder(yellowInner, 2);
+		
+		finalBorder = BorderFactory.createCompoundBorder(highlightBorder, highlightInnerShadow);
+		
 		// Check if horizontally or vertically oriented on board
 		if ((spaceID > 0 && spaceID < 10) || (spaceID > 20 && spaceID < 30)) {
+			
+			spaceButtons.get(spaceID).setBorder(finalBorder);
 			// Vertical sprite
-			spaceButtons.get(spaceID).setIcon(new javax.swing.ImageIcon(getClass().getResource("/space-highlight-80x120-anim.gif")));
+			//spaceButtons.get(spaceID).setIcon(new javax.swing.ImageIcon(getClass().getResource("/space-highlight-80x120-anim.gif")));
+		}
+		else if ((spaceID > 10 && spaceID < 20) || (spaceID > 30 && spaceID < 40)) {
+			spaceButtons.get(spaceID).setIcon(new javax.swing.ImageIcon(getClass().getResource("/space-highlight-120x80.png")));
+
 		}
 		else {
 			// Horizontal sprite
-			spaceButtons.get(spaceID).setIcon(new javax.swing.ImageIcon(getClass().getResource("/space-highlight-120x80.png")));
+			spaceButtons.get(spaceID).setIcon(null);
 		}
 	}
 	
