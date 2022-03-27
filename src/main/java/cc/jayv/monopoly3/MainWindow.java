@@ -318,6 +318,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         labelCurrentPlayerIcon = new javax.swing.JLabel();
         staticLabelPositionIcon = new javax.swing.JLabel();
         labelCurrentBalanceIcon1 = new javax.swing.JLabel();
+        buttonPartyMode = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuFile = new javax.swing.JMenu();
         menuFileNewGame = new javax.swing.JMenuItem();
@@ -2455,6 +2456,15 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         controlPanelActions.getContentPane().add(labelCurrentBalanceIcon1);
         labelCurrentBalanceIcon1.setBounds(10, 40, 18, 18);
 
+        buttonPartyMode.setText("Party mode");
+        buttonPartyMode.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonPartyModeActionPerformed(evt);
+            }
+        });
+        controlPanelActions.getContentPane().add(buttonPartyMode);
+        buttonPartyMode.setBounds(198, 210, 110, 23);
+
         menuFile.setText("File");
 
         menuFileNewGame.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_DOWN_MASK));
@@ -2820,9 +2830,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		
 		labelBoardImageReference.setVisible(false);
 		
-		for ( int i = 0 ; i < 20 ; i++ ) {
-			spaceButtonAppearanceHighlight(i);
-		}
 		
 	}
 	
@@ -3326,7 +3333,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 		for (int i = 0; i < 10; i++) {
-			spaceButtonAppearanceHighlight(i);
+			spaceButtonAppearanceHighlight(i, java.awt.Color.yellow);
 		}
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -3530,7 +3537,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		
 		for (int i = 0; i < 40; i++) {
 			if (localOwnedPropertyIDs[i] == true) {
-				spaceButtonAppearanceHighlight(i);
+				spaceButtonAppearanceHighlight(i, java.awt.Color.yellow);
 			}
 			else {
 				spaceButtonAppearanceReset(i);
@@ -3812,6 +3819,10 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     private void buttonSpace30MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonSpace30MouseExited
         buttonSpace30.setIcon(null);
     }//GEN-LAST:event_buttonSpace30MouseExited
+
+    private void buttonPartyModeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPartyModeActionPerformed
+        partyMode();
+    }//GEN-LAST:event_buttonPartyModeActionPerformed
 	// </editor-fold>
 	
 	private void updateGameLogWithSearchQuery(String inputQuery) {
@@ -3826,23 +3837,21 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 	}
 
 	public void spaceButtonAppearanceIndicateOldSpace(int spaceID) {
-		
+				java.awt.Color yellowShade = new java.awt.Color(255, 224, 102);
 	}
 	
-	public void spaceButtonAppearanceHighlight(int spaceID) {
+	public void spaceButtonAppearanceHighlight(int spaceID, java.awt.Color baseShade) {
 		Border highlightBorder, innerBorder, outerBorder;
 		Border highlightInnerShadow;
 		Border nestedOuter, nestedInner, finalBorder;
 		
 		Border mainHighlight, fadeLevel1, fadeLevel2, fadeLevel3;
-			
-		java.awt.Color yellowShade = new java.awt.Color(255, 224, 102);
 		
-		innerBorder = BorderFactory.createLineBorder(yellowShade, 2, false);
-		outerBorder = BorderFactory.createLineBorder(java.awt.Color.black, 2, false);
+		innerBorder = BorderFactory.createLineBorder(baseShade, 1, false);
+		outerBorder = BorderFactory.createLineBorder(java.awt.Color.black, 1, false);
 		mainHighlight = BorderFactory.createCompoundBorder(outerBorder, innerBorder);
 		
-		java.awt.Color yellowFade1 = getHighlightModifiedColor(yellowShade);
+		java.awt.Color yellowFade1 = getHighlightModifiedColor(baseShade);
 		java.awt.Color yellowFade2 = getHighlightModifiedColor(yellowFade1);
 		java.awt.Color yellowFade3 = getHighlightModifiedColor(yellowFade2);
 		
@@ -3884,6 +3893,19 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		spaceButtons.get(spaceID).setIcon(null);
 	}
 
+	public void partyMode() {
+		int randomR, randomG, randomB;
+
+		for (Space s : board.spaces) {
+			randomR = (int) (Math.random() * 256);
+			randomG = (int) (Math.random() * 256);
+			randomB = (int) (Math.random() * 256);
+			
+			java.awt.Color randomColor = new java.awt.Color(randomR, randomG, randomB);
+			spaceButtonAppearanceHighlight(s.getID(), randomColor);
+		}
+	}
+	
 	// <editor-fold desc="Game logs">
 	public String formatButtonText(String inputText) {
 		return "<html><body style=\\\"text-align: justify;  text-justify: "
@@ -4171,6 +4193,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     public javax.swing.JButton buttonJailDialogRollForDoubles;
     public javax.swing.JButton buttonJailDialogUseGOOJFC;
     public javax.swing.JButton buttonJailPlayer;
+    public javax.swing.JButton buttonPartyMode;
     public javax.swing.JButton buttonPlayer1Icon;
     public javax.swing.JButton buttonPlayer2Icon;
     public javax.swing.JButton buttonPlayer3Icon;
