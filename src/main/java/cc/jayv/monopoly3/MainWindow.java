@@ -2820,6 +2820,10 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		
 		labelBoardImageReference.setVisible(false);
 		
+		for ( int i = 0 ; i < 20 ; i++ ) {
+			spaceButtonAppearanceHighlight(i);
+		}
+		
 	}
 	
 	private void toggleBoardVisibility() {
@@ -3821,37 +3825,59 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		textAreaGameLog.setText(combinedGameLog);
 	}
 
+	public void spaceButtonAppearanceIndicateOldSpace(int spaceID) {
+		
+	}
+	
 	public void spaceButtonAppearanceHighlight(int spaceID) {
 		Border highlightBorder, innerBorder, outerBorder;
 		Border highlightInnerShadow;
-		Border finalBorder;
+		Border nestedOuter, nestedInner, finalBorder;
 		
+		Border mainHighlight, fadeLevel1, fadeLevel2, fadeLevel3;
+			
 		java.awt.Color yellowShade = new java.awt.Color(255, 224, 102);
-		java.awt.Color yellowInner = new java.awt.Color(223, 192, 70);
 		
 		innerBorder = BorderFactory.createLineBorder(yellowShade, 2, false);
-		outerBorder = BorderFactory.createLineBorder(java.awt.Color.black, 1, false);
-		highlightBorder = BorderFactory.createCompoundBorder(outerBorder, innerBorder);
+		outerBorder = BorderFactory.createLineBorder(java.awt.Color.black, 2, false);
+		mainHighlight = BorderFactory.createCompoundBorder(outerBorder, innerBorder);
 		
-		highlightInnerShadow = BorderFactory.createLineBorder(yellowInner, 2);
+		java.awt.Color yellowFade1 = getHighlightModifiedColor(yellowShade);
+		java.awt.Color yellowFade2 = getHighlightModifiedColor(yellowFade1);
+		java.awt.Color yellowFade3 = getHighlightModifiedColor(yellowFade2);
 		
-		finalBorder = BorderFactory.createCompoundBorder(highlightBorder, highlightInnerShadow);
+		fadeLevel1 = BorderFactory.createLineBorder(yellowFade1, 1);
+		fadeLevel2 = BorderFactory.createLineBorder(yellowFade2, 1);
+		fadeLevel3 = BorderFactory.createLineBorder(yellowFade3, 1);
 		
-		// Check if horizontally or vertically oriented on board
-		if ((spaceID > 0 && spaceID < 10) || (spaceID > 20 && spaceID < 30)) {
-			
-			spaceButtons.get(spaceID).setBorder(finalBorder);
-			// Vertical sprite
-			//spaceButtons.get(spaceID).setIcon(new javax.swing.ImageIcon(getClass().getResource("/space-highlight-80x120-anim.gif")));
-		}
-		else if ((spaceID > 10 && spaceID < 20) || (spaceID > 30 && spaceID < 40)) {
-			spaceButtons.get(spaceID).setIcon(new javax.swing.ImageIcon(getClass().getResource("/space-highlight-120x80.png")));
-
-		}
-		else {
-			// Horizontal sprite
-			spaceButtons.get(spaceID).setIcon(null);
-		}
+		nestedOuter = BorderFactory.createCompoundBorder(mainHighlight, fadeLevel1);
+		nestedInner = BorderFactory.createCompoundBorder(fadeLevel2, fadeLevel3);
+		finalBorder = BorderFactory.createCompoundBorder(nestedOuter, nestedInner);
+		
+		spaceButtons.get(spaceID).setBorder(finalBorder);
+	}
+	
+	private java.awt.Color getHighlightModifiedColor(java.awt.Color inputAWTColor) {
+		int newR, newG, newB;
+		
+		newR = (int) (((256 - inputAWTColor.getRed()) * 0.5) + inputAWTColor.getRed());
+		newG = (int) (((256 - inputAWTColor.getGreen()) * 0.5) + inputAWTColor.getGreen());
+		newB = (int) (((256 - inputAWTColor.getBlue()) * 0.5) + inputAWTColor.getBlue());
+		
+		java.awt.Color newColor = new java.awt.Color(newR, newG, newB);
+		return newColor;
+	}
+	
+	private java.awt.Color getShadowModifiedColor(java.awt.Color inputAWTColor) {
+		int newR, newG, newB;
+		float shadowFactor = 0.8f;
+		
+		newR = (int) (shadowFactor * inputAWTColor.getRed());
+		newG = (int) (shadowFactor * inputAWTColor.getGreen());
+		newB = (int) (shadowFactor * inputAWTColor.getBlue());
+		
+		java.awt.Color newColor = new java.awt.Color(newR, newG, newB);
+		return newColor;
 	}
 	
 	public void spaceButtonAppearanceReset(int spaceID) {
