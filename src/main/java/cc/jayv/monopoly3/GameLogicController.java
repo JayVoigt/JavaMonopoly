@@ -100,6 +100,10 @@ public class GameLogicController implements Serializable {
 	 * is one line in the log.
 	 */
 	public ArrayList<String> getGameLogContents() {
+		if (debugLogContents.size() > 500) {
+			debugLogContents.clear();
+			debugLogContents.trimToSize();
+		}
 		return gameLogContents;
 	}
 
@@ -162,6 +166,10 @@ public class GameLogicController implements Serializable {
 	}
 
 	public ArrayList<String> getDebugLogContents() {
+		if (debugLogContents.size() > 500) {
+			debugLogContents.clear();
+			debugLogContents.trimToSize();
+		}
 		return debugLogContents;
 	}
 
