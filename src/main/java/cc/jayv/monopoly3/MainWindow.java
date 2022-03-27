@@ -3911,8 +3911,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        for ( int i = 0 ; i < board.spaces.size() ; i++ ) {
-		}
+		spaceButtonHighlightSpectrum(0, 39);
     }//GEN-LAST:event_jButton2ActionPerformed
 	// </editor-fold>
 	
@@ -3968,8 +3967,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		newB = (int) (((256 - inputAWTColor.getBlue()) * highightFactor) + inputAWTColor.getBlue());
 		newA = (int) ((inputAWTColor.getAlpha()) * highightFactor);
 		
-		System.out.println(newR + ":" + newG + ":" + newB + ":" + newA);
-		
 		java.awt.Color newColor = new java.awt.Color(newR, newG, newB, newA);
 		return newColor;
 	}
@@ -4005,6 +4002,20 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 			spaceButtons.get(s.getID()).setBorder(partyBorder);
 		}
 		
+	}
+	
+	public void spaceButtonHighlightSpectrum(int startSpaceID, int endSpaceID) {
+		float hueShiftFactor = (float) (1f / (endSpaceID - startSpaceID));
+		System.out.println(hueShiftFactor);
+		
+		for ( int i = 0 ; i < spaceButtons.size() ; i++ ) {
+			if ((i >= startSpaceID) && (i <= endSpaceID)) {
+				int localRGB = java.awt.Color.HSBtoRGB((i * hueShiftFactor), 1, 1);
+				java.awt.Color localAWTColor = new java.awt.Color(localRGB);
+				
+				spaceButtons.get(i).setBorder(spaceButtonAppearanceHighlight(localAWTColor));
+			}
+		}
 	}
 	
 	// <editor-fold desc="Game logs">
