@@ -56,8 +56,8 @@ public class Player implements Serializable {
 
 	// Decisions given by GUI prompts
 	boolean requiredDecisionPostedBail,
-		madeDecisionPostedBail,
-		resultDecisionPostedBail,
+		madeDecisionJail,
+		resultDecisionJail,
 		requiredDecisionPropertyAction,
 		madeDecisionPropertyAction,
 		resultDecisionPropertyAction;
@@ -212,12 +212,12 @@ public class Player implements Serializable {
 		return requiredDecisionPostedBail;
 	}
 
-	public boolean getMadeDecisionPostedBail() {
-		return madeDecisionPostedBail;
+	public boolean getMadeDecisionJail() {
+		return madeDecisionJail;
 	}
 
-	public boolean getResultDecisionPostedBail() {
-		return resultDecisionPostedBail;
+	public boolean getResultDecisionJail() {
+		return resultDecisionJail;
 	}
 
 	public boolean getRequiredDecisionPropertyAction() {
@@ -271,12 +271,12 @@ public class Player implements Serializable {
 		}
 	}
 
-	public void setMadeDecisionPostedBail(boolean input) {
-		madeDecisionPostedBail = input;
+	public void setMadeDecisionJail(boolean input) {
+		madeDecisionJail = input;
 	}
 
 	public void setResultDecisionPostedBail(boolean input) {
-		resultDecisionPostedBail = input;
+		resultDecisionJail = input;
 	}
 
 	public void setRequiredDecisionPropertyAction(boolean input) {
@@ -312,7 +312,7 @@ public class Player implements Serializable {
 		hasRolledDice = false;
 		isInMandatoryActionsExhaustedState = false;
 
-		madeDecisionPostedBail = false;
+		madeDecisionJail = false;
 		madeDecisionPropertyAction = false;
 
 		initialJailTurn = false;

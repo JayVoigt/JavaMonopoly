@@ -2981,6 +2981,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 				buttonJailDialogPostBail.setEnabled(true);
 				buttonJailDialogRollForDoubles.setEnabled(true);
 
+				buttonJailDialogUseGOOJFC.setText("Use Get Out of Jail Free Card (" + currentPlayer.getGetOutOfJailFreeCardCount() + ")");
 				if (currentPlayer.getGetOutOfJailFreeCardCount() > 0) {
 					buttonJailDialogUseGOOJFC.setEnabled(true);
 				}
@@ -3752,7 +3753,8 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     }//GEN-LAST:event_buttonActionMortgageActionPerformed
 
     private void buttonJailDialogUseGOOJFCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonJailDialogUseGOOJFCActionPerformed
-		// TODO add your handling code here:
+		controller.playerDecisionJailUseGOOJFC();
+		update();
     }//GEN-LAST:event_buttonJailDialogUseGOOJFCActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed

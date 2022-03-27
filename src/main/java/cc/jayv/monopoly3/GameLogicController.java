@@ -659,7 +659,7 @@ public class GameLogicController implements Serializable {
 	 * bail when jailed.
 	 */
 	public void playerDecisionJailPostBail() {
-		currentPlayer.setMadeDecisionPostedBail(true);
+		currentPlayer.setMadeDecisionJail(true);
 		if (currentPlayer.getCurrentBalance() >= 50) {
 			currentPlayer.updateCurrentBalance(-50);
 			appendToGameLog(currentPlayer.getCustomName() + " has posted bail for $50.");
@@ -675,7 +675,7 @@ public class GameLogicController implements Serializable {
 	 * for doubles when jailed.
 	 */
 	public void playerDecisionJailRollDoubles() {
-		currentPlayer.setMadeDecisionPostedBail(true);
+		currentPlayer.setMadeDecisionJail(true);
 		currentPlayer.rollDice();
 
 		if (currentPlayer.getHasRolledDoubles() == true) {
@@ -698,6 +698,20 @@ public class GameLogicController implements Serializable {
 		}
 	}
 
+	public void playerDecisionJailUseGOOJFC() {
+		currentPlayer.setMadeDecisionJail(true);
+		
+		if (currentPlayer.getGetOutOfJailFreeCardCount() > 0) {
+			currentPlayer.setGetOutOfJailFreeCardCount(currentPlayer.getGetOutOfJailFreeCardCount() - 1);
+			
+			appendToGameLog(currentPlayer.getCustomName() + " has used a Get Out of Jail Free Card.");
+			readyPlayerForJailRelease();
+		}
+		else {
+			appendToGameLog(currentPlayer.getCustomName() + " does not have a Get Out of Jail Free Card.");
+		}
+	}
+	
 	/**
 	 * Ready the state of the current player to be released from jail; release
 	 * the player from jail.
