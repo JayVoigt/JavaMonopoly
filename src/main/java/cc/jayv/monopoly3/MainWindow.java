@@ -147,8 +147,9 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         jScrollPane2 = new javax.swing.JScrollPane();
         textAreaDebugLog = new javax.swing.JTextArea();
         debugToolsDialog = new javax.swing.JDialog();
-        jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        buttonPartyMode = new javax.swing.JButton();
+        buttonResetHighlight = new javax.swing.JButton();
         askPropertyDecisionDialog = new javax.swing.JDialog();
         buttonPropertyDecisionPurchase = new javax.swing.JButton();
         buttonPropertyDecisionAuction = new javax.swing.JButton();
@@ -318,7 +319,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         labelCurrentPlayerIcon = new javax.swing.JLabel();
         staticLabelPositionIcon = new javax.swing.JLabel();
         labelCurrentBalanceIcon1 = new javax.swing.JLabel();
-        buttonPartyMode = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuFile = new javax.swing.JMenu();
         menuFileNewGame = new javax.swing.JMenuItem();
@@ -832,22 +832,31 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         );
 
         debugToolsDialog.setAlwaysOnTop(true);
-        debugToolsDialog.getContentPane().setLayout(null);
-
-        jButton2.setText("Space Button Highlight");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        debugToolsDialog.getContentPane().add(jButton2);
-        jButton2.setBounds(6, 40, 163, 23);
+        debugToolsDialog.setUndecorated(true);
+        debugToolsDialog.setPreferredSize(new java.awt.Dimension(400, 300));
+        debugToolsDialog.setSize(new java.awt.Dimension(400, 300));
+        debugToolsDialog.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bug.png"))); // NOI18N
         jLabel1.setText("Debug Tools");
-        debugToolsDialog.getContentPane().add(jLabel1);
-        jLabel1.setBounds(10, 10, 180, 23);
+        debugToolsDialog.getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+
+        buttonPartyMode.setText("Party mode");
+        buttonPartyMode.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonPartyModeActionPerformed(evt);
+            }
+        });
+        debugToolsDialog.getContentPane().add(buttonPartyMode, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, -1));
+
+        buttonResetHighlight.setText("Reset space highlight");
+        buttonResetHighlight.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonResetHighlightActionPerformed(evt);
+            }
+        });
+        debugToolsDialog.getContentPane().add(buttonResetHighlight, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 40, -1, -1));
 
         askPropertyDecisionDialog.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         askPropertyDecisionDialog.setAlwaysOnTop(true);
@@ -2456,15 +2465,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         controlPanelActions.getContentPane().add(labelCurrentBalanceIcon1);
         labelCurrentBalanceIcon1.setBounds(10, 40, 18, 18);
 
-        buttonPartyMode.setText("Party mode");
-        buttonPartyMode.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonPartyModeActionPerformed(evt);
-            }
-        });
-        controlPanelActions.getContentPane().add(buttonPartyMode);
-        buttonPartyMode.setBounds(198, 210, 110, 23);
-
         menuFile.setText("File");
 
         menuFileNewGame.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_DOWN_MASK));
@@ -3287,7 +3287,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 	
 	// <editor-fold desc="End turn/roll dice buttons">
     private void buttonRollDiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRollDiceActionPerformed
-		
 		controller.diceRollManager();
 		update();
     }//GEN-LAST:event_buttonRollDiceActionPerformed
@@ -3330,12 +3329,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		customAppearanceJDialog(debugToolsDialog);
 		debugToolsDialog.setVisible(true);
     }//GEN-LAST:event_menuEditDebugToolsActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-		for (int i = 0; i < 10; i++) {
-			spaceButtonAppearanceHighlight(i, java.awt.Color.yellow);
-		}
-    }//GEN-LAST:event_jButton2ActionPerformed
 
     private void buttonPropertyDecisionPurchaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPropertyDecisionPurchaseActionPerformed
 		controller.playerDecisionPurchaseProperty();
@@ -3537,7 +3530,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		
 		for (int i = 0; i < 40; i++) {
 			if (localOwnedPropertyIDs[i] == true) {
-				spaceButtonAppearanceHighlight(i, java.awt.Color.yellow);
+				spaceButtonAppearanceHighlight(java.awt.Color.yellow);
 			}
 			else {
 				spaceButtonAppearanceReset(i);
@@ -3823,6 +3816,12 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     private void buttonPartyModeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPartyModeActionPerformed
         partyMode();
     }//GEN-LAST:event_buttonPartyModeActionPerformed
+
+    private void buttonResetHighlightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonResetHighlightActionPerformed
+		for (JButton b : spaceButtons) {
+			b.setBorder(null);
+		}
+    }//GEN-LAST:event_buttonResetHighlightActionPerformed
 	// </editor-fold>
 	
 	private void updateGameLogWithSearchQuery(String inputQuery) {
@@ -3837,10 +3836,11 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 	}
 
 	public void spaceButtonAppearanceIndicateOldSpace(int spaceID) {
-				java.awt.Color yellowShade = new java.awt.Color(255, 224, 102);
+		Border oldSpaceBorder = spaceButtonAppearanceHighlight(java.awt.Color.magenta);
+		spaceButtons.get(spaceID).setBorder(oldSpaceBorder);
 	}
 	
-	public void spaceButtonAppearanceHighlight(int spaceID, java.awt.Color baseShade) {
+	public Border spaceButtonAppearanceHighlight(java.awt.Color baseShade) {
 		Border highlightBorder, innerBorder, outerBorder;
 		Border highlightInnerShadow;
 		Border nestedOuter, nestedInner, finalBorder;
@@ -3863,7 +3863,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		nestedInner = BorderFactory.createCompoundBorder(fadeLevel2, fadeLevel3);
 		finalBorder = BorderFactory.createCompoundBorder(nestedOuter, nestedInner);
 		
-		spaceButtons.get(spaceID).setBorder(finalBorder);
+		return finalBorder;
 	}
 	
 	private java.awt.Color getHighlightModifiedColor(java.awt.Color inputAWTColor) {
@@ -3902,8 +3902,11 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 			randomB = (int) (Math.random() * 256);
 			
 			java.awt.Color randomColor = new java.awt.Color(randomR, randomG, randomB);
-			spaceButtonAppearanceHighlight(s.getID(), randomColor);
+			
+			Border partyBorder = spaceButtonAppearanceHighlight(randomColor);
+			spaceButtons.get(s.getID()).setBorder(partyBorder);
 		}
+		
 	}
 	
 	// <editor-fold desc="Game logs">
@@ -4202,6 +4205,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     public javax.swing.JButton buttonPropertyDecisionAuction;
     public javax.swing.JButton buttonPropertyDecisionPurchase;
     public javax.swing.JButton buttonReleasePlayer;
+    public javax.swing.JButton buttonResetHighlight;
     public javax.swing.JButton buttonRollDice;
     public javax.swing.JButton buttonSellHotel;
     public javax.swing.JButton buttonSellHouse;
@@ -4269,7 +4273,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     public javax.swing.JLabel iconPlayer4Position;
     public javax.swing.JDialog improvementsDialog;
     public javax.swing.JButton jButton1;
-    public javax.swing.JButton jButton2;
     public javax.swing.JButton jButton3;
     public javax.swing.JButton jButton4;
     public javax.swing.JButton jButton5;
