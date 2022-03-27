@@ -157,6 +157,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonResetHighlight = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         askPropertyDecisionDialog = new javax.swing.JDialog();
         buttonPropertyDecisionPurchase = new javax.swing.JButton();
         buttonPropertyDecisionAuction = new javax.swing.JButton();
@@ -296,6 +297,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonSpace39 = new javax.swing.JButton();
         staticLabelSearchGameLog = new javax.swing.JLabel();
         formattedTextFieldGameLogSearch = new javax.swing.JFormattedTextField();
+        jButton6 = new javax.swing.JButton();
         labelBoardImageReference = new javax.swing.JLabel();
         controlPanelGameInformation = new javax.swing.JInternalFrame();
         labelPlayer1Name = new javax.swing.JLabel();
@@ -879,24 +881,33 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
             }
         });
 
+        jButton3.setText("Dice roll probability view");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout debugToolsDialogLayout = new javax.swing.GroupLayout(debugToolsDialog.getContentPane());
         debugToolsDialog.getContentPane().setLayout(debugToolsDialogLayout);
         debugToolsDialogLayout.setHorizontalGroup(
             debugToolsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(debugToolsDialogLayout.createSequentialGroup()
                 .addGap(10, 10, 10)
-                .addGroup(debugToolsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(debugToolsDialogLayout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)
-                        .addContainerGap())
-                    .addGroup(debugToolsDialogLayout.createSequentialGroup()
-                        .addComponent(buttonPartyMode)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(buttonResetHighlight))))
+                .addGroup(debugToolsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton3)
+                    .addGroup(debugToolsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(debugToolsDialogLayout.createSequentialGroup()
+                            .addComponent(jLabel1)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton1)
+                            .addContainerGap())
+                        .addGroup(debugToolsDialogLayout.createSequentialGroup()
+                            .addComponent(buttonPartyMode)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jButton2)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(buttonResetHighlight)))))
         );
         debugToolsDialogLayout.setVerticalGroup(
             debugToolsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -913,7 +924,10 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
                     .addComponent(buttonPartyMode)
                     .addGroup(debugToolsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(buttonResetHighlight)
-                        .addComponent(jButton2))))
+                        .addComponent(jButton2)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton3)
+                .addContainerGap(51, Short.MAX_VALUE))
         );
 
         askPropertyDecisionDialog.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -2283,6 +2297,15 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         });
         frameBoard.getContentPane().add(formattedTextFieldGameLogSearch);
         formattedTextFieldGameLogSearch.setBounds(580, 390, 240, 23);
+
+        jButton6.setText("Clear all logs");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+        frameBoard.getContentPane().add(jButton6);
+        jButton6.setBounds(160, 390, 110, 23);
 
         labelBoardImageReference.setIcon(new javax.swing.ImageIcon(getClass().getResource("/board-px-template.png"))); // NOI18N
         labelBoardImageReference.setText("jLabel1");
@@ -3913,6 +3936,16 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 		spaceButtonHighlightSpectrum(0, 39);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        int localBasePosition = currentPlayer.getCurrentPosition();
+		
+		
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        controller.clearLogs();
+    }//GEN-LAST:event_jButton6ActionPerformed
 	// </editor-fold>
 	
 	private void updateGameLogWithSearchQuery(String inputQuery) {
@@ -4387,8 +4420,10 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     public javax.swing.JDialog improvementsDialog;
     public javax.swing.JButton jButton1;
     public javax.swing.JButton jButton2;
+    public javax.swing.JButton jButton3;
     public javax.swing.JButton jButton4;
     public javax.swing.JButton jButton5;
+    public javax.swing.JButton jButton6;
     public javax.swing.JLabel jLabel1;
     public javax.swing.JLabel jLabel10;
     public javax.swing.JLabel jLabel11;

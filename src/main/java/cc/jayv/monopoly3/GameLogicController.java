@@ -176,6 +176,17 @@ public class GameLogicController implements Serializable {
 		String output = (formattedPrefix + input + "\n");
 		debugLogContents.add(output);
 	}
+	
+	public void clearLogs() {
+		gameLogContents.clear();
+		gameLogContents.trimToSize();
+		
+		gameLogContentsFiltered.clear();
+		gameLogContentsFiltered.trimToSize();
+		
+		debugLogContents.clear();
+		debugLogContents.trimToSize();
+	}
 	// </editor-fold>
 
 	/**
@@ -468,7 +479,28 @@ public class GameLogicController implements Serializable {
 		}
 
 		else if (currentDrawCard.getDrawCardType() == DrawCard.drawCardTypeKeys.teleportRelative) {
-
+			if (currentDrawCard.getDestinationRelativeType().equals(DrawCard.destinationRelativeTypeKeys.backThreeSpaces)) {
+				
+			}
+			else if (currentDrawCard.getDestinationRelativeType().equals(DrawCard.destinationRelativeTypeKeys.railroad)) {
+				Railroad destinationRailroad = null;
+				for (Space s : board.spaces) {
+					if (s.getID() > currentSpace.getID()) {
+						if (s instanceof Railroad) {
+							destinationRailroad = (Railroad) currentSpace;
+						}
+					}
+				}
+				if (destinationRailroad != null) {
+					currentPlayer.advancePosition(destinationRailroad.getID() - currentSpace.getID());
+				}
+				else {
+					currentPlayer.advancePosition(board.spaces.get(5).getID() - currentSpace.getID());
+				}
+			}
+			else if (currentDrawCard.getDestinationRelativeType().equals(DrawCard.destinationRelativeTypeKeys.utility)) {
+				
+			}
 		}
 
 		else if (currentDrawCard.getDrawCardType() == DrawCard.drawCardTypeKeys.teleportWithRentModifier) {
