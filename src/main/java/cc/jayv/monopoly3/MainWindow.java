@@ -106,28 +106,28 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 
         gameSetupDialog = new javax.swing.JDialog();
         buttonGameSetupStartGame = new javax.swing.JButton();
-        comboBoxPlayersCount = new javax.swing.JComboBox<>();
-        labelStaticGameSetupPlayersCount = new javax.swing.JLabel();
+        buttonGameSetupCloseDialog = new javax.swing.JButton();
+        buttonGameSetupTriggerDebugMessage = new javax.swing.JButton();
         labelStaticGameSetupDialogTitle = new javax.swing.JLabel();
+        labelStaticGameSetupPlayersCount = new javax.swing.JLabel();
+        comboBoxPlayersCount = new javax.swing.JComboBox<>();
         labelStaticGameSetupStartingBalance = new javax.swing.JLabel();
         spinnerStartingBalance = new javax.swing.JSpinner();
-        textFieldGameSetupPlayer1CustomName = new javax.swing.JTextField();
         labelStaticGameSetupPlayerName = new javax.swing.JLabel();
-        labelStaticGameSetupPlayerIcon = new javax.swing.JLabel();
+        textFieldGameSetupPlayer1CustomName = new javax.swing.JTextField();
         textFieldGameSetupPlayer2CustomName = new javax.swing.JTextField();
         textFieldGameSetupPlayer3CustomName = new javax.swing.JTextField();
         textFieldGameSetupPlayer4CustomName = new javax.swing.JTextField();
-        buttonGameSetupTriggerDebugMessage = new javax.swing.JButton();
-        checkBoxGameSetupPlayer2ComputerControlled = new javax.swing.JCheckBox();
         checkBoxGameSetupPlayer1ComputerControlled = new javax.swing.JCheckBox();
+        checkBoxGameSetupPlayer2ComputerControlled = new javax.swing.JCheckBox();
         checkBoxGameSetupPlayer3ComputerControlled = new javax.swing.JCheckBox();
         checkBoxGameSetupPlayer4ComputerControlled = new javax.swing.JCheckBox();
-        buttonGameSetupPlayer1Icon = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
+        labelStaticGameSetupPlayerIcon = new javax.swing.JLabel();
+        buttonGameSetupPlayer1Icon = new javax.swing.JButton();
         buttonGameSetupPlayer2Icon = new javax.swing.JButton();
         buttonGameSetupPlayer3Icon = new javax.swing.JButton();
         buttonGameSetupPlayer4Icon = new javax.swing.JButton();
-        buttonGameSetupCloseDialog = new javax.swing.JButton();
         gameEditorDialog = new javax.swing.JDialog();
         comboBoxPlayerSelection = new javax.swing.JComboBox<>();
         staticLabelPlayerSelection = new javax.swing.JLabel();
@@ -155,6 +155,8 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         jLabel1 = new javax.swing.JLabel();
         buttonPartyMode = new javax.swing.JButton();
         buttonResetHighlight = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         askPropertyDecisionDialog = new javax.swing.JDialog();
         buttonPropertyDecisionPurchase = new javax.swing.JButton();
         buttonPropertyDecisionAuction = new javax.swing.JButton();
@@ -353,6 +355,28 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
             }
         });
 
+        buttonGameSetupCloseDialog.setIcon(new javax.swing.ImageIcon(getClass().getResource("/red-x.png"))); // NOI18N
+        buttonGameSetupCloseDialog.setText("Close");
+        buttonGameSetupCloseDialog.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonGameSetupCloseDialogActionPerformed(evt);
+            }
+        });
+
+        buttonGameSetupTriggerDebugMessage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bug-log-anim.gif"))); // NOI18N
+        buttonGameSetupTriggerDebugMessage.setText("debug");
+        buttonGameSetupTriggerDebugMessage.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonGameSetupTriggerDebugMessageActionPerformed(evt);
+            }
+        });
+
+        labelStaticGameSetupDialogTitle.setFont(new java.awt.Font("Helvetica Neue", 3, 18)); // NOI18N
+        labelStaticGameSetupDialogTitle.setText("Java Monopoly Prototype");
+
+        labelStaticGameSetupPlayersCount.setIcon(new javax.swing.ImageIcon(getClass().getResource("/player-generic.png"))); // NOI18N
+        labelStaticGameSetupPlayersCount.setText("Number of Players");
+
         comboBoxPlayersCount.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4" }));
         comboBoxPlayersCount.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -365,12 +389,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
             }
         });
 
-        labelStaticGameSetupPlayersCount.setIcon(new javax.swing.ImageIcon(getClass().getResource("/player-generic.png"))); // NOI18N
-        labelStaticGameSetupPlayersCount.setText("Number of Players");
-
-        labelStaticGameSetupDialogTitle.setFont(new java.awt.Font("Helvetica Neue", 3, 18)); // NOI18N
-        labelStaticGameSetupDialogTitle.setText("Java Monopoly Prototype");
-
         labelStaticGameSetupStartingBalance.setIcon(new javax.swing.ImageIcon(getClass().getResource("/money.png"))); // NOI18N
         labelStaticGameSetupStartingBalance.setText("Starting Balance");
 
@@ -380,6 +398,8 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
             }
         });
 
+        labelStaticGameSetupPlayerName.setText("Player Name");
+
         textFieldGameSetupPlayer1CustomName.setText("Player 1");
         textFieldGameSetupPlayer1CustomName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -387,21 +407,17 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
             }
         });
 
-        labelStaticGameSetupPlayerName.setText("Player Name");
-
-        labelStaticGameSetupPlayerIcon.setText("Player Icon");
-
         textFieldGameSetupPlayer2CustomName.setText("Player 2");
 
         textFieldGameSetupPlayer3CustomName.setText("Player 3");
 
         textFieldGameSetupPlayer4CustomName.setText("Player 4");
 
-        buttonGameSetupTriggerDebugMessage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bug-log-anim.gif"))); // NOI18N
-        buttonGameSetupTriggerDebugMessage.setText("debug");
-        buttonGameSetupTriggerDebugMessage.addActionListener(new java.awt.event.ActionListener() {
+        checkBoxGameSetupPlayer1ComputerControlled.setText("Computer");
+        checkBoxGameSetupPlayer1ComputerControlled.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        checkBoxGameSetupPlayer1ComputerControlled.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonGameSetupTriggerDebugMessageActionPerformed(evt);
+                checkBoxGameSetupPlayer1ComputerControlledActionPerformed(evt);
             }
         });
 
@@ -409,14 +425,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         checkBoxGameSetupPlayer2ComputerControlled.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 checkBoxGameSetupPlayer2ComputerControlledActionPerformed(evt);
-            }
-        });
-
-        checkBoxGameSetupPlayer1ComputerControlled.setText("Computer");
-        checkBoxGameSetupPlayer1ComputerControlled.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        checkBoxGameSetupPlayer1ComputerControlled.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                checkBoxGameSetupPlayer1ComputerControlledActionPerformed(evt);
             }
         });
 
@@ -433,6 +441,8 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
                 checkBoxGameSetupPlayer4ComputerControlledActionPerformed(evt);
             }
         });
+
+        labelStaticGameSetupPlayerIcon.setText("Player Icon");
 
         buttonGameSetupPlayer1Icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/player-generic.png"))); // NOI18N
         buttonGameSetupPlayer1Icon.addActionListener(new java.awt.event.ActionListener() {
@@ -451,14 +461,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         buttonGameSetupPlayer3Icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/player-generic.png"))); // NOI18N
 
         buttonGameSetupPlayer4Icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/player-generic.png"))); // NOI18N
-
-        buttonGameSetupCloseDialog.setIcon(new javax.swing.ImageIcon(getClass().getResource("/red-x.png"))); // NOI18N
-        buttonGameSetupCloseDialog.setText("Close");
-        buttonGameSetupCloseDialog.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonGameSetupCloseDialogActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout gameSetupDialogLayout = new javax.swing.GroupLayout(gameSetupDialog.getContentPane());
         gameSetupDialog.getContentPane().setLayout(gameSetupDialogLayout);
@@ -700,47 +702,52 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
                 .addGroup(gameEditorDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(gameEditorDialogLayout.createSequentialGroup()
                         .addGap(6, 6, 6)
-                        .addComponent(staticLabelPlayerSelection1))
-                    .addGroup(gameEditorDialogLayout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(staticLabelPlayerSelection)
-                        .addGap(12, 12, 12)
-                        .addComponent(comboBoxPlayerSelection, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(gameEditorDialogLayout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(buttonGameEditorGive1000, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(buttonGameEditorDeduct1000, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(gameEditorDialogLayout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(buttonJailPlayer, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(buttonReleasePlayer, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(gameEditorDialogLayout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(buttonGameEditorAdvanceSpace, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(buttonGameEditorGoBackSpace, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(gameEditorDialogLayout.createSequentialGroup()
-                        .addGap(156, 156, 156)
-                        .addComponent(buttonGameEditorUpdate)
-                        .addGap(12, 12, 12)
+                        .addComponent(staticLabelPlayerSelection1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(buttonGameEditorClose, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(gameEditorDialogLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(gameEditorDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(buttonGameEditorGiveAllProperties, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(buttonGameEditorUnlockRollDice1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(12, 12, 12)
-                        .addComponent(buttonGameEditorUnlockEndTurn, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(12, Short.MAX_VALUE))
+                        .addGroup(gameEditorDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(gameEditorDialogLayout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(staticLabelPlayerSelection)
+                                .addGap(12, 12, 12)
+                                .addComponent(comboBoxPlayerSelection, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(gameEditorDialogLayout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(buttonGameEditorGive1000, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(12, 12, 12)
+                                .addComponent(buttonGameEditorDeduct1000, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(gameEditorDialogLayout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(buttonJailPlayer, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(12, 12, 12)
+                                .addComponent(buttonReleasePlayer, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(gameEditorDialogLayout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(buttonGameEditorAdvanceSpace, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(12, 12, 12)
+                                .addComponent(buttonGameEditorGoBackSpace, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(gameEditorDialogLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(gameEditorDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(buttonGameEditorGiveAllProperties, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(buttonGameEditorUnlockRollDice1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(12, 12, 12)
+                                .addComponent(buttonGameEditorUnlockEndTurn, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 6, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, gameEditorDialogLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(buttonGameEditorUpdate)))
+                .addContainerGap())
         );
         gameEditorDialogLayout.setVerticalGroup(
             gameEditorDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(gameEditorDialogLayout.createSequentialGroup()
                 .addGap(6, 6, 6)
-                .addComponent(staticLabelPlayerSelection1)
-                .addGap(15, 15, 15)
+                .addGroup(gameEditorDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(staticLabelPlayerSelection1)
+                    .addComponent(buttonGameEditorClose))
+                .addGap(13, 13, 13)
                 .addGroup(gameEditorDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(gameEditorDialogLayout.createSequentialGroup()
                         .addGap(2, 2, 2)
@@ -766,10 +773,9 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
                         .addComponent(buttonGameEditorUnlockEndTurn)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(buttonGameEditorGiveAllProperties)
-                .addGap(8, 8, 8)
-                .addGroup(gameEditorDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(buttonGameEditorUpdate)
-                    .addComponent(buttonGameEditorClose)))
+                .addGap(2, 2, 2)
+                .addComponent(buttonGameEditorUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         saveFileChoserPanel.setSize(new java.awt.Dimension(534, 338));
@@ -839,12 +845,10 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         debugToolsDialog.setAlwaysOnTop(true);
         debugToolsDialog.setUndecorated(true);
         debugToolsDialog.setSize(new java.awt.Dimension(400, 300));
-        debugToolsDialog.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bug.png"))); // NOI18N
         jLabel1.setText("Debug Tools");
-        debugToolsDialog.getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         buttonPartyMode.setText("Party mode");
         buttonPartyMode.addActionListener(new java.awt.event.ActionListener() {
@@ -852,7 +856,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
                 buttonPartyModeActionPerformed(evt);
             }
         });
-        debugToolsDialog.getContentPane().add(buttonPartyMode, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, -1));
 
         buttonResetHighlight.setText("Reset space highlight");
         buttonResetHighlight.addActionListener(new java.awt.event.ActionListener() {
@@ -860,7 +863,58 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
                 buttonResetHighlightActionPerformed(evt);
             }
         });
-        debugToolsDialog.getContentPane().add(buttonResetHighlight, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 40, -1, -1));
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/red-x.png"))); // NOI18N
+        jButton1.setText("Close");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Border dynamics test");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout debugToolsDialogLayout = new javax.swing.GroupLayout(debugToolsDialog.getContentPane());
+        debugToolsDialog.getContentPane().setLayout(debugToolsDialogLayout);
+        debugToolsDialogLayout.setHorizontalGroup(
+            debugToolsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(debugToolsDialogLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addGroup(debugToolsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(debugToolsDialogLayout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addContainerGap())
+                    .addGroup(debugToolsDialogLayout.createSequentialGroup()
+                        .addComponent(buttonPartyMode)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(buttonResetHighlight))))
+        );
+        debugToolsDialogLayout.setVerticalGroup(
+            debugToolsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(debugToolsDialogLayout.createSequentialGroup()
+                .addGroup(debugToolsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(debugToolsDialogLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel1))
+                    .addGroup(debugToolsDialogLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButton1)))
+                .addGap(7, 7, 7)
+                .addGroup(debugToolsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(buttonPartyMode)
+                    .addGroup(debugToolsDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(buttonResetHighlight)
+                        .addComponent(jButton2))))
+        );
 
         askPropertyDecisionDialog.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         askPropertyDecisionDialog.setAlwaysOnTop(true);
@@ -1242,6 +1296,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
         });
         playerIconSelector.getContentPane().add(buttonIcon9);
 
+        mortgageDialog.setMinimumSize(new java.awt.Dimension(332, 194));
         mortgageDialog.setUndecorated(true);
 
         buttonMortgageDialogDecisionUnmortgage.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
@@ -1275,7 +1330,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
                             .addComponent(buttonMortgageDialogDecisionUnmortgage)
                             .addComponent(jLabel7)
                             .addComponent(jLabel6))
-                        .addGap(0, 68, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         mortgageDialogLayout.setVerticalGroup(
@@ -1293,7 +1348,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
                 .addGroup(mortgageDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonMortgageDialogDecisionMortgage)
                     .addComponent(jButton4))
-                .addContainerGap(112, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         aboutDialog.setUndecorated(true);
@@ -3850,6 +3905,15 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 			b.setBorder(null);
 		}
     }//GEN-LAST:event_buttonResetHighlightActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        debugToolsDialog.setVisible(false);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        for ( int i = 0 ; i < board.spaces.size() ; i++ ) {
+		}
+    }//GEN-LAST:event_jButton2ActionPerformed
 	// </editor-fold>
 	
 	private void updateGameLogWithSearchQuery(String inputQuery) {
@@ -3895,25 +3959,31 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 	}
 	
 	private java.awt.Color getHighlightModifiedColor(java.awt.Color inputAWTColor) {
-		int newR, newG, newB;
+		int newR, newG, newB, newA;
+		float highightFactor = 0.8f;
+
 		
-		newR = (int) (((256 - inputAWTColor.getRed()) * 0.5) + inputAWTColor.getRed());
-		newG = (int) (((256 - inputAWTColor.getGreen()) * 0.5) + inputAWTColor.getGreen());
-		newB = (int) (((256 - inputAWTColor.getBlue()) * 0.5) + inputAWTColor.getBlue());
+		newR = (int) (((256 - inputAWTColor.getRed()) * highightFactor) + inputAWTColor.getRed());
+		newG = (int) (((256 - inputAWTColor.getGreen()) * highightFactor) + inputAWTColor.getGreen());
+		newB = (int) (((256 - inputAWTColor.getBlue()) * highightFactor) + inputAWTColor.getBlue());
+		newA = (int) ((inputAWTColor.getAlpha()) * highightFactor);
 		
-		java.awt.Color newColor = new java.awt.Color(newR, newG, newB);
+		System.out.println(newR + ":" + newG + ":" + newB + ":" + newA);
+		
+		java.awt.Color newColor = new java.awt.Color(newR, newG, newB, newA);
 		return newColor;
 	}
 	
 	private java.awt.Color getShadowModifiedColor(java.awt.Color inputAWTColor) {
-		int newR, newG, newB;
+		int newR, newG, newB, newA;
 		float shadowFactor = 0.8f;
 		
 		newR = (int) (shadowFactor * inputAWTColor.getRed());
 		newG = (int) (shadowFactor * inputAWTColor.getGreen());
 		newB = (int) (shadowFactor * inputAWTColor.getBlue());
+		newA = (int) (shadowFactor * inputAWTColor.getAlpha());
 		
-		java.awt.Color newColor = new java.awt.Color(newR, newG, newB);
+		java.awt.Color newColor = new java.awt.Color(newR, newG, newB, newA);
 		return newColor;
 	}
 	
@@ -4304,6 +4374,8 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     public javax.swing.JLabel iconPlayer3Position;
     public javax.swing.JLabel iconPlayer4Position;
     public javax.swing.JDialog improvementsDialog;
+    public javax.swing.JButton jButton1;
+    public javax.swing.JButton jButton2;
     public javax.swing.JButton jButton4;
     public javax.swing.JButton jButton5;
     public javax.swing.JLabel jLabel1;
