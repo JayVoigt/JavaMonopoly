@@ -5,10 +5,12 @@ import java.awt.GridLayout;
 import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -44,7 +46,10 @@ public class DialogCreator {
 		
 		JLabel titleLabel = new JLabel();
 		titleLabel.setText(dialogTitle);
-		titleLabel.setIcon(dialogIcon);
+		
+		Icon testIcon = new ImageIcon(getClass().getResource("/robot2.gif"));
+		titleLabel.setIcon(testIcon);
+		
 		userPrompt.add(titleLabel);
 		
 		for (ButtonContents c : dialogButtonContentList) {
@@ -73,6 +78,8 @@ public class DialogCreator {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				JButton localButton = (JButton) e.getSource();
+				
+				localButton.setIcon(new ImageIcon(getClass().getResource("/money.png")));
 				System.out.println(localButton.getText());
 			}
 		};
@@ -84,9 +91,16 @@ public class DialogCreator {
 		Icon buttonIcon;
 		String buttonAction;
 		
-		public ButtonContents(String buttonText, Icon buttonIcon, String buttonAction) {
+		public ButtonContents(String buttonText, String buttonIconResource, String buttonAction) {
 			this.buttonText = buttonText;
-			this.buttonIcon = buttonIcon;
+			
+			URL iconResouce = getClass().getResource(buttonIconResource);
+			if (buttonIconResource.isEmpty() == false) {
+				this.buttonIcon = new ImageIcon(getClass().getResource(buttonIconResource));
+			}
+			else {
+				this.buttonIcon = null;
+			}
 			this.buttonAction = buttonAction;
 		}
 		
@@ -109,12 +123,12 @@ public class DialogCreator {
 		ArrayList<ButtonContents> contentList = new ArrayList<>();
 
 		for ( int i = 0 ; i < 32 ; i++ ) {
-			ButtonContents bc = new ButtonContents(Integer.toString(i), null, "none");
+			ButtonContents bc = new ButtonContents(Integer.toString(i), "", "none");
 			contentList.add(bc);
 		}
 		
-		ButtonContents buttonYes = new ButtonContents("Yes", null, "actionYes");
-		ButtonContents buttonNo = new ButtonContents("No", null, "actionNo");
+		ButtonContents buttonYes = new ButtonContents("Yes", "/robot2.gif", "actionYes");
+		ButtonContents buttonNo = new ButtonContents("No", "/red-x.png", "actionNo");
 		
 		contentList.add(buttonYes);
 		contentList.add(buttonNo);
