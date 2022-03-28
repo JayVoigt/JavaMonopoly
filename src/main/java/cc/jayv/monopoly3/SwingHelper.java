@@ -19,9 +19,12 @@ import javax.swing.border.Border;
 public class SwingHelper {
 
 	JInternalFrame frameBoard;
+	java.awt.Color highlightYellowShade;
 
 	public SwingHelper(JInternalFrame frameBoardInput) {
 		frameBoard = frameBoardInput;
+		
+		highlightYellowShade = new java.awt.Color(255, 224, 102);
 	}
 
 	private void drawBorderJDialog(JDialog inputDialog) {
@@ -83,7 +86,7 @@ public class SwingHelper {
 	// </editor-fold>
 
 	// <editor-fold desc="Highlights and borders">
-	public Border createBorderStyleHighlight(java.awt.Color baseShade) {
+	public Border createBorderStyleHighlight(java.awt.Color baseShade, boolean lighten) {
 		Border highlightBorder, innerBorder, outerBorder;
 		Border highlightInnerShadow;
 		Border nestedOuter, nestedInner, finalBorder;
@@ -94,13 +97,22 @@ public class SwingHelper {
 		outerBorder = BorderFactory.createLineBorder(java.awt.Color.black, 1, false);
 		mainHighlight = BorderFactory.createCompoundBorder(outerBorder, innerBorder);
 
-		java.awt.Color yellowFade1 = getHighlightModifiedColor(baseShade);
-		java.awt.Color yellowFade2 = getHighlightModifiedColor(yellowFade1);
-		java.awt.Color yellowFade3 = getHighlightModifiedColor(yellowFade2);
-
-		fadeLevel1 = BorderFactory.createLineBorder(yellowFade1, 1);
-		fadeLevel2 = BorderFactory.createLineBorder(yellowFade2, 1);
-		fadeLevel3 = BorderFactory.createLineBorder(yellowFade3, 1);
+		java.awt.Color fade1, fade2, fade3;
+		
+		if (lighten == true) {
+			fade1 = getHighlightModifiedColor(baseShade);
+			fade2 = getHighlightModifiedColor(fade1);
+			fade3 = getHighlightModifiedColor(fade2);
+		}
+		else {
+			fade1 = getShadowModifiedColor(baseShade);
+			fade2 = getShadowModifiedColor(fade1);
+			fade3 = getShadowModifiedColor(fade2);
+		}
+		
+		fadeLevel1 = BorderFactory.createLineBorder(fade1, 1);
+		fadeLevel2 = BorderFactory.createLineBorder(fade2, 1);
+		fadeLevel3 = BorderFactory.createLineBorder(fade3, 1);
 
 		nestedOuter = BorderFactory.createCompoundBorder(mainHighlight, fadeLevel1);
 		nestedInner = BorderFactory.createCompoundBorder(fadeLevel2, fadeLevel3);
@@ -109,6 +121,10 @@ public class SwingHelper {
 		return finalBorder;
 	}
 
+	public Border createBorderStyleHighlight() {
+		return createBorderStyleHighlight(highlightYellowShade, true);
+	}
+	
 	public void resetBorder(JButton inputButton) {
 		inputButton.setBorder(null);
 	}

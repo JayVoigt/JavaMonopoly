@@ -62,8 +62,13 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 	public MainWindow(Board inputBoard, LogHelper inputLogHelper) throws IOException {
 		try {
 			UIManager.setLookAndFeel(new FlatLightLaf());
-			//UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
-		} catch (Exception e) {
+			
+		} catch (UnsupportedLookAndFeelException e) {
+			try {
+				UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
+			} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
+				Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+			}
 		}
 		initComponents();
 
@@ -2731,7 +2736,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 	}
 
 	private void initInfoUIForCurrentPlayer() {
-		Player currentPlayer = board.players.get(board.getCurrentPlayerID());
+		currentPlayer = board.players.get(board.getCurrentPlayerID());
 		labelCurrentPlayer.setText(currentPlayer.getCustomName());
 		labelCurrentBalance.setText("$" + Integer.toString(currentPlayer.getCurrentBalance()));
 		if (currentPlayer.getIsJailed() == true) {
@@ -2895,8 +2900,8 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		improvementIconsWest.add(new javax.swing.ImageIcon(getClass().getResource("/house-label-3-west.png")));
 		improvementIconsWest.add(new javax.swing.ImageIcon(getClass().getResource("/house-label-4-west.png")));
 
-		previousSpaceBorder = swingHelper.createBorderStyleHighlight(java.awt.Color.gray);
-		currentSpaceBorder = swingHelper.createBorderStyleHighlight(java.awt.Color.yellow);
+		previousSpaceBorder = swingHelper.createBorderStyleHighlight(java.awt.Color.gray, true);
+		currentSpaceBorder = swingHelper.createBorderStyleHighlight();
 
 		labelBoardImageReference.setVisible(false);
 
@@ -3918,7 +3923,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 
 			java.awt.Color randomColor = new java.awt.Color(randomR, randomG, randomB);
 
-			Border partyBorder = swingHelper.createBorderStyleHighlight(randomColor);
+			Border partyBorder = swingHelper.createBorderStyleHighlight(randomColor, true);
 			spaceButtons.get(s.getID()).setBorder(partyBorder);
 		}
 
@@ -3933,7 +3938,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 				int localRGB = java.awt.Color.HSBtoRGB((i * hueShiftFactor), 1, 1);
 				java.awt.Color localAWTColor = new java.awt.Color(localRGB);
 
-				spaceButtons.get(i).setBorder(swingHelper.createBorderStyleHighlight(localAWTColor));
+				spaceButtons.get(i).setBorder(swingHelper.createBorderStyleHighlight(localAWTColor, true));
 			}
 		}
 	}
