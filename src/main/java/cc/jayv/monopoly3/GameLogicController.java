@@ -29,7 +29,7 @@ public class GameLogicController implements Serializable {
 	ArrayList<String> gameLogContents,
 		gameLogContentsFiltered,
 		debugLogContents;
-	
+
 	boolean isGameActive;
 
 	boolean useExtraTextPadding;
@@ -39,9 +39,11 @@ public class GameLogicController implements Serializable {
 
 	boolean playerCanBuildImprovements;
 
+	LogHelper logHelper;
+
 	/**
-	 * Possible actions that a player can execute when modifying improvements
-	 * on a Color space.
+	 * Possible actions that a player can execute when modifying improvements on
+	 * a Color space.
 	 */
 	public enum ImprovementsActions {
 		buildHouse,
@@ -77,14 +79,16 @@ public class GameLogicController implements Serializable {
 	// </editor-fold>
 
 	// <editor-fold desc="Constructor">
-	public GameLogicController(Board inputBoard) {
+	public GameLogicController(Board inputBoard, LogHelper inputLogHelper) {
 		board = inputBoard;
+		logHelper = inputLogHelper;
+
 		gameLogContents = new ArrayList<>();
 		gameLogContentsFiltered = new ArrayList<>();
 		debugLogContents = new ArrayList<>();
 		String initString = "";
 		gameLogContents.add(initString);
-		
+
 		debugLogContents.add(initString);
 
 		useExtraTextPadding = true;
@@ -94,41 +98,18 @@ public class GameLogicController implements Serializable {
 	// </editor-fold>
 
 	// <editor-fold desc="Misc helpers">
-	/**
-	 * Return the elements of the game log.
-	 * @return An ArrayList of String objects, where each element
-	 * is one line in the log.
-	 */
-	public ArrayList<String> getGameLogContents() {
-		if (debugLogContents.size() > 500) {
-			debugLogContents.clear();
-			debugLogContents.trimToSize();
-		}
-		return gameLogContents;
-	}
 
 	/**
-	 * Return the elements of the game log that match the given
-	 * query.
-	 * @param inputQuery The case-insensitive query for all elements in
-	 * gameLogContents to be matched against.
-	 * @return An ArrayList of String objects, where each element is one
-	 * line in the log, matching the given query parameter.
+	 * Append the input to the game log as a formatted line.<br>
+	 * Entries are prefixed with the current date and time, as well as the
+	 * current turn number.<br>
+	 *
+	 * @param input The contents of the message.
 	 */
-	public ArrayList<String> getGameLogContentsFiltered(String inputQuery) {
-		gameLogContentsFiltered.clear();
-
-		for (String s : gameLogContents) {
-			String lowerString = s.toLowerCase();
-			String lowerQuery = inputQuery.toLowerCase();
-			
-			if (lowerString.contains(lowerQuery) == true) {
-				gameLogContentsFiltered.add(s);
-			}
-		}
-		return gameLogContentsFiltered;
+	public void appendToGameLog(String input) {
+		logHelper.appendToGameLog(input, turnCounter);
 	}
-	
+
 	/**
 	 * Send a welcome message to the game log when the application is first
 	 * launched.
@@ -147,33 +128,6 @@ public class GameLogicController implements Serializable {
 	}
 
 	/**
-	 * Append the input to the game log as a formatted line.<br>
-	 * Entries are prefixed with the current date and time, as well as the
-	 * current turn number.<br>
-	 *
-	 * @param input The contents of the message.
-	 */
-	public void appendToGameLog(String input) {
-		Date currentDate = new Date();
-		SimpleDateFormat datePrefix = new SimpleDateFormat("yyyy-mm-dd HH:mm:ss");
-
-		String currentTurn = Integer.toString(turnCounter);
-		String formattedPrefix;
-		formattedPrefix = ("[" + currentDate + "] (" + currentTurn + "): ");
-
-		String output = (formattedPrefix + input + "\n");
-		gameLogContents.add(output);
-	}
-
-	public ArrayList<String> getDebugLogContents() {
-		if (debugLogContents.size() > 500) {
-			debugLogContents.clear();
-			debugLogContents.trimToSize();
-		}
-		return debugLogContents;
-	}
-
-	/**
 	 * Append the input to the debug log.
 	 *
 	 * @param input The contents of the message.
@@ -183,17 +137,6 @@ public class GameLogicController implements Serializable {
 		formattedPrefix = formattedPrefix.concat(": ");
 		String output = (formattedPrefix + input + "\n");
 		debugLogContents.add(output);
-	}
-	
-	public void clearLogs() {
-		gameLogContents.clear();
-		gameLogContents.trimToSize();
-		
-		gameLogContentsFiltered.clear();
-		gameLogContentsFiltered.trimToSize();
-		
-		debugLogContents.clear();
-		debugLogContents.trimToSize();
 	}
 	// </editor-fold>
 
@@ -207,7 +150,7 @@ public class GameLogicController implements Serializable {
 		currentPlayer = board.players.get(board.getCurrentPlayerID());
 
 		board.forceBoardSelfCheck();
-		
+
 		for (Space s : board.spaces) {
 			s.setButtonAppearance(Space.buttonAppearanceKeys.none);
 		}
@@ -364,11 +307,11 @@ public class GameLogicController implements Serializable {
 	private void movementEvaluator() {
 		appendToDebugLog("-> executing movementEvaluator");
 		int diceSum = currentPlayer.getDiceSum();
-		
+
 		board.spaces.get(currentPlayer.getCurrentPosition()).setButtonAppearance(Space.buttonAppearanceKeys.previousSpace);
 		boolean playerPassedGo = currentPlayer.advancePosition(diceSum);
 		board.spaces.get(currentPlayer.getCurrentPosition()).setButtonAppearance(Space.buttonAppearanceKeys.newSpace);
-		
+
 		// Issue GO bonus
 		if (playerPassedGo == true) {
 			currentPlayer.updateCurrentBalance(200);
@@ -488,7 +431,7 @@ public class GameLogicController implements Serializable {
 
 		else if (currentDrawCard.getDrawCardType() == DrawCard.drawCardTypeKeys.teleportRelative) {
 			if (currentDrawCard.getDestinationRelativeType().equals(DrawCard.destinationRelativeTypeKeys.backThreeSpaces)) {
-				
+
 			}
 			else if (currentDrawCard.getDestinationRelativeType().equals(DrawCard.destinationRelativeTypeKeys.railroad)) {
 				Railroad destinationRailroad = null;
@@ -507,7 +450,7 @@ public class GameLogicController implements Serializable {
 				}
 			}
 			else if (currentDrawCard.getDestinationRelativeType().equals(DrawCard.destinationRelativeTypeKeys.utility)) {
-				
+
 			}
 		}
 
@@ -530,7 +473,7 @@ public class GameLogicController implements Serializable {
 		else if (currentDrawCard.getDrawCardType() == DrawCard.drawCardTypeKeys.improvementRepairs) {
 			int ownedHouses = 0, ownedHotels = 0;
 			int paymentQuantity;
-			
+
 			for (Space s : board.spaces) {
 				if (s instanceof Color) {
 					Color localColor = (Color) s;
@@ -541,18 +484,18 @@ public class GameLogicController implements Serializable {
 					}
 				}
 			}
-			
+
 			paymentQuantity = ((board.getRepairCostHouse() * ownedHouses) + (board.getRepairCostHotel() * ownedHotels));
-			
+
 			if ((ownedHouses + ownedHotels) == 0) {
 				appendToGameLog(currentPlayer.getCustomName() + " owns no improvements."
 					+ " No payment needs to be made.");
 			}
 			else {
 				appendToGameLog(currentPlayer.getCustomName() + " owns " + ownedHouses
-				+ " houses and " + ownedHotels + " hotels. A payment of $" + paymentQuantity
-				+ " is required.");
-				
+					+ " houses and " + ownedHotels + " hotels. A payment of $" + paymentQuantity
+					+ " is required.");
+
 				currentPlayer.updateCurrentBalance(-1 * paymentQuantity);
 			}
 		}
@@ -700,10 +643,10 @@ public class GameLogicController implements Serializable {
 
 	public void playerDecisionJailUseGOOJFC() {
 		currentPlayer.setMadeDecisionJail(true);
-		
+
 		if (currentPlayer.getGetOutOfJailFreeCardCount() > 0) {
 			currentPlayer.setGetOutOfJailFreeCardCount(currentPlayer.getGetOutOfJailFreeCardCount() - 1);
-			
+
 			appendToGameLog(currentPlayer.getCustomName() + " has used a Get Out of Jail Free Card.");
 			readyPlayerForJailRelease();
 		}
@@ -711,7 +654,7 @@ public class GameLogicController implements Serializable {
 			appendToGameLog(currentPlayer.getCustomName() + " does not have a Get Out of Jail Free Card.");
 		}
 	}
-	
+
 	/**
 	 * Ready the state of the current player to be released from jail; release
 	 * the player from jail.
@@ -777,12 +720,12 @@ public class GameLogicController implements Serializable {
 				if (localColor.getHouseCount() == 4) {
 					appendToGameLog(localColor.getFriendlyName() + " already has the maximum number of houses.");
 				}
-				
+
 				else if (localColor.getHotelCount() == 1) {
 					appendToGameLog(localColor.getFriendlyName() + " cannot have "
 						+ "houses constructed when a hotel is already present.");
 				}
-				
+
 				else if (currentPlayer.getCurrentBalance() >= localColor.getHouseCost()) {
 					if (board.getBankHouseCount() > 0) {
 						localColor.buildHouse();
@@ -794,7 +737,7 @@ public class GameLogicController implements Serializable {
 						appendToGameLog("There are no available houses to purchase from the Bank.");
 					}
 				}
-				
+
 				else {
 					appendToGameLog("You do not have sufficient funds to construct "
 						+ "a house on this property.");
@@ -822,7 +765,7 @@ public class GameLogicController implements Serializable {
 				}
 				else {
 					appendToGameLog(localColor.getFriendlyName() + " does not have enough houses "
-					+ "for a hotel to be constructed.");
+						+ "for a hotel to be constructed.");
 				}
 			}
 			else {

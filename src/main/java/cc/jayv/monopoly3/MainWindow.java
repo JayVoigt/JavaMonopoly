@@ -77,7 +77,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		jDialogs = new ArrayList<>();
 
 		board = inputBoard;
-		controller = new GameLogicController(board);
+		controller = new GameLogicController(board, logHelper);
 
 		gameLogContents = new ArrayList<>();
 		gameLogContentsFiltered = new ArrayList<>();
@@ -3001,7 +3001,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 	private void updateGameLog() {
 		String combinedGameLog = "";
 
-		for (String s : controller.getGameLogContents()) {
+		for (String s : logHelper.getGameLogContents()) {
 			combinedGameLog = combinedGameLog.concat(s);
 		}
 		textAreaGameLog.setText(combinedGameLog);
@@ -3885,12 +3885,13 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-		controller.clearLogs();
+		logHelper.clearLogs();
+		update();
     }//GEN-LAST:event_jButton6ActionPerformed
 	// </editor-fold>
 
 	private void updateGameLogWithSearchQuery(String inputQuery) {
-		gameLogContentsFiltered = controller.getGameLogContentsFiltered(inputQuery);
+		gameLogContentsFiltered = logHelper.getGameLogContentsFiltered(inputQuery);
 		String combinedGameLog = "";
 
 		for (String s : gameLogContentsFiltered) {
