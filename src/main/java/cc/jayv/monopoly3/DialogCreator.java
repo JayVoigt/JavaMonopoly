@@ -1,7 +1,10 @@
 package cc.jayv.monopoly3;
 
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.LayoutManager;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -35,7 +38,7 @@ public class DialogCreator {
 	
 	public JDialog createDialogUserPrompt(ArrayList<ButtonContents> dialogButtonContentList) {
 		JDialog userPrompt = new JDialog();
-		userPrompt.setLayout(new GridLayout());
+		userPrompt.setLayout(new FlowLayout());
 		userPrompt.setSize(512, 512);
 		
 		for (ButtonContents c : dialogButtonContentList) {
@@ -52,10 +55,22 @@ public class DialogCreator {
 		for (JButton b : dialogButtonList) {
 			b.setVisible(true);
 			b.setSize(20, 20);
+			b.addActionListener(testListener());
 			userPrompt.add(b);
 		}
 		
 		return userPrompt;
+	}
+	
+	public ActionListener testListener() {
+		ActionListener testListener = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JButton localButton = (JButton) e.getSource();
+				System.out.println(localButton.getText());
+			}
+		};
+		return testListener;
 	}
 	
 	public static class ButtonContents {
