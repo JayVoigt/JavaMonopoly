@@ -11,6 +11,7 @@ import java.util.Map;
 import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JLabel;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -28,9 +29,9 @@ public class DialogCreator {
 	ArrayList<JButton> dialogButtonList;
 	ArrayList<ButtonContents> dialogButtonContentList;
 	
-	public DialogCreator() {
-		dialogTitle = "";
-		dialogIcon = null;
+	public DialogCreator(String dialogTitle, Icon dialogIcon) {
+		this.dialogTitle = dialogTitle;
+		this.dialogIcon = dialogIcon;
 		
 		dialogButtonList = new ArrayList<>();
 		dialogButtonContentList = new ArrayList<>();
@@ -40,6 +41,11 @@ public class DialogCreator {
 		JDialog userPrompt = new JDialog();
 		userPrompt.setLayout(new FlowLayout());
 		userPrompt.setSize(512, 512);
+		
+		JLabel titleLabel = new JLabel();
+		titleLabel.setText(dialogTitle);
+		titleLabel.setIcon(dialogIcon);
+		userPrompt.add(titleLabel);
 		
 		for (ButtonContents c : dialogButtonContentList) {
 			int index = dialogButtonContentList.indexOf(c);
@@ -99,7 +105,7 @@ public class DialogCreator {
 	
 	// Testing method
 	public static void main(String args[]) {
-		DialogCreator creator = new DialogCreator();
+		DialogCreator creator = new DialogCreator("test dialog", null);
 		ArrayList<ButtonContents> contentList = new ArrayList<>();
 
 		for ( int i = 0 ; i < 32 ; i++ ) {
