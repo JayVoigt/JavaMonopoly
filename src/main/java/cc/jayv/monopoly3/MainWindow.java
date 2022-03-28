@@ -3144,8 +3144,8 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 			buttonSellHotel.setEnabled(true);
 		}
 	}
-
 	// </editor-fold>
+
 	// <editor-fold desc="Button locking and unlocking">
 	private void unlockRollDice() {
 		buttonRollDice.setEnabled(true);
@@ -3257,7 +3257,15 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		}
 	}//xxx-gen-last-xxx:event_menuViewToggleExtraPaddingActionPerformed
 
+	private void menuEditGameEditorActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_menuEditGameEditorActionPerformed
+		swingHelper.setCustomAppearanceJDialog(gameEditorDialog);
+
+		gameEditorDialog.setVisible(true);
+		controller.appendToGameLog("Game Editor was opened!");
+		update();
+	}//xxx-gen-last-xxx:event_menuEditGameEditorActionPerformed
 	// </editor-fold>
+
 	// <editor-fold desc="buttonSpace<N>ActionPerformed">
 	private void buttonSpace0ActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonSpace0ActionPerformed
 		updateSpaceSelection(0);
@@ -3420,14 +3428,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 	}//xxx-gen-last-xxx:event_buttonSpace39ActionPerformed
 	//</editor-fold>
 
-	private void menuEditGameEditorActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_menuEditGameEditorActionPerformed
-		swingHelper.setCustomAppearanceJDialog(gameEditorDialog);
-
-		gameEditorDialog.setVisible(true);
-		controller.appendToGameLog("Game Editor was opened!");
-		update();
-	}//xxx-gen-last-xxx:event_menuEditGameEditorActionPerformed
-
 	// <editor-fold desc="End turn/roll dice buttons">
 	private void buttonRollDiceActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonRollDiceActionPerformed
 		controller.diceRollManager();
@@ -3452,6 +3452,45 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 	private void updateStatsPane() {
 
 	}
+	// </editor-fold>
+
+	// <editor-fold desc="Control panel">
+	private void buttonActionImprovementsActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonActionImprovementsActionPerformed
+		swingHelper.setCustomAppearanceJDialog(improvementsDialog);
+		updateImprovementsDialog();
+
+		labelSelectedProperty.setText("Select a property.");
+		labelImprovementInfo.setText("No property selected.");
+
+		if (improvementsDialog.isVisible() == false) {
+			improvementsDialog.setVisible(true);
+			buttonPropertiesActionPerformed(evt);
+		}
+		else {
+			improvementsDialog.setVisible(false);
+		}
+	}//xxx-gen-last-xxx:event_buttonActionImprovementsActionPerformed
+
+	private void buttonPropertiesActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonPropertiesActionPerformed
+
+	}//xxx-gen-last-xxx:event_buttonPropertiesActionPerformed
+
+	private void buttonForfeitActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonForfeitActionPerformed
+		swingHelper.setCustomAppearanceJDialog(forfeitDialog);
+
+		forfeitDialog.setVisible(true);
+		controller.forfeitManager();
+		update();
+	}//xxx-gen-last-xxx:event_buttonForfeitActionPerformed
+
+	private void buttonActionMortgageActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonActionMortgageActionPerformed
+		if (mortgageDialog.isVisible() == false) {
+			mortgageDialog.setVisible(true);
+		}
+		else {
+			mortgageDialog.setVisible(false);
+		}
+	}//xxx-gen-last-xxx:event_buttonActionMortgageActionPerformed
 	// </editor-fold>
 
 	// <editor-fold desc="Dialog - game setup">
@@ -3562,59 +3601,25 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		controller.initialEvaluator();
 		update();
 	}//xxx-gen-last-xxx:event_buttonGameSetupStartGameActionPerformed
+
+	private void buttonGameSetupPlayer1IconActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonGameSetupPlayer1IconActionPerformed
+		iconSelectionPlayerID = 1;
+		buttonIcon5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/player-icon-1-px.png")));
+		playerIconSelector.setVisible(true);
+	}//xxx-gen-last-xxx:event_buttonGameSetupPlayer1IconActionPerformed
+
+	private void buttonGameSetupPlayer2IconActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonGameSetupPlayer2IconActionPerformed
+		iconSelectionPlayerID = 2;
+		buttonIcon5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/player-icon-2-px.png")));
+		playerIconSelector.setVisible(true);
+		playerIconSelector.setLocation(buttonGameSetupPlayer2Icon.getLocation());
+
+	}//xxx-gen-last-xxx:event_buttonGameSetupPlayer2IconActionPerformed
+
+	private void buttonGameSetupCloseDialogActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonGameSetupCloseDialogActionPerformed
+		gameSetupDialog.setVisible(false);
+	}//xxx-gen-last-xxx:event_buttonGameSetupCloseDialogActionPerformed
 	// </editor-fold>
-
-	// <editor-fold desc="Dialog - jail">
-	private void buttonJailDialogPostBailActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonJailDialogPostBailActionPerformed
-		controller.playerDecisionJailPostBail();
-		update();
-	}//xxx-gen-last-xxx:event_buttonJailDialogPostBailActionPerformed
-
-	private void buttonJailDialogRollForDoublesActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonJailDialogRollForDoublesActionPerformed
-		controller.playerDecisionJailRollDoubles();
-		update();
-	}//xxx-gen-last-xxx:event_buttonJailDialogRollForDoublesActionPerformed
-
-	private void buttonJailPlayerActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonJailPlayerActionPerformed
-		gameEditorPlayer.setIsJailed(true);
-		gameEditorPlayer.setInitialJailTurn(true);
-		controller.appendToGameLog("[Game Editor]: Jailed " + gameEditorPlayer.getCustomName() + ".");
-		update();
-	}//xxx-gen-last-xxx:event_buttonJailPlayerActionPerformed
-
-	private void buttonJailDialogUseGOOJFCActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonJailDialogUseGOOJFCActionPerformed
-		controller.playerDecisionJailUseGOOJFC();
-		update();
-	}//xxx-gen-last-xxx:event_buttonJailDialogUseGOOJFCActionPerformed
-	// </editor-fold>
-
-	private void buttonActionImprovementsActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonActionImprovementsActionPerformed
-		swingHelper.setCustomAppearanceJDialog(improvementsDialog);
-		updateImprovementsDialog();
-
-		labelSelectedProperty.setText("Select a property.");
-		labelImprovementInfo.setText("No property selected.");
-
-		if (improvementsDialog.isVisible() == false) {
-			improvementsDialog.setVisible(true);
-			buttonPropertiesActionPerformed(evt);
-		}
-		else {
-			improvementsDialog.setVisible(false);
-		}
-	}//xxx-gen-last-xxx:event_buttonActionImprovementsActionPerformed
-
-	private void buttonPropertiesActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonPropertiesActionPerformed
-
-	}//xxx-gen-last-xxx:event_buttonPropertiesActionPerformed
-
-	private void buttonForfeitActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonForfeitActionPerformed
-		swingHelper.setCustomAppearanceJDialog(forfeitDialog);
-
-		forfeitDialog.setVisible(true);
-		controller.forfeitManager();
-		update();
-	}//xxx-gen-last-xxx:event_buttonForfeitActionPerformed
 
 	// <editor-fold desc="Player icons">
 	private void setPlayerIcon(int playerID, Icon inputIcon) {
@@ -3678,41 +3683,65 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 	private void buttonIcon9ActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonIcon9ActionPerformed
 		setPlayerIcon(iconSelectionPlayerID, buttonIcon9.getIcon());
 	}//xxx-gen-last-xxx:event_buttonIcon9ActionPerformed
-
 	// </editor-fold>
-	private void buttonGameSetupPlayer1IconActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonGameSetupPlayer1IconActionPerformed
-		iconSelectionPlayerID = 1;
-		buttonIcon5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/player-icon-1-px.png")));
-		playerIconSelector.setVisible(true);
-	}//xxx-gen-last-xxx:event_buttonGameSetupPlayer1IconActionPerformed
 
-	private void buttonGameSetupPlayer2IconActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonGameSetupPlayer2IconActionPerformed
-		iconSelectionPlayerID = 2;
-		buttonIcon5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/player-icon-2-px.png")));
-		playerIconSelector.setVisible(true);
-		playerIconSelector.setLocation(buttonGameSetupPlayer2Icon.getLocation());
-
-	}//xxx-gen-last-xxx:event_buttonGameSetupPlayer2IconActionPerformed
-
-	private void buttonActionMortgageActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonActionMortgageActionPerformed
-		if (mortgageDialog.isVisible() == false) {
-			mortgageDialog.setVisible(true);
-		}
-		else {
-			mortgageDialog.setVisible(false);
-		}
-	}//xxx-gen-last-xxx:event_buttonActionMortgageActionPerformed
-
-	private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_jButton5ActionPerformed
-		aboutDialog.setVisible(false);
-	}//xxx-gen-last-xxx:event_jButton5ActionPerformed
-
-	private void buttonReleasePlayerActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonReleasePlayerActionPerformed
-		gameEditorPlayer.setIsJailed(false);
-		gameEditorPlayer.setInitialJailTurn(false);
-		controller.appendToGameLog("[Game Editor]: Released " + gameEditorPlayer.getCustomName() + " from jail.");
+	// <editor-fold desc="Dialog - jail">
+	private void buttonJailDialogPostBailActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonJailDialogPostBailActionPerformed
+		controller.playerDecisionJailPostBail();
 		update();
-	}//xxx-gen-last-xxx:event_buttonReleasePlayerActionPerformed
+	}//xxx-gen-last-xxx:event_buttonJailDialogPostBailActionPerformed
+
+	private void buttonJailDialogRollForDoublesActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonJailDialogRollForDoublesActionPerformed
+		controller.playerDecisionJailRollDoubles();
+		update();
+	}//xxx-gen-last-xxx:event_buttonJailDialogRollForDoublesActionPerformed
+
+	private void buttonJailPlayerActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonJailPlayerActionPerformed
+		gameEditorPlayer.setIsJailed(true);
+		gameEditorPlayer.setInitialJailTurn(true);
+		controller.appendToGameLog("[Game Editor]: Jailed " + gameEditorPlayer.getCustomName() + ".");
+		update();
+	}//xxx-gen-last-xxx:event_buttonJailPlayerActionPerformed
+
+	private void buttonJailDialogUseGOOJFCActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonJailDialogUseGOOJFCActionPerformed
+		controller.playerDecisionJailUseGOOJFC();
+		update();
+	}//xxx-gen-last-xxx:event_buttonJailDialogUseGOOJFCActionPerformed
+	// </editor-fold>
+
+	// <editor-fold desc="Dialog - mortgage">
+	private void buttonBuildHouseActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonBuildHouseActionPerformed
+		controller.improvementsManager(currentSpaceSelectionID, GameLogicController.ImprovementsActions.buildHouse);
+		update();
+	}//xxx-gen-last-xxx:event_buttonBuildHouseActionPerformed
+
+	private void buttonSellHouseActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonSellHouseActionPerformed
+		controller.improvementsManager(currentSpaceSelectionID, GameLogicController.ImprovementsActions.sellHouse);
+		update();
+	}//xxx-gen-last-xxx:event_buttonSellHouseActionPerformed
+
+	private void buttonBuildHotelActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonBuildHotelActionPerformed
+		controller.improvementsManager(currentSpaceSelectionID, GameLogicController.ImprovementsActions.buildHotel);
+		update();
+	}//xxx-gen-last-xxx:event_buttonBuildHotelActionPerformed
+
+	private void buttonSellHotelActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonSellHotelActionPerformed
+		controller.improvementsManager(currentSpaceSelectionID, GameLogicController.ImprovementsActions.sellHotel);
+		update();
+	}//xxx-gen-last-xxx:event_buttonSellHotelActionPerformed
+	// </editor-fold>
+
+	// <editor-fold desc="Debug tools">
+	private void buttonPartyModeActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonPartyModeActionPerformed
+		partyMode();
+	}//xxx-gen-last-xxx:event_buttonPartyModeActionPerformed
+
+	private void buttonResetHighlightActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonResetHighlightActionPerformed
+		for (JButton b : spaceButtons) {
+			b.setBorder(null);
+		}
+	}//xxx-gen-last-xxx:event_buttonResetHighlightActionPerformed
+	// </editor-fold>
 
 	// <editor-fold desc="Game editor">
 	private void buttonGameEditorGoBackSpaceActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonGameEditorGoBackSpaceActionPerformed
@@ -3767,7 +3796,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		update();
 	}//xxx-gen-last-xxx:event_buttonGameEditorGiveAllPropertiesActionPerformed
 
-	// </editor-fold>
 	private void comboBoxPlayerSelectionPropertyChange(java.beans.PropertyChangeEvent evt) {//xxx-gen-first-xxx:event_comboBoxPlayerSelectionPropertyChange
 
 	}//xxx-gen-last-xxx:event_comboBoxPlayerSelectionPropertyChange
@@ -3775,6 +3803,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 	private void comboBoxPlayerSelectionActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_comboBoxPlayerSelectionActionPerformed
 		gameEditorPlayer = board.players.get(1 + comboBoxPlayerSelection.getSelectedIndex());
 	}//xxx-gen-last-xxx:event_comboBoxPlayerSelectionActionPerformed
+	// </editor-fold>
 
 	// <editor-fold desc="Animated button space icons">
 	private void buttonSpace12MouseEntered(java.awt.event.MouseEvent evt) {//xxx-gen-first-xxx:event_buttonSpace12MouseEntered
@@ -3818,6 +3847,17 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 	}//xxx-gen-last-xxx:event_buttonSpace38MouseExited
 	// </editor-fold>
 
+	private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_jButton5ActionPerformed
+		aboutDialog.setVisible(false);
+	}//xxx-gen-last-xxx:event_jButton5ActionPerformed
+
+	private void buttonReleasePlayerActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonReleasePlayerActionPerformed
+		gameEditorPlayer.setIsJailed(false);
+		gameEditorPlayer.setInitialJailTurn(false);
+		controller.appendToGameLog("[Game Editor]: Released " + gameEditorPlayer.getCustomName() + " from jail.");
+		update();
+	}//xxx-gen-last-xxx:event_buttonReleasePlayerActionPerformed
+
 	private void formComponentMoved(java.awt.event.ComponentEvent evt) {//xxx-gen-first-xxx:event_formComponentMoved
 
 		for (JDialog d : jDialogs) {
@@ -3835,28 +3875,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		forfeitDialog.setVisible(false);
 	}//xxx-gen-last-xxx:event_forfeitDialogButtonNoActionPerformed
 
-	// <editor-fold desc="Dialog - mortgage">
-	private void buttonBuildHouseActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonBuildHouseActionPerformed
-		controller.improvementsManager(currentSpaceSelectionID, GameLogicController.ImprovementsActions.buildHouse);
-		update();
-	}//xxx-gen-last-xxx:event_buttonBuildHouseActionPerformed
-
-	private void buttonSellHouseActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonSellHouseActionPerformed
-		controller.improvementsManager(currentSpaceSelectionID, GameLogicController.ImprovementsActions.sellHouse);
-		update();
-	}//xxx-gen-last-xxx:event_buttonSellHouseActionPerformed
-
-	private void buttonBuildHotelActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonBuildHotelActionPerformed
-		controller.improvementsManager(currentSpaceSelectionID, GameLogicController.ImprovementsActions.buildHotel);
-		update();
-	}//xxx-gen-last-xxx:event_buttonBuildHotelActionPerformed
-
-	private void buttonSellHotelActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonSellHotelActionPerformed
-		controller.improvementsManager(currentSpaceSelectionID, GameLogicController.ImprovementsActions.sellHotel);
-		update();
-	}//xxx-gen-last-xxx:event_buttonSellHotelActionPerformed
-	// </editor-fold>
-
 	private void buttonActionTradeActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonActionTradeActionPerformed
 		toggleBoardVisibility();
 	}//xxx-gen-last-xxx:event_buttonActionTradeActionPerformed
@@ -3864,20 +3882,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 	private void formattedTextFieldGameLogSearchActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_formattedTextFieldGameLogSearchActionPerformed
 		updateGameLogWithSearchQuery(formattedTextFieldGameLogSearch.getText());
 	}//xxx-gen-last-xxx:event_formattedTextFieldGameLogSearchActionPerformed
-
-	private void buttonGameSetupCloseDialogActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonGameSetupCloseDialogActionPerformed
-		gameSetupDialog.setVisible(false);
-	}//xxx-gen-last-xxx:event_buttonGameSetupCloseDialogActionPerformed
-
-	private void buttonPartyModeActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonPartyModeActionPerformed
-		partyMode();
-	}//xxx-gen-last-xxx:event_buttonPartyModeActionPerformed
-
-	private void buttonResetHighlightActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonResetHighlightActionPerformed
-		for (JButton b : spaceButtons) {
-			b.setBorder(null);
-		}
-	}//xxx-gen-last-xxx:event_buttonResetHighlightActionPerformed
 
 	private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_jButton1ActionPerformed
 		debugToolsDialog.setVisible(false);
@@ -3896,7 +3900,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		logHelper.clearLogs();
 		update();
 	}//xxx-gen-last-xxx:event_jButton6ActionPerformed
-	// </editor-fold>
 
 	private void updateGameLogWithSearchQuery(String inputQuery) {
 		gameLogContentsFiltered = logHelper.getGameLogContentsFiltered(inputQuery);
