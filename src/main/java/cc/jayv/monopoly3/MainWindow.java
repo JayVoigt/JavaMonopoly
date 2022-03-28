@@ -3089,441 +3089,6 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		}
 	}
 
-	// </editor-fold>
-	
-	// <editor-fold desc="Button locking and unlocking">
-	private void unlockRollDice() {
-		buttonRollDice.setEnabled(true);
-		appendToDebugLog("diceRoll unlocked.");
-	}
-
-	private void lockRollDice() {
-		buttonRollDice.setEnabled(false);
-		appendToDebugLog("diceRoll locked.");
-	}
-
-	private void unlockEndTurn() {
-		buttonEndTurn.setEnabled(true);
-		appendToDebugLog("endTurn unlocked.");
-	}
-
-	private void lockEndTurn() {
-		buttonEndTurn.setEnabled(false);
-		appendToDebugLog("endTurn locked.");
-	}
-	// </editor-fold>
-
-	// <editor-fold desc="File menu">
-    private void menuFileQuitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuFileQuitActionPerformed
-		System.exit(0);
-    }//GEN-LAST:event_menuFileQuitActionPerformed
-
-    private void menuFileNewGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuFileNewGameActionPerformed
-		swingHelper.setCustomAppearanceJDialog(gameSetupDialog);
-		gameSetupDialog.setVisible(true);
-		appendToDebugLog("New game dialog opened.");
-    }//GEN-LAST:event_menuFileNewGameActionPerformed
-
-    private void menuFileLoadGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuFileLoadGameActionPerformed
-		int openGameReturn = openFileChooser.showOpenDialog(openFileChooserPanel);
-		if (openGameReturn == JFileChooser.APPROVE_OPTION) {
-			File gameStateInputFile = openFileChooser.getSelectedFile();
-			try {
-				openGameState(gameStateInputFile);
-			} catch (IOException ex) {
-				Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
-			} catch (ClassNotFoundException ex) {
-				Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
-			}
-		}
-    }//GEN-LAST:event_menuFileLoadGameActionPerformed
-
-    private void menuFileSaveGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuFileSaveGameActionPerformed
-		int saveGameReturn = saveFileChooser.showSaveDialog(saveFileChoserPanel);
-		if (saveGameReturn == JFileChooser.APPROVE_OPTION) {
-			File gameStateOutputFile = saveFileChooser.getSelectedFile();
-			try {
-				saveGameState(gameStateOutputFile);
-			} catch (IOException ex) {
-				Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
-			}
-		}
-    }//GEN-LAST:event_menuFileSaveGameActionPerformed
-
-	private void saveGameState(File saveOutputFile) throws IOException {
-		System.out.println(saveOutputFile);
-
-		FileOutputStream f = new FileOutputStream("game.jmsg");
-		ObjectOutput s = new ObjectOutputStream(f);
-		s.writeObject(board);
-		s.writeObject(controller);
-		s.flush();
-	}
-
-	private void openGameState(File saveInputFile) throws IOException, ClassNotFoundException {
-		System.out.println(saveInputFile);
-
-		FileInputStream in = new FileInputStream("game.jmsg");
-		ObjectInputStream s = new ObjectInputStream(in);
-		board = (Board) s.readObject();
-		controller = (GameLogicController) s.readObject();
-	}
-
-	// </editor-fold>
-	
-	// <editor-fold desc="buttonSpace<N>ActionPerformed">
-    private void buttonSpace0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSpace0ActionPerformed
-		updateSpaceSelection(0);
-    }//GEN-LAST:event_buttonSpace0ActionPerformed
-
-    private void buttonSpace1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSpace1ActionPerformed
-		updateSpaceSelection(1);
-    }//GEN-LAST:event_buttonSpace1ActionPerformed
-
-    private void buttonSpace2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSpace2ActionPerformed
-		updateSpaceSelection(2);    // TODO add your handling code here:
-    }//GEN-LAST:event_buttonSpace2ActionPerformed
-
-    private void buttonSpace3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSpace3ActionPerformed
-		updateSpaceSelection(3);
-    }//GEN-LAST:event_buttonSpace3ActionPerformed
-
-    private void buttonSpace4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSpace4ActionPerformed
-		updateSpaceSelection(4);
-    }//GEN-LAST:event_buttonSpace4ActionPerformed
-
-    private void buttonSpace5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSpace5ActionPerformed
-		updateSpaceSelection(5);
-    }//GEN-LAST:event_buttonSpace5ActionPerformed
-
-    private void buttonSpace6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSpace6ActionPerformed
-		updateSpaceSelection(6);
-    }//GEN-LAST:event_buttonSpace6ActionPerformed
-
-    private void buttonSpace7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSpace7ActionPerformed
-		updateSpaceSelection(7);
-        }//GEN-LAST:event_buttonSpace7ActionPerformed
-    private void buttonSpace8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSpace8ActionPerformed
-		updateSpaceSelection(8);
-    }//GEN-LAST:event_buttonSpace8ActionPerformed
-
-    private void buttonSpace9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSpace9ActionPerformed
-		updateSpaceSelection(9);
-    }//GEN-LAST:event_buttonSpace9ActionPerformed
-
-    private void buttonSpace10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSpace10ActionPerformed
-		updateSpaceSelection(10);
-    }//GEN-LAST:event_buttonSpace10ActionPerformed
-
-    private void buttonSpace11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSpace11ActionPerformed
-		updateSpaceSelection(11);
-    }//GEN-LAST:event_buttonSpace11ActionPerformed
-
-    private void buttonSpace12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSpace12ActionPerformed
-		updateSpaceSelection(12);
-    }//GEN-LAST:event_buttonSpace12ActionPerformed
-
-    private void buttonSpace13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSpace13ActionPerformed
-		updateSpaceSelection(13);
-    }//GEN-LAST:event_buttonSpace13ActionPerformed
-
-    private void buttonSpace14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSpace14ActionPerformed
-		updateSpaceSelection(14);
-    }//GEN-LAST:event_buttonSpace14ActionPerformed
-
-    private void buttonSpace15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSpace15ActionPerformed
-		updateSpaceSelection(15);
-    }//GEN-LAST:event_buttonSpace15ActionPerformed
-
-    private void buttonSpace16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSpace16ActionPerformed
-		updateSpaceSelection(16);
-    }//GEN-LAST:event_buttonSpace16ActionPerformed
-
-    private void buttonSpace17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSpace17ActionPerformed
-		updateSpaceSelection(17);
-    }//GEN-LAST:event_buttonSpace17ActionPerformed
-
-    private void buttonSpace18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSpace18ActionPerformed
-		updateSpaceSelection(18);
-    }//GEN-LAST:event_buttonSpace18ActionPerformed
-
-    private void buttonSpace19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSpace19ActionPerformed
-		updateSpaceSelection(19);
-    }//GEN-LAST:event_buttonSpace19ActionPerformed
-
-    private void buttonSpace20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSpace20ActionPerformed
-		updateSpaceSelection(20);
-    }//GEN-LAST:event_buttonSpace20ActionPerformed
-
-    private void buttonSpace21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSpace21ActionPerformed
-		updateSpaceSelection(21);
-    }//GEN-LAST:event_buttonSpace21ActionPerformed
-
-    private void buttonSpace22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSpace22ActionPerformed
-		updateSpaceSelection(22);
-    }//GEN-LAST:event_buttonSpace22ActionPerformed
-
-    private void buttonSpace23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSpace23ActionPerformed
-		updateSpaceSelection(23);
-    }//GEN-LAST:event_buttonSpace23ActionPerformed
-
-    private void buttonSpace24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSpace24ActionPerformed
-		updateSpaceSelection(24);
-    }//GEN-LAST:event_buttonSpace24ActionPerformed
-
-    private void buttonSpace25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSpace25ActionPerformed
-		updateSpaceSelection(25);
-    }//GEN-LAST:event_buttonSpace25ActionPerformed
-
-    private void buttonSpace26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSpace26ActionPerformed
-		updateSpaceSelection(26);
-    }//GEN-LAST:event_buttonSpace26ActionPerformed
-
-    private void buttonSpace27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSpace27ActionPerformed
-		updateSpaceSelection(27);
-    }//GEN-LAST:event_buttonSpace27ActionPerformed
-
-    private void buttonSpace28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSpace28ActionPerformed
-		updateSpaceSelection(28);
-    }//GEN-LAST:event_buttonSpace28ActionPerformed
-
-    private void buttonSpace29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSpace29ActionPerformed
-		updateSpaceSelection(29);
-    }//GEN-LAST:event_buttonSpace29ActionPerformed
-
-    private void buttonSpace30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSpace30ActionPerformed
-		updateSpaceSelection(30);
-    }//GEN-LAST:event_buttonSpace30ActionPerformed
-
-    private void buttonSpace31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSpace31ActionPerformed
-		updateSpaceSelection(31);
-    }//GEN-LAST:event_buttonSpace31ActionPerformed
-
-    private void buttonSpace32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSpace32ActionPerformed
-		updateSpaceSelection(32);
-    }//GEN-LAST:event_buttonSpace32ActionPerformed
-
-    private void buttonSpace33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSpace33ActionPerformed
-		updateSpaceSelection(33);
-    }//GEN-LAST:event_buttonSpace33ActionPerformed
-
-    private void buttonSpace34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSpace34ActionPerformed
-		updateSpaceSelection(34);
-    }//GEN-LAST:event_buttonSpace34ActionPerformed
-
-    private void buttonSpace35ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSpace35ActionPerformed
-		updateSpaceSelection(35);
-    }//GEN-LAST:event_buttonSpace35ActionPerformed
-
-    private void buttonSpace36ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSpace36ActionPerformed
-		updateSpaceSelection(36);
-    }//GEN-LAST:event_buttonSpace36ActionPerformed
-
-    private void buttonSpace37ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSpace37ActionPerformed
-		updateSpaceSelection(37);
-    }//GEN-LAST:event_buttonSpace37ActionPerformed
-
-    private void buttonSpace38ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSpace38ActionPerformed
-		updateSpaceSelection(38);
-    }//GEN-LAST:event_buttonSpace38ActionPerformed
-
-    private void buttonSpace39ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSpace39ActionPerformed
-		updateSpaceSelection(39);
-    }//GEN-LAST:event_buttonSpace39ActionPerformed
-	//</editor-fold>
-
-    private void menuEditGameEditorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuEditGameEditorActionPerformed
-		swingHelper.setCustomAppearanceJDialog(gameEditorDialog);
-
-		gameEditorDialog.setVisible(true);
-		controller.appendToGameLog("Game Editor was opened!");
-		update();
-    }//GEN-LAST:event_menuEditGameEditorActionPerformed
-
-	// <editor-fold desc="End turn/roll dice buttons">
-    private void buttonRollDiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRollDiceActionPerformed
-		controller.diceRollManager();
-		update();
-    }//GEN-LAST:event_buttonRollDiceActionPerformed
-
-    private void buttonEndTurnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEndTurnActionPerformed
-		controller.endTurnManager();
-		update();
-//		readyUIForNextPlayer();
-    }//GEN-LAST:event_buttonEndTurnActionPerformed
-	// </editor-fold>
-
-	// <editor-fold desc="User prompts">
-	public void promptUserForPropertyDecision() {
-		swingHelper.setCustomAppearanceJDialog(askPropertyDecisionDialog);
-		askPropertyDecisionDialog.setVisible(true);
-	}
-	// </editor-fold>
-
-	// <editor-fold desc="Statistics pane">
-	private void updateStatsPane() {
-
-	}
-	// </editor-fold>
-
-    private void buttonSpace20MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonSpace20MouseEntered
-		buttonSpace20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/free-parking-anim.gif")));
-    }//GEN-LAST:event_buttonSpace20MouseEntered
-
-    private void menuViewCheckBoxShowDebugLogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuViewCheckBoxShowDebugLogActionPerformed
-		if (menuViewCheckBoxShowDebugLog.getState() == true) {
-			debugLogFrame.setVisible(true);
-		}
-		else {
-			debugLogFrame.setVisible(false);
-		}
-    }//GEN-LAST:event_menuViewCheckBoxShowDebugLogActionPerformed
-	// </editor-fold>
-
-    private void menuEditDebugToolsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuEditDebugToolsActionPerformed
-		swingHelper.setCustomAppearanceJDialog(debugToolsDialog);
-		debugToolsDialog.setVisible(true);
-    }//GEN-LAST:event_menuEditDebugToolsActionPerformed
-
-    private void buttonPropertyDecisionPurchaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPropertyDecisionPurchaseActionPerformed
-		controller.playerDecisionPurchaseProperty();
-		update();
-    }//GEN-LAST:event_buttonPropertyDecisionPurchaseActionPerformed
-
-    private void menuViewManuallyUpdateViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuViewManuallyUpdateViewActionPerformed
-		update();
-    }//GEN-LAST:event_menuViewManuallyUpdateViewActionPerformed
-
-    private void checkBoxGameSetupPlayer3ComputerControlledActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBoxGameSetupPlayer3ComputerControlledActionPerformed
-		// TODO add your handling code here:
-    }//GEN-LAST:event_checkBoxGameSetupPlayer3ComputerControlledActionPerformed
-
-    private void checkBoxGameSetupPlayer1ComputerControlledActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBoxGameSetupPlayer1ComputerControlledActionPerformed
-		if (checkBoxGameSetupPlayer1ComputerControlled.isSelected() == true) {
-			board.players.get(1).setIsComputerControlled(true);
-		}
-		else {
-			board.players.get(1).setIsComputerControlled(false);
-		}
-    }//GEN-LAST:event_checkBoxGameSetupPlayer1ComputerControlledActionPerformed
-
-    private void checkBoxGameSetupPlayer2ComputerControlledActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBoxGameSetupPlayer2ComputerControlledActionPerformed
-		if (checkBoxGameSetupPlayer2ComputerControlled.isSelected() == true) {
-			board.players.get(2).setIsComputerControlled(true);
-		}
-		else {
-			board.players.get(2).setIsComputerControlled(false);
-		}
-    }//GEN-LAST:event_checkBoxGameSetupPlayer2ComputerControlledActionPerformed
-
-    private void buttonGameSetupTriggerDebugMessageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGameSetupTriggerDebugMessageActionPerformed
-		appendToDebugLog("Debug test button pressed.");
-    }//GEN-LAST:event_buttonGameSetupTriggerDebugMessageActionPerformed
-
-    private void textFieldGameSetupPlayer1CustomNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldGameSetupPlayer1CustomNameActionPerformed
-		// TODO add your handling code here:
-    }//GEN-LAST:event_textFieldGameSetupPlayer1CustomNameActionPerformed
-
-    private void spinnerStartingBalancePropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_spinnerStartingBalancePropertyChange
-		int inputStartingBalance = (int) spinnerStartingBalance.getValue();
-    }//GEN-LAST:event_spinnerStartingBalancePropertyChange
-
-    private void comboBoxPlayersCountPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_comboBoxPlayersCountPropertyChange
-
-    }//GEN-LAST:event_comboBoxPlayersCountPropertyChange
-
-    private void comboBoxPlayersCountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxPlayersCountActionPerformed
-		String inputPlayersCount = comboBoxPlayersCount.getSelectedItem().toString();
-		if (inputPlayersCount.equals("1")) {
-			textFieldGameSetupPlayer1CustomName.setEnabled(true);
-			textFieldGameSetupPlayer2CustomName.setEnabled(false);
-			textFieldGameSetupPlayer3CustomName.setEnabled(false);
-			textFieldGameSetupPlayer4CustomName.setEnabled(false);
-		}
-		else if (inputPlayersCount.equals("2")) {
-			textFieldGameSetupPlayer1CustomName.setEnabled(true);
-			textFieldGameSetupPlayer2CustomName.setEnabled(true);
-			textFieldGameSetupPlayer3CustomName.setEnabled(false);
-			textFieldGameSetupPlayer4CustomName.setEnabled(false);
-		}
-		else if (inputPlayersCount.equals("3")) {
-			textFieldGameSetupPlayer1CustomName.setEnabled(true);
-			textFieldGameSetupPlayer2CustomName.setEnabled(true);
-			textFieldGameSetupPlayer3CustomName.setEnabled(true);
-			textFieldGameSetupPlayer4CustomName.setEnabled(false);
-		}
-		else if (inputPlayersCount.equals("4")) {
-			textFieldGameSetupPlayer1CustomName.setEnabled(true);
-			textFieldGameSetupPlayer2CustomName.setEnabled(true);
-			textFieldGameSetupPlayer3CustomName.setEnabled(true);
-			textFieldGameSetupPlayer4CustomName.setEnabled(true);
-		}
-    }//GEN-LAST:event_comboBoxPlayersCountActionPerformed
-
-    private void buttonGameSetupStartGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGameSetupStartGameActionPerformed
-		controller.setIsGameActive(true);
-		String inputPlayersCount = comboBoxPlayersCount.getSelectedItem().toString();
-
-		int localPlayersCount = Integer.parseInt(inputPlayersCount);
-		controller.setPlayersCount(localPlayersCount);
-
-		if (localPlayersCount == 1) {
-			iconPlayer2Position.setVisible(false);
-			iconPlayer3Position.setVisible(false);
-			iconPlayer4Position.setVisible(false);
-		}
-		else if (localPlayersCount == 2) {
-			iconPlayer3Position.setVisible(false);
-			iconPlayer4Position.setVisible(false);
-		}
-		else if (localPlayersCount == 3) {
-			iconPlayer4Position.setVisible(false);
-		}
-
-		gameSetupDialog.setVisible(false);
-
-		board.players.get(1).setCustomName(textFieldGameSetupPlayer1CustomName.getText());
-		board.players.get(2).setCustomName(textFieldGameSetupPlayer2CustomName.getText());
-		board.players.get(3).setCustomName(textFieldGameSetupPlayer3CustomName.getText());
-		board.players.get(4).setCustomName(textFieldGameSetupPlayer4CustomName.getText());
-
-		controller.sendInitGameMessage();
-
-		controller.initialEvaluator();
-		update();
-    }//GEN-LAST:event_buttonGameSetupStartGameActionPerformed
-
-    private void menuHelpAboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuHelpAboutActionPerformed
-		swingHelper.setCustomAppearanceJDialog(aboutDialog);
-		aboutDialog.setLocation(frameBoard.getLocationOnScreen().x, frameBoard.getLocationOnScreen().y);
-		aboutDialog.setVisible(true);
-    }//GEN-LAST:event_menuHelpAboutActionPerformed
-
-    private void menuViewToggleExtraPaddingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuViewToggleExtraPaddingActionPerformed
-		if (menuViewToggleExtraPadding.isEnabled() == true) {
-			controller.setExtraTextPadding(true);
-		}
-		else {
-			controller.setExtraTextPadding(false);
-		}
-    }//GEN-LAST:event_menuViewToggleExtraPaddingActionPerformed
-
-    private void buttonActionImprovementsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonActionImprovementsActionPerformed
-		swingHelper.setCustomAppearanceJDialog(improvementsDialog);
-		updateImprovementsDialog();
-
-		labelSelectedProperty.setText("Select a property.");
-		labelImprovementInfo.setText("No property selected.");
-
-		if (improvementsDialog.isVisible() == false) {
-			improvementsDialog.setVisible(true);
-			buttonPropertiesActionPerformed(evt);
-		}
-		else {
-			improvementsDialog.setVisible(false);
-		}
-    }//GEN-LAST:event_buttonActionImprovementsActionPerformed
-
 	private void updateImprovementsDialog() {
 		Space localSpace = board.spaces.get(currentSpaceSelectionID);
 		Property localProperty;
@@ -3580,32 +3145,478 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		}
 	}
 
-    private void buttonPropertiesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPropertiesActionPerformed
+	// </editor-fold>
+	// <editor-fold desc="Button locking and unlocking">
+	private void unlockRollDice() {
+		buttonRollDice.setEnabled(true);
+		appendToDebugLog("diceRoll unlocked.");
+	}
 
-    }//GEN-LAST:event_buttonPropertiesActionPerformed
+	private void lockRollDice() {
+		buttonRollDice.setEnabled(false);
+		appendToDebugLog("diceRoll locked.");
+	}
 
-    private void buttonJailDialogPostBailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonJailDialogPostBailActionPerformed
+	private void unlockEndTurn() {
+		buttonEndTurn.setEnabled(true);
+		appendToDebugLog("endTurn unlocked.");
+	}
+
+	private void lockEndTurn() {
+		buttonEndTurn.setEnabled(false);
+		appendToDebugLog("endTurn locked.");
+	}
+	// </editor-fold>
+
+	// <editor-fold desc="Menu bar">
+	private void menuFileQuitActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_menuFileQuitActionPerformed
+		System.exit(0);
+	}//xxx-gen-last-xxx:event_menuFileQuitActionPerformed
+
+	private void menuFileNewGameActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_menuFileNewGameActionPerformed
+		swingHelper.setCustomAppearanceJDialog(gameSetupDialog);
+		gameSetupDialog.setVisible(true);
+		appendToDebugLog("New game dialog opened.");
+	}//xxx-gen-last-xxx:event_menuFileNewGameActionPerformed
+
+	private void menuFileLoadGameActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_menuFileLoadGameActionPerformed
+		int openGameReturn = openFileChooser.showOpenDialog(openFileChooserPanel);
+		if (openGameReturn == JFileChooser.APPROVE_OPTION) {
+			File gameStateInputFile = openFileChooser.getSelectedFile();
+			try {
+				openGameState(gameStateInputFile);
+			} catch (IOException ex) {
+				Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+			} catch (ClassNotFoundException ex) {
+				Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+			}
+		}
+	}//xxx-gen-last-xxx:event_menuFileLoadGameActionPerformed
+
+	private void menuFileSaveGameActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_menuFileSaveGameActionPerformed
+		int saveGameReturn = saveFileChooser.showSaveDialog(saveFileChoserPanel);
+		if (saveGameReturn == JFileChooser.APPROVE_OPTION) {
+			File gameStateOutputFile = saveFileChooser.getSelectedFile();
+			try {
+				saveGameState(gameStateOutputFile);
+			} catch (IOException ex) {
+				Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+			}
+		}
+	}//xxx-gen-last-xxx:event_menuFileSaveGameActionPerformed
+
+	private void saveGameState(File saveOutputFile) throws IOException {
+		System.out.println(saveOutputFile);
+
+		FileOutputStream f = new FileOutputStream("game.jmsg");
+		ObjectOutput s = new ObjectOutputStream(f);
+		s.writeObject(board);
+		s.writeObject(controller);
+		s.flush();
+	}
+
+	private void openGameState(File saveInputFile) throws IOException, ClassNotFoundException {
+		System.out.println(saveInputFile);
+
+		FileInputStream in = new FileInputStream("game.jmsg");
+		ObjectInputStream s = new ObjectInputStream(in);
+		board = (Board) s.readObject();
+		controller = (GameLogicController) s.readObject();
+	}
+
+	private void menuViewCheckBoxShowDebugLogActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_menuViewCheckBoxShowDebugLogActionPerformed
+		if (menuViewCheckBoxShowDebugLog.getState() == true) {
+			debugLogFrame.setVisible(true);
+		}
+		else {
+			debugLogFrame.setVisible(false);
+		}
+	}//xxx-gen-last-xxx:event_menuViewCheckBoxShowDebugLogActionPerformed
+
+	private void menuEditDebugToolsActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_menuEditDebugToolsActionPerformed
+		swingHelper.setCustomAppearanceJDialog(debugToolsDialog);
+		debugToolsDialog.setVisible(true);
+	}//xxx-gen-last-xxx:event_menuEditDebugToolsActionPerformed
+
+	private void menuViewManuallyUpdateViewActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_menuViewManuallyUpdateViewActionPerformed
+		update();
+	}//xxx-gen-last-xxx:event_menuViewManuallyUpdateViewActionPerformed
+
+	private void menuHelpAboutActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_menuHelpAboutActionPerformed
+		swingHelper.setCustomAppearanceJDialog(aboutDialog);
+		aboutDialog.setLocation(frameBoard.getLocationOnScreen().x, frameBoard.getLocationOnScreen().y);
+		aboutDialog.setVisible(true);
+	}//xxx-gen-last-xxx:event_menuHelpAboutActionPerformed
+
+	private void menuViewToggleExtraPaddingActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_menuViewToggleExtraPaddingActionPerformed
+		if (menuViewToggleExtraPadding.isEnabled() == true) {
+			controller.setExtraTextPadding(true);
+		}
+		else {
+			controller.setExtraTextPadding(false);
+		}
+	}//xxx-gen-last-xxx:event_menuViewToggleExtraPaddingActionPerformed
+
+	// </editor-fold>
+	// <editor-fold desc="buttonSpace<N>ActionPerformed">
+	private void buttonSpace0ActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonSpace0ActionPerformed
+		updateSpaceSelection(0);
+	}//xxx-gen-last-xxx:event_buttonSpace0ActionPerformed
+
+	private void buttonSpace1ActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonSpace1ActionPerformed
+		updateSpaceSelection(1);
+	}//xxx-gen-last-xxx:event_buttonSpace1ActionPerformed
+
+	private void buttonSpace2ActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonSpace2ActionPerformed
+		updateSpaceSelection(2);    // TODO add your handling code here:
+	}//xxx-gen-last-xxx:event_buttonSpace2ActionPerformed
+
+	private void buttonSpace3ActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonSpace3ActionPerformed
+		updateSpaceSelection(3);
+	}//xxx-gen-last-xxx:event_buttonSpace3ActionPerformed
+
+	private void buttonSpace4ActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonSpace4ActionPerformed
+		updateSpaceSelection(4);
+	}//xxx-gen-last-xxx:event_buttonSpace4ActionPerformed
+
+	private void buttonSpace5ActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonSpace5ActionPerformed
+		updateSpaceSelection(5);
+	}//xxx-gen-last-xxx:event_buttonSpace5ActionPerformed
+
+	private void buttonSpace6ActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonSpace6ActionPerformed
+		updateSpaceSelection(6);
+	}//xxx-gen-last-xxx:event_buttonSpace6ActionPerformed
+
+	private void buttonSpace7ActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonSpace7ActionPerformed
+		updateSpaceSelection(7);
+	}//xxx-gen-last-xxx:event_buttonSpace7ActionPerformed
+
+	private void buttonSpace8ActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonSpace8ActionPerformed
+		updateSpaceSelection(8);
+	}//xxx-gen-last-xxx:event_buttonSpace8ActionPerformed
+
+	private void buttonSpace9ActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonSpace9ActionPerformed
+		updateSpaceSelection(9);
+	}//xxx-gen-last-xxx:event_buttonSpace9ActionPerformed
+
+	private void buttonSpace10ActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonSpace10ActionPerformed
+		updateSpaceSelection(10);
+	}//xxx-gen-last-xxx:event_buttonSpace10ActionPerformed
+
+	private void buttonSpace11ActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonSpace11ActionPerformed
+		updateSpaceSelection(11);
+	}//xxx-gen-last-xxx:event_buttonSpace11ActionPerformed
+
+	private void buttonSpace12ActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonSpace12ActionPerformed
+		updateSpaceSelection(12);
+	}//xxx-gen-last-xxx:event_buttonSpace12ActionPerformed
+
+	private void buttonSpace13ActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonSpace13ActionPerformed
+		updateSpaceSelection(13);
+	}//xxx-gen-last-xxx:event_buttonSpace13ActionPerformed
+
+	private void buttonSpace14ActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonSpace14ActionPerformed
+		updateSpaceSelection(14);
+	}//xxx-gen-last-xxx:event_buttonSpace14ActionPerformed
+
+	private void buttonSpace15ActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonSpace15ActionPerformed
+		updateSpaceSelection(15);
+	}//xxx-gen-last-xxx:event_buttonSpace15ActionPerformed
+
+	private void buttonSpace16ActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonSpace16ActionPerformed
+		updateSpaceSelection(16);
+	}//xxx-gen-last-xxx:event_buttonSpace16ActionPerformed
+
+	private void buttonSpace17ActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonSpace17ActionPerformed
+		updateSpaceSelection(17);
+	}//xxx-gen-last-xxx:event_buttonSpace17ActionPerformed
+
+	private void buttonSpace18ActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonSpace18ActionPerformed
+		updateSpaceSelection(18);
+	}//xxx-gen-last-xxx:event_buttonSpace18ActionPerformed
+
+	private void buttonSpace19ActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonSpace19ActionPerformed
+		updateSpaceSelection(19);
+	}//xxx-gen-last-xxx:event_buttonSpace19ActionPerformed
+
+	private void buttonSpace20ActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonSpace20ActionPerformed
+		updateSpaceSelection(20);
+	}//xxx-gen-last-xxx:event_buttonSpace20ActionPerformed
+
+	private void buttonSpace21ActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonSpace21ActionPerformed
+		updateSpaceSelection(21);
+	}//xxx-gen-last-xxx:event_buttonSpace21ActionPerformed
+
+	private void buttonSpace22ActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonSpace22ActionPerformed
+		updateSpaceSelection(22);
+	}//xxx-gen-last-xxx:event_buttonSpace22ActionPerformed
+
+	private void buttonSpace23ActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonSpace23ActionPerformed
+		updateSpaceSelection(23);
+	}//xxx-gen-last-xxx:event_buttonSpace23ActionPerformed
+
+	private void buttonSpace24ActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonSpace24ActionPerformed
+		updateSpaceSelection(24);
+	}//xxx-gen-last-xxx:event_buttonSpace24ActionPerformed
+
+	private void buttonSpace25ActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonSpace25ActionPerformed
+		updateSpaceSelection(25);
+	}//xxx-gen-last-xxx:event_buttonSpace25ActionPerformed
+
+	private void buttonSpace26ActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonSpace26ActionPerformed
+		updateSpaceSelection(26);
+	}//xxx-gen-last-xxx:event_buttonSpace26ActionPerformed
+
+	private void buttonSpace27ActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonSpace27ActionPerformed
+		updateSpaceSelection(27);
+	}//xxx-gen-last-xxx:event_buttonSpace27ActionPerformed
+
+	private void buttonSpace28ActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonSpace28ActionPerformed
+		updateSpaceSelection(28);
+	}//xxx-gen-last-xxx:event_buttonSpace28ActionPerformed
+
+	private void buttonSpace29ActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonSpace29ActionPerformed
+		updateSpaceSelection(29);
+	}//xxx-gen-last-xxx:event_buttonSpace29ActionPerformed
+
+	private void buttonSpace30ActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonSpace30ActionPerformed
+		updateSpaceSelection(30);
+	}//xxx-gen-last-xxx:event_buttonSpace30ActionPerformed
+
+	private void buttonSpace31ActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonSpace31ActionPerformed
+		updateSpaceSelection(31);
+	}//xxx-gen-last-xxx:event_buttonSpace31ActionPerformed
+
+	private void buttonSpace32ActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonSpace32ActionPerformed
+		updateSpaceSelection(32);
+	}//xxx-gen-last-xxx:event_buttonSpace32ActionPerformed
+
+	private void buttonSpace33ActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonSpace33ActionPerformed
+		updateSpaceSelection(33);
+	}//xxx-gen-last-xxx:event_buttonSpace33ActionPerformed
+
+	private void buttonSpace34ActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonSpace34ActionPerformed
+		updateSpaceSelection(34);
+	}//xxx-gen-last-xxx:event_buttonSpace34ActionPerformed
+
+	private void buttonSpace35ActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonSpace35ActionPerformed
+		updateSpaceSelection(35);
+	}//xxx-gen-last-xxx:event_buttonSpace35ActionPerformed
+
+	private void buttonSpace36ActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonSpace36ActionPerformed
+		updateSpaceSelection(36);
+	}//xxx-gen-last-xxx:event_buttonSpace36ActionPerformed
+
+	private void buttonSpace37ActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonSpace37ActionPerformed
+		updateSpaceSelection(37);
+	}//xxx-gen-last-xxx:event_buttonSpace37ActionPerformed
+
+	private void buttonSpace38ActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonSpace38ActionPerformed
+		updateSpaceSelection(38);
+	}//xxx-gen-last-xxx:event_buttonSpace38ActionPerformed
+
+	private void buttonSpace39ActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonSpace39ActionPerformed
+		updateSpaceSelection(39);
+	}//xxx-gen-last-xxx:event_buttonSpace39ActionPerformed
+	//</editor-fold>
+
+	private void menuEditGameEditorActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_menuEditGameEditorActionPerformed
+		swingHelper.setCustomAppearanceJDialog(gameEditorDialog);
+
+		gameEditorDialog.setVisible(true);
+		controller.appendToGameLog("Game Editor was opened!");
+		update();
+	}//xxx-gen-last-xxx:event_menuEditGameEditorActionPerformed
+
+	// <editor-fold desc="End turn/roll dice buttons">
+	private void buttonRollDiceActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonRollDiceActionPerformed
+		controller.diceRollManager();
+		update();
+	}//xxx-gen-last-xxx:event_buttonRollDiceActionPerformed
+
+	private void buttonEndTurnActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonEndTurnActionPerformed
+		controller.endTurnManager();
+		update();
+//		readyUIForNextPlayer();
+	}//xxx-gen-last-xxx:event_buttonEndTurnActionPerformed
+	// </editor-fold>
+
+	// <editor-fold desc="User prompts">
+	public void promptUserForPropertyDecision() {
+		swingHelper.setCustomAppearanceJDialog(askPropertyDecisionDialog);
+		askPropertyDecisionDialog.setVisible(true);
+	}
+	// </editor-fold>
+
+	// <editor-fold desc="Statistics pane">
+	private void updateStatsPane() {
+
+	}
+	// </editor-fold>
+
+	// <editor-fold desc="Dialog - game setup">
+	private void buttonPropertyDecisionPurchaseActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonPropertyDecisionPurchaseActionPerformed
+		controller.playerDecisionPurchaseProperty();
+		update();
+	}//xxx-gen-last-xxx:event_buttonPropertyDecisionPurchaseActionPerformed
+
+	private void checkBoxGameSetupPlayer1ComputerControlledActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_checkBoxGameSetupPlayer1ComputerControlledActionPerformed
+		if (checkBoxGameSetupPlayer1ComputerControlled.isSelected() == true) {
+			board.players.get(1).setIsComputerControlled(true);
+		}
+		else {
+			board.players.get(1).setIsComputerControlled(false);
+		}
+	}//xxx-gen-last-xxx:event_checkBoxGameSetupPlayer1ComputerControlledActionPerformed
+
+	private void checkBoxGameSetupPlayer2ComputerControlledActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_checkBoxGameSetupPlayer2ComputerControlledActionPerformed
+		if (checkBoxGameSetupPlayer2ComputerControlled.isSelected() == true) {
+			board.players.get(2).setIsComputerControlled(true);
+		}
+		else {
+			board.players.get(2).setIsComputerControlled(false);
+		}
+	}//xxx-gen-last-xxx:event_checkBoxGameSetupPlayer2ComputerControlledActionPerformed
+
+	private void checkBoxGameSetupPlayer3ComputerControlledActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_checkBoxGameSetupPlayer3ComputerControlledActionPerformed
+		// TODO add your handling code here:
+	}//xxx-gen-last-xxx:event_checkBoxGameSetupPlayer3ComputerControlledActionPerformed
+
+	private void checkBoxGameSetupPlayer4ComputerControlledActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_checkBoxGameSetupPlayer4ComputerControlledActionPerformed
+
+	}//xxx-gen-last-xxx:event_checkBoxGameSetupPlayer4ComputerControlledActionPerformed
+
+	private void buttonGameSetupTriggerDebugMessageActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonGameSetupTriggerDebugMessageActionPerformed
+		appendToDebugLog("Debug test button pressed.");
+	}//xxx-gen-last-xxx:event_buttonGameSetupTriggerDebugMessageActionPerformed
+
+	private void textFieldGameSetupPlayer1CustomNameActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_textFieldGameSetupPlayer1CustomNameActionPerformed
+		// TODO add your handling code here:
+	}//xxx-gen-last-xxx:event_textFieldGameSetupPlayer1CustomNameActionPerformed
+
+	private void spinnerStartingBalancePropertyChange(java.beans.PropertyChangeEvent evt) {//xxx-gen-first-xxx:event_spinnerStartingBalancePropertyChange
+		int inputStartingBalance = (int) spinnerStartingBalance.getValue();
+	}//xxx-gen-last-xxx:event_spinnerStartingBalancePropertyChange
+
+	private void comboBoxPlayersCountPropertyChange(java.beans.PropertyChangeEvent evt) {//xxx-gen-first-xxx:event_comboBoxPlayersCountPropertyChange
+
+	}//xxx-gen-last-xxx:event_comboBoxPlayersCountPropertyChange
+
+	private void comboBoxPlayersCountActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_comboBoxPlayersCountActionPerformed
+		String inputPlayersCount = comboBoxPlayersCount.getSelectedItem().toString();
+		if (inputPlayersCount.equals("1")) {
+			textFieldGameSetupPlayer1CustomName.setEnabled(true);
+			textFieldGameSetupPlayer2CustomName.setEnabled(false);
+			textFieldGameSetupPlayer3CustomName.setEnabled(false);
+			textFieldGameSetupPlayer4CustomName.setEnabled(false);
+		}
+		else if (inputPlayersCount.equals("2")) {
+			textFieldGameSetupPlayer1CustomName.setEnabled(true);
+			textFieldGameSetupPlayer2CustomName.setEnabled(true);
+			textFieldGameSetupPlayer3CustomName.setEnabled(false);
+			textFieldGameSetupPlayer4CustomName.setEnabled(false);
+		}
+		else if (inputPlayersCount.equals("3")) {
+			textFieldGameSetupPlayer1CustomName.setEnabled(true);
+			textFieldGameSetupPlayer2CustomName.setEnabled(true);
+			textFieldGameSetupPlayer3CustomName.setEnabled(true);
+			textFieldGameSetupPlayer4CustomName.setEnabled(false);
+		}
+		else if (inputPlayersCount.equals("4")) {
+			textFieldGameSetupPlayer1CustomName.setEnabled(true);
+			textFieldGameSetupPlayer2CustomName.setEnabled(true);
+			textFieldGameSetupPlayer3CustomName.setEnabled(true);
+			textFieldGameSetupPlayer4CustomName.setEnabled(true);
+		}
+	}//xxx-gen-last-xxx:event_comboBoxPlayersCountActionPerformed
+
+	private void buttonGameSetupStartGameActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonGameSetupStartGameActionPerformed
+		controller.setIsGameActive(true);
+		String inputPlayersCount = comboBoxPlayersCount.getSelectedItem().toString();
+
+		int localPlayersCount = Integer.parseInt(inputPlayersCount);
+		controller.setPlayersCount(localPlayersCount);
+
+		if (localPlayersCount == 1) {
+			iconPlayer2Position.setVisible(false);
+			iconPlayer3Position.setVisible(false);
+			iconPlayer4Position.setVisible(false);
+		}
+		else if (localPlayersCount == 2) {
+			iconPlayer3Position.setVisible(false);
+			iconPlayer4Position.setVisible(false);
+		}
+		else if (localPlayersCount == 3) {
+			iconPlayer4Position.setVisible(false);
+		}
+
+		gameSetupDialog.setVisible(false);
+
+		board.players.get(1).setCustomName(textFieldGameSetupPlayer1CustomName.getText());
+		board.players.get(2).setCustomName(textFieldGameSetupPlayer2CustomName.getText());
+		board.players.get(3).setCustomName(textFieldGameSetupPlayer3CustomName.getText());
+		board.players.get(4).setCustomName(textFieldGameSetupPlayer4CustomName.getText());
+
+		controller.sendInitGameMessage();
+
+		controller.initialEvaluator();
+		update();
+	}//xxx-gen-last-xxx:event_buttonGameSetupStartGameActionPerformed
+	// </editor-fold>
+
+	// <editor-fold desc="Dialog - jail">
+	private void buttonJailDialogPostBailActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonJailDialogPostBailActionPerformed
 		controller.playerDecisionJailPostBail();
 		update();
-    }//GEN-LAST:event_buttonJailDialogPostBailActionPerformed
+	}//xxx-gen-last-xxx:event_buttonJailDialogPostBailActionPerformed
 
-    private void buttonJailDialogRollForDoublesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonJailDialogRollForDoublesActionPerformed
+	private void buttonJailDialogRollForDoublesActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonJailDialogRollForDoublesActionPerformed
 		controller.playerDecisionJailRollDoubles();
 		update();
-    }//GEN-LAST:event_buttonJailDialogRollForDoublesActionPerformed
+	}//xxx-gen-last-xxx:event_buttonJailDialogRollForDoublesActionPerformed
 
-    private void buttonForfeitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonForfeitActionPerformed
+	private void buttonJailPlayerActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonJailPlayerActionPerformed
+		gameEditorPlayer.setIsJailed(true);
+		gameEditorPlayer.setInitialJailTurn(true);
+		controller.appendToGameLog("[Game Editor]: Jailed " + gameEditorPlayer.getCustomName() + ".");
+		update();
+	}//xxx-gen-last-xxx:event_buttonJailPlayerActionPerformed
+
+	private void buttonJailDialogUseGOOJFCActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonJailDialogUseGOOJFCActionPerformed
+		controller.playerDecisionJailUseGOOJFC();
+		update();
+	}//xxx-gen-last-xxx:event_buttonJailDialogUseGOOJFCActionPerformed
+	// </editor-fold>
+
+	private void buttonActionImprovementsActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonActionImprovementsActionPerformed
+		swingHelper.setCustomAppearanceJDialog(improvementsDialog);
+		updateImprovementsDialog();
+
+		labelSelectedProperty.setText("Select a property.");
+		labelImprovementInfo.setText("No property selected.");
+
+		if (improvementsDialog.isVisible() == false) {
+			improvementsDialog.setVisible(true);
+			buttonPropertiesActionPerformed(evt);
+		}
+		else {
+			improvementsDialog.setVisible(false);
+		}
+	}//xxx-gen-last-xxx:event_buttonActionImprovementsActionPerformed
+
+	private void buttonPropertiesActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonPropertiesActionPerformed
+
+	}//xxx-gen-last-xxx:event_buttonPropertiesActionPerformed
+
+	private void buttonForfeitActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonForfeitActionPerformed
 		swingHelper.setCustomAppearanceJDialog(forfeitDialog);
 
 		forfeitDialog.setVisible(true);
 		controller.forfeitManager();
 		update();
-    }//GEN-LAST:event_buttonForfeitActionPerformed
+	}//xxx-gen-last-xxx:event_buttonForfeitActionPerformed
 
-    private void buttonIcon8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonIcon8ActionPerformed
-		setPlayerIcon(iconSelectionPlayerID, buttonIcon8.getIcon());
-    }//GEN-LAST:event_buttonIcon8ActionPerformed
-
+	// <editor-fold desc="Player icons">
 	private void setPlayerIcon(int playerID, Icon inputIcon) {
 
 		JLabel localPlayerIcon = new JLabel();
@@ -3632,262 +3643,259 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 		playerIconSelector.setVisible(false);
 	}
 
-    private void buttonIcon1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonIcon1ActionPerformed
+	private void buttonIcon1ActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonIcon1ActionPerformed
 		setPlayerIcon(iconSelectionPlayerID, buttonIcon1.getIcon());
-    }//GEN-LAST:event_buttonIcon1ActionPerformed
+	}//xxx-gen-last-xxx:event_buttonIcon1ActionPerformed
 
-    private void buttonIcon4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonIcon4ActionPerformed
-		setPlayerIcon(iconSelectionPlayerID, buttonIcon4.getIcon());
-    }//GEN-LAST:event_buttonIcon4ActionPerformed
-
-    private void buttonIcon2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonIcon2ActionPerformed
+	private void buttonIcon2ActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonIcon2ActionPerformed
 		setPlayerIcon(iconSelectionPlayerID, buttonIcon2.getIcon());
-    }//GEN-LAST:event_buttonIcon2ActionPerformed
+	}//xxx-gen-last-xxx:event_buttonIcon2ActionPerformed
 
-    private void checkBoxGameSetupPlayer4ComputerControlledActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBoxGameSetupPlayer4ComputerControlledActionPerformed
+	private void buttonIcon3ActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonIcon3ActionPerformed
+		setPlayerIcon(iconSelectionPlayerID, buttonIcon3.getIcon());
+	}//xxx-gen-last-xxx:event_buttonIcon3ActionPerformed
 
-    }//GEN-LAST:event_checkBoxGameSetupPlayer4ComputerControlledActionPerformed
+	private void buttonIcon4ActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonIcon4ActionPerformed
+		setPlayerIcon(iconSelectionPlayerID, buttonIcon4.getIcon());
+	}//xxx-gen-last-xxx:event_buttonIcon4ActionPerformed
 
-    private void buttonGameSetupPlayer1IconActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGameSetupPlayer1IconActionPerformed
+	private void buttonIcon5ActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonIcon5ActionPerformed
+		setPlayerIcon(iconSelectionPlayerID, buttonIcon5.getIcon());
+	}//xxx-gen-last-xxx:event_buttonIcon5ActionPerformed
+
+	private void buttonIcon6ActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonIcon6ActionPerformed
+		setPlayerIcon(iconSelectionPlayerID, buttonIcon6.getIcon());
+	}//xxx-gen-last-xxx:event_buttonIcon6ActionPerformed
+
+	private void buttonIcon7ActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonIcon7ActionPerformed
+		setPlayerIcon(iconSelectionPlayerID, buttonIcon7.getIcon());
+	}//xxx-gen-last-xxx:event_buttonIcon7ActionPerformed
+
+	private void buttonIcon8ActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonIcon8ActionPerformed
+		setPlayerIcon(iconSelectionPlayerID, buttonIcon8.getIcon());
+	}//xxx-gen-last-xxx:event_buttonIcon8ActionPerformed
+
+	private void buttonIcon9ActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonIcon9ActionPerformed
+		setPlayerIcon(iconSelectionPlayerID, buttonIcon9.getIcon());
+	}//xxx-gen-last-xxx:event_buttonIcon9ActionPerformed
+
+	// </editor-fold>
+	private void buttonGameSetupPlayer1IconActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonGameSetupPlayer1IconActionPerformed
 		iconSelectionPlayerID = 1;
 		buttonIcon5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/player-icon-1-px.png")));
 		playerIconSelector.setVisible(true);
-    }//GEN-LAST:event_buttonGameSetupPlayer1IconActionPerformed
+	}//xxx-gen-last-xxx:event_buttonGameSetupPlayer1IconActionPerformed
 
-    private void buttonGameSetupPlayer2IconActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGameSetupPlayer2IconActionPerformed
+	private void buttonGameSetupPlayer2IconActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonGameSetupPlayer2IconActionPerformed
 		iconSelectionPlayerID = 2;
 		buttonIcon5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/player-icon-2-px.png")));
 		playerIconSelector.setVisible(true);
 		playerIconSelector.setLocation(buttonGameSetupPlayer2Icon.getLocation());
 
-    }//GEN-LAST:event_buttonGameSetupPlayer2IconActionPerformed
+	}//xxx-gen-last-xxx:event_buttonGameSetupPlayer2IconActionPerformed
 
-    private void buttonIcon3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonIcon3ActionPerformed
-		setPlayerIcon(iconSelectionPlayerID, buttonIcon3.getIcon());
-    }//GEN-LAST:event_buttonIcon3ActionPerformed
-
-    private void buttonIcon5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonIcon5ActionPerformed
-		setPlayerIcon(iconSelectionPlayerID, buttonIcon5.getIcon());
-    }//GEN-LAST:event_buttonIcon5ActionPerformed
-
-    private void buttonIcon6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonIcon6ActionPerformed
-		setPlayerIcon(iconSelectionPlayerID, buttonIcon6.getIcon());
-    }//GEN-LAST:event_buttonIcon6ActionPerformed
-
-    private void buttonIcon7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonIcon7ActionPerformed
-		setPlayerIcon(iconSelectionPlayerID, buttonIcon7.getIcon());
-    }//GEN-LAST:event_buttonIcon7ActionPerformed
-
-    private void buttonIcon9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonIcon9ActionPerformed
-		setPlayerIcon(iconSelectionPlayerID, buttonIcon9.getIcon());
-    }//GEN-LAST:event_buttonIcon9ActionPerformed
-
-    private void buttonActionMortgageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonActionMortgageActionPerformed
+	private void buttonActionMortgageActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonActionMortgageActionPerformed
 		if (mortgageDialog.isVisible() == false) {
 			mortgageDialog.setVisible(true);
 		}
 		else {
 			mortgageDialog.setVisible(false);
 		}
-    }//GEN-LAST:event_buttonActionMortgageActionPerformed
+	}//xxx-gen-last-xxx:event_buttonActionMortgageActionPerformed
 
-    private void buttonJailDialogUseGOOJFCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonJailDialogUseGOOJFCActionPerformed
-		controller.playerDecisionJailUseGOOJFC();
-		update();
-    }//GEN-LAST:event_buttonJailDialogUseGOOJFCActionPerformed
-
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+	private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_jButton5ActionPerformed
 		aboutDialog.setVisible(false);
-    }//GEN-LAST:event_jButton5ActionPerformed
+	}//xxx-gen-last-xxx:event_jButton5ActionPerformed
 
-    private void buttonJailPlayerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonJailPlayerActionPerformed
-		gameEditorPlayer.setIsJailed(true);
-		gameEditorPlayer.setInitialJailTurn(true);
-		controller.appendToGameLog("[Game Editor]: Jailed " + gameEditorPlayer.getCustomName() + ".");
-		update();
-    }//GEN-LAST:event_buttonJailPlayerActionPerformed
-
-    private void buttonReleasePlayerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonReleasePlayerActionPerformed
+	private void buttonReleasePlayerActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonReleasePlayerActionPerformed
 		gameEditorPlayer.setIsJailed(false);
 		gameEditorPlayer.setInitialJailTurn(false);
 		controller.appendToGameLog("[Game Editor]: Released " + gameEditorPlayer.getCustomName() + " from jail.");
 		update();
-    }//GEN-LAST:event_buttonReleasePlayerActionPerformed
-
-    private void buttonGameEditorDeduct1000ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGameEditorDeduct1000ActionPerformed
-		gameEditorPlayer.updateCurrentBalance(-1000);
-		controller.appendToGameLog("[Game Editor]: Gave " + gameEditorPlayer.getCustomName() + " $-1000.");
-		update();
-    }//GEN-LAST:event_buttonGameEditorDeduct1000ActionPerformed
-
-    private void buttonGameEditorGive1000ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGameEditorGive1000ActionPerformed
-		gameEditorPlayer.updateCurrentBalance(1000);
-		controller.appendToGameLog("[Game Editor]: Gave " + gameEditorPlayer.getCustomName() + " $1000.");
-		update();
-    }//GEN-LAST:event_buttonGameEditorGive1000ActionPerformed
-
-    private void buttonGameEditorAdvanceSpaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGameEditorAdvanceSpaceActionPerformed
-		Player currentPlayer = board.players.get(1);
-		currentPlayer.advancePosition(1);
-		//updateVisualPlayerIndicator(currentPlayer);
-		update();
-    }//GEN-LAST:event_buttonGameEditorAdvanceSpaceActionPerformed
-
-    private void buttonGameEditorUnlockRollDice1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGameEditorUnlockRollDice1ActionPerformed
-		appendToDebugLog("[Game Editor] Calling unlockDiceRoll");
-		unlockRollDice();
-		update();
-    }//GEN-LAST:event_buttonGameEditorUnlockRollDice1ActionPerformed
-
-    private void buttonGameEditorUnlockEndTurnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGameEditorUnlockEndTurnActionPerformed
-		appendToDebugLog("[Game Editor] Calling unlockNextTurn");
-		unlockEndTurn();
-		update();
-    }//GEN-LAST:event_buttonGameEditorUnlockEndTurnActionPerformed
+	}//xxx-gen-last-xxx:event_buttonReleasePlayerActionPerformed
 
 	// <editor-fold desc="Game editor">
-    private void buttonGameEditorGoBackSpaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGameEditorGoBackSpaceActionPerformed
+	private void buttonGameEditorGoBackSpaceActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonGameEditorGoBackSpaceActionPerformed
 		Player currentPlayer = board.players.get(1);
 		currentPlayer.advancePosition(-1);
 		//updateVisualPlayerIndicator(currentPlayer);
 		update();
-    }//GEN-LAST:event_buttonGameEditorGoBackSpaceActionPerformed
+	}//xxx-gen-last-xxx:event_buttonGameEditorGoBackSpaceActionPerformed
 
-    private void buttonGameEditorCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGameEditorCloseActionPerformed
+	private void buttonGameEditorCloseActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonGameEditorCloseActionPerformed
 		gameEditorDialog.setVisible(false);
-    }//GEN-LAST:event_buttonGameEditorCloseActionPerformed
+	}//xxx-gen-last-xxx:event_buttonGameEditorCloseActionPerformed
 
-    private void buttonGameEditorUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGameEditorUpdateActionPerformed
+	private void buttonGameEditorUpdateActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonGameEditorUpdateActionPerformed
 		controller.initialEvaluator();
 		update();
-    }//GEN-LAST:event_buttonGameEditorUpdateActionPerformed
+	}//xxx-gen-last-xxx:event_buttonGameEditorUpdateActionPerformed
 
-    private void comboBoxPlayerSelectionPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_comboBoxPlayerSelectionPropertyChange
+	private void buttonGameEditorDeduct1000ActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonGameEditorDeduct1000ActionPerformed
+		gameEditorPlayer.updateCurrentBalance(-1000);
+		controller.appendToGameLog("[Game Editor]: Gave " + gameEditorPlayer.getCustomName() + " $-1000.");
+		update();
+	}//xxx-gen-last-xxx:event_buttonGameEditorDeduct1000ActionPerformed
 
-    }//GEN-LAST:event_comboBoxPlayerSelectionPropertyChange
+	private void buttonGameEditorGive1000ActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonGameEditorGive1000ActionPerformed
+		gameEditorPlayer.updateCurrentBalance(1000);
+		controller.appendToGameLog("[Game Editor]: Gave " + gameEditorPlayer.getCustomName() + " $1000.");
+		update();
+	}//xxx-gen-last-xxx:event_buttonGameEditorGive1000ActionPerformed
 
-    private void comboBoxPlayerSelectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxPlayerSelectionActionPerformed
+	private void buttonGameEditorAdvanceSpaceActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonGameEditorAdvanceSpaceActionPerformed
+		Player currentPlayer = board.players.get(1);
+		currentPlayer.advancePosition(1);
+		//updateVisualPlayerIndicator(currentPlayer);
+		update();
+	}//xxx-gen-last-xxx:event_buttonGameEditorAdvanceSpaceActionPerformed
+
+	private void buttonGameEditorUnlockRollDice1ActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonGameEditorUnlockRollDice1ActionPerformed
+		appendToDebugLog("[Game Editor] Calling unlockDiceRoll");
+		unlockRollDice();
+		update();
+	}//xxx-gen-last-xxx:event_buttonGameEditorUnlockRollDice1ActionPerformed
+
+	private void buttonGameEditorUnlockEndTurnActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonGameEditorUnlockEndTurnActionPerformed
+		appendToDebugLog("[Game Editor] Calling unlockNextTurn");
+		unlockEndTurn();
+		update();
+	}//xxx-gen-last-xxx:event_buttonGameEditorUnlockEndTurnActionPerformed
+
+	private void buttonGameEditorGiveAllPropertiesActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonGameEditorGiveAllPropertiesActionPerformed
+		controller.debugToolsGiveAllProperties(gameEditorPlayer.getPlayerID());
+		update();
+	}//xxx-gen-last-xxx:event_buttonGameEditorGiveAllPropertiesActionPerformed
+
+	// </editor-fold>
+	private void comboBoxPlayerSelectionPropertyChange(java.beans.PropertyChangeEvent evt) {//xxx-gen-first-xxx:event_comboBoxPlayerSelectionPropertyChange
+
+	}//xxx-gen-last-xxx:event_comboBoxPlayerSelectionPropertyChange
+
+	private void comboBoxPlayerSelectionActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_comboBoxPlayerSelectionActionPerformed
 		gameEditorPlayer = board.players.get(1 + comboBoxPlayerSelection.getSelectedIndex());
-    }//GEN-LAST:event_comboBoxPlayerSelectionActionPerformed
+	}//xxx-gen-last-xxx:event_comboBoxPlayerSelectionActionPerformed
 
-    private void buttonSpace12MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonSpace12MouseEntered
+	// <editor-fold desc="Animated button space icons">
+	private void buttonSpace12MouseEntered(java.awt.event.MouseEvent evt) {//xxx-gen-first-xxx:event_buttonSpace12MouseEntered
 		buttonSpace12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/electric-company-anim.gif")));
-    }//GEN-LAST:event_buttonSpace12MouseEntered
+	}//xxx-gen-last-xxx:event_buttonSpace12MouseEntered
 
-    private void buttonSpace12MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonSpace12MouseExited
+	private void buttonSpace12MouseExited(java.awt.event.MouseEvent evt) {//xxx-gen-first-xxx:event_buttonSpace12MouseExited
 		buttonSpace12.setIcon(null);
-    }//GEN-LAST:event_buttonSpace12MouseExited
+	}//xxx-gen-last-xxx:event_buttonSpace12MouseExited
 
-    private void buttonSpace28MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonSpace28MouseEntered
+	private void buttonSpace20MouseExited(java.awt.event.MouseEvent evt) {//xxx-gen-first-xxx:event_buttonSpace20MouseExited
+		buttonSpace20.setIcon(null);
+	}//xxx-gen-last-xxx:event_buttonSpace20MouseExited
+
+	private void buttonSpace20MouseEntered(java.awt.event.MouseEvent evt) {//xxx-gen-first-xxx:event_buttonSpace20MouseEntered
+		buttonSpace20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/free-parking-anim.gif")));
+	}//xxx-gen-last-xxx:event_buttonSpace20MouseEntered
+
+	private void buttonSpace28MouseEntered(java.awt.event.MouseEvent evt) {//xxx-gen-first-xxx:event_buttonSpace28MouseEntered
 		buttonSpace28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/waterworks-anim.gif")));
-    }//GEN-LAST:event_buttonSpace28MouseEntered
+	}//xxx-gen-last-xxx:event_buttonSpace28MouseEntered
 
-    private void buttonSpace28MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonSpace28MouseExited
+	private void buttonSpace28MouseExited(java.awt.event.MouseEvent evt) {//xxx-gen-first-xxx:event_buttonSpace28MouseExited
 		buttonSpace28.setIcon(null);
-    }//GEN-LAST:event_buttonSpace28MouseExited
+	}//xxx-gen-last-xxx:event_buttonSpace28MouseExited
 
-    private void buttonSpace38MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonSpace38MouseEntered
+	private void buttonSpace30MouseEntered(java.awt.event.MouseEvent evt) {//xxx-gen-first-xxx:event_buttonSpace30MouseEntered
+		buttonSpace30.setIcon(new javax.swing.ImageIcon(getClass().getResource("/go-to-jail-anim.gif")));
+	}//xxx-gen-last-xxx:event_buttonSpace30MouseEntered
+
+	private void buttonSpace30MouseExited(java.awt.event.MouseEvent evt) {//xxx-gen-first-xxx:event_buttonSpace30MouseExited
+		buttonSpace30.setIcon(null);
+	}//xxx-gen-last-xxx:event_buttonSpace30MouseExited
+
+	private void buttonSpace38MouseEntered(java.awt.event.MouseEvent evt) {//xxx-gen-first-xxx:event_buttonSpace38MouseEntered
 		buttonSpace38.setIcon(new javax.swing.ImageIcon(getClass().getResource("/luxury-tax-anim.gif")));
-    }//GEN-LAST:event_buttonSpace38MouseEntered
+	}//xxx-gen-last-xxx:event_buttonSpace38MouseEntered
 
-    private void buttonSpace38MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonSpace38MouseExited
+	private void buttonSpace38MouseExited(java.awt.event.MouseEvent evt) {//xxx-gen-first-xxx:event_buttonSpace38MouseExited
 		buttonSpace38.setIcon(null);
-    }//GEN-LAST:event_buttonSpace38MouseExited
+	}//xxx-gen-last-xxx:event_buttonSpace38MouseExited
+	// </editor-fold>
 
-    private void formComponentMoved(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentMoved
+	private void formComponentMoved(java.awt.event.ComponentEvent evt) {//xxx-gen-first-xxx:event_formComponentMoved
 
 		for (JDialog d : jDialogs) {
 			swingHelper.setCustomAppearanceJDialog(d);
 			d.requestFocus();
 		}
 
-    }//GEN-LAST:event_formComponentMoved
+	}//xxx-gen-last-xxx:event_formComponentMoved
 
-    private void buttonSpace20MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonSpace20MouseExited
-		buttonSpace20.setIcon(null);
-    }//GEN-LAST:event_buttonSpace20MouseExited
-
-    private void buttonPropertyDecisionAuctionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPropertyDecisionAuctionActionPerformed
+	private void buttonPropertyDecisionAuctionActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonPropertyDecisionAuctionActionPerformed
 		appendToGameLog("Auctions are not yet implemented.");
-    }//GEN-LAST:event_buttonPropertyDecisionAuctionActionPerformed
+	}//xxx-gen-last-xxx:event_buttonPropertyDecisionAuctionActionPerformed
 
-    private void forfeitDialogButtonNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_forfeitDialogButtonNoActionPerformed
+	private void forfeitDialogButtonNoActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_forfeitDialogButtonNoActionPerformed
 		forfeitDialog.setVisible(false);
-    }//GEN-LAST:event_forfeitDialogButtonNoActionPerformed
+	}//xxx-gen-last-xxx:event_forfeitDialogButtonNoActionPerformed
 
-    private void buttonGameEditorGiveAllPropertiesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGameEditorGiveAllPropertiesActionPerformed
-		controller.debugToolsGiveAllProperties(gameEditorPlayer.getPlayerID());
-		update();
-    }//GEN-LAST:event_buttonGameEditorGiveAllPropertiesActionPerformed
-
-    private void buttonBuildHouseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBuildHouseActionPerformed
+	// <editor-fold desc="Dialog - mortgage">
+	private void buttonBuildHouseActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonBuildHouseActionPerformed
 		controller.improvementsManager(currentSpaceSelectionID, GameLogicController.ImprovementsActions.buildHouse);
 		update();
-    }//GEN-LAST:event_buttonBuildHouseActionPerformed
+	}//xxx-gen-last-xxx:event_buttonBuildHouseActionPerformed
 
-    private void buttonSellHouseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSellHouseActionPerformed
+	private void buttonSellHouseActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonSellHouseActionPerformed
 		controller.improvementsManager(currentSpaceSelectionID, GameLogicController.ImprovementsActions.sellHouse);
 		update();
-    }//GEN-LAST:event_buttonSellHouseActionPerformed
+	}//xxx-gen-last-xxx:event_buttonSellHouseActionPerformed
 
-    private void buttonBuildHotelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBuildHotelActionPerformed
+	private void buttonBuildHotelActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonBuildHotelActionPerformed
 		controller.improvementsManager(currentSpaceSelectionID, GameLogicController.ImprovementsActions.buildHotel);
 		update();
-    }//GEN-LAST:event_buttonBuildHotelActionPerformed
+	}//xxx-gen-last-xxx:event_buttonBuildHotelActionPerformed
 
-    private void buttonSellHotelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSellHotelActionPerformed
+	private void buttonSellHotelActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonSellHotelActionPerformed
 		controller.improvementsManager(currentSpaceSelectionID, GameLogicController.ImprovementsActions.sellHotel);
 		update();
-    }//GEN-LAST:event_buttonSellHotelActionPerformed
+	}//xxx-gen-last-xxx:event_buttonSellHotelActionPerformed
+	// </editor-fold>
 
-    private void buttonActionTradeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonActionTradeActionPerformed
+	private void buttonActionTradeActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonActionTradeActionPerformed
 		toggleBoardVisibility();
-    }//GEN-LAST:event_buttonActionTradeActionPerformed
+	}//xxx-gen-last-xxx:event_buttonActionTradeActionPerformed
 
-    private void formattedTextFieldGameLogSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_formattedTextFieldGameLogSearchActionPerformed
+	private void formattedTextFieldGameLogSearchActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_formattedTextFieldGameLogSearchActionPerformed
 		updateGameLogWithSearchQuery(formattedTextFieldGameLogSearch.getText());
-    }//GEN-LAST:event_formattedTextFieldGameLogSearchActionPerformed
+	}//xxx-gen-last-xxx:event_formattedTextFieldGameLogSearchActionPerformed
 
-    private void buttonGameSetupCloseDialogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGameSetupCloseDialogActionPerformed
+	private void buttonGameSetupCloseDialogActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonGameSetupCloseDialogActionPerformed
 		gameSetupDialog.setVisible(false);
-    }//GEN-LAST:event_buttonGameSetupCloseDialogActionPerformed
+	}//xxx-gen-last-xxx:event_buttonGameSetupCloseDialogActionPerformed
 
-    private void buttonSpace30MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonSpace30MouseEntered
-		buttonSpace30.setIcon(new javax.swing.ImageIcon(getClass().getResource("/go-to-jail-anim.gif")));
-    }//GEN-LAST:event_buttonSpace30MouseEntered
-
-    private void buttonSpace30MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonSpace30MouseExited
-		buttonSpace30.setIcon(null);
-    }//GEN-LAST:event_buttonSpace30MouseExited
-
-    private void buttonPartyModeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPartyModeActionPerformed
+	private void buttonPartyModeActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonPartyModeActionPerformed
 		partyMode();
-    }//GEN-LAST:event_buttonPartyModeActionPerformed
+	}//xxx-gen-last-xxx:event_buttonPartyModeActionPerformed
 
-    private void buttonResetHighlightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonResetHighlightActionPerformed
+	private void buttonResetHighlightActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_buttonResetHighlightActionPerformed
 		for (JButton b : spaceButtons) {
 			b.setBorder(null);
 		}
-    }//GEN-LAST:event_buttonResetHighlightActionPerformed
+	}//xxx-gen-last-xxx:event_buttonResetHighlightActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+	private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_jButton1ActionPerformed
 		debugToolsDialog.setVisible(false);
-    }//GEN-LAST:event_jButton1ActionPerformed
+	}//xxx-gen-last-xxx:event_jButton1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+	private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_jButton2ActionPerformed
 		spaceButtonHighlightSpectrum(0, 39);
-    }//GEN-LAST:event_jButton2ActionPerformed
+	}//xxx-gen-last-xxx:event_jButton2ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+	private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_jButton3ActionPerformed
 		int localBasePosition = currentPlayer.getCurrentPosition();
 
+	}//xxx-gen-last-xxx:event_jButton3ActionPerformed
 
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+	private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//xxx-gen-first-xxx:event_jButton6ActionPerformed
 		logHelper.clearLogs();
 		update();
-    }//GEN-LAST:event_jButton6ActionPerformed
+	}//xxx-gen-last-xxx:event_jButton6ActionPerformed
 	// </editor-fold>
 
 	private void updateGameLogWithSearchQuery(String inputQuery) {
