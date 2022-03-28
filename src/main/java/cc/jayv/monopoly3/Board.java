@@ -1,9 +1,5 @@
 package cc.jayv.monopoly3;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 /**
  *
  * @author jay
@@ -14,11 +10,12 @@ import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * The primary data class for the game.
+ * @author jay
+ */
 public class Board implements Serializable {
 
-	/**
-	 * Spaces
-	 */
 	public List<Space> spaces = new ArrayList<>();
 	public List<Player> players = new ArrayList<>();
 
@@ -282,7 +279,6 @@ public class Board implements Serializable {
 				}	// end for
 			
 
-				// bug is probably this
 				if (isFullSetOwnedBySinglePlayer == true) {
 					for (Color localColor : spacesByColorGroup) {
 						int localOwnerID = localColor.getOwnerID();

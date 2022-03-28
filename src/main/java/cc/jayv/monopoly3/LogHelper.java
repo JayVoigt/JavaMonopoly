@@ -17,14 +17,14 @@ public class LogHelper {
 	ArrayList<String> gameLogContents,
 		gameLogContentsFiltered,
 		debugLogContents;
-	
+
 	int currentTurn;
 
 	public LogHelper() {
 		gameLogContents = new ArrayList<>();
 		gameLogContentsFiltered = new ArrayList<>();
 		debugLogContents = new ArrayList<>();
-		
+
 		currentTurn = 0;
 	}
 
@@ -86,6 +86,7 @@ public class LogHelper {
 	 * current turn number.<br>
 	 *
 	 * @param input The contents of the message.
+	 * @param turnCounter The current turn.
 	 */
 	public void appendToGameLog(String input, int turnCounter) {
 		Date currentDate = new Date();
@@ -98,7 +99,7 @@ public class LogHelper {
 		String output = (formattedPrefix + input + "\n");
 		gameLogContents.add(output);
 	}
-	
+
 	public void appendToGameLog(String input) {
 		Date currentDate = new Date();
 		SimpleDateFormat datePrefix = new SimpleDateFormat("yyyy-mm-dd HH:mm:ss");
@@ -110,4 +111,12 @@ public class LogHelper {
 		gameLogContents.add(output);
 	}
 
+	/**
+	 * Append the input to the debug log.
+	 *
+	 * @param input The contents of the message.
+	 */
+	public void appendToDebugLog(String input) {
+		debugLogContents.add(input);
+	}
 }

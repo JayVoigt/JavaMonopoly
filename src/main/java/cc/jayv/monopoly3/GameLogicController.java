@@ -1,11 +1,7 @@
 package cc.jayv.monopoly3;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 /**
- *
+ * Controls game logic and updates data within the Board accordingly.
  * @author jay
  */
 import java.io.Serializable;
@@ -25,10 +21,6 @@ public class GameLogicController implements Serializable {
 	Property currentProperty;
 
 	DrawCard currentDrawCard;
-
-	ArrayList<String> gameLogContents,
-		gameLogContentsFiltered,
-		debugLogContents;
 
 	boolean isGameActive;
 
@@ -82,15 +74,7 @@ public class GameLogicController implements Serializable {
 	public GameLogicController(Board inputBoard, LogHelper inputLogHelper) {
 		board = inputBoard;
 		logHelper = inputLogHelper;
-
-		gameLogContents = new ArrayList<>();
-		gameLogContentsFiltered = new ArrayList<>();
-		debugLogContents = new ArrayList<>();
-		String initString = "";
-		gameLogContents.add(initString);
-
-		debugLogContents.add(initString);
-
+		
 		useExtraTextPadding = true;
 
 		playerCanBuildImprovements = false;
@@ -126,18 +110,6 @@ public class GameLogicController implements Serializable {
 	public void sendInitGameMessage() {
 		appendToGameLog("A new game has been started with " + playersCount + " players.");
 	}
-
-	/**
-	 * Append the input to the debug log.
-	 *
-	 * @param input The contents of the message.
-	 */
-	public void appendToDebugLog(String input) {
-		String formattedPrefix = Integer.toString(turnCounter);
-		formattedPrefix = formattedPrefix.concat(": ");
-		String output = (formattedPrefix + input + "\n");
-		debugLogContents.add(output);
-	}
 	// </editor-fold>
 
 	/**
@@ -145,7 +117,7 @@ public class GameLogicController implements Serializable {
 	 * Implements which decision path to execute given the player's condition.
 	 */
 	public void initialEvaluator() {
-		appendToDebugLog("-> executing initialEvaluator");
+		logHelper.appendToDebugLog("-> executing initialEvaluator");
 		turnCounter++;
 		currentPlayer = board.players.get(board.getCurrentPlayerID());
 
@@ -158,7 +130,7 @@ public class GameLogicController implements Serializable {
 		String paddingPrefix = "";
 		if (useExtraTextPadding == true) {
 			String newLine = "\n";
-			gameLogContents.add(newLine);
+			logHelper.appendToGameLog(newLine);
 		}
 
 		appendToGameLog("It is now " + currentPlayer.getCustomName() + "'s turn.");
@@ -176,7 +148,7 @@ public class GameLogicController implements Serializable {
 	 * Evaluator which is run when the current player is currently in Jail.
 	 */
 	private void jailStateEvaluator() {
-		appendToDebugLog("-> executing jailStateEvaluator");
+		logHelper.appendToDebugLog("-> executing jailStateEvaluator");
 		appendToGameLog(currentPlayer.getCustomName() + " is jailed!");
 
 	}
@@ -186,13 +158,13 @@ public class GameLogicController implements Serializable {
 	 * player.
 	 */
 	private void normalTurnEvaluator() {
-		appendToDebugLog("-> executing normalTurnEvaluator");
+		logHelper.appendToDebugLog("-> executing normalTurnEvaluator");
 		if (currentPlayer.hasRolledDice == true) {
 			currentPlayer.setIsInMAEState(true);
 			maeStateEvaluator();
 		}
 		else {
-			appendToDebugLog("\t Suggested action: unlock rollDice");
+			logHelper.appendToDebugLog("\t Suggested action: unlock rollDice");
 			currentPlayer.setActionLockedRollDice(false);
 		}
 	}
@@ -206,7 +178,7 @@ public class GameLogicController implements Serializable {
 	 * improvements.
 	 */
 	private void maeStateEvaluator() {
-		appendToDebugLog("-> executing maeStateEvaluator");
+		logHelper.appendToDebugLog("-> executing maeStateEvaluator");
 		currentPlayer.setActionLockedEndTurn(false);
 		currentPlayer.setActionLockedRollDice(true);
 
@@ -217,8 +189,8 @@ public class GameLogicController implements Serializable {
 
 		if (currentPlayer.getRequiredDecisionPropertyAction() == true) {
 			if (currentPlayer.getMadeDecisionPropertyAction() == true) {
-				appendToDebugLog("\t Suggested action: unlock endTurn");
-				appendToDebugLog("\t\t Reason: Player has made property decision.");
+				logHelper.appendToDebugLog("\t Suggested action: unlock endTurn");
+				logHelper.appendToDebugLog("\t\t Reason: Player has made property decision.");
 				currentPlayer.setActionLockedEndTurn(false);
 			}
 			else {
@@ -227,13 +199,13 @@ public class GameLogicController implements Serializable {
 		}
 		else {
 			if (currentPlayer.getHasRolledDice() == true) {
-				appendToDebugLog("\t Suggested action: unlock endTurn");
-				appendToDebugLog("\t\t Reason: No property decision necessary.");
+				logHelper.appendToDebugLog("\t Suggested action: unlock endTurn");
+				logHelper.appendToDebugLog("\t\t Reason: No property decision necessary.");
 				currentPlayer.setActionLockedEndTurn(false);
 			}
 			else {
-				appendToDebugLog("\t Suggested action: unlock rollDice");
-				appendToDebugLog("\t\t Reason: Player has not rolled dice.");
+				logHelper.appendToDebugLog("\t Suggested action: unlock rollDice");
+				logHelper.appendToDebugLog("\t\t Reason: Player has not rolled dice.");
 				currentPlayer.setActionLockedRollDice(false);
 			}
 		}
@@ -243,7 +215,7 @@ public class GameLogicController implements Serializable {
 	 * Manager which is executed when the player decides to purchase a property.
 	 */
 	private void propertyPurchaseManager() {
-		appendToDebugLog("-> executing propertyPurchaseManager");
+		logHelper.appendToDebugLog("-> executing propertyPurchaseManager");
 		currentPlayer.setRequiredDecisionPropertyAction(false);
 		currentPlayer.setMadeDecisionPropertyAction(true);
 	}
@@ -255,7 +227,7 @@ public class GameLogicController implements Serializable {
 	 * when landing on an owned Utility.
 	 */
 	public void diceRollManager() {
-		appendToDebugLog("-> executing diceRollManager");
+		logHelper.appendToDebugLog("-> executing diceRollManager");
 		currentPlayer = board.players.get(board.getCurrentPlayerID());
 
 		currentPlayer.rollDice();
@@ -305,7 +277,7 @@ public class GameLogicController implements Serializable {
 	 * appropriate evaluator for the destination space.
 	 */
 	private void movementEvaluator() {
-		appendToDebugLog("-> executing movementEvaluator");
+		logHelper.appendToDebugLog("-> executing movementEvaluator");
 		int diceSum = currentPlayer.getDiceSum();
 
 		board.spaces.get(currentPlayer.getCurrentPosition()).setButtonAppearance(Space.buttonAppearanceKeys.previousSpace);
@@ -344,7 +316,7 @@ public class GameLogicController implements Serializable {
 	 * @param movementQuantity The number of spaces to move.
 	 */
 	private void movementEvaluatorAdvanced(boolean collectGoBonus, int movementQuantity) {
-		appendToDebugLog("-> executing movementEvaluatorAdvanced");
+		logHelper.appendToDebugLog("-> executing movementEvaluatorAdvanced");
 		boolean playerPassedGo = currentPlayer.advancePosition(movementQuantity);
 
 		// Issue GO bonus
@@ -372,7 +344,7 @@ public class GameLogicController implements Serializable {
 	 * <code>GameEvent</code> type.
 	 */
 	private void gameEventEvaluator() {
-		appendToDebugLog("-> executing gameEventEvaluator");
+		logHelper.appendToDebugLog("-> executing gameEventEvaluator");
 
 		currentGameEvent = (GameEvent) currentSpace;
 		GameEvent.gameEventTypeKeys localGameEventType = currentGameEvent.getGameEventType();
@@ -510,7 +482,7 @@ public class GameLogicController implements Serializable {
 	 * <code>Property</code> type.
 	 */
 	private void propertyEvaluator() {
-		appendToDebugLog("-> executing propertyEvaluator");
+		logHelper.appendToDebugLog("-> executing propertyEvaluator");
 		currentProperty = (Property) currentSpace;
 		if (currentProperty.getIsOwned() == false) {
 			appendToGameLog(currentProperty.getFriendlyName() + " is not owned.");
@@ -541,7 +513,7 @@ public class GameLogicController implements Serializable {
 	 * Manager which executes when the current player ends their turn.
 	 */
 	public void endTurnManager() {
-		appendToDebugLog("-> executing endTurnManager");
+		logHelper.appendToDebugLog("-> executing endTurnManager");
 		currentPlayer = board.players.get(board.getCurrentPlayerID());
 		currentPlayer.setActionLockedEndTurn(true);
 
@@ -549,16 +521,16 @@ public class GameLogicController implements Serializable {
 
 		if (board.getCurrentPlayerID() == playersCount) {
 			board.setCurrentPlayerID(1);
-			appendToDebugLog("\t Rolling over turn to Player 1");
+			logHelper.appendToDebugLog("\t Rolling over turn to Player 1");
 		}
 		else {
 			board.setCurrentPlayerID(board.getCurrentPlayerID() + 1);
-			appendToDebugLog("\t Incrementing turn to Player " + board.getCurrentPlayerID());
+			logHelper.appendToDebugLog("\t Incrementing turn to Player " + board.getCurrentPlayerID());
 		}
 
 		currentPlayer = board.players.get(board.getCurrentPlayerID());
 
-		appendToDebugLog("\t currentPlayerID: " + board.getCurrentPlayerID());
+		logHelper.appendToDebugLog("\t currentPlayerID: " + board.getCurrentPlayerID());
 		currentPlayer.initializePlayerForNewTurn();
 		initialEvaluator();
 	}
@@ -568,7 +540,7 @@ public class GameLogicController implements Serializable {
 	 * purchase a property.
 	 */
 	public void playerDecisionPurchaseProperty() {
-		appendToDebugLog("-> executing playerDecisionPurchaseProperty");
+		logHelper.appendToDebugLog("-> executing playerDecisionPurchaseProperty");
 		currentPlayer.setMadeDecisionPropertyAction(true);
 		currentPlayer.setResultDecisionPropertyAction(true);
 
@@ -594,7 +566,7 @@ public class GameLogicController implements Serializable {
 	 * <b>Not implemented.</b>
 	 */
 	public void playerDecisionAuction() {
-		appendToDebugLog("-> executing playerDecisionAuction");
+		logHelper.appendToDebugLog("-> executing playerDecisionAuction");
 	}
 
 	/**
@@ -634,7 +606,7 @@ public class GameLogicController implements Serializable {
 			}
 			else {
 				appendToGameLog(currentPlayer.getCustomName() + " has failed to roll doubles after 3 tries. Posting bail for $50 is now required.");
-				appendToDebugLog("[NOTICE]: need to implement edge case logic where balance < $50");
+				logHelper.appendToDebugLog("[NOTICE]: need to implement edge case logic where balance < $50");
 				currentPlayer.updateCurrentBalance(-50);
 				readyPlayerForJailRelease();
 			}
@@ -686,7 +658,7 @@ public class GameLogicController implements Serializable {
 
 	public void debugToolsGiveAllProperties(int playerID) {
 		currentDebugPlayer = board.players.get(playerID);
-		appendToDebugLog("Giving " + currentDebugPlayer.getCustomName() + " all properties.");
+		logHelper.appendToDebugLog("Giving " + currentDebugPlayer.getCustomName() + " all properties.");
 
 		Property localProperty;
 		for (Space s : board.spaces) {

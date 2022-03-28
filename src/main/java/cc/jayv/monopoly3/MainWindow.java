@@ -7,7 +7,6 @@ import javax.swing.UIManager;
 import java.util.Date;
 import javax.swing.*;
 import java.util.*;
-import java.lang.String;
 import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,12 +19,9 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import javax.swing.border.Border;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 /**
- *
+ * View/GUI class for the game. Queries data from the Board, and issues commands
+ * to the Controller.
  * @author jay
  */
 public class MainWindow extends javax.swing.JFrame implements WindowListener, ActionListener, Serializable {
