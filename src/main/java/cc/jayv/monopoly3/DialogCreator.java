@@ -1,5 +1,7 @@
 package cc.jayv.monopoly3;
 
+import java.awt.GridLayout;
+import java.awt.LayoutManager;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -33,6 +35,8 @@ public class DialogCreator {
 	
 	public JDialog createDialogUserPrompt(ArrayList<ButtonContents> dialogButtonContentList) {
 		JDialog userPrompt = new JDialog();
+		userPrompt.setLayout(new GridLayout());
+		userPrompt.setSize(512, 512);
 		
 		for (ButtonContents c : dialogButtonContentList) {
 			int index = dialogButtonContentList.indexOf(c);
@@ -81,11 +85,18 @@ public class DialogCreator {
 	// Testing method
 	public static void main(String args[]) {
 		DialogCreator creator = new DialogCreator();
-		
-		ButtonContents contents;
-		contents = new ButtonContents("a", null, "b");
 		ArrayList<ButtonContents> contentList = new ArrayList<>();
-		contentList.add(contents);
+
+		for ( int i = 0 ; i < 32 ; i++ ) {
+			ButtonContents bc = new ButtonContents(Integer.toString(i), null, "none");
+			contentList.add(bc);
+		}
+		
+		ButtonContents buttonYes = new ButtonContents("Yes", null, "actionYes");
+		ButtonContents buttonNo = new ButtonContents("No", null, "actionNo");
+		
+		contentList.add(buttonYes);
+		contentList.add(buttonNo);
 		
 		JDialog localDialog = creator.createDialogUserPrompt(contentList);
 		localDialog.setVisible(true);
