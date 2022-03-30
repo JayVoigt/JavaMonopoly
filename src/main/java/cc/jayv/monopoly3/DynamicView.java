@@ -49,13 +49,58 @@ public class DynamicView {
 	}
 	
 	private JInternalFrame boardFrameCreator() {
-		JInternalFrame localInternalFrame = new JInternalFrame();
+		JInternalFrame frame = new JInternalFrame();
 		
-		localInternalFrame.setSize(1024, 1024);
-		localInternalFrame.setLayout(null);
-		localInternalFrame.setVisible(true);
+		frame.setSize(1024, 1024);
+		frame.setLayout(null);
+		frame.setVisible(true);
 		
-		return localInternalFrame;
+		JButton testButton = new JButton();
+		testButton.setBounds((960 - 120), (960 - 120), 120, 120);
+		
+		for ( int i = 0 ; i < 40 ; i++ ) {
+			spaceButtons.add(new JButton());
+		}
+		
+		int posX, posY, sizeX, sizeY;
+		
+		for (JButton b : spaceButtons) {
+
+			int index = spaceButtons.indexOf(b);
+			int cardinalPosition = (index % 10);
+			
+			if (index == 0) {
+				posX = 840;
+				posY = 840;
+				sizeX = 120;
+				sizeY = 120;
+			}
+			else if (index > 0 && index < 10) {
+				posX = 840 - (80 * cardinalPosition);
+				posY = 840;
+				sizeX = 80;
+				sizeY = 120;
+			}
+			else if (index > 10 && index < 20) {
+				posX = 0;
+				posY = 840 - (80 * cardinalPosition);
+				sizeX = 120;
+				sizeY = 80;
+			}
+			else {
+				posX = 0;
+				posY = 0;
+				sizeX = 0;
+				sizeY = 0;
+			}
+			b.setBounds(posX, posY, sizeX, sizeY);
+			
+			frame.add(b);
+		}
+		
+		frame.add(testButton);
+		
+		return frame;
 	}
 	
 	public static void main(String args[]) {
