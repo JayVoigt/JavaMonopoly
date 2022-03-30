@@ -28,7 +28,7 @@ public class DynamicView {
 	ArrayList<JInternalFrame> internalFrames;
 	ArrayList<JButton> spaceButtons;
 	
-	int currentSpaceButtonSelection;
+	static int currentSpaceButtonSelection;
 
 	public DynamicView() {
 		try {
@@ -50,6 +50,10 @@ public class DynamicView {
 
 		mainFrame.setVisible(true);
 		boardFrame.setVisible(true);
+	}
+	
+	public void update() {
+		System.out.println(currentSpaceButtonSelection);
 	}
 
 	private void initComponents() {
@@ -159,22 +163,23 @@ public class DynamicView {
 
 	private void spaceButtonsActionEventCreator() {
 		for (JButton b : spaceButtons) {
-			b.setText(Double.toString(Math.random()));
-			b.setVisible(true);
 			b.addActionListener(new spaceButtonActionHandler());
 		}
 	}
 	
 	public class spaceButtonActionHandler implements ActionListener {
 
+		int index;
+		
 		public spaceButtonActionHandler() {
 			
 		}
 		
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			System.exit(0);
+			currentSpaceButtonSelection = spaceButtons.indexOf(e.getSource());
 			System.out.println("a");
+			update();
 		}
 		
 	}
