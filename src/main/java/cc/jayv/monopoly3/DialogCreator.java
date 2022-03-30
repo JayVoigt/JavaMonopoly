@@ -1,6 +1,7 @@
 package cc.jayv.monopoly3;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.BorderFactory;
+import javax.swing.Box;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -64,8 +66,8 @@ public class DialogCreator {
 		titleLabel.setIcon(testIcon);
 		
 		gbc.fill = GridBagConstraints.NORTHWEST;
-		gbc.weightx = 1.0;
-		gbc.weighty = 1.0;
+		gbc.weightx = 0;
+		gbc.weighty = 0;
 		gbc.gridx = 0;
 		gbc.gridy = 0;
 		userPrompt.add(titleLabel, gbc);
@@ -81,12 +83,17 @@ public class DialogCreator {
 			localButton.setIcon(c.getIcon());
 		}
 		
+		Component centerGlue = Box.createVerticalGlue();
+		
+		gbc.gridx = 0;
+		gbc.gridy = 1;
+		userPrompt.add(centerGlue, gbc);
 		
 		for (JButton b : dialogButtonList) {
 			gbc.fill = GridBagConstraints.HORIZONTAL;
 			gbc.weightx = 0;
 			gbc.gridx = dialogButtonList.indexOf(b);
-			gbc.gridy = 1;
+			gbc.gridy = 2;
 			b.addActionListener(testListener());
 			userPrompt.add(b, gbc);
 			b.setVisible(true);
