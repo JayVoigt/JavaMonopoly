@@ -55,15 +55,15 @@ public class DialogCreator {
 		JDialog userPrompt = new JDialog();
 		MigLayout promptMigLayout = new MigLayout("fill");
 		userPrompt.setLayout(promptMigLayout);
-		//userPrompt.setPreferredSize(new Dimension(512, 256));
-		userPrompt.setUndecorated(false);
+		userPrompt.setUndecorated(true);
 		
 		JLabel titleLabel = new JLabel();
 		JTextArea infoArea = new JTextArea();
 		titleLabel.setText(dialogTitle);
 		infoArea.setText("This label has text which is intentionally lengthy, to convey the possible situations in which a long message such as this may be added to the dialog");
-		//infoArea.setPreferredSize(new Dimension((256 - 2*16), 128));
 		infoArea.setLineWrap(true);
+		infoArea.setBackground(null);
+		infoArea.setEditable(false);
 		
 		// padding for label
 		titleLabel.setBorder(BorderFactory.createEmptyBorder(4, 4, 4, 4));
@@ -159,9 +159,9 @@ public class DialogCreator {
 		localDialog.setVisible(true);
 		localDialog.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		
-		ButtonContents bc = new ButtonContents("Example text", "", "/red-x.png");
+		ButtonContents bc = new ButtonContents("Example text", "/red-x.png", "close");
 		contentList2.add(bc);
-		bc = new ButtonContents("short", "", "/money.png");
+		bc = new ButtonContents("short", "/money.png", "money");
 		contentList2.add(bc);
 		
 		JDialog localDialog2 = creator2.createDialogUserPrompt(contentList2);
