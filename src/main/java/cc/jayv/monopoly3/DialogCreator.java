@@ -1,6 +1,10 @@
 package cc.jayv.monopoly3;
 
+import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
@@ -9,6 +13,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import javax.swing.BorderFactory;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -42,16 +47,28 @@ public class DialogCreator {
 	
 	public JDialog createDialogUserPrompt(ArrayList<ButtonContents> dialogButtonContentList) {
 		JDialog userPrompt = new JDialog();
-		userPrompt.setLayout(new FlowLayout());
+		userPrompt.setLayout(new GridBagLayout());
 		userPrompt.setSize(512, 512);
+		userPrompt.setUndecorated(false);
+		
+		GridBagConstraints gbc = new GridBagConstraints();
 		
 		JLabel titleLabel = new JLabel();
 		titleLabel.setText(dialogTitle);
 		
+		// padding for label
+		titleLabel.setBorder(BorderFactory.createEmptyBorder(4, 4, 4, 4));
+		titleLabel.setFont(new Font("Helvetica Neue", Font.BOLD, 18));
+		
 		Icon testIcon = new ImageIcon(getClass().getResource("/robot2.gif"));
 		titleLabel.setIcon(testIcon);
 		
-		userPrompt.add(titleLabel);
+		gbc.fill = GridBagConstraints.NORTHWEST;
+		gbc.weightx = 1.0;
+		gbc.weighty = 1.0;
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+		userPrompt.add(titleLabel, gbc);
 		
 		for (ButtonContents c : dialogButtonContentList) {
 			int index = dialogButtonContentList.indexOf(c);
@@ -64,11 +81,15 @@ public class DialogCreator {
 			localButton.setIcon(c.getIcon());
 		}
 		
+		
 		for (JButton b : dialogButtonList) {
-			b.setVisible(true);
-			b.setSize(20, 20);
+			gbc.fill = GridBagConstraints.HORIZONTAL;
+			gbc.weightx = 0;
+			gbc.gridx = dialogButtonList.indexOf(b);
+			gbc.gridy = 1;
 			b.addActionListener(testListener());
-			userPrompt.add(b);
+			userPrompt.add(b, gbc);
+			b.setVisible(true);
 		}
 		
 		return userPrompt;
@@ -123,16 +144,10 @@ public class DialogCreator {
 		DialogCreator creator = new DialogCreator("test dialog", null);
 		ArrayList<ButtonContents> contentList = new ArrayList<>();
 
-		for ( int i = 0 ; i < 32 ; i++ ) {
+		for ( int i = 0 ; i < 4 ; i++ ) {
 			ButtonContents bc = new ButtonContents(Integer.toString(i), "", "none");
 			contentList.add(bc);
 		}
-		
-		ButtonContents buttonYes = new ButtonContents("Yes", "/robot2.gif", "actionYes");
-		ButtonContents buttonNo = new ButtonContents("No", "/red-x.png", "actionNo");
-		
-		contentList.add(buttonYes);
-		contentList.add(buttonNo);
 		
 		JDialog localDialog = creator.createDialogUserPrompt(contentList);
 		localDialog.setVisible(true);
