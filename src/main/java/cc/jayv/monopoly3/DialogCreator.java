@@ -73,7 +73,8 @@ public class DialogCreator {
 		titleLabel.setIcon(testIcon);
 
 		userPrompt.add(titleLabel, "wrap, span");
-		userPrompt.add(infoArea, "wrap, grow, span 3");
+		String centerSpanQuantity = Integer.toString(dialogButtonContentList.size());
+		userPrompt.add(infoArea, "wrap, grow, span " + centerSpanQuantity);
 		
 		for (ButtonContents c : dialogButtonContentList) {
 			int index = dialogButtonContentList.indexOf(c);
@@ -144,7 +145,9 @@ public class DialogCreator {
 	// Testing method
 	public static void main(String args[]) {
 		DialogCreator creator = new DialogCreator("test dialog", null);
+		DialogCreator creator2 = new DialogCreator("test dialog", null);
 		ArrayList<ButtonContents> contentList = new ArrayList<>();
+		ArrayList<ButtonContents> contentList2 = new ArrayList<>();
 
 		for ( int i = 0 ; i < 3 ; i++ ) {
 			ButtonContents bc = new ButtonContents(Integer.toString(i), "", "none");
@@ -155,5 +158,14 @@ public class DialogCreator {
 		localDialog.pack();
 		localDialog.setVisible(true);
 		localDialog.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+		
+		ButtonContents bc = new ButtonContents("Example text", "", "/red-x.png");
+		contentList2.add(bc);
+		bc = new ButtonContents("short", "", "/money.png");
+		contentList2.add(bc);
+		
+		JDialog localDialog2 = creator2.createDialogUserPrompt(contentList2);
+		localDialog2.pack();
+		localDialog2.setVisible(true);
 	}
 }
