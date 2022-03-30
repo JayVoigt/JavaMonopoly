@@ -75,6 +75,24 @@ public class DynamicView {
 				sizeX = 120;
 				sizeY = 120;
 			}
+			else if (index == 10) {
+				posX = 0;
+				posY = 840;
+				sizeX = 120;
+				sizeY = 120;
+			}
+			else if (index == 20) {
+				posX = 0;
+				posY = 0;
+				sizeX = 120;
+				sizeY = 120;
+			}
+			else if (index == 30) {
+				posX = 840;
+				posY = 0;
+				sizeX = 120;
+				sizeY = 120;
+			}
 			else if (index > 0 && index < 10) {
 				posX = 840 - (80 * cardinalPosition);
 				posY = 840;
@@ -87,6 +105,18 @@ public class DynamicView {
 				sizeX = 120;
 				sizeY = 80;
 			}
+			else if (index > 20 && index < 30) {
+				posX = 40 + (80 * cardinalPosition);
+				posY = 0;
+				sizeX = 80;
+				sizeY = 120;
+			}
+			else if (index > 30 && index < 40) {
+				posX = 840;
+				posY = 840 - (80 * cardinalPosition);
+				sizeX = 120;
+				sizeY = 80;
+			}
 			else {
 				posX = 0;
 				posY = 0;
@@ -94,7 +124,7 @@ public class DynamicView {
 				sizeY = 0;
 			}
 			b.setBounds(posX, posY, sizeX, sizeY);
-			
+			b.setText(Integer.toString(index));
 			frame.add(b);
 		}
 		
