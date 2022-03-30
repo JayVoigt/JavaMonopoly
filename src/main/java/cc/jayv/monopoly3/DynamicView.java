@@ -163,13 +163,20 @@ public class DynamicView {
 
 	private void spaceButtonsActionEventCreator() {
 		for (JButton b : spaceButtons) {
-			b.addActionListener(new spaceButtonActionHandler());
+//			b.addActionListener(new spaceButtonActionHandler());
+			b.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					System.exit(0);
+				}
+				
+			}
+			
+			);
 		}
 	}
 	
 	public class spaceButtonActionHandler implements ActionListener {
-
-		int index;
 		
 		public spaceButtonActionHandler() {
 			
@@ -177,8 +184,10 @@ public class DynamicView {
 		
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			((JButton) e.getSource()).setVisible(true);
 			currentSpaceButtonSelection = spaceButtons.indexOf(e.getSource());
 			System.out.println("a");
+			System.exit(0);
 			update();
 		}
 		

@@ -14,6 +14,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.WindowConstants;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -135,5 +136,6 @@ public class DialogCreator {
 		
 		JDialog localDialog = creator.createDialogUserPrompt(contentList);
 		localDialog.setVisible(true);
+		localDialog.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 	}
 }
