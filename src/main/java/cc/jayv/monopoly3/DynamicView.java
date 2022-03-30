@@ -25,32 +25,13 @@ public class DynamicView {
 	
 	public DynamicView() {
 		initComponents();
-
-		mainFrame.setSize(1024, 1024);
-		boardFrame.setSize(512, 512);
-		
-		mainFrame.setLayout(new GridBagLayout());
-		boardFrame.setLayout(null);
-		
-		for ( int i = 0 ; i < 40 ; i++ ) {
-			spaceButtons.add(new JButton());
-		}
-		
-		for (JButton b : spaceButtons) {
-			boardFrame.add(b);
-			b.setSize(80, 120);
-			b.setVisible(true);
-		}
 		
 		mainFrame.add(boardFrame);
-		mainFrame.add(controlFrame);
-		mainFrame.add(infoFrame);
-		
-		for (JInternalFrame f : internalFrames) {
-			f.setVisible(true);
-		}
+		mainFrame.setSize(1280, 1280);
+		mainFrame.setLayout(null);
 		
 		mainFrame.setVisible(true);
+		boardFrame.setVisible(true);
 	}
 	
 	private void initComponents() {
@@ -58,7 +39,7 @@ public class DynamicView {
 		spaceButtons = new ArrayList<>();
 		
 		mainFrame = new JFrame();
-		boardFrame = new JInternalFrame();
+		boardFrame = boardFrameCreator();
 		controlFrame = new JInternalFrame();
 		infoFrame = new JInternalFrame();
 		
@@ -67,7 +48,18 @@ public class DynamicView {
 		internalFrames.add(infoFrame);
 	}
 	
+	private JInternalFrame boardFrameCreator() {
+		JInternalFrame localInternalFrame = new JInternalFrame();
+		
+		localInternalFrame.setSize(1024, 1024);
+		localInternalFrame.setLayout(null);
+		localInternalFrame.setVisible(true);
+		
+		return localInternalFrame;
+	}
+	
 	public static void main(String args[]) {
 		DynamicView localView = new DynamicView();
 	}
+	
 }
