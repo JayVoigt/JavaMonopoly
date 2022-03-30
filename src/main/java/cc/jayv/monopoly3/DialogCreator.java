@@ -2,6 +2,7 @@ package cc.jayv.monopoly3;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -21,7 +22,10 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JTextArea;
 import javax.swing.WindowConstants;
+import net.miginfocom.swing.MigLayout;
+
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -49,14 +53,17 @@ public class DialogCreator {
 	
 	public JDialog createDialogUserPrompt(ArrayList<ButtonContents> dialogButtonContentList) {
 		JDialog userPrompt = new JDialog();
-		userPrompt.setLayout(new GridBagLayout());
-		userPrompt.setSize(512, 512);
+		MigLayout promptMigLayout = new MigLayout("fill");
+		userPrompt.setLayout(promptMigLayout);
+		//userPrompt.setPreferredSize(new Dimension(512, 256));
 		userPrompt.setUndecorated(false);
 		
-		GridBagConstraints gbc = new GridBagConstraints();
-		
 		JLabel titleLabel = new JLabel();
+		JTextArea infoArea = new JTextArea();
 		titleLabel.setText(dialogTitle);
+		infoArea.setText("This label has text which is intentionally lengthy, to convey the possible situations in which a long message such as this may be added to the dialog");
+		//infoArea.setPreferredSize(new Dimension((256 - 2*16), 128));
+		infoArea.setLineWrap(true);
 		
 		// padding for label
 		titleLabel.setBorder(BorderFactory.createEmptyBorder(4, 4, 4, 4));
@@ -64,13 +71,9 @@ public class DialogCreator {
 		
 		Icon testIcon = new ImageIcon(getClass().getResource("/robot2.gif"));
 		titleLabel.setIcon(testIcon);
-		
-		gbc.fill = GridBagConstraints.NORTHWEST;
-		gbc.weightx = 0;
-		gbc.weighty = 0;
-		gbc.gridx = 0;
-		gbc.gridy = 0;
-		userPrompt.add(titleLabel, gbc);
+
+		userPrompt.add(titleLabel, "wrap, span");
+		userPrompt.add(infoArea, "wrap, grow, span 3");
 		
 		for (ButtonContents c : dialogButtonContentList) {
 			int index = dialogButtonContentList.indexOf(c);
@@ -83,19 +86,12 @@ public class DialogCreator {
 			localButton.setIcon(c.getIcon());
 		}
 		
-		Component centerGlue = Box.createVerticalGlue();
-		
-		gbc.gridx = 0;
-		gbc.gridy = 1;
-		userPrompt.add(centerGlue, gbc);
+		dialogButtonList.get(0).setText("long text long text");
 		
 		for (JButton b : dialogButtonList) {
-			gbc.fill = GridBagConstraints.HORIZONTAL;
-			gbc.weightx = 0;
-			gbc.gridx = dialogButtonList.indexOf(b);
-			gbc.gridy = 2;
+			String migButtonSpec = "cell " + dialogButtonList.indexOf(b) + " 3";
 			b.addActionListener(testListener());
-			userPrompt.add(b, gbc);
+			userPrompt.add(b, migButtonSpec);
 			b.setVisible(true);
 		}
 		
@@ -107,8 +103,7 @@ public class DialogCreator {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				JButton localButton = (JButton) e.getSource();
-				
-				localButton.setIcon(new ImageIcon(getClass().getResource("/money.png")));
+				//localButton.setText("long text long text");
 				System.out.println(localButton.getText());
 			}
 		};
@@ -151,12 +146,13 @@ public class DialogCreator {
 		DialogCreator creator = new DialogCreator("test dialog", null);
 		ArrayList<ButtonContents> contentList = new ArrayList<>();
 
-		for ( int i = 0 ; i < 4 ; i++ ) {
+		for ( int i = 0 ; i < 3 ; i++ ) {
 			ButtonContents bc = new ButtonContents(Integer.toString(i), "", "none");
 			contentList.add(bc);
 		}
 		
 		JDialog localDialog = creator.createDialogUserPrompt(contentList);
+		localDialog.pack();
 		localDialog.setVisible(true);
 		localDialog.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 	}
