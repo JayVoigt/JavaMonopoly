@@ -1,0 +1,16 @@
+Index: .gitignore
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>/notes-and-research/
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.gitignore b/.gitignore
+--- a/.gitignore	(revision 09a51bd270b9ec31f13f17b64f7dab7531f67e74)
++++ b/.gitignore	(date 1648737745571)
+@@ -1,1 +1,3 @@
+-/notes-and-research/
+\ No newline at end of file
++/notes-and-research/
++/code-archive/
++/target/
