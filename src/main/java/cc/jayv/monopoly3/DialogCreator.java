@@ -3,13 +3,15 @@ package cc.jayv.monopoly3;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.net.URL;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import javax.swing.WindowConstants;
@@ -32,6 +34,8 @@ public class DialogCreator {
 	ArrayList<JButton> dialogButtonList;
 	ArrayList<ButtonContents> dialogButtonContentList;
 	
+	JDialog userPrompt;
+	
 	public DialogCreator(String dialogTitle, Icon dialogIcon) {
 		this.dialogTitle = dialogTitle;
 		this.dialogIcon = dialogIcon;
@@ -40,8 +44,8 @@ public class DialogCreator {
 		dialogButtonContentList = new ArrayList<>();
 	}
 	
-	public JDialog createDialogUserPrompt(ArrayList<ButtonContents> dialogButtonContentList) {
-		JDialog userPrompt = new JDialog();
+	public JDialog createDialogUserPrompt(ArrayList<ButtonContents> dialogButtonContentList, String infoAreaContents) {
+		userPrompt = new JDialog();
 		MigLayout promptMigLayout = new MigLayout("fill");
 		userPrompt.setLayout(promptMigLayout);
 		//userPrompt.setUndecorated(true);
@@ -49,7 +53,8 @@ public class DialogCreator {
 		JLabel titleLabel = new JLabel();
 		JTextArea infoArea = new JTextArea();
 		titleLabel.setText(dialogTitle);
-		infoArea.setText("This label has text which is intentionally lengthy, to convey the possible situations in which a long message such as this may be added to the dialog");
+		//infoArea.setText("This label has text which is intentionally lengthy, to convey the possible situations in which a long message such as this may be added to the dialog");
+		infoArea.setText(infoAreaContents);
 		infoArea.setLineWrap(true);
 		infoArea.setBackground(null);
 		infoArea.setEditable(false);
@@ -95,6 +100,11 @@ public class DialogCreator {
 			}
 		}
 		
+		userPrompt.addComponentListener(autoPack());
+		userPrompt.setAlwaysOnTop(true);
+		userPrompt.setResizable(false);
+		//userPrompt.setUndecorated(true);
+		
 		return userPrompt;
 	}
 	
@@ -105,9 +115,36 @@ public class DialogCreator {
 				JButton localButton = (JButton) e.getSource();
 				//localButton.setText("long text long text");
 				System.out.println(localButton.getText());
+				System.exit(0);
 			}
 		};
 		return testListener;
+	}
+	
+	public ComponentListener autoPack() {
+		ComponentListener packListener = new ComponentListener() {
+			@Override
+			public void componentHidden(ComponentEvent e) {
+				
+			}
+
+			@Override
+			public void componentMoved(ComponentEvent e) {
+				
+			}
+
+			@Override
+			public void componentResized(ComponentEvent e) {
+				
+			}
+
+			@Override
+			public void componentShown(ComponentEvent e) {
+				
+			}
+		};
+		
+		return packListener;
 	}
 	
 	public static class ButtonContents extends JButton {
@@ -142,15 +179,17 @@ public class DialogCreator {
 	public static void main(String args[]) {
 		DialogCreator creator = new DialogCreator("test dialog", null);
 		DialogCreator creator2 = new DialogCreator("test dialog", null);
+		
 		ArrayList<ButtonContents> contentList = new ArrayList<>();
 		ArrayList<ButtonContents> contentList2 = new ArrayList<>();
 
-		for ( int i = 0 ; i < 3 ; i++ ) {
-			ButtonContents bc = new ButtonContents(Integer.toString(i), "", "none", "");
+		for ( int i = 0 ; i < 2 ; i++ ) {
+			String customMigSpec = "cell " + i + " 1";
+			ButtonContents bc = new ButtonContents(Integer.toString(i), "", "none", customMigSpec);
 			contentList.add(bc);
 		}
 		
-		JDialog localDialog = creator.createDialogUserPrompt(contentList);
+		JDialog localDialog = creator.createDialogUserPrompt(contentList, "");
 		localDialog.pack();
 		localDialog.setVisible(true);
 		localDialog.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -163,8 +202,10 @@ public class DialogCreator {
 		bc = new ButtonContents("longer", "/red-x.png", "long", "span, pushx, growx");
 		contentList2.add(bc);
 		
-		JDialog localDialog2 = creator2.createDialogUserPrompt(contentList2);
+		JDialog localDialog2 = creator2.createDialogUserPrompt(contentList2, "The quick brown fox jumps over the lazy dog.");
 		localDialog2.pack();
+		
+		
 		localDialog2.setVisible(true);
 	}
 }
