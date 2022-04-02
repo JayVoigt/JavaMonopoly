@@ -43,7 +43,13 @@ public class DialogCreator {
 		dialogButtonList = new ArrayList<>();
 		dialogButtonContentList = new ArrayList<>();
 	}
-	
+
+	/**
+	 *
+	 * @param dialogButtonContentList The list of information for buttons to be created within the dialog.
+	 * @param infoAreaContents A string which will be display as the contents for the main text pane within the dialog.
+	 * @return A JDialog object.
+	 */
 	public JDialog createDialogUserPrompt(ArrayList<ButtonContents> dialogButtonContentList, String infoAreaContents) {
 		userPrompt = new JDialog();
 		MigLayout promptMigLayout = new MigLayout("fill");
@@ -146,11 +152,24 @@ public class DialogCreator {
 		
 		return packListener;
 	}
+
+	public void InitDialogForView(JDialog inputDialog) {
+		inputDialog.pack();
+		inputDialog.setVisible(true);
+	}
 	
 	public static class ButtonContents extends JButton {
 		String buttonAction;
 		String customMigLayoutSpec;
-		
+
+		/**
+		 *
+		 * @param buttonText The text to be displayed inside the button.
+		 * @param buttonIconResource A string indicating a path where an ImageIcon resource can be loaded from.
+		 * @param buttonAction A string indicating which action should be executed when the button is pressed.
+		 * @param customMigLayoutSpec A string which is either blank, or can contain commands which are then
+		 *                            passed onto MigLayout for custom layout properties for this button.
+		 */
 		public ButtonContents(String buttonText, String buttonIconResource, String buttonAction, String customMigLayoutSpec) {
 			this.setText(buttonText);
 			this.customMigLayoutSpec = customMigLayoutSpec;
