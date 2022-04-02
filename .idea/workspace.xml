@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fe395cf4-00c4-4bef-93b5-8a1f264350fd" name="Changes" comment="modifying project for use in other IDE">
+    <list default="true" id="fe395cf4-00c4-4bef-93b5-8a1f264350fd" name="Changes" comment="more experiments with dynamic view">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DialogCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DialogCreator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DynamicView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DynamicView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,7 +55,7 @@
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
-  <component name="RunManager" selected="Application.DynamicView">
+  <component name="RunManager" selected="Application.DialogCreator">
     <configuration name="DialogCreator" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="cc.jayv.monopoly3.DialogCreator" />
       <module name="Monoproto3" />
@@ -139,15 +140,15 @@
     </configuration>
     <list>
       <item itemvalue="Application.DialogCreator" />
+      <item itemvalue="Application.DynamicView" />
       <item itemvalue="JAR Application.Run Jar" />
       <item itemvalue="Maven.Clean" />
       <item itemvalue="Maven.Build" />
-      <item itemvalue="Application.DynamicView" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.DynamicView" />
         <item itemvalue="Application.DialogCreator" />
+        <item itemvalue="Application.DynamicView" />
       </list>
     </recent_temporary>
   </component>
@@ -181,7 +182,14 @@
       <option name="project" value="LOCAL" />
       <updated>1648738700620</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="more experiments with dynamic view">
+      <created>1648871285832</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1648871285832</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -208,6 +216,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="modifying project for use in other IDE" />
-    <option name="LAST_COMMIT_MESSAGE" value="modifying project for use in other IDE" />
+    <MESSAGE value="more experiments with dynamic view" />
+    <option name="LAST_COMMIT_MESSAGE" value="more experiments with dynamic view" />
   </component>
 </project>

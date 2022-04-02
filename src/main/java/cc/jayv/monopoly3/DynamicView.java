@@ -50,19 +50,6 @@ public class DynamicView {
 
 		mainFrame.setVisible(true);
 		boardFrame.setVisible(true);
-
-		DialogCreator testDialogCreator = new DialogCreator("Test dialog", new ImageIcon(getClass().getResource("/money.png")));
-		ArrayList<DialogCreator.ButtonContents> dialogButtonContents = new ArrayList<>();
-
-		DialogCreator.ButtonContents confirmButton = new DialogCreator.ButtonContents("Confirm", "/money.png", "confirm", "");
-		dialogButtonContents.add(confirmButton);
-
-		DialogCreator.ButtonContents declineButton = new DialogCreator.ButtonContents("Decline", "/red-x.png", "decline", "");
-		dialogButtonContents.add(declineButton);
-
-		JDialog testDialog = testDialogCreator.createDialogUserPrompt(dialogButtonContents, "This is a test dialog. Here are some contents.");
-		testDialogCreator.InitDialogForView(testDialog);
-
 	}
 
 	public void update() {
@@ -204,6 +191,13 @@ public class DynamicView {
 			update();
 		}
 		
+	}
+
+	private void initDialogs() {
+		DialogCreator dialogCreator;
+		ArrayList<DialogCreator.ButtonContents> buttonContentsList;
+
+		dialogCreator = new DialogCreator("Jail", "/jail.png");
 	}
 
 	public static void main(String args[]) {

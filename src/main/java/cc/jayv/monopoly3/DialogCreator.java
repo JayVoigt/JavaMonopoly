@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
+import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.Icon;
@@ -39,7 +40,15 @@ public class DialogCreator {
 	public DialogCreator(String dialogTitle, Icon dialogIcon) {
 		this.dialogTitle = dialogTitle;
 		this.dialogIcon = dialogIcon;
-		
+
+		dialogButtonList = new ArrayList<>();
+		dialogButtonContentList = new ArrayList<>();
+	}
+
+	public DialogCreator(String dialogTitle, String dialogIconResource) {
+		this.dialogTitle = dialogTitle;
+		this.dialogIcon = new ImageIcon(getClass().getResource(dialogIconResource));
+
 		dialogButtonList = new ArrayList<>();
 		dialogButtonContentList = new ArrayList<>();
 	}
@@ -153,6 +162,15 @@ public class DialogCreator {
 		return packListener;
 	}
 
+	public ImageIcon getImageIconFromResource(String inputResource) {
+		if (inputResource.isEmpty() == false) {
+			return new ImageIcon(getClass().getResource(inputResource));
+		}
+		else {
+			return new ImageIcon(getClass().getResource("/error-icon.png"));
+		}
+	}
+
 	public void InitDialogForView(JDialog inputDialog) {
 		inputDialog.pack();
 		inputDialog.setVisible(true);
@@ -173,15 +191,15 @@ public class DialogCreator {
 		public ButtonContents(String buttonText, String buttonIconResource, String buttonAction, String customMigLayoutSpec) {
 			this.setText(buttonText);
 			this.customMigLayoutSpec = customMigLayoutSpec;
-			
+
 			if (buttonIconResource.isEmpty() == false) {
 				this.setIcon(new ImageIcon(getClass().getResource(buttonIconResource)));
 			}
 			else {
-				this.setIcon(null);
+				this.setIcon(new ImageIcon(getClass().getResource("/error-icon.png")));
 			}
 			this.buttonAction = buttonAction;
-			
+
 			this.setVisible(true);
 		}
 		
@@ -196,8 +214,8 @@ public class DialogCreator {
 	
 	// Testing method
 	public static void main(String args[]) {
-		DialogCreator creator = new DialogCreator("test dialog", null);
-		DialogCreator creator2 = new DialogCreator("test dialog", null);
+		DialogCreator creator = new DialogCreator("test dialog", "");
+		DialogCreator creator2 = new DialogCreator("test dialog", "");
 		
 		ArrayList<ButtonContents> contentList = new ArrayList<>();
 		ArrayList<ButtonContents> contentList2 = new ArrayList<>();
