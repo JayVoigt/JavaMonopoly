@@ -7,7 +7,6 @@ package cc.jayv.monopoly3;
 import com.formdev.flatlaf.FlatLightLaf;
 import java.util.ArrayList;
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.logging.Level;
@@ -50,6 +49,8 @@ public class DynamicView {
 
 		mainFrame.setVisible(true);
 		boardFrame.setVisible(true);
+
+		initDialogs();
 	}
 
 	public void update() {
@@ -195,9 +196,25 @@ public class DynamicView {
 
 	private void initDialogs() {
 		DialogCreator dialogCreator;
-		ArrayList<DialogCreator.ButtonContents> buttonContentsList;
+		ArrayList<DialogCreator.ButtonContents> buttonContentsList = new ArrayList<>();
 
 		dialogCreator = new DialogCreator("Jail", "/jail.png");
+		buttonContentsList.add(new DialogCreator.ButtonContents("Post bail ($50)", "/money.png", "postBail", ""));
+		buttonContentsList.add(new DialogCreator.ButtonContents("Roll for doubles", "/dice-icon.png", "rollForDoubles", ""));
+		buttonContentsList.add(new DialogCreator.ButtonContents("Use Get Out of Jail Free Card", "/goojfc.png", "useGOOJFC", "cell 0 3, span"));
+		JDialog dialogJail = dialogCreator.createDialogUserPrompt(buttonContentsList, "You may post bail for $50, attempt to roll for doubles up to a maximum of 3 times, or use a Get Out of Jail Free Card.");
+		dialogCreator.initDialogForView(dialogJail);
+		buttonContentsList.clear();
+		buttonContentsList.trimToSize();
+
+		dialogCreator = new DialogCreator("Property", "/properties.png");
+		buttonContentsList.add(new DialogCreator.ButtonContents("Purchase", "/money.png", "purchaseProperty", ""));
+		buttonContentsList.add(new DialogCreator.ButtonContents("Auction", "/auction.png", "auctionProperty", ""));
+		JDialog propertyPurchaseDialog = dialogCreator.createDialogUserPrompt(buttonContentsList, "Property information here");
+		dialogCreator.initDialogForView(propertyPurchaseDialog);
+		buttonContentsList.clear();
+		buttonContentsList.trimToSize();
+
 	}
 
 	public static void main(String args[]) {

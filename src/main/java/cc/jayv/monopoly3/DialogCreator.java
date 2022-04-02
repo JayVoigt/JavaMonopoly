@@ -5,14 +5,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
-import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import javax.swing.WindowConstants;
@@ -64,27 +62,27 @@ public class DialogCreator {
 		MigLayout promptMigLayout = new MigLayout("fill");
 		userPrompt.setLayout(promptMigLayout);
 		//userPrompt.setUndecorated(true);
-		
+
+		// Label for dialog
 		JLabel titleLabel = new JLabel();
-		JTextArea infoArea = new JTextArea();
 		titleLabel.setText(dialogTitle);
-		//infoArea.setText("This label has text which is intentionally lengthy, to convey the possible situations in which a long message such as this may be added to the dialog");
+		titleLabel.setIcon(dialogIcon);
+		// Padding for label
+		titleLabel.setBorder(BorderFactory.createEmptyBorder(4, 4, 4, 4));
+		titleLabel.setFont(new Font("Helvetica Neue", Font.BOLD, 18));
+
+		// Text area for general information
+		JTextArea infoArea = new JTextArea();
 		infoArea.setText(infoAreaContents);
 		infoArea.setLineWrap(true);
 		infoArea.setBackground(null);
 		infoArea.setEditable(false);
-		
-		// padding for label
-		titleLabel.setBorder(BorderFactory.createEmptyBorder(4, 4, 4, 4));
-		titleLabel.setFont(new Font("Helvetica Neue", Font.BOLD, 18));
-		
-		Icon testIcon = new ImageIcon(getClass().getResource("/robot2.gif"));
-		titleLabel.setIcon(testIcon);
 
 		userPrompt.add(titleLabel, "wrap, span");
 		String centerSpanQuantity = Integer.toString(dialogButtonContentList.size());
 		userPrompt.add(infoArea, "wrap, grow, span " + centerSpanQuantity);
-		
+
+		// Initialize buttons with contents from list
 		for (ButtonContents c : dialogButtonContentList) {
 			int index = dialogButtonContentList.indexOf(c);
 			
@@ -95,16 +93,8 @@ public class DialogCreator {
 			localButton.setText(c.getText());
 			localButton.setIcon(c.getIcon());
 		}
-		
-		dialogButtonList.get(0).setText("long text long text");
-		
-//		for (JButton b : dialogButtonList) {
-//			String migButtonSpec = "cell " + dialogButtonList.indexOf(b) + " 3";
-//			b.addActionListener(testListener());
-//			userPrompt.add(b, migButtonSpec);
-//			b.setVisible(true);
-//		}
-		
+
+		// Add buttons
 		for (ButtonContents bc : dialogButtonContentList) {
 			bc.addActionListener(testListener());
 			if (bc.getMigLayoutSpec().isEmpty()) {
@@ -115,11 +105,9 @@ public class DialogCreator {
 			}
 		}
 		
-		userPrompt.addComponentListener(autoPack());
 		userPrompt.setAlwaysOnTop(true);
 		userPrompt.setResizable(false);
-		//userPrompt.setUndecorated(true);
-		
+
 		return userPrompt;
 	}
 	
@@ -171,7 +159,7 @@ public class DialogCreator {
 		}
 	}
 
-	public void InitDialogForView(JDialog inputDialog) {
+	public void initDialogForView(JDialog inputDialog) {
 		inputDialog.pack();
 		inputDialog.setVisible(true);
 	}
