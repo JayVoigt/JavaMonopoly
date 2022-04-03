@@ -5,6 +5,7 @@
 package cc.jayv.monopoly3;
 
 import com.formdev.flatlaf.FlatLightLaf;
+import net.miginfocom.swing.MigLayout;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -33,6 +34,10 @@ public class DynamicView {
 	GameLogicController controller;
 	Board board;
 	LogHelper logHelper;
+
+	JDialog dialogJail;
+	JDialog dialogPurchaseProperty;
+	JDialog dialogImprovements;
 	
 	static int currentSpaceButtonSelection;
 
@@ -59,16 +64,15 @@ public class DynamicView {
 		}
 
 		logHelper = new LogHelper();
-
 		controller = new GameLogicController(board, logHelper);
 		guiSwitchBoard = new GUISwitchBoard(controller);
 
-		initComponents();
-		spaceButtonsActionEventCreator();
+		initGUIComponents();
 
-		mainFrame.add(boardFrame);
+		mainFrame.setLayout(new MigLayout());
+		mainFrame.add(boardFrame, "cell 0 0");
+		mainFrame.add(controlFrame, "cell 1 1");
 		mainFrame.setSize(1280, 1280);
-		mainFrame.setLayout(null);
 
 		mainFrame.setVisible(true);
 		boardFrame.setVisible(true);
@@ -77,16 +81,15 @@ public class DynamicView {
 	}
 
 	public void update() {
-		System.out.println(currentSpaceButtonSelection);
 	}
 
-	private void initComponents() {
+	private void initGUIComponents() {
 		internalFrames = new ArrayList<>();
 		spaceButtons = new ArrayList<>();
 
 		mainFrame = new JFrame();
 		boardFrame = boardFrameCreator();
-		controlFrame = new JInternalFrame();
+		controlFrame = controlsCreator();
 		infoFrame = new JInternalFrame();
 
 		internalFrames.add(boardFrame);
@@ -111,6 +114,8 @@ public class DynamicView {
 		int posX, posY, sizeX, sizeY;
 
 		for (JButton b : spaceButtons) {
+
+			b.addActionListener(new spaceButtonActionHandler());
 
 			int index = spaceButtons.indexOf(b);
 			int cardinalPosition = (index % 10);
@@ -172,7 +177,7 @@ public class DynamicView {
 			b.setBounds(posX, posY, sizeX, sizeY);
 			b.setText(Integer.toString(index));
 			b.setFocusable(false);
-			b.setVisible(false);
+			b.setVisible(true);
 			frame.add(b);
 		}	// end button creation
 
@@ -185,21 +190,14 @@ public class DynamicView {
 		return frame;
 	}
 
-	private void spaceButtonsActionEventCreator() {
-		for (JButton b : spaceButtons) {
-//			b.addActionListener(new spaceButtonActionHandler());
-			b.addActionListener(new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					System.exit(0);
-				}
-				
-			}
-			
-			);
-		}
+	private JInternalFrame controlsCreator() {
+		JInternalFrame frame = new JInternalFrame();
+		frame.setSize(400, 400);
+
+		return frame;
 	}
-	
+
+
 	public class spaceButtonActionHandler implements ActionListener {
 		
 		public spaceButtonActionHandler() {
@@ -208,10 +206,8 @@ public class DynamicView {
 		
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			((JButton) e.getSource()).setVisible(true);
 			currentSpaceButtonSelection = spaceButtons.indexOf(e.getSource());
-			System.out.println("a");
-			System.exit(0);
+			System.out.println(currentSpaceButtonSelection);
 			update();
 		}
 		
@@ -226,7 +222,7 @@ public class DynamicView {
 		buttonContentsList.add(new DialogCreator.ButtonContents("Post bail ($50)", "/money.png", GUISwitchBoard.Actions.JAIL_POSTBAIL, "cell 0 2, width 150"));
 		buttonContentsList.add(new DialogCreator.ButtonContents("Roll for doubles", "/dice-icon.png", GUISwitchBoard.Actions.JAIL_ROLLDOUBLES, "cell 1 2, width 150"));
 		buttonContentsList.add(new DialogCreator.ButtonContents("Use Get Out of Jail Free Card", "/goojfc.png", GUISwitchBoard.Actions.JAIL_USEGOOJFC, "cell 0 3, span 2, width 308"));
-		JDialog dialogJail = dialogCreator.createDialogUserPrompt(buttonContentsList, "You may post bail for $50, attempt to roll for doubles up to a maximum of 3 times, or use a Get Out of Jail Free Card.");
+		dialogJail = dialogCreator.createDialogUserPrompt(buttonContentsList, "You may post bail for $50, attempt to roll for doubles up to a maximum of 3 times, or use a Get Out of Jail Free Card.");
 		dialogCreator.initDialogForView(dialogJail);
 		buttonContentsList.clear();
 		buttonContentsList.trimToSize();
@@ -235,18 +231,19 @@ public class DynamicView {
 		dialogCreator = new DialogCreator("Property", "/properties.png", guiSwitchBoard);
 		buttonContentsList.add(new DialogCreator.ButtonContents("Purchase", "/money.png", GUISwitchBoard.Actions.PROPERTY_PURCHASE, "width 150"));
 		buttonContentsList.add(new DialogCreator.ButtonContents("Auction", "/auction.png", GUISwitchBoard.Actions.PROPERTY_AUCTION, "width 150"));
-		JDialog propertyPurchaseDialog = dialogCreator.createDialogUserPrompt(buttonContentsList, "Property information here");
-		dialogCreator.initDialogForView(propertyPurchaseDialog);
+		dialogPurchaseProperty = dialogCreator.createDialogUserPrompt(buttonContentsList, "Property information here");
+		dialogCreator.initDialogForView(dialogPurchaseProperty);
 		buttonContentsList.clear();
 		buttonContentsList.trimToSize();
 
+		// Improvements
 		dialogCreator = new DialogCreator("Improvements", "/improvements.png", guiSwitchBoard);
 		buttonContentsList.add(new DialogCreator.ButtonContents("Build a house", "/house.png", GUISwitchBoard.Actions.IMPROVEMENTS_BUILD_HOUSE, "width 150"));
 		buttonContentsList.add(new DialogCreator.ButtonContents("Sell a house", "/house.png", GUISwitchBoard.Actions.IMPROVEMENTS_SELL_HOUSE, "wrap, width 150"));
 		buttonContentsList.add(new DialogCreator.ButtonContents("Build a hotel", "/hotel.png", GUISwitchBoard.Actions.IMPROVEMENTS_BUILD_HOTEL, "width 150"));
 		buttonContentsList.add(new DialogCreator.ButtonContents("Sell a hotel", "/hotel.png", GUISwitchBoard.Actions.IMPROVEMENTS_SELL_HOTEL, "width 150"));
-		JDialog improvementsDialog = dialogCreator.createDialogUserPrompt(buttonContentsList, "You do not own all properties in this set.");
-		dialogCreator.initDialogForView(improvementsDialog);
+		dialogImprovements = dialogCreator.createDialogUserPrompt(buttonContentsList, "You do not own all properties in this set.");
+		dialogCreator.initDialogForView(dialogImprovements);
 		buttonContentsList.clear();
 		buttonContentsList.trimToSize();
 

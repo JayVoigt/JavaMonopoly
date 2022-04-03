@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fe395cf4-00c4-4bef-93b5-8a1f264350fd" name="Changes" comment="updated dynamic dialog creation">
-      <change afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/GUISwitchBoard.java" afterDir="false" />
+    <list default="true" id="fe395cf4-00c4-4bef-93b5-8a1f264350fd" name="Changes" comment="updated dynamic view generation">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DialogCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DialogCreator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DynamicView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DynamicView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/GUISwitchBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/GUISwitchBoard.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,6 +64,7 @@
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="project.structure.last.edited" value="Problems" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.3494253" />
@@ -76,7 +77,7 @@
       <module name="Monoproto3" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="cc.jayv.monopoly3.*" />
+          <option name="PATTERN" value="cc.jayv.monopoly3.GUISwitchBoard" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -89,7 +90,7 @@
       <module name="Monoproto3" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="cc.jayv.monopoly3.*" />
+          <option name="PATTERN" value="cc.jayv.monopoly3.GUISwitchBoard" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -102,7 +103,7 @@
       <module name="Monoproto3" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="cc.jayv.monopoly3.*" />
+          <option name="PATTERN" value="cc.jayv.monopoly3.GUISwitchBoard" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -240,7 +241,14 @@
       <option name="project" value="LOCAL" />
       <updated>1648958911621</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="updated dynamic view generation">
+      <created>1649024918171</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1649024918171</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -270,7 +278,8 @@
     <MESSAGE value="more experiments with dynamic view" />
     <MESSAGE value="updated icon methods for dialog creation" />
     <MESSAGE value="updated dynamic dialog creation" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated dynamic dialog creation" />
+    <MESSAGE value="updated dynamic view generation" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated dynamic view generation" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -284,6 +293,11 @@
           <url>file://$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DialogCreator.java</url>
           <line>200</line>
           <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DynamicView.java</url>
+          <line>45</line>
+          <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DialogCreator.java</url>
