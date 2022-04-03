@@ -3931,7 +3931,7 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 
 	public void spaceButtonHighlightSpectrum(int startSpaceID, int endSpaceID) {
 		float hueShiftFactor = (float) (1f / (endSpaceID - startSpaceID));
-		System.out.println(hueShiftFactor);
+		//System.out.println(hueShiftFactor);
 
 		for (int i = 0; i < spaceButtons.size(); i++) {
 			if ((i >= startSpaceID) && (i <= endSpaceID)) {

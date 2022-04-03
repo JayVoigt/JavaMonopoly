@@ -6,14 +6,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.util.ArrayList;
-import javax.swing.BorderFactory;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JLabel;
-import javax.swing.JTextArea;
-import javax.swing.WindowConstants;
+import javax.swing.*;
+
 import net.miginfocom.swing.MigLayout;
 
 
@@ -65,15 +59,17 @@ public class DialogCreator {
 
 		// Label for dialog
 		JLabel titleLabel = new JLabel();
-		titleLabel.setText(dialogTitle);
 		titleLabel.setIcon(dialogIcon);
+		titleLabel.setText(dialogTitle);
 		// Padding for label
 		titleLabel.setBorder(BorderFactory.createEmptyBorder(4, 4, 4, 4));
 		titleLabel.setFont(new Font("Helvetica Neue", Font.BOLD, 18));
 
 		// Text area for general information
 		JTextArea infoArea = new JTextArea();
+
 		infoArea.setText(infoAreaContents);
+		infoArea.setWrapStyleWord(true);
 		infoArea.setLineWrap(true);
 		infoArea.setBackground(null);
 		infoArea.setEditable(false);

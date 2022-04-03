@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fe395cf4-00c4-4bef-93b5-8a1f264350fd" name="Changes" comment="updated icon methods for dialog creation">
+    <list default="true" id="fe395cf4-00c4-4bef-93b5-8a1f264350fd" name="Changes" comment="updated dynamic dialog creation">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DialogCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DialogCreator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DynamicView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DynamicView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/MainWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/MainWindow.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,7 +63,7 @@
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
-  <component name="RunManager" selected="Application.DynamicView">
+  <component name="RunManager" selected="Application.DialogCreator">
     <configuration name="DialogCreator" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="cc.jayv.monopoly3.DialogCreator" />
       <module name="Monoproto3" />
@@ -79,6 +79,19 @@
     </configuration>
     <configuration name="DynamicView" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="cc.jayv.monopoly3.DynamicView" />
+      <module name="Monoproto3" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="cc.jayv.monopoly3.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="JavaMonopoly" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="cc.jayv.monopoly3.JavaMonopoly" />
       <module name="Monoproto3" />
       <extension name="coverage">
         <pattern>
@@ -152,11 +165,13 @@
       <item itemvalue="JAR Application.Run Jar" />
       <item itemvalue="Maven.Clean" />
       <item itemvalue="Maven.Build" />
+      <item itemvalue="Application.JavaMonopoly" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.DynamicView" />
         <item itemvalue="Application.DialogCreator" />
+        <item itemvalue="Application.DynamicView" />
+        <item itemvalue="Application.JavaMonopoly" />
       </list>
     </recent_temporary>
   </component>
@@ -204,7 +219,14 @@
       <option name="project" value="LOCAL" />
       <updated>1648918935038</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="updated dynamic dialog creation">
+      <created>1648919621502</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1648919621502</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -233,15 +255,21 @@
     <MESSAGE value="modifying project for use in other IDE" />
     <MESSAGE value="more experiments with dynamic view" />
     <MESSAGE value="updated icon methods for dialog creation" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated icon methods for dialog creation" />
+    <MESSAGE value="updated dynamic dialog creation" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated dynamic dialog creation" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DialogCreator.java</url>
-          <line>38</line>
+          <line>32</line>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DialogCreator.java</url>
+          <line>40</line>
+          <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
