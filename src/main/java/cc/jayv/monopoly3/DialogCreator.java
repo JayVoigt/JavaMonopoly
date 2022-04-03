@@ -26,6 +26,7 @@ public class DialogCreator {
 	Icon dialogIcon;
 	ArrayList<JButton> dialogButtonList;
 	ArrayList<ButtonContents> dialogButtonContentList;
+	GUISwitchBoard guiSwitchBoard;
 	
 	JDialog userPrompt;
 	
@@ -37,9 +38,10 @@ public class DialogCreator {
 		dialogButtonContentList = new ArrayList<>();
 	}
 
-	public DialogCreator(String dialogTitle, String dialogIconResource) {
+	public DialogCreator(String dialogTitle, String dialogIconResource, GUISwitchBoard guiSwitchBoard) {
 		this.dialogTitle = dialogTitle;
 		this.dialogIcon = new ImageIcon(getClass().getResource(dialogIconResource));
+		this.guiSwitchBoard = guiSwitchBoard;
 
 		dialogButtonList = new ArrayList<>();
 		dialogButtonContentList = new ArrayList<>();
@@ -111,10 +113,8 @@ public class DialogCreator {
 		ActionListener testListener = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				JButton localButton = (JButton) e.getSource();
-				//localButton.setText("long text long text");
-				System.out.println(localButton.getText());
-				System.exit(0);
+				ButtonContents localButton = (ButtonContents) e.getSource();
+				guiSwitchBoard.actionHandler(localButton.getBCAction());
 			}
 		};
 		return testListener;
@@ -161,18 +161,18 @@ public class DialogCreator {
 	}
 	
 	public static class ButtonContents extends JButton {
-		String buttonAction;
+		GUISwitchBoard.Actions buttonAction;
 		String customMigLayoutSpec;
 
 		/**
 		 *
 		 * @param buttonText The text to be displayed inside the button.
 		 * @param buttonIconResource A string indicating a path where an ImageIcon resource can be loaded from.
-		 * @param buttonAction A string indicating which action should be executed when the button is pressed.
+		 * @param buttonAction An enum indicating which action should be executed when the button is pressed.
 		 * @param customMigLayoutSpec A string which is either blank, or can contain commands which are then
 		 *                            passed onto MigLayout for custom layout properties for this button.
 		 */
-		public ButtonContents(String buttonText, String buttonIconResource, String buttonAction, String customMigLayoutSpec) {
+		public ButtonContents(String buttonText, String buttonIconResource, GUISwitchBoard.Actions buttonAction, String customMigLayoutSpec) {
 			this.setText(buttonText);
 			this.customMigLayoutSpec = customMigLayoutSpec;
 
@@ -187,7 +187,7 @@ public class DialogCreator {
 			this.setVisible(true);
 		}
 		
-		public String getBCAction() {
+		public GUISwitchBoard.Actions getBCAction() {
 			return buttonAction;
 		}
 		
@@ -198,35 +198,35 @@ public class DialogCreator {
 	
 	// Testing method
 	public static void main(String args[]) {
-		DialogCreator creator = new DialogCreator("test dialog", "");
-		DialogCreator creator2 = new DialogCreator("test dialog", "");
-		
-		ArrayList<ButtonContents> contentList = new ArrayList<>();
-		ArrayList<ButtonContents> contentList2 = new ArrayList<>();
-
-		for ( int i = 0 ; i < 2 ; i++ ) {
-			String customMigSpec = "cell " + i + " 1";
-			ButtonContents bc = new ButtonContents(Integer.toString(i), "", "none", customMigSpec);
-			contentList.add(bc);
-		}
-		
-		JDialog localDialog = creator.createDialogUserPrompt(contentList, "");
-		localDialog.pack();
-		localDialog.setVisible(true);
-		localDialog.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-		
-		ButtonContents bc = new ButtonContents("Example text", "/red-x.png", "close", "");
-		contentList2.add(bc);
-		bc = new ButtonContents("short", "/money.png", "money", "wrap");
-		contentList2.add(bc);
-		
-		bc = new ButtonContents("longer", "/red-x.png", "long", "span, pushx, growx");
-		contentList2.add(bc);
-		
-		JDialog localDialog2 = creator2.createDialogUserPrompt(contentList2, "The quick brown fox jumps over the lazy dog.");
-		localDialog2.pack();
-		
-		
-		localDialog2.setVisible(true);
+//		DialogCreator creator = new DialogCreator("test dialog", "");
+//		DialogCreator creator2 = new DialogCreator("test dialog", "");
+//
+//		ArrayList<ButtonContents> contentList = new ArrayList<>();
+//		ArrayList<ButtonContents> contentList2 = new ArrayList<>();
+//
+//		for ( int i = 0 ; i < 2 ; i++ ) {
+//			String customMigSpec = "cell " + i + " 1";
+//			ButtonContents bc = new ButtonContents(Integer.toString(i), "", "none", customMigSpec);
+//			contentList.add(bc);
+//		}
+//
+//		JDialog localDialog = creator.createDialogUserPrompt(contentList, "");
+//		localDialog.pack();
+//		localDialog.setVisible(true);
+//		localDialog.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+//
+//		ButtonContents bc = new ButtonContents("Example text", "/red-x.png", "close", "");
+//		contentList2.add(bc);
+//		bc = new ButtonContents("short", "/money.png", "money", "wrap");
+//		contentList2.add(bc);
+//
+//		bc = new ButtonContents("longer", "/red-x.png", "long", "span, pushx, growx");
+//		contentList2.add(bc);
+//
+//		JDialog localDialog2 = creator2.createDialogUserPrompt(contentList2, "The quick brown fox jumps over the lazy dog.");
+//		localDialog2.pack();
+//
+//
+//		localDialog2.setVisible(true);
 	}
 }

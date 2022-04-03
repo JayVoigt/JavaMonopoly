@@ -5,6 +5,8 @@
 package cc.jayv.monopoly3;
 
 import com.formdev.flatlaf.FlatLightLaf;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -26,10 +28,17 @@ public class DynamicView {
 
 	ArrayList<JInternalFrame> internalFrames;
 	ArrayList<JButton> spaceButtons;
+
+	GUISwitchBoard guiSwitchBoard;
+	GameLogicController controller;
+	Board board;
+	LogHelper logHelper;
 	
 	static int currentSpaceButtonSelection;
 
 	public DynamicView() {
+
+		// Set to FlatLaf appearance
 		try {
 			UIManager.setLookAndFeel(new FlatLightLaf());
 
@@ -40,6 +49,20 @@ public class DynamicView {
 				Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
 			}
 		}
+
+		// Initialize board
+		try {
+			board = new Board();
+		} catch (IOException e) {
+			e.printStackTrace();
+			System.exit(1);
+		}
+
+		logHelper = new LogHelper();
+
+		controller = new GameLogicController(board, logHelper);
+		guiSwitchBoard = new GUISwitchBoard(controller);
+
 		initComponents();
 		spaceButtonsActionEventCreator();
 
@@ -198,20 +221,32 @@ public class DynamicView {
 		DialogCreator dialogCreator;
 		ArrayList<DialogCreator.ButtonContents> buttonContentsList = new ArrayList<>();
 
-		dialogCreator = new DialogCreator("Jail", "/jail.png");
-		buttonContentsList.add(new DialogCreator.ButtonContents("Post bail ($50)", "/money.png", "postBail", ""));
-		buttonContentsList.add(new DialogCreator.ButtonContents("Roll for doubles", "/dice-icon.png", "rollForDoubles", ""));
-		buttonContentsList.add(new DialogCreator.ButtonContents("Use Get Out of Jail Free Card", "/goojfc.png", "useGOOJFC", "cell 0 3, span"));
+		// Jail
+		dialogCreator = new DialogCreator("Jail", "/jail.png", guiSwitchBoard);
+		buttonContentsList.add(new DialogCreator.ButtonContents("Post bail ($50)", "/money.png", GUISwitchBoard.Actions.JAIL_POSTBAIL, "cell 0 2, width 150"));
+		buttonContentsList.add(new DialogCreator.ButtonContents("Roll for doubles", "/dice-icon.png", GUISwitchBoard.Actions.JAIL_ROLLDOUBLES, "cell 1 2, width 150"));
+		buttonContentsList.add(new DialogCreator.ButtonContents("Use Get Out of Jail Free Card", "/goojfc.png", GUISwitchBoard.Actions.JAIL_USEGOOJFC, "cell 0 3, span 2, width 308"));
 		JDialog dialogJail = dialogCreator.createDialogUserPrompt(buttonContentsList, "You may post bail for $50, attempt to roll for doubles up to a maximum of 3 times, or use a Get Out of Jail Free Card.");
 		dialogCreator.initDialogForView(dialogJail);
 		buttonContentsList.clear();
 		buttonContentsList.trimToSize();
 
-		dialogCreator = new DialogCreator("Property", "/properties.png");
-		buttonContentsList.add(new DialogCreator.ButtonContents("Purchase", "/money.png", "purchaseProperty", ""));
-		buttonContentsList.add(new DialogCreator.ButtonContents("Auction", "/auction.png", "auctionProperty", ""));
+		// Purchase property
+		dialogCreator = new DialogCreator("Property", "/properties.png", guiSwitchBoard);
+		buttonContentsList.add(new DialogCreator.ButtonContents("Purchase", "/money.png", GUISwitchBoard.Actions.PROPERTY_PURCHASE, "width 150"));
+		buttonContentsList.add(new DialogCreator.ButtonContents("Auction", "/auction.png", GUISwitchBoard.Actions.PROPERTY_AUCTION, "width 150"));
 		JDialog propertyPurchaseDialog = dialogCreator.createDialogUserPrompt(buttonContentsList, "Property information here");
 		dialogCreator.initDialogForView(propertyPurchaseDialog);
+		buttonContentsList.clear();
+		buttonContentsList.trimToSize();
+
+		dialogCreator = new DialogCreator("Improvements", "/improvements.png", guiSwitchBoard);
+		buttonContentsList.add(new DialogCreator.ButtonContents("Build a house", "/house.png", GUISwitchBoard.Actions.IMPROVEMENTS_BUILD_HOUSE, "width 150"));
+		buttonContentsList.add(new DialogCreator.ButtonContents("Sell a house", "/house.png", GUISwitchBoard.Actions.IMPROVEMENTS_SELL_HOUSE, "wrap, width 150"));
+		buttonContentsList.add(new DialogCreator.ButtonContents("Build a hotel", "/hotel.png", GUISwitchBoard.Actions.IMPROVEMENTS_BUILD_HOTEL, "width 150"));
+		buttonContentsList.add(new DialogCreator.ButtonContents("Sell a hotel", "/hotel.png", GUISwitchBoard.Actions.IMPROVEMENTS_SELL_HOTEL, "width 150"));
+		JDialog improvementsDialog = dialogCreator.createDialogUserPrompt(buttonContentsList, "You do not own all properties in this set.");
+		dialogCreator.initDialogForView(improvementsDialog);
 		buttonContentsList.clear();
 		buttonContentsList.trimToSize();
 
