@@ -7,6 +7,7 @@ package cc.jayv.monopoly3;
 import com.formdev.flatlaf.FlatLightLaf;
 import net.miginfocom.swing.MigLayout;
 
+import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.*;
@@ -70,9 +71,11 @@ public class DynamicView {
 		initGUIComponents();
 
 		mainFrame.setLayout(new MigLayout());
-		mainFrame.add(boardFrame, "cell 0 0");
-		mainFrame.add(controlFrame, "cell 1 1");
-		mainFrame.setSize(1280, 1280);
+		mainFrame.add(boardFrame, "cell 0 0, x 0, y 0, width 1000, height 1000");
+		mainFrame.add(infoFrame, "cell 1 0, x 1000, y 0, width 400, height 600");
+		mainFrame.add(controlFrame, "cell 1 1, x 1000, y 600, width 400, height 400");
+		//mainFrame.setSize(1280, 1280);
+		mainFrame.pack();
 
 		mainFrame.setVisible(true);
 		boardFrame.setVisible(true);
@@ -90,7 +93,7 @@ public class DynamicView {
 		mainFrame = new JFrame();
 		boardFrame = boardFrameCreator();
 		controlFrame = controlsCreator();
-		infoFrame = new JInternalFrame();
+		infoFrame = infoFrameCreator();
 
 		internalFrames.add(boardFrame);
 		internalFrames.add(controlFrame);
@@ -192,11 +195,52 @@ public class DynamicView {
 
 	private JInternalFrame controlsCreator() {
 		JInternalFrame frame = new JInternalFrame();
+		frame.setLayout(new MigLayout());
 		frame.setSize(400, 400);
+		frame.setVisible(true);
+
+		JLabel staticLabelCurrentPlayer = new JLabel();
+		staticLabelCurrentPlayer.setIcon(getIconFromResource("/player-generic.png"));
+		staticLabelCurrentPlayer.setText("Current player");
+		formatJLabel(staticLabelCurrentPlayer, true);
+		frame.add(staticLabelCurrentPlayer, "align left, grow, cell 0 0");
+
+		JSeparator separator = new JSeparator();
+		frame.add(separator, "cell 1 0");
+
+		JLabel labelCurrentPlayer = new JLabel();
+		labelCurrentPlayer.setText("n/a");
+		formatJLabel(labelCurrentPlayer, false);
+		frame.add(labelCurrentPlayer, "align right, grow, cell 2 0, wrap");
 
 		return frame;
 	}
 
+	private void formatJLabel(JLabel label, boolean isBold) {
+		if (isBold) {
+			label.setFont(new Font("Helvetica Neue", Font.BOLD, 18));
+		}
+		else {
+			label.setFont(new Font("Helvetica Neue", Font.PLAIN, 18));
+		}
+	}
+
+	private JInternalFrame infoFrameCreator() {
+		JInternalFrame frame = new JInternalFrame();
+		frame.setSize(400, 700);
+		frame.setVisible(true);
+
+		return frame;
+	}
+
+	public ImageIcon getIconFromResource(String resource) {
+		if (getClass().getResource(resource) != null) {
+			return new ImageIcon(getClass().getResource(resource));
+		}
+		else {
+			return new ImageIcon(getClass().getResource("/error.png"));
+		}
+	}
 
 	public class spaceButtonActionHandler implements ActionListener {
 		
