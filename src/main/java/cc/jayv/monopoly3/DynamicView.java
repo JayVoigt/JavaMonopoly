@@ -203,15 +203,16 @@ public class DynamicView {
 		staticLabelCurrentPlayer.setIcon(getIconFromResource("/player-generic.png"));
 		staticLabelCurrentPlayer.setText("Current player");
 		formatJLabel(staticLabelCurrentPlayer, true);
-		frame.add(staticLabelCurrentPlayer, "align left, grow, cell 0 0");
+		frame.add(staticLabelCurrentPlayer, "align left, cell 0 0, width 150");
 
 		JSeparator separator = new JSeparator();
 		frame.add(separator, "cell 1 0");
 
 		JLabel labelCurrentPlayer = new JLabel();
 		labelCurrentPlayer.setText("n/a");
+		labelCurrentPlayer.set
 		formatJLabel(labelCurrentPlayer, false);
-		frame.add(labelCurrentPlayer, "align right, grow, cell 2 0, wrap");
+		frame.add(labelCurrentPlayer, "align right, cell 2 0, width 150, wrap");
 
 		return frame;
 	}

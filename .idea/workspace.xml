@@ -175,9 +175,9 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.JavaMonopoly" />
         <item itemvalue="Application.DynamicView" />
         <item itemvalue="Application.DialogCreator" />
-        <item itemvalue="Application.JavaMonopoly" />
       </list>
     </recent_temporary>
   </component>
@@ -253,7 +253,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649028973680</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="updated dynamic view generation">
+      <created>1649030429091</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1649030429091</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -303,6 +310,16 @@
           <url>file://$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DynamicView.java</url>
           <line>46</line>
           <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/MainWindow.java</url>
+          <line>4176</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/MainWindow.java</url>
+          <line>3808</line>
+          <option name="timeStamp" value="10" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DialogCreator.java</url>
