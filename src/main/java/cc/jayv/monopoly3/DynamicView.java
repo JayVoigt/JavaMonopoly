@@ -25,10 +25,9 @@ public class DynamicView {
 	JFrame mainFrame;
 
 	JInternalFrame boardFrame;
-	JInternalFrame controlFrame;
+	ControlFrame controlFrame;
 	JInternalFrame infoFrame;
 
-	ArrayList<JInternalFrame> internalFrames;
 	ArrayList<JButton> spaceButtons;
 
 	LogicSwitchboard switchboard;
@@ -100,7 +99,7 @@ public class DynamicView {
 		mainFrame.setLayout(new MigLayout());
 		mainFrame.add(boardFrame, "cell 0 0, x 0, y 0, width 1000, height 1000");
 		mainFrame.add(infoFrame, "cell 1 0, x 1000, y 0, width 400, height 600");
-		mainFrame.add(controlFrame, "cell 1 1, x 1000, y 600, width 400, height 400");
+		mainFrame.add(controlFrame.getFrame(), "cell 1 1, x 1000, y 600, width 400, height 400");
 		//mainFrame.setSize(1280, 1280);
 		mainFrame.pack();
 
@@ -114,17 +113,12 @@ public class DynamicView {
 	}
 
 	private void initGUIComponents() {
-		internalFrames = new ArrayList<>();
 		spaceButtons = new ArrayList<>();
 
 		mainFrame = new JFrame();
 		boardFrame = boardFrameCreator();
-		controlFrame = controlFrameCreator();
+		controlFrame = new ControlFrame();
 		infoFrame = infoFrameCreator();
-
-		internalFrames.add(boardFrame);
-		internalFrames.add(controlFrame);
-		internalFrames.add(infoFrame);
 	}
 
 	private JInternalFrame boardFrameCreator() {
@@ -220,28 +214,28 @@ public class DynamicView {
 		return frame;
 	}
 
-	private JInternalFrame controlFrameCreator() {
-		JInternalFrame frame = new JInternalFrame();
-		frame.setLayout(new MigLayout());
-		frame.setSize(400, 400);
-		frame.setVisible(true);
-
-		JLabel staticLabelCurrentPlayer = new JLabel();
-		staticLabelCurrentPlayer.setIcon(getIconFromResource("/player-generic.png"));
-		staticLabelCurrentPlayer.setText("Current player");
-		formatJLabel(staticLabelCurrentPlayer, true);
-		frame.add(staticLabelCurrentPlayer, "align left, cell 0 0, width 150");
-
-		JSeparator separator = new JSeparator();
-		frame.add(separator, "cell 1 0");
-
-		JLabel labelCurrentPlayer = new JLabel();
-		labelCurrentPlayer.setText("n/a");
-		formatJLabel(labelCurrentPlayer, false);
-		frame.add(labelCurrentPlayer, "align right, cell 2 0, width 150, wrap");
-
-		return frame;
-	}
+//	private JInternalFrame controlFrameCreator() {
+//		JInternalFrame frame = new JInternalFrame();
+//		frame.setLayout(new MigLayout());
+//		frame.setSize(400, 400);
+//		frame.setVisible(true);
+//
+//		JLabel staticLabelCurrentPlayer = new JLabel();
+//		staticLabelCurrentPlayer.setIcon(getIconFromResource("/player-generic.png"));
+//		staticLabelCurrentPlayer.setText("Current player");
+//		formatJLabel(staticLabelCurrentPlayer, true);
+//		frame.add(staticLabelCurrentPlayer, "align left, cell 0 0, width 150");
+//
+//		JSeparator separator = new JSeparator();
+//		frame.add(separator, "cell 1 0");
+//
+//		JLabel labelCurrentPlayer = new JLabel();
+//		labelCurrentPlayer.setText("n/a");
+//		formatJLabel(labelCurrentPlayer, false);
+//		frame.add(labelCurrentPlayer, "align right, cell 2 0, width 150, wrap");
+//
+//		return frame;
+	//}
 
 	private void formatJLabel(JLabel label, boolean isBold) {
 		if (isBold) {

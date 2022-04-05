@@ -33,8 +33,4 @@ public class ButtonProperties extends JButton {
     public String getMigLayoutSpec() {
         return customMigLayoutSpec;
     }
-
-    public ActionListener getActionListener() {
-        return actionListener;
-    }
 }

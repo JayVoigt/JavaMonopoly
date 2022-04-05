@@ -4,13 +4,9 @@
  */
 package cc.jayv.monopoly3;
 
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JFrame;
-import javax.swing.JInternalFrame;
-import javax.swing.JLabel;
+import javax.swing.*;
 import javax.swing.border.Border;
+import java.awt.*;
 
 /**
  *
@@ -20,10 +16,11 @@ public class SwingHelper {
 
 	JInternalFrame frameBoard;
 	java.awt.Color highlightYellowShade;
+	Font titleFont;
 
 	public SwingHelper(JInternalFrame frameBoardInput) {
 		frameBoard = frameBoardInput;
-		
+
 		highlightYellowShade = new java.awt.Color(255, 224, 102);
 	}
 
@@ -68,22 +65,57 @@ public class SwingHelper {
 	 * @param inputLabel The JLabel to modify
 	 * @param inputContent The contents of the label message
 	 */
-	public void formatLabel(JLabel inputLabel, String inputContent) {
+	public static void formatLabel(JLabel inputLabel, String inputContent) {
 		inputLabel.setForeground(java.awt.Color.black);
 		inputLabel.setText(inputContent);
 	}
 
+	public enum LabelStyles {
+		REGULAR,
+		NO_CONTENT,
+		TITLE_BOLD,
+		TITLE_REGULAR,
+		TITLE_NO_CONTENT
+	}
 	/**
 	 * Format a JLabel that contains no content.<br>
 	 * The text of the label is stylized and set to indicate it has no value.
 	 *
 	 * @param inputLabel The JLabel to modify
 	 */
-	public void formatLabel(JLabel inputLabel) {
-		inputLabel.setForeground(java.awt.Color.gray);
-		inputLabel.setText("<html><i>n/a</i></html>");
+	public static void formatLabel(JLabel inputLabel) {
+		formatLabel(inputLabel, "n/a", LabelStyles.NO_CONTENT);
 	}
 	// </editor-fold>
+
+	public static void formatLabel(JLabel label, String content, LabelStyles style) {
+		// Obtain default font from JEditorPane component
+		// Ref: https://alvinalexander.com/java/how-to-get-default-system-font-java-swing/
+		Font labelFont = new JEditorPane().getFont();
+		java.awt.Color labelColor = java.awt.Color.black;
+		String labelText = content;
+
+		if (style.equals(LabelStyles.NO_CONTENT)) {
+			labelFont = new Font(labelFont.getName(), Font.ITALIC, labelFont.getSize());
+			labelColor = java.awt.Color.gray;
+			labelText = "n/a";
+		}
+		else if (style.equals(LabelStyles.TITLE_BOLD)) {
+			labelFont = new Font(labelFont.getName(), Font.BOLD, 18);
+		}
+		else if (style.equals(LabelStyles.TITLE_REGULAR)) {
+			labelFont = new Font(labelFont.getName(), Font.PLAIN, 18);
+		}
+		else if (style.equals(LabelStyles.TITLE_NO_CONTENT)) {
+			labelFont = new Font(labelFont.getName(), Font.ITALIC, 18);
+			labelColor = java.awt.Color.gray;
+			labelText = "n/a";
+		}
+
+		label.setFont(labelFont);
+		label.setForeground(labelColor);
+		label.setText(labelText);
+	}
 
 	// <editor-fold desc="Highlights and borders">
 	public Border createBorderStyleHighlight(java.awt.Color baseShade, boolean lighten) {
@@ -155,4 +187,13 @@ public class SwingHelper {
 		return newColor;
 	}
 	// </editor-fold>
+
+	public static ImageIcon getImageIconFromResource(String inputResource) {
+		if (inputResource.isEmpty() == false) {
+			return new ImageIcon(SwingHelper.class.getResource(inputResource));
+		}
+		else {
+			return new ImageIcon(SwingHelper.class.getResource("/error-icon.png"));
+		}
+	}
 }
