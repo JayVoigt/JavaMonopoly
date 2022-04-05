@@ -25,23 +25,13 @@ public class DialogCreator {
 	String dialogTitle;
 	Icon dialogIcon;
 	ArrayList<JButton> dialogButtonList;
-	ArrayList<ButtonContents> dialogButtonContentList;
-	GUISwitchBoard guiSwitchBoard;
-	
+	ArrayList<ButtonProperties> dialogButtonContentList;
+
 	JDialog userPrompt;
 	
-	public DialogCreator(String dialogTitle, Icon dialogIcon) {
-		this.dialogTitle = dialogTitle;
-		this.dialogIcon = dialogIcon;
-
-		dialogButtonList = new ArrayList<>();
-		dialogButtonContentList = new ArrayList<>();
-	}
-
-	public DialogCreator(String dialogTitle, String dialogIconResource, GUISwitchBoard guiSwitchBoard) {
+	public DialogCreator(String dialogTitle, String dialogIconResource) {
 		this.dialogTitle = dialogTitle;
 		this.dialogIcon = new ImageIcon(getClass().getResource(dialogIconResource));
-		this.guiSwitchBoard = guiSwitchBoard;
 
 		dialogButtonList = new ArrayList<>();
 		dialogButtonContentList = new ArrayList<>();
@@ -53,16 +43,16 @@ public class DialogCreator {
 	 * @param infoAreaContents A string which will be display as the contents for the main text pane within the dialog.
 	 * @return A JDialog object.
 	 */
-	public JDialog createDialogUserPrompt(ArrayList<ButtonContents> dialogButtonContentList, String infoAreaContents) {
+	public JDialog createDialogUserPrompt(ArrayList<ButtonProperties> dialogButtonContentList, String infoAreaContents) {
 		userPrompt = new JDialog();
 		MigLayout promptMigLayout = new MigLayout("fill");
 		userPrompt.setLayout(promptMigLayout);
-		//userPrompt.setUndecorated(true);
 
 		// Label for dialog
 		JLabel titleLabel = new JLabel();
 		titleLabel.setIcon(dialogIcon);
 		titleLabel.setText(dialogTitle);
+
 		// Padding for label
 		titleLabel.setBorder(BorderFactory.createEmptyBorder(4, 4, 4, 4));
 		titleLabel.setFont(new Font("Helvetica Neue", Font.BOLD, 18));
@@ -81,25 +71,24 @@ public class DialogCreator {
 		userPrompt.add(infoArea, "wrap, grow, span " + centerSpanQuantity);
 
 		// Initialize buttons with contents from list
-		for (ButtonContents c : dialogButtonContentList) {
-			int index = dialogButtonContentList.indexOf(c);
+		for (ButtonProperties p : dialogButtonContentList) {
+			int index = dialogButtonContentList.indexOf(p);
 			
 			// Add new JButton to list; create reference as localButton
 			dialogButtonList.add(index, new JButton());
 			JButton localButton = dialogButtonList.get(index);
 
-			localButton.setText(c.getText());
-			localButton.setIcon(c.getIcon());
+			localButton.setText(p.getText());
+			localButton.setIcon(p.getIcon());
 		}
 
 		// Add buttons
-		for (ButtonContents bc : dialogButtonContentList) {
-			bc.addActionListener(testListener());
-			if (bc.getMigLayoutSpec().isEmpty()) {
-				userPrompt.add(bc);
+		for (ButtonProperties p : dialogButtonContentList) {
+			if (p.getMigLayoutSpec().isEmpty()) {
+				userPrompt.add(p);
 			}
 			else {
-				userPrompt.add(bc, bc.getMigLayoutSpec());
+				userPrompt.add(p, p.getMigLayoutSpec());
 			}
 		}
 		
@@ -109,16 +98,16 @@ public class DialogCreator {
 		return userPrompt;
 	}
 	
-	public ActionListener testListener() {
-		ActionListener testListener = new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				ButtonContents localButton = (ButtonContents) e.getSource();
-				guiSwitchBoard.actionHandler(localButton.getBCAction());
-			}
-		};
-		return testListener;
-	}
+//	public ActionListener testListener() {
+//		ActionListener testListener = new ActionListener() {
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				ButtonProperties localButton = (ButtonProperties) e.getSource();
+//				guiSwitchBoard.actionHandler(localButton.getBCAction());
+//			}
+//		};
+//		return testListener;
+//	}
 	
 	public ComponentListener autoPack() {
 		ComponentListener packListener = new ComponentListener() {
@@ -160,41 +149,41 @@ public class DialogCreator {
 		inputDialog.setVisible(true);
 	}
 	
-	public static class ButtonContents extends JButton {
-		GUISwitchBoard.Actions buttonAction;
-		String customMigLayoutSpec;
-
-		/**
-		 *
-		 * @param buttonText The text to be displayed inside the button.
-		 * @param buttonIconResource A string indicating a path where an ImageIcon resource can be loaded from.
-		 * @param buttonAction An enum indicating which action should be executed when the button is pressed.
-		 * @param customMigLayoutSpec A string which is either blank, or can contain commands which are then
-		 *                            passed onto MigLayout for custom layout properties for this button.
-		 */
-		public ButtonContents(String buttonText, String buttonIconResource, GUISwitchBoard.Actions buttonAction, String customMigLayoutSpec) {
-			this.setText(buttonText);
-			this.customMigLayoutSpec = customMigLayoutSpec;
-
-			if (buttonIconResource.isEmpty() == false) {
-				this.setIcon(new ImageIcon(getClass().getResource(buttonIconResource)));
-			}
-			else {
-				this.setIcon(new ImageIcon(getClass().getResource("/error-icon.png")));
-			}
-			this.buttonAction = buttonAction;
-
-			this.setVisible(true);
-		}
-		
-		public GUISwitchBoard.Actions getBCAction() {
-			return buttonAction;
-		}
-		
-		public String getMigLayoutSpec() {
-			return customMigLayoutSpec;
-		}
-	}
+//	public static class ButtonProperties extends JButton {
+//		String customMigLayoutSpec;
+//
+//		/**
+//		 *
+//		 * @param buttonText The text to be displayed inside the button.
+//		 * @param buttonIconResource A string indicating a path where an ImageIcon resource can be loaded from.
+//		 * @param actionListener An enum indicating which action should be executed when the button is pressed.
+//		 * @param customMigLayoutSpec A string which is either blank, or can contain commands which are then
+//		 *                            passed onto MigLayout for custom layout properties for this button.
+//		 */
+//		public ButtonProperties(String buttonText, String buttonIconResource, ActionListener actionListener, String customMigLayoutSpec) {
+//			this.setText(buttonText);
+//			this.customMigLayoutSpec = customMigLayoutSpec;
+//
+//			this.addActionListener(actionListener);
+//
+//			if (buttonIconResource.isEmpty() == false) {
+//				this.setIcon(new ImageIcon(getClass().getResource(buttonIconResource)));
+//			}
+//			else {
+//				this.setIcon(new ImageIcon(getClass().getResource("/error-icon.png")));
+//			}
+//
+//			this.setVisible(true);
+//		}
+//
+//		public String getMigLayoutSpec() {
+//			return customMigLayoutSpec;
+//		}
+//
+//		public ActionListener getActionListener() {
+//			return actionListener;
+//		}
+//	}
 	
 	// Testing method
 	public static void main(String args[]) {
