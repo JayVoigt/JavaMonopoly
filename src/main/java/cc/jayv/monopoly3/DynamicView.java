@@ -31,7 +31,7 @@ public class DynamicView {
 	ArrayList<JInternalFrame> internalFrames;
 	ArrayList<JButton> spaceButtons;
 
-	GUISwitchBoard guiSwitchBoard;
+	LogicSwitchboard switchboard;
 	GameLogicController controller;
 	Board board;
 	LogHelper logHelper;
@@ -93,7 +93,7 @@ public class DynamicView {
 
 		logHelper = new LogHelper();
 		controller = new GameLogicController(board, logHelper);
-		guiSwitchBoard = new GUISwitchBoard(controller);
+		switchboard = new LogicSwitchboard(controller);
 
 		initGUIComponents();
 
@@ -289,51 +289,52 @@ public class DynamicView {
 	}
 
 	private void initDialogs() {
-		DialogCreator dialogCreator;
+		ViewDialog viewDialog;
 		ArrayList<ButtonProperties> buttonPropertiesList = new ArrayList<>();
 
 		// Jail
-		dialogCreator = new DialogCreator("Jail", "/jail.png");
-		buttonPropertiesList.add(new ButtonProperties("Post bail ($50)", "/money.png", new DialogButtonActionListener(Actions.JAIL_POSTBAIL), "cell 0 2, width 150"));
-		buttonPropertiesList.add(new ButtonProperties("Roll for doubles", "/dice-icon.png", new DialogButtonActionListener(Actions.JAIL_ROLLDOUBLES), "cell 1 2, width 150"));
-		buttonPropertiesList.add(new ButtonProperties("Use Get Out of Jail Free Card", "/goojfc.png", new DialogButtonActionListener(Actions.JAIL_USEGOOJFC), "cell 0 3, span 2, width 308"));
-		dialogJail = dialogCreator.createDialogUserPrompt(buttonPropertiesList, "You may post bail for $50, attempt to roll for doubles up to a maximum of 3 times, or use a Get Out of Jail Free Card.");
-		dialogCreator.initDialogForView(dialogJail);
+		viewDialog = new ViewDialog("Jail", "/jail.png");
+		buttonPropertiesList.add(new ButtonProperties("Post bail ($50)", "/money.png", new ButtonActionListener(Actions.JAIL_POSTBAIL), "cell 0 2, width 150"));
+		buttonPropertiesList.add(new ButtonProperties("Roll for doubles", "/dice-icon.png", new ButtonActionListener(Actions.JAIL_ROLLDOUBLES), "cell 1 2, width 150"));
+		buttonPropertiesList.add(new ButtonProperties("Use Get Out of Jail Free Card", "/goojfc.png", new ButtonActionListener(Actions.JAIL_USEGOOJFC), "cell 0 3, span 2, width 308"));
+		dialogJail = viewDialog.createDialogUserPrompt(buttonPropertiesList, "You may post bail for $50, attempt to roll for doubles up to a maximum of 3 times, or use a Get Out of Jail Free Card.");
+		viewDialog.initDialogForView(dialogJail);
 		buttonPropertiesList.clear();
 		buttonPropertiesList.trimToSize();
 
 		// Purchase property
-		dialogCreator = new DialogCreator("Property", "/properties.png");
-		buttonPropertiesList.add(new ButtonProperties("Purchase", "/money.png", new DialogButtonActionListener(Actions.PROPERTY_PURCHASE), "width 150"));
-		buttonPropertiesList.add(new ButtonProperties("Auction", "/auction.png", new DialogButtonActionListener(Actions.PROPERTY_AUCTION), "width 150"));
-		dialogPurchaseProperty = dialogCreator.createDialogUserPrompt(buttonPropertiesList, "Property information here");
-		dialogCreator.initDialogForView(dialogPurchaseProperty);
+		viewDialog = new ViewDialog("Property", "/properties.png");
+		buttonPropertiesList.add(new ButtonProperties("Purchase", "/money.png", new ButtonActionListener(Actions.PROPERTY_PURCHASE), "width 150"));
+		buttonPropertiesList.add(new ButtonProperties("Auction", "/auction.png", new ButtonActionListener(Actions.PROPERTY_AUCTION), "width 150"));
+		dialogPurchaseProperty = viewDialog.createDialogUserPrompt(buttonPropertiesList, "Property information here");
+		viewDialog.initDialogForView(dialogPurchaseProperty);
 		buttonPropertiesList.clear();
 		buttonPropertiesList.trimToSize();
 
 		// Improvements
-		dialogCreator = new DialogCreator("Improvements", "/improvements.png");
-		buttonPropertiesList.add(new ButtonProperties("Build a house", "/house.png", new DialogButtonActionListener(Actions.IMPROVEMENTS_BUILD_HOUSE), "width 150"));
-		buttonPropertiesList.add(new ButtonProperties("Sell a house", "/house.png", new DialogButtonActionListener(Actions.IMPROVEMENTS_SELL_HOUSE), "wrap, width 150"));
-		buttonPropertiesList.add(new ButtonProperties("Build a hotel", "/hotel.png", new DialogButtonActionListener(Actions.IMPROVEMENTS_BUILD_HOTEL), "width 150"));
-		buttonPropertiesList.add(new ButtonProperties("Sell a hotel", "/hotel.png", new DialogButtonActionListener(Actions.IMPROVEMENTS_SELL_HOTEL), "width 150"));
-		dialogImprovements = dialogCreator.createDialogUserPrompt(buttonPropertiesList, "You do not own all properties in this set.");
-		dialogCreator.initDialogForView(dialogImprovements);
+		viewDialog = new ViewDialog("Improvements", "/improvements.png");
+		buttonPropertiesList.add(new ButtonProperties("Build a house", "/house.png", new ButtonActionListener(Actions.IMPROVEMENTS_BUILD_HOUSE), "width 150"));
+		buttonPropertiesList.add(new ButtonProperties("Sell a house", "/house.png", new ButtonActionListener(Actions.IMPROVEMENTS_SELL_HOUSE), "wrap, width 150"));
+		buttonPropertiesList.add(new ButtonProperties("Build a hotel", "/hotel.png", new ButtonActionListener(Actions.IMPROVEMENTS_BUILD_HOTEL), "width 150"));
+		buttonPropertiesList.add(new ButtonProperties("Sell a hotel", "/hotel.png", new ButtonActionListener(Actions.IMPROVEMENTS_SELL_HOTEL), "width 150"));
+		dialogImprovements = viewDialog.createDialogUserPrompt(buttonPropertiesList, "You do not own all properties in this set.");
+		viewDialog.initDialogForView(dialogImprovements);
 		buttonPropertiesList.clear();
 		buttonPropertiesList.trimToSize();
 
 	}
 
-	public class DialogButtonActionListener implements ActionListener {
+	public class ButtonActionListener implements ActionListener {
 
 		Actions action;
-		public DialogButtonActionListener(Actions action) {
+		public ButtonActionListener(Actions action) {
 			this.action = action;
 		}
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			System.out.println(e.getSource() + " : " + action);
+			switchboard.actionHandler(action, currentSpaceButtonSelection);
+			update();
 		}
 	}
 
