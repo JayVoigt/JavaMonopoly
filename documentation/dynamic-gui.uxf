@@ -4,8 +4,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>700</x>
-      <y>450</y>
+      <x>1340</x>
+      <y>390</y>
       <w>610</w>
       <h>470</h>
     </coordinates>
@@ -40,8 +40,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1380</x>
-      <y>60</y>
+      <x>2020</x>
+      <y>0</y>
       <w>410</w>
       <h>350</h>
     </coordinates>
@@ -63,34 +63,38 @@ innerclass}
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>740</x>
-      <y>1000</y>
-      <w>270</w>
-      <h>110</h>
+      <x>1340</x>
+      <y>950</y>
+      <w>350</w>
+      <h>150</h>
     </coordinates>
-    <panel_attributes>ViewSubframe
+    <panel_attributes>style=wordwrap
+ViewComponent
 &lt;&lt;Interface&gt;&gt;
 --
 + update(Board board): void
-+ getPanel(): JPanel</panel_attributes>
++ setStateOfActionButton(Actions action, boolean isEnabled): void
+
++ getComponent(): JComponent</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>740</x>
-      <y>1200</y>
+      <x>1380</x>
+      <y>1190</y>
       <w>270</w>
       <h>110</h>
     </coordinates>
-    <panel_attributes>BoardFrame</panel_attributes>
+    <panel_attributes>BoardFrame
+--</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>870</x>
-      <y>1100</y>
+      <x>1510</x>
+      <y>1090</y>
       <w>110</w>
       <h>120</h>
     </coordinates>
@@ -101,65 +105,57 @@ implements</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>450</x>
-      <y>1200</y>
+      <x>1090</x>
+      <y>1190</y>
       <w>270</w>
       <h>110</h>
     </coordinates>
-    <panel_attributes>ControlFrame</panel_attributes>
+    <panel_attributes>ControlFrame
+--
+</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1030</x>
-      <y>1200</y>
+      <x>1670</x>
+      <y>1190</y>
       <w>270</w>
       <h>110</h>
     </coordinates>
-    <panel_attributes>InfoFrame</panel_attributes>
+    <panel_attributes>InfoFrame
+--</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>660</x>
-      <y>1070</y>
+      <x>1270</x>
+      <y>1060</y>
       <w>110</w>
       <h>150</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 implements</panel_attributes>
-    <additional_attributes>10.0;130.0;10.0;10.0;80.0;10.0</additional_attributes>
+    <additional_attributes>10.0;130.0;10.0;10.0;70.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1000</x>
-      <y>1070</y>
-      <w>180</w>
+      <x>1680</x>
+      <y>1060</y>
+      <w>170</w>
       <h>150</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 implements</panel_attributes>
-    <additional_attributes>80.0;130.0;80.0;10.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>770</x>
-      <y>910</y>
-      <w>30</w>
-      <h>110</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
+    <additional_attributes>70.0;130.0;70.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1380</x>
-      <y>530</y>
+      <x>2120</x>
+      <y>940</y>
       <w>410</w>
       <h>350</h>
     </coordinates>
@@ -172,17 +168,16 @@ ViewDialog
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1380</x>
-      <y>910</y>
+      <x>700</x>
+      <y>250</y>
       <w>530</w>
-      <h>330</h>
+      <h>320</h>
     </coordinates>
     <panel_attributes>style=wordwrap
 ButtonProperties
 --
 - button: JButton
 - customMigLayoutSpec: String
-- localListener: ActionListener
 --
 &lt;&lt;Constructor&gt;&gt; ButtonProperties(String buttonText, String buttonIconResource, String customMigLayoutSpec)
 
@@ -195,39 +190,91 @@ ButtonProperties
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>140</x>
-      <y>600</y>
-      <w>530</w>
-      <h>320</h>
+      <x>950</x>
+      <y>730</y>
+      <w>270</w>
+      <h>130</h>
     </coordinates>
-    <panel_attributes>style=wordwrap
-ButtonProperties
---
-- button: JButton
-- customMigLayoutSpec: String
-- localListener: ActionListener
---
-&lt;&lt;Constructor&gt;&gt; ButtonProperties(String buttonText, String buttonIconResource, String customMigLayoutSpec)
-
-&lt;&lt;Constructor&gt;&gt; ButtonProperties(String buttonText, String buttonIconResource)
-
-+ getButton(): JButton
-+ getMigLayoutSpec(): String</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>110</x>
-      <y>210</y>
-      <w>530</w>
-      <h>320</h>
-    </coordinates>
-    <panel_attributes>style=wordwrap
+    <panel_attributes>lt=.
+style=wordwrap
 GenericButtonListener
 &lt;&lt;implements ActionListener&gt;&gt;
 --
 + actionPerformed(ActionEvent e): void</panel_attributes>
     <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>730</x>
+      <y>1430</y>
+      <w>270</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>ControlFrame</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>170</x>
+      <y>980</y>
+      <w>430</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+ViewComponentDialog
+&lt;&lt;Interface&gt;&gt;
+--
++ setInfoArea(String text): void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>590</x>
+      <y>990</y>
+      <w>160</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+implements</panel_attributes>
+    <additional_attributes>10.0;20.0;140.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1210</x>
+      <y>760</y>
+      <w>140</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=.
+subclass</panel_attributes>
+    <additional_attributes>120.0;20.0;10.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1680</x>
+      <y>950</y>
+      <w>460</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+implements</panel_attributes>
+    <additional_attributes>440.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1410</x>
+      <y>850</y>
+      <w>30</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0</additional_attributes>
   </element>
 </diagram>
