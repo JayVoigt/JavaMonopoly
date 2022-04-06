@@ -245,7 +245,6 @@ public class DynamicView {
 		dialogImprovements = viewDialog.createDialogUserPrompt(buttonPropertiesList, "You do not own all properties in this set.");
 		buttonPropertiesList.clear();
 		buttonPropertiesList.trimToSize();
-
 	}
 
 	public class ButtonActionListener implements ActionListener {

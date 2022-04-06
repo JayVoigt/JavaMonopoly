@@ -4,14 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fe395cf4-00c4-4bef-93b5-8a1f264350fd" name="Changes" comment="fixed spaceButton placement issue">
-      <change beforePath="$PROJECT_DIR$/.idea/csv-plugin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/csv-plugin.xml" afterDir="false" />
+    <list default="true" id="fe395cf4-00c4-4bef-93b5-8a1f264350fd" name="Changes" comment="improved controlFrame; general code cleanup">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/Actions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/Actions.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/ControlFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/ControlFrame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DynamicView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DynamicView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/LogicSwitchboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/LogicSwitchboard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/ViewDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/ViewDialog.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -346,7 +342,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649213045413</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="improved controlFrame; general code cleanup">
+      <created>1649214733193</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1649214733193</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -385,7 +388,8 @@
     <MESSAGE value="split Actions into separate class; further experiments with dynamic GUI" />
     <MESSAGE value="ActionEvents across multiple classes working" />
     <MESSAGE value="fixed spaceButton placement issue" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed spaceButton placement issue" />
+    <MESSAGE value="improved controlFrame; general code cleanup" />
+    <option name="LAST_COMMIT_MESSAGE" value="improved controlFrame; general code cleanup" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

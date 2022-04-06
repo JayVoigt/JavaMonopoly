@@ -13,7 +13,12 @@ public class ControlFrame implements ViewComponent {
         ButtonProperties buttonEndTurn;
         ButtonProperties buttonRollDice;
 
-        ButtonProperties buttonControlsShowImprovements;
+        ButtonProperties buttonControlsMortgage;
+        ButtonProperties buttonControlsShowProperties;
+        ButtonProperties buttonControlsStatistics;
+        ButtonProperties buttonControlsTrade;
+        ButtonProperties buttonControlsForfeit;
+        ButtonProperties buttonControlsImprovements;
 
         JLabel staticLabelCurrentPlayer;
         JLabel labelCurrentPlayer;
@@ -88,14 +93,37 @@ public class ControlFrame implements ViewComponent {
                 }
 
                 try {
-                        buttonEndTurn = new ButtonProperties("End turn", "/arrow.png", endTurnActionListener, "cell 2 9, align right");
+                        // End turn
+                        buttonEndTurn = new ButtonProperties("End turn", "/arrow.png", endTurnActionListener, "cell 2 16, align right");
                         frame.add(buttonEndTurn, buttonEndTurn.getMigLayoutSpec());
 
-                        buttonRollDice = new ButtonProperties("Roll dice", "/dice-icon.png", rollDiceActionListener, "cell 0 9, align left");
+                        // Roll dice
+                        buttonRollDice = new ButtonProperties("Roll dice", "/dice-icon.png", rollDiceActionListener, "cell 0 16, align left");
                         frame.add(buttonRollDice, buttonRollDice.getMigLayoutSpec());
 
-                        buttonControlsShowImprovements = new ButtonProperties("Improvements", "/improvements.png", controlsImprovementsActionListener, "cell 0 6");
-                        frame.add(buttonControlsShowImprovements, buttonControlsShowImprovements.getMigLayoutSpec());
+                        // Mortgage
+                        buttonControlsMortgage = new ButtonProperties("Mortgage", "/mortgage.png", null, "cell 0 6, width 120, align left");
+                        frame.add(buttonControlsMortgage, buttonControlsMortgage.getMigLayoutSpec());
+
+                        // Properties
+                        buttonControlsShowProperties = new ButtonProperties("Properties", "/properties.png", controlsPropertiesActionListener, "cell 2 6, width 120, align right");
+                        frame.add(buttonControlsShowProperties, buttonControlsShowProperties.getMigLayoutSpec());
+
+                        // Improvements
+                        buttonControlsImprovements = new ButtonProperties("Improvements", "/improvements.png", controlsImprovementsActionListener, "cell 0 8, width 120, align left");
+                        frame.add(buttonControlsImprovements, buttonControlsImprovements.getMigLayoutSpec());
+
+                        // Statistics
+                        buttonControlsStatistics = new ButtonProperties("Statistics", "/statistics.png", null, "cell 2 8, width 120, align right");
+                        frame.add(buttonControlsStatistics, buttonControlsStatistics.getMigLayoutSpec());
+
+                        // Trade
+                        buttonControlsTrade = new ButtonProperties("Trade", "/trade.png", null, "cell 0 10, width 120");
+                        frame.add(buttonControlsTrade, buttonControlsTrade.getMigLayoutSpec());
+
+                        // Forfeit
+                        buttonControlsForfeit = new ButtonProperties("Forfeit", "/surrender.png", null, "cell 2 10, width 120");
+                        frame.add(buttonControlsForfeit, buttonControlsForfeit.getMigLayoutSpec());
 
                 } catch (NullPointerException ignored) {
 
