@@ -41,33 +41,6 @@ public class DynamicView {
 	
 	static int currentSpaceButtonSelection;
 
-	public enum Actions {
-		CONTROLS_ROLLDICE,
-		CONTROLS_ENDTURN,
-
-		// Property purchase dialog
-		PROPERTY_PURCHASE,
-		PROPERTY_AUCTION,
-
-		// Mortgaging dialog
-		PROPERTY_MORTGAGE,
-		PROPERTY_UNMORTGAGE,
-
-		// Show owned properties
-		VIEW_SHOWPROPERTIES,
-
-		// Improvements dialog
-		IMPROVEMENTS_BUILD_HOUSE,
-		IMPROVEMENTS_SELL_HOUSE,
-		IMPROVEMENTS_BUILD_HOTEL,
-		IMPROVEMENTS_SELL_HOTEL,
-
-		// Jail dialog
-		JAIL_POSTBAIL,
-		JAIL_ROLLDOUBLES,
-		JAIL_USEGOOJFC,
-	}
-
 	public DynamicView() {
 
 		// Set to FlatLaf appearance
@@ -100,7 +73,6 @@ public class DynamicView {
 		mainFrame.add(boardFrame, "cell 0 0, x 0, y 0, width 1000, height 1000");
 		mainFrame.add(infoFrame, "cell 1 0, x 1000, y 0, width 400, height 600");
 		mainFrame.add(controlFrame.getFrame(), "cell 1 1, x 1000, y 600, width 400, height 400");
-		//mainFrame.setSize(1280, 1280);
 		mainFrame.pack();
 
 		mainFrame.setVisible(true);
@@ -214,29 +186,6 @@ public class DynamicView {
 		return frame;
 	}
 
-//	private JInternalFrame controlFrameCreator() {
-//		JInternalFrame frame = new JInternalFrame();
-//		frame.setLayout(new MigLayout());
-//		frame.setSize(400, 400);
-//		frame.setVisible(true);
-//
-//		JLabel staticLabelCurrentPlayer = new JLabel();
-//		staticLabelCurrentPlayer.setIcon(getIconFromResource("/player-generic.png"));
-//		staticLabelCurrentPlayer.setText("Current player");
-//		formatJLabel(staticLabelCurrentPlayer, true);
-//		frame.add(staticLabelCurrentPlayer, "align left, cell 0 0, width 150");
-//
-//		JSeparator separator = new JSeparator();
-//		frame.add(separator, "cell 1 0");
-//
-//		JLabel labelCurrentPlayer = new JLabel();
-//		labelCurrentPlayer.setText("n/a");
-//		formatJLabel(labelCurrentPlayer, false);
-//		frame.add(labelCurrentPlayer, "align right, cell 2 0, width 150, wrap");
-//
-//		return frame;
-	//}
-
 	private void formatJLabel(JLabel label, boolean isBold) {
 		if (isBold) {
 			label.setFont(new Font("Helvetica Neue", Font.BOLD, 18));
@@ -272,14 +221,6 @@ public class DynamicView {
 			update();
 		}
 		
-	}
-
-	public class GenericButtonListener implements ActionListener {
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			System.out.println(e.getSource());
-		}
 	}
 
 	private void initDialogs() {

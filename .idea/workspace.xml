@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fe395cf4-00c4-4bef-93b5-8a1f264350fd" name="Changes" comment="updated dynamic GUI creation; separated elements into further classes">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+    <list default="true" id="fe395cf4-00c4-4bef-93b5-8a1f264350fd" name="Changes" comment="experimenting with infoArea manipulation through LogicSwitchboard">
+      <change afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/Actions.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Monoproto3.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Monoproto3.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/dynamic-gui.uxf" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/dynamic-gui.uxf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DynamicView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DynamicView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/LogicSwitchboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/LogicSwitchboard.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/ViewDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/ViewDialog.java" afterDir="false" />
@@ -29,6 +26,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -317,7 +315,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649202892488</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="experimenting with infoArea manipulation through LogicSwitchboard">
+      <created>1649205376973</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1649205376973</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -352,14 +357,15 @@
     <MESSAGE value="updated UML" />
     <MESSAGE value="established framework for view logic switching" />
     <MESSAGE value="updated dynamic GUI creation; separated elements into further classes" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated dynamic GUI creation; separated elements into further classes" />
+    <MESSAGE value="experimenting with infoArea manipulation through LogicSwitchboard" />
+    <option name="LAST_COMMIT_MESSAGE" value="experimenting with infoArea manipulation through LogicSwitchboard" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DynamicView.java</url>
-          <line>72</line>
+          <line>45</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">

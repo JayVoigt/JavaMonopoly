@@ -13,7 +13,7 @@ public class LogicSwitchboard {
         this.c = controller;
     }
 
-    public void actionHandler(DynamicView.Actions trigger, int currentSpaceSelectionID) {
+    public void actionHandler(Actions trigger, int currentSpaceSelectionID) {
         System.out.println("switchboard : " + trigger);
 
         switch (trigger) {
@@ -31,7 +31,7 @@ public class LogicSwitchboard {
 
             case PROPERTY_PURCHASE -> c.playerDecisionPurchaseProperty();
             case PROPERTY_AUCTION -> {
-                updateInfoArea("test");
+                updateInfoArea("The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.");
                 c.playerDecisionAuction();
             }
         }

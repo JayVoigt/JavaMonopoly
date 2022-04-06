@@ -1,0 +1,33 @@
+package cc.jayv.monopoly3;
+
+public enum Actions {
+    CONTROLS_ROLLDICE,
+    CONTROLS_ENDTURN,
+
+    // Show dialogs and other information
+    CONTROLS_SHOW_MORTGAGE,
+    CONTROLS_SHOW_PROPERTIES,
+    CONTROLS_SHOW_IMPROVEMENTS,
+    CONTROLS_SHOW_STATISTICS,
+    CONTROLS_SHOW_TRADE,
+    CONTROLS_SHOW_FORFEIT,
+
+    // Property purchase dialog
+    PROPERTY_PURCHASE,
+    PROPERTY_AUCTION,
+
+    // Mortgaging dialog
+    PROPERTY_MORTGAGE,
+    PROPERTY_UNMORTGAGE,
+
+    // Improvements dialog
+    IMPROVEMENTS_BUILD_HOUSE,
+    IMPROVEMENTS_SELL_HOUSE,
+    IMPROVEMENTS_BUILD_HOTEL,
+    IMPROVEMENTS_SELL_HOTEL,
+
+    // Jail dialog
+    JAIL_POSTBAIL,
+    JAIL_ROLLDOUBLES,
+    JAIL_USEGOOJFC,
+}

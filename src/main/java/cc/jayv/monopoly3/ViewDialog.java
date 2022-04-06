@@ -87,6 +87,7 @@ public class ViewDialog {
 
 			localButton.setText(p.getText());
 			localButton.setIcon(p.getIcon());
+			localButton.setFocusable(false);
 		}
 
 		// Add buttons
