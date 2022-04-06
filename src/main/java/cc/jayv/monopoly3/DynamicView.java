@@ -170,7 +170,7 @@ public class DynamicView {
 			}
 			else if (index > 30 && index < 40) {
 				posX = 840;
-				posY = 840 - (80 * cardinalPosition);
+				posY = 40 + (80 * cardinalPosition);
 				sizeX = 120;
 				sizeY = 80;
 			}
