@@ -327,6 +327,7 @@ public class DynamicView {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			switchboard.setOrigin(e.getSource());
 			switchboard.actionHandler(action, currentSpaceButtonSelection);
 			update();
 		}

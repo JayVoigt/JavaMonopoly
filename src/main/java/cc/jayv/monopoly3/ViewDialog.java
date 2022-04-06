@@ -65,6 +65,7 @@ public class ViewDialog {
 
 		// Text area for general information
 		infoArea = new JTextArea();
+		infoArea.setName("infoArea");
 
 		infoArea.setText(infoAreaContents);
 		infoArea.setWrapStyleWord(true);
