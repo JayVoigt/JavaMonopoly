@@ -2,6 +2,7 @@ package cc.jayv.monopoly3;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Objects;
 
 public class LogicSwitchboard {
 
@@ -42,7 +43,8 @@ public class LogicSwitchboard {
             JRootPane rootPane = b.getRootPane();
 
             for (Component jc : rootPane.getContentPane().getComponents()) {
-                if (jc.getName().equals("infoArea")) {
+                // Null-safe equals
+                if (Objects.equals(jc.getName(), "infoArea")) {
                     infoArea = (JTextArea) jc;
                 }
             }

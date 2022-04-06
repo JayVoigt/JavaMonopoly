@@ -27,6 +27,11 @@ public class ControlFrame implements ViewComponent {
         JLabel staticLabelCurrentPosition;
         JLabel labelCurrentPosition;
 
+        JLabel labelDie1;
+        JLabel labelDie2;
+
+        ArrayList<ImageIcon> DicePips;
+
         public ControlFrame() {
                 frame = new JInternalFrame();
                 frame.setLayout(new MigLayout());
@@ -94,12 +99,34 @@ public class ControlFrame implements ViewComponent {
 
                 try {
                         // End turn
-                        buttonEndTurn = new ButtonProperties("End turn", "/arrow.png", endTurnActionListener, "cell 2 16, align right");
+                        buttonEndTurn = new ButtonProperties("End turn", "/arrow.png", endTurnActionListener, "cell 2 16, align right, width 108, height 60");
                         frame.add(buttonEndTurn, buttonEndTurn.getMigLayoutSpec());
 
                         // Roll dice
-                        buttonRollDice = new ButtonProperties("Roll dice", "/dice-icon.png", rollDiceActionListener, "cell 0 16, align left");
+                        buttonRollDice = new ButtonProperties("Roll dice", "/dice-icon.png", rollDiceActionListener, "cell 0 16, align left, width 108, height 60");
                         frame.add(buttonRollDice, buttonRollDice.getMigLayoutSpec());
+
+                        // Labels for dice
+                        DicePips = new ArrayList<>();
+                        DicePips.add(SwingHelper.getImageIconFromResource("/die-50px-0pip.png"));
+                        DicePips.add(SwingHelper.getImageIconFromResource("/die-50px-1pip.png"));
+                        DicePips.add(SwingHelper.getImageIconFromResource("/die-50px-2pip.png"));
+                        DicePips.add(SwingHelper.getImageIconFromResource("/die-50px-3pip.png"));
+                        DicePips.add(SwingHelper.getImageIconFromResource("/die-50px-4pip.png"));
+                        DicePips.add(SwingHelper.getImageIconFromResource("/die-50px-5pip.png"));
+                        DicePips.add(SwingHelper.getImageIconFromResource("/die-50px-6pip.png"));
+
+                        labelDie1 = new JLabel();
+                        labelDie2 = new JLabel();
+                        labelDie1.setSize(50, 50);
+                        labelDie2.setSize(50, 50);
+
+                        labelDie1.setIcon(DicePips.get(0));
+                        labelDie2.setIcon(DicePips.get(0));
+                        labelDie1.setVisible(true);
+
+                        frame.add(labelDie1, "cell 0 14, split 2, align left");
+                        frame.add(labelDie2, "cell 1 14, align right");
 
                         // Mortgage
                         buttonControlsMortgage = new ButtonProperties("Mortgage", "/mortgage.png", null, "cell 0 6, width 120, align left");
@@ -143,6 +170,9 @@ public class ControlFrame implements ViewComponent {
 
                 String currentSpaceFriendlyName = board.spaces.get(currentPlayer.getCurrentPosition()).getFriendlyName();
                 SwingHelper.formatLabel(labelCurrentBalance, currentSpaceFriendlyName, SwingHelper.LabelStyles.TITLE_REGULAR);
+
+                labelDie1.setIcon(DicePips.get(currentPlayer.getDie1()));
+                labelDie2.setIcon(DicePips.get(currentPlayer.getDie2()));
         }
 
         @Override

@@ -25,7 +25,7 @@ public class DynamicView {
 
 	JInternalFrame boardFrame;
 	ControlFrame controlFrame;
-	JInternalFrame infoFrame;
+	InfoFrame infoFrame;
 
 	ArrayList<JButton> spaceButtons;
 
@@ -71,7 +71,7 @@ public class DynamicView {
 		mainFrame.setLayout(new MigLayout());
 		initControlFrame();
 		mainFrame.add(boardFrame, "cell 0 0, x 0, y 0, width 1000, height 1000");
-		mainFrame.add(infoFrame, "cell 1 0, x 1000, y 0, width 308, height 600");
+		mainFrame.add(infoFrame.getFrame(), "cell 1 0, x 1000, y 0, width 308, height 600");
 		mainFrame.add(controlFrame.getFrame(), "cell 1 1, x 1000, y 600, width 308, height 400");
 		mainFrame.pack();
 
@@ -90,7 +90,7 @@ public class DynamicView {
 		mainFrame = new JFrame();
 		boardFrame = boardFrameCreator();
 		controlFrame = new ControlFrame();
-		infoFrame = infoFrameCreator();
+		infoFrame = new InfoFrame();
 	}
 
 	private void initControlFrame() {
