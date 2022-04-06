@@ -70,6 +70,7 @@ public class DynamicView {
 		initGUIComponents();
 
 		mainFrame.setLayout(new MigLayout());
+		initControlFrame();
 		mainFrame.add(boardFrame, "cell 0 0, x 0, y 0, width 1000, height 1000");
 		mainFrame.add(infoFrame, "cell 1 0, x 1000, y 0, width 400, height 600");
 		mainFrame.add(controlFrame.getFrame(), "cell 1 1, x 1000, y 600, width 400, height 400");
@@ -91,6 +92,15 @@ public class DynamicView {
 		boardFrame = boardFrameCreator();
 		controlFrame = new ControlFrame();
 		infoFrame = infoFrameCreator();
+	}
+
+	private void initControlFrame() {
+		ArrayList<ButtonActionListener> buttonActionListeners = new ArrayList<>();
+
+		buttonActionListeners.add(new ButtonActionListener(Actions.CONTROLS_ROLLDICE));
+		buttonActionListeners.add(new ButtonActionListener(Actions.CONTROLS_ENDTURN));
+
+		controlFrame.initButtons(buttonActionListeners);
 	}
 
 	private JInternalFrame boardFrameCreator() {
@@ -271,6 +281,10 @@ public class DynamicView {
 			switchboard.setOrigin(e.getSource());
 			switchboard.actionHandler(action, currentSpaceButtonSelection);
 			update();
+		}
+
+		public Actions getAction() {
+			return action;
 		}
 	}
 

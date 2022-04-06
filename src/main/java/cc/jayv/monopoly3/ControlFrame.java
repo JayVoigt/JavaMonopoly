@@ -4,10 +4,21 @@ import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
-public class ControlFrame {
+public class ControlFrame implements ViewComponent {
         SwingHelper helper;
         JInternalFrame frame;
+
+        ButtonProperties buttonEndTurn;
+        ButtonProperties buttonRollDice;
+
+        JLabel staticLabelCurrentPlayer;
+        JLabel labelCurrentPlayer;
+        JLabel staticLabelCurrentBalance;
+        JLabel labelCurrentBalance;
+        JLabel staticLabelCurrentPosition;
+        JLabel labelCurrentPosition;
 
         public ControlFrame() {
                 frame = new JInternalFrame();
@@ -15,44 +26,104 @@ public class ControlFrame {
                 frame.setSize(400, 400);
                 frame.setVisible(true);
 
+                initLabels();
+        }
+
+        private void initLabels() {
                 // Current player static
-                JLabel staticLabelCurrentPlayer = new JLabel();
+                staticLabelCurrentPlayer = new JLabel();
                 staticLabelCurrentPlayer.setIcon(SwingHelper.getImageIconFromResource("/player-generic.png"));
                 SwingHelper.formatLabel(staticLabelCurrentPlayer, "Current Player", SwingHelper.LabelStyles.TITLE_BOLD);
                 frame.add(staticLabelCurrentPlayer, "align left, cell 0 0, width 150");
 
                 // Current player
-                JLabel labelCurrentPlayer = new JLabel();
+                labelCurrentPlayer = new JLabel();
                 SwingHelper.formatLabel(labelCurrentPlayer, "n/a", SwingHelper.LabelStyles.TITLE_NO_CONTENT);
+                labelCurrentPlayer.setHorizontalAlignment(SwingConstants.RIGHT);
                 frame.add(labelCurrentPlayer, "align right, cell 2 0, width 150, wrap");
 
                 // Current balance static
-                JLabel staticLabelCurrentBalance = new JLabel();
+                staticLabelCurrentBalance = new JLabel();
                 staticLabelCurrentBalance.setIcon(SwingHelper.getImageIconFromResource("/money.png"));
                 SwingHelper.formatLabel(staticLabelCurrentBalance, "Balance", SwingHelper.LabelStyles.TITLE_BOLD);
                 frame.add(staticLabelCurrentBalance, "align left, cell 0 2, width 150");
 
                 // Current balance
-                JLabel labelCurrentBalance = new JLabel();
+                labelCurrentBalance = new JLabel();
                 SwingHelper.formatLabel(labelCurrentBalance, "n/a", SwingHelper.LabelStyles.TITLE_NO_CONTENT);
-                frame.add(labelCurrentBalance, "align right, cell 2 2, width 150");
+                labelCurrentBalance.setHorizontalAlignment(SwingConstants.RIGHT);
+                frame.add(labelCurrentBalance, "align right, cell 2 2, width 150, wrap");
 
                 // Current position static
-                JLabel staticLabelCurrentPosition = new JLabel();
+                staticLabelCurrentPosition = new JLabel();
                 staticLabelCurrentPosition.setIcon(SwingHelper.getImageIconFromResource("/properties.png"));
                 SwingHelper.formatLabel(staticLabelCurrentPosition, "Position", SwingHelper.LabelStyles.TITLE_BOLD);
                 frame.add(staticLabelCurrentPosition, "align left, cell 0 4");
 
                 // Current position
-                JLabel labelCurrentPosition = new JLabel();
+                labelCurrentPosition = new JLabel();
                 SwingHelper.formatLabel(labelCurrentPosition, "n/a", SwingHelper.LabelStyles.TITLE_NO_CONTENT);
-                frame.add(labelCurrentPosition);
+                labelCurrentPosition.setHorizontalAlignment(SwingConstants.RIGHT);
+                frame.add(labelCurrentPosition, "align right, cell 2 4, width 150, wrap");
 
-                frame.add(new JButton(), "cell 1 0, grow");
+        }
+
+        public void initButtons(ArrayList<DynamicView.ButtonActionListener> actionListeners) {
+
+                DynamicView.ButtonActionListener endTurnActionListener = null;
+                DynamicView.ButtonActionListener rollDiceActionListener = null;
+
+                for (DynamicView.ButtonActionListener a : actionListeners) {
+                        if (a.getAction().equals(Actions.CONTROLS_ENDTURN)) {
+                                endTurnActionListener = a;
+                        }
+                        else if (a.getAction().equals(Actions.CONTROLS_ROLLDICE)) {
+                                rollDiceActionListener = a;
+                        }
+                }
+
+                if (rollDiceActionListener != null) {
+                        buttonEndTurn = new ButtonProperties("End turn", "/arrow.png", endTurnActionListener, "cell 2 9, align right");
+                        frame.add(buttonEndTurn, buttonEndTurn.getMigLayoutSpec());
+                }
+
+                if (endTurnActionListener != null) {
+                        buttonRollDice = new ButtonProperties("Roll dice", "/dice-icon.png", rollDiceActionListener, "cell 0 9, align left");
+                        frame.add(buttonRollDice, buttonRollDice.getMigLayoutSpec());
+                }
         }
 
         public JInternalFrame getFrame() {
                 return frame;
         }
 
+        @Override
+        public void update(Board board) {
+                Player currentPlayer = board.players.get(board.getCurrentPlayerID());
+
+                SwingHelper.formatLabel(labelCurrentPlayer, currentPlayer.getCustomName(), SwingHelper.LabelStyles.TITLE_REGULAR);
+                SwingHelper.formatLabel(labelCurrentBalance, String.valueOf(currentPlayer.getCurrentBalance()), SwingHelper.LabelStyles.TITLE_REGULAR);
+
+                String currentSpaceFriendlyName = board.spaces.get(currentPlayer.getCurrentPosition()).getFriendlyName();
+                SwingHelper.formatLabel(labelCurrentBalance, currentSpaceFriendlyName, SwingHelper.LabelStyles.TITLE_REGULAR);
+        }
+
+        @Override
+        public void setStateOfActionButton(Actions action, boolean isEnabled) {
+                JButton localButton = null;
+
+                switch (action) {
+                        case CONTROLS_ENDTURN -> localButton = buttonEndTurn;
+                        case CONTROLS_ROLLDICE -> localButton = buttonRollDice;
+                }
+
+                if (localButton != null) {
+                        localButton.setEnabled(isEnabled);
+                }
+        }
+
+        @Override
+        public JComponent getComponent() {
+                return null;
+        }
 }
