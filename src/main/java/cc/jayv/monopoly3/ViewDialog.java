@@ -114,7 +114,7 @@ public class ViewDialog {
 		}
 	}
 
-	public void initDialogForView(JDialog inputDialog) {
+	public static void initDialogForView(JDialog inputDialog) {
 		inputDialog.pack();
 		inputDialog.setVisible(true);
 	}

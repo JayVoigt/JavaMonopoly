@@ -30,10 +30,7 @@ public class LogicSwitchboard {
             case JAIL_USEGOOJFC -> c.playerDecisionJailUseGOOJFC();
 
             case PROPERTY_PURCHASE -> c.playerDecisionPurchaseProperty();
-            case PROPERTY_AUCTION -> {
-                updateInfoArea("The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.");
-                c.playerDecisionAuction();
-            }
+            case PROPERTY_AUCTION -> c.playerDecisionAuction();
         }
     }
 
@@ -45,7 +42,7 @@ public class LogicSwitchboard {
             JRootPane rootPane = b.getRootPane();
 
             for (Component jc : rootPane.getContentPane().getComponents()) {
-                if (jc.getName() == "infoArea") {
+                if (jc.getName().equals("infoArea")) {
                     infoArea = (JTextArea) jc;
                 }
             }

@@ -7,7 +7,6 @@ package cc.jayv.monopoly3;
 import com.formdev.flatlaf.FlatLightLaf;
 import net.miginfocom.swing.MigLayout;
 
-import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.*;
@@ -72,8 +71,8 @@ public class DynamicView {
 		mainFrame.setLayout(new MigLayout());
 		initControlFrame();
 		mainFrame.add(boardFrame, "cell 0 0, x 0, y 0, width 1000, height 1000");
-		mainFrame.add(infoFrame, "cell 1 0, x 1000, y 0, width 400, height 600");
-		mainFrame.add(controlFrame.getFrame(), "cell 1 1, x 1000, y 600, width 400, height 400");
+		mainFrame.add(infoFrame, "cell 1 0, x 1000, y 0, width 308, height 600");
+		mainFrame.add(controlFrame.getFrame(), "cell 1 1, x 1000, y 600, width 308, height 400");
 		mainFrame.pack();
 
 		mainFrame.setVisible(true);
@@ -99,6 +98,7 @@ public class DynamicView {
 
 		buttonActionListeners.add(new ButtonActionListener(Actions.CONTROLS_ROLLDICE));
 		buttonActionListeners.add(new ButtonActionListener(Actions.CONTROLS_ENDTURN));
+		buttonActionListeners.add(new ButtonActionListener(Actions.CONTROLS_SHOW_IMPROVEMENTS, true));
 
 		controlFrame.initButtons(buttonActionListeners);
 	}
@@ -196,30 +196,12 @@ public class DynamicView {
 		return frame;
 	}
 
-	private void formatJLabel(JLabel label, boolean isBold) {
-		if (isBold) {
-			label.setFont(new Font("Helvetica Neue", Font.BOLD, 18));
-		}
-		else {
-			label.setFont(new Font("Helvetica Neue", Font.PLAIN, 18));
-		}
-	}
-
 	private JInternalFrame infoFrameCreator() {
 		JInternalFrame frame = new JInternalFrame();
 		frame.setSize(400, 700);
 		frame.setVisible(true);
 
 		return frame;
-	}
-
-	public ImageIcon getIconFromResource(String resource) {
-		if (getClass().getResource(resource) != null) {
-			return new ImageIcon(getClass().getResource(resource));
-		}
-		else {
-			return new ImageIcon(getClass().getResource("/error.png"));
-		}
 	}
 
 	public class spaceButtonActionHandler implements ActionListener {
@@ -243,7 +225,6 @@ public class DynamicView {
 		buttonPropertiesList.add(new ButtonProperties("Roll for doubles", "/dice-icon.png", new ButtonActionListener(Actions.JAIL_ROLLDOUBLES), "cell 1 2, width 150"));
 		buttonPropertiesList.add(new ButtonProperties("Use Get Out of Jail Free Card", "/goojfc.png", new ButtonActionListener(Actions.JAIL_USEGOOJFC), "cell 0 3, span 2, width 308"));
 		dialogJail = viewDialog.createDialogUserPrompt(buttonPropertiesList, "You may post bail for $50, attempt to roll for doubles up to a maximum of 3 times, or use a Get Out of Jail Free Card.");
-		viewDialog.initDialogForView(dialogJail);
 		buttonPropertiesList.clear();
 		buttonPropertiesList.trimToSize();
 
@@ -252,7 +233,6 @@ public class DynamicView {
 		buttonPropertiesList.add(new ButtonProperties("Purchase", "/money.png", new ButtonActionListener(Actions.PROPERTY_PURCHASE), "width 150"));
 		buttonPropertiesList.add(new ButtonProperties("Auction", "/auction.png", new ButtonActionListener(Actions.PROPERTY_AUCTION), "width 150"));
 		dialogPurchaseProperty = viewDialog.createDialogUserPrompt(buttonPropertiesList, "Property information here");
-		viewDialog.initDialogForView(dialogPurchaseProperty);
 		buttonPropertiesList.clear();
 		buttonPropertiesList.trimToSize();
 
@@ -263,7 +243,6 @@ public class DynamicView {
 		buttonPropertiesList.add(new ButtonProperties("Build a hotel", "/hotel.png", new ButtonActionListener(Actions.IMPROVEMENTS_BUILD_HOTEL), "width 150"));
 		buttonPropertiesList.add(new ButtonProperties("Sell a hotel", "/hotel.png", new ButtonActionListener(Actions.IMPROVEMENTS_SELL_HOTEL), "width 150"));
 		dialogImprovements = viewDialog.createDialogUserPrompt(buttonPropertiesList, "You do not own all properties in this set.");
-		viewDialog.initDialogForView(dialogImprovements);
 		buttonPropertiesList.clear();
 		buttonPropertiesList.trimToSize();
 
@@ -272,8 +251,16 @@ public class DynamicView {
 	public class ButtonActionListener implements ActionListener {
 
 		Actions action;
+		boolean needsPrompt;
+
 		public ButtonActionListener(Actions action) {
 			this.action = action;
+			needsPrompt = false;
+		}
+
+		public ButtonActionListener(Actions action, boolean needsPrompt) {
+			this.action = action;
+			this.needsPrompt = needsPrompt;
 		}
 
 		@Override
@@ -281,10 +268,22 @@ public class DynamicView {
 			switchboard.setOrigin(e.getSource());
 			switchboard.actionHandler(action, currentSpaceButtonSelection);
 			update();
+
+			if (needsPrompt) {
+				updatePrompt(action);
+			}
 		}
 
 		public Actions getAction() {
 			return action;
+		}
+	}
+
+	private void updatePrompt(Actions action) {
+		switch(action) {
+			case CONTROLS_SHOW_IMPROVEMENTS -> ViewDialog.initDialogForView(dialogImprovements);
+			case GAME_SHOW_JAIL -> ViewDialog.initDialogForView(dialogJail);
+			case GAME_SHOW_PURCHASE -> ViewDialog.initDialogForView(dialogPurchaseProperty);
 		}
 	}
 

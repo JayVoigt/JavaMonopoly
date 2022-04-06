@@ -13,6 +13,8 @@ public class ControlFrame implements ViewComponent {
         ButtonProperties buttonEndTurn;
         ButtonProperties buttonRollDice;
 
+        ButtonProperties buttonControlsShowImprovements;
+
         JLabel staticLabelCurrentPlayer;
         JLabel labelCurrentPlayer;
         JLabel staticLabelCurrentBalance;
@@ -23,7 +25,7 @@ public class ControlFrame implements ViewComponent {
         public ControlFrame() {
                 frame = new JInternalFrame();
                 frame.setLayout(new MigLayout());
-                frame.setSize(400, 400);
+                frame.setSize(308, 400);
                 frame.setVisible(true);
 
                 initLabels();
@@ -72,24 +74,31 @@ public class ControlFrame implements ViewComponent {
 
                 DynamicView.ButtonActionListener endTurnActionListener = null;
                 DynamicView.ButtonActionListener rollDiceActionListener = null;
+                DynamicView.ButtonActionListener controlsMortgageActionListener = null;
+                DynamicView.ButtonActionListener controlsPropertiesActionListener = null;
+                DynamicView.ButtonActionListener controlsImprovementsActionListener = null;
+
 
                 for (DynamicView.ButtonActionListener a : actionListeners) {
-                        if (a.getAction().equals(Actions.CONTROLS_ENDTURN)) {
-                                endTurnActionListener = a;
-                        }
-                        else if (a.getAction().equals(Actions.CONTROLS_ROLLDICE)) {
-                                rollDiceActionListener = a;
+                        switch(a.getAction()) {
+                                case CONTROLS_ENDTURN -> endTurnActionListener = a;
+                                case CONTROLS_ROLLDICE -> rollDiceActionListener = a;
+                                case CONTROLS_SHOW_IMPROVEMENTS -> controlsImprovementsActionListener = a;
                         }
                 }
 
-                if (rollDiceActionListener != null) {
+                try {
                         buttonEndTurn = new ButtonProperties("End turn", "/arrow.png", endTurnActionListener, "cell 2 9, align right");
                         frame.add(buttonEndTurn, buttonEndTurn.getMigLayoutSpec());
-                }
 
-                if (endTurnActionListener != null) {
                         buttonRollDice = new ButtonProperties("Roll dice", "/dice-icon.png", rollDiceActionListener, "cell 0 9, align left");
                         frame.add(buttonRollDice, buttonRollDice.getMigLayoutSpec());
+
+                        buttonControlsShowImprovements = new ButtonProperties("Improvements", "/improvements.png", controlsImprovementsActionListener, "cell 0 6");
+                        frame.add(buttonControlsShowImprovements, buttonControlsShowImprovements.getMigLayoutSpec());
+
+                } catch (NullPointerException ignored) {
+
                 }
         }
 

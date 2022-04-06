@@ -12,6 +12,9 @@ public enum Actions {
     CONTROLS_SHOW_TRADE,
     CONTROLS_SHOW_FORFEIT,
 
+    GAME_SHOW_JAIL,
+    GAME_SHOW_PURCHASE,
+
     // Property purchase dialog
     PROPERTY_PURCHASE,
     PROPERTY_AUCTION,
