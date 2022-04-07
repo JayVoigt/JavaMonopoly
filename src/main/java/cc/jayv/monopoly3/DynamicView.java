@@ -8,7 +8,6 @@ import com.formdev.flatlaf.FlatLightLaf;
 import net.miginfocom.swing.MigLayout;
 
 import java.awt.*;
-import java.awt.Color;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.*;
@@ -28,7 +27,7 @@ public class DynamicView {
 	JInternalFrame boardFrame;
 	ControlFrame controlFrame;
 	InfoFrame infoFrame;
-	PropertySelectionArea propertySelectionArea;
+	SpaceSelectionArea spaceSelectionArea;
 
 	ArrayList<JButton> spaceButtons;
 
@@ -156,9 +155,9 @@ public class DynamicView {
 		}
 
 		frame.add(gameLogScrollPane);
-		propertySelectionArea = new PropertySelectionArea();
+		spaceSelectionArea = new SpaceSelectionArea();
 
-		frame.add(propertySelectionArea.getJPanel());
+		frame.add(spaceSelectionArea.getJPanel());
 
 		for (int i = 0; i < 40; i++) {
 			spaceButtons.add(new JButton());

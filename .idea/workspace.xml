@@ -4,12 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fe395cf4-00c4-4bef-93b5-8a1f264350fd" name="Changes" comment="updated dynamic space selection info">
+    <list default="true" id="fe395cf4-00c4-4bef-93b5-8a1f264350fd" name="Changes" comment="improved appearance for board view">
+      <change afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/SpaceSelectionArea.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/ControlFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/ControlFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/documentation/dynamic-gui.uxf" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/dynamic-gui.uxf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DynamicView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DynamicView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/InfoFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/InfoFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/PropertySelectionArea.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/PropertySelectionArea.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/PropertySelectionArea.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,8 +46,8 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="jar:///Library/Java/JavaVirtualMachines/jdk-17.0.2.jdk/Contents/Home/lib/src.zip!/java.desktop/javax/swing/JLabel.java" root0="SKIP_INSPECTION" />
     <setting file="jar:///Library/Java/JavaVirtualMachines/jdk-17.0.2.jdk/Contents/Home/lib/src.zip!/java.desktop/javax/swing/ImageIcon.java" root0="SKIP_INSPECTION" />
+    <setting file="jar:///Library/Java/JavaVirtualMachines/jdk-17.0.2.jdk/Contents/Home/lib/src.zip!/java.desktop/javax/swing/JLabel.java" root0="SKIP_INSPECTION" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -192,10 +192,10 @@
       <item itemvalue="Application.DynamicView" />
       <item itemvalue="Application.JavaMonopoly" />
       <item itemvalue="Application.DialogTest" />
+      <item itemvalue="Application.ViewDialog" />
       <item itemvalue="JAR Application.Run Jar" />
       <item itemvalue="Maven.Clean" />
       <item itemvalue="Maven.Build" />
-      <item itemvalue="Application.ViewDialog" />
     </list>
     <recent_temporary>
       <list>
@@ -383,7 +383,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649303259555</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="improved appearance for board view">
+      <created>1649333661118</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1649333661118</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -427,14 +434,15 @@
     <MESSAGE value="updated ControlFrame, added framework for InfoFrame" />
     <MESSAGE value="added game log view to board panel" />
     <MESSAGE value="updated dynamic space selection info" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated dynamic space selection info" />
+    <MESSAGE value="improved appearance for board view" />
+    <option name="LAST_COMMIT_MESSAGE" value="improved appearance for board view" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DynamicView.java</url>
-          <line>52</line>
+          <line>51</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
