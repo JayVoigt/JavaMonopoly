@@ -7,6 +7,8 @@ package cc.jayv.monopoly3;
 import com.formdev.flatlaf.FlatLightLaf;
 import net.miginfocom.swing.MigLayout;
 
+import java.awt.*;
+import java.awt.Color;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.*;
@@ -82,8 +84,9 @@ public class DynamicView {
 		mainFrame.add(infoFrame.getFrame(), "cell 1 0, x 1000, y 0, width 308, height 600");
 		mainFrame.add(controlFrame.getFrame(), "cell 1 1, x 1000, y 600, width 308, height 400");
 		mainFrame.pack();
-
 		mainFrame.setVisible(true);
+
+		boardFrame.setFrameIcon(SwingHelper.getImageIconFromResource("/board.png"));
 		boardFrame.setVisible(true);
 
 		initDialogs();
@@ -224,10 +227,19 @@ public class DynamicView {
 				sizeX = 0;
 				sizeY = 0;
 			}
+
 			b.setBounds(posX, posY, sizeX, sizeY);
-			b.setText(Integer.toString(index));
+
+			// Set button to transparent - is still clickable but not visible
+			java.awt.Color transparentColor = new java.awt.Color(0, 0, 0, 0);
+			b.setBackground(transparentColor);
+
+			// General button appearance
+			b.setBorderPainted(false);
 			b.setFocusable(false);
 			b.setVisible(true);
+			b.setCursor(new java.awt.Cursor(Cursor.HAND_CURSOR));
+
 			frame.add(b);
 		}	// end button creation
 

@@ -39,7 +39,7 @@ public class ControlFrame implements ViewComponent {
                 frame.setVisible(true);
 
                 frame.setTitle("Controls");
-                frame.setFrameIcon(SwingHelper.getImageIconFromResource("/controls.png"));
+                frame.setFrameIcon(SwingHelper.getImageIconFromResource("/doc-with-pencil.png"));
 
                 initLabels();
         }

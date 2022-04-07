@@ -31,6 +31,7 @@ public class PropertySelectionArea implements ViewComponent {
 
         initLabels();
 
+        selectionInfoArea.setEnabled(true);
         selectionInfoArea.setVisible(true);
     }
 
