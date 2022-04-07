@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package cc.jayv.monopoly3;
 
 import com.formdev.flatlaf.FlatLightLaf;
@@ -13,6 +9,7 @@ import java.util.ArrayList;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -39,6 +36,10 @@ public class DynamicView {
 	JDialog dialogJail;
 	JDialog dialogPurchaseProperty;
 	JDialog dialogImprovements;
+
+	JDialog dialogNewGame;
+	JDialog dialogGameEditor;
+	JDialog dialogAbout;
 
 	JMenuBar menuBar;
 	JMenu menuFile;
@@ -75,6 +76,7 @@ public class DynamicView {
 		switchboard = new LogicSwitchboard(controller);
 
 		initGUIComponents();
+		initMenuBar();
 
 		// Initialize main frame
 		mainFrame.setLayout(new MigLayout());
@@ -103,9 +105,12 @@ public class DynamicView {
 		controlFrame = new ControlFrame();
 		infoFrame = new InfoFrame();
 
-		// Menu bar
+	}
+
+	private void initMenuBar() {
 		menuBar = new JMenuBar();
 
+		// Root level menus
 		menuFile = new JMenu();
 		menuFile.setText("File");
 		menuBar.add(menuFile);
@@ -118,6 +123,26 @@ public class DynamicView {
 		menuView.setText("View");
 		menuBar.add(menuView);
 
+		// File
+		JMenuItem menuFileNewGame = new JMenuItem("New Game...", SwingHelper.getImageIconFromResource("/newgame.png"));
+		menuFileNewGame.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		menuFile.add(menuFileNewGame);
+
+		JMenuItem menuFileLoadGame = new JMenuItem("Load Game...", SwingHelper.getImageIconFromResource(("/floppygame.png")));
+		menuFile.add(menuFileLoadGame);
+
+		JMenuItem menuFileSaveGame = new JMenuItem("Load Game...", SwingHelper.getImageIconFromResource(("/floppygame.png")));
+		menuFile.add(menuFileSaveGame);
+
+		JMenuItem menuFileQuit = new JMenuItem("Quit", SwingHelper.getImageIconFromResource(("/red-x.png")));
+		menuFile.add(menuFileQuit);
+
+		// Ready
 		menuBar.setVisible(true);
 		mainFrame.setJMenuBar(menuBar);
 	}
@@ -243,7 +268,7 @@ public class DynamicView {
 		}	// end button creation
 
 		JLabel boardImage = new JLabel();
-		boardImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/board-px-template.png")));
+		boardImage.setIcon(new javax.swing.ImageIcon(Objects.requireNonNull(getClass().getResource("/board-px-template.png"))));
 		boardImage.setBounds(0, 0, 960, 960);
 
 		frame.add(boardImage);
@@ -300,6 +325,10 @@ public class DynamicView {
 		dialogImprovements = viewDialog.createDialogUserPrompt(buttonPropertiesList, "You do not own all properties in this set.");
 		buttonPropertiesList.clear();
 		buttonPropertiesList.trimToSize();
+
+		// About
+		dialogAbout = new AboutDialog().getDialog();
+		dialogAbout.setVisible(true);
 	}
 
 	public class ButtonActionListener implements ActionListener {
@@ -330,6 +359,19 @@ public class DynamicView {
 
 		public Actions getAction() {
 			return action;
+		}
+	}
+
+	private class MenuActionListener implements ActionListener {
+
+		MenuActions action;
+		public MenuActionListener(MenuActions action) {
+			this.action = action;
+		}
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+
 		}
 	}
 
