@@ -37,7 +37,7 @@ public class DynamicView {
 	JDialog dialogJail;
 	JDialog dialogPurchaseProperty;
 	JDialog dialogImprovements;
-	
+
 	static int currentSpaceButtonSelection;
 
 	public DynamicView() {
@@ -110,8 +110,22 @@ public class DynamicView {
 		frame.setLayout(null);
 		frame.setVisible(true);
 
-		JButton testButton = new JButton();
-		testButton.setBounds((960 - 120), (960 - 120), 120, 120);
+		JScrollPane gameLogScrollPane = new JScrollPane();
+		JTextArea gameLogTextArea = new JTextArea();
+
+		gameLogScrollPane.setBounds(150, 380, 660, 430);
+		gameLogScrollPane.setVisible(true);
+
+		gameLogScrollPane.setViewportView(gameLogTextArea);
+		for ( int i = 0 ; i < 1000 ; i++ ) {
+			logHelper.appendToGameLog("Test log entry " + i);
+		}
+
+		for ( String s : logHelper.getGameLogContents()) {
+			gameLogTextArea.setText(gameLogTextArea.getText() + s);
+		}
+
+		frame.add(gameLogScrollPane);
 
 		for (int i = 0; i < 40; i++) {
 			spaceButtons.add(new JButton());
