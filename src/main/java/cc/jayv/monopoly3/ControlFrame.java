@@ -38,6 +38,9 @@ public class ControlFrame implements ViewComponent {
                 frame.setSize(308, 400);
                 frame.setVisible(true);
 
+                frame.setTitle("Controls");
+                frame.setFrameIcon(SwingHelper.getImageIconFromResource("/controls.png"));
+
                 initLabels();
         }
 

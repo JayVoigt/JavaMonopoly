@@ -26,6 +26,7 @@ public class DynamicView {
 	JInternalFrame boardFrame;
 	ControlFrame controlFrame;
 	InfoFrame infoFrame;
+	PropertySelectionArea propertySelectionArea;
 
 	ArrayList<JButton> spaceButtons;
 
@@ -37,6 +38,11 @@ public class DynamicView {
 	JDialog dialogJail;
 	JDialog dialogPurchaseProperty;
 	JDialog dialogImprovements;
+
+	JMenuBar menuBar;
+	JMenu menuFile;
+	JMenu menuEdit;
+	JMenu menuView;
 
 	static int currentSpaceButtonSelection;
 
@@ -62,12 +68,14 @@ public class DynamicView {
 			System.exit(1);
 		}
 
+		// Initialize logic and helper components
 		logHelper = new LogHelper();
 		controller = new GameLogicController(board, logHelper);
 		switchboard = new LogicSwitchboard(controller);
 
 		initGUIComponents();
 
+		// Initialize main frame
 		mainFrame.setLayout(new MigLayout());
 		initControlFrame();
 		mainFrame.add(boardFrame, "cell 0 0, x 0, y 0, width 1000, height 1000");
@@ -87,10 +95,29 @@ public class DynamicView {
 	private void initGUIComponents() {
 		spaceButtons = new ArrayList<>();
 
+		// Core components
 		mainFrame = new JFrame();
 		boardFrame = boardFrameCreator();
 		controlFrame = new ControlFrame();
 		infoFrame = new InfoFrame();
+
+		// Menu bar
+		menuBar = new JMenuBar();
+
+		menuFile = new JMenu();
+		menuFile.setText("File");
+		menuBar.add(menuFile);
+
+		menuEdit = new JMenu();
+		menuEdit.setText("Edit");
+		menuBar.add(menuEdit);
+
+		menuView = new JMenu();
+		menuView.setText("View");
+		menuBar.add(menuView);
+
+		menuBar.setVisible(true);
+		mainFrame.setJMenuBar(menuBar);
 	}
 
 	private void initControlFrame() {
@@ -117,7 +144,7 @@ public class DynamicView {
 		gameLogScrollPane.setVisible(true);
 
 		gameLogScrollPane.setViewportView(gameLogTextArea);
-		for ( int i = 0 ; i < 1000 ; i++ ) {
+		for ( int i = 0 ; i < 10 ; i++ ) {
 			logHelper.appendToGameLog("Test log entry " + i);
 		}
 
@@ -126,6 +153,9 @@ public class DynamicView {
 		}
 
 		frame.add(gameLogScrollPane);
+		propertySelectionArea = new PropertySelectionArea();
+
+		frame.add(propertySelectionArea.getJPanel());
 
 		for (int i = 0; i < 40; i++) {
 			spaceButtons.add(new JButton());

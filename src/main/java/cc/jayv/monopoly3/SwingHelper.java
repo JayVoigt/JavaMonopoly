@@ -189,10 +189,9 @@ public class SwingHelper {
 	// </editor-fold>
 
 	public static ImageIcon getImageIconFromResource(String inputResource) {
-		if (inputResource.isEmpty() == false) {
+		try {
 			return new ImageIcon(SwingHelper.class.getResource(inputResource));
-		}
-		else {
+		} catch (NullPointerException e) {
 			return new ImageIcon(SwingHelper.class.getResource("/error-icon.png"));
 		}
 	}
