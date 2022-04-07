@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fe395cf4-00c4-4bef-93b5-8a1f264350fd" name="Changes" comment="improved appearance for board view">
-      <change afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/SpaceSelectionArea.java" afterDir="false" />
+    <list default="true" id="fe395cf4-00c4-4bef-93b5-8a1f264350fd" name="Changes" comment="updated space selection area">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/dynamic-gui.uxf" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/dynamic-gui.uxf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DynamicView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DynamicView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/PropertySelectionArea.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/SpaceSelectionArea.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/SpaceSelectionArea.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -390,7 +387,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649333661118</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="updated space selection area">
+      <created>1649348568691</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1649348568691</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -435,7 +439,8 @@
     <MESSAGE value="added game log view to board panel" />
     <MESSAGE value="updated dynamic space selection info" />
     <MESSAGE value="improved appearance for board view" />
-    <option name="LAST_COMMIT_MESSAGE" value="improved appearance for board view" />
+    <MESSAGE value="updated space selection area" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated space selection area" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
