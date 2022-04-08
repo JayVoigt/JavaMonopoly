@@ -50,7 +50,9 @@ public class SpaceSelectionArea implements ViewComponent {
         selectionInfoArea = new JPanel();
         selectionInfoArea.setLayout(new MigLayout());
 
-        selectionInfoArea.setBounds(150, 140, 660, 220);
+        // The board view (currently) uses a null layout - setBounds is required
+        selectionInfoArea.setBounds(150, 140, 660, 230);
+        selectionInfoArea.setBackground(java.awt.Color.WHITE);
 
         initLabels();
 
@@ -59,7 +61,7 @@ public class SpaceSelectionArea implements ViewComponent {
     }
 
     private void initLabels() {
-        String baseMigSpec = ", width 100";
+        String baseMigSpec = "";
 
         // Left area, static labels
         staticLabelID = generateLabel(LabelAlignment.RIGHT, true, "ID", "cell 0 0, align right" + baseMigSpec);
@@ -81,11 +83,11 @@ public class SpaceSelectionArea implements ViewComponent {
 
         // Right area, static labels
         staticLabelRent = generateLabel(LabelAlignment.RIGHT, true, "Base rent", "cell 2 0, align right" + baseMigSpec);
-        staticLabelRentHouse1 = generateLabel(LabelAlignment.RIGHT, true, "+", "cell 2 1, align right" + baseMigSpec, "/house-label-1-horiz-rightalign.png");
-        staticLabelRentHouse2 = generateLabel(LabelAlignment.RIGHT, true, "+", "cell 2 2, align right" + baseMigSpec, "/house-label-2-horiz-rightalign.png");
-        staticLabelRentHouse3 = generateLabel(LabelAlignment.RIGHT, true, "+", "cell 2 3, align right" + baseMigSpec, "/house-label-3-horiz-rightalign.png");
-        staticLabelRentHouse4 = generateLabel(LabelAlignment.RIGHT, true, "+", "cell 2 4, align right" + baseMigSpec, "/house-label-4-horiz-rightalign.png");
-        staticLabelRentHotel = generateLabel(LabelAlignment.RIGHT, true, "+", "cell 2 5, align right" + baseMigSpec, "/hotel-label-1-horiz-rightalign.png");
+        staticLabelRentHouse1 = generateLabelWithIcons(LabelAlignment.RIGHT, true, "+", "cell 2 1, align right" + baseMigSpec, "/house-label-1-horiz-rightalign.png");
+        staticLabelRentHouse2 = generateLabelWithIcons(LabelAlignment.RIGHT, true, "+", "cell 2 2, align right" + baseMigSpec, "/house-label-2-horiz-rightalign.png");
+        staticLabelRentHouse3 = generateLabelWithIcons(LabelAlignment.RIGHT, true, "+", "cell 2 3, align right" + baseMigSpec, "/house-label-3-horiz-rightalign.png");
+        staticLabelRentHouse4 = generateLabelWithIcons(LabelAlignment.RIGHT, true, "+", "cell 2 4, align right" + baseMigSpec, "/house-label-4-horiz-rightalign.png");
+        staticLabelRentHotel = generateLabelWithIcons(LabelAlignment.RIGHT, true, "+", "cell 2 5, align right" + baseMigSpec, "/hotel-label-1-horiz-rightalign.png");
         staticLabelCurrentRent = generateLabel(LabelAlignment.RIGHT, true, "Current rent", "cell 2 6, align right" + baseMigSpec);
 
         // Right area, dynamic labels
@@ -105,9 +107,10 @@ public class SpaceSelectionArea implements ViewComponent {
         CENTER
     }
 
-    private JLabel generateLabel(LabelAlignment alignment, boolean isTitle, String text, String migSpec, String icon) {
+    private JLabel generateLabelWithIcons(LabelAlignment alignment, boolean isTitle, String text, String migSpec, String icon) {
         JLabel label = generateLabel(alignment, isTitle, text, migSpec);
         label.setIcon(SwingHelper.getImageIconFromResource(icon));
+        label.setHorizontalTextPosition(SwingConstants.LEFT);
 
         return label;
     }
@@ -115,7 +118,7 @@ public class SpaceSelectionArea implements ViewComponent {
     private JLabel generateLabel(LabelAlignment alignment, boolean isTitle, String text, String migSpec) {
         JLabel label = new JLabel();
         SwingHelper.LabelStyles style = SwingHelper.LabelStyles.TITLE_REGULAR;
-        String customMigSpec = migSpec + ", width 150";
+        String customMigSpec = migSpec + ", width 100";
 
         if (isTitle) {
             style = SwingHelper.LabelStyles.TITLE_BOLD;
@@ -165,7 +168,7 @@ public class SpaceSelectionArea implements ViewComponent {
             }
             else {
                 SwingHelper.formatLabel(labelOwnedBy, true);
-                SwingHelper.formatLabel(labelOwnedBy, "no", SwingHelper.LabelStyles.TITLE_REGULAR);
+                SwingHelper.formatLabel(labelIsOwned, "no", SwingHelper.LabelStyles.TITLE_REGULAR);
             }
         }
         else {
@@ -237,13 +240,10 @@ public class SpaceSelectionArea implements ViewComponent {
 
     @Override
     public void update(Board board) {
-        // ID
-
     }
 
     @Override
     public void setStateOfActionButton(Actions action, boolean isEnabled) {
-
     }
 
     @Override
