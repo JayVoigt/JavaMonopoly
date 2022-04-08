@@ -1,14 +1,14 @@
 package cc.jayv.monopoly3;
 
-/**
- * Controls game logic and updates data within the Board accordingly.
- * @author jay
- */
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.ArrayList;
 
+/**
+ * Controls game logic and updates data within the Board accordingly.
+ * @author jay
+ */
 public class GameLogicController implements Serializable {
 
 	Board board;
@@ -111,6 +111,10 @@ public class GameLogicController implements Serializable {
 		appendToGameLog("A new game has been started with " + playersCount + " players.");
 	}
 	// </editor-fold>
+
+	public void startGame() {
+
+	}
 
 	/**
 	 * Evaluator which is run at the beginning of a player's turn.<br>

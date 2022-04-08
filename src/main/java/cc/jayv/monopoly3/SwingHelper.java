@@ -134,7 +134,7 @@ public class SwingHelper {
 	}
 
 	// <editor-fold desc="Highlights and borders">
-	public Border createBorderStyleHighlight(java.awt.Color baseShade, boolean lighten) {
+	public static Border createBorderStyleHighlight(java.awt.Color baseShade, boolean lighten) {
 		Border highlightBorder, innerBorder, outerBorder;
 		Border highlightInnerShadow;
 		Border nestedOuter, nestedInner, finalBorder;
@@ -177,20 +177,20 @@ public class SwingHelper {
 		inputButton.setBorder(null);
 	}
 
-	public java.awt.Color getHighlightModifiedColor(java.awt.Color inputAWTColor) {
+	public static java.awt.Color getHighlightModifiedColor(java.awt.Color inputAWTColor) {
 		int newR, newG, newB, newA;
-		float highightFactor = 0.8f;
+		float highlightFactor = 0.8f;
 
-		newR = (int) (((256 - inputAWTColor.getRed()) * highightFactor) + inputAWTColor.getRed());
-		newG = (int) (((256 - inputAWTColor.getGreen()) * highightFactor) + inputAWTColor.getGreen());
-		newB = (int) (((256 - inputAWTColor.getBlue()) * highightFactor) + inputAWTColor.getBlue());
-		newA = (int) ((inputAWTColor.getAlpha()) * highightFactor);
+		newR = (int) (((256 - inputAWTColor.getRed()) * highlightFactor) + inputAWTColor.getRed());
+		newG = (int) (((256 - inputAWTColor.getGreen()) * highlightFactor) + inputAWTColor.getGreen());
+		newB = (int) (((256 - inputAWTColor.getBlue()) * highlightFactor) + inputAWTColor.getBlue());
+		newA = (int) ((inputAWTColor.getAlpha()) * highlightFactor);
 
 		java.awt.Color newColor = new java.awt.Color(newR, newG, newB, newA);
 		return newColor;
 	}
 
-	public java.awt.Color getShadowModifiedColor(java.awt.Color inputAWTColor) {
+	public static java.awt.Color getShadowModifiedColor(java.awt.Color inputAWTColor) {
 		int newR, newG, newB, newA;
 		float shadowFactor = 0.8f;
 

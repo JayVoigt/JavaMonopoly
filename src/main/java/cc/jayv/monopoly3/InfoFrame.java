@@ -19,6 +19,7 @@ public class InfoFrame implements ViewComponent {
         frame = new JInternalFrame();
         frame.setLayout(new MigLayout());
         frame.setSize(308, 600);
+        frame.setTitle("Information");
         frame.setFrameIcon(SwingHelper.getImageIconFromResource("/i.png"));
         frame.setVisible(true);
 

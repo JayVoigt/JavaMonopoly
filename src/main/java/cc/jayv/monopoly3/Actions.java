@@ -33,4 +33,6 @@ public enum Actions {
     JAIL_POSTBAIL,
     JAIL_ROLLDOUBLES,
     JAIL_USEGOOJFC,
+
+    NEWGAME_STARTGAME
 }
