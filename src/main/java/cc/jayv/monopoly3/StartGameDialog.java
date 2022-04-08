@@ -1,0 +1,139 @@
+package cc.jayv.monopoly3;
+
+import net.miginfocom.swing.MigLayout;
+
+import javax.swing.*;
+import java.util.ArrayList;
+
+public class StartGameDialog {
+    int playerCount;
+    JLabel staticLabelPlayerCount;
+    JComboBox<Integer> comboBoxPlayerCount;
+
+    JDialog dialog;
+    JLabel titleLabel;
+
+    ArrayList<String> playerCustomNames;
+    JTextField playerCustomName1;
+    JTextField playerCustomName2;
+    JTextField playerCustomName3;
+    JTextField playerCustomName4;
+
+    JLabel staticLabelPlayer1;
+    JLabel staticLabelPlayer2;
+    JLabel staticLabelPlayer3;
+    JLabel staticLabelPlayer4;
+
+    JButton buttonStartGame;
+
+    public StartGameDialog() {
+        initComponents();
+        arrangeComponents();
+    }
+
+    private void initComponents() {
+        dialog = new JDialog();
+        dialog.setLayout(new MigLayout());
+
+        // Title
+        titleLabel = new JLabel();
+        SwingHelper.formatLabel(titleLabel, "New Game", SwingHelper.LabelStyles.TITLE_BOLD);
+        titleLabel.setIcon(SwingHelper.getImageIconFromResource("/board.png"));
+
+        // Label and combo box for player counts
+        staticLabelPlayerCount = new JLabel("Players:");
+        staticLabelPlayerCount.setIcon(SwingHelper.getImageIconFromResource("/player-generic.png"));
+
+        comboBoxPlayerCount = new JComboBox<>();
+        comboBoxPlayerCount.addItem(1);
+        comboBoxPlayerCount.addItem(2);
+        comboBoxPlayerCount.addItem(3);
+        comboBoxPlayerCount.addItem(4);
+
+        // Strings containing player's desired name
+        playerCustomNames = new ArrayList<>();
+        playerCustomNames.add("Player 1");
+        playerCustomNames.add("Player 2");
+        playerCustomNames.add("Player 3");
+        playerCustomNames.add("Player 4");
+
+        // Fields for name entry
+        playerCustomName1 = new JTextField("Player 1");
+        playerCustomName2 = new JTextField("Player 2");
+        playerCustomName3 = new JTextField("Player 3");
+        playerCustomName4 = new JTextField("Player 4");
+
+        // Labels to indicate player index
+        staticLabelPlayer1 = new JLabel("Player 1 name:");
+        staticLabelPlayer1.setHorizontalAlignment(SwingConstants.RIGHT);
+
+        staticLabelPlayer2 = new JLabel("Player 2 name:");
+        staticLabelPlayer2.setHorizontalAlignment(SwingConstants.RIGHT);
+
+        staticLabelPlayer3 = new JLabel("Player 3 name:");
+        staticLabelPlayer3.setHorizontalAlignment(SwingConstants.RIGHT);
+
+        staticLabelPlayer4 = new JLabel("Player 4 name:");
+        staticLabelPlayer4.setHorizontalAlignment(SwingConstants.RIGHT);
+
+        // Button to start game
+        buttonStartGame = new JButton();
+        buttonStartGame.setText("Start Game");
+        buttonStartGame.setIcon(SwingHelper.getImageIconFromResource("/newgame.png"));
+    }
+
+    private void arrangeComponents() {
+        dialog.add(titleLabel, "cell 0 0, wrap");
+
+        dialog.add(staticLabelPlayerCount, "cell 0 2");
+        dialog.add(comboBoxPlayerCount, "cell 1 2, wrap");
+
+        dialog.add(staticLabelPlayer1, "cell 0 4");
+        dialog.add(playerCustomName1, "cell 1 4, width 150, wrap");
+
+        dialog.add(staticLabelPlayer2, "cell 0 5");
+        dialog.add(playerCustomName2, "cell 1 5, width 150, wrap");
+
+        dialog.add(staticLabelPlayer3, "cell 0 6");
+        dialog.add(playerCustomName3, "cell 1 6, width 150, wrap");
+
+        dialog.add(staticLabelPlayer4, "cell 0 7");
+        dialog.add(playerCustomName4, "cell 1 7, width 150, wrap");
+
+        dialog.add(buttonStartGame, "cell 0 9, width 240, height 40, spanx 2, al center center");
+
+        dialog.pack();
+    }
+
+    public JDialog getDialog() {
+        return dialog;
+    }
+
+    public void attachStartGameActionListener(DynamicView.StartGameButtonActionListener listener) {
+        buttonStartGame.addActionListener(listener);
+    }
+
+    public int getPlayerCount() {
+        return playerCount;
+    }
+
+    public String getPlayerCustomName(int playerID) {
+        String playerCustomName = "";
+
+        switch (playerID) {
+            case 1 -> playerCustomName = playerCustomNames.get(0);
+            case 2 -> playerCustomName = playerCustomNames.get(1);
+            case 3 -> playerCustomName = playerCustomNames.get(2);
+            case 4 -> playerCustomName = playerCustomNames.get(3);
+        }
+
+        return playerCustomName;
+    }
+
+    public static void main(String args[]) {
+        StartGameDialog startGameDialog = new StartGameDialog();
+        JDialog dialog = startGameDialog.getDialog();
+
+        dialog.setVisible(true);
+    }
+}

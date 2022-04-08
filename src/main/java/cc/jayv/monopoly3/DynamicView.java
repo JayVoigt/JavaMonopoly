@@ -4,9 +4,11 @@ import com.formdev.flatlaf.FlatLightLaf;
 import net.miginfocom.swing.MigLayout;
 
 import java.awt.*;
+import java.awt.Color;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Objects;
@@ -37,7 +39,7 @@ public class DynamicView {
 	JDialog dialogPurchaseProperty;
 	JDialog dialogImprovements;
 
-	JDialog dialogNewGame;
+	JDialog dialogStartGame;
 	JDialog dialogGameEditor;
 	JDialog dialogAbout;
 
@@ -45,6 +47,13 @@ public class DynamicView {
 	JMenu menuFile;
 	JMenu menuEdit;
 	JMenu menuView;
+
+	Border spaceSelectionBorder;
+
+	private enum LocalActions {
+		START_GAME
+	}
+
 
 	static int currentSpaceButtonSelection;
 
@@ -90,11 +99,23 @@ public class DynamicView {
 		boardFrame.setFrameIcon(SwingHelper.getImageIconFromResource("/board.png"));
 		boardFrame.setVisible(true);
 
+		spaceSelectionBorder = SwingHelper.createBorderStyleHighlight(java.awt.Color.MAGENTA, true);
+
 		initDialogs();
 	}
 
 	public void update() {
 		spaceSelectionArea.update(board, currentSpaceButtonSelection);
+
+		for (JButton b : spaceButtons) {
+			if (spaceButtons.indexOf(b) == currentSpaceButtonSelection) {
+				b.setBorder(spaceSelectionBorder);
+			}
+			else {
+				b.setBorder(null);
+			}
+		}
+
 	}
 
 	private void initGUIComponents() {
@@ -269,7 +290,8 @@ public class DynamicView {
 			b.setBackground(transparentColor);
 
 			// General button appearance
-			b.setBorderPainted(false);
+			b.setBorder(null);
+			b.setBorderPainted(true);
 			b.setFocusable(false);
 			b.setVisible(true);
 			b.setCursor(new java.awt.Cursor(Cursor.HAND_CURSOR));
@@ -341,6 +363,49 @@ public class DynamicView {
 		// Game editor
 		dialogGameEditor = new GameEditorDialog().getDialog();
 		dialogGameEditor.setVisible(true);
+
+		StartGameDialog startGameDialog = new StartGameDialog();
+		StartGameButtonActionListener startGameButtonActionListener = new StartGameButtonActionListener();
+		startGameDialog.attachStartGameActionListener(startGameButtonActionListener);
+		dialogStartGame = startGameDialog.getDialog();	// need better variable names
+		dialogStartGame.setVisible(true);
+
+	}
+
+	public class StartGameButtonActionListener implements ActionListener {
+
+		int playerCount;
+		ArrayList<String> playerCustomNames;
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			startGame(playerCount, playerCustomNames);
+		}
+
+		private void setPlayerCount(int playerCount) {
+			this.playerCount = playerCount;
+		}
+
+		private void setPlayerCustomNames(ArrayList<String> playerCustomNames) {
+			this.playerCustomNames = playerCustomNames;
+		}
+
+	}
+
+	private void startGame(int playerCount, ArrayList<String> playerCustomNames) {
+
+		// If game is not currently running
+		if (!controller.getIsGameActive()) {
+			controller.setPlayersCount(playerCount);
+
+			// Set names
+			for ( int i = 0 ; i < playerCount ; i++ ) {
+				board.players.get(i + 1).setCustomName(playerCustomNames.get(i));
+			}
+
+			controller.setIsGameActive(true);
+		}
+
 	}
 
 	public class ButtonActionListener implements ActionListener {
