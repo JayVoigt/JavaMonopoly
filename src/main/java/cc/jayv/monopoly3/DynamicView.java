@@ -94,6 +94,7 @@ public class DynamicView {
 	}
 
 	public void update() {
+		spaceSelectionArea.update(board, currentSpaceButtonSelection);
 	}
 
 	private void initGUIComponents() {
@@ -141,6 +142,15 @@ public class DynamicView {
 
 		JMenuItem menuFileQuit = new JMenuItem("Quit", SwingHelper.getImageIconFromResource(("/red-x.png")));
 		menuFile.add(menuFileQuit);
+
+		JMenuItem menuViewAbout = new JMenuItem("About", SwingHelper.getImageIconFromResource("/robot.png"));
+		menuViewAbout.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dialogAbout.setVisible(true);
+			}
+		});
+		menuView.add(menuViewAbout);
 
 		// Ready
 		menuBar.setVisible(true);
@@ -289,7 +299,6 @@ public class DynamicView {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			currentSpaceButtonSelection = spaceButtons.indexOf(e.getSource());
-			System.out.println(currentSpaceButtonSelection);
 			update();
 		}
 		
@@ -328,7 +337,10 @@ public class DynamicView {
 
 		// About
 		dialogAbout = new AboutDialog().getDialog();
-		dialogAbout.setVisible(true);
+
+		// Game editor
+		dialogGameEditor = new GameEditorDialog().getDialog();
+		dialogGameEditor.setVisible(true);
 	}
 
 	public class ButtonActionListener implements ActionListener {

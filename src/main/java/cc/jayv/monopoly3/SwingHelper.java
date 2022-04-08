@@ -88,6 +88,22 @@ public class SwingHelper {
 	}
 	// </editor-fold>
 
+	public static void formatLabel(JLabel inputLabel, boolean isTitle) {
+		if (isTitle) {
+			formatLabel(inputLabel, "n/a", LabelStyles.TITLE_NO_CONTENT);
+		}
+		else {
+			formatLabel(inputLabel, "n/a", LabelStyles.NO_CONTENT);
+
+		}
+	}
+
+	/**
+	 *
+	 * @param label The label to be formatted.
+	 * @param content The text to be contained in the label.
+	 * @param style The style of the label.
+	 */
 	public static void formatLabel(JLabel label, String content, LabelStyles style) {
 		// Obtain default font from JEditorPane component
 		// Ref: https://alvinalexander.com/java/how-to-get-default-system-font-java-swing/

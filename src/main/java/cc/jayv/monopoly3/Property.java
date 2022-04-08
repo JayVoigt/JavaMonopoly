@@ -24,6 +24,21 @@ public abstract class Property extends Space implements Serializable {
 	}
 	propertyTypeKeys propertyType;
 
+	public enum QueryRentStates {
+		NO_FULL_SET,
+		FULL_SET,
+		HOUSE_1,
+		HOUSE_2,
+		HOUSE_3,
+		HOUSE_4,
+		HOTEL,
+
+		RAILROAD_1,
+		RAILROAD_2,
+		RAILROAD_3,
+		RAILROAD_4
+	}
+
 	boolean isOwned,
 		isMortgaged,
 		isFullSetOwned;
@@ -114,4 +129,20 @@ public abstract class Property extends Space implements Serializable {
 	 * @return The rent that needs to be paid.
 	 */
 	abstract int calculateRent();
+
+	public String queryRentValue(QueryRentStates rentState) {
+		int rentValue = 0;
+
+		switch (rentState) {
+			case FULL_SET -> rentValue = 2 * rentBase;
+			case NO_FULL_SET, RAILROAD_1 -> rentValue = rentBase;
+			case HOUSE_1, RAILROAD_2 -> rentValue = rentHouse1;
+			case HOUSE_2, RAILROAD_3 -> rentValue = rentHouse2;
+			case HOUSE_3, RAILROAD_4 -> rentValue = rentHouse3;
+			case HOUSE_4 -> rentValue = rentHouse4;
+			case HOTEL -> rentValue = rentHotel;
+		}
+
+		return String.valueOf(rentValue);
+	}
 }

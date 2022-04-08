@@ -59,43 +59,43 @@ public class SpaceSelectionArea implements ViewComponent {
     }
 
     private void initLabels() {
-        String baseMigSpec = "";
+        String baseMigSpec = ", width 100";
 
         // Left area, static labels
-        staticLabelID = generateLabel(LabelAlignment.RIGHT, true, "ID", "cell 0 0, align right");
-        staticLabelName = generateLabel(LabelAlignment.RIGHT, true, "Name", "cell 0 1, align right");
-        staticLabelIsOwned = generateLabel(LabelAlignment.RIGHT,  true, "Is owned", "cell 0 2, align right");
-        staticLabelOwnedBy = generateLabel(LabelAlignment.RIGHT, true, "Owned by", "cell 0 3, align right");
-        staticLabelSpaceType = generateLabel(LabelAlignment.RIGHT, true, "Space type", "cell 0 4, align right");
-        staticLabelLanded = generateLabel(LabelAlignment.RIGHT, true, "Landed", "cell 0 5, align right");
-        staticLabelPrice = generateLabel(LabelAlignment.RIGHT, true, "Price", "cell 0 6, align right");
+        staticLabelID = generateLabel(LabelAlignment.RIGHT, true, "ID", "cell 0 0, align right" + baseMigSpec);
+        staticLabelName = generateLabel(LabelAlignment.RIGHT, true, "Name", "cell 0 1, align right" + baseMigSpec);
+        staticLabelIsOwned = generateLabel(LabelAlignment.RIGHT,  true, "Is owned", "cell 0 2, align right" + baseMigSpec);
+        staticLabelOwnedBy = generateLabel(LabelAlignment.RIGHT, true, "Owned by", "cell 0 3, align right" + baseMigSpec);
+        staticLabelSpaceType = generateLabel(LabelAlignment.RIGHT, true, "Space type", "cell 0 4, align right" + baseMigSpec);
+        staticLabelLanded = generateLabel(LabelAlignment.RIGHT, true, "Landed", "cell 0 5, align right" + baseMigSpec);
+        staticLabelPrice = generateLabel(LabelAlignment.RIGHT, true, "Price", "cell 0 6, align right" + baseMigSpec);
 
         // Left area, dynamic labels
-        labelID = generateLabel(LabelAlignment.LEFT, false, "(no selection)", "cell 1 0, align left");
-        labelName = generateLabel(LabelAlignment.LEFT, false, "(no selection)", "cell 1 1, align left");
-        labelIsOwned = generateLabel(LabelAlignment.LEFT,  false, "(no selection)", "cell 1 2, align left");
-        labelOwnedBy = generateLabel(LabelAlignment.LEFT, false, "(no selection)", "cell 1 3, align left");
-        labelSpaceType = generateLabel(LabelAlignment.LEFT, false, "(no selection)", "cell 1 4, align left");
-        labelLanded = generateLabel(LabelAlignment.LEFT, false, "(no selection)", "cell 1 5, align left");
-        labelPrice = generateLabel(LabelAlignment.LEFT, false, "(no selection)", "cell 1 6, align left");
+        labelID = generateLabel(LabelAlignment.LEFT, false, "(no selection)", "cell 1 0, align left" + baseMigSpec);
+        labelName = generateLabel(LabelAlignment.LEFT, false, "(no selection)", "cell 1 1, align left" + baseMigSpec);
+        labelIsOwned = generateLabel(LabelAlignment.LEFT,  false, "(no selection)", "cell 1 2, align left" + baseMigSpec);
+        labelOwnedBy = generateLabel(LabelAlignment.LEFT, false, "(no selection)", "cell 1 3, align left" + baseMigSpec);
+        labelSpaceType = generateLabel(LabelAlignment.LEFT, false, "(no selection)", "cell 1 4, align left" + baseMigSpec);
+        labelLanded = generateLabel(LabelAlignment.LEFT, false, "(no selection)", "cell 1 5, align left" + baseMigSpec);
+        labelPrice = generateLabel(LabelAlignment.LEFT, false, "(no selection)", "cell 1 6, align left" + baseMigSpec);
 
         // Right area, static labels
-        staticLabelRent = generateLabel(LabelAlignment.RIGHT, true, "Base rent", "cell 2 0, align right");
-        staticLabelRentHouse1 = generateLabel(LabelAlignment.RIGHT, true, "+", "cell 2 1, align right", "/house-label-1-horiz-rightalign.png");
-        staticLabelRentHouse2 = generateLabel(LabelAlignment.RIGHT, true, "+", "cell 2 2, align right", "/house-label-2-horiz-rightalign.png");
-        staticLabelRentHouse3 = generateLabel(LabelAlignment.RIGHT, true, "+", "cell 2 3, align right", "/house-label-3-horiz-rightalign.png");
-        staticLabelRentHouse4 = generateLabel(LabelAlignment.RIGHT, true, "+", "cell 2 4, align right", "/house-label-4-horiz-rightalign.png");
-        staticLabelRentHotel = generateLabel(LabelAlignment.RIGHT, true, "+", "cell 2 5, align right", "/hotel-label-1-horiz-rightalign.png");
-        staticLabelCurrentRent = generateLabel(LabelAlignment.RIGHT, true, "Current rent", "cell 2 6, align right");
+        staticLabelRent = generateLabel(LabelAlignment.RIGHT, true, "Base rent", "cell 2 0, align right" + baseMigSpec);
+        staticLabelRentHouse1 = generateLabel(LabelAlignment.RIGHT, true, "+", "cell 2 1, align right" + baseMigSpec, "/house-label-1-horiz-rightalign.png");
+        staticLabelRentHouse2 = generateLabel(LabelAlignment.RIGHT, true, "+", "cell 2 2, align right" + baseMigSpec, "/house-label-2-horiz-rightalign.png");
+        staticLabelRentHouse3 = generateLabel(LabelAlignment.RIGHT, true, "+", "cell 2 3, align right" + baseMigSpec, "/house-label-3-horiz-rightalign.png");
+        staticLabelRentHouse4 = generateLabel(LabelAlignment.RIGHT, true, "+", "cell 2 4, align right" + baseMigSpec, "/house-label-4-horiz-rightalign.png");
+        staticLabelRentHotel = generateLabel(LabelAlignment.RIGHT, true, "+", "cell 2 5, align right" + baseMigSpec, "/hotel-label-1-horiz-rightalign.png");
+        staticLabelCurrentRent = generateLabel(LabelAlignment.RIGHT, true, "Current rent", "cell 2 6, align right" + baseMigSpec);
 
         // Right area, dynamic labels
-        labelRent = generateLabel(LabelAlignment.LEFT, false, "(no selection)", "cell 3 0, align left");
-        labelRentHouse1 = generateLabel(LabelAlignment.LEFT, false, "(no selection)", "cell 3 1, align left");
-        labelRentHouse2 = generateLabel(LabelAlignment.LEFT, false, "(no selection)", "cell 3 2, align left");
-        labelRentHouse3 = generateLabel(LabelAlignment.LEFT, false, "(no selection)", "cell 3 3, align left");
-        labelRentHouse4 = generateLabel(LabelAlignment.LEFT, false, "(no selection)", "cell 3 4, align left");
-        labelRentHotel = generateLabel(LabelAlignment.LEFT, false, "(no selection)", "cell 3 5, align left");
-        labelCurrentRent = generateLabel(LabelAlignment.LEFT, false, "(no selection)", "cell 3 6, align left");
+        labelRent = generateLabel(LabelAlignment.LEFT, false, "(no selection)", "cell 3 0, align left" + baseMigSpec);
+        labelRentHouse1 = generateLabel(LabelAlignment.LEFT, false, "(no selection)", "cell 3 1, align left" + baseMigSpec);
+        labelRentHouse2 = generateLabel(LabelAlignment.LEFT, false, "(no selection)", "cell 3 2, align left" + baseMigSpec);
+        labelRentHouse3 = generateLabel(LabelAlignment.LEFT, false, "(no selection)", "cell 3 3, align left" + baseMigSpec);
+        labelRentHouse4 = generateLabel(LabelAlignment.LEFT, false, "(no selection)", "cell 3 4, align left" + baseMigSpec);
+        labelRentHotel = generateLabel(LabelAlignment.LEFT, false, "(no selection)", "cell 3 5, align left" + baseMigSpec);
+        labelCurrentRent = generateLabel(LabelAlignment.LEFT, false, "(no selection)", "cell 3 6, align left" + baseMigSpec);
 
     }
 
@@ -152,6 +152,87 @@ public class SpaceSelectionArea implements ViewComponent {
 
         // ID
         SwingHelper.formatLabel(labelID, String.valueOf(localSpace.getID()), SwingHelper.LabelStyles.TITLE_REGULAR);
+
+        // Name
+        SwingHelper.formatLabel(labelName, localSpace.getFriendlyName());
+
+        // Is owned; owned by
+        if (localSpace instanceof Property p) {
+            // If property, check if owned
+            if (p.getIsOwned()) {
+                SwingHelper.formatLabel(labelOwnedBy, board.players.get(p.getOwnerID()).getCustomName(), SwingHelper.LabelStyles.TITLE_REGULAR);
+                SwingHelper.formatLabel(labelIsOwned, "yes", SwingHelper.LabelStyles.TITLE_REGULAR);
+            }
+            else {
+                SwingHelper.formatLabel(labelOwnedBy, true);
+                SwingHelper.formatLabel(labelOwnedBy, "no", SwingHelper.LabelStyles.TITLE_REGULAR);
+            }
+        }
+        else {
+            // If not property, cannot be owned
+            SwingHelper.formatLabel(labelIsOwned, true);
+            SwingHelper.formatLabel(labelOwnedBy, true);
+        }
+
+        // Space type
+        if (localSpace instanceof Property p) {
+            String spaceType = "";
+            if (p instanceof Color) {
+                spaceType = "Color";
+            }
+            else if (p instanceof Utility) {
+                spaceType = "Utility";
+            }
+            else if (p instanceof Railroad) {
+                spaceType = "Railroad";
+            }
+            SwingHelper.formatLabel(labelSpaceType, spaceType, SwingHelper.LabelStyles.TITLE_REGULAR);
+        }
+        else {
+            SwingHelper.formatLabel(labelSpaceType, "Game event", SwingHelper.LabelStyles.TITLE_REGULAR);
+        }
+
+        // Times landed
+        String landedSuffix = "";
+        if (localSpace.getTimesLanded() == 1) {
+            landedSuffix = " time";
+        }
+        else {
+            landedSuffix = " times";
+        }
+        SwingHelper.formatLabel(labelLanded, localSpace.getTimesLanded() + landedSuffix, SwingHelper.LabelStyles.TITLE_REGULAR);
+
+        // Price
+        if (localSpace instanceof Property p) {
+            SwingHelper.formatLabel(labelPrice, String.valueOf(p.getPurchaseCost()), SwingHelper.LabelStyles.TITLE_REGULAR);
+            SwingHelper.formatLabel(labelCurrentRent, String.valueOf(p.calculateRent()), SwingHelper.LabelStyles.TITLE_REGULAR);
+        }
+        else {
+            SwingHelper.formatLabel(labelPrice, true);
+        }
+
+        // Rent values
+        if (localSpace instanceof Color p) {
+            SwingHelper.formatLabel(labelRentHouse1, p.queryRentValue(Property.QueryRentStates.HOUSE_1), SwingHelper.LabelStyles.TITLE_REGULAR);
+            SwingHelper.formatLabel(labelRentHouse2, p.queryRentValue(Property.QueryRentStates.HOUSE_2), SwingHelper.LabelStyles.TITLE_REGULAR);
+            SwingHelper.formatLabel(labelRentHouse3, p.queryRentValue(Property.QueryRentStates.HOUSE_3), SwingHelper.LabelStyles.TITLE_REGULAR);
+            SwingHelper.formatLabel(labelRentHouse4, p.queryRentValue(Property.QueryRentStates.HOUSE_4), SwingHelper.LabelStyles.TITLE_REGULAR);
+            SwingHelper.formatLabel(labelRentHotel, p.queryRentValue(Property.QueryRentStates.HOTEL), SwingHelper.LabelStyles.TITLE_REGULAR);
+        }
+        else if (localSpace instanceof Railroad p) {
+            SwingHelper.formatLabel(labelRentHouse1, p.queryRentValue(Property.QueryRentStates.RAILROAD_1), SwingHelper.LabelStyles.TITLE_REGULAR);
+            SwingHelper.formatLabel(labelRentHouse2, p.queryRentValue(Property.QueryRentStates.RAILROAD_2), SwingHelper.LabelStyles.TITLE_REGULAR);
+            SwingHelper.formatLabel(labelRentHouse3, p.queryRentValue(Property.QueryRentStates.RAILROAD_3), SwingHelper.LabelStyles.TITLE_REGULAR);
+            SwingHelper.formatLabel(labelRentHouse4, p.queryRentValue(Property.QueryRentStates.RAILROAD_4), SwingHelper.LabelStyles.TITLE_REGULAR);
+            SwingHelper.formatLabel(labelRentHotel, true);
+        }
+        else {
+            SwingHelper.formatLabel(labelRentHouse1, true);
+            SwingHelper.formatLabel(labelRentHouse2, true);
+            SwingHelper.formatLabel(labelRentHouse3, true);
+            SwingHelper.formatLabel(labelRentHouse4, true);
+            SwingHelper.formatLabel(labelRentHotel, true);
+        }
     }
 
     @Override
