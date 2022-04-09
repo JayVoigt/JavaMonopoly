@@ -2,6 +2,8 @@ package cc.jayv.monopoly3;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -11,13 +13,12 @@ public class BoardFrame {
 
     SpaceSelectionArea spaceSelectionArea;
     ArrayList<SpaceButton> spaceButtons;
+    ArrayList<JLabel> playerIndicators;
 
     JScrollPane gameLogScrollPane;
     JTextArea gameLogTextArea;
 
     LogHelper logHelper;
-
-    int spaceSelectionID;
 
     public BoardFrame(LogHelper logHelper, ArrayList<DynamicView.spaceButtonActionHandler> listener) {
         frame = new JInternalFrame();
@@ -26,6 +27,12 @@ public class BoardFrame {
         this.logHelper = logHelper;
 
         spaceButtons = new ArrayList<>();
+        playerIndicators = new ArrayList<>();
+
+        playerIndicators.add(new JLabel(SwingHelper.getImageIconFromResource("/player-icon-1-px.png")));
+        playerIndicators.add(new JLabel(SwingHelper.getImageIconFromResource("/player-icon-2-px.png")));
+        playerIndicators.add(new JLabel(SwingHelper.getImageIconFromResource("/player-icon-3-px.png")));
+        playerIndicators.add(new JLabel(SwingHelper.getImageIconFromResource("/player-icon-4-px.png")));
 
         frame.setSize(1000, 1000);
         frame.setLayout(null);
@@ -139,6 +146,8 @@ public class BoardFrame {
         boardImage.setIcon(new javax.swing.ImageIcon(Objects.requireNonNull(getClass().getResource("/board-px-template.png"))));
         boardImage.setBounds(0, 0, 960, 960);
 
+        initMouseListenersForAnimatedSpaces();
+
         frame.add(boardImage);
     }
 
@@ -167,6 +176,9 @@ public class BoardFrame {
     public void update(Board board, int spaceSelectionID) {
         spaceSelectionArea.update(board, spaceSelectionID);
         updateGameLog();
+        updateGuiPlayerIndicators(board);
+        updateGuiImprovementIcons(board);
+        updateGuiSpaceHighlight(board);
     }
 
     public ArrayList<SpaceButton> getSpaceButtonArrayList() {
@@ -175,5 +187,79 @@ public class BoardFrame {
 
     private void updateGameLog() {
         gameLogTextArea.setText(logHelper.getAllGameLogContents());
+    }
+
+    private void updateGuiPlayerIndicators(Board board) {
+        for (Player p : board.players) {
+            if (p.getIsActive()) {
+
+            }
+            else {
+
+            }
+        }
+    }
+
+    private Dimension calculateDimensionForPlayerIndicator(int playerID, int spaceID) {
+        Dimension dimension = new Dimension();
+
+
+        return dimension;
+    }
+
+    private void updateGuiImprovementIcons(Board board) {
+
+    }
+
+    private void updateGuiSpaceHighlight(Board board) {
+
+    }
+
+    private void initMouseListenersForAnimatedSpaces() {
+        JButton buttonElectricCompany = spaceButtons.get(12).getButton();
+        JButton buttonFreeParking = spaceButtons.get(20).getButton();
+        JButton buttonWaterWorks = spaceButtons.get(28).getButton();
+        JButton buttonGoToJail = spaceButtons.get(30).getButton();
+        JButton buttonLuxuryTax = spaceButtons.get(38).getButton();
+
+        buttonElectricCompany.addMouseListener(new AnimatedSpaceActionListener(SwingHelper.getImageIconFromResource("/electric-company-anim.gif")));
+        buttonFreeParking.addMouseListener(new AnimatedSpaceActionListener(SwingHelper.getImageIconFromResource("/free-parking-anim.gif")));
+        buttonWaterWorks.addMouseListener(new AnimatedSpaceActionListener(SwingHelper.getImageIconFromResource("/waterworks-anim.gif")));
+        buttonGoToJail.addMouseListener(new AnimatedSpaceActionListener(SwingHelper.getImageIconFromResource("/go-to-jail-anim.gif")));
+        buttonLuxuryTax.addMouseListener(new AnimatedSpaceActionListener(SwingHelper.getImageIconFromResource("/luxury-tax-anim.gif")));
+    }
+
+    private class AnimatedSpaceActionListener implements MouseListener {
+
+        ImageIcon animatedLabel;
+
+        public AnimatedSpaceActionListener(ImageIcon animatedLabel) {
+            this.animatedLabel = animatedLabel;
+        }
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+            ((JButton) e.getSource()).setIcon(animatedLabel);
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+            ((JButton) e.getSource()).setIcon(null);
+        }
     }
 }

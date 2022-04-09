@@ -3,6 +3,7 @@ package cc.jayv.monopoly3;
 import com.formdev.flatlaf.FlatLightLaf;
 import net.miginfocom.swing.MigLayout;
 
+import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.*;
@@ -26,8 +27,8 @@ public class DynamicView {
 
 	ArrayList<BoardFrame.SpaceButton> spaceButtons;
 
-	LogicSwitchboard switchboard;
-	GameLogicController controller;
+	final LogicSwitchboard switchboard;
+	final GameLogicController controller;
 	Board board;
 	LogHelper logHelper;
 
@@ -156,6 +157,7 @@ public class DynamicView {
 		menuFile.add(menuFileSaveGame);
 
 		JMenuItem menuFileQuit = new JMenuItem("Quit", SwingHelper.getImageIconFromResource(("/red-x.png")));
+		menuFileQuit.addActionListener(new MenuActionListener(MenuActions.FILE_QUIT));
 		menuFile.add(menuFileQuit);
 
 		JMenuItem menuViewAbout = new JMenuItem("About", SwingHelper.getImageIconFromResource("/robot.png"));
