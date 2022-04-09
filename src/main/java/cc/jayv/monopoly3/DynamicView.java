@@ -54,7 +54,6 @@ public class DynamicView {
 		START_GAME
 	}
 
-
 	static int currentSpaceButtonSelection;
 
 	public DynamicView() {
@@ -379,14 +378,19 @@ public class DynamicView {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			System.out.println("test");
+			System.out.println("players: " + playerCount);
+			for (String s : playerCustomNames) {
+				System.out.println(s);
+			}
 			startGame(playerCount, playerCustomNames);
 		}
 
-		private void setPlayerCount(int playerCount) {
+		protected void setPlayerCount(int playerCount) {
 			this.playerCount = playerCount;
 		}
 
-		private void setPlayerCustomNames(ArrayList<String> playerCustomNames) {
+		protected void setPlayerCustomNames(ArrayList<String> playerCustomNames) {
 			this.playerCustomNames = playerCustomNames;
 		}
 

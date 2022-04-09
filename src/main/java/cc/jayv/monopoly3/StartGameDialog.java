@@ -3,6 +3,8 @@ package cc.jayv.monopoly3;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class StartGameDialog {
@@ -25,6 +27,8 @@ public class StartGameDialog {
     JLabel staticLabelPlayer4;
 
     JButton buttonStartGame;
+
+    DynamicView.StartGameButtonActionListener startGameButtonActionListener;
 
     public StartGameDialog() {
         initComponents();
@@ -49,13 +53,42 @@ public class StartGameDialog {
         comboBoxPlayerCount.addItem(2);
         comboBoxPlayerCount.addItem(3);
         comboBoxPlayerCount.addItem(4);
+        comboBoxPlayerCount.setSelectedItem(4);
+
+        comboBoxPlayerCount.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                playerCount = (int) comboBoxPlayerCount.getSelectedItem();
+
+                if (playerCount == 1) {
+                    playerCustomName1.setEnabled(true);
+                    playerCustomName2.setEnabled(false);
+                    playerCustomName3.setEnabled(false);
+                    playerCustomName4.setEnabled(false);
+                }
+                else if (playerCount == 2) {
+                    playerCustomName1.setEnabled(true);
+                    playerCustomName2.setEnabled(true);
+                    playerCustomName3.setEnabled(false);
+                    playerCustomName4.setEnabled(false);
+                }
+                else if (playerCount == 3) {
+                    playerCustomName1.setEnabled(true);
+                    playerCustomName2.setEnabled(true);
+                    playerCustomName3.setEnabled(true);
+                    playerCustomName4.setEnabled(false);
+                }
+                else {
+                    playerCustomName1.setEnabled(true);
+                    playerCustomName2.setEnabled(true);
+                    playerCustomName3.setEnabled(true);
+                    playerCustomName4.setEnabled(true);
+                }
+            }
+        });
 
         // Strings containing player's desired name
         playerCustomNames = new ArrayList<>();
-        playerCustomNames.add("Player 1");
-        playerCustomNames.add("Player 2");
-        playerCustomNames.add("Player 3");
-        playerCustomNames.add("Player 4");
 
         // Fields for name entry
         playerCustomName1 = new JTextField("Player 1");
@@ -110,7 +143,28 @@ public class StartGameDialog {
     }
 
     public void attachStartGameActionListener(DynamicView.StartGameButtonActionListener listener) {
-        buttonStartGame.addActionListener(listener);
+        startGameButtonActionListener = listener;
+        buttonStartGame.addActionListener(startGameButtonActionListener);
+        buttonStartGame.addActionListener(new LocalActionListener());
+    }
+
+    private class LocalActionListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            System.out.println("test again");
+            playerCount = (int) comboBoxPlayerCount.getSelectedItem();
+
+            playerCustomNames.clear();
+            playerCustomNames.trimToSize();
+            playerCustomNames.add(playerCustomName1.getText());
+            playerCustomNames.add(playerCustomName2.getText());
+            playerCustomNames.add(playerCustomName3.getText());
+            playerCustomNames.add(playerCustomName4.getText());
+
+            startGameButtonActionListener.setPlayerCustomNames(playerCustomNames);
+            startGameButtonActionListener.setPlayerCount(playerCount);
+        }
     }
 
     public int getPlayerCount() {
