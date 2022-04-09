@@ -3,15 +3,12 @@ package cc.jayv.monopoly3;
 import com.formdev.flatlaf.FlatLightLaf;
 import net.miginfocom.swing.MigLayout;
 
-import java.awt.*;
-import java.awt.Color;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -23,12 +20,11 @@ public class DynamicView {
 
 	JFrame mainFrame;
 
-	JInternalFrame boardFrame;
+	BoardFrame boardFrame;
 	ControlFrame controlFrame;
 	InfoFrame infoFrame;
-	SpaceSelectionArea spaceSelectionArea;
 
-	ArrayList<JButton> spaceButtons;
+	ArrayList<BoardFrame.SpaceButton> spaceButtons;
 
 	LogicSwitchboard switchboard;
 	GameLogicController controller;
@@ -48,14 +44,8 @@ public class DynamicView {
 	JMenu menuEdit;
 	JMenu menuView;
 
-	JTextArea gameLogTextArea;
-
 	Border spaceSelectionBorder;
 	Player currentPlayer;
-
-	private enum LocalActions {
-		START_GAME
-	}
 
 	static int currentSpaceButtonSelection;
 
@@ -92,14 +82,11 @@ public class DynamicView {
 		// Initialize main frame
 		mainFrame.setLayout(new MigLayout());
 		initControlFrame();
-		mainFrame.add(boardFrame, "cell 0 0, x 0, y 0, width 1000, height 1000");
+		mainFrame.add(boardFrame.getInternalFrame(), "cell 0 0, x 0, y 0, width 1000, height 1000");
 		mainFrame.add(infoFrame.getFrame(), "cell 1 0, x 1000, y 0, width 308, height 600");
 		mainFrame.add(controlFrame.getFrame(), "cell 1 1, x 1000, y 600, width 308, height 400");
 		mainFrame.pack();
 		mainFrame.setVisible(true);
-
-		boardFrame.setFrameIcon(SwingHelper.getImageIconFromResource("/board.png"));
-		boardFrame.setVisible(true);
 
 		spaceSelectionBorder = SwingHelper.createBorderStyleHighlight(java.awt.Color.MAGENTA, true);
 
@@ -108,25 +95,11 @@ public class DynamicView {
 
 	public void update() {
 		currentPlayer = board.players.get(board.getCurrentPlayerID());
-		spaceSelectionArea.update(board, currentSpaceButtonSelection);
+		boardFrame.update(board, currentSpaceButtonSelection);
 
-		for (JButton b : spaceButtons) {
-			if (spaceButtons.indexOf(b) == currentSpaceButtonSelection) {
-				b.setBorder(spaceSelectionBorder);
-			}
-			else {
-				b.setBorder(null);
-			}
-		}
-
-		updateGuiGameLog();
 		controlFrame.update(board);
 		infoFrame.update(board);
 		updateGuiMandatoryDialogs();
-	}
-
-	private void updateGuiGameLog() {
-		gameLogTextArea.setText(logHelper.getAllGameLogContents());
 	}
 
 	private void updateGuiMandatoryDialogs() {
@@ -140,11 +113,17 @@ public class DynamicView {
 	}
 
 	private void initGUIComponents() {
-		spaceButtons = new ArrayList<>();
+
+		ArrayList<spaceButtonActionHandler> spaceButtonActionHandlers = new ArrayList<>();
+
+		for ( int i = 0 ; i < 40 ; i++ ) {
+			spaceButtonActionHandlers.add(new spaceButtonActionHandler(i));
+		}
 
 		// Core components
 		mainFrame = new JFrame();
-		boardFrame = boardFrameCreator();
+		boardFrame = new BoardFrame(logHelper, spaceButtonActionHandlers);
+		spaceButtons = boardFrame.getSpaceButtonArrayList();
 		controlFrame = new ControlFrame();
 		infoFrame = new InfoFrame();
 	}
@@ -219,140 +198,20 @@ public class DynamicView {
 		controlFrame.initButtons(buttonActionListeners);
 	}
 
-	private JInternalFrame boardFrameCreator() {
-		JInternalFrame frame = new JInternalFrame();
-
-		frame.setSize(1000, 1000);
-		frame.setLayout(null);
-		frame.setVisible(true);
-
-		JScrollPane gameLogScrollPane = new JScrollPane();
-		gameLogTextArea = new JTextArea();
-
-		gameLogScrollPane.setBounds(150, 380, 660, 430);
-		gameLogScrollPane.setVisible(true);
-
-		gameLogScrollPane.setViewportView(gameLogTextArea);
-		controller.sendWelcomeMessage();
-
-		for ( String s : logHelper.getGameLogContents()) {
-			gameLogTextArea.setText(gameLogTextArea.getText() + s);
-		}
-
-		frame.add(gameLogScrollPane);
-		spaceSelectionArea = new SpaceSelectionArea();
-
-		frame.add(spaceSelectionArea.getJPanel());
-
-		for (int i = 0; i < 40; i++) {
-			spaceButtons.add(new JButton());
-		}
-
-		int posX, posY, sizeX, sizeY;
-
-		for (JButton b : spaceButtons) {
-
-			b.addActionListener(new spaceButtonActionHandler());
-
-			int index = spaceButtons.indexOf(b);
-			int cardinalPosition = (index % 10);
-
-			if (index == 0) {
-				posX = 840;
-				posY = 840;
-				sizeX = 120;
-				sizeY = 120;
-			}
-			else if (index == 10) {
-				posX = 0;
-				posY = 840;
-				sizeX = 120;
-				sizeY = 120;
-			}
-			else if (index == 20) {
-				posX = 0;
-				posY = 0;
-				sizeX = 120;
-				sizeY = 120;
-			}
-			else if (index == 30) {
-				posX = 840;
-				posY = 0;
-				sizeX = 120;
-				sizeY = 120;
-			}
-			else if (index > 0 && index < 10) {
-				posX = 840 - (80 * cardinalPosition);
-				posY = 840;
-				sizeX = 80;
-				sizeY = 120;
-			}
-			else if (index > 10 && index < 20) {
-				posX = 0;
-				posY = 840 - (80 * cardinalPosition);
-				sizeX = 120;
-				sizeY = 80;
-			}
-			else if (index > 20 && index < 30) {
-				posX = 40 + (80 * cardinalPosition);
-				posY = 0;
-				sizeX = 80;
-				sizeY = 120;
-			}
-			else if (index > 30 && index < 40) {
-				posX = 840;
-				posY = 40 + (80 * cardinalPosition);
-				sizeX = 120;
-				sizeY = 80;
-			}
-			else {
-				posX = 0;
-				posY = 0;
-				sizeX = 0;
-				sizeY = 0;
-			}
-
-			b.setBounds(posX, posY, sizeX, sizeY);
-
-			// Set button to transparent - is still clickable but not visible
-			java.awt.Color transparentColor = new java.awt.Color(0, 0, 0, 0);
-			b.setBackground(transparentColor);
-
-			// General button appearance
-			b.setBorder(null);
-			b.setBorderPainted(true);
-			b.setFocusable(false);
-			b.setVisible(true);
-			b.setCursor(new java.awt.Cursor(Cursor.HAND_CURSOR));
-
-			frame.add(b);
-		}	// end button creation
-
-		JLabel boardImage = new JLabel();
-		boardImage.setIcon(new javax.swing.ImageIcon(Objects.requireNonNull(getClass().getResource("/board-px-template.png"))));
-		boardImage.setBounds(0, 0, 960, 960);
-
-		frame.add(boardImage);
-
-		return frame;
-	}
-
-	private JInternalFrame infoFrameCreator() {
-		JInternalFrame frame = new JInternalFrame();
-		frame.setSize(400, 700);
-		frame.setVisible(true);
-
-		return frame;
-	}
-
 	public class spaceButtonActionHandler implements ActionListener {
-		
+
+		int id;
+
+		public spaceButtonActionHandler(int id) {
+			this.id = id;
+		}
+
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			currentSpaceButtonSelection = spaceButtons.indexOf(e.getSource());
+			currentSpaceButtonSelection = id;
 			update();
 		}
-		
+
 	}
 
 	private void initDialogs() {
