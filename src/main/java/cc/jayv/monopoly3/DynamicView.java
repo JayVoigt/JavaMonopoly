@@ -51,6 +51,7 @@ public class DynamicView {
 	JTextArea gameLogTextArea;
 
 	Border spaceSelectionBorder;
+	Player currentPlayer;
 
 	private enum LocalActions {
 		START_GAME
@@ -106,6 +107,7 @@ public class DynamicView {
 	}
 
 	public void update() {
+		currentPlayer = board.players.get(board.getCurrentPlayerID());
 		spaceSelectionArea.update(board, currentSpaceButtonSelection);
 
 		for (JButton b : spaceButtons) {
@@ -118,6 +120,8 @@ public class DynamicView {
 		}
 
 		updateGuiGameLog();
+		controlFrame.update(board);
+		infoFrame.update(board);
 	}
 
 	private void updateGuiGameLog() {
@@ -132,7 +136,6 @@ public class DynamicView {
 		boardFrame = boardFrameCreator();
 		controlFrame = new ControlFrame();
 		infoFrame = new InfoFrame();
-
 	}
 
 	private void initMenuBar() {
@@ -458,11 +461,9 @@ public class DynamicView {
 		}
 	}
 
-
 	private void quitManager() {
 		System.exit(0);
 	}
-
 
 	private void updatePrompt(Actions action) {
 		switch(action) {

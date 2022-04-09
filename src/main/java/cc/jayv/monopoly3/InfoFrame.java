@@ -40,6 +40,38 @@ public class InfoFrame implements ViewComponent {
 
         for (JLabel l : playerLabels) {
             SwingHelper.formatLabel(l, "Player " + (1 + playerLabels.indexOf(l)), SwingHelper.LabelStyles.NO_CONTENT);
+        }
+    }
+
+    private class playerOverview {
+        JPanel panel;
+
+        JLabel labelPlayerName;
+        JLabel labelStatus;
+        Player player;
+
+        public playerOverview(Player player) {
+            this.player = player;
+
+        }
+
+        private void initComponents() {
+            // Init panel
+            panel = new JPanel();
+            panel.setLayout(new MigLayout());
+
+            // Init labels
+            labelPlayerName = new JLabel(player.getCustomName());
+            labelStatus = new JLabel();
+
+        }
+
+        private void arrangeComponents() {
+            panel.setSize(308, 200);
+            panel.add(labelPlayerName, "cell 0 0");
+        }
+
+        public void update(Board board) {
 
         }
     }

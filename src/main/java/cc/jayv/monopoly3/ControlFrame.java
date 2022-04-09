@@ -3,7 +3,6 @@ package cc.jayv.monopoly3;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
-import java.awt.*;
 import java.util.ArrayList;
 
 public class ControlFrame implements ViewComponent {
@@ -155,6 +154,10 @@ public class ControlFrame implements ViewComponent {
                         buttonControlsForfeit = new ButtonProperties("Forfeit", "/surrender.png", null, "cell 2 10, width 120");
                         frame.add(buttonControlsForfeit, buttonControlsForfeit.getMigLayoutSpec());
 
+                        for (Actions a : Actions.values()) {
+                                setStateOfActionButton(a, false);
+                        }
+
                 } catch (NullPointerException ignored) {
 
                 }
@@ -176,6 +179,13 @@ public class ControlFrame implements ViewComponent {
 
                 labelDie1.setIcon(DicePips.get(currentPlayer.getDie1()));
                 labelDie2.setIcon(DicePips.get(currentPlayer.getDie2()));
+
+                for (Actions a : Actions.values()) {
+                        setStateOfActionButton(a, true);
+                }
+
+                setStateOfActionButton(Actions.CONTROLS_ENDTURN, !currentPlayer.getActionLockedEndTurn());
+                setStateOfActionButton(Actions.CONTROLS_ROLLDICE, !currentPlayer.getActionLockedRollDice());
         }
 
         @Override
@@ -185,6 +195,12 @@ public class ControlFrame implements ViewComponent {
                 switch (action) {
                         case CONTROLS_ENDTURN -> localButton = buttonEndTurn;
                         case CONTROLS_ROLLDICE -> localButton = buttonRollDice;
+                        case CONTROLS_SHOW_IMPROVEMENTS -> localButton = buttonControlsImprovements;
+                        case CONTROLS_SHOW_FORFEIT -> localButton = buttonControlsForfeit;
+                        case CONTROLS_SHOW_MORTGAGE -> localButton = buttonControlsMortgage;
+                        case CONTROLS_SHOW_PROPERTIES -> localButton = buttonControlsShowProperties;
+                        case CONTROLS_SHOW_STATISTICS -> localButton = buttonControlsStatistics;
+                        case CONTROLS_SHOW_TRADE -> localButton = buttonControlsTrade;
                 }
 
                 if (localButton != null) {
