@@ -122,10 +122,21 @@ public class DynamicView {
 		updateGuiGameLog();
 		controlFrame.update(board);
 		infoFrame.update(board);
+		updateGuiMandatoryDialogs();
 	}
 
 	private void updateGuiGameLog() {
 		gameLogTextArea.setText(logHelper.getAllGameLogContents());
+	}
+
+	private void updateGuiMandatoryDialogs() {
+		dialogPurchaseProperty.setVisible(currentPlayer.getRequiredDecisionPropertyAction());
+		dialogJail.setVisible(currentPlayer.getRequiredDecisionPostedBail());
+
+		if (dialogPurchaseProperty.isVisible()) {
+			controlFrame.setStateOfActionButton(Actions.CONTROLS_ENDTURN, false);
+			controlFrame.setStateOfActionButton(Actions.CONTROLS_ROLLDICE, false);
+		}
 	}
 
 	private void initGUIComponents() {
@@ -354,6 +365,7 @@ public class DynamicView {
 		buttonPropertiesList.add(new ButtonProperties("Roll for doubles", "/dice-icon.png", new ButtonActionListener(Actions.JAIL_ROLLDOUBLES), "cell 1 2, width 150"));
 		buttonPropertiesList.add(new ButtonProperties("Use Get Out of Jail Free Card", "/goojfc.png", new ButtonActionListener(Actions.JAIL_USEGOOJFC), "cell 0 3, span 2, width 308"));
 		dialogJail = viewDialog.createDialogUserPrompt(buttonPropertiesList, "You may post bail for $50, attempt to roll for doubles up to a maximum of 3 times, or use a Get Out of Jail Free Card.");
+		dialogJail.pack();
 		buttonPropertiesList.clear();
 		buttonPropertiesList.trimToSize();
 
@@ -362,6 +374,7 @@ public class DynamicView {
 		buttonPropertiesList.add(new ButtonProperties("Purchase", "/money.png", new ButtonActionListener(Actions.PROPERTY_PURCHASE), "width 150"));
 		buttonPropertiesList.add(new ButtonProperties("Auction", "/auction.png", new ButtonActionListener(Actions.PROPERTY_AUCTION), "width 150"));
 		dialogPurchaseProperty = viewDialog.createDialogUserPrompt(buttonPropertiesList, "Property information here");
+		dialogPurchaseProperty.pack();
 		buttonPropertiesList.clear();
 		buttonPropertiesList.trimToSize();
 
