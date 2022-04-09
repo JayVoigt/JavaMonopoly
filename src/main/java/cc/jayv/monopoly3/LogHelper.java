@@ -119,4 +119,14 @@ public class LogHelper {
 	public void appendToDebugLog(String input) {
 		debugLogContents.add(input);
 	}
+
+	public String getAllGameLogContents() {
+		StringBuilder contents = new StringBuilder();
+
+		for (String s : gameLogContents) {
+			contents.append(s);
+		}
+
+		return contents.toString();
+	}
 }

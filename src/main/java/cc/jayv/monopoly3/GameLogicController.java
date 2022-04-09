@@ -112,10 +112,6 @@ public class GameLogicController implements Serializable {
 	}
 	// </editor-fold>
 
-	public void startGame() {
-
-	}
-
 	/**
 	 * Evaluator which is run at the beginning of a player's turn.<br>
 	 * Implements which decision path to execute given the player's condition.

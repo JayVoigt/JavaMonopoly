@@ -48,6 +48,8 @@ public class DynamicView {
 	JMenu menuEdit;
 	JMenu menuView;
 
+	JTextArea gameLogTextArea;
+
 	Border spaceSelectionBorder;
 
 	private enum LocalActions {
@@ -115,6 +117,11 @@ public class DynamicView {
 			}
 		}
 
+		updateGuiGameLog();
+	}
+
+	private void updateGuiGameLog() {
+		gameLogTextArea.setText(logHelper.getAllGameLogContents());
 	}
 
 	private void initGUIComponents() {
@@ -146,12 +153,7 @@ public class DynamicView {
 
 		// File
 		JMenuItem menuFileNewGame = new JMenuItem("New Game...", SwingHelper.getImageIconFromResource("/newgame.png"));
-		menuFileNewGame.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				
-			}
-		});
+		menuFileNewGame.addActionListener(new MenuActionListener(MenuActions.FILE_NEW_GAME));
 		menuFile.add(menuFileNewGame);
 
 		JMenuItem menuFileLoadGame = new JMenuItem("Load Game...", SwingHelper.getImageIconFromResource(("/floppygame.png")));
@@ -164,17 +166,33 @@ public class DynamicView {
 		menuFile.add(menuFileQuit);
 
 		JMenuItem menuViewAbout = new JMenuItem("About", SwingHelper.getImageIconFromResource("/robot.png"));
-		menuViewAbout.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				dialogAbout.setVisible(true);
-			}
-		});
+		menuViewAbout.addActionListener(new MenuActionListener(MenuActions.ABOUT));
 		menuView.add(menuViewAbout);
 
 		// Ready
 		menuBar.setVisible(true);
 		mainFrame.setJMenuBar(menuBar);
+	}
+
+	private class MenuActionListener implements ActionListener {
+
+		MenuActions action;
+		public MenuActionListener(MenuActions action) {
+			this.action = action;
+		}
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			switch (action) {
+				case FILE_NEW_GAME -> dialogStartGame.setVisible(true);
+				case FILE_QUIT -> quitManager();
+				case EDIT_GAME_EDITOR -> {
+					dialogGameEditor.setVisible(true);
+					logHelper.appendToGameLog("Game log was opened!");
+				}
+				case ABOUT -> dialogAbout.setVisible(true);
+			}
+		}
 	}
 
 	private void initControlFrame() {
@@ -195,15 +213,13 @@ public class DynamicView {
 		frame.setVisible(true);
 
 		JScrollPane gameLogScrollPane = new JScrollPane();
-		JTextArea gameLogTextArea = new JTextArea();
+		gameLogTextArea = new JTextArea();
 
 		gameLogScrollPane.setBounds(150, 380, 660, 430);
 		gameLogScrollPane.setVisible(true);
 
 		gameLogScrollPane.setViewportView(gameLogTextArea);
-		for ( int i = 0 ; i < 10 ; i++ ) {
-			logHelper.appendToGameLog("Test log entry " + i);
-		}
+		controller.sendWelcomeMessage();
 
 		for ( String s : logHelper.getGameLogContents()) {
 			gameLogTextArea.setText(gameLogTextArea.getText() + s);
@@ -361,13 +377,11 @@ public class DynamicView {
 
 		// Game editor
 		dialogGameEditor = new GameEditorDialog().getDialog();
-		dialogGameEditor.setVisible(true);
 
 		StartGameDialog startGameDialog = new StartGameDialog();
 		StartGameButtonActionListener startGameButtonActionListener = new StartGameButtonActionListener();
 		startGameDialog.attachStartGameActionListener(startGameButtonActionListener);
 		dialogStartGame = startGameDialog.getDialog();	// need better variable names
-		dialogStartGame.setVisible(true);
 
 	}
 
@@ -378,12 +392,9 @@ public class DynamicView {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			System.out.println("test");
-			System.out.println("players: " + playerCount);
-			for (String s : playerCustomNames) {
-				System.out.println(s);
-			}
 			startGame(playerCount, playerCustomNames);
+
+			dialogStartGame.setVisible(false);
 		}
 
 		protected void setPlayerCount(int playerCount) {
@@ -406,9 +417,13 @@ public class DynamicView {
 			for ( int i = 0 ; i < playerCount ; i++ ) {
 				board.players.get(i + 1).setCustomName(playerCustomNames.get(i));
 			}
-
 			controller.setIsGameActive(true);
+
+			controller.sendInitGameMessage();
+			controller.initialEvaluator();
 		}
+
+		update();
 
 	}
 
@@ -443,18 +458,11 @@ public class DynamicView {
 		}
 	}
 
-	private class MenuActionListener implements ActionListener {
 
-		MenuActions action;
-		public MenuActionListener(MenuActions action) {
-			this.action = action;
-		}
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-
-		}
+	private void quitManager() {
+		System.exit(0);
 	}
+
 
 	private void updatePrompt(Actions action) {
 		switch(action) {
