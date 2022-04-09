@@ -4,8 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fe395cf4-00c4-4bef-93b5-8a1f264350fd" name="Changes" comment="updated space selection area">
+    <list default="true" id="fe395cf4-00c4-4bef-93b5-8a1f264350fd" name="Changes" comment="separated BoardFrame into own class; cleaned up ActionListeners for SpaceButtons">
+      <change afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/GameEditorActions.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/MenuActions.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/MenuSwitchboard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/csv-plugin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/csv-plugin.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/Board.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/BoardFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/BoardFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DynamicView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DynamicView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/GameEditorDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/GameEditorDialog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/SpaceSelectionArea.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/SpaceSelectionArea.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -22,9 +31,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Enum" />
         <option value="Interface" />
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -56,6 +65,12 @@
       </MavenGeneralSettings>
     </option>
   </component>
+  <component name="NamedScopeManager">
+    <scope name="Unnamed" pattern="src:cc.jayv.monopoly3.AboutDialog||src:cc.jayv.monopoly3.Actions||src:cc.jayv.monopoly3.Board||src:cc.jayv.monopoly3.BoardFrame||src:cc.jayv.monopoly3.ButtonProperties||src:cc.jayv.monopoly3.Color||src:cc.jayv.monopoly3.ControlFrame||src:cc.jayv.monopoly3.DrawCard||src:cc.jayv.monopoly3.DynamicView||src:cc.jayv.monopoly3.GameEvent||src:cc.jayv.monopoly3.GameEditorActions||src:cc.jayv.monopoly3.GameEditorDialog||src:cc.jayv.monopoly3.GameLogicController||src:cc.jayv.monopoly3.InfoFrame||src:cc.jayv.monopoly3.JavaMonopoly||src:cc.jayv.monopoly3.LogHelper||src:cc.jayv.monopoly3.LogicSwitchboard||src:cc.jayv.monopoly3.Player||src:cc.jayv.monopoly3.Property||src:cc.jayv.monopoly3.Railroad||src:cc.jayv.monopoly3.Space||src:cc.jayv.monopoly3.SpaceSelectionArea||src:cc.jayv.monopoly3.StartGameDialog||src:cc.jayv.monopoly3.Statistics||src:cc.jayv.monopoly3.SwingHelper||src:cc.jayv.monopoly3.Utility||src:cc.jayv.monopoly3.ViewComponent||src:cc.jayv.monopoly3.ViewDialog" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectId" id="279hSidtvpJIxpLhUhQlSy13zMB" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -74,22 +89,9 @@
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.3494253" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RunManager" selected="Application.DynamicView">
-    <configuration name="DialogTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="cc.jayv.monopoly3.DialogTest" />
-      <module name="Monoproto3" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="cc.jayv.monopoly3.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="DynamicView" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="cc.jayv.monopoly3.DynamicView" />
       <module name="Monoproto3" />
@@ -103,12 +105,38 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="GameEditorDialog" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="cc.jayv.monopoly3.GameEditorDialog" />
+      <module name="Monoproto3" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="cc.jayv.monopoly3.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="JavaMonopoly" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="cc.jayv.monopoly3.JavaMonopoly" />
       <module name="Monoproto3" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="cc.jayv.monopoly3.LogicSwitchboard" />
+          <option name="PATTERN" value="cc.jayv.monopoly3.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="StartGameDialog" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="cc.jayv.monopoly3.StartGameDialog" />
+      <module name="Monoproto3" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="cc.jayv.monopoly3.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -187,19 +215,21 @@
     </configuration>
     <list>
       <item itemvalue="Application.DynamicView" />
-      <item itemvalue="Application.JavaMonopoly" />
-      <item itemvalue="Application.DialogTest" />
       <item itemvalue="Application.ViewDialog" />
       <item itemvalue="JAR Application.Run Jar" />
       <item itemvalue="Maven.Clean" />
       <item itemvalue="Maven.Build" />
+      <item itemvalue="Application.StartGameDialog" />
+      <item itemvalue="Application.GameEditorDialog" />
+      <item itemvalue="Application.JavaMonopoly" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.DynamicView" />
-        <item itemvalue="Application.ViewDialog" />
-        <item itemvalue="Application.DialogTest" />
         <item itemvalue="Application.JavaMonopoly" />
+        <item itemvalue="Application.GameEditorDialog" />
+        <item itemvalue="Application.StartGameDialog" />
+        <item itemvalue="Application.ViewDialog" />
       </list>
     </recent_temporary>
   </component>
@@ -394,7 +424,91 @@
       <option name="project" value="LOCAL" />
       <updated>1649348568691</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="updated space selection area">
+      <created>1649355101785</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1649355101785</updated>
+    </task>
+    <task id="LOCAL-00028" summary="added about dialog">
+      <created>1649366515349</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1649366515349</updated>
+    </task>
+    <task id="LOCAL-00029" summary="updated label generation; fixed null pointers for labels">
+      <created>1649448017131</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1649448017131</updated>
+    </task>
+    <task id="LOCAL-00030" summary="remaining labels now update properly; added methods to Property for querying rent for particular state">
+      <created>1649451115297</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1649451115297</updated>
+    </task>
+    <task id="LOCAL-00031" summary="updated space selection GUI">
+      <created>1649452190296</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1649452190296</updated>
+    </task>
+    <task id="LOCAL-00032" summary="added start game dialog">
+      <created>1649459324291</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1649459324291</updated>
+    </task>
+    <task id="LOCAL-00033" summary="general checkpoint">
+      <created>1649459342879</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1649459342879</updated>
+    </task>
+    <task id="LOCAL-00034" summary="improved start game dialog">
+      <created>1649531741876</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1649531741876</updated>
+    </task>
+    <task id="LOCAL-00035" summary="connection between DynamicView and GameLogicController established">
+      <created>1649533776873</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1649533776873</updated>
+    </task>
+    <task id="LOCAL-00036" summary="buttons now lock appropriately">
+      <created>1649535422584</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1649535422584</updated>
+    </task>
+    <task id="LOCAL-00037" summary="dialog logic improved">
+      <created>1649536927036</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1649536927036</updated>
+    </task>
+    <task id="LOCAL-00038" summary="separated BoardFrame into own class; cleaned up ActionListeners for SpaceButtons">
+      <created>1649541434394</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1649541434394</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -420,12 +534,8 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="modifying project for use in other IDE" />
-    <MESSAGE value="more experiments with dynamic view" />
-    <MESSAGE value="updated icon methods for dialog creation" />
-    <MESSAGE value="updated dynamic dialog creation" />
-    <MESSAGE value="updated dynamic view generation" />
-    <MESSAGE value="fixed StackOverflowError for dynamic buttons" />
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
     <MESSAGE value="updated UML" />
     <MESSAGE value="established framework for view logic switching" />
     <MESSAGE value="updated dynamic GUI creation; separated elements into further classes" />
@@ -440,14 +550,25 @@
     <MESSAGE value="updated dynamic space selection info" />
     <MESSAGE value="improved appearance for board view" />
     <MESSAGE value="updated space selection area" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated space selection area" />
+    <MESSAGE value="added about dialog" />
+    <MESSAGE value="updated label generation; fixed null pointers for labels" />
+    <MESSAGE value="remaining labels now update properly; added methods to Property for querying rent for particular state" />
+    <MESSAGE value="updated space selection GUI" />
+    <MESSAGE value="added start game dialog" />
+    <MESSAGE value="general checkpoint" />
+    <MESSAGE value="improved start game dialog" />
+    <MESSAGE value="connection between DynamicView and GameLogicController established" />
+    <MESSAGE value="buttons now lock appropriately" />
+    <MESSAGE value="dialog logic improved" />
+    <MESSAGE value="separated BoardFrame into own class; cleaned up ActionListeners for SpaceButtons" />
+    <option name="LAST_COMMIT_MESSAGE" value="separated BoardFrame into own class; cleaned up ActionListeners for SpaceButtons" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DynamicView.java</url>
-          <line>51</line>
+          <line>54</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">

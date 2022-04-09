@@ -24,6 +24,10 @@ public class Player implements Serializable {
 	int currentBalance,
 		currentPosition;
 
+	public boolean getIsActive() {
+		return isPlayerActive;
+	}
+
 	boolean isPlayerActive,
 		isComputerControlled;
 

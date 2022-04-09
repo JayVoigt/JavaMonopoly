@@ -4,11 +4,8 @@ package cc.jayv.monopoly3;
  *
  * @author jay
  */
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.io.*;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * The primary data class for the game.
@@ -72,7 +69,7 @@ public class Board implements Serializable {
 		String lineBuffer;
 		HashMap<String, Integer> propertyAttributes = new HashMap();
 
-		try ( BufferedReader spacesConfig = new BufferedReader(new InputStreamReader(getClass().getClassLoader().getResourceAsStream("spaces.csv")))) {
+		try ( BufferedReader spacesConfig = new BufferedReader(new InputStreamReader(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("spaces.csv"))))) {
 			spacesConfig.readLine();
 
 			while ((lineBuffer = spacesConfig.readLine()) != null) {
@@ -279,7 +276,7 @@ public class Board implements Serializable {
 				}	// end for
 			
 
-				if (isFullSetOwnedBySinglePlayer == true) {
+				if (isFullSetOwnedBySinglePlayer) {
 					for (Color localColor : spacesByColorGroup) {
 						int localOwnerID = localColor.getOwnerID();
 						if (localOwnerID != 0) {
@@ -300,7 +297,6 @@ public class Board implements Serializable {
 		int ownedRailroads = 0;
 
 		for (Player p : players) {
-			ownedRailroads = 0;
 			ArrayList<Railroad> railroadsOwnedBySamePlayer = new ArrayList<>();
 			railroadsOwnedBySamePlayer.clear();
 			
