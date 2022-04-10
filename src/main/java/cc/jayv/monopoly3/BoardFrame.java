@@ -11,6 +11,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+/**
+ *
+ */
 public class BoardFrame {
 
     JInternalFrame frame;
@@ -24,11 +27,17 @@ public class BoardFrame {
 
     LogHelper logHelper;
 
+    // Sets of icons for Color properties that belong to a particular cardinal direction on the board
     ArrayList<ImageIcon> improvementIconsNorth;
     ArrayList<ImageIcon> improvementIconsEast;
     ArrayList<ImageIcon> improvementIconsSouth;
     ArrayList<ImageIcon> improvementIconsWest;
 
+    /**
+     *
+     * @param logHelper The logHelper object where the internal text area will read from.
+     * @param listener
+     */
     public BoardFrame(LogHelper logHelper, ArrayList<DynamicView.spaceButtonActionHandler> listener) {
         frame = new JInternalFrame();
         frame.setFrameIcon(SwingHelper.getImageIconFromResource("/board.png"));
@@ -38,6 +47,7 @@ public class BoardFrame {
         spaceButtons = new ArrayList<>();
         playerIndicators = new ArrayList<>();
 
+        // Player icons
         playerIndicators.add(new JLabel(SwingHelper.getImageIconFromResource("/player-icon-1-px.png")));
         playerIndicators.add(new JLabel(SwingHelper.getImageIconFromResource("/player-icon-2-px.png")));
         playerIndicators.add(new JLabel(SwingHelper.getImageIconFromResource("/player-icon-3-px.png")));
@@ -47,26 +57,19 @@ public class BoardFrame {
         frame.setLayout(null);
         frame.setVisible(true);
 
+        // Game log
         gameLogScrollPane = new JScrollPane();
         gameLogTextArea = new JTextArea();
 
         gameLogScrollPane.setBounds(150, 380, 660, 430);
         gameLogScrollPane.setVisible(true);
-
         gameLogScrollPane.setViewportView(gameLogTextArea);
-        for ( int i = 0 ; i < 10 ; i++ ) {
-            logHelper.appendToGameLog("Test log entry " + i);
-        }
-
-        for ( String s : logHelper.getGameLogContents()) {
-            gameLogTextArea.setText(gameLogTextArea.getText() + s);
-        }
-
         frame.add(gameLogScrollPane);
-        spaceSelectionArea = new SpaceSelectionArea();
 
+        spaceSelectionArea = new SpaceSelectionArea();
         frame.add(spaceSelectionArea.getJPanel());
 
+        // Add space buttons
         for (int i = 0; i < 40; i++) {
             spaceButtons.add(new SpaceButton(i));
         }
@@ -152,15 +155,22 @@ public class BoardFrame {
             frame.add(b.getButton());
         }	// end button creation
 
+        // Background image for board
         JLabel boardImage = new JLabel();
         boardImage.setIcon(new javax.swing.ImageIcon(Objects.requireNonNull(getClass().getResource("/board-px-template.png"))));
         boardImage.setBounds(0, 0, 960, 960);
 
+        // Spaces that have an animated image on hover have a special MouseListener attached to them
         initMouseListenersForAnimatedSpaces();
 
         frame.add(boardImage);
+
+        initImprovementIcons();
     }
 
+    /**
+     * Load improvement icons into sets sorted by cardinal direction
+     */
     private void initImprovementIcons() {
         improvementIconsNorth = new ArrayList<>();
         improvementIconsEast = new ArrayList<>();
@@ -200,11 +210,18 @@ public class BoardFrame {
         CORNER
     }
 
+    /**
+     *
+     */
     public class SpaceButton {
         JButton button;
         int id;
         Direction direction;
 
+        /**
+         *
+         * @param id The ID of the space whose button will be created.
+         */
         public SpaceButton(int id) {
             this.id = id;
             button = new JButton();
@@ -243,6 +260,12 @@ public class BoardFrame {
         return frame;
     }
 
+    /**
+     * Update all components of the BoardFrame class whose appearance depends on the
+     * game state.
+     * @param board Board data
+     * @param spaceSelectionID The ID of the space that is currently selected.
+     */
     public void update(Board board, int spaceSelectionID) {
         spaceSelectionArea.update(board, spaceSelectionID);
         updateGameLog();
@@ -259,6 +282,10 @@ public class BoardFrame {
         gameLogTextArea.setText(logHelper.getAllGameLogContents());
     }
 
+    /**
+     * Update the icons which indicate the position of each player on the board.
+     * @param board
+     */
     private void updateGuiPlayerIndicators(Board board) {
         for (Player p : board.players) {
             if (p.getIsActive()) {
@@ -270,12 +297,22 @@ public class BoardFrame {
         }
     }
 
+    /**
+     *
+     * @param playerID The player ID whose icon will have its new position calculated.
+     * @param spaceID The space ID that will be used as a target for position calculation.
+     * @return x and y coordinates (java.awt.Dimension) that the player's icon should be set to.
+     */
     private Dimension calculateDimensionForPlayerIndicator(int playerID, int spaceID) {
         Dimension dimension = new Dimension();
 
         return dimension;
     }
 
+    /**
+     * Update the icons indicating the improvements for each Color property.
+     * @param board Board data
+     */
     private void updateGuiImprovementIcons(Board board) {
         int spaceID;
         ArrayList<ImageIcon> directionalImprovementIcons;
@@ -316,6 +353,9 @@ public class BoardFrame {
 
     }
 
+    /**
+     * Create special MouseListeners for space buttons that have animated icons on hover.
+     */
     private void initMouseListenersForAnimatedSpaces() {
         JButton buttonElectricCompany = spaceButtons.get(12).getButton();
         JButton buttonFreeParking = spaceButtons.get(20).getButton();
@@ -364,6 +404,9 @@ public class BoardFrame {
         }
     }
 
+    /**
+     * Generic MouseListener for graphical effects that apply to all space buttons.
+     */
     private static class CosmeticSpaceActionListener implements MouseListener {
 
         @Override
