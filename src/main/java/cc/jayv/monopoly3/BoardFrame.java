@@ -1,10 +1,14 @@
 package cc.jayv.monopoly3;
 
 import javax.swing.*;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.SoftBevelBorder;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 public class BoardFrame {
@@ -19,6 +23,11 @@ public class BoardFrame {
     JTextArea gameLogTextArea;
 
     LogHelper logHelper;
+
+    ArrayList<ImageIcon> improvementIconsNorth;
+    ArrayList<ImageIcon> improvementIconsEast;
+    ArrayList<ImageIcon> improvementIconsSouth;
+    ArrayList<ImageIcon> improvementIconsWest;
 
     public BoardFrame(LogHelper logHelper, ArrayList<DynamicView.spaceButtonActionHandler> listener) {
         frame = new JInternalFrame();
@@ -68,6 +77,7 @@ public class BoardFrame {
         for (SpaceButton b : spaceButtons) {
 
             b.getButton().addActionListener(listener.get(b.getID()));
+            b.getButton().addMouseListener(new CosmeticSpaceActionListener());
 
             int index = spaceButtons.indexOf(b);
             int cardinalPosition = (index % 10);
@@ -151,13 +161,69 @@ public class BoardFrame {
         frame.add(boardImage);
     }
 
+    private void initImprovementIcons() {
+        improvementIconsNorth = new ArrayList<>();
+        improvementIconsEast = new ArrayList<>();
+        improvementIconsSouth = new ArrayList<>();
+        improvementIconsWest = new ArrayList<>();
+
+        improvementIconsNorth.add(SwingHelper.getImageIconFromResource("/hotel-label-north.png"));
+        improvementIconsNorth.add(SwingHelper.getImageIconFromResource("/house-label-1-north.png"));
+        improvementIconsNorth.add(SwingHelper.getImageIconFromResource("/house-label-2-north.png"));
+        improvementIconsNorth.add(SwingHelper.getImageIconFromResource("/house-label-3-north.png"));
+        improvementIconsNorth.add(SwingHelper.getImageIconFromResource("/house-label-4-north.png"));
+
+        improvementIconsEast.add(SwingHelper.getImageIconFromResource("/hotel-label-east.png"));
+        improvementIconsEast.add(SwingHelper.getImageIconFromResource("/house-label-1-east.png"));
+        improvementIconsEast.add(SwingHelper.getImageIconFromResource("/house-label-2-east.png"));
+        improvementIconsEast.add(SwingHelper.getImageIconFromResource("/house-label-3-east.png"));
+        improvementIconsEast.add(SwingHelper.getImageIconFromResource("/house-label-4-east.png"));
+
+        improvementIconsSouth.add(SwingHelper.getImageIconFromResource("/hotel-label-south.png"));
+        improvementIconsSouth.add(SwingHelper.getImageIconFromResource("/house-label-1-south.png"));
+        improvementIconsSouth.add(SwingHelper.getImageIconFromResource("/house-label-2-south.png"));
+        improvementIconsSouth.add(SwingHelper.getImageIconFromResource("/house-label-3-south.png"));
+        improvementIconsSouth.add(SwingHelper.getImageIconFromResource("/house-label-4-south.png"));
+
+        improvementIconsWest.add(SwingHelper.getImageIconFromResource("/hotel-label-west.png"));
+        improvementIconsWest.add(SwingHelper.getImageIconFromResource("/house-label-1-west.png"));
+        improvementIconsWest.add(SwingHelper.getImageIconFromResource("/house-label-2-west.png"));
+        improvementIconsWest.add(SwingHelper.getImageIconFromResource("/house-label-3-west.png"));
+        improvementIconsWest.add(SwingHelper.getImageIconFromResource("/house-label-4-west.png"));
+    }
+
+    private enum Direction {
+        NORTH,
+        SOUTH,
+        EAST,
+        WEST,
+        CORNER
+    }
+
     public class SpaceButton {
         JButton button;
         int id;
+        Direction direction;
 
         public SpaceButton(int id) {
             this.id = id;
             button = new JButton();
+
+            if (id == 0 || id == 10 || id == 20 || id == 30) {
+                direction = Direction.CORNER;
+            }
+            else if (id > 0 && id < 10) {
+                direction = Direction.SOUTH;
+            }
+            else if (id > 10 && id < 20) {
+                direction = Direction.WEST;
+            }
+            else if (id > 20 && id < 30) {
+                direction = Direction.NORTH;
+            }
+            else if (id > 30 && id < 40) {
+                direction = Direction.EAST;
+            }
         }
 
         public JButton getButton() {
@@ -166,6 +232,10 @@ public class BoardFrame {
 
         public int getID() {
             return id;
+        }
+
+        public Direction getDirection() {
+            return direction;
         }
     }
 
@@ -203,12 +273,43 @@ public class BoardFrame {
     private Dimension calculateDimensionForPlayerIndicator(int playerID, int spaceID) {
         Dimension dimension = new Dimension();
 
-
         return dimension;
     }
 
     private void updateGuiImprovementIcons(Board board) {
+        int spaceID;
+        ArrayList<ImageIcon> directionalImprovementIcons;
 
+        for (Space s : board.spaces) {
+            // Only iterate on Color spaces
+            if (s instanceof Color c) {
+                spaceID = c.getID();
+                SpaceButton spaceButton = spaceButtons.get(spaceID);
+
+                // Determine which directional set to obtain icons from
+                switch (spaceButton.getDirection()) {
+                    case NORTH -> directionalImprovementIcons = improvementIconsNorth;
+                    case EAST -> directionalImprovementIcons = improvementIconsEast;
+                    case SOUTH -> directionalImprovementIcons = improvementIconsSouth;
+                    default -> directionalImprovementIcons = improvementIconsWest;
+                }
+
+                // Set icon depending on improvement level
+                if (c.getHotelCount() == 1) {
+                    spaceButton.getButton().setIcon(directionalImprovementIcons.get(0));
+                }
+                else {
+                    switch (c.getHouseCount()) {
+                        case 1 -> spaceButton.getButton().setIcon(directionalImprovementIcons.get(1));
+                        case 2 -> spaceButton.getButton().setIcon(directionalImprovementIcons.get(2));
+                        case 3 -> spaceButton.getButton().setIcon(directionalImprovementIcons.get(3));
+                        case 4 -> spaceButton.getButton().setIcon(directionalImprovementIcons.get(4));
+                        default -> spaceButton.getButton().setIcon(null);
+                    }   // end switch
+                }   // end else
+
+            }   // end if
+        }   // end for
     }
 
     private void updateGuiSpaceHighlight(Board board) {
@@ -260,6 +361,35 @@ public class BoardFrame {
         @Override
         public void mouseExited(MouseEvent e) {
             ((JButton) e.getSource()).setIcon(null);
+        }
+    }
+
+    private static class CosmeticSpaceActionListener implements MouseListener {
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+            ((JButton) e.getSource()).setBorderPainted(true);
+            ((JButton) e.getSource()).setBorder(SwingHelper.createBorderStyleHighlight(java.awt.Color.black, true));
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+            ((JButton) e.getSource()).setBorder(null);
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+
         }
     }
 }
