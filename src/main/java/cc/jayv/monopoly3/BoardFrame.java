@@ -323,9 +323,16 @@ public class BoardFrame {
         Point point = new Point();
         int x = 0, y = 0;
 
-        int standardXOffset = 20 * (playerID - 1);
-        int cornerXOffset = 30 * (playerID - 1);
-        int yOffset = -2;
+        int standardXOffset = 12 * (playerID - 1);
+        int cornerXOffset = 12 * (playerID - 1);
+        int standardYOffset = -4;
+
+        int yReferenceNorth = 0;
+        int yReferenceSouth = 942;
+        int xReferenceEast = 942;
+        int xReferenceWest = 0;
+
+        int xAnchorSouth = 840;
 
         if (isJailed) {
             if (playerID == 1) {
@@ -345,39 +352,97 @@ public class BoardFrame {
                 y = 870;
             }
         }
-        // This code is awful and needs to be refactored
         else {
             if (spaceID == 0) {
-                x = 850 + cornerXOffset;
-                y = 950 + yOffset;
-            } else if (spaceID == 10) {
+                x = xAnchorSouth + cornerXOffset;
+                y = yReferenceSouth;
+            }
+            else if (spaceID == 10) {
                 x = 10 + cornerXOffset;
-                y = 950 + yOffset;
-            } else if (spaceID == 20) {
+                y = yReferenceSouth;
+            }
+            else if (spaceID == 20) {
                 x = 10 + cornerXOffset;
-                y = 110;
-            } else if (spaceID == 30) {
-                x = 850 + cornerXOffset;
-                y = 110;
-            } else if (spaceID > 0 && spaceID < 10) {
-                x = 850 - (80 * spaceID);
-                y = 950 + yOffset;
-            } else if (spaceID > 10 && spaceID < 20) {
-                x = 10;
+                y = yReferenceNorth;
+            }
+            else if (spaceID == 30) {
+                x = xAnchorSouth + cornerXOffset;
+                y = yReferenceNorth;
+            }
+            else if (spaceID > 0 && spaceID < 10) {
+                x = xAnchorSouth - (80 * spaceID);
+                y = yReferenceSouth;
+            }
+            else if (spaceID > 10 && spaceID < 20) {
+                x = xReferenceWest;
                 y = 830 + (80 * (11 - spaceID));
-            } else if (spaceID > 20 && spaceID < 30) {
+            }
+            else if (spaceID > 20 && spaceID < 30) {
                 x = 130 - (80 * (21 - spaceID));
-                y = 10 - yOffset;
-            } else if (spaceID > 30 && spaceID < 40) {
-                x = 850;
+                y = yReferenceNorth;
+            }
+            else if (spaceID > 30 && spaceID < 40) {
+                x = xReferenceEast;
                 y = 190 - (80 * (31 - spaceID));
             }
             x += standardXOffset;
+            y += standardYOffset;
         }
-        System.out.println(x + "," + y);
         point.setLocation(x, y);
 
         return point;
+    }
+
+    private Point calc2(int playerID, int spaceID, boolean isJailed) {
+        Point destinationPoint = new Point();
+
+        int offsetQuantity = (playerID - 1);
+        int destX = 0, destY = 0;
+        int horizontalSpacingOffset = 0;
+        int verticalSpacingOffset = 18;
+        int horizontalSpacingOffsetCorner = 30;
+
+        // Jail
+        if (isJailed) {
+            destX = 80 + (horizontalSpacingOffset * offsetQuantity);
+            destY = 80 + (horizontalSpacingOffset * offsetQuantity);
+        }
+        else if (spaceID == 0) {        // GO
+            destX = 840 + (horizontalSpacingOffsetCorner * offsetQuantity);
+            destY = 960;
+        }
+        else if (spaceID == 10) {       // Jail, visiting
+            destX = 0 + (horizontalSpacingOffsetCorner * offsetQuantity);
+            destY = 960;
+        }
+        else if (spaceID == 20) {       // Free Parking
+            destX = 0 + (horizontalSpacingOffsetCorner * offsetQuantity);
+            destY = 0;
+        }
+        else if (spaceID == 30) {       // Go To Jail
+            destX = 840 + (horizontalSpacingOffsetCorner * offsetQuantity);
+            destY = 0;
+        }
+        else if (spaceID > 0 && spaceID < 10) {     // South
+            destX = 840 - (horizontalSpacingOffset * offsetQuantity) - (80 * spaceID);
+            destY = 960;
+        }
+        else if (spaceID > 10 && spaceID < 20) {    // West
+            destX = 0;
+            destY = 960 - (80 * (11 - spaceID));
+        }
+        else if (spaceID > 20 && spaceID < 30) {    // North
+            destX = 0 + (horizontalSpacingOffset * offsetQuantity) + (80 * (21 - spaceID));
+            destY = 0;
+        }
+        else if (spaceID > 30 && spaceID < 40) {    // East
+            destX = 960;
+            destY = 960 - (80 * (31 - spaceID));
+        }
+
+        destinationPoint.setLocation(destX, destY);
+
+        return destinationPoint;
     }
 
     /**
