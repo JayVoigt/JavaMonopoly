@@ -6,7 +6,7 @@ import javax.swing.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class PropertyPurchaseDialog {
+public class PropertyPurchaseDialog implements ViewComponent {
 
     JDialog dialog;
 
@@ -16,10 +16,12 @@ public class PropertyPurchaseDialog {
     JLabel staticLabelDisclaimer;
 
     JLabel staticLabelPropertyName;
+    JLabel staticLabelPropertyType;
     JLabel staticLabelPropertyCost;
     JLabel staticLabelTimesLanded;
 
     JLabel labelPropertyName;
+    JLabel labelPropertyType;
     JLabel labelPropertyCost;
     JLabel labelTimesLanded;
 
@@ -58,6 +60,9 @@ public class PropertyPurchaseDialog {
         staticLabelPropertyName = new JLabel("Property:");
         staticLabelPropertyName.setIcon(SwingHelper.getImageIconFromResource("/properties.png"));
 
+        staticLabelPropertyType = new JLabel("Type:");
+        staticLabelPropertyType.setIcon(SwingHelper.getImageIconFromResource("/i.png"));
+
         staticLabelPropertyCost = new JLabel("Cost:");
         staticLabelPropertyCost.setIcon(SwingHelper.getImageIconFromResource("/money.png"));
 
@@ -68,6 +73,7 @@ public class PropertyPurchaseDialog {
 
         // Labels
         labelPropertyName = new JLabel();
+        labelPropertyType = new JLabel();
         labelPropertyCost = new JLabel();
         labelTimesLanded = new JLabel();
 
@@ -82,13 +88,16 @@ public class PropertyPurchaseDialog {
         dialog.add(staticLabelPropertyName, "cell 0 2");
         dialog.add(labelPropertyName, "cell 1 2, wrap");
 
-        dialog.add(staticLabelPropertyCost, "cell 0 3");
-        dialog.add(labelPropertyCost, "cell 1 3, wrap");
+        dialog.add(staticLabelPropertyType, "cell 0 3");
+        dialog.add(labelPropertyType, "cell 1 3, wrap");
 
-        dialog.add(staticLabelTimesLanded, "cell 0 4");
-        dialog.add(labelTimesLanded, "cell 1 4, wrap");
+        dialog.add(staticLabelPropertyCost, "cell 0 4");
+        dialog.add(labelPropertyCost, "cell 1 4, wrap");
 
-        dialog.add(infoArea, "cell 0 6, wrap, grow, span");
+        dialog.add(staticLabelTimesLanded, "cell 0 5");
+        dialog.add(labelTimesLanded, "cell 1 5, wrap");
+
+        dialog.add(infoArea, "cell 0 7, wrap, grow, span");
 
         dialog.add(buttonPurchase, "cell 0 9, align left");
         dialog.add(buttonAuction, "cell 1 9, align right");
@@ -103,6 +112,7 @@ public class PropertyPurchaseDialog {
 
     public void update(Board board, int spaceID) {
         String propertyName = "";
+        String propertyType = "";
         String propertyCost = "";
         String propertyTimesLanded = "";
 
@@ -110,6 +120,16 @@ public class PropertyPurchaseDialog {
         if (localSpace instanceof Property p) {
             propertyName = p.getFriendlyName();
             propertyCost = "$" + String.valueOf(p.getPurchaseCost());
+
+            if (p instanceof Color c) {
+                propertyType = "Color, " + c.getColorGroup();
+            }
+            else if (p instanceof Railroad) {
+                propertyType = "Railroad";
+            }
+            else if (p instanceof Utility) {
+                propertyType = "Utility";
+            }
 
             // Set appropriate grammar
             if (p.getTimesLanded() == 1) {
@@ -121,6 +141,7 @@ public class PropertyPurchaseDialog {
         }
 
         labelPropertyName.setText(propertyName);
+        labelPropertyType.setText(propertyType);
         labelPropertyCost.setText(propertyCost);
         labelTimesLanded.setText(propertyTimesLanded);
 
@@ -135,8 +156,27 @@ public class PropertyPurchaseDialog {
         PropertyPurchaseDialog propertyPurchaseDialog = new PropertyPurchaseDialog();
 
         Board board = new Board();
-        propertyPurchaseDialog.update(board, 12);
+
+        // Electric company
+        propertyPurchaseDialog.update(board, 9);
         propertyPurchaseDialog.getDialog().setVisible(true);
     }
 
+    @Override
+    public void update(Board board) {
+
+    }
+
+    @Override
+    public void setStateOfActionButton(Actions action, boolean isEnabled) {
+        switch (action) {
+            case PROPERTY_AUCTION -> buttonAuction.setEnabled(isEnabled);
+            case PROPERTY_PURCHASE -> buttonPurchase.setEnabled(isEnabled);
+        }
+    }
+
+    @Override
+    public JComponent getComponent() {
+        return null;
+    }
 }
