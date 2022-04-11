@@ -110,6 +110,10 @@ public class Player implements Serializable {
 		playerID = inputPlayerID;
 	}
 
+	public void setIsPlayerActive(boolean input) {
+		isPlayerActive = input;
+	}
+
 	public String getCustomName() {
 		return customName;
 	}

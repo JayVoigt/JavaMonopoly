@@ -3733,9 +3733,12 @@ public class MainWindow extends javax.swing.JFrame implements WindowListener, Ac
 	// </editor-fold>
 
 	// <editor-fold desc="Debug tools">
+
 	private void buttonPartyModeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPartyModeActionPerformed
 		partyMode();
-	}//GEN-LAST:event_buttonPartyModeActionPerformed
+	}
+
+    //GEN-LAST:event_buttonPartyModeActionPerformed
 
 	private void buttonResetHighlightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonResetHighlightActionPerformed
 		for (JButton b : spaceButtons) {

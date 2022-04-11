@@ -143,6 +143,6 @@ public abstract class Property extends Space implements Serializable {
 			case HOTEL -> rentValue = rentHotel;
 		}
 
-		return String.valueOf(rentValue);
+		return "$" + String.valueOf(rentValue);
 	}
 }

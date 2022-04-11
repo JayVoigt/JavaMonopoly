@@ -13,10 +13,26 @@ public class GameEditorDialog {
     JLabel labelTitle;
     JLabel staticLabelPlayerSelection;
 
+    JButton buttonGive1000;
+    JButton buttonDeduct1000;
+    JButton buttonJailPlayer;
+    JButton buttonUnjailPlayer;
+    JButton buttonUnlockRollDiceAction;
+    JButton buttonUnlockEndTurnAction;
+    JButton buttonGiveAllProperties;
+
+    int playerID;
+
     public GameEditorDialog() {
+        initComponents();
+        arrangeComponents();
+    }
+
+    private void initComponents() {
         dialog = new JDialog();
         dialog.setLayout(new MigLayout());
 
+        // Title label
         labelTitle = new JLabel();
         SwingHelper.formatLabel(labelTitle, "Game Editor", SwingHelper.LabelStyles.TITLE_BOLD);
         labelTitle.setIcon(SwingHelper.getImageIconFromResource("/matrix-anim.gif"));
@@ -25,6 +41,7 @@ public class GameEditorDialog {
         staticLabelPlayerSelection = new JLabel("Select player:", SwingHelper.getImageIconFromResource("/player-generic.png"), SwingConstants.LEFT);
         dialog.add(staticLabelPlayerSelection, "cell 0 1");
 
+        // Combo box for selecting what player should be affected by actions
         comboBoxPlayerSelection = new JComboBox<>();
         comboBoxPlayerSelection.addItem(1);
         comboBoxPlayerSelection.addItem(2);
@@ -34,11 +51,29 @@ public class GameEditorDialog {
         comboBoxPlayerSelection.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                playerID = (int) comboBoxPlayerSelection.getSelectedItem();
             }
         });
 
-        dialog.add(comboBoxPlayerSelection, "cell 1 1");
+        buttonGive1000 = new JButton("Give $1000", SwingHelper.getImageIconFromResource("/money.png"));
+        buttonDeduct1000 = new JButton("Deduct $1000", SwingHelper.getImageIconFromResource("/money.png"));
+        buttonJailPlayer = new JButton("Jail player", SwingHelper.getImageIconFromResource("/jail.png"));
+        buttonUnjailPlayer = new JButton("Release player", SwingHelper.getImageIconFromResource("/jail.png"));
+        buttonUnlockRollDiceAction = new JButton("Unlock roll dice action", SwingHelper.getImageIconFromResource("/dice-icon.png"));
+        buttonUnlockEndTurnAction = new JButton("Unlock end turn action", SwingHelper.getImageIconFromResource("/arrow.png"));
+        buttonGiveAllProperties = new JButton("Give all properties", SwingHelper.getImageIconFromResource("/properties.png"));
+    }
+
+    private void arrangeComponents() {
+        dialog.add(comboBoxPlayerSelection, "cell 1 1, wrap");
+
+        dialog.add(buttonGive1000, "cell 0 2, grow");
+        dialog.add(buttonDeduct1000, "cell 1 2, grow, wrap");
+        dialog.add(buttonJailPlayer, "cell 0 3, grow");
+        dialog.add(buttonUnjailPlayer, "cell 1 3, grow, wrap");
+        dialog.add(buttonUnlockRollDiceAction, "cell 0 4, grow");
+        dialog.add(buttonUnlockEndTurnAction, "cell 1 4, grow, wrap");
+        dialog.add(buttonGiveAllProperties, "cell 0 5, grow");
 
         dialog.pack();
     }

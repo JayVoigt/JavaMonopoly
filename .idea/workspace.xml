@@ -4,17 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fe395cf4-00c4-4bef-93b5-8a1f264350fd" name="Changes" comment="separated BoardFrame into own class; cleaned up ActionListeners for SpaceButtons">
-      <change afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/GameEditorActions.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/MenuActions.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/MenuSwitchboard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/csv-plugin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/csv-plugin.xml" afterDir="false" />
+    <list default="true" id="fe395cf4-00c4-4bef-93b5-8a1f264350fd" name="Changes" comment="updated inline documentation for BoardFrame">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/Board.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Monoproto3.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Monoproto3.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/BoardFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/BoardFrame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DynamicView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DynamicView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/GameEditorDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/GameEditorDialog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/MainWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/MainWindow.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/Property.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/Property.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/SpaceSelectionArea.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/SpaceSelectionArea.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -52,6 +51,7 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="jar:///Library/Java/JavaVirtualMachines/jdk-17.0.2.jdk/Contents/Home/lib/src.zip!/java.base/java/util/Objects.java" root0="SKIP_INSPECTION" />
     <setting file="jar:///Library/Java/JavaVirtualMachines/jdk-17.0.2.jdk/Contents/Home/lib/src.zip!/java.desktop/javax/swing/ImageIcon.java" root0="SKIP_INSPECTION" />
     <setting file="jar:///Library/Java/JavaVirtualMachines/jdk-17.0.2.jdk/Contents/Home/lib/src.zip!/java.desktop/javax/swing/JLabel.java" root0="SKIP_INSPECTION" />
   </component>
@@ -226,8 +226,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.DynamicView" />
-        <item itemvalue="Application.JavaMonopoly" />
         <item itemvalue="Application.GameEditorDialog" />
+        <item itemvalue="Application.JavaMonopoly" />
         <item itemvalue="Application.StartGameDialog" />
         <item itemvalue="Application.ViewDialog" />
       </list>
@@ -508,7 +508,35 @@
       <option name="project" value="LOCAL" />
       <updated>1649541434394</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="animated space icons now working with DynamicView">
+      <created>1649543598636</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1649543598636</updated>
+    </task>
+    <task id="LOCAL-00040" summary="general checkpoint">
+      <created>1649543614818</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1649543614818</updated>
+    </task>
+    <task id="LOCAL-00041" summary="updated improvement icon logic">
+      <created>1649554433121</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1649554433121</updated>
+    </task>
+    <task id="LOCAL-00042" summary="updated inline documentation for BoardFrame">
+      <created>1649555172799</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1649555172799</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -536,9 +564,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="updated UML" />
-    <MESSAGE value="established framework for view logic switching" />
-    <MESSAGE value="updated dynamic GUI creation; separated elements into further classes" />
     <MESSAGE value="experimenting with infoArea manipulation through LogicSwitchboard" />
     <MESSAGE value="split Actions into separate class; further experiments with dynamic GUI" />
     <MESSAGE value="ActionEvents across multiple classes working" />
@@ -555,30 +580,33 @@
     <MESSAGE value="remaining labels now update properly; added methods to Property for querying rent for particular state" />
     <MESSAGE value="updated space selection GUI" />
     <MESSAGE value="added start game dialog" />
-    <MESSAGE value="general checkpoint" />
     <MESSAGE value="improved start game dialog" />
     <MESSAGE value="connection between DynamicView and GameLogicController established" />
     <MESSAGE value="buttons now lock appropriately" />
     <MESSAGE value="dialog logic improved" />
     <MESSAGE value="separated BoardFrame into own class; cleaned up ActionListeners for SpaceButtons" />
-    <option name="LAST_COMMIT_MESSAGE" value="separated BoardFrame into own class; cleaned up ActionListeners for SpaceButtons" />
+    <MESSAGE value="animated space icons now working with DynamicView" />
+    <MESSAGE value="general checkpoint" />
+    <MESSAGE value="updated improvement icon logic" />
+    <MESSAGE value="updated inline documentation for BoardFrame" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated inline documentation for BoardFrame" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DynamicView.java</url>
-          <line>54</line>
+          <line>53</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/MainWindow.java</url>
-          <line>4176</line>
+          <line>4179</line>
           <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/MainWindow.java</url>
-          <line>3808</line>
+          <line>3811</line>
           <option name="timeStamp" value="10" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">

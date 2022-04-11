@@ -206,8 +206,8 @@ public class SpaceSelectionArea implements ViewComponent {
 
         // Price
         if (localSpace instanceof Property p) {
-            SwingHelper.formatLabel(labelPrice, String.valueOf(p.getPurchaseCost()), SwingHelper.LabelStyles.TITLE_REGULAR);
-            SwingHelper.formatLabel(labelCurrentRent, String.valueOf(p.calculateRent()), SwingHelper.LabelStyles.TITLE_REGULAR);
+            SwingHelper.formatLabel(labelPrice, "$" + String.valueOf(p.getPurchaseCost()), SwingHelper.LabelStyles.TITLE_REGULAR);
+            SwingHelper.formatLabel(labelCurrentRent, "$" + String.valueOf(p.calculateRent()), SwingHelper.LabelStyles.TITLE_REGULAR);
         }
         else {
             SwingHelper.formatLabel(labelPrice, true);
