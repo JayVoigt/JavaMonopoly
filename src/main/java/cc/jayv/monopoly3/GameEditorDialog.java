@@ -78,6 +78,10 @@ public class GameEditorDialog {
         dialog.pack();
     }
 
+    public int getSelectedPlayer() {
+        return playerID;
+    }
+
     public JDialog getDialog() {
         return dialog;
     }

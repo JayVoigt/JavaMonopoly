@@ -30,6 +30,7 @@ public class DynamicView {
 	final GameLogicController controller;
 	Board board;
 	LogHelper logHelper;
+	GameEditorController gameEditorController;
 
 	JDialog dialogJail;
 	JDialog dialogPurchaseProperty;
@@ -46,6 +47,8 @@ public class DynamicView {
 
 	Border spaceSelectionBorder;
 	Player currentPlayer;
+
+	GameEditorDialog gameEditorDialog;
 
 	static int currentSpaceButtonSelection;
 
@@ -75,6 +78,7 @@ public class DynamicView {
 		logHelper = new LogHelper();
 		controller = new GameLogicController(board, logHelper);
 		switchboard = new LogicSwitchboard(controller);
+		gameEditorController = new GameEditorController(board, controller, logHelper);
 
 		initGUIComponents();
 		initMenuBar();
@@ -104,12 +108,18 @@ public class DynamicView {
 
 	private void updateGuiMandatoryDialogs() {
 		dialogPurchaseProperty.setVisible(currentPlayer.getRequiredDecisionPropertyAction());
-		dialogJail.setVisible(currentPlayer.getRequiredDecisionPostedBail());
+		dialogJail.setVisible(currentPlayer.getIsJailed());
 
+		// Disable control buttons when mandatory action dialogs visible
 		if (dialogPurchaseProperty.isVisible()) {
 			controlFrame.setStateOfActionButton(Actions.CONTROLS_ENDTURN, false);
 			controlFrame.setStateOfActionButton(Actions.CONTROLS_ROLLDICE, false);
 		}
+		if (dialogJail.isVisible()) {
+			controlFrame.setStateOfActionButton(Actions.CONTROLS_ENDTURN, false);
+			controlFrame.setStateOfActionButton(Actions.CONTROLS_ROLLDICE, false);
+		}
+
 	}
 
 	private void initGUIComponents() {
@@ -256,7 +266,8 @@ public class DynamicView {
 		dialogAbout = new AboutDialog().getDialog();
 
 		// Game editor
-		dialogGameEditor = new GameEditorDialog().getDialog();
+		gameEditorDialog = new GameEditorDialog();
+		dialogGameEditor = gameEditorDialog.getDialog();
 
 		StartGameDialog startGameDialog = new StartGameDialog();
 		StartGameButtonActionListener startGameButtonActionListener = new StartGameButtonActionListener();
@@ -335,6 +346,31 @@ public class DynamicView {
 		}
 
 		public Actions getAction() {
+			return action;
+		}
+	}
+
+	public class GameEditorActionListener implements ActionListener {
+
+		GameEditorActions action;
+		Player player;
+
+		public GameEditorActionListener(GameEditorActions action) {
+			this.action = action;
+		}
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			player = board.players.get(gameEditorDialog.getSelectedPlayer());
+			switch (action) {
+				case JAIL -> gameEditorController.jailPlayer(player);
+				case UNJAIL -> gameEditorController.unjailPlayer(player);
+				case GIVE_1000 -> gameEditorController.give1000(player);
+				case DEDUCT_1000 -> gameEditorController.deduct1000(player);
+			}
+		}
+
+		public GameEditorActions getAction() {
 			return action;
 		}
 	}
