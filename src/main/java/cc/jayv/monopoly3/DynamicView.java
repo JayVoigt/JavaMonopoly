@@ -35,8 +35,8 @@ public class DynamicView {
 	JDialog dialogPurchaseProperty;
 	JDialog dialogImprovements;
 
-	PropertyPurchaseDialog dialogContainerPurchaseProperty;
-	GameEditorDialog dialogContainerGameEditor;
+	DialogContainerPurchaseProperty dialogContainerPurchaseProperty;
+	DialogContainerGameEditor dialogContainerGameEditor;
 	GameEditorController gameEditorController;
 
 	JDialog dialogStartGame;
@@ -264,7 +264,7 @@ public class DynamicView {
 		buttonPropertiesList.trimToSize();
 
 		// Purchase property
-		dialogContainerPurchaseProperty = new PropertyPurchaseDialog();
+		dialogContainerPurchaseProperty = new DialogContainerPurchaseProperty();
 		dialogContainerPurchaseProperty.attachActionListeners(buttonActionListeners);
 		dialogPurchaseProperty = dialogContainerPurchaseProperty.getDialog();
 
@@ -282,7 +282,7 @@ public class DynamicView {
 		dialogAbout = new AboutDialog().getDialog();
 
 		// Game editor
-		dialogContainerGameEditor = new GameEditorDialog();
+		dialogContainerGameEditor = new DialogContainerGameEditor();
 		dialogGameEditor = dialogContainerGameEditor.getDialog();
 
 		// Attach action listeners
@@ -292,7 +292,7 @@ public class DynamicView {
 		}
 		dialogContainerGameEditor.attachActionListeners(gameEditorActionListeners);
 
-		StartGameDialog startGameDialog = new StartGameDialog();
+		DialogContainerStartGame startGameDialog = new DialogContainerStartGame();
 		StartGameButtonActionListener startGameButtonActionListener = new StartGameButtonActionListener();
 		startGameDialog.attachStartGameActionListener(startGameButtonActionListener);
 		dialogStartGame = startGameDialog.getDialog();	// need better variable names

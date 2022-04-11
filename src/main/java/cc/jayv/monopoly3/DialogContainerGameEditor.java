@@ -7,7 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class GameEditorDialog {
+public class DialogContainerGameEditor {
     JDialog dialog;
     JComboBox<Integer> comboBoxPlayerSelection;
 
@@ -24,7 +24,7 @@ public class GameEditorDialog {
 
     int playerID;
 
-    public GameEditorDialog() {
+    public DialogContainerGameEditor() {
         initComponents();
         arrangeComponents();
     }
@@ -102,7 +102,7 @@ public class GameEditorDialog {
     public static void main(String args[]) {
         JDialog dialog;
 
-        GameEditorDialog gameEditorDialog = new GameEditorDialog();
+        DialogContainerGameEditor gameEditorDialog = new DialogContainerGameEditor();
         dialog = gameEditorDialog.getDialog();
         dialog.setVisible(true);
     }

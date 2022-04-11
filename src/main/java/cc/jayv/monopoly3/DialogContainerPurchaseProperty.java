@@ -6,7 +6,7 @@ import javax.swing.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class PropertyPurchaseDialog implements ViewComponent {
+public class DialogContainerPurchaseProperty implements ViewComponent {
 
     JDialog dialog;
 
@@ -28,7 +28,7 @@ public class PropertyPurchaseDialog implements ViewComponent {
     JButton buttonPurchase;
     JButton buttonAuction;
 
-    public PropertyPurchaseDialog() {
+    public DialogContainerPurchaseProperty() {
         initComponents();
         arrangeComponents();
     }
@@ -157,7 +157,7 @@ public class PropertyPurchaseDialog implements ViewComponent {
     }
 
     public static void main(String args[]) throws IOException {
-        PropertyPurchaseDialog propertyPurchaseDialog = new PropertyPurchaseDialog();
+        DialogContainerPurchaseProperty propertyPurchaseDialog = new DialogContainerPurchaseProperty();
 
         Board board = new Board();
 

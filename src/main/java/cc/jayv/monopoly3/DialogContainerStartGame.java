@@ -7,7 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class StartGameDialog {
+public class DialogContainerStartGame {
     int playerCount;
     JLabel staticLabelPlayerCount;
     JComboBox<Integer> comboBoxPlayerCount;
@@ -30,7 +30,7 @@ public class StartGameDialog {
 
     DynamicView.StartGameButtonActionListener startGameButtonActionListener;
 
-    public StartGameDialog() {
+    public DialogContainerStartGame() {
         initComponents();
         arrangeComponents();
     }
@@ -185,7 +185,7 @@ public class StartGameDialog {
     }
 
     public static void main(String args[]) {
-        StartGameDialog startGameDialog = new StartGameDialog();
+        DialogContainerStartGame startGameDialog = new DialogContainerStartGame();
         JDialog dialog = startGameDialog.getDialog();
 
         dialog.setVisible(true);
