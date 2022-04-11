@@ -15,21 +15,10 @@ import java.util.logging.Logger;
  */
 public class JavaMonopoly {
 
-	Board board;
-	MainWindow view;
-	LogHelper logHelper;
+	DynamicView dynamicView;
 
-	public JavaMonopoly() throws IOException {
-		try {
-			board = new Board();
-		} catch (IOException ex) {
-			Logger.getLogger(JavaMonopoly.class.getName()).log(Level.SEVERE, null, ex);
-		}
-		
-		logHelper = new LogHelper();
-
-		view = new MainWindow(board, logHelper);
-		view.setVisible(true);
+	public JavaMonopoly() {
+		dynamicView = new DynamicView();
 	}
 
 	public static void main(String args[]) throws IOException {

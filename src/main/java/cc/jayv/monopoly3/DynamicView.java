@@ -3,13 +3,13 @@ package cc.jayv.monopoly3;
 import com.formdev.flatlaf.FlatLightLaf;
 import net.miginfocom.swing.MigLayout;
 
-import java.awt.Color;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -119,25 +119,25 @@ public class DynamicView {
 	}
 
 	private void updateGuiMandatoryDialogs() {
-		dialogJail.setVisible(currentPlayer.getIsJailed());
+
+		// Jail
+		showDialog(dialogJail, currentPlayer.getIsJailed());
 
 		dialogContainerPurchaseProperty.update(board, currentPlayer.getCurrentPosition());
-		dialogPurchaseProperty.setVisible(currentPlayer.getRequiredDecisionPropertyAction());
+		showDialog(dialogPurchaseProperty, currentPlayer.getRequiredDecisionPropertyAction());
 
 		// Disable control buttons when mandatory action dialogs visible
-		if (dialogPurchaseProperty.isVisible()) {
-			viewFrameControl.setStateOfActionButton(Actions.CONTROLS_ENDTURN, false);
-			viewFrameControl.setStateOfActionButton(Actions.CONTROLS_ROLLDICE, false);
+		// IDE-suggested code
+		for (JDialog jDialog : Arrays.asList(dialogPurchaseProperty, dialogJail, dialogPurchaseProperty)) {
+			if (jDialog.isVisible()) {
+				disableControlButtons();
+			}
 		}
-		if (dialogJail.isVisible()) {
-			viewFrameControl.setStateOfActionButton(Actions.CONTROLS_ENDTURN, false);
-			viewFrameControl.setStateOfActionButton(Actions.CONTROLS_ROLLDICE, false);
-		}
-		if (dialogPurchaseProperty.isVisible()) {
-			viewFrameControl.setStateOfActionButton(Actions.CONTROLS_ENDTURN, false);
-			viewFrameControl.setStateOfActionButton(Actions.CONTROLS_ROLLDICE, false);
-		}
+	}
 
+	private void disableControlButtons() {
+		viewFrameControl.setStateOfActionButton(Actions.CONTROLS_ENDTURN, false);
+		viewFrameControl.setStateOfActionButton(Actions.CONTROLS_ROLLDICE, false);
 	}
 
 	private void initGUIComponents() {
@@ -216,6 +216,7 @@ public class DynamicView {
 				case EDIT_GAME_EDITOR -> {
 					showDialog(dialogGameEditor);
 					logHelper.appendToGameLog("Game editor was opened!");
+					update();
 				}
 				case ABOUT -> showDialog(dialogAbout);
 			}
@@ -223,9 +224,18 @@ public class DynamicView {
 	}
 
 	private void showDialog(JDialog dialog) {
-		dialog.setLocationRelativeTo(viewFrameBoard.getInternalFrame());
-		dialog.setAlwaysOnTop(true);
-		dialog.setVisible(true);
+		showDialog(dialog, true);
+	}
+
+	private void showDialog(JDialog dialog, boolean visible) {
+		if (visible) {
+			dialog.setLocationRelativeTo(viewFrameBoard.getInternalFrame());
+			dialog.setAlwaysOnTop(true);
+			dialog.setVisible(true);
+		}
+		else {
+			dialog.setVisible(false);
+		}
 	}
 
 	private void initButtonActionListeners() {
@@ -406,6 +416,7 @@ public class DynamicView {
 				case UNJAIL -> gameEditorController.unjailPlayer(player);
 				case GIVE_1000 -> gameEditorController.give1000(player);
 				case DEDUCT_1000 -> gameEditorController.deduct1000(player);
+				case GIVE_ALL_PROPERTIES -> gameEditorController.giveAllProperties(player);
 			}
 			update();
 		}

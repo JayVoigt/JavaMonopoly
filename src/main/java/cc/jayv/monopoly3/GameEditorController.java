@@ -29,11 +29,22 @@ public class GameEditorController {
     }
 
     public void jailPlayer(Player player) {
+        this.player = player;
         controller.gameEditorJailPlayer(player);
+
+        appendToGameLogGameEditor("Jailed.");
     }
 
     public void unjailPlayer(Player player) {
 
+        appendToGameLogGameEditor("Released from jail.");
+    }
+
+    public void giveAllProperties(Player player) {
+        this.player = player;
+        controller.debugToolsGiveAllProperties(player.getPlayerID());
+
+        appendToGameLogGameEditor("Gave ownership of all properties.");
     }
 
     private void appendToGameLogGameEditor(String input) {

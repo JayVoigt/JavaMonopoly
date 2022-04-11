@@ -49,10 +49,14 @@ public class DialogContainerGameEditor {
         comboBoxPlayerSelection.addItem(3);
         comboBoxPlayerSelection.addItem(4);
 
+        // Fallback value
+        playerID = 1;
+
         comboBoxPlayerSelection.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 playerID = (int) comboBoxPlayerSelection.getSelectedItem();
+                System.out.println(playerID);
             }
         });
 
