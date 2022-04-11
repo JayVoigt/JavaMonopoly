@@ -3,7 +3,7 @@ package cc.jayv.monopoly3;
 import javax.swing.*;
 import java.awt.event.ActionListener;
 
-public class ButtonProperties extends JButton {
+public class TemplateDialogButtonProperties extends JButton {
     String customMigLayoutSpec;
 
     /**
@@ -14,7 +14,7 @@ public class ButtonProperties extends JButton {
      * @param customMigLayoutSpec A string which is either blank, or can contain commands which are then
      *                            passed onto MigLayout for custom layout properties for this button.
      */
-    public ButtonProperties(String buttonText, String buttonIconResource, ActionListener actionListener, String customMigLayoutSpec) {
+    public TemplateDialogButtonProperties(String buttonText, String buttonIconResource, ActionListener actionListener, String customMigLayoutSpec) {
         this.setText(buttonText);
         this.customMigLayoutSpec = customMigLayoutSpec;
 

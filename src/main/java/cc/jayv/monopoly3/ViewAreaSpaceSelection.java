@@ -5,7 +5,7 @@ import net.miginfocom.swing.MigLayout;
 import javax.swing.*;
 import java.awt.*;
 
-public class SpaceSelectionArea implements ViewComponent {
+public class ViewAreaSpaceSelection implements ViewComponent {
 
     JPanel selectionInfoArea;
 
@@ -45,7 +45,7 @@ public class SpaceSelectionArea implements ViewComponent {
     JLabel labelRentHotel;
     JLabel labelCurrentRent;
 
-    public SpaceSelectionArea() {
+    public ViewAreaSpaceSelection() {
         selectionInfoArea = new JPanel();
         selectionInfoArea.setLayout(new MigLayout());
 

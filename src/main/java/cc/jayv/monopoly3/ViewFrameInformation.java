@@ -5,7 +5,7 @@ import net.miginfocom.swing.MigLayout;
 import javax.swing.*;
 import java.util.ArrayList;
 
-public class InfoFrame implements ViewComponent {
+public class ViewFrameInformation implements ViewComponent {
 
     JInternalFrame frame;
     JLabel labelPlayer1;
@@ -15,7 +15,7 @@ public class InfoFrame implements ViewComponent {
 
     ArrayList<JLabel> playerLabels;
 
-    public InfoFrame() {
+    public ViewFrameInformation() {
         frame = new JInternalFrame();
         frame.setLayout(new MigLayout());
         frame.setSize(308, 600);

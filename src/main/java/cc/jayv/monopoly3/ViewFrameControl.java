@@ -5,18 +5,18 @@ import net.miginfocom.swing.MigLayout;
 import javax.swing.*;
 import java.util.ArrayList;
 
-public class ControlFrame implements ViewComponent {
+public class ViewFrameControl implements ViewComponent {
         JInternalFrame frame;
 
-        ButtonProperties buttonEndTurn;
-        ButtonProperties buttonRollDice;
+        TemplateDialogButtonProperties buttonEndTurn;
+        TemplateDialogButtonProperties buttonRollDice;
 
-        ButtonProperties buttonControlsMortgage;
-        ButtonProperties buttonControlsShowProperties;
-        ButtonProperties buttonControlsStatistics;
-        ButtonProperties buttonControlsTrade;
-        ButtonProperties buttonControlsForfeit;
-        ButtonProperties buttonControlsImprovements;
+        TemplateDialogButtonProperties buttonControlsMortgage;
+        TemplateDialogButtonProperties buttonControlsShowProperties;
+        TemplateDialogButtonProperties buttonControlsStatistics;
+        TemplateDialogButtonProperties buttonControlsTrade;
+        TemplateDialogButtonProperties buttonControlsForfeit;
+        TemplateDialogButtonProperties buttonControlsImprovements;
 
         JLabel staticLabelCurrentPlayer;
         JLabel labelCurrentPlayer;
@@ -30,7 +30,7 @@ public class ControlFrame implements ViewComponent {
 
         ArrayList<ImageIcon> DicePips;
 
-        public ControlFrame() {
+        public ViewFrameControl() {
                 frame = new JInternalFrame();
                 frame.setLayout(new MigLayout());
                 frame.setSize(400, 400);
@@ -101,11 +101,11 @@ public class ControlFrame implements ViewComponent {
 
                 try {
                         // End turn
-                        buttonEndTurn = new ButtonProperties("End turn", "/arrow.png", endTurnActionListener, "cell 2 16, align right, width 108, height 60");
+                        buttonEndTurn = new TemplateDialogButtonProperties("End turn", "/arrow.png", endTurnActionListener, "cell 2 16, align right, width 108, height 60");
                         frame.add(buttonEndTurn, buttonEndTurn.getMigLayoutSpec());
 
                         // Roll dice
-                        buttonRollDice = new ButtonProperties("Roll dice", "/dice-icon.png", rollDiceActionListener, "cell 0 16, align left, width 108, height 60");
+                        buttonRollDice = new TemplateDialogButtonProperties("Roll dice", "/dice-icon.png", rollDiceActionListener, "cell 0 16, align left, width 108, height 60");
                         frame.add(buttonRollDice, buttonRollDice.getMigLayoutSpec());
 
                         // Labels for dice
@@ -132,27 +132,27 @@ public class ControlFrame implements ViewComponent {
 
                         String standardMigSpecButton = ", grow";
                         // Mortgage
-                        buttonControlsMortgage = new ButtonProperties("Mortgage", "/mortgage.png", null, "cell 0 6, align left" + standardMigSpecButton);
+                        buttonControlsMortgage = new TemplateDialogButtonProperties("Mortgage", "/mortgage.png", null, "cell 0 6, align left" + standardMigSpecButton);
                         frame.add(buttonControlsMortgage, buttonControlsMortgage.getMigLayoutSpec());
 
                         // Properties
-                        buttonControlsShowProperties = new ButtonProperties("Properties", "/properties.png", controlsPropertiesActionListener, "cell 2 6, align right" + standardMigSpecButton);
+                        buttonControlsShowProperties = new TemplateDialogButtonProperties("Properties", "/properties.png", controlsPropertiesActionListener, "cell 2 6, align right" + standardMigSpecButton);
                         frame.add(buttonControlsShowProperties, buttonControlsShowProperties.getMigLayoutSpec());
 
                         // Improvements
-                        buttonControlsImprovements = new ButtonProperties("Improvements", "/improvements.png", controlsImprovementsActionListener, "cell 0 8, align left" + standardMigSpecButton);
+                        buttonControlsImprovements = new TemplateDialogButtonProperties("Improvements", "/improvements.png", controlsImprovementsActionListener, "cell 0 8, align left" + standardMigSpecButton);
                         frame.add(buttonControlsImprovements, buttonControlsImprovements.getMigLayoutSpec());
 
                         // Statistics
-                        buttonControlsStatistics = new ButtonProperties("Statistics", "/statistics.png", null, "cell 2 8, align right" + standardMigSpecButton);
+                        buttonControlsStatistics = new TemplateDialogButtonProperties("Statistics", "/statistics.png", null, "cell 2 8, align right" + standardMigSpecButton);
                         frame.add(buttonControlsStatistics, buttonControlsStatistics.getMigLayoutSpec());
 
                         // Trade
-                        buttonControlsTrade = new ButtonProperties("Trade", "/trade.png", null, "cell 0 10, align left" + standardMigSpecButton);
+                        buttonControlsTrade = new TemplateDialogButtonProperties("Trade", "/trade.png", null, "cell 0 10, align left" + standardMigSpecButton);
                         frame.add(buttonControlsTrade, buttonControlsTrade.getMigLayoutSpec());
 
                         // Forfeit
-                        buttonControlsForfeit = new ButtonProperties("Forfeit", "/surrender.png", null, "cell 2 10, align right" + standardMigSpecButton);
+                        buttonControlsForfeit = new TemplateDialogButtonProperties("Forfeit", "/surrender.png", null, "cell 2 10, align right" + standardMigSpecButton);
                         frame.add(buttonControlsForfeit, buttonControlsForfeit.getMigLayoutSpec());
 
                         for (Actions a : Actions.values()) {

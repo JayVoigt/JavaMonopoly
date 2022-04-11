@@ -16,17 +16,17 @@ import net.miginfocom.swing.MigLayout;
  *
  * @author jay
  */
-public class ViewDialog {
+public class TemplateDialogGenerator {
 
 	String dialogTitle;
 	Icon dialogIcon;
 	ArrayList<JButton> dialogButtonList;
-	ArrayList<ButtonProperties> dialogButtonContentList;
+	ArrayList<TemplateDialogButtonProperties> dialogButtonContentList;
 
 	JDialog userPrompt;
 	JTextArea infoArea;
 
-	public ViewDialog(String dialogTitle, String dialogIconResource) {
+	public TemplateDialogGenerator(String dialogTitle, String dialogIconResource) {
 		this.dialogTitle = dialogTitle;
 		this.dialogIcon = getImageIconFromResource(dialogIconResource);
 
@@ -49,7 +49,7 @@ public class ViewDialog {
 	 * @param infoAreaContents A string which will be display as the contents for the main text pane within the dialog.
 	 * @return A JDialog object.
 	 */
-	public JDialog createDialogUserPrompt(ArrayList<ButtonProperties> dialogButtonContentList, String infoAreaContents) {
+	public JDialog createDialogUserPrompt(ArrayList<TemplateDialogButtonProperties> dialogButtonContentList, String infoAreaContents) {
 		userPrompt = new JDialog();
 		MigLayout promptMigLayout = new MigLayout("fill");
 		userPrompt.setLayout(promptMigLayout);
@@ -78,7 +78,7 @@ public class ViewDialog {
 		userPrompt.add(infoArea, "wrap, grow, span " + centerSpanQuantity);
 
 		// Initialize buttons with contents from list
-		for (ButtonProperties p : dialogButtonContentList) {
+		for (TemplateDialogButtonProperties p : dialogButtonContentList) {
 			int index = dialogButtonContentList.indexOf(p);
 			
 			// Add new JButton to list; create reference as localButton
@@ -91,7 +91,7 @@ public class ViewDialog {
 		}
 
 		// Add buttons
-		for (ButtonProperties p : dialogButtonContentList) {
+		for (TemplateDialogButtonProperties p : dialogButtonContentList) {
 			if (p.getMigLayoutSpec().isEmpty()) {
 				userPrompt.add(p);
 			}

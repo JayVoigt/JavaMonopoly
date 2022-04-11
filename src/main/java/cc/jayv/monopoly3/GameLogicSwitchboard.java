@@ -4,13 +4,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.Objects;
 
-public class LogicSwitchboard {
+public class GameLogicSwitchboard {
 
     GameLogicController c;
     Object origin;
     JTextArea infoArea;
 
-    public LogicSwitchboard(GameLogicController controller) {
+    public GameLogicSwitchboard(GameLogicController controller) {
         this.c = controller;
     }
 
@@ -39,7 +39,7 @@ public class LogicSwitchboard {
         this.origin = origin;
 
         infoArea = null;
-        if (origin instanceof ButtonProperties b) {
+        if (origin instanceof TemplateDialogButtonProperties b) {
             JRootPane rootPane = b.getRootPane();
 
             for (Component jc : rootPane.getContentPane().getComponents()) {

@@ -10,11 +10,11 @@ import java.util.Objects;
 /**
  *
  */
-public class BoardFrame {
+public class ViewFrameBoard {
 
     JInternalFrame frame;
 
-    SpaceSelectionArea spaceSelectionArea;
+    ViewAreaSpaceSelection viewAreaSpaceSelection;
     ArrayList<SpaceButton> spaceButtons;
 
     JLabel indicatorPlayer1;
@@ -39,7 +39,7 @@ public class BoardFrame {
      * @param logHelper The logHelper object where the internal text area will read from.
      * @param listener
      */
-    public BoardFrame(LogHelper logHelper, ArrayList<DynamicView.spaceButtonActionHandler> listener) {
+    public ViewFrameBoard(LogHelper logHelper, ArrayList<DynamicView.spaceButtonActionHandler> listener) {
         frame = new JInternalFrame();
         frame.setFrameIcon(SwingHelper.getImageIconFromResource("/board.png"));
 
@@ -75,8 +75,8 @@ public class BoardFrame {
         gameLogScrollPane.setViewportView(gameLogTextArea);
         frame.add(gameLogScrollPane);
 
-        spaceSelectionArea = new SpaceSelectionArea();
-        frame.add(spaceSelectionArea.getJPanel());
+        viewAreaSpaceSelection = new ViewAreaSpaceSelection();
+        frame.add(viewAreaSpaceSelection.getJPanel());
 
         // Add space buttons
         for (int i = 0; i < 40; i++) {
@@ -276,7 +276,7 @@ public class BoardFrame {
      * @param spaceSelectionID The ID of the space that is currently selected.
      */
     public void update(Board board, int spaceSelectionID) {
-        spaceSelectionArea.update(board, spaceSelectionID);
+        viewAreaSpaceSelection.update(board, spaceSelectionID);
         updateGameLog();
         updateGuiPlayerIndicators(board);
         updateGuiImprovementIcons(board);

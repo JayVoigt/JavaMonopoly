@@ -4,10 +4,10 @@ import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
 
-public class AboutDialog {
+public class DialogContainerAbout {
     JDialog dialog;
 
-    public AboutDialog() {
+    public DialogContainerAbout() {
         dialog = new JDialog();
         dialog.setLayout(new MigLayout());
 
