@@ -3,6 +3,7 @@ package cc.jayv.monopoly3;
 import com.formdev.flatlaf.FlatLightLaf;
 import net.miginfocom.swing.MigLayout;
 
+import java.awt.Color;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.*;
@@ -72,7 +73,7 @@ public class DynamicView {
 			try {
 				UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
 			} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
-				Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+				Logger.getLogger(DynamicView.class.getName()).log(Level.SEVERE, null, ex);
 			}
 		}
 
@@ -188,6 +189,7 @@ public class DynamicView {
 
 		JMenuItem menuEditGameEditor = new JMenuItem("Game Editor...", SwingHelper.getImageIconFromResource("/matrix-anim.gif"));
 		menuEditGameEditor.addActionListener(new MenuActionListener(MenuActions.EDIT_GAME_EDITOR));
+		menuEditGameEditor.setForeground(java.awt.Color.red);
 		menuEdit.add(menuEditGameEditor);
 
 		JMenuItem menuViewAbout = new JMenuItem("About", SwingHelper.getImageIconFromResource("/robot.png"));
@@ -209,15 +211,21 @@ public class DynamicView {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			switch (action) {
-				case FILE_NEW_GAME -> dialogStartGame.setVisible(true);
+				case FILE_NEW_GAME -> showDialog(dialogStartGame);
 				case FILE_QUIT -> quitManager();
 				case EDIT_GAME_EDITOR -> {
-					dialogGameEditor.setVisible(true);
-					logHelper.appendToGameLog("Game log was opened!");
+					showDialog(dialogGameEditor);
+					logHelper.appendToGameLog("Game editor was opened!");
 				}
-				case ABOUT -> dialogAbout.setVisible(true);
+				case ABOUT -> showDialog(dialogAbout);
 			}
 		}
+	}
+
+	private void showDialog(JDialog dialog) {
+		dialog.setLocationRelativeTo(viewFrameBoard.getInternalFrame());
+		dialog.setAlwaysOnTop(true);
+		dialog.setVisible(true);
 	}
 
 	private void initButtonActionListeners() {

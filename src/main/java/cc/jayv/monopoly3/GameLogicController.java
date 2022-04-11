@@ -95,15 +95,6 @@ public class GameLogicController implements Serializable {
 	}
 
 	/**
-	 * Send a welcome message to the game log when the application is first
-	 * launched.
-	 */
-	public void sendWelcomeMessage() {
-		appendToGameLog("Welcome to Java Monopoly Prototype!");
-		appendToGameLog("A new game can be started or loaded under the File menu.\n");
-	}
-
-	/**
 	 * Send a message to the game log when the game has started, including
 	 * information about the number of players specified.
 	 */

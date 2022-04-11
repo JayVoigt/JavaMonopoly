@@ -175,6 +175,9 @@ public class ViewFrameBoard {
         frame.add(boardImage);
 
         initImprovementIcons();
+
+        logHelper.sendWelcomeMessage();
+        updateGameLog();
     }
 
     /**
@@ -289,6 +292,7 @@ public class ViewFrameBoard {
 
     private void updateGameLog() {
         gameLogTextArea.setText(logHelper.getAllGameLogContents());
+
     }
 
     /**
