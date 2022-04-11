@@ -3,7 +3,6 @@ package cc.jayv.monopoly3;
 import com.formdev.flatlaf.FlatLightLaf;
 import net.miginfocom.swing.MigLayout;
 
-import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.*;
@@ -160,6 +159,10 @@ public class DynamicView {
 		menuFileQuit.addActionListener(new MenuActionListener(MenuActions.FILE_QUIT));
 		menuFile.add(menuFileQuit);
 
+		JMenuItem menuEditGameEditor = new JMenuItem("Game Editor...", SwingHelper.getImageIconFromResource("/matrix-anim.gif"));
+		menuEditGameEditor.addActionListener(new MenuActionListener(MenuActions.EDIT_GAME_EDITOR));
+		menuEdit.add(menuEditGameEditor);
+
 		JMenuItem menuViewAbout = new JMenuItem("About", SwingHelper.getImageIconFromResource("/robot.png"));
 		menuViewAbout.addActionListener(new MenuActionListener(MenuActions.ABOUT));
 		menuView.add(menuViewAbout);
@@ -293,6 +296,7 @@ public class DynamicView {
 			// Set names
 			for ( int i = 0 ; i < playerCount ; i++ ) {
 				board.players.get(i + 1).setCustomName(playerCustomNames.get(i));
+				board.players.get(i + 1).setIsPlayerActive(true);
 			}
 			controller.setIsGameActive(true);
 

@@ -20,6 +20,11 @@ public class BoardFrame {
 
     SpaceSelectionArea spaceSelectionArea;
     ArrayList<SpaceButton> spaceButtons;
+
+    JLabel indicatorPlayer1;
+    JLabel indicatorPlayer2;
+    JLabel indicatorPlayer3;
+    JLabel indicatorPlayer4;
     ArrayList<JLabel> playerIndicators;
 
     JScrollPane gameLogScrollPane;
@@ -45,13 +50,21 @@ public class BoardFrame {
         this.logHelper = logHelper;
 
         spaceButtons = new ArrayList<>();
-        playerIndicators = new ArrayList<>();
 
         // Player icons
-        playerIndicators.add(new JLabel(SwingHelper.getImageIconFromResource("/player-icon-1-px.png")));
-        playerIndicators.add(new JLabel(SwingHelper.getImageIconFromResource("/player-icon-2-px.png")));
-        playerIndicators.add(new JLabel(SwingHelper.getImageIconFromResource("/player-icon-3-px.png")));
-        playerIndicators.add(new JLabel(SwingHelper.getImageIconFromResource("/player-icon-4-px.png")));
+        indicatorPlayer1 = new JLabel(SwingHelper.getImageIconFromResource("/player-icon-1-px.png"));
+        indicatorPlayer2 = new JLabel(SwingHelper.getImageIconFromResource("/player-icon-2-px.png"));
+        indicatorPlayer3 = new JLabel(SwingHelper.getImageIconFromResource("/player-icon-3-px.png"));
+        indicatorPlayer4 = new JLabel(SwingHelper.getImageIconFromResource("/player-icon-4-px.png"));
+        playerIndicators = new ArrayList<>();
+        playerIndicators.add(indicatorPlayer1);
+        playerIndicators.add(indicatorPlayer2);
+        playerIndicators.add(indicatorPlayer3);
+        playerIndicators.add(indicatorPlayer4);
+
+        for (JLabel l : playerIndicators) {
+            frame.add(l);
+        }
 
         frame.setSize(1000, 1000);
         frame.setLayout(null);
@@ -287,12 +300,15 @@ public class BoardFrame {
      * @param board
      */
     private void updateGuiPlayerIndicators(Board board) {
+        Point labelPoint;
+        JLabel label;
+
         for (Player p : board.players) {
             if (p.getIsActive()) {
-
-            }
-            else {
-
+                labelPoint = calculatePointForPlayerIndicator(p.getPlayerID(), p.getCurrentPosition(), p.getIsJailed());
+                label = playerIndicators.get(p.getPlayerID() - 1);
+                label.setVisible(true);
+                label.setBounds(labelPoint.x, labelPoint.y, 18, 18);
             }
         }
     }
@@ -303,10 +319,65 @@ public class BoardFrame {
      * @param spaceID The space ID that will be used as a target for position calculation.
      * @return x and y coordinates (java.awt.Dimension) that the player's icon should be set to.
      */
-    private Dimension calculateDimensionForPlayerIndicator(int playerID, int spaceID) {
-        Dimension dimension = new Dimension();
+    private Point calculatePointForPlayerIndicator(int playerID, int spaceID, boolean isJailed) {
+        Point point = new Point();
+        int x = 0, y = 0;
 
-        return dimension;
+        int standardXOffset = 20 * (playerID - 1);
+        int cornerXOffset = 30 * (playerID - 1);
+        int yOffset = -2;
+
+        if (isJailed) {
+            if (playerID == 1) {
+                x = 90;
+                y = 850;
+            }
+            else if (playerID == 2) {
+                x = 110;
+                y = 850;
+            }
+            else if (playerID == 3) {
+                x = 90;
+                y = 870;
+            }
+            else if (playerID == 4) {
+                x = 110;
+                y = 870;
+            }
+        }
+        // This code is awful and needs to be refactored
+        else {
+            if (spaceID == 0) {
+                x = 850 + cornerXOffset;
+                y = 950 + yOffset;
+            } else if (spaceID == 10) {
+                x = 10 + cornerXOffset;
+                y = 950 + yOffset;
+            } else if (spaceID == 20) {
+                x = 10 + cornerXOffset;
+                y = 110;
+            } else if (spaceID == 30) {
+                x = 850 + cornerXOffset;
+                y = 110;
+            } else if (spaceID > 0 && spaceID < 10) {
+                x = 850 - (80 * spaceID);
+                y = 950 + yOffset;
+            } else if (spaceID > 10 && spaceID < 20) {
+                x = 10;
+                y = 830 + (80 * (11 - spaceID));
+            } else if (spaceID > 20 && spaceID < 30) {
+                x = 130 - (80 * (21 - spaceID));
+                y = 10 - yOffset;
+            } else if (spaceID > 30 && spaceID < 40) {
+                x = 850;
+                y = 190 - (80 * (31 - spaceID));
+            }
+            x += standardXOffset;
+        }
+        System.out.println(x + "," + y);
+        point.setLocation(x, y);
+
+        return point;
     }
 
     /**
