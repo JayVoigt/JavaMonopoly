@@ -270,6 +270,14 @@ public class GameLogicController implements Serializable {
 		currentPlayer.setInitialJailTurn(true);
 	}
 
+	public void gameEditorJailPlayer(Player player) {
+		player.setIsJailed(true);
+		player.setHasRolledDice(true);
+		player.setActionLockedEndTurn(false);
+		player.setActionLockedRollDice(true);
+		player.setInitialJailTurn(true);
+	}
+
 	/**
 	 * Evaluator which executes when the current player rolls the dice, and a
 	 * roll quantity is determined.<br>
@@ -631,7 +639,7 @@ public class GameLogicController implements Serializable {
 	 * Ready the state of the current player to be released from jail; release
 	 * the player from jail.
 	 */
-	private void readyPlayerForJailRelease() {
+	public void readyPlayerForJailRelease() {
 
 		// Should clean up this method by moving some logic into Player.unjailPlayer()
 		currentPlayer.initializePlayerForNewTurn();

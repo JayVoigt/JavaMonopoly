@@ -106,22 +106,26 @@ public class PropertyPurchaseDialog implements ViewComponent {
     public void attachActionListeners(ArrayList<DynamicView.ButtonActionListener> listeners) {
         for (DynamicView.ButtonActionListener l : listeners) {
             switch (l.getAction()) {
+                case PROPERTY_PURCHASE -> buttonPurchase.addActionListener(l);
+                case PROPERTY_AUCTION -> buttonAuction.addActionListener(l);
             }
         }
     }
 
     public void update(Board board, int spaceID) {
+        // Defaults in case update method is called on non-property space
         String propertyName = "";
         String propertyType = "";
         String propertyCost = "";
         String propertyTimesLanded = "";
 
-        Space localSpace = board.spaces.get(spaceID);
-        if (localSpace instanceof Property p) {
+        if (board.spaces.get(spaceID) instanceof Property p) {
             propertyName = p.getFriendlyName();
-            propertyCost = "$" + String.valueOf(p.getPurchaseCost());
+            propertyCost = "$" + p.getPurchaseCost();
 
+            // Get property type
             if (p instanceof Color c) {
+                // Specify color group
                 propertyType = "Color, " + c.getColorGroup();
             }
             else if (p instanceof Railroad) {
@@ -133,10 +137,10 @@ public class PropertyPurchaseDialog implements ViewComponent {
 
             // Set appropriate grammar
             if (p.getTimesLanded() == 1) {
-                propertyTimesLanded = String.valueOf(p.getTimesLanded()) + " time";
+                propertyTimesLanded = p.getTimesLanded() + " time";
             }
             else {
-                propertyTimesLanded = String.valueOf(p.getTimesLanded()) + " times";
+                propertyTimesLanded = p.getTimesLanded() + " times";
             }
         }
 
@@ -157,7 +161,6 @@ public class PropertyPurchaseDialog implements ViewComponent {
 
         Board board = new Board();
 
-        // Electric company
         propertyPurchaseDialog.update(board, 9);
         propertyPurchaseDialog.getDialog().setVisible(true);
     }

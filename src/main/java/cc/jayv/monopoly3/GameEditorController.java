@@ -29,7 +29,7 @@ public class GameEditorController {
     }
 
     public void jailPlayer(Player player) {
-
+        controller.gameEditorJailPlayer(player);
     }
 
     public void unjailPlayer(Player player) {

@@ -30,11 +30,14 @@ public class DynamicView {
 	final GameLogicController controller;
 	Board board;
 	LogHelper logHelper;
-	GameEditorController gameEditorController;
 
 	JDialog dialogJail;
 	JDialog dialogPurchaseProperty;
 	JDialog dialogImprovements;
+
+	PropertyPurchaseDialog dialogContainerPurchaseProperty;
+	GameEditorDialog dialogContainerGameEditor;
+	GameEditorController gameEditorController;
 
 	JDialog dialogStartGame;
 	JDialog dialogGameEditor;
@@ -48,7 +51,7 @@ public class DynamicView {
 	Border spaceSelectionBorder;
 	Player currentPlayer;
 
-	GameEditorDialog gameEditorDialog;
+	ArrayList<ButtonActionListener> buttonActionListeners;
 
 	static int currentSpaceButtonSelection;
 
@@ -80,6 +83,7 @@ public class DynamicView {
 		switchboard = new LogicSwitchboard(controller);
 		gameEditorController = new GameEditorController(board, controller, logHelper);
 
+		initButtonActionListeners();
 		initGUIComponents();
 		initMenuBar();
 
@@ -107,8 +111,10 @@ public class DynamicView {
 	}
 
 	private void updateGuiMandatoryDialogs() {
-		dialogPurchaseProperty.setVisible(currentPlayer.getRequiredDecisionPropertyAction());
 		dialogJail.setVisible(currentPlayer.getIsJailed());
+
+		dialogContainerPurchaseProperty.update(board, currentPlayer.getCurrentPosition());
+		dialogPurchaseProperty.setVisible(currentPlayer.getRequiredDecisionPropertyAction());
 
 		// Disable control buttons when mandatory action dialogs visible
 		if (dialogPurchaseProperty.isVisible()) {
@@ -116,6 +122,10 @@ public class DynamicView {
 			controlFrame.setStateOfActionButton(Actions.CONTROLS_ROLLDICE, false);
 		}
 		if (dialogJail.isVisible()) {
+			controlFrame.setStateOfActionButton(Actions.CONTROLS_ENDTURN, false);
+			controlFrame.setStateOfActionButton(Actions.CONTROLS_ROLLDICE, false);
+		}
+		if (dialogPurchaseProperty.isVisible()) {
 			controlFrame.setStateOfActionButton(Actions.CONTROLS_ENDTURN, false);
 			controlFrame.setStateOfActionButton(Actions.CONTROLS_ROLLDICE, false);
 		}
@@ -203,13 +213,23 @@ public class DynamicView {
 		}
 	}
 
+	private void initButtonActionListeners() {
+		// Create all possible ActionListeners for dialogs
+		buttonActionListeners = new ArrayList<>();
+
+		for (Actions a : Actions.values()) {
+
+			switch (a) {
+				case CONTROLS_SHOW_MORTGAGE, CONTROLS_SHOW_FORFEIT, CONTROLS_SHOW_IMPROVEMENTS -> {
+					buttonActionListeners.add(new ButtonActionListener(a, true));
+				}
+				default -> buttonActionListeners.add(new ButtonActionListener(a, false));
+			}
+
+		}
+	}
+
 	private void initControlFrame() {
-		ArrayList<ButtonActionListener> buttonActionListeners = new ArrayList<>();
-
-		buttonActionListeners.add(new ButtonActionListener(Actions.CONTROLS_ROLLDICE));
-		buttonActionListeners.add(new ButtonActionListener(Actions.CONTROLS_ENDTURN));
-		buttonActionListeners.add(new ButtonActionListener(Actions.CONTROLS_SHOW_IMPROVEMENTS, true));
-
 		controlFrame.initButtons(buttonActionListeners);
 	}
 
@@ -244,13 +264,9 @@ public class DynamicView {
 		buttonPropertiesList.trimToSize();
 
 		// Purchase property
-		viewDialog = new ViewDialog("Property", "/properties.png");
-		buttonPropertiesList.add(new ButtonProperties("Purchase", "/money.png", new ButtonActionListener(Actions.PROPERTY_PURCHASE), "width 150"));
-		buttonPropertiesList.add(new ButtonProperties("Auction", "/auction.png", new ButtonActionListener(Actions.PROPERTY_AUCTION), "width 150"));
-		dialogPurchaseProperty = viewDialog.createDialogUserPrompt(buttonPropertiesList, "Property information here");
-		dialogPurchaseProperty.pack();
-		buttonPropertiesList.clear();
-		buttonPropertiesList.trimToSize();
+		dialogContainerPurchaseProperty = new PropertyPurchaseDialog();
+		dialogContainerPurchaseProperty.attachActionListeners(buttonActionListeners);
+		dialogPurchaseProperty = dialogContainerPurchaseProperty.getDialog();
 
 		// Improvements
 		viewDialog = new ViewDialog("Improvements", "/improvements.png");
@@ -266,15 +282,15 @@ public class DynamicView {
 		dialogAbout = new AboutDialog().getDialog();
 
 		// Game editor
-		gameEditorDialog = new GameEditorDialog();
-		dialogGameEditor = gameEditorDialog.getDialog();
+		dialogContainerGameEditor = new GameEditorDialog();
+		dialogGameEditor = dialogContainerGameEditor.getDialog();
 
 		// Attach action listeners
 		ArrayList<GameEditorActionListener> gameEditorActionListeners = new ArrayList<>();
 		for (GameEditorActions a : GameEditorActions.values()) {
 			gameEditorActionListeners.add(new GameEditorActionListener(a));
 		}
-		gameEditorDialog.attachActionListeners(gameEditorActionListeners);
+		dialogContainerGameEditor.attachActionListeners(gameEditorActionListeners);
 
 		StartGameDialog startGameDialog = new StartGameDialog();
 		StartGameButtonActionListener startGameButtonActionListener = new StartGameButtonActionListener();
@@ -368,7 +384,7 @@ public class DynamicView {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			player = board.players.get(gameEditorDialog.getSelectedPlayer());
+			player = board.players.get(dialogContainerGameEditor.getSelectedPlayer());
 			switch (action) {
 				case JAIL -> gameEditorController.jailPlayer(player);
 				case UNJAIL -> gameEditorController.unjailPlayer(player);
