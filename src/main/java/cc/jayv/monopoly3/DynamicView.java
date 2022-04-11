@@ -87,8 +87,8 @@ public class DynamicView {
 		mainFrame.setLayout(new MigLayout());
 		initControlFrame();
 		mainFrame.add(boardFrame.getInternalFrame(), "cell 0 0, x 0, y 0, width 1000, height 1000");
-		mainFrame.add(infoFrame.getFrame(), "cell 1 0, x 1000, y 0, width 308, height 600");
-		mainFrame.add(controlFrame.getFrame(), "cell 1 1, x 1000, y 600, width 308, height 400");
+		mainFrame.add(infoFrame.getFrame(), "cell 1 0, x 1000, y 0, width 400, height 600");
+		mainFrame.add(controlFrame.getFrame(), "cell 1 1, x 1000, y 600, width 400, height 400");
 		mainFrame.pack();
 		mainFrame.setVisible(true);
 
@@ -269,6 +269,13 @@ public class DynamicView {
 		gameEditorDialog = new GameEditorDialog();
 		dialogGameEditor = gameEditorDialog.getDialog();
 
+		// Attach action listeners
+		ArrayList<GameEditorActionListener> gameEditorActionListeners = new ArrayList<>();
+		for (GameEditorActions a : GameEditorActions.values()) {
+			gameEditorActionListeners.add(new GameEditorActionListener(a));
+		}
+		gameEditorDialog.attachActionListeners(gameEditorActionListeners);
+
 		StartGameDialog startGameDialog = new StartGameDialog();
 		StartGameButtonActionListener startGameButtonActionListener = new StartGameButtonActionListener();
 		startGameDialog.attachStartGameActionListener(startGameButtonActionListener);
@@ -368,6 +375,7 @@ public class DynamicView {
 				case GIVE_1000 -> gameEditorController.give1000(player);
 				case DEDUCT_1000 -> gameEditorController.deduct1000(player);
 			}
+			update();
 		}
 
 		public GameEditorActions getAction() {

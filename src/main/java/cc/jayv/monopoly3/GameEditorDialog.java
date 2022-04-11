@@ -5,6 +5,7 @@ import net.miginfocom.swing.MigLayout;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class GameEditorDialog {
     JDialog dialog;
@@ -62,6 +63,18 @@ public class GameEditorDialog {
         buttonUnlockRollDiceAction = new JButton("Unlock roll dice action", SwingHelper.getImageIconFromResource("/dice-icon.png"));
         buttonUnlockEndTurnAction = new JButton("Unlock end turn action", SwingHelper.getImageIconFromResource("/arrow.png"));
         buttonGiveAllProperties = new JButton("Give all properties", SwingHelper.getImageIconFromResource("/properties.png"));
+    }
+
+    public void attachActionListeners(ArrayList<DynamicView.GameEditorActionListener> listeners) {
+        for (DynamicView.GameEditorActionListener l : listeners) {
+            switch (l.getAction()) {
+                case JAIL -> buttonJailPlayer.addActionListener(l);
+                case UNJAIL -> buttonUnjailPlayer.addActionListener(l);
+                case GIVE_1000 -> buttonGive1000.addActionListener(l);
+                case DEDUCT_1000 -> buttonDeduct1000.addActionListener(l);
+                case GIVE_ALL_PROPERTIES -> buttonGiveAllProperties.addActionListener(l);
+            }
+        }
     }
 
     private void arrangeComponents() {

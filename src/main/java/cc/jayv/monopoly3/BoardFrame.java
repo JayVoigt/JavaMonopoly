@@ -1,14 +1,10 @@
 package cc.jayv.monopoly3;
 
 import javax.swing.*;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.SoftBevelBorder;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 
 /**
@@ -323,8 +319,8 @@ public class BoardFrame {
         Point point = new Point();
         int x = 0, y = 0;
 
-        int standardXOffset = 12 * (playerID - 1);
-        int cornerXOffset = 12 * (playerID - 1);
+        int standardXOffset = 18 * (playerID - 1);
+        int cornerXOffset = 10 * (playerID - 1);
         int standardYOffset = -4;
 
         int yReferenceNorth = 0;
@@ -332,7 +328,10 @@ public class BoardFrame {
         int xReferenceEast = 942;
         int xReferenceWest = 0;
 
+        int xAnchorNorth = 0;
         int xAnchorSouth = 840;
+        int yAnchorEast = 108;
+        int yAnchorWest = 832;
 
         if (isJailed) {
             if (playerID == 1) {
@@ -375,7 +374,7 @@ public class BoardFrame {
             }
             else if (spaceID > 10 && spaceID < 20) {
                 x = xReferenceWest;
-                y = 830 + (80 * (11 - spaceID));
+                y = yAnchorWest + (80 * (11 - spaceID));
             }
             else if (spaceID > 20 && spaceID < 30) {
                 x = 130 - (80 * (21 - spaceID));
@@ -391,58 +390,6 @@ public class BoardFrame {
         point.setLocation(x, y);
 
         return point;
-    }
-
-    private Point calc2(int playerID, int spaceID, boolean isJailed) {
-        Point destinationPoint = new Point();
-
-        int offsetQuantity = (playerID - 1);
-        int destX = 0, destY = 0;
-        int horizontalSpacingOffset = 0;
-        int verticalSpacingOffset = 18;
-        int horizontalSpacingOffsetCorner = 30;
-
-        // Jail
-        if (isJailed) {
-            destX = 80 + (horizontalSpacingOffset * offsetQuantity);
-            destY = 80 + (horizontalSpacingOffset * offsetQuantity);
-        }
-        else if (spaceID == 0) {        // GO
-            destX = 840 + (horizontalSpacingOffsetCorner * offsetQuantity);
-            destY = 960;
-        }
-        else if (spaceID == 10) {       // Jail, visiting
-            destX = 0 + (horizontalSpacingOffsetCorner * offsetQuantity);
-            destY = 960;
-        }
-        else if (spaceID == 20) {       // Free Parking
-            destX = 0 + (horizontalSpacingOffsetCorner * offsetQuantity);
-            destY = 0;
-        }
-        else if (spaceID == 30) {       // Go To Jail
-            destX = 840 + (horizontalSpacingOffsetCorner * offsetQuantity);
-            destY = 0;
-        }
-        else if (spaceID > 0 && spaceID < 10) {     // South
-            destX = 840 - (horizontalSpacingOffset * offsetQuantity) - (80 * spaceID);
-            destY = 960;
-        }
-        else if (spaceID > 10 && spaceID < 20) {    // West
-            destX = 0;
-            destY = 960 - (80 * (11 - spaceID));
-        }
-        else if (spaceID > 20 && spaceID < 30) {    // North
-            destX = 0 + (horizontalSpacingOffset * offsetQuantity) + (80 * (21 - spaceID));
-            destY = 0;
-        }
-        else if (spaceID > 30 && spaceID < 40) {    // East
-            destX = 960;
-            destY = 960 - (80 * (31 - spaceID));
-        }
-
-        destinationPoint.setLocation(destX, destY);
-
-        return destinationPoint;
     }
 
     /**

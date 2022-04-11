@@ -6,7 +6,6 @@ import javax.swing.*;
 import java.util.ArrayList;
 
 public class ControlFrame implements ViewComponent {
-        SwingHelper helper;
         JInternalFrame frame;
 
         ButtonProperties buttonEndTurn;
@@ -34,7 +33,7 @@ public class ControlFrame implements ViewComponent {
         public ControlFrame() {
                 frame = new JInternalFrame();
                 frame.setLayout(new MigLayout());
-                frame.setSize(308, 400);
+                frame.setSize(400, 400);
                 frame.setVisible(true);
 
                 frame.setTitle("Controls");
@@ -44,41 +43,42 @@ public class ControlFrame implements ViewComponent {
         }
 
         private void initLabels() {
+                String standardMigSpecLabel = ", grow, width 200";
                 // Current player static
                 staticLabelCurrentPlayer = new JLabel();
                 staticLabelCurrentPlayer.setIcon(SwingHelper.getImageIconFromResource("/player-generic.png"));
                 SwingHelper.formatLabel(staticLabelCurrentPlayer, "Current Player", SwingHelper.LabelStyles.TITLE_BOLD);
-                frame.add(staticLabelCurrentPlayer, "align left, cell 0 0, width 150");
+                frame.add(staticLabelCurrentPlayer, "align left, cell 0 0" + standardMigSpecLabel);
 
                 // Current player
                 labelCurrentPlayer = new JLabel();
                 SwingHelper.formatLabel(labelCurrentPlayer, "n/a", SwingHelper.LabelStyles.TITLE_NO_CONTENT);
                 labelCurrentPlayer.setHorizontalAlignment(SwingConstants.RIGHT);
-                frame.add(labelCurrentPlayer, "align right, cell 2 0, width 150, wrap");
+                frame.add(labelCurrentPlayer, "align right, cell 2 0, wrap" + standardMigSpecLabel);
 
                 // Current balance static
                 staticLabelCurrentBalance = new JLabel();
                 staticLabelCurrentBalance.setIcon(SwingHelper.getImageIconFromResource("/money.png"));
                 SwingHelper.formatLabel(staticLabelCurrentBalance, "Balance", SwingHelper.LabelStyles.TITLE_BOLD);
-                frame.add(staticLabelCurrentBalance, "align left, cell 0 2, width 150");
+                frame.add(staticLabelCurrentBalance, "align left, cell 0 2" + standardMigSpecLabel);
 
                 // Current balance
                 labelCurrentBalance = new JLabel();
                 SwingHelper.formatLabel(labelCurrentBalance, "n/a", SwingHelper.LabelStyles.TITLE_NO_CONTENT);
                 labelCurrentBalance.setHorizontalAlignment(SwingConstants.RIGHT);
-                frame.add(labelCurrentBalance, "align right, cell 2 2, width 150, wrap");
+                frame.add(labelCurrentBalance, "align right, cell 2 2, wrap" + standardMigSpecLabel);
 
                 // Current position static
                 staticLabelCurrentPosition = new JLabel();
                 staticLabelCurrentPosition.setIcon(SwingHelper.getImageIconFromResource("/properties.png"));
                 SwingHelper.formatLabel(staticLabelCurrentPosition, "Position", SwingHelper.LabelStyles.TITLE_BOLD);
-                frame.add(staticLabelCurrentPosition, "align left, cell 0 4");
+                frame.add(staticLabelCurrentPosition, "align left, cell 0 4" + standardMigSpecLabel);
 
                 // Current position
                 labelCurrentPosition = new JLabel();
                 SwingHelper.formatLabel(labelCurrentPosition, "n/a", SwingHelper.LabelStyles.TITLE_NO_CONTENT);
                 labelCurrentPosition.setHorizontalAlignment(SwingConstants.RIGHT);
-                frame.add(labelCurrentPosition, "align right, cell 2 4, width 150, wrap");
+                frame.add(labelCurrentPosition, "align right, cell 2 4, wrap" + standardMigSpecLabel);
 
         }
 
@@ -130,28 +130,29 @@ public class ControlFrame implements ViewComponent {
                         frame.add(labelDie1, "cell 0 14, split 2, align left");
                         frame.add(labelDie2, "cell 1 14, align right");
 
+                        String standardMigSpecButton = ", grow";
                         // Mortgage
-                        buttonControlsMortgage = new ButtonProperties("Mortgage", "/mortgage.png", null, "cell 0 6, width 120, align left");
+                        buttonControlsMortgage = new ButtonProperties("Mortgage", "/mortgage.png", null, "cell 0 6, align left" + standardMigSpecButton);
                         frame.add(buttonControlsMortgage, buttonControlsMortgage.getMigLayoutSpec());
 
                         // Properties
-                        buttonControlsShowProperties = new ButtonProperties("Properties", "/properties.png", controlsPropertiesActionListener, "cell 2 6, width 120, align right");
+                        buttonControlsShowProperties = new ButtonProperties("Properties", "/properties.png", controlsPropertiesActionListener, "cell 2 6, align right" + standardMigSpecButton);
                         frame.add(buttonControlsShowProperties, buttonControlsShowProperties.getMigLayoutSpec());
 
                         // Improvements
-                        buttonControlsImprovements = new ButtonProperties("Improvements", "/improvements.png", controlsImprovementsActionListener, "cell 0 8, width 120, align left");
+                        buttonControlsImprovements = new ButtonProperties("Improvements", "/improvements.png", controlsImprovementsActionListener, "cell 0 8, align left" + standardMigSpecButton);
                         frame.add(buttonControlsImprovements, buttonControlsImprovements.getMigLayoutSpec());
 
                         // Statistics
-                        buttonControlsStatistics = new ButtonProperties("Statistics", "/statistics.png", null, "cell 2 8, width 120, align right");
+                        buttonControlsStatistics = new ButtonProperties("Statistics", "/statistics.png", null, "cell 2 8, align right" + standardMigSpecButton);
                         frame.add(buttonControlsStatistics, buttonControlsStatistics.getMigLayoutSpec());
 
                         // Trade
-                        buttonControlsTrade = new ButtonProperties("Trade", "/trade.png", null, "cell 0 10, width 120");
+                        buttonControlsTrade = new ButtonProperties("Trade", "/trade.png", null, "cell 0 10, align left" + standardMigSpecButton);
                         frame.add(buttonControlsTrade, buttonControlsTrade.getMigLayoutSpec());
 
                         // Forfeit
-                        buttonControlsForfeit = new ButtonProperties("Forfeit", "/surrender.png", null, "cell 2 10, width 120");
+                        buttonControlsForfeit = new ButtonProperties("Forfeit", "/surrender.png", null, "cell 2 10, align right" + standardMigSpecButton);
                         frame.add(buttonControlsForfeit, buttonControlsForfeit.getMigLayoutSpec());
 
                         for (Actions a : Actions.values()) {
@@ -172,10 +173,10 @@ public class ControlFrame implements ViewComponent {
                 Player currentPlayer = board.players.get(board.getCurrentPlayerID());
 
                 SwingHelper.formatLabel(labelCurrentPlayer, currentPlayer.getCustomName(), SwingHelper.LabelStyles.TITLE_REGULAR);
-                SwingHelper.formatLabel(labelCurrentBalance, String.valueOf(currentPlayer.getCurrentBalance()), SwingHelper.LabelStyles.TITLE_REGULAR);
+                SwingHelper.formatLabel(labelCurrentBalance, "$" + String.valueOf(currentPlayer.getCurrentBalance()), SwingHelper.LabelStyles.TITLE_REGULAR);
 
                 String currentSpaceFriendlyName = board.spaces.get(currentPlayer.getCurrentPosition()).getFriendlyName();
-                SwingHelper.formatLabel(labelCurrentBalance, currentSpaceFriendlyName, SwingHelper.LabelStyles.TITLE_REGULAR);
+                SwingHelper.formatLabel(labelCurrentPosition, currentSpaceFriendlyName, SwingHelper.LabelStyles.TITLE_REGULAR);
 
                 labelDie1.setIcon(DicePips.get(currentPlayer.getDie1()));
                 labelDie2.setIcon(DicePips.get(currentPlayer.getDie2()));
