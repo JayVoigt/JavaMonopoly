@@ -266,7 +266,7 @@ public class GameLogicController implements Serializable {
 		player.setHasRolledDice(true);
 		player.setActionLockedEndTurn(false);
 		player.setActionLockedRollDice(true);
-		player.setInitialJailTurn(true);
+		player.setInitialJailTurn(false);
 	}
 
 	/**
