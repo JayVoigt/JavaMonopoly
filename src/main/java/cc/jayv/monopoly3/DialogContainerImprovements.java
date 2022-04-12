@@ -25,6 +25,8 @@ public class DialogContainerImprovements extends DialogContainer {
         dialog = new JDialog();
         dialog.setLayout(new MigLayout());
 
+        infoArea = new JTextArea();
+
         buttonBuildHouse = new JButton("Build a house", SwingHelper.getImageIconFromResource("/house.png"));
         buttonSellHouse = new JButton("Sell a house", SwingHelper.getImageIconFromResource("/house.png"));
         buttonBuildHotel = new JButton("Build a hotel", SwingHelper.getImageIconFromResource("/hotel.png"));
@@ -35,6 +37,12 @@ public class DialogContainerImprovements extends DialogContainer {
     protected void arrangeComponents() {
         dialog.add(labelTitle, "cell 0 0, wrap");
 
+        dialog.add(infoArea, "cell 0 2, grow, span, wrap");
+
+        dialog.add(buttonBuildHouse, "cell 0 4, grow");
+        dialog.add(buttonBuildHotel, "cell 1 4, grow, wrap");
+        dialog.add(buttonSellHouse, "cell 0 5, grow");
+        dialog.add(buttonSellHotel, "cell 1 5, grow, wrap");
     }
 
     public void attachActionListeners(ArrayList<DynamicView.ButtonActionListener> listeners) {
@@ -126,6 +134,12 @@ public class DialogContainerImprovements extends DialogContainer {
         }
 
         return m;
+    }
+
+    public static void main(String args[]) {
+        DialogContainerImprovements dialogContainerImprovements = new DialogContainerImprovements();
+        JDialog dialog = dialogContainerImprovements.getDialog();
+        dialog.setVisible(true);
     }
 
 }

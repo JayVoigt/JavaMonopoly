@@ -36,6 +36,7 @@ public abstract class DialogContainer {
      */
     public JDialog getDialog() {
         dialog.pack();
+        dialog.setAlwaysOnTop(true);
         return dialog;
     }
 }

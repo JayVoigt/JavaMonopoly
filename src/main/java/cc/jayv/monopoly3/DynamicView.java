@@ -127,6 +127,7 @@ public class DynamicView implements Serializable  {
 		viewFrameControl.update(board);
 		viewFrameInformation.update(board);
 		updateGuiMandatoryDialogs();
+		updateGuiOptionalDialogs();
 	}
 
 	private void updateGuiMandatoryDialogs() {
@@ -149,6 +150,12 @@ public class DynamicView implements Serializable  {
 			if (jDialog.isVisible()) {
 				disableControlButtons();
 			}
+		}
+	}
+
+	private void updateGuiOptionalDialogs() {
+		if (dialogImprovements.isVisible()) {
+			dialogContainerImprovements.update(board, currentPlayer, currentSpaceButtonSelection, controller);
 		}
 	}
 
