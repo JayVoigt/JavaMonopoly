@@ -1,6 +1,8 @@
 package cc.jayv.monopoly3;
 
-public class GameEditorController {
+import java.io.Serializable;
+
+public class GameEditorController implements Serializable {
     Board board;
     GameLogicController controller;
     Player player;

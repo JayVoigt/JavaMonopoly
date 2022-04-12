@@ -3,7 +3,7 @@ package cc.jayv.monopoly3;
 import com.formdev.flatlaf.FlatLightLaf;
 import net.miginfocom.swing.MigLayout;
 
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -17,7 +17,7 @@ import java.util.logging.Logger;
  *
  * @author jay
  */
-public class DynamicView {
+public class DynamicView implements Serializable  {
 
 	// Core components - GUI
 	JFrame mainFrame;
@@ -31,8 +31,8 @@ public class DynamicView {
 	ArrayList<ButtonActionListener> buttonActionListeners;
 
 	// Core components - logic and control
-	final GameLogicSwitchboard switchboard;
-	final GameLogicController controller;
+	GameLogicSwitchboard switchboard;
+	GameLogicController controller;
 	Board board;
 	LogHelper logHelper;
 
@@ -63,8 +63,15 @@ public class DynamicView {
 	static int currentSpaceButtonSelection;
 	Player currentPlayer;
 
-	public DynamicView() {
+	// Objects required to be class-wide for serialization
+	int playerCount;
+	ArrayList<String> playerCustomNames;
 
+	JavaMonopoly jm;
+
+	public DynamicView(JavaMonopoly jm) {
+
+		this.jm = jm;
 		// Set to FlatLaf appearance
 		try {
 			UIManager.setLookAndFeel(new FlatLightLaf());
@@ -107,6 +114,7 @@ public class DynamicView {
 		spaceSelectionBorder = SwingHelper.createBorderStyleHighlight(java.awt.Color.MAGENTA, true);
 
 		initDialogs();
+
 	}
 
 	public void update() {
@@ -178,9 +186,21 @@ public class DynamicView {
 		menuFile.add(menuFileNewGame);
 
 		JMenuItem menuFileLoadGame = new JMenuItem("Load Game...", SwingHelper.getImageIconFromResource(("/floppygame.png")));
+		menuFileLoadGame.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				loadGame();
+			}
+		});
 		menuFile.add(menuFileLoadGame);
 
-		JMenuItem menuFileSaveGame = new JMenuItem("Load Game...", SwingHelper.getImageIconFromResource(("/floppygame.png")));
+		JMenuItem menuFileSaveGame = new JMenuItem("Save Game...", SwingHelper.getImageIconFromResource(("/floppygame.png")));
+		menuFileSaveGame.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				saveGame();
+			}
+		});
 		menuFile.add(menuFileSaveGame);
 
 		JMenuItem menuFileQuit = new JMenuItem("Quit", SwingHelper.getImageIconFromResource(("/red-x.png")));
@@ -325,32 +345,29 @@ public class DynamicView {
 
 	}
 
-	public class StartGameButtonActionListener implements ActionListener {
-
-		int playerCount;
-		ArrayList<String> playerCustomNames;
+	public class StartGameButtonActionListener implements ActionListener, Serializable {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			startGame(playerCount, playerCustomNames);
+			startGame(playerCount, playerCustomNames, false);
 
 			dialogStartGame.setVisible(false);
 		}
 
-		protected void setPlayerCount(int playerCount) {
-			this.playerCount = playerCount;
+		protected void setPlayerCount(int inputPlayerCount) {
+			playerCount = inputPlayerCount;
 		}
 
-		protected void setPlayerCustomNames(ArrayList<String> playerCustomNames) {
-			this.playerCustomNames = playerCustomNames;
+		protected void setPlayerCustomNames(ArrayList<String> inputPlayerCustomNames) {
+			playerCustomNames = inputPlayerCustomNames;
 		}
 
 	}
 
-	private void startGame(int playerCount, ArrayList<String> playerCustomNames) {
+	private void startGame(int playerCount, ArrayList<String> playerCustomNames, boolean loadFromFile) {
 
 		// If game is not currently running
-		if (!controller.getIsGameActive()) {
+		if (!controller.getIsGameActive() || loadFromFile) {
 			controller.setPlayersCount(playerCount);
 
 			// Set names
@@ -368,7 +385,7 @@ public class DynamicView {
 
 	}
 
-	public class ButtonActionListener implements ActionListener {
+	public class ButtonActionListener implements ActionListener, Serializable {
 
 		Actions action;
 		boolean needsPrompt;
@@ -438,8 +455,53 @@ public class DynamicView {
 		}
 	}
 
-	public static void main(String args[]) {
-		DynamicView localView = new DynamicView();
+//	public static void main(String args[]) {
+//		DynamicView localView = new DynamicView();
+//	}
+
+	private void saveGame() {
+		ArrayList<Object> gameData = new ArrayList<>();
+		gameData.add(board);
+		gameData.add(controller);
+		gameData.add(logHelper);
+		gameData.add(currentPlayer);
+		gameData.add(playerCount);
+		gameData.add(playerCustomNames);
+
+		try {
+			FileOutputStream f = new FileOutputStream("test.dat");
+			ObjectOutputStream o = new ObjectOutputStream(f);
+			o.writeObject(gameData);
+		} catch (IOException e) {
+			System.out.println("a");
+		}
+	}
+
+	private void loadGame() {
+		ArrayList<Object> gameData = new ArrayList<>();
+
+		try {
+			FileInputStream f = new FileInputStream("test.dat");
+			ObjectInputStream o = new ObjectInputStream(f);
+			gameData = (ArrayList<Object>) o.readObject();
+
+			board = (Board) gameData.get(0);
+			controller = (GameLogicController) gameData.get(1);
+			logHelper = (LogHelper) gameData.get(2);
+			currentPlayer = (Player) gameData.get(3);
+			playerCount = (int) gameData.get(4);
+			playerCustomNames = (ArrayList<String>) gameData.get(5);
+
+			logHelper.appendToGameLog("Loaded from file.");
+
+			startGame(playerCount, playerCustomNames, true);
+			update();
+
+		} catch (IOException e) {
+			System.out.println("b");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

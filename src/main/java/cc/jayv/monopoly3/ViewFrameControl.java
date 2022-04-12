@@ -3,9 +3,10 @@ package cc.jayv.monopoly3;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class ViewFrameControl implements ViewComponent {
+public class ViewFrameControl implements ViewComponent, Serializable {
         JInternalFrame frame;
 
         TemplateDialogButtonProperties buttonEndTurn;

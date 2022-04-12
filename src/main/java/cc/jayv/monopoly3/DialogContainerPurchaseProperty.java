@@ -4,9 +4,10 @@ import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class DialogContainerPurchaseProperty implements ViewComponent {
+public class DialogContainerPurchaseProperty implements ViewComponent, Serializable {
 
     JDialog dialog;
 

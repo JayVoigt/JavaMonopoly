@@ -1,7 +1,13 @@
 package cc.jayv.monopoly3;
 
 
-import java.io.IOException;
+import com.jcraft.jsch.IO;
+
+import javax.accessibility.Accessible;
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -13,15 +19,36 @@ import java.util.logging.Logger;
  *
  * @author jay
  */
-public class JavaMonopoly {
+public class JavaMonopoly implements Serializable{
 
 	DynamicView dynamicView;
 
 	public JavaMonopoly() {
-		dynamicView = new DynamicView();
+		dynamicView = new DynamicView(this);
 	}
 
 	public static void main(String args[]) throws IOException {
 		new JavaMonopoly();
 	}
+
+	public void loadFromFile() {
+		 try {
+			 FileInputStream fileInputStream = new FileInputStream("testFile.dat");
+			 ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+			 dynamicView = (DynamicView) objectInputStream.readObject();
+		 } catch (IOException | ClassNotFoundException e) {
+			 e.printStackTrace();
+		 }
+	}
+
+	public void saveToFile() {
+		 try {
+			 FileOutputStream fileOutputStream = new FileOutputStream("testFile.dat");
+			 ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+			 objectOutputStream.writeObject(dynamicView);
+		 } catch (IOException e) {
+			 e.printStackTrace();
+		 }
+	}
+
 }

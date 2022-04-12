@@ -5,9 +5,10 @@ import net.miginfocom.swing.MigLayout;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class DialogContainerStartGame {
+public class DialogContainerStartGame implements Serializable {
     int playerCount;
     JLabel staticLabelPlayerCount;
     JComboBox<Integer> comboBoxPlayerCount;

@@ -3,8 +3,9 @@ package cc.jayv.monopoly3;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
+import java.io.Serializable;
 
-public class DialogContainerAbout {
+public class DialogContainerAbout implements Serializable {
     JDialog dialog;
 
     public DialogContainerAbout() {

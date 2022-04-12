@@ -2,8 +2,9 @@ package cc.jayv.monopoly3;
 
 import javax.swing.*;
 import java.awt.event.ActionListener;
+import java.io.Serializable;
 
-public class TemplateDialogButtonProperties extends JButton {
+public class TemplateDialogButtonProperties extends JButton implements Serializable {
     String customMigLayoutSpec;
 
     /**

@@ -4,8 +4,9 @@ import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.Serializable;
 
-public class ViewAreaSpaceSelection implements ViewComponent {
+public class ViewAreaSpaceSelection implements ViewComponent, Serializable {
 
     JPanel selectionInfoArea;
 

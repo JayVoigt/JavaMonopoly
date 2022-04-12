@@ -4,6 +4,7 @@
  */
 package cc.jayv.monopoly3;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -12,7 +13,7 @@ import java.util.Date;
  *
  * @author jay
  */
-public class LogHelper {
+public class LogHelper implements Serializable {
 
 	ArrayList<String> gameLogContents,
 		gameLogContentsFiltered,

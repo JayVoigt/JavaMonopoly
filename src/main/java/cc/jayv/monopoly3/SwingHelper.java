@@ -7,12 +7,13 @@ package cc.jayv.monopoly3;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
+import java.io.Serializable;
 
 /**
  *
  * @author jay
  */
-public class SwingHelper {
+public class SwingHelper implements Serializable {
 
 	JInternalFrame frameBoard;
 	java.awt.Color highlightYellowShade;

@@ -2,9 +2,10 @@ package cc.jayv.monopoly3;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.Serializable;
 import java.util.Objects;
 
-public class GameLogicSwitchboard {
+public class GameLogicSwitchboard implements Serializable {
 
     GameLogicController c;
     Object origin;

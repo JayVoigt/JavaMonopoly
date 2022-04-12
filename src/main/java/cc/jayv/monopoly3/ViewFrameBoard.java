@@ -4,13 +4,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Objects;
 
 /**
  *
  */
-public class ViewFrameBoard {
+public class ViewFrameBoard implements Serializable {
 
     JInternalFrame frame;
 

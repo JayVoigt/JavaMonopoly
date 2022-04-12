@@ -1,6 +1,7 @@
 package cc.jayv.monopoly3;
 
 import java.awt.Font;
+import java.io.Serializable;
 import java.util.ArrayList;
 import javax.swing.*;
 
@@ -16,7 +17,7 @@ import net.miginfocom.swing.MigLayout;
  *
  * @author jay
  */
-public class TemplateDialogGenerator {
+public class TemplateDialogGenerator implements Serializable {
 
 	String dialogTitle;
 	Icon dialogIcon;
