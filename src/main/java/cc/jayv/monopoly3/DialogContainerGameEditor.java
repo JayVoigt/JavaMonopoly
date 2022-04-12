@@ -34,7 +34,7 @@ public class DialogContainerGameEditor extends DialogContainer implements Serial
 
         // Title label
         initLabelTitle("Game Editor", "/matrix-anim.gif");
-        //dialog.add(labelTitle, "cell 0 0");
+        dialog.add(labelTitle, "cell 0 0");
 
         staticLabelPlayerSelection = new JLabel("Select player:", SwingHelper.getImageIconFromResource("/player-generic.png"), SwingConstants.LEFT);
         dialog.add(staticLabelPlayerSelection, "cell 0 1");

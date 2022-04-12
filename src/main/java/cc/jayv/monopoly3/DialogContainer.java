@@ -35,6 +35,7 @@ public abstract class DialogContainer {
      * @return The JDialog within the container.
      */
     public JDialog getDialog() {
+        dialog.pack();
         return dialog;
     }
 }

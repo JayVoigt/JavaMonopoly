@@ -28,4 +28,8 @@ public class DialogContainerJail extends DialogContainer {
         }
     }
 
+    public void update(Board board, Player player) {
+
+    }
+
 }
