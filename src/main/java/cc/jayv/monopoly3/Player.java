@@ -1,6 +1,7 @@
 package cc.jayv.monopoly3;
 
 
+import javax.swing.*;
 import java.io.Serializable;
 import java.math.*;
 
@@ -20,6 +21,7 @@ public class Player implements Serializable {
 	// customName allows players to use a name other than the default
 	// "Player n".
 	String customName;
+	ImageIcon preferredIcon;
 
 	int currentBalance,
 		currentPosition;
@@ -79,6 +81,7 @@ public class Player implements Serializable {
 	Player() {
 		playerID = 0;
 		customName = "";
+		preferredIcon = SwingHelper.getImageIconFromResource("/player-generic.png");
 
 		// The default balance for players is $1500.
 		currentBalance = 1500;
@@ -389,5 +392,13 @@ public class Player implements Serializable {
 
 	public int getNetValue() {
 		return netValue;
+	}
+
+	public ImageIcon getPreferredIcon() {
+		return preferredIcon;
+	}
+
+	public void setPreferredIcon(ImageIcon preferredIcon) {
+		this.preferredIcon = preferredIcon;
 	}
 }	// end class

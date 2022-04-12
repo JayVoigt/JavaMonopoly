@@ -99,8 +99,8 @@ public class DialogContainerMortgage extends DialogContainer {
                 else {
                     status = MortgageEligibilityStatus.CANT_MORTGAGE_ALREADY_MORTGAGED;
                 }
-                mortgagePayout = String.valueOf(p.getMortgageValue());
-                unmortgageCost = String.valueOf(p.getUnmortgageCost());
+                mortgagePayout = "$" + p.getMortgageValue();
+                unmortgageCost = "$" + p.getUnmortgageCost();
             }
             else {
                 status = MortgageEligibilityStatus.CANT_MORTGAGE_NOT_OWNED;

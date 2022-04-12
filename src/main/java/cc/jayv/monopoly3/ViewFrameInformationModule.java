@@ -96,14 +96,14 @@ public class ViewFrameInformationModule {
         String iconMigSpec = ", width 18, height 18";
         panelPlayerStatus.add(labelStatusTurn, "cell 0 0, split 4" + iconMigSpec);
         panelPlayerStatus.add(labelStatusJailed, "cell 1 0" + iconMigSpec);
-        panelPlayerStatus.add(labelStatusBankrupt, "cell 2 0, " + iconMigSpec);
+        panelPlayerStatus.add(labelStatusBankrupt, "cell 2 0, wrap" + iconMigSpec);
 
-        panelPlayerStatus.add(labelName, "cell 3 0, skip");
-        panelPlayerStatus.add(staticLabelBalance, "cell 0 1, split 2");
-        panelPlayerStatus.add(labelBalance, "cell 1 1, skip");
+        panelPlayerStatus.add(labelName, "cell 0 1");
+        panelPlayerStatus.add(staticLabelBalance, "cell 0 2, split 2");
+        panelPlayerStatus.add(labelBalance, "cell 1 2, skip");
 
-        panelPlayerStatus.add(staticLabelPosition, "cell 0 2, split 2");
-        panelPlayerStatus.add(labelPosition, "cell 1 2, skip");
+        panelPlayerStatus.add(staticLabelPosition, "cell 0 3, split 2");
+        panelPlayerStatus.add(labelPosition, "cell 1 3, skip");
     }
 
     private void arrangeComponentsPlayerAssets() {
@@ -141,6 +141,7 @@ public class ViewFrameInformationModule {
     public void update() {
         if (player.getIsActive()) {
             labelName.setText(player.getCustomName());
+            labelName.setIcon(player.getPreferredIcon());
 
             labelBalance.setText("$" + player.getCurrentBalance());
 
