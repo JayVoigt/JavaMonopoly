@@ -380,4 +380,5 @@ public class Player implements Serializable {
 	public void unjailPlayer() {
 		consecutiveTurnsJailed = 0;
 	}
+
 }	// end class

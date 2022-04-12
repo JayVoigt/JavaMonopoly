@@ -133,10 +133,13 @@ public class DynamicView implements Serializable  {
 	private void updateGuiMandatoryDialogs() {
 
 		// Jail
-		if (currentPlayer.getRequiredDecisionPostedBail()) {
-			dialogContainerJail.update(board, currentPlayer);
+		if (!currentPlayer.getInitialJailTurn() && currentPlayer.getIsJailed()) {
+			 dialogContainerJail.update(board, currentPlayer);
+			 showDialog(dialogJail, true);
 		}
-		showDialog(dialogJail, currentPlayer.getIsJailed());
+		else {
+			showDialog(dialogJail, false);
+		}
 
 		// Purchase decision
 		if (currentPlayer.getRequiredDecisionPropertyAction()) {
@@ -315,14 +318,17 @@ public class DynamicView implements Serializable  {
 		ArrayList<TemplateDialogButtonProperties> templateDialogButtonPropertiesList = new ArrayList<>();
 
 		// Jail - using template
-		templateDialog = new TemplateDialogGenerator("Jail", "/jail.png");
-		templateDialogButtonPropertiesList.add(new TemplateDialogButtonProperties("Post bail ($50)", "/money.png", new ButtonActionListener(Actions.JAIL_POSTBAIL), "cell 0 2, width 150"));
-		templateDialogButtonPropertiesList.add(new TemplateDialogButtonProperties("Roll for doubles", "/dice-icon.png", new ButtonActionListener(Actions.JAIL_ROLLDOUBLES), "cell 1 2, width 150"));
-		templateDialogButtonPropertiesList.add(new TemplateDialogButtonProperties("Use Get Out of Jail Free Card", "/goojfc.png", new ButtonActionListener(Actions.JAIL_USEGOOJFC), "cell 0 3, span 2, width 308"));
-		dialogJail = templateDialog.createDialogUserPrompt(templateDialogButtonPropertiesList, "You may post bail for $50, attempt to roll for doubles up to a maximum of 3 times, or use a Get Out of Jail Free Card.");
-		dialogJail.pack();
-		templateDialogButtonPropertiesList.clear();
-		templateDialogButtonPropertiesList.trimToSize();
+//		templateDialog = new TemplateDialogGenerator("Jail", "/jail.png");
+//		templateDialogButtonPropertiesList.add(new TemplateDialogButtonProperties("Post bail ($50)", "/money.png", new ButtonActionListener(Actions.JAIL_POSTBAIL), "cell 0 2, width 150"));
+//		templateDialogButtonPropertiesList.add(new TemplateDialogButtonProperties("Roll for doubles", "/dice-icon.png", new ButtonActionListener(Actions.JAIL_ROLLDOUBLES), "cell 1 2, width 150"));
+//		templateDialogButtonPropertiesList.add(new TemplateDialogButtonProperties("Use Get Out of Jail Free Card", "/goojfc.png", new ButtonActionListener(Actions.JAIL_USEGOOJFC), "cell 0 3, span 2, width 308"));
+//		dialogJail = templateDialog.createDialogUserPrompt(templateDialogButtonPropertiesList, "You may post bail for $50, attempt to roll for doubles up to a maximum of 3 times, or use a Get Out of Jail Free Card.");
+//		dialogJail.pack();
+//		templateDialogButtonPropertiesList.clear();
+//		templateDialogButtonPropertiesList.trimToSize();
+
+		dialogContainerJail = new DialogContainerJail();
+		dialogJail = dialogContainerJail.getDialog();
 
 		// Purchase property
 		dialogContainerPurchaseProperty = new DialogContainerPurchaseProperty();
