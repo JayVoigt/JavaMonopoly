@@ -40,6 +40,8 @@ public class DynamicView implements Serializable  {
 	DialogContainerPurchaseProperty dialogContainerPurchaseProperty;
 	DialogContainerGameEditor dialogContainerGameEditor;
 	DialogContainerStartGame dialogContainerStartGame;
+	DialogContainerImprovements dialogContainerImprovements;
+	DialogContainerJail dialogContainerJail;
 
 	GameEditorController gameEditorController;
 
@@ -98,6 +100,7 @@ public class DynamicView implements Serializable  {
 		switchboard = new GameLogicSwitchboard(controller);
 		gameEditorController = new GameEditorController(board, controller, logHelper);
 
+
 		initButtonActionListeners();
 		initGUIComponents();
 		initMenuBar();
@@ -124,14 +127,21 @@ public class DynamicView implements Serializable  {
 		viewFrameControl.update(board);
 		viewFrameInformation.update(board);
 		updateGuiMandatoryDialogs();
+		updateGuiOptionalDialogs();
 	}
 
 	private void updateGuiMandatoryDialogs() {
 
 		// Jail
+		if (currentPlayer.getRequiredDecisionPostedBail()) {
+			dialogContainerJail.update(board, currentPlayer);
+		}
 		showDialog(dialogJail, currentPlayer.getIsJailed());
 
-		dialogContainerPurchaseProperty.update(board, currentPlayer.getCurrentPosition());
+		// Purchase decision
+		if (currentPlayer.getRequiredDecisionPropertyAction()) {
+			dialogContainerPurchaseProperty.update(board, currentPlayer.getCurrentPosition());
+		}
 		showDialog(dialogPurchaseProperty, currentPlayer.getRequiredDecisionPropertyAction());
 
 		// Disable control buttons when mandatory action dialogs visible
@@ -140,6 +150,12 @@ public class DynamicView implements Serializable  {
 			if (jDialog.isVisible()) {
 				disableControlButtons();
 			}
+		}
+	}
+
+	private void updateGuiOptionalDialogs() {
+		if (dialogImprovements.isVisible()) {
+			dialogContainerImprovements.update(board, currentPlayer, currentSpaceButtonSelection, controller);
 		}
 	}
 
@@ -314,14 +330,18 @@ public class DynamicView implements Serializable  {
 		dialogPurchaseProperty = dialogContainerPurchaseProperty.getDialog();
 
 		// Improvements - using template
-		templateDialog = new TemplateDialogGenerator("Improvements", "/improvements.png");
-		templateDialogButtonPropertiesList.add(new TemplateDialogButtonProperties("Build a house", "/house.png", new ButtonActionListener(Actions.IMPROVEMENTS_BUILD_HOUSE), "width 150"));
-		templateDialogButtonPropertiesList.add(new TemplateDialogButtonProperties("Sell a house", "/house.png", new ButtonActionListener(Actions.IMPROVEMENTS_SELL_HOUSE), "wrap, width 150"));
-		templateDialogButtonPropertiesList.add(new TemplateDialogButtonProperties("Build a hotel", "/hotel.png", new ButtonActionListener(Actions.IMPROVEMENTS_BUILD_HOTEL), "width 150"));
-		templateDialogButtonPropertiesList.add(new TemplateDialogButtonProperties("Sell a hotel", "/hotel.png", new ButtonActionListener(Actions.IMPROVEMENTS_SELL_HOTEL), "width 150"));
-		dialogImprovements = templateDialog.createDialogUserPrompt(templateDialogButtonPropertiesList, "You do not own all properties in this set.");
-		templateDialogButtonPropertiesList.clear();
-		templateDialogButtonPropertiesList.trimToSize();
+//		templateDialog = new TemplateDialogGenerator("Improvements", "/improvements.png");
+//		templateDialogButtonPropertiesList.add(new TemplateDialogButtonProperties("Build a house", "/house.png", new ButtonActionListener(Actions.IMPROVEMENTS_BUILD_HOUSE), "width 150"));
+//		templateDialogButtonPropertiesList.add(new TemplateDialogButtonProperties("Sell a house", "/house.png", new ButtonActionListener(Actions.IMPROVEMENTS_SELL_HOUSE), "wrap, width 150"));
+//		templateDialogButtonPropertiesList.add(new TemplateDialogButtonProperties("Build a hotel", "/hotel.png", new ButtonActionListener(Actions.IMPROVEMENTS_BUILD_HOTEL), "width 150"));
+//		templateDialogButtonPropertiesList.add(new TemplateDialogButtonProperties("Sell a hotel", "/hotel.png", new ButtonActionListener(Actions.IMPROVEMENTS_SELL_HOTEL), "width 150"));
+//		dialogImprovements = templateDialog.createDialogUserPrompt(templateDialogButtonPropertiesList, "You do not own all properties in this set.");
+//		templateDialogButtonPropertiesList.clear();
+//		templateDialogButtonPropertiesList.trimToSize();
+
+		dialogContainerImprovements = new DialogContainerImprovements();
+		dialogContainerImprovements.attachActionListeners(buttonActionListeners);
+		dialogImprovements = dialogContainerImprovements.getDialog();
 
 		// About
 		dialogAbout = new DialogContainerAbout().getDialog();

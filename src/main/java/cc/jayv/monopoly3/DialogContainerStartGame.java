@@ -9,11 +9,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class DialogContainerStartGame extends DialogContainer implements Serializable {
+
     int playerCount;
     JLabel staticLabelPlayerCount;
     JComboBox<Integer> comboBoxPlayerCount;
-
-    JLabel titleLabel;
 
     ArrayList<String> playerCustomNames;
     JTextField playerCustomName1;
@@ -41,9 +40,7 @@ public class DialogContainerStartGame extends DialogContainer implements Seriali
         dialog.setLayout(new MigLayout());
 
         // Title
-        titleLabel = new JLabel();
-        SwingHelper.formatLabel(titleLabel, "New Game", SwingHelper.LabelStyles.TITLE_BOLD);
-        titleLabel.setIcon(SwingHelper.getImageIconFromResource("/board.png"));
+        initLabelTitle("New Game", "/board.png");
 
         // Label and combo box for player counts
         staticLabelPlayerCount = new JLabel("Players:");
@@ -118,7 +115,7 @@ public class DialogContainerStartGame extends DialogContainer implements Seriali
 
     @Override
     protected void arrangeComponents() {
-        dialog.add(titleLabel, "cell 0 0, wrap");
+        dialog.add(labelTitle, "cell 0 0, wrap");
 
         dialog.add(staticLabelPlayerCount, "cell 0 2");
         dialog.add(comboBoxPlayerCount, "cell 1 2, wrap");
@@ -145,10 +142,6 @@ public class DialogContainerStartGame extends DialogContainer implements Seriali
         switch (action) {
             case NEWGAME_STARTGAME -> buttonStartGame.setEnabled(isEnabled);
         }
-    }
-
-    public JDialog getDialog() {
-        return dialog;
     }
 
     public void attachStartGameActionListener(DynamicView.StartGameButtonActionListener listener) {
@@ -199,4 +192,5 @@ public class DialogContainerStartGame extends DialogContainer implements Seriali
 
         dialog.setVisible(true);
     }
+
 }

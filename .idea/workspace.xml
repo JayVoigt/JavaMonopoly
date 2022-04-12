@@ -4,12 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fe395cf4-00c4-4bef-93b5-8a1f264350fd" name="Changes" comment="moved MainWindow to legacy folder">
+    <list default="true" id="fe395cf4-00c4-4bef-93b5-8a1f264350fd" name="Changes" comment="improved dialog containers; updated improvements dialog">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DialogContainerGameEditor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DialogContainerGameEditor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DialogContainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DialogContainer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DialogContainerImprovements.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DialogContainerImprovements.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DynamicView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DynamicView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/GameEditorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/GameEditorController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/JavaMonopoly.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/JavaMonopoly.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,8 +24,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Enum" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -35,6 +34,11 @@
     <option name="NEW_BASE" value="master" />
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitSEFilterConfiguration">
@@ -46,6 +50,7 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="jar:///Library/Java/JavaVirtualMachines/jdk-17.0.2.jdk/Contents/Home/lib/src.zip!/java.base/java/io/NotSerializableException.java" root0="SKIP_INSPECTION" />
     <setting file="jar:///Library/Java/JavaVirtualMachines/jdk-17.0.2.jdk/Contents/Home/lib/src.zip!/java.base/java/util/Objects.java" root0="SKIP_INSPECTION" />
     <setting file="jar:///Library/Java/JavaVirtualMachines/jdk-17.0.2.jdk/Contents/Home/lib/src.zip!/java.desktop/javax/swing/ImageIcon.java" root0="SKIP_INSPECTION" />
     <setting file="jar:///Library/Java/JavaVirtualMachines/jdk-17.0.2.jdk/Contents/Home/lib/src.zip!/java.desktop/javax/swing/JLabel.java" root0="SKIP_INSPECTION" />
@@ -84,9 +89,9 @@
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.3494253" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="reference.settings.project.statistic.project.settings" />
   </component>
-  <component name="RunManager" selected="Application.DynamicView">
+  <component name="RunManager" selected="Application.JavaMonopoly">
     <configuration name="DialogContainerGameEditor" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="cc.jayv.monopoly3.DialogContainerGameEditor" />
       <module name="Monoproto3" />
@@ -211,19 +216,19 @@
     <list>
       <item itemvalue="Application.DynamicView" />
       <item itemvalue="Application.JavaMonopoly" />
-      <item itemvalue="JAR Application.Run Jar" />
-      <item itemvalue="Maven.Clean" />
-      <item itemvalue="Maven.Build" />
       <item itemvalue="Application.DialogContainerPurchaseProperty" />
       <item itemvalue="Application.DialogContainerGameEditor" />
       <item itemvalue="Application.DialogContainerStartGame" />
+      <item itemvalue="JAR Application.Run Jar" />
+      <item itemvalue="Maven.Clean" />
+      <item itemvalue="Maven.Build" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.JavaMonopoly" />
         <item itemvalue="Application.DynamicView" />
         <item itemvalue="Application.DialogContainerPurchaseProperty" />
         <item itemvalue="Application.DialogContainerGameEditor" />
-        <item itemvalue="Application.JavaMonopoly" />
         <item itemvalue="Application.DialogContainerStartGame" />
       </list>
     </recent_temporary>
@@ -236,41 +241,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1648738215419</updated>
-    </task>
-    <task id="LOCAL-00005" summary="updated icon methods for dialog creation">
-      <created>1648918935038</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1648918935038</updated>
-    </task>
-    <task id="LOCAL-00006" summary="updated dynamic dialog creation">
-      <created>1648919621502</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1648919621502</updated>
-    </task>
-    <task id="LOCAL-00007" summary="updated dynamic dialog creation">
-      <created>1648958911621</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1648958911621</updated>
-    </task>
-    <task id="LOCAL-00008" summary="updated dynamic view generation">
-      <created>1649024918171</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1649024918171</updated>
-    </task>
-    <task id="LOCAL-00009" summary="updated dynamic view generation">
-      <created>1649028973680</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1649028973680</updated>
     </task>
     <task id="LOCAL-00010" summary="updated dynamic view generation">
       <created>1649030429091</created>
@@ -580,7 +550,42 @@
       <option name="project" value="LOCAL" />
       <updated>1649719892522</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL-00054" summary="updated game editor">
+      <created>1649720940881</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1649720940881</updated>
+    </task>
+    <task id="LOCAL-00055" summary="added framework for serialized objects; saving/loading game state">
+      <created>1649732111092</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1649732111092</updated>
+    </task>
+    <task id="LOCAL-00056" summary="added abstract class DialogContainer, dialog containers now extend it">
+      <created>1649766484493</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1649766484493</updated>
+    </task>
+    <task id="LOCAL-00057" summary="null dialog references mostly fixed">
+      <created>1649769628814</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1649769628814</updated>
+    </task>
+    <task id="LOCAL-00058" summary="improved dialog containers; updated improvements dialog">
+      <created>1649772121720</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1649772121720</updated>
+    </task>
+    <option name="localTasksCounter" value="59" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -608,10 +613,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="improved appearance for board view" />
-    <MESSAGE value="updated space selection area" />
-    <MESSAGE value="added about dialog" />
-    <MESSAGE value="updated label generation; fixed null pointers for labels" />
     <MESSAGE value="remaining labels now update properly; added methods to Property for querying rent for particular state" />
     <MESSAGE value="updated space selection GUI" />
     <MESSAGE value="added start game dialog" />
@@ -626,14 +627,18 @@
     <MESSAGE value="added very basic player indicator placement code" />
     <MESSAGE value="general checkpoint" />
     <MESSAGE value="improved player indicator placement logic" />
-    <MESSAGE value="updated game editor" />
     <MESSAGE value="improved control pane appearance and behavior; updated game editor" />
     <MESSAGE value="added improved property purchase dialog" />
     <MESSAGE value="updated PropertyPurchaseDialog" />
     <MESSAGE value="updated PropertyPurchaseDialog; cleaned up code slightly" />
     <MESSAGE value="renamed files for greater consistency" />
     <MESSAGE value="moved MainWindow to legacy folder" />
-    <option name="LAST_COMMIT_MESSAGE" value="moved MainWindow to legacy folder" />
+    <MESSAGE value="updated game editor" />
+    <MESSAGE value="added framework for serialized objects; saving/loading game state" />
+    <MESSAGE value="added abstract class DialogContainer, dialog containers now extend it" />
+    <MESSAGE value="null dialog references mostly fixed" />
+    <MESSAGE value="improved dialog containers; updated improvements dialog" />
+    <option name="LAST_COMMIT_MESSAGE" value="improved dialog containers; updated improvements dialog" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -647,7 +652,19 @@
           <properties class="java.lang.StackOverflowError" package="java.lang" />
           <option name="timeStamp" value="13" />
         </breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.io.NotSerializableException" package="java.io" />
+          <option name="timeStamp" value="24" />
+        </breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.NullPointerException" package="java.lang" />
+          <option name="timeStamp" value="30" />
+        </breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
