@@ -180,7 +180,7 @@ public class DynamicView implements Serializable  {
 		viewFrameBoard = new ViewFrameBoard(logHelper, spaceButtonActionHandlers);
 		spaceButtons = viewFrameBoard.getSpaceButtonArrayList();
 		viewFrameControl = new ViewFrameControl();
-		viewFrameInformation = new ViewFrameInformation();
+		viewFrameInformation = new ViewFrameInformation(board);
 	}
 
 	private void initMenuBar() {

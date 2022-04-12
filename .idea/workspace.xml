@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fe395cf4-00c4-4bef-93b5-8a1f264350fd" name="Changes" comment="improved dialog containers; updated improvements dialog">
+    <list default="true" id="fe395cf4-00c4-4bef-93b5-8a1f264350fd" name="Changes" comment="added ViewFrameInformationModule; general minor updates">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DialogContainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DialogContainer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DialogContainerImprovements.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DialogContainerImprovements.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DynamicView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DynamicView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/ViewFrameInformation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/ViewFrameInformation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/ViewFrameInformationModule.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/ViewFrameInformationModule.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -118,19 +118,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DialogContainerStartGame" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="cc.jayv.monopoly3.DialogContainerStartGame" />
-      <module name="Monoproto3" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="cc.jayv.monopoly3.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="DynamicView" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="cc.jayv.monopoly3.DynamicView" />
       <module name="Monoproto3" />
@@ -146,6 +133,19 @@
     </configuration>
     <configuration name="JavaMonopoly" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="cc.jayv.monopoly3.JavaMonopoly" />
+      <module name="Monoproto3" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="cc.jayv.monopoly3.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ViewFrameInformationModule" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="cc.jayv.monopoly3.ViewFrameInformationModule" />
       <module name="Monoproto3" />
       <extension name="coverage">
         <pattern>
@@ -218,20 +218,23 @@
       <item itemvalue="Application.JavaMonopoly" />
       <item itemvalue="Application.DialogContainerPurchaseProperty" />
       <item itemvalue="Application.DialogContainerGameEditor" />
-      <item itemvalue="Application.DialogContainerStartGame" />
       <item itemvalue="JAR Application.Run Jar" />
       <item itemvalue="Maven.Clean" />
       <item itemvalue="Maven.Build" />
+      <item itemvalue="Application.ViewFrameInformationModule" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.JavaMonopoly" />
+        <item itemvalue="Application.ViewFrameInformationModule" />
         <item itemvalue="Application.DynamicView" />
         <item itemvalue="Application.DialogContainerPurchaseProperty" />
         <item itemvalue="Application.DialogContainerGameEditor" />
-        <item itemvalue="Application.DialogContainerStartGame" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="SliceToolwindowSettings">
+    <option name="autoScroll" value="true" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -241,13 +244,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1648738215419</updated>
-    </task>
-    <task id="LOCAL-00010" summary="updated dynamic view generation">
-      <created>1649030429091</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1649030429091</updated>
     </task>
     <task id="LOCAL-00011" summary="updated dynamic view generation">
       <created>1649071012604</created>
@@ -585,7 +581,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649772121720</updated>
     </task>
-    <option name="localTasksCounter" value="59" />
+    <task id="LOCAL-00059" summary="added ViewFrameInformationModule; general minor updates">
+      <created>1649778525353</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1649778525353</updated>
+    </task>
+    <option name="localTasksCounter" value="60" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -613,7 +616,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="remaining labels now update properly; added methods to Property for querying rent for particular state" />
     <MESSAGE value="updated space selection GUI" />
     <MESSAGE value="added start game dialog" />
     <MESSAGE value="improved start game dialog" />
@@ -638,7 +640,8 @@
     <MESSAGE value="added abstract class DialogContainer, dialog containers now extend it" />
     <MESSAGE value="null dialog references mostly fixed" />
     <MESSAGE value="improved dialog containers; updated improvements dialog" />
-    <option name="LAST_COMMIT_MESSAGE" value="improved dialog containers; updated improvements dialog" />
+    <MESSAGE value="added ViewFrameInformationModule; general minor updates" />
+    <option name="LAST_COMMIT_MESSAGE" value="added ViewFrameInformationModule; general minor updates" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -662,6 +665,11 @@
         </breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="cc.jayv.monopoly3.Board" memberName="players" />
+      </pinned-members>
+    </pin-to-top-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -4,81 +4,61 @@ import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
 import java.io.Serializable;
-import java.util.ArrayList;
 
 public class ViewFrameInformation implements ViewComponent, Serializable {
 
     JInternalFrame frame;
-    JLabel labelPlayer1;
-    JLabel labelPlayer2;
-    JLabel labelPlayer3;
-    JLabel labelPlayer4;
+    ViewFrameInformationModule modulePlayer1;
+    ViewFrameInformationModule modulePlayer2;
+    ViewFrameInformationModule modulePlayer3;
+    ViewFrameInformationModule modulePlayer4;
 
-    ArrayList<JLabel> playerLabels;
+    JPanel panelPlayer1;
+    JPanel panelPlayer2;
+    JPanel panelPlayer3;
+    JPanel panelPlayer4;
 
-    public ViewFrameInformation() {
+    Board board;
+    public ViewFrameInformation(Board board) {
+        this.board = board;
+
+        initComponents();
+        arrangeComponents();
+    }
+
+    private void initComponents() {
         frame = new JInternalFrame();
-        frame.setLayout(new MigLayout());
+        frame.setLayout(new MigLayout("ins 0, gap 0"));
         frame.setSize(308, 600);
+        frame.setVisible(true);
         frame.setTitle("Information");
         frame.setFrameIcon(SwingHelper.getImageIconFromResource("/i.png"));
-        frame.setVisible(true);
 
-        playerLabels = new ArrayList<>();
-        initLabels();
+        modulePlayer1 = new ViewFrameInformationModule(board, board.players.get(1));
+        modulePlayer2 = new ViewFrameInformationModule(board, board.players.get(2));
+        modulePlayer3 = new ViewFrameInformationModule(board, board.players.get(3));
+        modulePlayer4 = new ViewFrameInformationModule(board, board.players.get(4));
+
+        panelPlayer1 = modulePlayer1.getCompositePanel();
+        panelPlayer2 = modulePlayer2.getCompositePanel();
+        panelPlayer3 = modulePlayer3.getCompositePanel();
+        panelPlayer4 = modulePlayer4.getCompositePanel();
     }
 
-    private void initLabels() {
-        labelPlayer1 = new JLabel();
-        labelPlayer2 = new JLabel();
-        labelPlayer3 = new JLabel();
-        labelPlayer4 = new JLabel();
-
-        playerLabels.add(labelPlayer1);
-        playerLabels.add(labelPlayer2);
-        playerLabels.add(labelPlayer3);
-        playerLabels.add(labelPlayer4);
-
-        for (JLabel l : playerLabels) {
-            SwingHelper.formatLabel(l, "Player " + (1 + playerLabels.indexOf(l)), SwingHelper.LabelStyles.NO_CONTENT);
-        }
-    }
-
-    private class playerOverview {
-        JPanel panel;
-
-        JLabel labelPlayerName;
-        JLabel labelStatus;
-        Player player;
-
-        public playerOverview(Player player) {
-            this.player = player;
-
-        }
-
-        private void initComponents() {
-            // Init panel
-            panel = new JPanel();
-            panel.setLayout(new MigLayout());
-
-            // Init labels
-            labelPlayerName = new JLabel(player.getCustomName());
-            labelStatus = new JLabel();
-
-        }
-
-        private void arrangeComponents() {
-            panel.setSize(308, 200);
-            panel.add(labelPlayerName, "cell 0 0");
-        }
-
-        public void update(Board board) {
-
-        }
+    private void arrangeComponents() {
+        String panelMigSpec = ", width 400, height 150";
+        frame.add(panelPlayer1, "cell 0 0" + panelMigSpec);
+        frame.add(panelPlayer2, "cell 0 1" + panelMigSpec);
+        frame.add(panelPlayer3, "cell 0 2" + panelMigSpec);
+        frame.add(panelPlayer4, "cell 0 3" + panelMigSpec);
     }
 
     @Override
     public void update(Board board) {
+        modulePlayer1.update();
+        modulePlayer2.update();
+        modulePlayer3.update();
+        modulePlayer4.update();
     }
 
     @Override

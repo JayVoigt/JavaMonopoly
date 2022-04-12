@@ -3,6 +3,7 @@ package cc.jayv.monopoly3;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
+import java.awt.Color;
 import java.io.IOException;
 
 public class ViewFrameInformationModule {
@@ -105,6 +106,17 @@ public class ViewFrameInformationModule {
 
     public JPanel getPanelPlayerAssets() {
         return panelPlayerAssets;
+    }
+
+    public JPanel getCompositePanel() {
+        JPanel compositePanel = new JPanel();
+
+        compositePanel.add(panelPlayerStatus, "cell 0 0, width 200, height 150");
+        compositePanel.add(panelPlayerAssets, "cell 1 0, width 200, height 150");
+
+        compositePanel.setBorder(BorderFactory.createLineBorder(java.awt.Color.black, 1));
+
+        return compositePanel;
     }
 
     public void update() {
