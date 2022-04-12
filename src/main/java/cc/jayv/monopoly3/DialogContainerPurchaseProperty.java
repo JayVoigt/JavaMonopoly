@@ -45,12 +45,8 @@ public class DialogContainerPurchaseProperty extends DialogContainer implements 
         // Static labels
         // Text area for general information
         infoArea = new JTextArea();
-
+        SwingHelper.formatInfoArea(infoArea);
         infoArea.setText(disclaimerMessage);
-        infoArea.setWrapStyleWord(true);
-        infoArea.setLineWrap(true);
-        infoArea.setBackground(null);
-        infoArea.setEditable(false);
 
         staticLabelPropertyName = new JLabel("Property:");
         staticLabelPropertyName.setIcon(SwingHelper.getImageIconFromResource("/properties.png"));
@@ -75,6 +71,8 @@ public class DialogContainerPurchaseProperty extends DialogContainer implements 
         // Action buttons
         buttonPurchase = new JButton("Purchase", SwingHelper.getImageIconFromResource("/money.png"));
         buttonAuction = new JButton("Auction", SwingHelper.getImageIconFromResource("/auction.png"));
+
+        dialog.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
     }
 
     @Override

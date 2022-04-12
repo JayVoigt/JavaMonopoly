@@ -30,6 +30,8 @@ public class DialogContainerJail extends DialogContainer {
         buttonPostBail = new JButton("Post Bail ($50)", SwingHelper.getImageIconFromResource("/money.png"));
         buttonRollForDoubles = new JButton("Roll for Doubles", SwingHelper.getImageIconFromResource("/dice-icon.png"));
         buttonUseGOOJFC = new JButton("Use Get Out of Jail Free Card", SwingHelper.getImageIconFromResource("/goojfc.png"));
+
+        dialog.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
     }
 
     @Override

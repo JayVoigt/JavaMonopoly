@@ -458,9 +458,9 @@ public class DynamicView implements Serializable  {
 
 	private void updatePrompt(Actions action) {
 		switch(action) {
-			case CONTROLS_SHOW_IMPROVEMENTS -> TemplateDialogGenerator.initDialogForView(dialogImprovements);
-			case GAME_SHOW_JAIL -> TemplateDialogGenerator.initDialogForView(dialogJail);
-			case GAME_SHOW_PURCHASE -> TemplateDialogGenerator.initDialogForView(dialogPurchaseProperty);
+			case CONTROLS_SHOW_IMPROVEMENTS -> showDialog(dialogImprovements);
+			case GAME_SHOW_JAIL -> showDialog(dialogJail);
+			case GAME_SHOW_PURCHASE -> showDialog(dialogPurchaseProperty);
 		}
 	}
 

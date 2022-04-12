@@ -142,9 +142,11 @@ public class SwingHelper implements Serializable {
 		textArea.setEditable(false);
 		textArea.setHighlighter(null);
 
+		textArea.setWrapStyleWord(true);
 		textArea.setLineWrap(true);
 		textArea.setBorder(null);
 		textArea.setVisible(true);
+		textArea.setEnabled(true);
 	}
 
 	public static void formatGameLogArea(JTextArea textArea) {

@@ -12,6 +12,7 @@ public class DialogContainerImprovements extends DialogContainer {
     JButton buttonBuildHotel;
     JButton buttonSellHotel;
 
+    JLabel labelPropertySelection;
     JTextArea infoArea;
 
     public DialogContainerImprovements() {
@@ -25,24 +26,35 @@ public class DialogContainerImprovements extends DialogContainer {
         dialog = new JDialog();
         dialog.setLayout(new MigLayout());
 
+        labelPropertySelection = new JLabel();
+        labelPropertySelection.setIcon(SwingHelper.getImageIconFromResource("/properties.png"));
+
         infoArea = new JTextArea();
+        infoArea.setText("No property is selected.");
+        SwingHelper.formatInfoArea(infoArea);
 
         buttonBuildHouse = new JButton("Build a house", SwingHelper.getImageIconFromResource("/house.png"));
         buttonSellHouse = new JButton("Sell a house", SwingHelper.getImageIconFromResource("/house.png"));
         buttonBuildHotel = new JButton("Build a hotel", SwingHelper.getImageIconFromResource("/hotel.png"));
         buttonSellHotel = new JButton("Sell a hotel", SwingHelper.getImageIconFromResource("/hotel.png"));
+
+        setStateOfActionButton(Actions.IMPROVEMENTS_BUILD_HOUSE, false);
+        setStateOfActionButton(Actions.IMPROVEMENTS_SELL_HOUSE, false);
+        setStateOfActionButton(Actions.IMPROVEMENTS_BUILD_HOTEL, false);
+        setStateOfActionButton(Actions.IMPROVEMENTS_SELL_HOTEL, false);
     }
 
     @Override
     protected void arrangeComponents() {
         dialog.add(labelTitle, "cell 0 0, wrap");
 
-        dialog.add(infoArea, "cell 0 2, grow, span, wrap");
+        dialog.add(labelPropertySelection, "cell 0 2, split 2, align left, wrap");
+        dialog.add(infoArea, "cell 0 3, grow, span, wrap");
 
-        dialog.add(buttonBuildHouse, "cell 0 4, grow");
-        dialog.add(buttonBuildHotel, "cell 1 4, grow, wrap");
-        dialog.add(buttonSellHouse, "cell 0 5, grow");
-        dialog.add(buttonSellHotel, "cell 1 5, grow, wrap");
+        dialog.add(buttonBuildHouse, "cell 0 5, grow");
+        dialog.add(buttonBuildHotel, "cell 1 5, grow, wrap");
+        dialog.add(buttonSellHouse, "cell 0 6, grow");
+        dialog.add(buttonSellHotel, "cell 1 6, grow, wrap");
     }
 
     public void attachActionListeners(ArrayList<DynamicView.ButtonActionListener> listeners) {
@@ -79,13 +91,13 @@ public class DialogContainerImprovements extends DialogContainer {
         Space currentSpace = board.spaces.get(spaceSelectionID);
         ImprovementEligibilityStatus status = ImprovementEligibilityStatus.CANT_IMPROVE_UNKNOWN;
 
+        labelPropertySelection.setText(currentSpace.getFriendlyName());
+
         setStateOfActionButton(Actions.IMPROVEMENTS_BUILD_HOUSE, false);
         setStateOfActionButton(Actions.IMPROVEMENTS_SELL_HOUSE, false);
         setStateOfActionButton(Actions.IMPROVEMENTS_BUILD_HOTEL, false);
         setStateOfActionButton(Actions.IMPROVEMENTS_SELL_HOTEL, false);
 
-        infoArea.setText("This message is deliberately lengthy such that the initial call of the .pack()" +
-                "method fits the text to a message that is longer than what will be needed for this dialog.");
         dialog.pack();
 
         // Check: color property
@@ -128,7 +140,7 @@ public class DialogContainerImprovements extends DialogContainer {
         switch (status) {
             case CAN_IMPROVE -> m = "You may construct or sell improvements on this property.";
             case CANT_BUILD_FULL_SET_NOT_OWNED -> m = "You do not own all properties within this color set.";
-            case CANT_BUILD_NOT_A_COLOR_PROPERTY -> m = "The selected property is not a Color property.";
+            case CANT_BUILD_NOT_A_COLOR_PROPERTY -> m = "The selected space is not a Color property.";
             case CANT_BUILD_DO_NOT_OWN_PROPERTY -> m = "You do not own the selected property.";
             case CANT_IMPROVE_UNKNOWN -> m = "Unknown disqualification.";   // fall back for any edge cases not considered
         }

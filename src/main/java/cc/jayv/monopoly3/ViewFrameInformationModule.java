@@ -54,15 +54,22 @@ public class ViewFrameInformationModule {
         panelPlayerStatus.setLayout(new MigLayout("ins 0, fill"));
 
         labelName = new JLabel();
+        labelName.setToolTipText("Name of the player.");
 
         staticLabelBalance = new JLabel();
-        staticLabelBalance.setText("Balance:");
+        staticLabelBalance.setText("");
         staticLabelBalance.setIcon(SwingHelper.getImageIconFromResource("/money.png"));
+        staticLabelBalance.setToolTipText("Current balance of the player.");
         labelBalance = new JLabel();
 
         labelStatusTurn = new JLabel(SwingHelper.getImageIconFromResource("/dice-icon.png"));
+        labelStatusTurn.setToolTipText("Indicates if the current turn belongs to this player.");
+
         labelStatusJailed = new JLabel(SwingHelper.getImageIconFromResource("/jail.png"));
-        labelStatusBankrupt = new JLabel(SwingHelper.getImageIconFromResource("/i.png"));
+        labelStatusJailed.setToolTipText("Indicates if the player is jailed.");
+
+        labelStatusBankrupt = new JLabel(SwingHelper.getImageIconFromResource("/piggy.png"));
+        labelStatusBankrupt.setToolTipText("Indicates if the current player is bankrupt.");
 
         staticLabelPosition = new JLabel();
         staticLabelPosition.setIcon(SwingHelper.getImageIconFromResource("/position.png"));
@@ -76,10 +83,12 @@ public class ViewFrameInformationModule {
 
         staticLabelOwnedPropertyCount = new JLabel("Owned:");
         staticLabelOwnedPropertyCount.setIcon(SwingHelper.getImageIconFromResource("/properties.png"));
+        staticLabelOwnedPropertyCount.setToolTipText("Properties owned by the player.");
         labelOwnedPropertyCount = new JLabel();
 
         staticLabelGOOJFCCount = new JLabel("Owned:");
         staticLabelGOOJFCCount.setIcon(SwingHelper.getImageIconFromResource("/goojfc.png"));
+        staticLabelGOOJFCCount.setToolTipText("Get Out of Jail Free Cards owned by the player.");
         labelGOOJFCCount = new JLabel();
     }
 
@@ -136,7 +145,10 @@ public class ViewFrameInformationModule {
             labelBalance.setText("$" + player.getCurrentBalance());
 
             labelStatusTurn.setEnabled((board.getCurrentPlayerID() == player.getPlayerID()));
+
             labelStatusJailed.setEnabled(player.getIsJailed());
+
+            labelStatusBankrupt.setEnabled(player.getCurrentBalance() <= 0);
 
             String playerPosition = (board.spaces.get(player.getCurrentPosition()).getFriendlyName());
             labelPosition.setText(playerPosition);
@@ -151,6 +163,7 @@ public class ViewFrameInformationModule {
 
             labelOwnedPropertyCount.setText(String.valueOf(ownedPropertyCount));
             labelGOOJFCCount.setText(String.valueOf(player.getGetOutOfJailFreeCardCount()));
+
         }
         else {
             disableAllComponents();
