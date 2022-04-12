@@ -3,13 +3,15 @@ package cc.jayv.monopoly3;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
-import java.awt.Color;
+import java.awt.*;
+import java.awt.event.MouseListener;
 import java.io.IOException;
 
 public class ViewFrameInformationModule {
 
     JPanel panelPlayerStatus;
     JPanel panelPlayerAssets;
+    JPanel compositePanel;
 
     JLabel labelName;
 
@@ -49,10 +51,13 @@ public class ViewFrameInformationModule {
     private void initComponentsPlayerStatus() {
         panelPlayerStatus = new JPanel();
         panelPlayerStatus.setSize(200, 150);
-        panelPlayerStatus.setLayout(new MigLayout("ins 0"));
+        panelPlayerStatus.setLayout(new MigLayout("ins 0, fill"));
 
         labelName = new JLabel();
+
         staticLabelBalance = new JLabel();
+        staticLabelBalance.setText("Balance:");
+        staticLabelBalance.setIcon(SwingHelper.getImageIconFromResource("/money.png"));
         labelBalance = new JLabel();
 
         labelStatusTurn = new JLabel(SwingHelper.getImageIconFromResource("/dice-icon.png"));
@@ -109,39 +114,57 @@ public class ViewFrameInformationModule {
     }
 
     public JPanel getCompositePanel() {
-        JPanel compositePanel = new JPanel();
+        compositePanel = new JPanel();
+        compositePanel.setLayout(new MigLayout("fill"));
 
-        compositePanel.add(panelPlayerStatus, "cell 0 0, width 200, height 150");
-        compositePanel.add(panelPlayerAssets, "cell 1 0, width 200, height 150");
+        compositePanel.add(panelPlayerStatus, "cell 0 0, width 200, height 150, align left");
+        compositePanel.add(panelPlayerAssets, "cell 1 0, width 200, height 150, align right");
 
-        compositePanel.setBorder(BorderFactory.createLineBorder(java.awt.Color.black, 1));
+        compositePanel.setBorder(BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0, 32), 1, true));
 
         return compositePanel;
     }
 
+    public void attachMouseListener(MouseListener listener) {
+        compositePanel.addMouseListener(listener);
+    }
+
     public void update() {
-        labelName.setText(player.getCustomName());
+        if (player.getIsActive()) {
+            labelName.setText(player.getCustomName());
 
-        staticLabelBalance.setText("Balance:");
-        staticLabelBalance.setIcon(SwingHelper.getImageIconFromResource("/money.png"));
-        labelBalance.setText("$" + player.getCurrentBalance());
+            labelBalance.setText("$" + player.getCurrentBalance());
 
-        labelStatusTurn.setEnabled((board.getCurrentPlayerID() == player.getPlayerID()));
-        labelStatusJailed.setEnabled(player.getIsJailed());
+            labelStatusTurn.setEnabled((board.getCurrentPlayerID() == player.getPlayerID()));
+            labelStatusJailed.setEnabled(player.getIsJailed());
 
-        String playerPosition = (board.spaces.get(player.getCurrentPosition()).getFriendlyName());
-        labelPosition.setText(playerPosition);
+            String playerPosition = (board.spaces.get(player.getCurrentPosition()).getFriendlyName());
+            labelPosition.setText(playerPosition);
 
-        // Assets
-        int ownedPropertyCount = 0;
-        for (boolean b : player.getOwnedPropertyIDs()) {
-            if (b) {
-                ownedPropertyCount++;
+            // Assets
+            int ownedPropertyCount = 0;
+            for (boolean b : player.getOwnedPropertyIDs()) {
+                if (b) {
+                    ownedPropertyCount++;
+                }
             }
+
+            labelOwnedPropertyCount.setText(String.valueOf(ownedPropertyCount));
+            labelGOOJFCCount.setText(String.valueOf(player.getGetOutOfJailFreeCardCount()));
+        }
+        else {
+            disableAllComponents();
+        }
+    }
+
+    private void disableAllComponents() {
+        for (Component c : panelPlayerStatus.getComponents()) {
+            c.setEnabled(false);
         }
 
-        labelOwnedPropertyCount.setText(String.valueOf(ownedPropertyCount));
-        labelGOOJFCCount.setText(String.valueOf(player.getGetOutOfJailFreeCardCount()));
+        for (Component c : panelPlayerAssets.getComponents()) {
+            c.setEnabled(false);
+        }
     }
 
     public static void main(String args[]) {

@@ -363,4 +363,7 @@ public class Board implements Serializable {
 
 	}
 
+	public void calculatePlayerNetValue() {
+		int netValue;
+	}
 }	// end class

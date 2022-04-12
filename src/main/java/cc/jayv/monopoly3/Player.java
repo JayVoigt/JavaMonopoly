@@ -24,6 +24,8 @@ public class Player implements Serializable {
 	int currentBalance,
 		currentPosition;
 
+	int netValue;
+
 	public boolean getIsActive() {
 		return isPlayerActive;
 	}
@@ -381,4 +383,11 @@ public class Player implements Serializable {
 		consecutiveTurnsJailed = 0;
 	}
 
+	public void setNetValue(int netValue) {
+		this.netValue = netValue;
+	}
+
+	public int getNetValue() {
+		return netValue;
+	}
 }	// end class

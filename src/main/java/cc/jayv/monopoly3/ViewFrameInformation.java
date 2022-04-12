@@ -28,7 +28,7 @@ public class ViewFrameInformation implements ViewComponent, Serializable {
 
     private void initComponents() {
         frame = new JInternalFrame();
-        frame.setLayout(new MigLayout("ins 0, gap 0"));
+        frame.setLayout(new MigLayout("ins 0, gap 0, fill"));
         frame.setSize(308, 600);
         frame.setVisible(true);
         frame.setTitle("Information");
