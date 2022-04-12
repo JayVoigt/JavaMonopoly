@@ -8,12 +8,11 @@ import java.awt.event.ActionListener;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class DialogContainerStartGame implements Serializable {
+public class DialogContainerStartGame extends DialogContainer implements Serializable {
     int playerCount;
     JLabel staticLabelPlayerCount;
     JComboBox<Integer> comboBoxPlayerCount;
 
-    JDialog dialog;
     JLabel titleLabel;
 
     ArrayList<String> playerCustomNames;
@@ -36,7 +35,8 @@ public class DialogContainerStartGame implements Serializable {
         arrangeComponents();
     }
 
-    private void initComponents() {
+    @Override
+    protected void initComponents() {
         dialog = new JDialog();
         dialog.setLayout(new MigLayout());
 
@@ -116,7 +116,8 @@ public class DialogContainerStartGame implements Serializable {
         buttonStartGame.setIcon(SwingHelper.getImageIconFromResource("/newgame.png"));
     }
 
-    private void arrangeComponents() {
+    @Override
+    protected void arrangeComponents() {
         dialog.add(titleLabel, "cell 0 0, wrap");
 
         dialog.add(staticLabelPlayerCount, "cell 0 2");
@@ -137,6 +138,13 @@ public class DialogContainerStartGame implements Serializable {
         dialog.add(buttonStartGame, "cell 0 9, width 240, height 40, spanx 2, al center center");
 
         dialog.pack();
+    }
+
+    @Override
+    public void setStateOfActionButton(Actions action, boolean isEnabled) {
+        switch (action) {
+            case NEWGAME_STARTGAME -> buttonStartGame.setEnabled(isEnabled);
+        }
     }
 
     public JDialog getDialog() {

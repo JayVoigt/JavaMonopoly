@@ -8,8 +8,7 @@ import java.awt.event.ActionListener;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class DialogContainerGameEditor implements Serializable {
-    JDialog dialog;
+public class DialogContainerGameEditor extends DialogContainer implements Serializable {
     JComboBox<Integer> comboBoxPlayerSelection;
 
     JLabel labelTitle;
@@ -30,7 +29,8 @@ public class DialogContainerGameEditor implements Serializable {
         arrangeComponents();
     }
 
-    private void initComponents() {
+    @Override
+    protected void initComponents() {
         dialog = new JDialog();
         dialog.setLayout(new MigLayout());
 
@@ -82,7 +82,8 @@ public class DialogContainerGameEditor implements Serializable {
         }
     }
 
-    private void arrangeComponents() {
+    @Override
+    protected void arrangeComponents() {
         dialog.add(comboBoxPlayerSelection, "cell 1 1, wrap");
 
         dialog.add(buttonGive1000, "cell 0 2, grow");
@@ -96,12 +97,12 @@ public class DialogContainerGameEditor implements Serializable {
         dialog.pack();
     }
 
-    public int getSelectedPlayer() {
-        return playerID;
+    @Override
+    public void setStateOfActionButton(Actions action, boolean isEnabled) {
     }
 
-    public JDialog getDialog() {
-        return dialog;
+    public int getSelectedPlayer() {
+        return playerID;
     }
 
     public static void main(String args[]) {

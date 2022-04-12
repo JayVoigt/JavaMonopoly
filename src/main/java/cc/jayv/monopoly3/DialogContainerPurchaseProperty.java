@@ -7,9 +7,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class DialogContainerPurchaseProperty implements ViewComponent, Serializable {
-
-    JDialog dialog;
+public class DialogContainerPurchaseProperty extends DialogContainer implements ViewComponent, Serializable {
 
     JLabel labelTitle;
 
@@ -34,7 +32,8 @@ public class DialogContainerPurchaseProperty implements ViewComponent, Serializa
         arrangeComponents();
     }
 
-    private void initComponents() {
+    @Override
+    protected void initComponents() {
         dialog = new JDialog();
         dialog.setLayout(new MigLayout());
 
@@ -83,7 +82,8 @@ public class DialogContainerPurchaseProperty implements ViewComponent, Serializa
         buttonAuction = new JButton("Auction", SwingHelper.getImageIconFromResource("/auction.png"));
     }
 
-    private void arrangeComponents() {
+    @Override
+    protected void arrangeComponents() {
         dialog.add(labelTitle, "cell 0 0, wrap");
 
         dialog.add(staticLabelPropertyName, "cell 0 2");
@@ -151,10 +151,6 @@ public class DialogContainerPurchaseProperty implements ViewComponent, Serializa
         labelTimesLanded.setText(propertyTimesLanded);
 
         dialog.pack();
-    }
-
-    public JDialog getDialog() {
-        return dialog;
     }
 
     public static void main(String args[]) throws IOException {
