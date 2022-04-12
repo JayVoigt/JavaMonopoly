@@ -97,6 +97,7 @@ public class ViewFrameControl implements ViewComponent, Serializable {
                                 case CONTROLS_ENDTURN -> endTurnActionListener = a;
                                 case CONTROLS_ROLLDICE -> rollDiceActionListener = a;
                                 case CONTROLS_SHOW_IMPROVEMENTS -> controlsImprovementsActionListener = a;
+                                case CONTROLS_SHOW_MORTGAGE -> controlsMortgageActionListener = a;
                         }
                 }
 
@@ -133,7 +134,7 @@ public class ViewFrameControl implements ViewComponent, Serializable {
 
                         String standardMigSpecButton = ", grow";
                         // Mortgage
-                        buttonControlsMortgage = new TemplateDialogButtonProperties("Mortgage", "/mortgage.png", null, "cell 0 6, align left" + standardMigSpecButton);
+                        buttonControlsMortgage = new TemplateDialogButtonProperties("Mortgage", "/mortgage.png", controlsMortgageActionListener, "cell 0 6, align left" + standardMigSpecButton);
                         frame.add(buttonControlsMortgage, buttonControlsMortgage.getMigLayoutSpec());
 
                         // Properties

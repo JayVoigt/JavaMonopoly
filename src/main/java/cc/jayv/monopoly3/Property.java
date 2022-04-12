@@ -101,6 +101,15 @@ public abstract class Property extends Space implements Serializable {
 		return isFullSetOwned;
 	}
 
+	public int getMortgageValue() {
+		return mortgageValue;
+	}
+
+	public int getUnmortgageCost() {
+		// Properties can be unmortgaged for 110% of the mortgage cost
+		return (int) (1.1 * mortgageValue);
+	}
+
 	public void setIsFullSetOwned(boolean inputIsFullSetOwned) {
 		if (ownerID != 0) {
 			isFullSetOwned = inputIsFullSetOwned;

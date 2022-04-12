@@ -33,6 +33,9 @@ public class GameLogicSwitchboard implements Serializable {
 
             case PROPERTY_PURCHASE -> c.playerDecisionPurchaseProperty();
             case PROPERTY_AUCTION -> c.playerDecisionAuction();
+
+            case PROPERTY_MORTGAGE -> c.mortgageProperty(currentSpaceSelectionID, GameLogicController.MortgageActions.MORTGAGE);
+            case PROPERTY_UNMORTGAGE -> c.mortgageProperty(currentSpaceSelectionID, GameLogicController.MortgageActions.UNMORTGAGE);
         }
     }
 

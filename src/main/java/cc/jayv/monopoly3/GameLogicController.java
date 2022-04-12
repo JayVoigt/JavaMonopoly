@@ -44,6 +44,11 @@ public class GameLogicController implements Serializable {
 		sellHotel
 	}
 
+	public enum MortgageActions {
+		MORTGAGE,
+		UNMORTGAGE
+	}
+
 	// <editor-fold desc="Setters and getters">
 	public int getTurnCounter() {
 		return turnCounter;
@@ -754,6 +759,26 @@ public class GameLogicController implements Serializable {
 			else {
 				appendToGameLog(localColor.getFriendlyName() + " does not have any hotels to sell.");
 			}
+		}
+	}
+
+	public void mortgageProperty(int spaceID, MortgageActions inputAction) {
+		Space localSpace = board.spaces.get(spaceID);
+
+		int balanceUpdate = 0;
+
+		if (localSpace instanceof Property p) {
+			if (inputAction == MortgageActions.MORTGAGE) {
+				p.setIsMortgaged(true);
+				balanceUpdate = p.getMortgageValue();
+			}
+			else {
+				p.setIsMortgaged(false);
+				balanceUpdate = (-1) * p.getUnmortgageCost();
+			}
+
+			// Update balance of player who owns property
+			board.players.get(p.getOwnerID()).updateCurrentBalance(balanceUpdate);
 		}
 	}
 }

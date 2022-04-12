@@ -4,6 +4,7 @@ import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class DialogContainerMortgage extends DialogContainer {
 
@@ -86,16 +87,20 @@ public class DialogContainerMortgage extends DialogContainer {
     public void update(Board board, Player player, int spaceSelectionID, GameLogicController controller) {
         Space currentSpace = board.spaces.get(spaceSelectionID);
         MortgageEligibilityStatus status;
+        String mortgagePayout = "n/a";
+        String unmortgageCost = "n/a";
 
         // Check for eligibility
         if (currentSpace instanceof Property p) {
-            if (p.getIsOwned()) {
+            if (p.getIsOwned() && (p.getOwnerID() == player.getPlayerID())) {
                 if (!p.getIsMortgaged()) {
                     status = MortgageEligibilityStatus.CAN_MORTGAGE;
                 }
                 else {
                     status = MortgageEligibilityStatus.CANT_MORTGAGE_ALREADY_MORTGAGED;
                 }
+                mortgagePayout = String.valueOf(p.getMortgageValue());
+                unmortgageCost = String.valueOf(p.getUnmortgageCost());
             }
             else {
                 status = MortgageEligibilityStatus.CANT_MORTGAGE_NOT_OWNED;
@@ -108,9 +113,16 @@ public class DialogContainerMortgage extends DialogContainer {
         infoArea.setText(getMessage(status));
         labelPropertySelection.setText(currentSpace.getFriendlyName());
 
+        labelMortgagePayout.setText(mortgagePayout);
+        labelUnmortgageCost.setText(unmortgageCost);
+
         // Set button status
         if (status == MortgageEligibilityStatus.CAN_MORTGAGE) {
             setStateOfActionButton(Actions.PROPERTY_MORTGAGE, true);
+            setStateOfActionButton(Actions.PROPERTY_UNMORTGAGE, false);
+        }
+        else if (status == MortgageEligibilityStatus.CANT_MORTGAGE_ALREADY_MORTGAGED) {
+            setStateOfActionButton(Actions.PROPERTY_MORTGAGE, false);
             setStateOfActionButton(Actions.PROPERTY_UNMORTGAGE, true);
         }
         else {
@@ -131,6 +143,15 @@ public class DialogContainerMortgage extends DialogContainer {
         }
 
         return m;
+    }
+
+    public void attachActionListeners(ArrayList<DynamicView.ButtonActionListener> listeners) {
+        for (DynamicView.ButtonActionListener l : listeners) {
+            switch (l.getAction()) {
+                case PROPERTY_MORTGAGE -> buttonMortgage.addActionListener(l);
+                case PROPERTY_UNMORTGAGE -> buttonUnmortgage.addActionListener(l);
+            }
+        }
     }
 
     public static void main(String args[]) {

@@ -37,11 +37,12 @@ public class DynamicView implements Serializable  {
 	LogHelper logHelper;
 
 	// Dialog containers
-	DialogContainerPurchaseProperty dialogContainerPurchaseProperty;
 	DialogContainerGameEditor dialogContainerGameEditor;
-	DialogContainerStartGame dialogContainerStartGame;
 	DialogContainerImprovements dialogContainerImprovements;
 	DialogContainerJail dialogContainerJail;
+	DialogContainerMortgage dialogContainerMortgage;
+	DialogContainerPurchaseProperty dialogContainerPurchaseProperty;
+	DialogContainerStartGame dialogContainerStartGame;
 
 	GameEditorController gameEditorController;
 
@@ -52,6 +53,7 @@ public class DynamicView implements Serializable  {
 	JDialog dialogStartGame;
 	JDialog dialogGameEditor;
 	JDialog dialogAbout;
+	JDialog dialogMortgage;
 
 	// Root-level menus
 	JMenuBar menuBar;
@@ -159,6 +161,10 @@ public class DynamicView implements Serializable  {
 	private void updateGuiOptionalDialogs() {
 		if (dialogImprovements.isVisible()) {
 			dialogContainerImprovements.update(board, currentPlayer, currentSpaceButtonSelection, controller);
+		}
+
+		if (dialogMortgage.isVisible()) {
+			dialogContainerMortgage.update(board, currentPlayer, currentSpaceButtonSelection, controller);
 		}
 	}
 
@@ -317,27 +323,32 @@ public class DynamicView implements Serializable  {
 		TemplateDialogGenerator templateDialog;
 		ArrayList<TemplateDialogButtonProperties> templateDialogButtonPropertiesList = new ArrayList<>();
 
-		// Jail
-		dialogContainerJail = new DialogContainerJail();
-		dialogContainerJail.attachActionListeners(buttonActionListeners);
-		dialogJail = dialogContainerJail.getDialog();
-
-		// Purchase property
-		dialogContainerPurchaseProperty = new DialogContainerPurchaseProperty();
-		dialogContainerPurchaseProperty.attachActionListeners(buttonActionListeners);
-		dialogPurchaseProperty = dialogContainerPurchaseProperty.getDialog();
-
-		// Improvements
-		dialogContainerImprovements = new DialogContainerImprovements();
-		dialogContainerImprovements.attachActionListeners(buttonActionListeners);
-		dialogImprovements = dialogContainerImprovements.getDialog();
-
 		// About
 		dialogAbout = new DialogContainerAbout().getDialog();
 
 		// Game editor
 		dialogContainerGameEditor = new DialogContainerGameEditor();
 		dialogGameEditor = dialogContainerGameEditor.getDialog();
+
+		// Improvements
+		dialogContainerImprovements = new DialogContainerImprovements();
+		dialogContainerImprovements.attachActionListeners(buttonActionListeners);
+		dialogImprovements = dialogContainerImprovements.getDialog();
+
+		// Jail
+		dialogContainerJail = new DialogContainerJail();
+		dialogContainerJail.attachActionListeners(buttonActionListeners);
+		dialogJail = dialogContainerJail.getDialog();
+
+		// Mortgage properties
+		dialogContainerMortgage = new DialogContainerMortgage();
+		dialogContainerMortgage.attachActionListeners(buttonActionListeners);
+		dialogMortgage = dialogContainerMortgage.getDialog();
+
+		// Purchase property
+		dialogContainerPurchaseProperty = new DialogContainerPurchaseProperty();
+		dialogContainerPurchaseProperty.attachActionListeners(buttonActionListeners);
+		dialogPurchaseProperty = dialogContainerPurchaseProperty.getDialog();
 
 		// Game editor ActionListeners
 		ArrayList<GameEditorActionListener> gameEditorActionListeners = new ArrayList<>();
@@ -459,6 +470,7 @@ public class DynamicView implements Serializable  {
 	private void updatePrompt(Actions action) {
 		switch(action) {
 			case CONTROLS_SHOW_IMPROVEMENTS -> showDialog(dialogImprovements);
+			case CONTROLS_SHOW_MORTGAGE -> showDialog(dialogMortgage);
 			case GAME_SHOW_JAIL -> showDialog(dialogJail);
 			case GAME_SHOW_PURCHASE -> showDialog(dialogPurchaseProperty);
 		}

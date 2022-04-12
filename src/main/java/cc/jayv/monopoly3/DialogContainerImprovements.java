@@ -22,7 +22,7 @@ public class DialogContainerImprovements extends DialogContainer {
 
     @Override
     protected void initComponents() {
-        initLabelTitle("Improvements", "/improvements.png");
+        initLabelTitle("Improve Properties", "/improvements.png");
         dialog = new JDialog();
         dialog.setLayout(new MigLayout());
 

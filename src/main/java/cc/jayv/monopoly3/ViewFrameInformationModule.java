@@ -155,9 +155,11 @@ public class ViewFrameInformationModule {
 
             // Assets
             int ownedPropertyCount = 0;
-            for (boolean b : player.getOwnedPropertyIDs()) {
-                if (b) {
-                    ownedPropertyCount++;
+            for (Space s : board.spaces) {
+                if (s instanceof Property p) {
+                    if (p.getIsOwned() && p.getOwnerID() == player.getPlayerID()) {
+                        ownedPropertyCount++;
+                    }
                 }
             }
 
