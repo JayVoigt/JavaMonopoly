@@ -9,8 +9,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class DialogContainerGameEditor extends DialogContainer implements Serializable {
-    JDialog dialog;
-
     JComboBox<Integer> comboBoxPlayerSelection;
 
     JLabel staticLabelPlayerSelection;
@@ -109,10 +107,5 @@ public class DialogContainerGameEditor extends DialogContainer implements Serial
         DialogContainerGameEditor gameEditorDialog = new DialogContainerGameEditor();
         dialog = gameEditorDialog.getDialog();
         dialog.setVisible(true);
-    }
-
-    @Override
-    public JDialog getDialog() {
-        return dialog;
     }
 }

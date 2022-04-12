@@ -6,8 +6,6 @@ import javax.swing.*;
 import java.io.Serializable;
 
 public class DialogContainerAbout extends DialogContainer implements Serializable {
-    JDialog dialog;
-
     JLabel logoLabel;
     JLabel authorLabel;
     JLabel infoLabel;

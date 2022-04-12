@@ -3,6 +3,7 @@ package cc.jayv.monopoly3;
 import javax.swing.*;
 
 public abstract class DialogContainer {
+    JDialog dialog;
     JLabel labelTitle;
 
     /**
@@ -33,5 +34,7 @@ public abstract class DialogContainer {
      * Obtain the JDialog instantiated by the container class.
      * @return The JDialog within the container.
      */
-    public abstract JDialog getDialog();
+    public JDialog getDialog() {
+        return dialog;
+    }
 }

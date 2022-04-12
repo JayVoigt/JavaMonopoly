@@ -4,8 +4,6 @@ import javax.swing.*;
 
 public class DialogContainerImprovements extends DialogContainer {
 
-    JDialog dialog;
-
     JButton buttonBuildHouse;
     JButton buttonSellHouse;
     JButton buttonBuildHotel;
@@ -32,8 +30,4 @@ public class DialogContainerImprovements extends DialogContainer {
         }
     }
 
-    @Override
-    public JDialog getDialog() {
-        return dialog;
-    }
 }

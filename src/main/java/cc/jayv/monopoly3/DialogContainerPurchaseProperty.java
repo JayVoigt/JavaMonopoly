@@ -9,10 +9,6 @@ import java.util.ArrayList;
 
 public class DialogContainerPurchaseProperty extends DialogContainer implements ViewComponent, Serializable {
 
-    JDialog dialog;
-
-    JLabel labelTitle;
-
     JTextArea infoArea;
     JLabel staticLabelDisclaimer;
 
@@ -179,8 +175,4 @@ public class DialogContainerPurchaseProperty extends DialogContainer implements 
         return null;
     }
 
-    @Override
-    public JDialog getDialog() {
-        return dialog;
-    }
 }

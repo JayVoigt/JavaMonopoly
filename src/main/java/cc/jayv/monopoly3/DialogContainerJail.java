@@ -4,8 +4,6 @@ import javax.swing.*;
 
 public class DialogContainerJail extends DialogContainer {
 
-    JDialog dialog;
-
     JButton buttonPostBail;
     JButton buttonRollForDoubles;
     JButton buttonUseGOOJFC;
@@ -30,8 +28,4 @@ public class DialogContainerJail extends DialogContainer {
         }
     }
 
-    @Override
-    public JDialog getDialog() {
-        return dialog;
-    }
 }
