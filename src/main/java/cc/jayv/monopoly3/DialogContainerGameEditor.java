@@ -9,9 +9,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class DialogContainerGameEditor extends DialogContainer implements Serializable {
+    JDialog dialog;
+
     JComboBox<Integer> comboBoxPlayerSelection;
 
-    JLabel labelTitle;
     JLabel staticLabelPlayerSelection;
 
     JButton buttonGive1000;
@@ -29,16 +30,13 @@ public class DialogContainerGameEditor extends DialogContainer implements Serial
         arrangeComponents();
     }
 
-    @Override
     protected void initComponents() {
         dialog = new JDialog();
         dialog.setLayout(new MigLayout());
 
         // Title label
-        labelTitle = new JLabel();
-        SwingHelper.formatLabel(labelTitle, "Game Editor", SwingHelper.LabelStyles.TITLE_BOLD);
-        labelTitle.setIcon(SwingHelper.getImageIconFromResource("/matrix-anim.gif"));
-        dialog.add(labelTitle, "cell 0 0");
+        initLabelTitle("Game Editor", "/matrix-anim.gif");
+        //dialog.add(labelTitle, "cell 0 0");
 
         staticLabelPlayerSelection = new JLabel("Select player:", SwingHelper.getImageIconFromResource("/player-generic.png"), SwingConstants.LEFT);
         dialog.add(staticLabelPlayerSelection, "cell 0 1");
@@ -111,5 +109,10 @@ public class DialogContainerGameEditor extends DialogContainer implements Serial
         DialogContainerGameEditor gameEditorDialog = new DialogContainerGameEditor();
         dialog = gameEditorDialog.getDialog();
         dialog.setVisible(true);
+    }
+
+    @Override
+    public JDialog getDialog() {
+        return dialog;
     }
 }

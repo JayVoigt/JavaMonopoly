@@ -6,6 +6,8 @@ import javax.swing.*;
 import java.io.Serializable;
 
 public class DialogContainerAbout extends DialogContainer implements Serializable {
+    JDialog dialog;
+
     JLabel logoLabel;
     JLabel authorLabel;
     JLabel infoLabel;
@@ -48,5 +50,10 @@ public class DialogContainerAbout extends DialogContainer implements Serializabl
     @Override
     public void setStateOfActionButton(Actions action, boolean isEnabled) {
         // About dialog has no JButtons
+    }
+
+    @Override
+    public JDialog getDialog() {
+        return dialog;
     }
 }

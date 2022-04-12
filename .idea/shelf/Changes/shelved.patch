@@ -1,0 +1,523 @@
+Index: src/main/java/cc/jayv/monopoly3/DialogContainerAbout.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package cc.jayv.monopoly3;\n\nimport net.miginfocom.swing.MigLayout;\n\nimport javax.swing.*;\nimport java.io.Serializable;\n\npublic class DialogContainerAbout extends DialogContainer implements Serializable {\n    JLabel logoLabel;\n    JLabel authorLabel;\n    JLabel infoLabel;\n\n    public DialogContainerAbout() {\n        initComponents();\n        arrangeComponents();\n    }\n\n    @Override\n    protected void initComponents() {\n        dialog = new JDialog();\n        dialog.setLayout(new MigLayout());\n\n        // Logo\n        logoLabel = new JLabel();\n        logoLabel.setIcon(SwingHelper.getImageIconFromResource(\"/logo.png\"));\n\n        // Author tag with icon\n        authorLabel = new JLabel();\n        SwingHelper.formatLabel(authorLabel, \"by Jay Voigt\", SwingHelper.LabelStyles.TITLE_BOLD);\n        authorLabel.setIcon(SwingHelper.getImageIconFromResource(\"/robot2.gif\"));\n        authorLabel.setHorizontalAlignment(SwingConstants.CENTER);\n\n        // General information about the project\n        infoLabel = new JLabel();\n        String infoText = \"<html>Created as a final project for CSCI 24000, Spring 2022.<br>Art assets created with Aesprite.</html>\";\n        SwingHelper.formatLabel(infoLabel, infoText, SwingHelper.LabelStyles.REGULAR);\n    }\n\n    @Override\n    protected void arrangeComponents() {\n        dialog.add(logoLabel, \"cell 0 0, spanx, al center center\");\n        dialog.add(authorLabel, \"cell 0 1, spanx, al center center\");\n        dialog.add(infoLabel, \"cell 0 2, spanx\");\n\n        dialog.pack();\n    }\n\n    @Override\n    public void setStateOfActionButton(Actions action, boolean isEnabled) {\n        // About dialog has no JButtons\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/cc/jayv/monopoly3/DialogContainerAbout.java b/src/main/java/cc/jayv/monopoly3/DialogContainerAbout.java
+--- a/src/main/java/cc/jayv/monopoly3/DialogContainerAbout.java	(revision 238675ac3063f91f4b912e756274d82bf682e722)
++++ b/src/main/java/cc/jayv/monopoly3/DialogContainerAbout.java	(date 1649768427693)
+@@ -6,6 +6,8 @@
+ import java.io.Serializable;
+ 
+ public class DialogContainerAbout extends DialogContainer implements Serializable {
++    JDialog dialog;
++
+     JLabel logoLabel;
+     JLabel authorLabel;
+     JLabel infoLabel;
+@@ -49,4 +51,9 @@
+     public void setStateOfActionButton(Actions action, boolean isEnabled) {
+         // About dialog has no JButtons
+     }
++
++    @Override
++    public JDialog getDialog() {
++        return dialog;
++    }
+ }
+Index: src/main/java/cc/jayv/monopoly3/DialogContainerGameEditor.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package cc.jayv.monopoly3;\n\nimport net.miginfocom.swing.MigLayout;\n\nimport javax.swing.*;\nimport java.awt.event.ActionEvent;\nimport java.awt.event.ActionListener;\nimport java.io.Serializable;\nimport java.util.ArrayList;\n\npublic class DialogContainerGameEditor extends DialogContainer implements Serializable {\n    JComboBox<Integer> comboBoxPlayerSelection;\n\n    JLabel labelTitle;\n    JLabel staticLabelPlayerSelection;\n\n    JButton buttonGive1000;\n    JButton buttonDeduct1000;\n    JButton buttonJailPlayer;\n    JButton buttonUnjailPlayer;\n    JButton buttonUnlockRollDiceAction;\n    JButton buttonUnlockEndTurnAction;\n    JButton buttonGiveAllProperties;\n\n    int playerID;\n\n    public DialogContainerGameEditor() {\n        initComponents();\n        arrangeComponents();\n    }\n\n    @Override\n    protected void initComponents() {\n        dialog = new JDialog();\n        dialog.setLayout(new MigLayout());\n\n        // Title label\n        labelTitle = new JLabel();\n        SwingHelper.formatLabel(labelTitle, \"Game Editor\", SwingHelper.LabelStyles.TITLE_BOLD);\n        labelTitle.setIcon(SwingHelper.getImageIconFromResource(\"/matrix-anim.gif\"));\n        dialog.add(labelTitle, \"cell 0 0\");\n\n        staticLabelPlayerSelection = new JLabel(\"Select player:\", SwingHelper.getImageIconFromResource(\"/player-generic.png\"), SwingConstants.LEFT);\n        dialog.add(staticLabelPlayerSelection, \"cell 0 1\");\n\n        // Combo box for selecting what player should be affected by actions\n        comboBoxPlayerSelection = new JComboBox<>();\n        comboBoxPlayerSelection.addItem(1);\n        comboBoxPlayerSelection.addItem(2);\n        comboBoxPlayerSelection.addItem(3);\n        comboBoxPlayerSelection.addItem(4);\n\n        // Fallback value\n        playerID = 1;\n\n        comboBoxPlayerSelection.addActionListener(new ActionListener() {\n            @Override\n            public void actionPerformed(ActionEvent e) {\n                playerID = (int) comboBoxPlayerSelection.getSelectedItem();\n                System.out.println(playerID);\n            }\n        });\n\n        buttonGive1000 = new JButton(\"Give $1000\", SwingHelper.getImageIconFromResource(\"/money.png\"));\n        buttonDeduct1000 = new JButton(\"Deduct $1000\", SwingHelper.getImageIconFromResource(\"/money.png\"));\n        buttonJailPlayer = new JButton(\"Jail player\", SwingHelper.getImageIconFromResource(\"/jail.png\"));\n        buttonUnjailPlayer = new JButton(\"Release player\", SwingHelper.getImageIconFromResource(\"/jail.png\"));\n        buttonUnlockRollDiceAction = new JButton(\"Unlock roll dice action\", SwingHelper.getImageIconFromResource(\"/dice-icon.png\"));\n        buttonUnlockEndTurnAction = new JButton(\"Unlock end turn action\", SwingHelper.getImageIconFromResource(\"/arrow.png\"));\n        buttonGiveAllProperties = new JButton(\"Give all properties\", SwingHelper.getImageIconFromResource(\"/properties.png\"));\n    }\n\n    public void attachActionListeners(ArrayList<DynamicView.GameEditorActionListener> listeners) {\n        for (DynamicView.GameEditorActionListener l : listeners) {\n            switch (l.getAction()) {\n                case JAIL -> buttonJailPlayer.addActionListener(l);\n                case UNJAIL -> buttonUnjailPlayer.addActionListener(l);\n                case GIVE_1000 -> buttonGive1000.addActionListener(l);\n                case DEDUCT_1000 -> buttonDeduct1000.addActionListener(l);\n                case GIVE_ALL_PROPERTIES -> buttonGiveAllProperties.addActionListener(l);\n            }\n        }\n    }\n\n    @Override\n    protected void arrangeComponents() {\n        dialog.add(comboBoxPlayerSelection, \"cell 1 1, wrap\");\n\n        dialog.add(buttonGive1000, \"cell 0 2, grow\");\n        dialog.add(buttonDeduct1000, \"cell 1 2, grow, wrap\");\n        dialog.add(buttonJailPlayer, \"cell 0 3, grow\");\n        dialog.add(buttonUnjailPlayer, \"cell 1 3, grow, wrap\");\n        dialog.add(buttonUnlockRollDiceAction, \"cell 0 4, grow\");\n        dialog.add(buttonUnlockEndTurnAction, \"cell 1 4, grow, wrap\");\n        dialog.add(buttonGiveAllProperties, \"cell 0 5, grow\");\n\n        dialog.pack();\n    }\n\n    @Override\n    public void setStateOfActionButton(Actions action, boolean isEnabled) {\n    }\n\n    public int getSelectedPlayer() {\n        return playerID;\n    }\n\n    public static void main(String args[]) {\n        JDialog dialog;\n\n        DialogContainerGameEditor gameEditorDialog = new DialogContainerGameEditor();\n        dialog = gameEditorDialog.getDialog();\n        dialog.setVisible(true);\n    }\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/cc/jayv/monopoly3/DialogContainerGameEditor.java b/src/main/java/cc/jayv/monopoly3/DialogContainerGameEditor.java
+--- a/src/main/java/cc/jayv/monopoly3/DialogContainerGameEditor.java	(revision 238675ac3063f91f4b912e756274d82bf682e722)
++++ b/src/main/java/cc/jayv/monopoly3/DialogContainerGameEditor.java	(date 1649769199331)
+@@ -9,9 +9,10 @@
+ import java.util.ArrayList;
+ 
+ public class DialogContainerGameEditor extends DialogContainer implements Serializable {
++    JDialog dialog;
++
+     JComboBox<Integer> comboBoxPlayerSelection;
+ 
+-    JLabel labelTitle;
+     JLabel staticLabelPlayerSelection;
+ 
+     JButton buttonGive1000;
+@@ -29,16 +30,13 @@
+         arrangeComponents();
+     }
+ 
+-    @Override
+     protected void initComponents() {
+         dialog = new JDialog();
+         dialog.setLayout(new MigLayout());
+ 
+         // Title label
+-        labelTitle = new JLabel();
+-        SwingHelper.formatLabel(labelTitle, "Game Editor", SwingHelper.LabelStyles.TITLE_BOLD);
+-        labelTitle.setIcon(SwingHelper.getImageIconFromResource("/matrix-anim.gif"));
+-        dialog.add(labelTitle, "cell 0 0");
++        initLabelTitle("Game Editor", "/matrix-anim.gif");
++        //dialog.add(labelTitle, "cell 0 0");
+ 
+         staticLabelPlayerSelection = new JLabel("Select player:", SwingHelper.getImageIconFromResource("/player-generic.png"), SwingConstants.LEFT);
+         dialog.add(staticLabelPlayerSelection, "cell 0 1");
+@@ -112,4 +110,9 @@
+         dialog = gameEditorDialog.getDialog();
+         dialog.setVisible(true);
+     }
++
++    @Override
++    public JDialog getDialog() {
++        return dialog;
++    }
+ }
+\ No newline at end of file
+Index: src/main/java/cc/jayv/monopoly3/DialogContainerImprovements.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package cc.jayv.monopoly3;\n\npublic class DialogContainerImprovements extends DialogContainer    {\n    @Override\n    protected void initComponents() {\n\n    }\n\n    @Override\n    protected void arrangeComponents() {\n\n    }\n\n    @Override\n    public void setStateOfActionButton(Actions action, boolean isEnabled) {\n\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/cc/jayv/monopoly3/DialogContainerImprovements.java b/src/main/java/cc/jayv/monopoly3/DialogContainerImprovements.java
+--- a/src/main/java/cc/jayv/monopoly3/DialogContainerImprovements.java	(revision 238675ac3063f91f4b912e756274d82bf682e722)
++++ b/src/main/java/cc/jayv/monopoly3/DialogContainerImprovements.java	(date 1649768459260)
+@@ -1,9 +1,20 @@
+ package cc.jayv.monopoly3;
+ 
+-public class DialogContainerImprovements extends DialogContainer    {
++import javax.swing.*;
++
++public class DialogContainerImprovements extends DialogContainer {
++
++    JDialog dialog;
++
++    JButton buttonBuildHouse;
++    JButton buttonSellHouse;
++    JButton buttonBuildHotel;
++    JButton buttonSellHotel;
++
+     @Override
+     protected void initComponents() {
+-
++        initLabelTitle("Improvements", "/improvements.png");
++        dialog = new JDialog();
+     }
+ 
+     @Override
+@@ -13,6 +24,16 @@
+ 
+     @Override
+     public void setStateOfActionButton(Actions action, boolean isEnabled) {
++        switch (action) {
++            case IMPROVEMENTS_BUILD_HOUSE -> buttonBuildHouse.setEnabled(isEnabled);
++            case IMPROVEMENTS_SELL_HOUSE -> buttonSellHouse.setEnabled(isEnabled);
++            case IMPROVEMENTS_BUILD_HOTEL -> buttonBuildHotel.setEnabled(isEnabled);
++            case IMPROVEMENTS_SELL_HOTEL -> buttonSellHotel.setEnabled(isEnabled);
++        }
++    }
+ 
++    @Override
++    public JDialog getDialog() {
++        return dialog;
+     }
+ }
+Index: src/main/java/cc/jayv/monopoly3/DialogContainerJail.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/cc/jayv/monopoly3/DialogContainerJail.java b/src/main/java/cc/jayv/monopoly3/DialogContainerJail.java
+new file mode 100644
+--- /dev/null	(date 1649768465017)
++++ b/src/main/java/cc/jayv/monopoly3/DialogContainerJail.java	(date 1649768465017)
+@@ -0,0 +1,37 @@
++package cc.jayv.monopoly3;
++
++import javax.swing.*;
++
++public class DialogContainerJail extends DialogContainer {
++
++    JDialog dialog;
++
++    JButton buttonPostBail;
++    JButton buttonRollForDoubles;
++    JButton buttonUseGOOJFC;
++
++    @Override
++    protected void initComponents() {
++        dialog = new JDialog();
++        initLabelTitle("Jail", "/jail.png");
++    }
++
++    @Override
++    protected void arrangeComponents() {
++
++    }
++
++    @Override
++    public void setStateOfActionButton(Actions action, boolean isEnabled) {
++        switch(action) {
++            case JAIL_POSTBAIL -> buttonPostBail.setEnabled(isEnabled);
++            case JAIL_ROLLDOUBLES -> buttonRollForDoubles.setEnabled(isEnabled);
++            case JAIL_USEGOOJFC -> buttonUseGOOJFC.setEnabled(isEnabled);
++        }
++    }
++
++    @Override
++    public JDialog getDialog() {
++        return dialog;
++    }
++}
+Index: src/main/java/cc/jayv/monopoly3/DialogContainerPurchaseProperty.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package cc.jayv.monopoly3;\n\nimport net.miginfocom.swing.MigLayout;\n\nimport javax.swing.*;\nimport java.io.IOException;\nimport java.io.Serializable;\nimport java.util.ArrayList;\n\npublic class DialogContainerPurchaseProperty extends DialogContainer implements ViewComponent, Serializable {\n\n    JLabel labelTitle;\n\n    JTextArea infoArea;\n    JLabel staticLabelDisclaimer;\n\n    JLabel staticLabelPropertyName;\n    JLabel staticLabelPropertyType;\n    JLabel staticLabelPropertyCost;\n    JLabel staticLabelTimesLanded;\n\n    JLabel labelPropertyName;\n    JLabel labelPropertyType;\n    JLabel labelPropertyCost;\n    JLabel labelTimesLanded;\n\n    JButton buttonPurchase;\n    JButton buttonAuction;\n\n    public DialogContainerPurchaseProperty() {\n        initComponents();\n        arrangeComponents();\n    }\n\n    @Override\n    protected void initComponents() {\n        dialog = new JDialog();\n        dialog.setLayout(new MigLayout());\n\n        // Title\n        labelTitle = new JLabel();\n        SwingHelper.formatLabel(labelTitle, \"Property purchase\", SwingHelper.LabelStyles.TITLE_BOLD);\n        labelTitle.setIcon(SwingHelper.getImageIconFromResource(\"/properties.png\"));\n\n        String disclaimerMessage =\n                \"You must decide to either purchase or auction this property.\" +\n                \" If you are unable to afford this property, it will automatically\" +\n                \" be sent to auction where all players may bid on it.\";\n\n        // Static labels\n        // Text area for general information\n        infoArea = new JTextArea();\n\n        infoArea.setText(disclaimerMessage);\n        infoArea.setWrapStyleWord(true);\n        infoArea.setLineWrap(true);\n        infoArea.setBackground(null);\n        infoArea.setEditable(false);\n\n        staticLabelPropertyName = new JLabel(\"Property:\");\n        staticLabelPropertyName.setIcon(SwingHelper.getImageIconFromResource(\"/properties.png\"));\n\n        staticLabelPropertyType = new JLabel(\"Type:\");\n        staticLabelPropertyType.setIcon(SwingHelper.getImageIconFromResource(\"/i.png\"));\n\n        staticLabelPropertyCost = new JLabel(\"Cost:\");\n        staticLabelPropertyCost.setIcon(SwingHelper.getImageIconFromResource(\"/money.png\"));\n\n        staticLabelTimesLanded = new JLabel(\"Times landed:\");\n        staticLabelTimesLanded.setIcon(SwingHelper.getImageIconFromResource(\"/arrow.png\"));\n\n        staticLabelDisclaimer = new JLabel(disclaimerMessage);\n\n        // Labels\n        labelPropertyName = new JLabel();\n        labelPropertyType = new JLabel();\n        labelPropertyCost = new JLabel();\n        labelTimesLanded = new JLabel();\n\n        // Action buttons\n        buttonPurchase = new JButton(\"Purchase\", SwingHelper.getImageIconFromResource(\"/money.png\"));\n        buttonAuction = new JButton(\"Auction\", SwingHelper.getImageIconFromResource(\"/auction.png\"));\n    }\n\n    @Override\n    protected void arrangeComponents() {\n        dialog.add(labelTitle, \"cell 0 0, wrap\");\n\n        dialog.add(staticLabelPropertyName, \"cell 0 2\");\n        dialog.add(labelPropertyName, \"cell 1 2, wrap\");\n\n        dialog.add(staticLabelPropertyType, \"cell 0 3\");\n        dialog.add(labelPropertyType, \"cell 1 3, wrap\");\n\n        dialog.add(staticLabelPropertyCost, \"cell 0 4\");\n        dialog.add(labelPropertyCost, \"cell 1 4, wrap\");\n\n        dialog.add(staticLabelTimesLanded, \"cell 0 5\");\n        dialog.add(labelTimesLanded, \"cell 1 5, wrap\");\n\n        dialog.add(infoArea, \"cell 0 7, wrap, grow, span\");\n\n        dialog.add(buttonPurchase, \"cell 0 9, align left\");\n        dialog.add(buttonAuction, \"cell 1 9, align right\");\n    }\n\n    public void attachActionListeners(ArrayList<DynamicView.ButtonActionListener> listeners) {\n        for (DynamicView.ButtonActionListener l : listeners) {\n            switch (l.getAction()) {\n                case PROPERTY_PURCHASE -> buttonPurchase.addActionListener(l);\n                case PROPERTY_AUCTION -> buttonAuction.addActionListener(l);\n            }\n        }\n    }\n\n    public void update(Board board, int spaceID) {\n        // Defaults in case update method is called on non-property space\n        String propertyName = \"\";\n        String propertyType = \"\";\n        String propertyCost = \"\";\n        String propertyTimesLanded = \"\";\n\n        if (board.spaces.get(spaceID) instanceof Property p) {\n            propertyName = p.getFriendlyName();\n            propertyCost = \"$\" + p.getPurchaseCost();\n\n            // Get property type\n            if (p instanceof Color c) {\n                // Specify color group\n                propertyType = \"Color, \" + c.getColorGroup();\n            }\n            else if (p instanceof Railroad) {\n                propertyType = \"Railroad\";\n            }\n            else if (p instanceof Utility) {\n                propertyType = \"Utility\";\n            }\n\n            // Set appropriate grammar\n            if (p.getTimesLanded() == 1) {\n                propertyTimesLanded = p.getTimesLanded() + \" time\";\n            }\n            else {\n                propertyTimesLanded = p.getTimesLanded() + \" times\";\n            }\n        }\n\n        labelPropertyName.setText(propertyName);\n        labelPropertyType.setText(propertyType);\n        labelPropertyCost.setText(propertyCost);\n        labelTimesLanded.setText(propertyTimesLanded);\n\n        dialog.pack();\n    }\n\n    public static void main(String args[]) throws IOException {\n        DialogContainerPurchaseProperty propertyPurchaseDialog = new DialogContainerPurchaseProperty();\n\n        Board board = new Board();\n\n        propertyPurchaseDialog.update(board, 9);\n        propertyPurchaseDialog.getDialog().setVisible(true);\n    }\n\n    @Override\n    public void update(Board board) {\n\n    }\n\n    @Override\n    public void setStateOfActionButton(Actions action, boolean isEnabled) {\n        switch (action) {\n            case PROPERTY_AUCTION -> buttonAuction.setEnabled(isEnabled);\n            case PROPERTY_PURCHASE -> buttonPurchase.setEnabled(isEnabled);\n        }\n    }\n\n    @Override\n    public JComponent getComponent() {\n        return null;\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/cc/jayv/monopoly3/DialogContainerPurchaseProperty.java b/src/main/java/cc/jayv/monopoly3/DialogContainerPurchaseProperty.java
+--- a/src/main/java/cc/jayv/monopoly3/DialogContainerPurchaseProperty.java	(revision 238675ac3063f91f4b912e756274d82bf682e722)
++++ b/src/main/java/cc/jayv/monopoly3/DialogContainerPurchaseProperty.java	(date 1649769173718)
+@@ -9,6 +9,8 @@
+ 
+ public class DialogContainerPurchaseProperty extends DialogContainer implements ViewComponent, Serializable {
+ 
++    JDialog dialog;
++
+     JLabel labelTitle;
+ 
+     JTextArea infoArea;
+@@ -32,15 +34,12 @@
+         arrangeComponents();
+     }
+ 
+-    @Override
+     protected void initComponents() {
+         dialog = new JDialog();
+         dialog.setLayout(new MigLayout());
+ 
+         // Title
+-        labelTitle = new JLabel();
+-        SwingHelper.formatLabel(labelTitle, "Property purchase", SwingHelper.LabelStyles.TITLE_BOLD);
+-        labelTitle.setIcon(SwingHelper.getImageIconFromResource("/properties.png"));
++        initLabelTitle("Property Decision", "/properties.png");
+ 
+         String disclaimerMessage =
+                 "You must decide to either purchase or auction this property." +
+@@ -179,4 +178,9 @@
+     public JComponent getComponent() {
+         return null;
+     }
++
++    @Override
++    public JDialog getDialog() {
++        return dialog;
++    }
+ }
+Index: src/main/java/cc/jayv/monopoly3/DialogContainerStartGame.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package cc.jayv.monopoly3;\n\nimport net.miginfocom.swing.MigLayout;\n\nimport javax.swing.*;\nimport java.awt.event.ActionEvent;\nimport java.awt.event.ActionListener;\nimport java.io.Serializable;\nimport java.util.ArrayList;\n\npublic class DialogContainerStartGame extends DialogContainer implements Serializable {\n    int playerCount;\n    JLabel staticLabelPlayerCount;\n    JComboBox<Integer> comboBoxPlayerCount;\n\n    JLabel titleLabel;\n\n    ArrayList<String> playerCustomNames;\n    JTextField playerCustomName1;\n    JTextField playerCustomName2;\n    JTextField playerCustomName3;\n    JTextField playerCustomName4;\n\n    JLabel staticLabelPlayer1;\n    JLabel staticLabelPlayer2;\n    JLabel staticLabelPlayer3;\n    JLabel staticLabelPlayer4;\n\n    JButton buttonStartGame;\n\n    DynamicView.StartGameButtonActionListener startGameButtonActionListener;\n\n    public DialogContainerStartGame() {\n        initComponents();\n        arrangeComponents();\n    }\n\n    @Override\n    protected void initComponents() {\n        dialog = new JDialog();\n        dialog.setLayout(new MigLayout());\n\n        // Title\n        titleLabel = new JLabel();\n        SwingHelper.formatLabel(titleLabel, \"New Game\", SwingHelper.LabelStyles.TITLE_BOLD);\n        titleLabel.setIcon(SwingHelper.getImageIconFromResource(\"/board.png\"));\n\n        // Label and combo box for player counts\n        staticLabelPlayerCount = new JLabel(\"Players:\");\n        staticLabelPlayerCount.setIcon(SwingHelper.getImageIconFromResource(\"/player-generic.png\"));\n\n        comboBoxPlayerCount = new JComboBox<>();\n        comboBoxPlayerCount.addItem(1);\n        comboBoxPlayerCount.addItem(2);\n        comboBoxPlayerCount.addItem(3);\n        comboBoxPlayerCount.addItem(4);\n        comboBoxPlayerCount.setSelectedItem(4);\n\n        comboBoxPlayerCount.addActionListener(new ActionListener() {\n            @Override\n            public void actionPerformed(ActionEvent e) {\n                playerCount = (int) comboBoxPlayerCount.getSelectedItem();\n\n                if (playerCount == 1) {\n                    playerCustomName1.setEnabled(true);\n                    playerCustomName2.setEnabled(false);\n                    playerCustomName3.setEnabled(false);\n                    playerCustomName4.setEnabled(false);\n                }\n                else if (playerCount == 2) {\n                    playerCustomName1.setEnabled(true);\n                    playerCustomName2.setEnabled(true);\n                    playerCustomName3.setEnabled(false);\n                    playerCustomName4.setEnabled(false);\n                }\n                else if (playerCount == 3) {\n                    playerCustomName1.setEnabled(true);\n                    playerCustomName2.setEnabled(true);\n                    playerCustomName3.setEnabled(true);\n                    playerCustomName4.setEnabled(false);\n                }\n                else {\n                    playerCustomName1.setEnabled(true);\n                    playerCustomName2.setEnabled(true);\n                    playerCustomName3.setEnabled(true);\n                    playerCustomName4.setEnabled(true);\n                }\n            }\n        });\n\n        // Strings containing player's desired name\n        playerCustomNames = new ArrayList<>();\n\n        // Fields for name entry\n        playerCustomName1 = new JTextField(\"Player 1\");\n        playerCustomName2 = new JTextField(\"Player 2\");\n        playerCustomName3 = new JTextField(\"Player 3\");\n        playerCustomName4 = new JTextField(\"Player 4\");\n\n        // Labels to indicate player index\n        staticLabelPlayer1 = new JLabel(\"Player 1 name:\");\n        staticLabelPlayer1.setHorizontalAlignment(SwingConstants.RIGHT);\n\n        staticLabelPlayer2 = new JLabel(\"Player 2 name:\");\n        staticLabelPlayer2.setHorizontalAlignment(SwingConstants.RIGHT);\n\n        staticLabelPlayer3 = new JLabel(\"Player 3 name:\");\n        staticLabelPlayer3.setHorizontalAlignment(SwingConstants.RIGHT);\n\n        staticLabelPlayer4 = new JLabel(\"Player 4 name:\");\n        staticLabelPlayer4.setHorizontalAlignment(SwingConstants.RIGHT);\n\n        // Button to start game\n        buttonStartGame = new JButton();\n        buttonStartGame.setText(\"Start Game\");\n        buttonStartGame.setIcon(SwingHelper.getImageIconFromResource(\"/newgame.png\"));\n    }\n\n    @Override\n    protected void arrangeComponents() {\n        dialog.add(titleLabel, \"cell 0 0, wrap\");\n\n        dialog.add(staticLabelPlayerCount, \"cell 0 2\");\n        dialog.add(comboBoxPlayerCount, \"cell 1 2, wrap\");\n\n        dialog.add(staticLabelPlayer1, \"cell 0 4\");\n        dialog.add(playerCustomName1, \"cell 1 4, width 150, wrap\");\n\n        dialog.add(staticLabelPlayer2, \"cell 0 5\");\n        dialog.add(playerCustomName2, \"cell 1 5, width 150, wrap\");\n\n        dialog.add(staticLabelPlayer3, \"cell 0 6\");\n        dialog.add(playerCustomName3, \"cell 1 6, width 150, wrap\");\n\n        dialog.add(staticLabelPlayer4, \"cell 0 7\");\n        dialog.add(playerCustomName4, \"cell 1 7, width 150, wrap\");\n\n        dialog.add(buttonStartGame, \"cell 0 9, width 240, height 40, spanx 2, al center center\");\n\n        dialog.pack();\n    }\n\n    @Override\n    public void setStateOfActionButton(Actions action, boolean isEnabled) {\n        switch (action) {\n            case NEWGAME_STARTGAME -> buttonStartGame.setEnabled(isEnabled);\n        }\n    }\n\n    public JDialog getDialog() {\n        return dialog;\n    }\n\n    public void attachStartGameActionListener(DynamicView.StartGameButtonActionListener listener) {\n        startGameButtonActionListener = listener;\n        buttonStartGame.addActionListener(startGameButtonActionListener);\n        buttonStartGame.addActionListener(new LocalActionListener());\n    }\n\n    private class LocalActionListener implements ActionListener {\n\n        @Override\n        public void actionPerformed(ActionEvent e) {\n            System.out.println(\"test again\");\n            playerCount = (int) comboBoxPlayerCount.getSelectedItem();\n\n            playerCustomNames.clear();\n            playerCustomNames.trimToSize();\n            playerCustomNames.add(playerCustomName1.getText());\n            playerCustomNames.add(playerCustomName2.getText());\n            playerCustomNames.add(playerCustomName3.getText());\n            playerCustomNames.add(playerCustomName4.getText());\n\n            startGameButtonActionListener.setPlayerCustomNames(playerCustomNames);\n            startGameButtonActionListener.setPlayerCount(playerCount);\n        }\n    }\n\n    public int getPlayerCount() {\n        return playerCount;\n    }\n\n    public String getPlayerCustomName(int playerID) {\n        String playerCustomName = \"\";\n\n        switch (playerID) {\n            case 1 -> playerCustomName = playerCustomNames.get(0);\n            case 2 -> playerCustomName = playerCustomNames.get(1);\n            case 3 -> playerCustomName = playerCustomNames.get(2);\n            case 4 -> playerCustomName = playerCustomNames.get(3);\n        }\n\n        return playerCustomName;\n    }\n\n    public static void main(String args[]) {\n        DialogContainerStartGame startGameDialog = new DialogContainerStartGame();\n        JDialog dialog = startGameDialog.getDialog();\n\n        dialog.setVisible(true);\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/cc/jayv/monopoly3/DialogContainerStartGame.java b/src/main/java/cc/jayv/monopoly3/DialogContainerStartGame.java
+--- a/src/main/java/cc/jayv/monopoly3/DialogContainerStartGame.java	(revision 238675ac3063f91f4b912e756274d82bf682e722)
++++ b/src/main/java/cc/jayv/monopoly3/DialogContainerStartGame.java	(date 1649769047521)
+@@ -9,6 +9,9 @@
+ import java.util.ArrayList;
+ 
+ public class DialogContainerStartGame extends DialogContainer implements Serializable {
++
++    JDialog dialog;
++
+     int playerCount;
+     JLabel staticLabelPlayerCount;
+     JComboBox<Integer> comboBoxPlayerCount;
+@@ -37,6 +40,7 @@
+ 
+     @Override
+     protected void initComponents() {
++        System.out.println("init startgame");
+         dialog = new JDialog();
+         dialog.setLayout(new MigLayout());
+ 
+@@ -147,10 +151,6 @@
+         }
+     }
+ 
+-    public JDialog getDialog() {
+-        return dialog;
+-    }
+-
+     public void attachStartGameActionListener(DynamicView.StartGameButtonActionListener listener) {
+         startGameButtonActionListener = listener;
+         buttonStartGame.addActionListener(startGameButtonActionListener);
+@@ -199,4 +199,9 @@
+ 
+         dialog.setVisible(true);
+     }
++
++    @Override
++    public JDialog getDialog() {
++        return dialog;
++    }
+ }
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"AutoImportSettings\">\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\n  </component>\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"fe395cf4-00c4-4bef-93b5-8a1f264350fd\" name=\"Changes\" comment=\"moved MainWindow to legacy folder\">\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DialogContainerGameEditor.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DialogContainerGameEditor.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DynamicView.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DynamicView.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/GameEditorController.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/GameEditorController.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/JavaMonopoly.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/JavaMonopoly.java\" afterDir=\"false\" />\n    </list>\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"ChangesViewManager\">\n    <option name=\"groupingKeys\">\n      <option value=\"directory\" />\n      <option value=\"module\" />\n    </option>\n  </component>\n  <component name=\"FileTemplateManagerImpl\">\n    <option name=\"RECENT_TEMPLATES\">\n      <list>\n        <option value=\"Interface\" />\n        <option value=\"Enum\" />\n        <option value=\"Class\" />\n      </list>\n    </option>\n  </component>\n  <component name=\"Git.Rebase.Settings\">\n    <option name=\"NEW_BASE\" value=\"master\" />\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n  </component>\n  <component name=\"GitSEFilterConfiguration\">\n    <file-type-list>\n      <filtered-out-file-type name=\"LOCAL_BRANCH\" />\n      <filtered-out-file-type name=\"REMOTE_BRANCH\" />\n      <filtered-out-file-type name=\"TAG\" />\n      <filtered-out-file-type name=\"COMMIT_BY_MESSAGE\" />\n    </file-type-list>\n  </component>\n  <component name=\"HighlightingSettingsPerFile\">\n    <setting file=\"jar:///Library/Java/JavaVirtualMachines/jdk-17.0.2.jdk/Contents/Home/lib/src.zip!/java.base/java/util/Objects.java\" root0=\"SKIP_INSPECTION\" />\n    <setting file=\"jar:///Library/Java/JavaVirtualMachines/jdk-17.0.2.jdk/Contents/Home/lib/src.zip!/java.desktop/javax/swing/ImageIcon.java\" root0=\"SKIP_INSPECTION\" />\n    <setting file=\"jar:///Library/Java/JavaVirtualMachines/jdk-17.0.2.jdk/Contents/Home/lib/src.zip!/java.desktop/javax/swing/JLabel.java\" root0=\"SKIP_INSPECTION\" />\n  </component>\n  <component name=\"MarkdownSettingsMigration\">\n    <option name=\"stateVersion\" value=\"1\" />\n  </component>\n  <component name=\"MavenImportPreferences\">\n    <option name=\"generalSettings\">\n      <MavenGeneralSettings>\n        <option name=\"useMavenConfig\" value=\"true\" />\n      </MavenGeneralSettings>\n    </option>\n  </component>\n  <component name=\"NamedScopeManager\">\n    <scope name=\"Unnamed\" pattern=\"src:cc.jayv.monopoly3.DialogContainerAbout||src:cc.jayv.monopoly3.Actions||src:cc.jayv.monopoly3.Board||src:cc.jayv.monopoly3.ViewFrameBoard||src:cc.jayv.monopoly3.TemplateDialogButtonProperties||src:cc.jayv.monopoly3.Color||src:cc.jayv.monopoly3.ViewFrameControl||src:cc.jayv.monopoly3.DrawCard||src:cc.jayv.monopoly3.DynamicView||src:cc.jayv.monopoly3.GameEvent||src:cc.jayv.monopoly3.GameEditorActions||src:cc.jayv.monopoly3.DialogContainerGameEditor||src:cc.jayv.monopoly3.GameLogicController||src:cc.jayv.monopoly3.ViewFrameInformation||src:cc.jayv.monopoly3.JavaMonopoly||src:cc.jayv.monopoly3.LogHelper||src:cc.jayv.monopoly3.GameLogicSwitchboard||src:cc.jayv.monopoly3.Player||src:cc.jayv.monopoly3.Property||src:cc.jayv.monopoly3.Railroad||src:cc.jayv.monopoly3.Space||src:cc.jayv.monopoly3.ViewAreaSpaceSelection||src:cc.jayv.monopoly3.DialogContainerStartGame||src:cc.jayv.monopoly3.Statistics||src:cc.jayv.monopoly3.SwingHelper||src:cc.jayv.monopoly3.Utility||src:cc.jayv.monopoly3.ViewComponent||src:cc.jayv.monopoly3.TemplateDialogGenerator\" />\n  </component>\n  <component name=\"ProblemsViewState\">\n    <option name=\"selectedTabId\" value=\"CurrentFile\" />\n  </component>\n  <component name=\"ProjectId\" id=\"279hSidtvpJIxpLhUhQlSy13zMB\" />\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\">\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\n  </component>\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\">\n    <property name=\"ASKED_SHARE_PROJECT_CONFIGURATION_FILES\" value=\"true\" />\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\n    <property name=\"RunOnceActivity.ShowReadmeOnStart\" value=\"true\" />\n    <property name=\"SHARE_PROJECT_CONFIGURATION_FILES\" value=\"true\" />\n    <property name=\"com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File\" value=\"JAVA\" />\n    <property name=\"project.structure.last.edited\" value=\"Problems\" />\n    <property name=\"project.structure.proportion\" value=\"0.0\" />\n    <property name=\"project.structure.side.proportion\" value=\"0.3494253\" />\n    <property name=\"run.code.analysis.last.selected.profile\" value=\"pProject Default\" />\n    <property name=\"settings.editor.selected.configurable\" value=\"preferences.pluginManager\" />\n  </component>\n  <component name=\"RunManager\" selected=\"Application.DynamicView\">\n    <configuration name=\"DialogContainerGameEditor\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\n      <option name=\"MAIN_CLASS_NAME\" value=\"cc.jayv.monopoly3.DialogContainerGameEditor\" />\n      <module name=\"Monoproto3\" />\n      <extension name=\"coverage\">\n        <pattern>\n          <option name=\"PATTERN\" value=\"cc.jayv.monopoly3.*\" />\n          <option name=\"ENABLED\" value=\"true\" />\n        </pattern>\n      </extension>\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"DialogContainerPurchaseProperty\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\n      <option name=\"MAIN_CLASS_NAME\" value=\"cc.jayv.monopoly3.DialogContainerPurchaseProperty\" />\n      <module name=\"Monoproto3\" />\n      <extension name=\"coverage\">\n        <pattern>\n          <option name=\"PATTERN\" value=\"cc.jayv.monopoly3.*\" />\n          <option name=\"ENABLED\" value=\"true\" />\n        </pattern>\n      </extension>\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"DialogContainerStartGame\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\n      <option name=\"MAIN_CLASS_NAME\" value=\"cc.jayv.monopoly3.DialogContainerStartGame\" />\n      <module name=\"Monoproto3\" />\n      <extension name=\"coverage\">\n        <pattern>\n          <option name=\"PATTERN\" value=\"cc.jayv.monopoly3.*\" />\n          <option name=\"ENABLED\" value=\"true\" />\n        </pattern>\n      </extension>\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"DynamicView\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\n      <option name=\"MAIN_CLASS_NAME\" value=\"cc.jayv.monopoly3.DynamicView\" />\n      <module name=\"Monoproto3\" />\n      <extension name=\"coverage\">\n        <pattern>\n          <option name=\"PATTERN\" value=\"cc.jayv.monopoly3.GameLogicSwitchboard\" />\n          <option name=\"ENABLED\" value=\"true\" />\n        </pattern>\n      </extension>\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"JavaMonopoly\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\n      <option name=\"MAIN_CLASS_NAME\" value=\"cc.jayv.monopoly3.JavaMonopoly\" />\n      <module name=\"Monoproto3\" />\n      <extension name=\"coverage\">\n        <pattern>\n          <option name=\"PATTERN\" value=\"cc.jayv.monopoly3.*\" />\n          <option name=\"ENABLED\" value=\"true\" />\n        </pattern>\n      </extension>\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"Run Jar\" type=\"JarApplication\">\n      <option name=\"JAR_PATH\" value=\"$PROJECT_DIR$/target/Monoproto3-1.0-SNAPSHOT-jar-with-dependencies.jar\" />\n      <option name=\"WORKING_DIRECTORY\" value=\"$PROJECT_DIR$\" />\n      <option name=\"ALTERNATIVE_JRE_PATH\" />\n      <method v=\"2\" />\n    </configuration>\n    <configuration name=\"Build\" type=\"MavenRunConfiguration\" factoryName=\"Maven\">\n      <MavenSettings>\n        <option name=\"myGeneralSettings\" />\n        <option name=\"myRunnerSettings\" />\n        <option name=\"myRunnerParameters\">\n          <MavenRunnerParameters>\n            <option name=\"profiles\">\n              <set />\n            </option>\n            <option name=\"goals\">\n              <list>\n                <option value=\"install\" />\n              </list>\n            </option>\n            <option name=\"pomFileName\" />\n            <option name=\"profilesMap\">\n              <map />\n            </option>\n            <option name=\"resolveToWorkspace\" value=\"false\" />\n            <option name=\"workingDirPath\" value=\"$PROJECT_DIR$\" />\n          </MavenRunnerParameters>\n        </option>\n      </MavenSettings>\n      <method v=\"2\" />\n    </configuration>\n    <configuration name=\"Clean\" type=\"MavenRunConfiguration\" factoryName=\"Maven\">\n      <MavenSettings>\n        <option name=\"myGeneralSettings\" />\n        <option name=\"myRunnerSettings\" />\n        <option name=\"myRunnerParameters\">\n          <MavenRunnerParameters>\n            <option name=\"profiles\">\n              <set />\n            </option>\n            <option name=\"goals\">\n              <list>\n                <option value=\"clean\" />\n              </list>\n            </option>\n            <option name=\"pomFileName\" />\n            <option name=\"profilesMap\">\n              <map />\n            </option>\n            <option name=\"resolveToWorkspace\" value=\"false\" />\n            <option name=\"workingDirPath\" value=\"$PROJECT_DIR$\" />\n          </MavenRunnerParameters>\n        </option>\n      </MavenSettings>\n      <method v=\"2\" />\n    </configuration>\n    <list>\n      <item itemvalue=\"Application.DynamicView\" />\n      <item itemvalue=\"Application.JavaMonopoly\" />\n      <item itemvalue=\"JAR Application.Run Jar\" />\n      <item itemvalue=\"Maven.Clean\" />\n      <item itemvalue=\"Maven.Build\" />\n      <item itemvalue=\"Application.DialogContainerPurchaseProperty\" />\n      <item itemvalue=\"Application.DialogContainerGameEditor\" />\n      <item itemvalue=\"Application.DialogContainerStartGame\" />\n    </list>\n    <recent_temporary>\n      <list>\n        <item itemvalue=\"Application.DynamicView\" />\n        <item itemvalue=\"Application.DialogContainerPurchaseProperty\" />\n        <item itemvalue=\"Application.DialogContainerGameEditor\" />\n        <item itemvalue=\"Application.JavaMonopoly\" />\n        <item itemvalue=\"Application.DialogContainerStartGame\" />\n      </list>\n    </recent_temporary>\n  </component>\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"fe395cf4-00c4-4bef-93b5-8a1f264350fd\" name=\"Changes\" comment=\"modifying project for use in other IDE\" />\n      <created>1648738215419</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1648738215419</updated>\n    </task>\n    <task id=\"LOCAL-00005\" summary=\"updated icon methods for dialog creation\">\n      <created>1648918935038</created>\n      <option name=\"number\" value=\"00005\" />\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1648918935038</updated>\n    </task>\n    <task id=\"LOCAL-00006\" summary=\"updated dynamic dialog creation\">\n      <created>1648919621502</created>\n      <option name=\"number\" value=\"00006\" />\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1648919621502</updated>\n    </task>\n    <task id=\"LOCAL-00007\" summary=\"updated dynamic dialog creation\">\n      <created>1648958911621</created>\n      <option name=\"number\" value=\"00007\" />\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1648958911621</updated>\n    </task>\n    <task id=\"LOCAL-00008\" summary=\"updated dynamic view generation\">\n      <created>1649024918171</created>\n      <option name=\"number\" value=\"00008\" />\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1649024918171</updated>\n    </task>\n    <task id=\"LOCAL-00009\" summary=\"updated dynamic view generation\">\n      <created>1649028973680</created>\n      <option name=\"number\" value=\"00009\" />\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1649028973680</updated>\n    </task>\n    <task id=\"LOCAL-00010\" summary=\"updated dynamic view generation\">\n      <created>1649030429091</created>\n      <option name=\"number\" value=\"00010\" />\n      <option name=\"presentableId\" value=\"LOCAL-00010\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1649030429091</updated>\n    </task>\n    <task id=\"LOCAL-00011\" summary=\"updated dynamic view generation\">\n      <created>1649071012604</created>\n      <option name=\"number\" value=\"00011\" />\n      <option name=\"presentableId\" value=\"LOCAL-00011\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1649071012604</updated>\n    </task>\n    <task id=\"LOCAL-00012\" summary=\"fixed StackOverflowError for dynamic buttons\">\n      <created>1649194343350</created>\n      <option name=\"number\" value=\"00012\" />\n      <option name=\"presentableId\" value=\"LOCAL-00012\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1649194343350</updated>\n    </task>\n    <task id=\"LOCAL-00013\" summary=\"updated UML\">\n      <created>1649195432336</created>\n      <option name=\"number\" value=\"00013\" />\n      <option name=\"presentableId\" value=\"LOCAL-00013\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1649195432336</updated>\n    </task>\n    <task id=\"LOCAL-00014\" summary=\"established framework for view logic switching\">\n      <created>1649197660701</created>\n      <option name=\"number\" value=\"00014\" />\n      <option name=\"presentableId\" value=\"LOCAL-00014\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1649197660701</updated>\n    </task>\n    <task id=\"LOCAL-00015\" summary=\"updated dynamic GUI creation; separated elements into further classes\">\n      <created>1649202892488</created>\n      <option name=\"number\" value=\"00015\" />\n      <option name=\"presentableId\" value=\"LOCAL-00015\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1649202892488</updated>\n    </task>\n    <task id=\"LOCAL-00016\" summary=\"experimenting with infoArea manipulation through LogicSwitchboard\">\n      <created>1649205376973</created>\n      <option name=\"number\" value=\"00016\" />\n      <option name=\"presentableId\" value=\"LOCAL-00016\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1649205376973</updated>\n    </task>\n    <task id=\"LOCAL-00017\" summary=\"split Actions into separate class; further experiments with dynamic GUI\">\n      <created>1649206362031</created>\n      <option name=\"number\" value=\"00017\" />\n      <option name=\"presentableId\" value=\"LOCAL-00017\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1649206362031</updated>\n    </task>\n    <task id=\"LOCAL-00018\" summary=\"ActionEvents across multiple classes working\">\n      <created>1649212891753</created>\n      <option name=\"number\" value=\"00018\" />\n      <option name=\"presentableId\" value=\"LOCAL-00018\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1649212891753</updated>\n    </task>\n    <task id=\"LOCAL-00019\" summary=\"fixed spaceButton placement issue\">\n      <created>1649213045413</created>\n      <option name=\"number\" value=\"00019\" />\n      <option name=\"presentableId\" value=\"LOCAL-00019\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1649213045413</updated>\n    </task>\n    <task id=\"LOCAL-00020\" summary=\"improved controlFrame; general code cleanup\">\n      <created>1649214733193</created>\n      <option name=\"number\" value=\"00020\" />\n      <option name=\"presentableId\" value=\"LOCAL-00020\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1649214733193</updated>\n    </task>\n    <task id=\"LOCAL-00021\" summary=\"added buttons to ControlFrame\">\n      <created>1649255857590</created>\n      <option name=\"number\" value=\"00021\" />\n      <option name=\"presentableId\" value=\"LOCAL-00021\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1649255857590</updated>\n    </task>\n    <task id=\"LOCAL-00022\" summary=\"updated ControlFrame, added framework for InfoFrame\">\n      <created>1649260839601</created>\n      <option name=\"number\" value=\"00022\" />\n      <option name=\"presentableId\" value=\"LOCAL-00022\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1649260839601</updated>\n    </task>\n    <task id=\"LOCAL-00023\" summary=\"added game log view to board panel\">\n      <created>1649294257957</created>\n      <option name=\"number\" value=\"00023\" />\n      <option name=\"presentableId\" value=\"LOCAL-00023\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1649294257957</updated>\n    </task>\n    <task id=\"LOCAL-00024\" summary=\"updated dynamic space selection info\">\n      <created>1649303259555</created>\n      <option name=\"number\" value=\"00024\" />\n      <option name=\"presentableId\" value=\"LOCAL-00024\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1649303259555</updated>\n    </task>\n    <task id=\"LOCAL-00025\" summary=\"improved appearance for board view\">\n      <created>1649333661118</created>\n      <option name=\"number\" value=\"00025\" />\n      <option name=\"presentableId\" value=\"LOCAL-00025\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1649333661118</updated>\n    </task>\n    <task id=\"LOCAL-00026\" summary=\"updated space selection area\">\n      <created>1649348568691</created>\n      <option name=\"number\" value=\"00026\" />\n      <option name=\"presentableId\" value=\"LOCAL-00026\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1649348568691</updated>\n    </task>\n    <task id=\"LOCAL-00027\" summary=\"updated space selection area\">\n      <created>1649355101785</created>\n      <option name=\"number\" value=\"00027\" />\n      <option name=\"presentableId\" value=\"LOCAL-00027\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1649355101785</updated>\n    </task>\n    <task id=\"LOCAL-00028\" summary=\"added about dialog\">\n      <created>1649366515349</created>\n      <option name=\"number\" value=\"00028\" />\n      <option name=\"presentableId\" value=\"LOCAL-00028\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1649366515349</updated>\n    </task>\n    <task id=\"LOCAL-00029\" summary=\"updated label generation; fixed null pointers for labels\">\n      <created>1649448017131</created>\n      <option name=\"number\" value=\"00029\" />\n      <option name=\"presentableId\" value=\"LOCAL-00029\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1649448017131</updated>\n    </task>\n    <task id=\"LOCAL-00030\" summary=\"remaining labels now update properly; added methods to Property for querying rent for particular state\">\n      <created>1649451115297</created>\n      <option name=\"number\" value=\"00030\" />\n      <option name=\"presentableId\" value=\"LOCAL-00030\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1649451115297</updated>\n    </task>\n    <task id=\"LOCAL-00031\" summary=\"updated space selection GUI\">\n      <created>1649452190296</created>\n      <option name=\"number\" value=\"00031\" />\n      <option name=\"presentableId\" value=\"LOCAL-00031\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1649452190296</updated>\n    </task>\n    <task id=\"LOCAL-00032\" summary=\"added start game dialog\">\n      <created>1649459324291</created>\n      <option name=\"number\" value=\"00032\" />\n      <option name=\"presentableId\" value=\"LOCAL-00032\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1649459324291</updated>\n    </task>\n    <task id=\"LOCAL-00033\" summary=\"general checkpoint\">\n      <created>1649459342879</created>\n      <option name=\"number\" value=\"00033\" />\n      <option name=\"presentableId\" value=\"LOCAL-00033\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1649459342879</updated>\n    </task>\n    <task id=\"LOCAL-00034\" summary=\"improved start game dialog\">\n      <created>1649531741876</created>\n      <option name=\"number\" value=\"00034\" />\n      <option name=\"presentableId\" value=\"LOCAL-00034\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1649531741876</updated>\n    </task>\n    <task id=\"LOCAL-00035\" summary=\"connection between DynamicView and GameLogicController established\">\n      <created>1649533776873</created>\n      <option name=\"number\" value=\"00035\" />\n      <option name=\"presentableId\" value=\"LOCAL-00035\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1649533776873</updated>\n    </task>\n    <task id=\"LOCAL-00036\" summary=\"buttons now lock appropriately\">\n      <created>1649535422584</created>\n      <option name=\"number\" value=\"00036\" />\n      <option name=\"presentableId\" value=\"LOCAL-00036\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1649535422584</updated>\n    </task>\n    <task id=\"LOCAL-00037\" summary=\"dialog logic improved\">\n      <created>1649536927036</created>\n      <option name=\"number\" value=\"00037\" />\n      <option name=\"presentableId\" value=\"LOCAL-00037\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1649536927036</updated>\n    </task>\n    <task id=\"LOCAL-00038\" summary=\"separated BoardFrame into own class; cleaned up ActionListeners for SpaceButtons\">\n      <created>1649541434394</created>\n      <option name=\"number\" value=\"00038\" />\n      <option name=\"presentableId\" value=\"LOCAL-00038\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1649541434394</updated>\n    </task>\n    <task id=\"LOCAL-00039\" summary=\"animated space icons now working with DynamicView\">\n      <created>1649543598636</created>\n      <option name=\"number\" value=\"00039\" />\n      <option name=\"presentableId\" value=\"LOCAL-00039\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1649543598636</updated>\n    </task>\n    <task id=\"LOCAL-00040\" summary=\"general checkpoint\">\n      <created>1649543614818</created>\n      <option name=\"number\" value=\"00040\" />\n      <option name=\"presentableId\" value=\"LOCAL-00040\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1649543614818</updated>\n    </task>\n    <task id=\"LOCAL-00041\" summary=\"updated improvement icon logic\">\n      <created>1649554433121</created>\n      <option name=\"number\" value=\"00041\" />\n      <option name=\"presentableId\" value=\"LOCAL-00041\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1649554433121</updated>\n    </task>\n    <task id=\"LOCAL-00042\" summary=\"updated inline documentation for BoardFrame\">\n      <created>1649555172799</created>\n      <option name=\"number\" value=\"00042\" />\n      <option name=\"presentableId\" value=\"LOCAL-00042\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1649555172799</updated>\n    </task>\n    <task id=\"LOCAL-00043\" summary=\"added very basic player indicator placement code\">\n      <created>1649641660567</created>\n      <option name=\"number\" value=\"00043\" />\n      <option name=\"presentableId\" value=\"LOCAL-00043\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1649641660567</updated>\n    </task>\n    <task id=\"LOCAL-00044\" summary=\"general checkpoint\">\n      <created>1649641671326</created>\n      <option name=\"number\" value=\"00044\" />\n      <option name=\"presentableId\" value=\"LOCAL-00044\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1649641671326</updated>\n    </task>\n    <task id=\"LOCAL-00045\" summary=\"improved player indicator placement logic\">\n      <created>1649643347397</created>\n      <option name=\"number\" value=\"00045\" />\n      <option name=\"presentableId\" value=\"LOCAL-00045\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1649643347397</updated>\n    </task>\n    <task id=\"LOCAL-00046\" summary=\"updated game editor\">\n      <created>1649645190606</created>\n      <option name=\"number\" value=\"00046\" />\n      <option name=\"presentableId\" value=\"LOCAL-00046\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1649645190606</updated>\n    </task>\n    <task id=\"LOCAL-00047\" summary=\"improved control pane appearance and behavior; updated game editor\">\n      <created>1649711641934</created>\n      <option name=\"number\" value=\"00047\" />\n      <option name=\"presentableId\" value=\"LOCAL-00047\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1649711641934</updated>\n    </task>\n    <task id=\"LOCAL-00048\" summary=\"added improved property purchase dialog\">\n      <created>1649716248325</created>\n      <option name=\"number\" value=\"00048\" />\n      <option name=\"presentableId\" value=\"LOCAL-00048\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1649716248325</updated>\n    </task>\n    <task id=\"LOCAL-00049\" summary=\"updated PropertyPurchaseDialog\">\n      <created>1649716852401</created>\n      <option name=\"number\" value=\"00049\" />\n      <option name=\"presentableId\" value=\"LOCAL-00049\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1649716852401</updated>\n    </task>\n    <task id=\"LOCAL-00050\" summary=\"updated PropertyPurchaseDialog; cleaned up code slightly\">\n      <created>1649717949384</created>\n      <option name=\"number\" value=\"00050\" />\n      <option name=\"presentableId\" value=\"LOCAL-00050\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1649717949385</updated>\n    </task>\n    <task id=\"LOCAL-00051\" summary=\"renamed files for greater consistency\">\n      <created>1649718028546</created>\n      <option name=\"number\" value=\"00051\" />\n      <option name=\"presentableId\" value=\"LOCAL-00051\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1649718028546</updated>\n    </task>\n    <task id=\"LOCAL-00052\" summary=\"renamed files for greater consistency\">\n      <created>1649718917593</created>\n      <option name=\"number\" value=\"00052\" />\n      <option name=\"presentableId\" value=\"LOCAL-00052\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1649718917593</updated>\n    </task>\n    <task id=\"LOCAL-00053\" summary=\"moved MainWindow to legacy folder\">\n      <created>1649719892522</created>\n      <option name=\"number\" value=\"00053\" />\n      <option name=\"presentableId\" value=\"LOCAL-00053\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1649719892522</updated>\n    </task>\n    <option name=\"localTasksCounter\" value=\"54\" />\n    <servers />\n  </component>\n  <component name=\"Vcs.Log.History.Properties\">\n    <option name=\"COLUMN_ID_ORDER\">\n      <list>\n        <option value=\"Default.Root\" />\n        <option value=\"Default.Author\" />\n        <option value=\"Default.Date\" />\n        <option value=\"Default.Subject\" />\n        <option value=\"Space.CommitStatus\" />\n      </list>\n    </option>\n  </component>\n  <component name=\"Vcs.Log.Tabs.Properties\">\n    <option name=\"TAB_STATES\">\n      <map>\n        <entry key=\"MAIN\">\n          <value>\n            <State />\n          </value>\n        </entry>\n      </map>\n    </option>\n  </component>\n  <component name=\"VcsManagerConfiguration\">\n    <option name=\"CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT\" value=\"false\" />\n    <option name=\"CHECK_NEW_TODO\" value=\"false\" />\n    <MESSAGE value=\"improved appearance for board view\" />\n    <MESSAGE value=\"updated space selection area\" />\n    <MESSAGE value=\"added about dialog\" />\n    <MESSAGE value=\"updated label generation; fixed null pointers for labels\" />\n    <MESSAGE value=\"remaining labels now update properly; added methods to Property for querying rent for particular state\" />\n    <MESSAGE value=\"updated space selection GUI\" />\n    <MESSAGE value=\"added start game dialog\" />\n    <MESSAGE value=\"improved start game dialog\" />\n    <MESSAGE value=\"connection between DynamicView and GameLogicController established\" />\n    <MESSAGE value=\"buttons now lock appropriately\" />\n    <MESSAGE value=\"dialog logic improved\" />\n    <MESSAGE value=\"separated BoardFrame into own class; cleaned up ActionListeners for SpaceButtons\" />\n    <MESSAGE value=\"animated space icons now working with DynamicView\" />\n    <MESSAGE value=\"updated improvement icon logic\" />\n    <MESSAGE value=\"updated inline documentation for BoardFrame\" />\n    <MESSAGE value=\"added very basic player indicator placement code\" />\n    <MESSAGE value=\"general checkpoint\" />\n    <MESSAGE value=\"improved player indicator placement logic\" />\n    <MESSAGE value=\"updated game editor\" />\n    <MESSAGE value=\"improved control pane appearance and behavior; updated game editor\" />\n    <MESSAGE value=\"added improved property purchase dialog\" />\n    <MESSAGE value=\"updated PropertyPurchaseDialog\" />\n    <MESSAGE value=\"updated PropertyPurchaseDialog; cleaned up code slightly\" />\n    <MESSAGE value=\"renamed files for greater consistency\" />\n    <MESSAGE value=\"moved MainWindow to legacy folder\" />\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"moved MainWindow to legacy folder\" />\n  </component>\n  <component name=\"XDebuggerManager\">\n    <breakpoint-manager>\n      <breakpoints>\n        <line-breakpoint enabled=\"true\" type=\"java-line\">\n          <url>file://$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/TemplateDialogGenerator.java</url>\n          <line>28</line>\n          <option name=\"timeStamp\" value=\"11\" />\n        </line-breakpoint>\n        <breakpoint enabled=\"true\" type=\"java-exception\">\n          <properties class=\"java.lang.StackOverflowError\" package=\"java.lang\" />\n          <option name=\"timeStamp\" value=\"13\" />\n        </breakpoint>\n      </breakpoints>\n    </breakpoint-manager>\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 238675ac3063f91f4b912e756274d82bf682e722)
++++ b/.idea/workspace.xml	(date 1649769173777)
+@@ -4,12 +4,16 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="fe395cf4-00c4-4bef-93b5-8a1f264350fd" name="Changes" comment="moved MainWindow to legacy folder">
++    <list default="true" id="fe395cf4-00c4-4bef-93b5-8a1f264350fd" name="Changes" comment="added abstract class DialogContainer, dialog containers now extend it">
++      <change afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DialogContainerJail.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DialogContainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DialogContainer.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DialogContainerAbout.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DialogContainerAbout.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DialogContainerGameEditor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DialogContainerGameEditor.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DialogContainerImprovements.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DialogContainerImprovements.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DialogContainerPurchaseProperty.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DialogContainerPurchaseProperty.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DialogContainerStartGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DialogContainerStartGame.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DynamicView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DynamicView.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/GameEditorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/GameEditorController.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/JavaMonopoly.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/JavaMonopoly.java" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -25,8 +29,8 @@
+   <component name="FileTemplateManagerImpl">
+     <option name="RECENT_TEMPLATES">
+       <list>
+-        <option value="Interface" />
+         <option value="Enum" />
++        <option value="Interface" />
+         <option value="Class" />
+       </list>
+     </option>
+@@ -46,6 +50,7 @@
+     </file-type-list>
+   </component>
+   <component name="HighlightingSettingsPerFile">
++    <setting file="jar:///Library/Java/JavaVirtualMachines/jdk-17.0.2.jdk/Contents/Home/lib/src.zip!/java.base/java/io/NotSerializableException.java" root0="SKIP_INSPECTION" />
+     <setting file="jar:///Library/Java/JavaVirtualMachines/jdk-17.0.2.jdk/Contents/Home/lib/src.zip!/java.base/java/util/Objects.java" root0="SKIP_INSPECTION" />
+     <setting file="jar:///Library/Java/JavaVirtualMachines/jdk-17.0.2.jdk/Contents/Home/lib/src.zip!/java.desktop/javax/swing/ImageIcon.java" root0="SKIP_INSPECTION" />
+     <setting file="jar:///Library/Java/JavaVirtualMachines/jdk-17.0.2.jdk/Contents/Home/lib/src.zip!/java.desktop/javax/swing/JLabel.java" root0="SKIP_INSPECTION" />
+@@ -84,9 +89,9 @@
+     <property name="project.structure.proportion" value="0.0" />
+     <property name="project.structure.side.proportion" value="0.3494253" />
+     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
++    <property name="settings.editor.selected.configurable" value="reference.settings.project.statistic.project.settings" />
+   </component>
+-  <component name="RunManager" selected="Application.DynamicView">
++  <component name="RunManager" selected="Application.JavaMonopoly">
+     <configuration name="DialogContainerGameEditor" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+       <option name="MAIN_CLASS_NAME" value="cc.jayv.monopoly3.DialogContainerGameEditor" />
+       <module name="Monoproto3" />
+@@ -211,19 +216,19 @@
+     <list>
+       <item itemvalue="Application.DynamicView" />
+       <item itemvalue="Application.JavaMonopoly" />
+-      <item itemvalue="JAR Application.Run Jar" />
+-      <item itemvalue="Maven.Clean" />
+-      <item itemvalue="Maven.Build" />
+       <item itemvalue="Application.DialogContainerPurchaseProperty" />
+       <item itemvalue="Application.DialogContainerGameEditor" />
+       <item itemvalue="Application.DialogContainerStartGame" />
++      <item itemvalue="JAR Application.Run Jar" />
++      <item itemvalue="Maven.Clean" />
++      <item itemvalue="Maven.Build" />
+     </list>
+     <recent_temporary>
+       <list>
++        <item itemvalue="Application.JavaMonopoly" />
+         <item itemvalue="Application.DynamicView" />
+         <item itemvalue="Application.DialogContainerPurchaseProperty" />
+         <item itemvalue="Application.DialogContainerGameEditor" />
+-        <item itemvalue="Application.JavaMonopoly" />
+         <item itemvalue="Application.DialogContainerStartGame" />
+       </list>
+     </recent_temporary>
+@@ -237,27 +242,6 @@
+       <option name="presentableId" value="Default" />
+       <updated>1648738215419</updated>
+     </task>
+-    <task id="LOCAL-00005" summary="updated icon methods for dialog creation">
+-      <created>1648918935038</created>
+-      <option name="number" value="00005" />
+-      <option name="presentableId" value="LOCAL-00005" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1648918935038</updated>
+-    </task>
+-    <task id="LOCAL-00006" summary="updated dynamic dialog creation">
+-      <created>1648919621502</created>
+-      <option name="number" value="00006" />
+-      <option name="presentableId" value="LOCAL-00006" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1648919621502</updated>
+-    </task>
+-    <task id="LOCAL-00007" summary="updated dynamic dialog creation">
+-      <created>1648958911621</created>
+-      <option name="number" value="00007" />
+-      <option name="presentableId" value="LOCAL-00007" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1648958911621</updated>
+-    </task>
+     <task id="LOCAL-00008" summary="updated dynamic view generation">
+       <created>1649024918171</created>
+       <option name="number" value="00008" />
+@@ -580,7 +564,28 @@
+       <option name="project" value="LOCAL" />
+       <updated>1649719892522</updated>
+     </task>
+-    <option name="localTasksCounter" value="54" />
++    <task id="LOCAL-00054" summary="updated game editor">
++      <created>1649720940881</created>
++      <option name="number" value="00054" />
++      <option name="presentableId" value="LOCAL-00054" />
++      <option name="project" value="LOCAL" />
++      <updated>1649720940881</updated>
++    </task>
++    <task id="LOCAL-00055" summary="added framework for serialized objects; saving/loading game state">
++      <created>1649732111092</created>
++      <option name="number" value="00055" />
++      <option name="presentableId" value="LOCAL-00055" />
++      <option name="project" value="LOCAL" />
++      <updated>1649732111092</updated>
++    </task>
++    <task id="LOCAL-00056" summary="added abstract class DialogContainer, dialog containers now extend it">
++      <created>1649766484493</created>
++      <option name="number" value="00056" />
++      <option name="presentableId" value="LOCAL-00056" />
++      <option name="project" value="LOCAL" />
++      <updated>1649766484493</updated>
++    </task>
++    <option name="localTasksCounter" value="57" />
+     <servers />
+   </component>
+   <component name="Vcs.Log.History.Properties">
+@@ -608,8 +613,6 @@
+   <component name="VcsManagerConfiguration">
+     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+     <option name="CHECK_NEW_TODO" value="false" />
+-    <MESSAGE value="improved appearance for board view" />
+-    <MESSAGE value="updated space selection area" />
+     <MESSAGE value="added about dialog" />
+     <MESSAGE value="updated label generation; fixed null pointers for labels" />
+     <MESSAGE value="remaining labels now update properly; added methods to Property for querying rent for particular state" />
+@@ -626,14 +629,16 @@
+     <MESSAGE value="added very basic player indicator placement code" />
+     <MESSAGE value="general checkpoint" />
+     <MESSAGE value="improved player indicator placement logic" />
+-    <MESSAGE value="updated game editor" />
+     <MESSAGE value="improved control pane appearance and behavior; updated game editor" />
+     <MESSAGE value="added improved property purchase dialog" />
+     <MESSAGE value="updated PropertyPurchaseDialog" />
+     <MESSAGE value="updated PropertyPurchaseDialog; cleaned up code slightly" />
+     <MESSAGE value="renamed files for greater consistency" />
+     <MESSAGE value="moved MainWindow to legacy folder" />
+-    <option name="LAST_COMMIT_MESSAGE" value="moved MainWindow to legacy folder" />
++    <MESSAGE value="updated game editor" />
++    <MESSAGE value="added framework for serialized objects; saving/loading game state" />
++    <MESSAGE value="added abstract class DialogContainer, dialog containers now extend it" />
++    <option name="LAST_COMMIT_MESSAGE" value="added abstract class DialogContainer, dialog containers now extend it" />
+   </component>
+   <component name="XDebuggerManager">
+     <breakpoint-manager>
+@@ -647,7 +652,19 @@
+           <properties class="java.lang.StackOverflowError" package="java.lang" />
+           <option name="timeStamp" value="13" />
+         </breakpoint>
++        <breakpoint enabled="true" type="java-exception">
++          <properties class="java.io.NotSerializableException" package="java.io" />
++          <option name="timeStamp" value="24" />
++        </breakpoint>
++        <breakpoint enabled="true" type="java-exception">
++          <properties class="java.lang.NullPointerException" package="java.lang" />
++          <option name="timeStamp" value="30" />
++        </breakpoint>
+       </breakpoints>
+     </breakpoint-manager>
+   </component>
++  <component name="XSLT-Support.FileAssociations.UIState">
++    <expand />
++    <select />
++  </component>
+ </project>
+\ No newline at end of file
+Index: src/main/java/cc/jayv/monopoly3/DynamicView.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package cc.jayv.monopoly3;\n\nimport com.formdev.flatlaf.FlatLightLaf;\nimport net.miginfocom.swing.MigLayout;\n\nimport java.io.*;\nimport java.util.ArrayList;\nimport javax.swing.*;\nimport javax.swing.border.Border;\nimport java.awt.event.ActionEvent;\nimport java.awt.event.ActionListener;\nimport java.util.Arrays;\nimport java.util.logging.Level;\nimport java.util.logging.Logger;\n\n/**\n *\n * @author jay\n */\npublic class DynamicView implements Serializable  {\n\n\t// Core components - GUI\n\tJFrame mainFrame;\n\n\tViewFrameBoard viewFrameBoard;\n\tViewFrameControl viewFrameControl;\n\tViewFrameInformation viewFrameInformation;\n\n\tArrayList<ViewFrameBoard.SpaceButton> spaceButtons;\n\n\tArrayList<ButtonActionListener> buttonActionListeners;\n\n\t// Core components - logic and control\n\tGameLogicSwitchboard switchboard;\n\tGameLogicController controller;\n\tBoard board;\n\tLogHelper logHelper;\n\n\t// Dialog containers\n\tDialogContainerPurchaseProperty dialogContainerPurchaseProperty;\n\tDialogContainerGameEditor dialogContainerGameEditor;\n\tDialogContainerStartGame dialogContainerStartGame;\n\n\tGameEditorController gameEditorController;\n\n\t// Dialogs\n\tJDialog dialogJail;\n\tJDialog dialogPurchaseProperty;\n\tJDialog dialogImprovements;\n\tJDialog dialogStartGame;\n\tJDialog dialogGameEditor;\n\tJDialog dialogAbout;\n\n\t// Root-level menus\n\tJMenuBar menuBar;\n\tJMenu menuFile;\n\tJMenu menuEdit;\n\tJMenu menuView;\n\n\tBorder spaceSelectionBorder;\n\n\t// Reference variables\n\tstatic int currentSpaceButtonSelection;\n\tPlayer currentPlayer;\n\n\t// Objects required to be class-wide for serialization\n\tint playerCount;\n\tArrayList<String> playerCustomNames;\n\n\tJavaMonopoly jm;\n\n\tpublic DynamicView(JavaMonopoly jm) {\n\n\t\tthis.jm = jm;\n\t\t// Set to FlatLaf appearance\n\t\ttry {\n\t\t\tUIManager.setLookAndFeel(new FlatLightLaf());\n\n\t\t} catch (UnsupportedLookAndFeelException e) {\n\t\t\ttry {\n\t\t\t\tUIManager.setLookAndFeel(\"javax.swing.plaf.metal.MetalLookAndFeel\");\n\t\t\t} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {\n\t\t\t\tLogger.getLogger(DynamicView.class.getName()).log(Level.SEVERE, null, ex);\n\t\t\t}\n\t\t}\n\n\t\t// Initialize board\n\t\ttry {\n\t\t\tboard = new Board();\n\t\t} catch (IOException e) {\n\t\t\te.printStackTrace();\n\t\t\tSystem.exit(1);\n\t\t}\n\n\t\t// Initialize logic and helper components\n\t\tlogHelper = new LogHelper();\n\t\tcontroller = new GameLogicController(board, logHelper);\n\t\tswitchboard = new GameLogicSwitchboard(controller);\n\t\tgameEditorController = new GameEditorController(board, controller, logHelper);\n\n\t\tinitButtonActionListeners();\n\t\tinitGUIComponents();\n\t\tinitMenuBar();\n\n\t\t// Initialize main frame\n\t\tmainFrame.setLayout(new MigLayout());\n\t\tinitControlFrame();\n\t\tmainFrame.add(viewFrameBoard.getInternalFrame(), \"cell 0 0, x 0, y 0, width 1000, height 1000\");\n\t\tmainFrame.add(viewFrameInformation.getFrame(), \"cell 1 0, x 1000, y 0, width 400, height 600\");\n\t\tmainFrame.add(viewFrameControl.getFrame(), \"cell 1 1, x 1000, y 600, width 400, height 400\");\n\t\tmainFrame.pack();\n\t\tmainFrame.setVisible(true);\n\n\t\tspaceSelectionBorder = SwingHelper.createBorderStyleHighlight(java.awt.Color.MAGENTA, true);\n\n\t\tinitDialogs();\n\n\t}\n\n\tpublic void update() {\n\t\tcurrentPlayer = board.players.get(board.getCurrentPlayerID());\n\t\tviewFrameBoard.update(board, currentSpaceButtonSelection);\n\n\t\tviewFrameControl.update(board);\n\t\tviewFrameInformation.update(board);\n\t\tupdateGuiMandatoryDialogs();\n\t}\n\n\tprivate void updateGuiMandatoryDialogs() {\n\n\t\t// Jail\n\t\tshowDialog(dialogJail, currentPlayer.getIsJailed());\n\n\t\tdialogContainerPurchaseProperty.update(board, currentPlayer.getCurrentPosition());\n\t\tshowDialog(dialogPurchaseProperty, currentPlayer.getRequiredDecisionPropertyAction());\n\n\t\t// Disable control buttons when mandatory action dialogs visible\n\t\t// IDE-suggested code\n\t\tfor (JDialog jDialog : Arrays.asList(dialogPurchaseProperty, dialogJail, dialogPurchaseProperty)) {\n\t\t\tif (jDialog.isVisible()) {\n\t\t\t\tdisableControlButtons();\n\t\t\t}\n\t\t}\n\t}\n\n\tprivate void disableControlButtons() {\n\t\tviewFrameControl.setStateOfActionButton(Actions.CONTROLS_ENDTURN, false);\n\t\tviewFrameControl.setStateOfActionButton(Actions.CONTROLS_ROLLDICE, false);\n\t}\n\n\tprivate void initGUIComponents() {\n\n\t\tArrayList<spaceButtonActionHandler> spaceButtonActionHandlers = new ArrayList<>();\n\n\t\tfor ( int i = 0 ; i < 40 ; i++ ) {\n\t\t\tspaceButtonActionHandlers.add(new spaceButtonActionHandler(i));\n\t\t}\n\n\t\t// Core components\n\t\tmainFrame = new JFrame();\n\t\tviewFrameBoard = new ViewFrameBoard(logHelper, spaceButtonActionHandlers);\n\t\tspaceButtons = viewFrameBoard.getSpaceButtonArrayList();\n\t\tviewFrameControl = new ViewFrameControl();\n\t\tviewFrameInformation = new ViewFrameInformation();\n\t}\n\n\tprivate void initMenuBar() {\n\t\tmenuBar = new JMenuBar();\n\n\t\t// Root level menus\n\t\tmenuFile = new JMenu();\n\t\tmenuFile.setText(\"File\");\n\t\tmenuBar.add(menuFile);\n\n\t\tmenuEdit = new JMenu();\n\t\tmenuEdit.setText(\"Edit\");\n\t\tmenuBar.add(menuEdit);\n\n\t\tmenuView = new JMenu();\n\t\tmenuView.setText(\"View\");\n\t\tmenuBar.add(menuView);\n\n\t\t// File\n\t\tJMenuItem menuFileNewGame = new JMenuItem(\"New Game...\", SwingHelper.getImageIconFromResource(\"/newgame.png\"));\n\t\tmenuFileNewGame.addActionListener(new MenuActionListener(MenuActions.FILE_NEW_GAME));\n\t\tmenuFile.add(menuFileNewGame);\n\n\t\tJMenuItem menuFileLoadGame = new JMenuItem(\"Load Game...\", SwingHelper.getImageIconFromResource((\"/floppygame.png\")));\n\t\tmenuFileLoadGame.addActionListener(new ActionListener() {\n\t\t\t@Override\n\t\t\tpublic void actionPerformed(ActionEvent e) {\n\t\t\t\tloadGame();\n\t\t\t}\n\t\t});\n\t\tmenuFile.add(menuFileLoadGame);\n\n\t\tJMenuItem menuFileSaveGame = new JMenuItem(\"Save Game...\", SwingHelper.getImageIconFromResource((\"/floppygame.png\")));\n\t\tmenuFileSaveGame.addActionListener(new ActionListener() {\n\t\t\t@Override\n\t\t\tpublic void actionPerformed(ActionEvent e) {\n\t\t\t\tsaveGame();\n\t\t\t}\n\t\t});\n\t\tmenuFile.add(menuFileSaveGame);\n\n\t\tJMenuItem menuFileQuit = new JMenuItem(\"Quit\", SwingHelper.getImageIconFromResource((\"/red-x.png\")));\n\t\tmenuFileQuit.addActionListener(new MenuActionListener(MenuActions.FILE_QUIT));\n\t\tmenuFile.add(menuFileQuit);\n\n\t\tJMenuItem menuEditGameEditor = new JMenuItem(\"Game Editor...\", SwingHelper.getImageIconFromResource(\"/matrix-anim.gif\"));\n\t\tmenuEditGameEditor.addActionListener(new MenuActionListener(MenuActions.EDIT_GAME_EDITOR));\n\t\tmenuEditGameEditor.setForeground(java.awt.Color.red);\n\t\tmenuEdit.add(menuEditGameEditor);\n\n\t\tJMenuItem menuViewAbout = new JMenuItem(\"About\", SwingHelper.getImageIconFromResource(\"/robot.png\"));\n\t\tmenuViewAbout.addActionListener(new MenuActionListener(MenuActions.ABOUT));\n\t\tmenuView.add(menuViewAbout);\n\n\t\t// Ready\n\t\tmenuBar.setVisible(true);\n\t\tmainFrame.setJMenuBar(menuBar);\n\t}\n\n\tprivate class MenuActionListener implements ActionListener {\n\n\t\tMenuActions action;\n\t\tpublic MenuActionListener(MenuActions action) {\n\t\t\tthis.action = action;\n\t\t}\n\n\t\t@Override\n\t\tpublic void actionPerformed(ActionEvent e) {\n\t\t\tswitch (action) {\n\t\t\t\tcase FILE_NEW_GAME -> showDialog(dialogStartGame);\n\t\t\t\tcase FILE_QUIT -> quitManager();\n\t\t\t\tcase EDIT_GAME_EDITOR -> {\n\t\t\t\t\tshowDialog(dialogGameEditor);\n\t\t\t\t\tlogHelper.appendToGameLog(\"Game editor was opened!\");\n\t\t\t\t\tupdate();\n\t\t\t\t}\n\t\t\t\tcase ABOUT -> showDialog(dialogAbout);\n\t\t\t}\n\t\t}\n\t}\n\n\tprivate void showDialog(JDialog dialog) {\n\t\tshowDialog(dialog, true);\n\t}\n\n\tprivate void showDialog(JDialog dialog, boolean visible) {\n\t\tif (visible) {\n\t\t\tdialog.setLocationRelativeTo(viewFrameBoard.getInternalFrame());\n\t\t\tdialog.setAlwaysOnTop(true);\n\t\t\tdialog.setVisible(true);\n\t\t}\n\t\telse {\n\t\t\tdialog.setVisible(false);\n\t\t}\n\t}\n\n\tprivate void initButtonActionListeners() {\n\t\t// Create all possible ActionListeners for dialogs\n\t\tbuttonActionListeners = new ArrayList<>();\n\n\t\tfor (Actions a : Actions.values()) {\n\n\t\t\tswitch (a) {\n\t\t\t\tcase CONTROLS_SHOW_MORTGAGE, CONTROLS_SHOW_FORFEIT, CONTROLS_SHOW_IMPROVEMENTS -> {\n\t\t\t\t\tbuttonActionListeners.add(new ButtonActionListener(a, true));\n\t\t\t\t}\n\t\t\t\tdefault -> buttonActionListeners.add(new ButtonActionListener(a, false));\n\t\t\t}\n\n\t\t}\n\t}\n\n\tprivate void initControlFrame() {\n\t\tviewFrameControl.initButtons(buttonActionListeners);\n\t}\n\n\tpublic class spaceButtonActionHandler implements ActionListener {\n\n\t\tint id;\n\n\t\tpublic spaceButtonActionHandler(int id) {\n\t\t\tthis.id = id;\n\t\t}\n\n\t\t@Override\n\t\tpublic void actionPerformed(ActionEvent e) {\n\t\t\tcurrentSpaceButtonSelection = id;\n\t\t\tupdate();\n\t\t}\n\n\t}\n\n\tprivate void initDialogs() {\n\t\tTemplateDialogGenerator templateDialog;\n\t\tArrayList<TemplateDialogButtonProperties> templateDialogButtonPropertiesList = new ArrayList<>();\n\n\t\t// Jail - using template\n\t\ttemplateDialog = new TemplateDialogGenerator(\"Jail\", \"/jail.png\");\n\t\ttemplateDialogButtonPropertiesList.add(new TemplateDialogButtonProperties(\"Post bail ($50)\", \"/money.png\", new ButtonActionListener(Actions.JAIL_POSTBAIL), \"cell 0 2, width 150\"));\n\t\ttemplateDialogButtonPropertiesList.add(new TemplateDialogButtonProperties(\"Roll for doubles\", \"/dice-icon.png\", new ButtonActionListener(Actions.JAIL_ROLLDOUBLES), \"cell 1 2, width 150\"));\n\t\ttemplateDialogButtonPropertiesList.add(new TemplateDialogButtonProperties(\"Use Get Out of Jail Free Card\", \"/goojfc.png\", new ButtonActionListener(Actions.JAIL_USEGOOJFC), \"cell 0 3, span 2, width 308\"));\n\t\tdialogJail = templateDialog.createDialogUserPrompt(templateDialogButtonPropertiesList, \"You may post bail for $50, attempt to roll for doubles up to a maximum of 3 times, or use a Get Out of Jail Free Card.\");\n\t\tdialogJail.pack();\n\t\ttemplateDialogButtonPropertiesList.clear();\n\t\ttemplateDialogButtonPropertiesList.trimToSize();\n\n\t\t// Purchase property\n\t\tdialogContainerPurchaseProperty = new DialogContainerPurchaseProperty();\n\t\tdialogContainerPurchaseProperty.attachActionListeners(buttonActionListeners);\n\t\tdialogPurchaseProperty = dialogContainerPurchaseProperty.getDialog();\n\n\t\t// Improvements - using template\n\t\ttemplateDialog = new TemplateDialogGenerator(\"Improvements\", \"/improvements.png\");\n\t\ttemplateDialogButtonPropertiesList.add(new TemplateDialogButtonProperties(\"Build a house\", \"/house.png\", new ButtonActionListener(Actions.IMPROVEMENTS_BUILD_HOUSE), \"width 150\"));\n\t\ttemplateDialogButtonPropertiesList.add(new TemplateDialogButtonProperties(\"Sell a house\", \"/house.png\", new ButtonActionListener(Actions.IMPROVEMENTS_SELL_HOUSE), \"wrap, width 150\"));\n\t\ttemplateDialogButtonPropertiesList.add(new TemplateDialogButtonProperties(\"Build a hotel\", \"/hotel.png\", new ButtonActionListener(Actions.IMPROVEMENTS_BUILD_HOTEL), \"width 150\"));\n\t\ttemplateDialogButtonPropertiesList.add(new TemplateDialogButtonProperties(\"Sell a hotel\", \"/hotel.png\", new ButtonActionListener(Actions.IMPROVEMENTS_SELL_HOTEL), \"width 150\"));\n\t\tdialogImprovements = templateDialog.createDialogUserPrompt(templateDialogButtonPropertiesList, \"You do not own all properties in this set.\");\n\t\ttemplateDialogButtonPropertiesList.clear();\n\t\ttemplateDialogButtonPropertiesList.trimToSize();\n\n\t\t// About\n\t\tdialogAbout = new DialogContainerAbout().getDialog();\n\n\t\t// Game editor\n\t\tdialogContainerGameEditor = new DialogContainerGameEditor();\n\t\tdialogGameEditor = dialogContainerGameEditor.getDialog();\n\n\t\t// Game editor ActionListeners\n\t\tArrayList<GameEditorActionListener> gameEditorActionListeners = new ArrayList<>();\n\t\tfor (GameEditorActions a : GameEditorActions.values()) {\n\t\t\tgameEditorActionListeners.add(new GameEditorActionListener(a));\n\t\t}\n\t\tdialogContainerGameEditor.attachActionListeners(gameEditorActionListeners);\n\n\t\t// Start game\n\t\tdialogContainerStartGame = new DialogContainerStartGame();\n\t\tStartGameButtonActionListener startGameButtonActionListener = new StartGameButtonActionListener();\n\t\tdialogContainerStartGame.attachStartGameActionListener(startGameButtonActionListener);\n\t\tdialogStartGame = dialogContainerStartGame.getDialog();\n\n\t}\n\n\tpublic class StartGameButtonActionListener implements ActionListener, Serializable {\n\n\t\t@Override\n\t\tpublic void actionPerformed(ActionEvent e) {\n\t\t\tstartGame(playerCount, playerCustomNames, false);\n\n\t\t\tdialogStartGame.setVisible(false);\n\t\t}\n\n\t\tprotected void setPlayerCount(int inputPlayerCount) {\n\t\t\tplayerCount = inputPlayerCount;\n\t\t}\n\n\t\tprotected void setPlayerCustomNames(ArrayList<String> inputPlayerCustomNames) {\n\t\t\tplayerCustomNames = inputPlayerCustomNames;\n\t\t}\n\n\t}\n\n\tprivate void startGame(int playerCount, ArrayList<String> playerCustomNames, boolean loadFromFile) {\n\n\t\t// If game is not currently running\n\t\tif (!controller.getIsGameActive() || loadFromFile) {\n\t\t\tcontroller.setPlayersCount(playerCount);\n\n\t\t\t// Set names\n\t\t\tfor ( int i = 0 ; i < playerCount ; i++ ) {\n\t\t\t\tboard.players.get(i + 1).setCustomName(playerCustomNames.get(i));\n\t\t\t\tboard.players.get(i + 1).setIsPlayerActive(true);\n\t\t\t}\n\t\t\tcontroller.setIsGameActive(true);\n\n\t\t\tcontroller.sendInitGameMessage();\n\t\t\tcontroller.initialEvaluator();\n\t\t}\n\n\t\tupdate();\n\n\t}\n\n\tpublic class ButtonActionListener implements ActionListener, Serializable {\n\n\t\tActions action;\n\t\tboolean needsPrompt;\n\n\t\tpublic ButtonActionListener(Actions action) {\n\t\t\tthis.action = action;\n\t\t\tneedsPrompt = false;\n\t\t}\n\n\t\tpublic ButtonActionListener(Actions action, boolean needsPrompt) {\n\t\t\tthis.action = action;\n\t\t\tthis.needsPrompt = needsPrompt;\n\t\t}\n\n\t\t@Override\n\t\tpublic void actionPerformed(ActionEvent e) {\n\t\t\tswitchboard.setOrigin(e.getSource());\n\t\t\tswitchboard.actionHandler(action, currentSpaceButtonSelection);\n\t\t\tupdate();\n\n\t\t\tif (needsPrompt) {\n\t\t\t\tupdatePrompt(action);\n\t\t\t}\n\t\t}\n\n\t\tpublic Actions getAction() {\n\t\t\treturn action;\n\t\t}\n\t}\n\n\tpublic class GameEditorActionListener implements ActionListener {\n\n\t\tGameEditorActions action;\n\t\tPlayer player;\n\n\t\tpublic GameEditorActionListener(GameEditorActions action) {\n\t\t\tthis.action = action;\n\t\t}\n\n\t\t@Override\n\t\tpublic void actionPerformed(ActionEvent e) {\n\t\t\tplayer = board.players.get(dialogContainerGameEditor.getSelectedPlayer());\n\t\t\tswitch (action) {\n\t\t\t\tcase JAIL -> gameEditorController.jailPlayer(player);\n\t\t\t\tcase UNJAIL -> gameEditorController.unjailPlayer(player);\n\t\t\t\tcase GIVE_1000 -> gameEditorController.give1000(player);\n\t\t\t\tcase DEDUCT_1000 -> gameEditorController.deduct1000(player);\n\t\t\t\tcase GIVE_ALL_PROPERTIES -> gameEditorController.giveAllProperties(player);\n\t\t\t}\n\t\t\tupdate();\n\t\t}\n\n\t\tpublic GameEditorActions getAction() {\n\t\t\treturn action;\n\t\t}\n\t}\n\n\tprivate void quitManager() {\n\t\tSystem.exit(0);\n\t}\n\n\tprivate void updatePrompt(Actions action) {\n\t\tswitch(action) {\n\t\t\tcase CONTROLS_SHOW_IMPROVEMENTS -> TemplateDialogGenerator.initDialogForView(dialogImprovements);\n\t\t\tcase GAME_SHOW_JAIL -> TemplateDialogGenerator.initDialogForView(dialogJail);\n\t\t\tcase GAME_SHOW_PURCHASE -> TemplateDialogGenerator.initDialogForView(dialogPurchaseProperty);\n\t\t}\n\t}\n\n//\tpublic static void main(String args[]) {\n//\t\tDynamicView localView = new DynamicView();\n//\t}\n\n\tprivate void saveGame() {\n\t\tArrayList<Object> gameData = new ArrayList<>();\n\t\tgameData.add(board);\n\t\tgameData.add(controller);\n\t\tgameData.add(logHelper);\n\t\tgameData.add(currentPlayer);\n\t\tgameData.add(playerCount);\n\t\tgameData.add(playerCustomNames);\n\n\t\ttry {\n\t\t\tFileOutputStream f = new FileOutputStream(\"test.dat\");\n\t\t\tObjectOutputStream o = new ObjectOutputStream(f);\n\t\t\to.writeObject(gameData);\n\t\t} catch (IOException e) {\n\t\t\tSystem.out.println(\"a\");\n\t\t}\n\t}\n\n\tprivate void loadGame() {\n\t\tArrayList<Object> gameData = new ArrayList<>();\n\n\t\ttry {\n\t\t\tFileInputStream f = new FileInputStream(\"test.dat\");\n\t\t\tObjectInputStream o = new ObjectInputStream(f);\n\t\t\tgameData = (ArrayList<Object>) o.readObject();\n\n\t\t\tboard = (Board) gameData.get(0);\n\t\t\tcontroller = (GameLogicController) gameData.get(1);\n\t\t\tlogHelper = (LogHelper) gameData.get(2);\n\t\t\tcurrentPlayer = (Player) gameData.get(3);\n\t\t\tplayerCount = (int) gameData.get(4);\n\t\t\tplayerCustomNames = (ArrayList<String>) gameData.get(5);\n\n\t\t\tlogHelper.appendToGameLog(\"Loaded from file.\");\n\n\t\t\tstartGame(playerCount, playerCustomNames, true);\n\t\t\tupdate();\n\n\t\t} catch (IOException e) {\n\t\t\tSystem.out.println(\"b\");\n\t\t} catch (ClassNotFoundException e) {\n\t\t\te.printStackTrace();\n\t\t}\n\t}\n\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/cc/jayv/monopoly3/DynamicView.java b/src/main/java/cc/jayv/monopoly3/DynamicView.java
+--- a/src/main/java/cc/jayv/monopoly3/DynamicView.java	(revision 238675ac3063f91f4b912e756274d82bf682e722)
++++ b/src/main/java/cc/jayv/monopoly3/DynamicView.java	(date 1649768682597)
+@@ -98,6 +98,7 @@
+ 		switchboard = new GameLogicSwitchboard(controller);
+ 		gameEditorController = new GameEditorController(board, controller, logHelper);
+ 
++
+ 		initButtonActionListeners();
+ 		initGUIComponents();
+ 		initMenuBar();
+Index: src/main/java/cc/jayv/monopoly3/DialogContainer.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package cc.jayv.monopoly3;\n\nimport javax.swing.*;\n\npublic abstract class DialogContainer {\n    JDialog dialog;\n\n    /**\n     * Initialize GUI components for the dialog.\n     */\n    protected abstract void initComponents();\n\n    /**\n     * Arrange the GUI components within the dialog using class-specific MigSpec\n     */\n    protected abstract void arrangeComponents();\n\n    /**\n     * Set a particular button to be enabled or disabled, by providing the corresponding Action key\n     * implemented by the ButtonActionListener.\n     * @param action The action which the corresponding button will have its state set.\n     * @param isEnabled The state of the button.\n     */\n    public abstract void setStateOfActionButton(Actions action, boolean isEnabled);\n\n    /**\n     * Obtain the JDialog instantiated by the container class.\n     * @return The JDialog within the container.\n     */\n    public JDialog getDialog() {\n        return dialog;\n    }\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/cc/jayv/monopoly3/DialogContainer.java b/src/main/java/cc/jayv/monopoly3/DialogContainer.java
+--- a/src/main/java/cc/jayv/monopoly3/DialogContainer.java	(revision 238675ac3063f91f4b912e756274d82bf682e722)
++++ b/src/main/java/cc/jayv/monopoly3/DialogContainer.java	(date 1649768918896)
+@@ -3,13 +3,19 @@
+ import javax.swing.*;
+ 
+ public abstract class DialogContainer {
+-    JDialog dialog;
++    JLabel labelTitle;
+ 
+     /**
+      * Initialize GUI components for the dialog.
+      */
+     protected abstract void initComponents();
+ 
++    protected void initLabelTitle(String title, String iconResource) {
++        labelTitle = new JLabel();
++        SwingHelper.formatLabel(labelTitle, title, SwingHelper.LabelStyles.TITLE_BOLD);
++        labelTitle.setIcon(SwingHelper.getImageIconFromResource(iconResource));
++    }
++
+     /**
+      * Arrange the GUI components within the dialog using class-specific MigSpec
+      */
+@@ -27,7 +33,5 @@
+      * Obtain the JDialog instantiated by the container class.
+      * @return The JDialog within the container.
+      */
+-    public JDialog getDialog() {
+-        return dialog;
+-    }
++    public abstract JDialog getDialog();
+ }
+\ No newline at end of file

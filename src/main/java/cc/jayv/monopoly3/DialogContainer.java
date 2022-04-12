@@ -3,12 +3,18 @@ package cc.jayv.monopoly3;
 import javax.swing.*;
 
 public abstract class DialogContainer {
-    JDialog dialog;
+    JLabel labelTitle;
 
     /**
      * Initialize GUI components for the dialog.
      */
     protected abstract void initComponents();
+
+    protected void initLabelTitle(String title, String iconResource) {
+        labelTitle = new JLabel();
+        SwingHelper.formatLabel(labelTitle, title, SwingHelper.LabelStyles.TITLE_BOLD);
+        labelTitle.setIcon(SwingHelper.getImageIconFromResource(iconResource));
+    }
 
     /**
      * Arrange the GUI components within the dialog using class-specific MigSpec
@@ -27,7 +33,5 @@ public abstract class DialogContainer {
      * Obtain the JDialog instantiated by the container class.
      * @return The JDialog within the container.
      */
-    public JDialog getDialog() {
-        return dialog;
-    }
+    public abstract JDialog getDialog();
 }

@@ -9,6 +9,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class DialogContainerStartGame extends DialogContainer implements Serializable {
+
+    JDialog dialog;
+
     int playerCount;
     JLabel staticLabelPlayerCount;
     JComboBox<Integer> comboBoxPlayerCount;
@@ -37,6 +40,7 @@ public class DialogContainerStartGame extends DialogContainer implements Seriali
 
     @Override
     protected void initComponents() {
+        System.out.println("init startgame");
         dialog = new JDialog();
         dialog.setLayout(new MigLayout());
 
@@ -147,10 +151,6 @@ public class DialogContainerStartGame extends DialogContainer implements Seriali
         }
     }
 
-    public JDialog getDialog() {
-        return dialog;
-    }
-
     public void attachStartGameActionListener(DynamicView.StartGameButtonActionListener listener) {
         startGameButtonActionListener = listener;
         buttonStartGame.addActionListener(startGameButtonActionListener);
@@ -198,5 +198,10 @@ public class DialogContainerStartGame extends DialogContainer implements Seriali
         JDialog dialog = startGameDialog.getDialog();
 
         dialog.setVisible(true);
+    }
+
+    @Override
+    public JDialog getDialog() {
+        return dialog;
     }
 }

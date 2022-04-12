@@ -98,6 +98,7 @@ public class DynamicView implements Serializable  {
 		switchboard = new GameLogicSwitchboard(controller);
 		gameEditorController = new GameEditorController(board, controller, logHelper);
 
+
 		initButtonActionListeners();
 		initGUIComponents();
 		initMenuBar();

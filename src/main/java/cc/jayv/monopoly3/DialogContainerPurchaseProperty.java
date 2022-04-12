@@ -9,6 +9,8 @@ import java.util.ArrayList;
 
 public class DialogContainerPurchaseProperty extends DialogContainer implements ViewComponent, Serializable {
 
+    JDialog dialog;
+
     JLabel labelTitle;
 
     JTextArea infoArea;
@@ -32,15 +34,12 @@ public class DialogContainerPurchaseProperty extends DialogContainer implements 
         arrangeComponents();
     }
 
-    @Override
     protected void initComponents() {
         dialog = new JDialog();
         dialog.setLayout(new MigLayout());
 
         // Title
-        labelTitle = new JLabel();
-        SwingHelper.formatLabel(labelTitle, "Property purchase", SwingHelper.LabelStyles.TITLE_BOLD);
-        labelTitle.setIcon(SwingHelper.getImageIconFromResource("/properties.png"));
+        initLabelTitle("Property Decision", "/properties.png");
 
         String disclaimerMessage =
                 "You must decide to either purchase or auction this property." +
@@ -178,5 +177,10 @@ public class DialogContainerPurchaseProperty extends DialogContainer implements 
     @Override
     public JComponent getComponent() {
         return null;
+    }
+
+    @Override
+    public JDialog getDialog() {
+        return dialog;
     }
 }
