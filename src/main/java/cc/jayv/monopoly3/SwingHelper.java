@@ -134,6 +134,27 @@ public class SwingHelper implements Serializable {
 		label.setText(labelText);
 	}
 
+	public static void formatInfoArea(JTextArea textArea) {
+		// Transparent background
+		textArea.setOpaque(false);
+
+		// Disable visible text selection
+		textArea.setEditable(false);
+		textArea.setHighlighter(null);
+
+		textArea.setLineWrap(true);
+		textArea.setBorder(null);
+		textArea.setVisible(true);
+	}
+
+	public static void formatGameLogArea(JTextArea textArea) {
+		formatInfoArea(textArea);
+
+		// White background
+		textArea.setBackground(new java.awt.Color(255, 255, 255, 255));
+		textArea.setOpaque(true);
+	}
+
 	// <editor-fold desc="Highlights and borders">
 	public static Border createBorderStyleHighlight(java.awt.Color baseShade, boolean lighten) {
 		Border highlightBorder, innerBorder, outerBorder;

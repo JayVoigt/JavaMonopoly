@@ -317,17 +317,9 @@ public class DynamicView implements Serializable  {
 		TemplateDialogGenerator templateDialog;
 		ArrayList<TemplateDialogButtonProperties> templateDialogButtonPropertiesList = new ArrayList<>();
 
-		// Jail - using template
-//		templateDialog = new TemplateDialogGenerator("Jail", "/jail.png");
-//		templateDialogButtonPropertiesList.add(new TemplateDialogButtonProperties("Post bail ($50)", "/money.png", new ButtonActionListener(Actions.JAIL_POSTBAIL), "cell 0 2, width 150"));
-//		templateDialogButtonPropertiesList.add(new TemplateDialogButtonProperties("Roll for doubles", "/dice-icon.png", new ButtonActionListener(Actions.JAIL_ROLLDOUBLES), "cell 1 2, width 150"));
-//		templateDialogButtonPropertiesList.add(new TemplateDialogButtonProperties("Use Get Out of Jail Free Card", "/goojfc.png", new ButtonActionListener(Actions.JAIL_USEGOOJFC), "cell 0 3, span 2, width 308"));
-//		dialogJail = templateDialog.createDialogUserPrompt(templateDialogButtonPropertiesList, "You may post bail for $50, attempt to roll for doubles up to a maximum of 3 times, or use a Get Out of Jail Free Card.");
-//		dialogJail.pack();
-//		templateDialogButtonPropertiesList.clear();
-//		templateDialogButtonPropertiesList.trimToSize();
-
+		// Jail
 		dialogContainerJail = new DialogContainerJail();
+		dialogContainerJail.attachActionListeners(buttonActionListeners);
 		dialogJail = dialogContainerJail.getDialog();
 
 		// Purchase property
@@ -335,16 +327,7 @@ public class DynamicView implements Serializable  {
 		dialogContainerPurchaseProperty.attachActionListeners(buttonActionListeners);
 		dialogPurchaseProperty = dialogContainerPurchaseProperty.getDialog();
 
-		// Improvements - using template
-//		templateDialog = new TemplateDialogGenerator("Improvements", "/improvements.png");
-//		templateDialogButtonPropertiesList.add(new TemplateDialogButtonProperties("Build a house", "/house.png", new ButtonActionListener(Actions.IMPROVEMENTS_BUILD_HOUSE), "width 150"));
-//		templateDialogButtonPropertiesList.add(new TemplateDialogButtonProperties("Sell a house", "/house.png", new ButtonActionListener(Actions.IMPROVEMENTS_SELL_HOUSE), "wrap, width 150"));
-//		templateDialogButtonPropertiesList.add(new TemplateDialogButtonProperties("Build a hotel", "/hotel.png", new ButtonActionListener(Actions.IMPROVEMENTS_BUILD_HOTEL), "width 150"));
-//		templateDialogButtonPropertiesList.add(new TemplateDialogButtonProperties("Sell a hotel", "/hotel.png", new ButtonActionListener(Actions.IMPROVEMENTS_SELL_HOTEL), "width 150"));
-//		dialogImprovements = templateDialog.createDialogUserPrompt(templateDialogButtonPropertiesList, "You do not own all properties in this set.");
-//		templateDialogButtonPropertiesList.clear();
-//		templateDialogButtonPropertiesList.trimToSize();
-
+		// Improvements
 		dialogContainerImprovements = new DialogContainerImprovements();
 		dialogContainerImprovements.attachActionListeners(buttonActionListeners);
 		dialogImprovements = dialogContainerImprovements.getDialog();

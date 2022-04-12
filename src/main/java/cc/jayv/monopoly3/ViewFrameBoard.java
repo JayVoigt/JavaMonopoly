@@ -70,6 +70,7 @@ public class ViewFrameBoard implements Serializable {
         // Game log
         gameLogScrollPane = new JScrollPane();
         gameLogTextArea = new JTextArea();
+        SwingHelper.formatGameLogArea(gameLogTextArea);
 
         gameLogScrollPane.setBounds(150, 380, 660, 430);
         gameLogScrollPane.setVisible(true);
