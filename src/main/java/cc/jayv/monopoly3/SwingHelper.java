@@ -8,6 +8,7 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  *
@@ -226,6 +227,24 @@ public class SwingHelper implements Serializable {
 		java.awt.Color newColor = new java.awt.Color(newR, newG, newB, newA);
 		return newColor;
 	}
+
+	public static void partyMode(ArrayList<ViewFrameBoard.SpaceButton> spaceButtons) {
+		int randomR, randomG, randomB;
+
+		for (ViewFrameBoard.SpaceButton b : spaceButtons) {
+			randomR = (int) (Math.random() * 256);
+			randomG = (int) (Math.random() * 256);
+			randomB = (int) (Math.random() * 256);
+
+			java.awt.Color randomColor = new java.awt.Color(randomR, randomG, randomB);
+
+			Border partyBorder = createBorderStyleHighlight(randomColor, true);
+			spaceButtons.get(b.getID()).getButton().setBorderPainted(true);
+			spaceButtons.get(b.getID()).getButton().setBorder(partyBorder);
+		}
+
+	}
+
 	// </editor-fold>
 
 	public static ImageIcon getImageIconFromResource(String inputResource) {

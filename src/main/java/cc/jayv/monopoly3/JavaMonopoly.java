@@ -5,6 +5,7 @@ import com.jcraft.jsch.IO;
 
 import javax.accessibility.Accessible;
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
@@ -24,7 +25,13 @@ public class JavaMonopoly implements Serializable{
 	DynamicView dynamicView;
 
 	public JavaMonopoly() {
-		dynamicView = new DynamicView(this);
+		Runnable runner = new Runnable() {
+			@Override
+			public void run() {
+				dynamicView = new DynamicView();
+			}
+		};
+		EventQueue.invokeLater(runner);
 	}
 
 	public static void main(String args[]) throws IOException {

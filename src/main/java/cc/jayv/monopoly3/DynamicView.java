@@ -4,6 +4,7 @@ import com.formdev.flatlaf.FlatLightLaf;
 import net.miginfocom.swing.MigLayout;
 import org.apache.maven.plugin.logging.Log;
 
+import java.awt.*;
 import java.io.*;
 import java.util.ArrayList;
 import javax.swing.*;
@@ -76,11 +77,8 @@ public class DynamicView implements Serializable  {
 	int playerCount;
 	ArrayList<String> playerCustomNames;
 
-	JavaMonopoly jm;
+	public DynamicView() {
 
-	public DynamicView(JavaMonopoly jm) {
-
-		this.jm = jm;
 		// Set to FlatLaf appearance
 		try {
 			UIManager.setLookAndFeel(new FlatLightLaf());
@@ -432,6 +430,22 @@ public class DynamicView implements Serializable  {
 
 		update();
 
+		partyVisuals();
+
+	}
+
+	private void partyVisuals() {
+		class PartyListener implements ActionListener {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				SwingHelper.partyMode(spaceButtons);
+			}
+		}
+
+		PartyListener partyListener = new PartyListener();
+
+		Timer timer = new Timer(100, partyListener);
+		timer.start();
 	}
 
 	public class ButtonActionListener implements ActionListener, Serializable {
