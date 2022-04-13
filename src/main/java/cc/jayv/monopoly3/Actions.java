@@ -34,5 +34,9 @@ public enum Actions {
     JAIL_ROLLDOUBLES,
     JAIL_USEGOOJFC,
 
-    NEWGAME_STARTGAME
+    NEWGAME_STARTGAME,
+
+    // Forfeit dialog
+    FORFEIT_CONFIRM,
+    FORFEIT_CANCEL
 }

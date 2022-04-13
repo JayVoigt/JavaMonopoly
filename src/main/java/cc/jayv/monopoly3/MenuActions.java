@@ -8,5 +8,6 @@ public enum MenuActions {
 
     EDIT_GAME_EDITOR,
 
-    ABOUT
+    VIEW_ABOUT,
+    VIEW_DEBUG_LOG
 }

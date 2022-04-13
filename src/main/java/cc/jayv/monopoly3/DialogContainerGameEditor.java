@@ -20,6 +20,7 @@ public class DialogContainerGameEditor extends DialogContainer implements Serial
     JButton buttonUnlockRollDiceAction;
     JButton buttonUnlockEndTurnAction;
     JButton buttonGiveAllProperties;
+    JButton buttonForceEndTurn;
 
     int playerID;
 
@@ -64,6 +65,7 @@ public class DialogContainerGameEditor extends DialogContainer implements Serial
         buttonUnlockRollDiceAction = new JButton("Unlock roll dice action", SwingHelper.getImageIconFromResource("/dice-icon.png"));
         buttonUnlockEndTurnAction = new JButton("Unlock end turn action", SwingHelper.getImageIconFromResource("/arrow.png"));
         buttonGiveAllProperties = new JButton("Give all properties", SwingHelper.getImageIconFromResource("/properties.png"));
+        buttonForceEndTurn = new JButton("Forcibly end turn", SwingHelper.getImageIconFromResource("/alert.png"));
     }
 
     public void attachActionListeners(ArrayList<DynamicView.GameEditorActionListener> listeners) {
@@ -73,7 +75,10 @@ public class DialogContainerGameEditor extends DialogContainer implements Serial
                 case UNJAIL -> buttonUnjailPlayer.addActionListener(l);
                 case GIVE_1000 -> buttonGive1000.addActionListener(l);
                 case DEDUCT_1000 -> buttonDeduct1000.addActionListener(l);
+                case UNLOCK_END_TURN -> buttonUnlockEndTurnAction.addActionListener(l);
+                case UNLOCK_ROLL_DICE -> buttonUnlockRollDiceAction.addActionListener(l);
                 case GIVE_ALL_PROPERTIES -> buttonGiveAllProperties.addActionListener(l);
+                case FORCE_END_TURN -> buttonForceEndTurn.addActionListener(l);
             }
         }
     }
@@ -89,6 +94,7 @@ public class DialogContainerGameEditor extends DialogContainer implements Serial
         dialog.add(buttonUnlockRollDiceAction, "cell 0 4, grow");
         dialog.add(buttonUnlockEndTurnAction, "cell 1 4, grow, wrap");
         dialog.add(buttonGiveAllProperties, "cell 0 5, grow");
+        dialog.add(buttonForceEndTurn, "cell 1 5, grow, wrap");
 
         dialog.pack();
     }

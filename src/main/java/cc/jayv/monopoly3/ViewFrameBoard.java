@@ -232,6 +232,17 @@ public class ViewFrameBoard implements Serializable {
         int id;
         Direction direction;
 
+        boolean isAnimated;
+        ImageIcon animatedIcon;
+        ImageIcon animatedIconMortgaged;
+
+        public SpaceButton(int id, boolean isAnimated, ImageIcon animatedIcon, ImageIcon animatedIconMortgaged) {
+            this.isAnimated = isAnimated;
+            this.animatedIcon = animatedIcon;
+            this.animatedIconMortgaged = animatedIconMortgaged;
+
+            new SpaceButton(id);
+        }
         /**
          *
          * @param id The ID of the space whose button will be created.
@@ -257,6 +268,10 @@ public class ViewFrameBoard implements Serializable {
             }
         }
 
+        public void setAnimated(boolean isAnimated) {
+            this.isAnimated = isAnimated;
+        }
+
         public JButton getButton() {
             return button;
         }
@@ -267,6 +282,32 @@ public class ViewFrameBoard implements Serializable {
 
         public Direction getDirection() {
             return direction;
+        }
+
+        public void setMortgagedAppearance(boolean isMortgaged) {
+            // If not animated
+            if (!isAnimated) {
+                if (isMortgaged) {
+                    switch (direction) {
+                        case NORTH, SOUTH -> button.setIcon(SwingHelper.getImageIconFromResource("/checker-80x120.png"));
+                        case EAST, WEST -> button.setIcon(SwingHelper.getImageIconFromResource("/checker-120x80.png"));
+                    }
+                } else {
+                    button.setIcon(null);
+                }
+            }
+            // If animated
+            else {
+                if (isMortgaged) {
+                    if (id == 12) {
+                        animatedIconMortgaged = SwingHelper.getImageIconFromResource("/electric-company-mortgaged.png");
+                    }
+                }
+                else {
+                    if (id == 12) {
+                    }
+                }
+            }
         }
     }
 
@@ -442,6 +483,19 @@ public class ViewFrameBoard implements Serializable {
 
     }
 
+    private void updateGuiMortgagedProperties(Board board) {
+
+        for (Space s : board.spaces) {
+            if (s instanceof Property p) {
+                if (p.getIsMortgaged()) {
+                }
+                else {
+
+                }
+            }
+        }
+    }
+
     /**
      * Create special MouseListeners for space buttons that have animated icons on hover.
      */
@@ -452,19 +506,21 @@ public class ViewFrameBoard implements Serializable {
         JButton buttonGoToJail = spaceButtons.get(30).getButton();
         JButton buttonLuxuryTax = spaceButtons.get(38).getButton();
 
-        buttonElectricCompany.addMouseListener(new AnimatedSpaceActionListener(SwingHelper.getImageIconFromResource("/electric-company-anim.gif")));
-        buttonFreeParking.addMouseListener(new AnimatedSpaceActionListener(SwingHelper.getImageIconFromResource("/free-parking-anim.gif")));
-        buttonWaterWorks.addMouseListener(new AnimatedSpaceActionListener(SwingHelper.getImageIconFromResource("/waterworks-anim.gif")));
-        buttonGoToJail.addMouseListener(new AnimatedSpaceActionListener(SwingHelper.getImageIconFromResource("/go-to-jail-anim.gif")));
-        buttonLuxuryTax.addMouseListener(new AnimatedSpaceActionListener(SwingHelper.getImageIconFromResource("/luxury-tax-anim.gif")));
+        buttonElectricCompany.addMouseListener(new AnimatedSpaceActionListener("/electric-company-anim.gif", "/electric-company-mortgaged.png"));
+        buttonFreeParking.addMouseListener(new AnimatedSpaceActionListener("/free-parking-anim.gif", null));
+        buttonWaterWorks.addMouseListener(new AnimatedSpaceActionListener("/waterworks-anim.gif", null));
+        buttonGoToJail.addMouseListener(new AnimatedSpaceActionListener("/go-to-jail-anim.gif", null));
+        buttonLuxuryTax.addMouseListener(new AnimatedSpaceActionListener("/luxury-tax-anim.gif", null));
     }
 
     private class AnimatedSpaceActionListener implements MouseListener {
 
         ImageIcon animatedLabel;
+        ImageIcon animatedLabelMortgaged;
 
-        public AnimatedSpaceActionListener(ImageIcon animatedLabel) {
-            this.animatedLabel = animatedLabel;
+        public AnimatedSpaceActionListener(String animatedLabelResource, String animatedMortgagedLabelResource) {
+            this.animatedLabel = SwingHelper.getImageIconFromResource(animatedLabelResource);
+            this.animatedLabelMortgaged = SwingHelper.getImageIconFromResource(animatedMortgagedLabelResource);
         }
 
         @Override
@@ -484,12 +540,14 @@ public class ViewFrameBoard implements Serializable {
 
         @Override
         public void mouseEntered(MouseEvent e) {
-            ((JButton) e.getSource()).setIcon(animatedLabel);
+            JButton sourceButton = (JButton) e.getSource();
+            sourceButton.setIcon(animatedLabel);
         }
 
         @Override
         public void mouseExited(MouseEvent e) {
-            ((JButton) e.getSource()).setIcon(null);
+            JButton sourceButton = (JButton) e.getSource();
+            sourceButton.setIcon(null);
         }
     }
 

@@ -52,4 +52,10 @@ public class GameEditorController implements Serializable {
     private void appendToGameLogGameEditor(String input) {
         logHelper.appendToGameLog("[Game Editor: " + player.getCustomName() + "] " + input);
     }
+
+    public void forceEndTurn() {
+        board.players.get(board.getCurrentPlayerID()).setHasRequestedEndTurn(true);
+        controller.endTurnManager();
+    }
+
 }

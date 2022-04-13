@@ -2,6 +2,7 @@ package cc.jayv.monopoly3;
 
 import com.formdev.flatlaf.FlatLightLaf;
 import net.miginfocom.swing.MigLayout;
+import org.apache.maven.plugin.logging.Log;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -43,6 +44,8 @@ public class DynamicView implements Serializable  {
 	DialogContainerMortgage dialogContainerMortgage;
 	DialogContainerPurchaseProperty dialogContainerPurchaseProperty;
 	DialogContainerStartGame dialogContainerStartGame;
+	DialogContainerForfeit dialogContainerForfeit;
+	DialogContainerDebugLog dialogContainerDebugLog;
 
 	GameEditorController gameEditorController;
 
@@ -54,6 +57,8 @@ public class DynamicView implements Serializable  {
 	JDialog dialogGameEditor;
 	JDialog dialogAbout;
 	JDialog dialogMortgage;
+	JDialog dialogForfeit;
+	JDialog dialogDebugLog;
 
 	// Root-level menus
 	JMenuBar menuBar;
@@ -90,10 +95,10 @@ public class DynamicView implements Serializable  {
 
 		// Initialize board
 		try {
-			board = new Board();
+			 board = new Board();
 		} catch (IOException e) {
-			e.printStackTrace();
-			System.exit(1);
+			 e.printStackTrace();
+			 System.exit(1);
 		}
 
 		// Initialize logic and helper components
@@ -101,7 +106,6 @@ public class DynamicView implements Serializable  {
 		controller = new GameLogicController(board, logHelper);
 		switchboard = new GameLogicSwitchboard(controller);
 		gameEditorController = new GameEditorController(board, controller, logHelper);
-
 
 		initButtonActionListeners();
 		initGUIComponents();
@@ -165,6 +169,10 @@ public class DynamicView implements Serializable  {
 
 		if (dialogMortgage.isVisible()) {
 			dialogContainerMortgage.update(board, currentPlayer, currentSpaceButtonSelection, controller);
+		}
+
+		if (dialogDebugLog.isVisible()) {
+			dialogContainerDebugLog.update();
 		}
 	}
 
@@ -237,9 +245,22 @@ public class DynamicView implements Serializable  {
 		menuEditGameEditor.setForeground(java.awt.Color.red);
 		menuEdit.add(menuEditGameEditor);
 
+		JMenuItem menuEditManuallyRefresh = new JMenuItem("Manually Refresh View", SwingHelper.getImageIconFromResource("/alert.png"));
+		menuEditManuallyRefresh.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				update();
+			}
+		});
+		menuEdit.add(menuEditManuallyRefresh);
+
 		JMenuItem menuViewAbout = new JMenuItem("About", SwingHelper.getImageIconFromResource("/robot.png"));
-		menuViewAbout.addActionListener(new MenuActionListener(MenuActions.ABOUT));
+		menuViewAbout.addActionListener(new MenuActionListener(MenuActions.VIEW_ABOUT));
 		menuView.add(menuViewAbout);
+
+		JMenuItem menuViewDebugLog = new JMenuItem("Debug Log", SwingHelper.getImageIconFromResource("/bug-log-anim.gif"));
+		menuViewDebugLog.addActionListener(new MenuActionListener(MenuActions.VIEW_DEBUG_LOG));
+		menuView.add(menuViewDebugLog);
 
 		// Ready
 		menuBar.setVisible(true);
@@ -263,7 +284,8 @@ public class DynamicView implements Serializable  {
 					logHelper.appendToGameLog("Game editor was opened!");
 					update();
 				}
-				case ABOUT -> showDialog(dialogAbout);
+				case VIEW_ABOUT -> showDialog(dialogAbout);
+				case VIEW_DEBUG_LOG -> showDialog(dialogDebugLog);
 			}
 		}
 	}
@@ -363,6 +385,13 @@ public class DynamicView implements Serializable  {
 		dialogContainerStartGame.attachStartGameActionListener(startGameButtonActionListener);
 		dialogStartGame = dialogContainerStartGame.getDialog();
 
+		// Forfeit
+		dialogContainerForfeit = new DialogContainerForfeit();
+		dialogForfeit = dialogContainerForfeit.getDialog();
+
+		// Debug log
+		dialogContainerDebugLog = new DialogContainerDebugLog(logHelper);
+		dialogDebugLog = dialogContainerDebugLog.getDialog();
 	}
 
 	public class StartGameButtonActionListener implements ActionListener, Serializable {
@@ -453,9 +482,13 @@ public class DynamicView implements Serializable  {
 				case UNJAIL -> gameEditorController.unjailPlayer(player);
 				case GIVE_1000 -> gameEditorController.give1000(player);
 				case DEDUCT_1000 -> gameEditorController.deduct1000(player);
+				case UNLOCK_ROLL_DICE -> viewFrameControl.setStateOfActionButton(Actions.CONTROLS_ROLLDICE, true);
+				case UNLOCK_END_TURN -> viewFrameControl.setStateOfActionButton(Actions.CONTROLS_ENDTURN, true);
 				case GIVE_ALL_PROPERTIES -> gameEditorController.giveAllProperties(player);
 			}
-			update();
+			if (action != GameEditorActions.UNLOCK_END_TURN && action != GameEditorActions.UNLOCK_ROLL_DICE) {
+				update();
+			}
 		}
 
 		public GameEditorActions getAction() {
@@ -473,6 +506,7 @@ public class DynamicView implements Serializable  {
 			case CONTROLS_SHOW_MORTGAGE -> showDialog(dialogMortgage);
 			case GAME_SHOW_JAIL -> showDialog(dialogJail);
 			case GAME_SHOW_PURCHASE -> showDialog(dialogPurchaseProperty);
+			case CONTROLS_SHOW_FORFEIT -> showDialog(dialogForfeit);
 		}
 	}
 
@@ -481,13 +515,8 @@ public class DynamicView implements Serializable  {
 //	}
 
 	private void saveGame() {
-		ArrayList<Object> gameData = new ArrayList<>();
-		gameData.add(board);
-		gameData.add(controller);
-		gameData.add(logHelper);
-		gameData.add(currentPlayer);
-		gameData.add(playerCount);
-		gameData.add(playerCustomNames);
+		SerialState gameData = new SerialState();
+		gameData.updateData(board, controller, logHelper, currentPlayer, switchboard);
 
 		try {
 			FileOutputStream f = new FileOutputStream("test.dat");
@@ -499,23 +528,21 @@ public class DynamicView implements Serializable  {
 	}
 
 	private void loadGame() {
-		ArrayList<Object> gameData = new ArrayList<>();
+		SerialState gameData = new SerialState();
 
 		try {
 			FileInputStream f = new FileInputStream("test.dat");
 			ObjectInputStream o = new ObjectInputStream(f);
-			gameData = (ArrayList<Object>) o.readObject();
+			gameData = (SerialState) o.readObject();
 
-			board = (Board) gameData.get(0);
-			controller = (GameLogicController) gameData.get(1);
-			logHelper = (LogHelper) gameData.get(2);
-			currentPlayer = (Player) gameData.get(3);
-			playerCount = (int) gameData.get(4);
-			playerCustomNames = (ArrayList<String>) gameData.get(5);
+			board = gameData.getBoard();
+			controller = gameData.getController();
+			logHelper = gameData.getLogHelper();
+			switchboard = gameData.getSwitchboard();
 
 			logHelper.appendToGameLog("Loaded from file.");
 
-			startGame(playerCount, playerCustomNames, true);
+			controller.initialEvaluator();
 			update();
 
 		} catch (IOException e) {

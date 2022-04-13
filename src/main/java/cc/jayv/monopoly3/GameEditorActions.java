@@ -5,5 +5,8 @@ public enum GameEditorActions {
     DEDUCT_1000,
     JAIL,
     UNJAIL,
-    GIVE_ALL_PROPERTIES
+    UNLOCK_ROLL_DICE,
+    UNLOCK_END_TURN,
+    GIVE_ALL_PROPERTIES,
+    FORCE_END_TURN
 }

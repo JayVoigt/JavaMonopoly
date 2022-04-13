@@ -118,13 +118,30 @@ public class LogHelper implements Serializable {
 	 * @param input The contents of the message.
 	 */
 	public void appendToDebugLog(String input) {
-		debugLogContents.add(input);
+		Date currentDate = new Date();
+		SimpleDateFormat datePrefix = new SimpleDateFormat("yyyy-mm-dd HH:mm:ss");
+
+		String formattedPrefix;
+		formattedPrefix = ("[" + currentDate + "]: ");
+
+		String output = (formattedPrefix + input + "\n");
+		debugLogContents.add(output);
 	}
 
 	public String getAllGameLogContents() {
 		StringBuilder contents = new StringBuilder();
 
 		for (String s : gameLogContents) {
+			contents.append(s);
+		}
+
+		return contents.toString();
+	}
+
+	public String getAllDebugLogContents() {
+		StringBuilder contents = new StringBuilder();
+
+		for (String s : debugLogContents) {
 			contents.append(s);
 		}
 
