@@ -245,6 +245,20 @@ public class SwingHelper implements Serializable {
 
 	}
 
+	public static void spaceButtonHighlightSpectrum(int startSpaceID, int endSpaceID, ArrayList<ViewFrameBoard.SpaceButton> spaceButtons) {
+		float hueShiftFactor;
+
+		for (int i = 0; i < spaceButtons.size(); i++) {
+			hueShiftFactor = (float) (i / 40f);
+
+			 int localRGB = java.awt.Color.HSBtoRGB((hueShiftFactor), 1, 1);
+			 java.awt.Color localAWTColor = new java.awt.Color(localRGB);
+
+			 spaceButtons.get((startSpaceID + i) % 40).getButton().setBorderPainted(true);
+			 spaceButtons.get((startSpaceID + i) % 40).getButton().setBorder(createBorderStyleHighlight(localAWTColor, true));
+		}
+	}
+
 	// </editor-fold>
 
 	public static ImageIcon getImageIconFromResource(String inputResource) {

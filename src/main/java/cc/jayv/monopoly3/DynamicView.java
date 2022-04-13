@@ -436,15 +436,41 @@ public class DynamicView implements Serializable  {
 
 	private void partyVisuals() {
 		class PartyListener implements ActionListener {
+			int startID;
+			int endID;
+
+			public PartyListener() {
+				startID = 0;
+				endID = 39;
+			}
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				SwingHelper.partyMode(spaceButtons);
+				//SwingHelper.partyMode(spaceButtons);
+
+				if (startID <= 39) {
+					startID++;
+				}
+				else {
+					startID = 0;
+				}
+
+				if (endID <= 39) {
+					endID++;
+				}
+				else {
+					endID = 0;
+				}
+
+				SwingHelper.spaceButtonHighlightSpectrum(startID, endID, spaceButtons);
+
+				//System.out.println(startID + " : " + endID);
 			}
 		}
 
 		PartyListener partyListener = new PartyListener();
 
-		Timer timer = new Timer(100, partyListener);
+		Timer timer = new Timer(50, partyListener);
 		timer.start();
 	}
 
