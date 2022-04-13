@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fe395cf4-00c4-4bef-93b5-8a1f264350fd" name="Changes" comment="experimenting with timers and multithreading">
+    <list default="true" id="fe395cf4-00c4-4bef-93b5-8a1f264350fd" name="Changes" comment="fancier party mode working">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DynamicView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DynamicView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/SwingHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/SwingHelper.java" afterDir="false" />
@@ -243,13 +243,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1648738215419</updated>
-    </task>
-    <task id="LOCAL-00022" summary="updated ControlFrame, added framework for InfoFrame">
-      <created>1649260839601</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1649260839601</updated>
     </task>
     <task id="LOCAL-00023" summary="added game log view to board panel">
       <created>1649294257957</created>
@@ -587,7 +580,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649879818422</updated>
     </task>
-    <option name="localTasksCounter" value="71" />
+    <task id="LOCAL-00071" summary="fancier party mode working">
+      <created>1649880977855</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1649880977855</updated>
+    </task>
+    <option name="localTasksCounter" value="72" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -615,7 +615,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="added very basic player indicator placement code" />
     <MESSAGE value="improved player indicator placement logic" />
     <MESSAGE value="improved control pane appearance and behavior; updated game editor" />
     <MESSAGE value="added improved property purchase dialog" />
@@ -640,7 +639,8 @@
     <MESSAGE value="asset view for property groups working; added art assets" />
     <MESSAGE value="updated appearance of asset view" />
     <MESSAGE value="experimenting with timers and multithreading" />
-    <option name="LAST_COMMIT_MESSAGE" value="experimenting with timers and multithreading" />
+    <MESSAGE value="fancier party mode working" />
+    <option name="LAST_COMMIT_MESSAGE" value="fancier party mode working" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -652,7 +652,7 @@
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DynamicView.java</url>
-          <line>322</line>
+          <line>331</line>
           <option name="timeStamp" value="31" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
@@ -662,12 +662,12 @@
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DynamicView.java</url>
-          <line>580</line>
+          <line>584</line>
           <option name="timeStamp" value="33" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DynamicView.java</url>
-          <line>584</line>
+          <line>588</line>
           <option name="timeStamp" value="35" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">

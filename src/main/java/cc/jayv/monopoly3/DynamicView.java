@@ -260,6 +260,15 @@ public class DynamicView implements Serializable  {
 		menuViewDebugLog.addActionListener(new MenuActionListener(MenuActions.VIEW_DEBUG_LOG));
 		menuView.add(menuViewDebugLog);
 
+		JMenuItem menuViewSuperPartyMode = new JMenuItem("Super party mode", SwingHelper.getImageIconFromResource("/robot2.gif"));
+		menuViewSuperPartyMode.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				partyVisuals();
+			}
+		});
+		menuView.add(menuViewSuperPartyMode);
+
 		// Ready
 		menuBar.setVisible(true);
 		mainFrame.setJMenuBar(menuBar);
@@ -429,9 +438,6 @@ public class DynamicView implements Serializable  {
 		}
 
 		update();
-
-		partyVisuals();
-
 	}
 
 	private void partyVisuals() {
@@ -446,7 +452,6 @@ public class DynamicView implements Serializable  {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//SwingHelper.partyMode(spaceButtons);
 
 				if (startID <= 39) {
 					startID++;
@@ -464,7 +469,6 @@ public class DynamicView implements Serializable  {
 
 				SwingHelper.spaceButtonHighlightSpectrum(startID, endID, spaceButtons);
 
-				//System.out.println(startID + " : " + endID);
 			}
 		}
 

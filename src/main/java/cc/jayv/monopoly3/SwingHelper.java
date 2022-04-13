@@ -159,14 +159,14 @@ public class SwingHelper implements Serializable {
 	}
 
 	// <editor-fold desc="Highlights and borders">
-	public static Border createBorderStyleHighlight(java.awt.Color baseShade, boolean lighten) {
+	public static Border createBorderStyleHighlight(java.awt.Color baseShade, boolean lighten, int thickness) {
 		Border highlightBorder, innerBorder, outerBorder;
 		Border highlightInnerShadow;
 		Border nestedOuter, nestedInner, finalBorder;
 
 		Border mainHighlight, fadeLevel1, fadeLevel2, fadeLevel3;
 
-		innerBorder = BorderFactory.createLineBorder(baseShade, 1, false);
+		innerBorder = BorderFactory.createLineBorder(baseShade, thickness, false);
 		outerBorder = BorderFactory.createLineBorder(java.awt.Color.black, 1, false);
 		mainHighlight = BorderFactory.createCompoundBorder(outerBorder, innerBorder);
 
@@ -183,15 +183,19 @@ public class SwingHelper implements Serializable {
 			fade3 = getShadowModifiedColor(fade2);
 		}
 		
-		fadeLevel1 = BorderFactory.createLineBorder(fade1, 1);
-		fadeLevel2 = BorderFactory.createLineBorder(fade2, 1);
-		fadeLevel3 = BorderFactory.createLineBorder(fade3, 1);
+		fadeLevel1 = BorderFactory.createLineBorder(fade1, thickness);
+		fadeLevel2 = BorderFactory.createLineBorder(fade2, thickness);
+		fadeLevel3 = BorderFactory.createLineBorder(fade3, thickness);
 
 		nestedOuter = BorderFactory.createCompoundBorder(mainHighlight, fadeLevel1);
 		nestedInner = BorderFactory.createCompoundBorder(fadeLevel2, fadeLevel3);
 		finalBorder = BorderFactory.createCompoundBorder(nestedOuter, nestedInner);
 
 		return finalBorder;
+	}
+
+	public static Border createBorderStyleHighlight(java.awt.Color baseShade, boolean lighten) {
+		return createBorderStyleHighlight(baseShade, lighten, 1);
 	}
 
 	public Border createBorderStyleHighlight() {
@@ -255,7 +259,7 @@ public class SwingHelper implements Serializable {
 			 java.awt.Color localAWTColor = new java.awt.Color(localRGB);
 
 			 spaceButtons.get((startSpaceID + i) % 40).getButton().setBorderPainted(true);
-			 spaceButtons.get((startSpaceID + i) % 40).getButton().setBorder(createBorderStyleHighlight(localAWTColor, true));
+			 spaceButtons.get((startSpaceID + i) % 40).getButton().setBorder(createBorderStyleHighlight(localAWTColor, true, (int) (i / 2)));
 		}
 	}
 
