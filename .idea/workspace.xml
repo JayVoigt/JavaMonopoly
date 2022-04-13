@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fe395cf4-00c4-4bef-93b5-8a1f264350fd" name="Changes" comment="general checkpoint; experimenting with serialized game state and mortgaged property appearance">
+    <list default="true" id="fe395cf4-00c4-4bef-93b5-8a1f264350fd" name="Changes" comment="asset view for property groups working; added art assets">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DynamicView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DynamicView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/ViewFrameInformationModule.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/ViewFrameInformationModule.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.dat" beforeDir="false" afterPath="$PROJECT_DIR$/test.dat" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -243,13 +243,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1648738215419</updated>
-    </task>
-    <task id="LOCAL-00019" summary="fixed spaceButton placement issue">
-      <created>1649213045413</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1649213045413</updated>
     </task>
     <task id="LOCAL-00020" summary="improved controlFrame; general code cleanup">
       <created>1649214733193</created>
@@ -587,7 +580,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649854133906</updated>
     </task>
-    <option name="localTasksCounter" value="68" />
+    <task id="LOCAL-00068" summary="asset view for property groups working; added art assets">
+      <created>1649872707376</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1649872707376</updated>
+    </task>
+    <option name="localTasksCounter" value="69" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -615,7 +615,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="animated space icons now working with DynamicView" />
     <MESSAGE value="updated improvement icon logic" />
     <MESSAGE value="updated inline documentation for BoardFrame" />
     <MESSAGE value="added very basic player indicator placement code" />
@@ -640,7 +639,8 @@
     <MESSAGE value="improved appearance of ViewFrameInformationModule" />
     <MESSAGE value="general checkpoint" />
     <MESSAGE value="general checkpoint; experimenting with serialized game state and mortgaged property appearance" />
-    <option name="LAST_COMMIT_MESSAGE" value="general checkpoint; experimenting with serialized game state and mortgaged property appearance" />
+    <MESSAGE value="asset view for property groups working; added art assets" />
+    <option name="LAST_COMMIT_MESSAGE" value="asset view for property groups working; added art assets" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -662,18 +662,13 @@
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DynamicView.java</url>
-          <line>538</line>
+          <line>540</line>
           <option name="timeStamp" value="33" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DynamicView.java</url>
-          <line>542</line>
+          <line>544</line>
           <option name="timeStamp" value="35" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/ViewFrameInformationModule.java</url>
-          <line>254</line>
-          <option name="timeStamp" value="43" />
         </line-breakpoint>
         <breakpoint type="java-exception">
           <properties class="java.lang.StackOverflowError" package="java.lang" />

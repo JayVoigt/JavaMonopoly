@@ -244,37 +244,74 @@ public class ViewFrameInformationModule {
 
         JLabel label = null;
 
-        for ( Player p : board.players ) {
-            int ownedProperties = 0;
-            int totalProperties = 0;
+        int ownedRailroads = 0;
+        int ownedUtilities = 0;
 
-            if (p.getIsActive())  {
-                for (Color.colorGroupKeys colorGroup : Color.colorGroupKeys.values()) {
+        if (player.getIsActive())  {
+            for (Color.colorGroupKeys colorGroup : Color.colorGroupKeys.values()) {
 
-                    label = ownedPropertyGroupLabels.get(colorGroup);
+                int ownedProperties = 0;
+                int totalProperties = 0;
+                label = ownedPropertyGroupLabels.get(colorGroup);
 
-                    totalProperties = board.getSpacesByColorGroup(colorGroup).size();
-                    for (Property property : board.getSpacesByOwnerID(p.getPlayerID())) {
-                        if (property instanceof Color c) {
-                            if (c.getColorGroup() == colorGroup) {
-                                ownedProperties++;
-                            }
+                totalProperties = board.getSpacesByColorGroup(colorGroup).size();
+                for (Property property : board.getSpacesByOwnerID(player.getPlayerID())) {
+                    if (property instanceof Color c) {
+                        if (c.getColorGroup().equals(colorGroup)) {
+                            ownedProperties++;
                         }
                     }
+                }
 
-                    if (label != null) {
-                        label.setText(ownedProperties + "/" + totalProperties);
+                if (label != null) {
+                    String formattedLabelText = ownedProperties + "/" + totalProperties;
+                    label.setText(ownedProperties + "/" + totalProperties);
 
-                        // Indicate player has monopoly over property group
-                        if (ownedProperties == totalProperties) {
-                            label.setForeground(java.awt.Color.red);
-                        } else {
-                            label.setForeground(java.awt.Color.black);
-                        }
+                    // Indicate player has monopoly over property group
+                    if (ownedProperties == totalProperties) {
+                        label.setForeground(java.awt.Color.red);
                     }
-                }   // end for
-            }   // end if
-        }   // end for
+                    else if (ownedProperties == 0) {
+                        label.setForeground(java.awt.Color.gray);
+                    }
+                    else {
+                        label.setForeground(java.awt.Color.black);
+                    }
+                }
+            }   // end for
+
+            for (Property property : board.getSpacesByOwnerID(player.getPlayerID())) {
+                if (property instanceof Railroad) {
+                    ownedRailroads++;
+                }
+                else if (property instanceof Utility) {
+                    ownedUtilities++;
+                }
+            }
+
+            labelOwnedRailroad.setText(ownedRailroads + "/4");
+            labelOwnedUtility.setText(ownedUtilities + "/2");
+
+            if (ownedRailroads == 4) {
+                labelOwnedRailroad.setForeground(java.awt.Color.red);
+            }
+            else if (ownedRailroads == 0) {
+                labelOwnedRailroad.setForeground(java.awt.Color.gray);
+            }
+            else {
+                labelOwnedRailroad.setForeground(java.awt.Color.black);
+            }
+
+            if (ownedUtilities == 2) {
+                labelOwnedUtility.setForeground(java.awt.Color.red);
+            }
+            else if (ownedUtilities == 0) {
+                labelOwnedUtility.setForeground(java.awt.Color.gray);
+            }
+            else {
+                labelOwnedUtility.setForeground(java.awt.Color.black);
+            }
+        }   // end if
     }
 
     public static void main(String args[]) {

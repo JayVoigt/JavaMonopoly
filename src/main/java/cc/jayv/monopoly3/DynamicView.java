@@ -508,6 +508,8 @@ public class DynamicView implements Serializable  {
 			case GAME_SHOW_PURCHASE -> showDialog(dialogPurchaseProperty);
 			case CONTROLS_SHOW_FORFEIT -> showDialog(dialogForfeit);
 		}
+
+		update();
 	}
 
 //	public static void main(String args[]) {
