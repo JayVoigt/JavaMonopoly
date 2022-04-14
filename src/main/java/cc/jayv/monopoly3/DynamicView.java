@@ -138,6 +138,8 @@ public class DynamicView implements Serializable  {
 		if (controller.getIsVictoryConditionMet()) {
 			partyVisuals();
 		}
+
+		viewFrameBoard.animatePlayerMovement(board, currentPlayer.getPlayerID());
 	}
 
 	private void updateGuiMandatoryDialogs() {

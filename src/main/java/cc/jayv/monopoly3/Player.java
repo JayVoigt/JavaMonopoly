@@ -363,10 +363,12 @@ public class Player implements Serializable {
 	public boolean advancePosition(int spacesCount) {
 		// If player passes GO, also wrap position
 		if (currentPosition + spacesCount >= 40) {
+			previousPosition = currentPosition;
 			currentPosition = (currentPosition + spacesCount) % 40;
 			return true;
 		}
 		else {
+			previousPosition = currentPosition;
 			currentPosition += spacesCount;
 			return false;
 		}
@@ -374,6 +376,7 @@ public class Player implements Serializable {
 
 	public void setPosition(int spaceID) {
 		if ((spaceID >= 0) && (spaceID <= 39)) {
+			previousPosition = currentPosition;
 			currentPosition = spaceID;
 		}
 	}

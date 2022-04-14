@@ -1,6 +1,7 @@
 package cc.jayv.monopoly3;
 
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -348,16 +349,6 @@ public class ViewFrameBoard implements Serializable {
         Point labelPoint;
         JLabel label;
 
-        class MovementAnimationListener implements ActionListener {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        }
-
-        Timer movementAnimationTimer = new Timer(50, )
-
         for (Player p : board.players) {
             if (p.getIsActive()) {
                 labelPoint = calculatePointForPlayerIndicator(p.getPlayerID(), p.getCurrentPosition(), p.getIsJailed());
@@ -366,6 +357,69 @@ public class ViewFrameBoard implements Serializable {
                 label.setBounds(labelPoint.x, labelPoint.y, 18, 18);
             }
         }
+    }
+
+    public void animatePlayerMovement(Board board, int playerID) {
+        Player player = board.players.get(playerID);
+
+        int previousSpaceID = player.getPreviousPosition();
+        int currentSpaceID = player.getCurrentPosition();
+
+        class test implements ActionListener {
+
+            int index;
+            Timer timer;
+
+            public test() {
+                index = 100;
+                timer = new Timer(50, this);
+                timer.start();
+            }
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                index--;
+                System.out.println(index);
+                if (index < 0) {
+                    timer.stop();
+                }
+            }
+        }
+        //new test();
+
+        class AnimatePlayerMovement implements ActionListener {
+
+            int distance;
+            int index;
+            Timer timer;
+
+            public AnimatePlayerMovement() {
+                for (SpaceButton b : spaceButtons) {
+                    b.getButton().setBorder(null);
+                }
+                distance = board.getDistance(previousSpaceID, currentSpaceID);
+                index = distance;
+                timer = new Timer(50, this);
+                timer.start();
+            }
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (index > 0) {
+                    index--;
+                }
+
+                JButton button = spaceButtons.get(index).getButton();
+                button.setBorderPainted(true);
+                button.setBorder(new LineBorder(java.awt.Color.yellow, 2));
+                if (index == 0) {
+                    timer.stop();
+                }
+            }
+        }
+
+        new AnimatePlayerMovement();
+
     }
 
     /**

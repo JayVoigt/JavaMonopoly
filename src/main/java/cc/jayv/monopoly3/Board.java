@@ -390,4 +390,26 @@ public class Board implements Serializable {
 		return nextActivePlayerID;
 	}
 
+	public int getNextSpaceID(int spaceID) {
+		if (spaceID < 39) {
+			return spaceID + 1;
+		}
+		else {
+			return 0;
+		}
+	}
+
+	public int getDistance(int spaceA, int spaceB) {
+		int distance = 0;
+
+		if (spaceB < spaceA) {
+			distance = (39 - spaceA) + spaceB;
+		}
+		else {
+			distance = spaceB - spaceA;
+		}
+
+		return distance;
+	}
+
 }	// end class
