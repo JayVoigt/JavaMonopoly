@@ -139,7 +139,13 @@ public class DynamicView implements Serializable  {
 			partyVisuals();
 		}
 
-		viewFrameBoard.animatePlayerMovement(board, currentPlayer.getPlayerID());
+		if (currentPlayer.isAnimateMovement()) {
+			viewFrameBoard.animatePlayerMovement(board, currentPlayer.getPlayerID());
+			currentPlayer.setAnimateMovement(false);
+		}
+		else {
+			viewFrameBoard.resetButtonAppearance();
+		}
 	}
 
 	private void updateGuiMandatoryDialogs() {

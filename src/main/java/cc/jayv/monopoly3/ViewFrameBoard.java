@@ -1,6 +1,7 @@
 package cc.jayv.monopoly3;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -365,28 +366,6 @@ public class ViewFrameBoard implements Serializable {
         int previousSpaceID = player.getPreviousPosition();
         int currentSpaceID = player.getCurrentPosition();
 
-        class test implements ActionListener {
-
-            int index;
-            Timer timer;
-
-            public test() {
-                index = 100;
-                timer = new Timer(50, this);
-                timer.start();
-            }
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                index--;
-                System.out.println(index);
-                if (index < 0) {
-                    timer.stop();
-                }
-            }
-        }
-        //new test();
-
         class AnimatePlayerMovement implements ActionListener {
 
             int distance;
@@ -409,9 +388,18 @@ public class ViewFrameBoard implements Serializable {
                     index--;
                 }
 
-                JButton button = spaceButtons.get(index).getButton();
+                JButton initButton = spaceButtons.get(previousSpaceID).getButton();
+                initButton.setBorderPainted(true);
+                initButton.setBorder(SwingHelper.createBorderStyleHighlight(java.awt.Color.gray, true, 4));
+
+                int spaceID = board.getNextSpaceID(previousSpaceID + (distance - index) - 1);
+                JButton button = spaceButtons.get(spaceID).getButton();
+
+                int uniformRGB = (int) (255 / (distance - index));
+                java.awt.Color color = new java.awt.Color(255, uniformRGB, uniformRGB, (255 - uniformRGB));
+
                 button.setBorderPainted(true);
-                button.setBorder(new LineBorder(java.awt.Color.yellow, 2));
+                button.setBorder(SwingHelper.createBorderStyleHighlight(color, false, 1));
                 if (index == 0) {
                     timer.stop();
                 }
@@ -420,6 +408,12 @@ public class ViewFrameBoard implements Serializable {
 
         new AnimatePlayerMovement();
 
+    }
+
+    public void resetButtonAppearance() {
+        for (SpaceButton s : spaceButtons) {
+            s.getButton().setBorder(null);
+        }
     }
 
     /**

@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class SwingHelper implements Serializable {
 
 	JInternalFrame frameBoard;
-	java.awt.Color highlightYellowShade;
+	static java.awt.Color highlightYellowShade;
 	Font titleFont;
 
 	public SwingHelper(JInternalFrame frameBoardInput) {
@@ -198,7 +198,7 @@ public class SwingHelper implements Serializable {
 		return createBorderStyleHighlight(baseShade, lighten, 1);
 	}
 
-	public Border createBorderStyleHighlight() {
+	public static Border createBorderStyleHighlight() {
 		return createBorderStyleHighlight(highlightYellowShade, true);
 	}
 	

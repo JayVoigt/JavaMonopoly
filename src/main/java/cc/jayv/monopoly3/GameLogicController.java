@@ -302,10 +302,11 @@ public class GameLogicController implements Serializable {
 
 		board.spaces.get(currentPlayer.getCurrentPosition()).setButtonAppearance(Space.buttonAppearanceKeys.previousSpace);
 		boolean playerPassedGo = currentPlayer.advancePosition(diceSum);
+		currentPlayer.setAnimateMovement(true);
 		board.spaces.get(currentPlayer.getCurrentPosition()).setButtonAppearance(Space.buttonAppearanceKeys.newSpace);
 
 		// Issue GO bonus
-		if (playerPassedGo == true) {
+		if (playerPassedGo) {
 			currentPlayer.updateCurrentBalance(200);
 			appendToGameLog(currentPlayer.getCustomName() + " has passed or landed on GO, and is rewarded a bonus of $200.");
 		}

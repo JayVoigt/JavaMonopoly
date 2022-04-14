@@ -49,6 +49,16 @@ public class Player implements Serializable {
 
 	int getOutOfJailFreeCardCount;
 
+	public boolean isAnimateMovement() {
+		return animateMovement;
+	}
+
+	public void setAnimateMovement(boolean animateMovement) {
+		this.animateMovement = animateMovement;
+	}
+
+	boolean animateMovement;
+
 	public int getCreditorPlayerID() {
 		return creditorPlayerID;
 	}
@@ -114,6 +124,8 @@ public class Player implements Serializable {
 
 		die1 = 0;
 		die2 = 0;
+
+		animateMovement = false;
 	}
 	// </editor-fold>
 

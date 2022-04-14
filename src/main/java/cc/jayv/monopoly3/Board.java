@@ -394,8 +394,11 @@ public class Board implements Serializable {
 		if (spaceID < 39) {
 			return spaceID + 1;
 		}
-		else {
+		else if (spaceID == 39) {
 			return 0;
+		}
+		else {
+			return 1 + (spaceID % 39);
 		}
 	}
 
