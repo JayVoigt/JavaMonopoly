@@ -26,8 +26,6 @@ public class Player implements Serializable {
 	int currentBalance,
 		currentPosition;
 
-	int netValue;
-
 	public boolean getIsActive() {
 		return isPlayerActive;
 	}
@@ -49,9 +47,18 @@ public class Player implements Serializable {
 	int die1, die2;
 
 	int getOutOfJailFreeCardCount;
-	
+
+	public int getCreditorPlayerID() {
+		return creditorPlayerID;
+	}
+
+	public void setCreditorPlayerID(int creditorPlayerID) {
+		this.creditorPlayerID = creditorPlayerID;
+	}
+
 	// In a bankruptcy state, the player who is owed money/assets
 	int creditorPlayerID;
+	boolean isBankrupt;
 	// </editor-fold>
 
 	// <editor-fold desc="State attributes">
@@ -91,6 +98,8 @@ public class Player implements Serializable {
 
 		isPlayerActive = false;
 		isComputerControlled = false;
+		isBankrupt = false;
+		creditorPlayerID = 0;
 
 		consecutiveDoublesCount = 0;
 
@@ -137,6 +146,7 @@ public class Player implements Serializable {
 
 	public void updateCurrentBalance(int change) {
 		currentBalance += change;
+		evaluateState();
 	}
 
 	public int getCurrentPosition() {
@@ -386,19 +396,28 @@ public class Player implements Serializable {
 		consecutiveTurnsJailed = 0;
 	}
 
-	public void setNetValue(int netValue) {
-		this.netValue = netValue;
-	}
-
-	public int getNetValue() {
-		return netValue;
-	}
-
 	public ImageIcon getPreferredIcon() {
 		return preferredIcon;
 	}
 
 	public void setPreferredIcon(ImageIcon preferredIcon) {
 		this.preferredIcon = preferredIcon;
+	}
+
+	public boolean getIsBankrupt() {
+		return isBankrupt;
+	}
+
+	public void setIsBankrupt(boolean bankrupt) {
+		isBankrupt = bankrupt;
+	}
+
+	public void evaluateState() {
+		isBankrupt = (currentBalance < 0);
+
+		if (isBankrupt) {
+			actionLockedEndTurn = true;
+			actionLockedRollDice = true;
+		}
 	}
 }	// end class

@@ -26,9 +26,9 @@ public class DialogContainerForfeit extends DialogContainer {
 
         infoArea = new JTextArea();
 
-        String infoAreaContents = "Are you sure you want to forfeit? You may not forfeit" +
+        String infoAreaContents = "Are you sure you want to forfeit? You may only forfeit" +
                 "when in debt to another player. If you decide to forfeit, your assets will be" +
-                "repossessed by the Bank, and you will be unable to play for the remainder of the game.";
+                "transferred to the creditor, and you will be unable to play for the remainder of the game.";
 
         SwingHelper.formatInfoArea(infoArea);
         infoArea.setText(infoAreaContents);

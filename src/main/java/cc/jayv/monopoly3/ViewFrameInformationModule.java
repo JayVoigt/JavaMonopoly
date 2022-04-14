@@ -194,6 +194,7 @@ public class ViewFrameInformationModule {
     }
 
     public void update() {
+        int ownedPropertyCount = 0;
         if (player.getIsActive()) {
             labelName.setText(player.getCustomName());
             labelName.setIcon(player.getPreferredIcon());
@@ -204,13 +205,12 @@ public class ViewFrameInformationModule {
 
             labelStatusJailed.setEnabled(player.getIsJailed());
 
-            labelStatusBankrupt.setEnabled(player.getCurrentBalance() <= 0);
+            labelStatusBankrupt.setEnabled(player.getIsBankrupt());
 
             String playerPosition = (board.spaces.get(player.getCurrentPosition()).getFriendlyName());
             labelPosition.setText(playerPosition);
 
             // Assets
-            int ownedPropertyCount = 0;
             for (Space s : board.spaces) {
                 if (s instanceof Property p) {
                     if (p.getIsOwned() && p.getOwnerID() == player.getPlayerID()) {
@@ -232,10 +232,16 @@ public class ViewFrameInformationModule {
 
     private void disableAllComponents() {
         for (Component c : panelPlayerStatus.getComponents()) {
+            if (c instanceof JLabel l) {
+                l.setText("");
+            }
             c.setEnabled(false);
         }
 
         for (Component c : panelPlayerAssets.getComponents()) {
+            if (c instanceof JLabel l) {
+                l.setText("");
+            }
             c.setEnabled(false);
         }
     }

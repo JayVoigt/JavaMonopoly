@@ -49,6 +49,10 @@ public class GameEditorController implements Serializable {
         appendToGameLogGameEditor("Gave ownership of all properties.");
     }
 
+    public void randomlyDistributeAllProperties() {
+        controller.debugToolsRandomlyDistributeAllProperties();
+    }
+
     private void appendToGameLogGameEditor(String input) {
         logHelper.appendToGameLog("[Game Editor: " + player.getCustomName() + "] " + input);
     }

@@ -124,16 +124,20 @@ public class GameLogicController implements Serializable {
 		}
 
 		String paddingPrefix = "";
-		if (useExtraTextPadding == true) {
+		if (useExtraTextPadding) {
 			String newLine = "\n";
 			logHelper.appendToGameLog(newLine);
 		}
 
 		appendToGameLog("It is now " + currentPlayer.getCustomName() + "'s turn.");
+		currentPlayer.evaluateState();
 
-		if (currentPlayer.getIsJailed() == true) {
+		if (currentPlayer.getIsJailed()) {
 			currentPlayer.incrementConsecutiveTurnsJailed();
 			jailStateEvaluator();
+		}
+		else if (currentPlayer.getIsBankrupt()) {
+			bankruptStateEvaluator();
 		}
 		else {
 			normalTurnEvaluator();
@@ -147,6 +151,13 @@ public class GameLogicController implements Serializable {
 		logHelper.appendToDebugLog("-> executing jailStateEvaluator");
 		appendToGameLog(currentPlayer.getCustomName() + " is jailed!");
 
+	}
+
+	private void bankruptStateEvaluator() {
+		currentPlayer.setActionLockedEndTurn(true);
+		currentPlayer.setActionLockedRollDice(true);
+
+		logHelper.appendToGameLog(currentPlayer.getCustomName() + " is bankrupt!");
 	}
 
 	/**
@@ -488,11 +499,14 @@ public class GameLogicController implements Serializable {
 	private void propertyEvaluator() {
 		logHelper.appendToDebugLog("-> executing propertyEvaluator");
 		currentProperty = (Property) currentSpace;
-		if (currentProperty.getIsOwned() == false) {
+
+		// Property not owned
+		if (!currentProperty.getIsOwned()) {
 			appendToGameLog(currentProperty.getFriendlyName() + " is not owned.");
 			currentPlayer.setRequiredDecisionPropertyAction(true);
 			currentPlayer.setMadeDecisionPropertyAction(false);
 		}
+		// Property owned
 		else {
 			appendToGameLog(currentProperty.getFriendlyName() + " is owned by " + board.players.get(currentProperty.getOwnerID()).getCustomName() + ".");
 			currentPlayer.setRequiredDecisionPropertyAction(false);
@@ -502,6 +516,12 @@ public class GameLogicController implements Serializable {
 			Player propertyOwner = board.players.get(currentProperty.getOwnerID());
 
 			if (propertyOwner != currentPlayer) {
+				// Pay rent
+				if (currentPlayer.getCurrentBalance() < rentOwed) {
+					currentPlayer.setIsBankrupt(true);
+					currentPlayer.setCreditorPlayerID(propertyOwner.getPlayerID());
+					bankruptStateEvaluator();
+				}
 				currentPlayer.updateCurrentBalance(-1 * rentOwed);
 				propertyOwner.updateCurrentBalance(rentOwed);
 
@@ -657,6 +677,26 @@ public class GameLogicController implements Serializable {
 	 * <b>Not implemented.</b>
 	 */
 	public void forfeitManager() {
+		Player creditorPlayer = board.players.get(currentPlayer.getCreditorPlayerID());
+
+		// Ensure that creditorPlayer is valid and that the forfeit-requesting player is able to forfeit
+		if ((creditorPlayer.getPlayerID() != 0) && (currentPlayer.getCurrentBalance() < 0)) {
+			// Transfer all property assets
+			for (Property p : board.getSpacesByOwnerID(currentPlayer.getPlayerID())) {
+				p.setOwnerID(creditorPlayer.getPlayerID());
+			}
+
+			// Transfer GOOJFCs
+			if (currentPlayer.getGetOutOfJailFreeCardCount() > 0) {
+				// goofy looking line of code
+				creditorPlayer.setGetOutOfJailFreeCardCount(creditorPlayer.getGetOutOfJailFreeCardCount() + currentPlayer.getGetOutOfJailFreeCardCount());
+			}
+
+			appendToGameLog(currentPlayer.getCustomName() + " has forfeited the game, and their assets have" +
+					"been transferred to " + creditorPlayer.getCustomName() + "!");
+			endTurnManager();
+			currentPlayer.setIsPlayerActive(false);
+		}
 
 	}
 
@@ -676,6 +716,25 @@ public class GameLogicController implements Serializable {
 		}
 
 		board.forceBoardSelfCheck();
+	}
+
+	public void debugToolsRandomlyDistributeAllProperties() {
+		ArrayList<Player> activePlayers = new ArrayList<>();
+
+		for (Player p : board.players) {
+			if (p.getIsActive()) {
+				activePlayers.add(p);
+			}
+		}
+
+		for (Space s : board.spaces) {
+			if (s instanceof Property p) {
+				int randomPlayerID = 1 + (int) (Math.random() * activePlayers.size());
+				System.out.println(randomPlayerID);
+				p.setIsOwned(true);
+				p.setOwnerID(randomPlayerID);
+			}
+		}
 	}
 
 	public void improvementsManager(int spaceID, ImprovementsActions inputAction) {

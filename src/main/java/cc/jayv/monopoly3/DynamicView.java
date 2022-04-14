@@ -66,9 +66,11 @@ public class DynamicView implements Serializable  {
 	JMenu menuFile;
 	JMenu menuEdit;
 	JMenu menuView;
+	JMenu menuMacros;
 
 	Border spaceSelectionBorder;
 	Timer partyModeTimer;
+	MacroController macroController;
 
 	// Reference variables
 	static int currentSpaceButtonSelection;
@@ -212,28 +214,37 @@ public class DynamicView implements Serializable  {
 		menuView.setText("View");
 		menuBar.add(menuView);
 
-		// File
+		menuMacros = new JMenu();
+		menuMacros.setText("Macros");
+		menuBar.add(menuMacros);
+
+		// File - New Game
 		JMenuItem menuFileNewGame = new JMenuItem("New Game...", SwingHelper.getImageIconFromResource("/newgame.png"));
 		menuFileNewGame.addActionListener(new MenuActionListener(MenuActions.FILE_NEW_GAME));
 		menuFile.add(menuFileNewGame);
 
+		// File - Load Game
 		JMenuItem menuFileLoadGame = new JMenuItem("Load Game...", SwingHelper.getImageIconFromResource(("/floppygame.png")));
 		menuFileLoadGame.addActionListener(e -> loadGame());
 		menuFile.add(menuFileLoadGame);
 
+		// File - Save Game
 		JMenuItem menuFileSaveGame = new JMenuItem("Save Game...", SwingHelper.getImageIconFromResource(("/floppygame.png")));
 		menuFileSaveGame.addActionListener(e -> saveGame());
 		menuFile.add(menuFileSaveGame);
 
+		// File - Quit
 		JMenuItem menuFileQuit = new JMenuItem("Quit", SwingHelper.getImageIconFromResource(("/red-x.png")));
 		menuFileQuit.addActionListener(new MenuActionListener(MenuActions.FILE_QUIT));
 		menuFile.add(menuFileQuit);
 
+		// Edit - Game Editor
 		JMenuItem menuEditGameEditor = new JMenuItem("Game Editor...", SwingHelper.getImageIconFromResource("/matrix-anim.gif"));
 		menuEditGameEditor.addActionListener(new MenuActionListener(MenuActions.EDIT_GAME_EDITOR));
 		menuEditGameEditor.setForeground(java.awt.Color.red);
 		menuEdit.add(menuEditGameEditor);
 
+		// Edit - Manually Refresh View
 		JMenuItem menuEditManuallyRefresh = new JMenuItem("Manually Refresh View", SwingHelper.getImageIconFromResource("/alert.png"));
 		menuEditManuallyRefresh.addActionListener(e -> update());
 		menuEdit.add(menuEditManuallyRefresh);
@@ -249,7 +260,7 @@ public class DynamicView implements Serializable  {
 		menuView.add(menuViewDebugLog);
 
 		// View - Super Party Mode
-		JMenuItem menuViewSuperPartyMode = new JMenuItem("Super party mode", SwingHelper.getImageIconFromResource("/robot2.gif"));
+		JMenuItem menuViewSuperPartyMode = new JMenuItem("Super Party Mode", SwingHelper.getImageIconFromResource("/robot2.gif"));
 		menuViewSuperPartyMode.addActionListener(e -> partyVisuals());
 		menuView.add(menuViewSuperPartyMode);
 
@@ -257,6 +268,11 @@ public class DynamicView implements Serializable  {
 		JMenuItem menuViewResetSpaceButtonAppearance = new JMenuItem("Reset Space Button Appearance", SwingHelper.getImageIconFromResource("/red-x.png"));
 		menuViewResetSpaceButtonAppearance.addActionListener(e -> resetSpaceButtonAppearance());
 		menuView.add(menuViewResetSpaceButtonAppearance);
+
+		// Macros - Bankruptcy Test
+		JMenuItem menuMacrosBankruptcyTest = new JMenuItem("Bankruptcy Test", SwingHelper.getImageIconFromResource("/alert.png"));
+		menuMacrosBankruptcyTest.addActionListener(e -> macroController.macroBankruptcyTest());
+		menuMacros.add(menuMacrosBankruptcyTest);
 
 		// Ready
 		menuBar.setVisible(true);
@@ -383,6 +399,7 @@ public class DynamicView implements Serializable  {
 
 		// Forfeit
 		dialogContainerForfeit = new DialogContainerForfeit();
+		dialogContainerForfeit.attachActionListeners(buttonActionListeners);
 		dialogForfeit = dialogContainerForfeit.getDialog();
 
 		// Debug log
@@ -424,6 +441,8 @@ public class DynamicView implements Serializable  {
 
 			controller.sendInitGameMessage();
 			controller.initialEvaluator();
+
+			macroController = new MacroController(board, controller);
 		}
 
 		update();
@@ -479,11 +498,13 @@ public class DynamicView implements Serializable  {
 		Actions action;
 		boolean needsPrompt;
 
+		// Default listeners do not require a prompt
 		public ButtonActionListener(Actions action) {
 			this.action = action;
 			needsPrompt = false;
 		}
 
+		// For listeners that require a prompt, e.g., Improvements, Mortgage
 		public ButtonActionListener(Actions action, boolean needsPrompt) {
 			this.action = action;
 			this.needsPrompt = needsPrompt;
@@ -492,6 +513,8 @@ public class DynamicView implements Serializable  {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			switchboard.setOrigin(e.getSource());
+
+			// Trigger the corresponding action in the switchboard
 			switchboard.actionHandler(action, currentSpaceButtonSelection);
 			update();
 
@@ -525,6 +548,7 @@ public class DynamicView implements Serializable  {
 				case UNLOCK_ROLL_DICE -> viewFrameControl.setStateOfActionButton(Actions.CONTROLS_ROLLDICE, true);
 				case UNLOCK_END_TURN -> viewFrameControl.setStateOfActionButton(Actions.CONTROLS_ENDTURN, true);
 				case GIVE_ALL_PROPERTIES -> gameEditorController.giveAllProperties(player);
+				case RANDOMLY_DISTRIBUTE_ALL_PROPERTIES -> gameEditorController.randomlyDistributeAllProperties();
 			}
 			if (action != GameEditorActions.UNLOCK_END_TURN && action != GameEditorActions.UNLOCK_ROLL_DICE) {
 				update();

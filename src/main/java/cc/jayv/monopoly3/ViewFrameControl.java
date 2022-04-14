@@ -90,14 +90,15 @@ public class ViewFrameControl implements ViewComponent, Serializable {
                 DynamicView.ButtonActionListener controlsMortgageActionListener = null;
                 DynamicView.ButtonActionListener controlsPropertiesActionListener = null;
                 DynamicView.ButtonActionListener controlsImprovementsActionListener = null;
+                DynamicView.ButtonActionListener controlsForfeitActionListener = null;
 
-
-                for (DynamicView.ButtonActionListener a : actionListeners) {
-                        switch(a.getAction()) {
-                                case CONTROLS_ENDTURN -> endTurnActionListener = a;
-                                case CONTROLS_ROLLDICE -> rollDiceActionListener = a;
-                                case CONTROLS_SHOW_IMPROVEMENTS -> controlsImprovementsActionListener = a;
-                                case CONTROLS_SHOW_MORTGAGE -> controlsMortgageActionListener = a;
+                for (DynamicView.ButtonActionListener l : actionListeners) {
+                        switch(l.getAction()) {
+                                case CONTROLS_ENDTURN -> endTurnActionListener = l;
+                                case CONTROLS_ROLLDICE -> rollDiceActionListener = l;
+                                case CONTROLS_SHOW_IMPROVEMENTS -> controlsImprovementsActionListener = l;
+                                case CONTROLS_SHOW_MORTGAGE -> controlsMortgageActionListener = l;
+                                case CONTROLS_SHOW_FORFEIT -> controlsForfeitActionListener = l;
                         }
                 }
 
@@ -154,7 +155,7 @@ public class ViewFrameControl implements ViewComponent, Serializable {
                         frame.add(buttonControlsTrade, buttonControlsTrade.getMigLayoutSpec());
 
                         // Forfeit
-                        buttonControlsForfeit = new TemplateDialogButtonProperties("Forfeit", "/surrender.png", null, "cell 2 10, align right" + standardMigSpecButton);
+                        buttonControlsForfeit = new TemplateDialogButtonProperties("Forfeit", "/surrender.png", controlsForfeitActionListener, "cell 2 10, align right" + standardMigSpecButton);
                         frame.add(buttonControlsForfeit, buttonControlsForfeit.getMigLayoutSpec());
 
                         for (Actions a : Actions.values()) {
