@@ -378,7 +378,7 @@ public class ViewFrameBoard implements Serializable {
                 }
                 distance = board.getDistance(previousSpaceID, currentSpaceID);
                 index = distance;
-                timer = new Timer(50, this);
+                timer = new Timer(25, this);
                 timer.start();
             }
 
