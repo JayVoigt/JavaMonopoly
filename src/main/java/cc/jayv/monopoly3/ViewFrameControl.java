@@ -216,4 +216,16 @@ public class ViewFrameControl implements ViewComponent, Serializable {
         public JComponent getComponent() {
                 return null;
         }
+
+        public void partyVisuals() {
+//                SwingHelper.partyModeComponent(labelDie1);
+//                SwingHelper.partyModeComponent(labelDie2);
+//                SwingHelper.partyModeComponent(buttonControlsMortgage);
+//                SwingHelper.partyModeComponent(buttonControlsShowProperties);
+//                SwingHelper.partyModeComponent(buttonControlsStatistics);
+//                SwingHelper.partyModeComponent(buttonControlsTrade);
+//                SwingHelper.partyModeComponent(buttonControlsForfeit);
+//                SwingHelper.partyModeComponent(buttonControlsImprovements);
+                SwingHelper.partyModeComponent(frame);
+        }
 }

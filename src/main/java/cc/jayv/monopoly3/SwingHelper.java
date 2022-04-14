@@ -249,6 +249,22 @@ public class SwingHelper implements Serializable {
 
 	}
 
+	public static void partyModeComponent(JComponent component) {
+		int randomR, randomG, randomB;
+
+		 randomR = (int) (Math.random() * 256);
+		 randomG = (int) (Math.random() * 256);
+		 randomB = (int) (Math.random() * 256);
+
+		 java.awt.Color randomColor = new java.awt.Color(randomR, randomG, randomB);
+
+		 Border partyBorder = createBorderStyleHighlight(randomColor, true);
+		 if (component instanceof JButton b) {
+			 b.setBorderPainted(true);
+		 }
+		 component.setBorder(partyBorder);
+	}
+
 	public static void spaceButtonHighlightSpectrum(int startSpaceID, int endSpaceID, ArrayList<ViewFrameBoard.SpaceButton> spaceButtons) {
 		float hueShiftFactor;
 

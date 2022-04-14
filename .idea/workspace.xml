@@ -4,9 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fe395cf4-00c4-4bef-93b5-8a1f264350fd" name="Changes" comment="experimenting with auction GUI">
+    <list default="true" id="fe395cf4-00c4-4bef-93b5-8a1f264350fd" name="Changes" comment="working on bankruptcy state">
+      <change afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DialogContainerTrade.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/Board.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DynamicView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DynamicView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/GameLogicController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/GameLogicController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/MacroController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/MacroController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/SwingHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/SwingHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/ViewFrameBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/ViewFrameBoard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/ViewFrameControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/ViewFrameControl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -216,16 +224,16 @@
       <item itemvalue="Application.ViewFrameInformationModule" />
       <item itemvalue="Application.DialogContainerMortgage" />
       <item itemvalue="Application.DialogContainerForfeit" />
+      <item itemvalue="Application.DialogContainerAuction" />
       <item itemvalue="JAR Application.Run Jar" />
       <item itemvalue="Maven.Clean" />
       <item itemvalue="Maven.Build" />
-      <item itemvalue="Application.DialogContainerAuction" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.JavaMonopoly" />
-        <item itemvalue="Application.DialogContainerAuction" />
         <item itemvalue="Application.DialogContainerForfeit" />
+        <item itemvalue="Application.DialogContainerAuction" />
         <item itemvalue="Application.DialogContainerMortgage" />
         <item itemvalue="Application.ViewFrameInformationModule" />
       </list>
@@ -242,20 +250,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1648738215419</updated>
-    </task>
-    <task id="LOCAL-00025" summary="improved appearance for board view">
-      <created>1649333661118</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1649333661118</updated>
-    </task>
-    <task id="LOCAL-00026" summary="updated space selection area">
-      <created>1649348568691</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1649348568691</updated>
     </task>
     <task id="LOCAL-00027" summary="updated space selection area">
       <created>1649355101785</created>
@@ -586,7 +580,21 @@
       <option name="project" value="LOCAL" />
       <updated>1649901572380</updated>
     </task>
-    <option name="localTasksCounter" value="74" />
+    <task id="LOCAL-00074" summary="updated spectrum button dynamics; added reset option; using lambda expressions for some ActionListener events">
+      <created>1649953205405</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1649953205405</updated>
+    </task>
+    <task id="LOCAL-00075" summary="working on bankruptcy state">
+      <created>1649964453031</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1649964453031</updated>
+    </task>
+    <option name="localTasksCounter" value="76" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -614,8 +622,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="added improved property purchase dialog" />
-    <MESSAGE value="updated PropertyPurchaseDialog" />
     <MESSAGE value="updated PropertyPurchaseDialog; cleaned up code slightly" />
     <MESSAGE value="renamed files for greater consistency" />
     <MESSAGE value="moved MainWindow to legacy folder" />
@@ -639,7 +645,9 @@
     <MESSAGE value="fancier party mode working" />
     <MESSAGE value="improved fancier party mode" />
     <MESSAGE value="experimenting with auction GUI" />
-    <option name="LAST_COMMIT_MESSAGE" value="experimenting with auction GUI" />
+    <MESSAGE value="updated spectrum button dynamics; added reset option; using lambda expressions for some ActionListener events" />
+    <MESSAGE value="working on bankruptcy state" />
+    <option name="LAST_COMMIT_MESSAGE" value="working on bankruptcy state" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -651,7 +659,7 @@
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DynamicView.java</url>
-          <line>320</line>
+          <line>350</line>
           <option name="timeStamp" value="31" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
@@ -661,18 +669,58 @@
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DynamicView.java</url>
-          <line>580</line>
+          <line>632</line>
           <option name="timeStamp" value="33" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DynamicView.java</url>
-          <line>584</line>
+          <line>636</line>
           <option name="timeStamp" value="35" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
+        <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/legacy/MainWindow.java</url>
           <line>3737</line>
           <option name="timeStamp" value="49" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DialogContainerForfeit.java</url>
+          <line>64</line>
+          <option name="timeStamp" value="53" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/GameLogicController.java</url>
+          <line>690</line>
+          <option name="timeStamp" value="54" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/GameLogicController.java</url>
+          <line>705</line>
+          <option name="timeStamp" value="55" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/Board.java</url>
+          <line>380</line>
+          <option name="timeStamp" value="56" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/GameLogicController.java</url>
+          <line>560</line>
+          <option name="timeStamp" value="58" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/GameLogicController.java</url>
+          <line>559</line>
+          <option name="timeStamp" value="59" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/GameLogicController.java</url>
+          <line>563</line>
+          <option name="timeStamp" value="60" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/GameLogicController.java</url>
+          <line>568</line>
+          <option name="timeStamp" value="61" />
         </line-breakpoint>
         <breakpoint type="java-exception">
           <properties class="java.lang.StackOverflowError" package="java.lang" />
@@ -697,11 +745,6 @@
         <PinnedItemInfo parentTag="cc.jayv.monopoly3.DynamicView" memberName="logHelper" />
       </pinned-members>
     </pin-to-top-manager>
-    <watches-manager>
-      <configuration name="Application">
-        <watch expression="controller" language="JAVA" />
-      </configuration>
-    </watches-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

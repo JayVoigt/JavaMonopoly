@@ -24,7 +24,8 @@ public class Player implements Serializable {
 	ImageIcon preferredIcon;
 
 	int currentBalance,
-		currentPosition;
+		currentPosition,
+		previousPosition;
 
 	public boolean getIsActive() {
 		return isPlayerActive;
@@ -95,6 +96,7 @@ public class Player implements Serializable {
 
 		// Players start at GO, with space ID 0
 		currentPosition = 0;
+		previousPosition = 0;
 
 		isPlayerActive = false;
 		isComputerControlled = false;
@@ -151,6 +153,10 @@ public class Player implements Serializable {
 
 	public int getCurrentPosition() {
 		return currentPosition;
+	}
+
+	public int getPreviousPosition() {
+		return previousPosition;
 	}
 
 	public boolean getIsComputerControlled() {

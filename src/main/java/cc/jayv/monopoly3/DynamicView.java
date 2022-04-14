@@ -2,7 +2,6 @@ package cc.jayv.monopoly3;
 
 import com.formdev.flatlaf.FlatLightLaf;
 import net.miginfocom.swing.MigLayout;
-import org.apache.maven.plugin.logging.Log;
 
 import java.awt.*;
 import java.io.*;
@@ -135,6 +134,10 @@ public class DynamicView implements Serializable  {
 		viewFrameInformation.update(board);
 		updateGuiMandatoryDialogs();
 		updateGuiOptionalDialogs();
+
+		if (controller.getIsVictoryConditionMet()) {
+			partyVisuals();
+		}
 	}
 
 	private void updateGuiMandatoryDialogs() {
@@ -273,6 +276,17 @@ public class DynamicView implements Serializable  {
 		JMenuItem menuMacrosBankruptcyTest = new JMenuItem("Bankruptcy Test", SwingHelper.getImageIconFromResource("/alert.png"));
 		menuMacrosBankruptcyTest.addActionListener(e -> macroController.macroBankruptcyTest());
 		menuMacros.add(menuMacrosBankruptcyTest);
+
+		// Macros - Disable Random Player
+		JMenuItem menuMacrosDisableRandomPlayer = new JMenuItem("Disable Random Player", SwingHelper.getImageIconFromResource("/player-generic.png"));
+		menuMacrosDisableRandomPlayer.addActionListener(e -> macroController.macroDisableRandomPlayer());
+		menuMacros.add(menuMacrosDisableRandomPlayer);
+
+		for (Component c : menuMacros.getMenuComponents()) {
+			if (c instanceof JMenuItem i) {
+				i.addActionListener(e -> update());
+			}
+		}
 
 		// Ready
 		menuBar.setVisible(true);
@@ -442,18 +456,18 @@ public class DynamicView implements Serializable  {
 			controller.sendInitGameMessage();
 			controller.initialEvaluator();
 
-			macroController = new MacroController(board, controller);
+			macroController = new MacroController(board, controller, logHelper);
 		}
 
 		update();
 	}
 
 	private void partyVisuals() {
-		class PartyListener implements ActionListener {
+		class SpaceButtonPartyListener implements ActionListener {
 			int startID;
 			int endID;
 
-			public PartyListener() {
+			public SpaceButtonPartyListener() {
 				startID = 0;
 				endID = 39;
 			}
@@ -476,14 +490,28 @@ public class DynamicView implements Serializable  {
 				}
 
 				SwingHelper.spaceButtonHighlightSpectrum(startID, endID, spaceButtons);
-
 			}
 		}
 
-		PartyListener partyListener = new PartyListener();
+		class GeneralButtonPartyListener implements ActionListener {
 
-		partyModeTimer = new Timer(50, partyListener);
+			@Override
+			public void actionPerformed(ActionEvent e) {
+//				SwingHelper.partyModeComponent(viewFrameControl.getFrame());
+//				SwingHelper.partyModeComponent(viewFrameInformation.getFrame());
+//				SwingHelper.partyModeComponent(viewFrameBoard.getInternalFrame());
+//				viewFrameControl.partyVisuals();
+			}
+		}
+
+		SpaceButtonPartyListener spaceButtonPartyListener = new SpaceButtonPartyListener();
+		GeneralButtonPartyListener generalButtonPartyListener = new GeneralButtonPartyListener();
+
+		partyModeTimer = new Timer(50, spaceButtonPartyListener);
 		partyModeTimer.start();
+
+		Timer partyModeTimerSlow = new Timer(500, generalButtonPartyListener);
+		partyModeTimerSlow.start();
 	}
 
 	private void resetSpaceButtonAppearance() {

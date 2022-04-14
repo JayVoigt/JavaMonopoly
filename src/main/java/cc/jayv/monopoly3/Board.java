@@ -363,7 +363,31 @@ public class Board implements Serializable {
 
 	}
 
-	public void calculatePlayerNetValue() {
-		int netValue;
+	public int getNextActivePlayerID() {
+		int nextActivePlayerID = 0;
+
+		ArrayList<Player> activePlayers = new ArrayList<>();
+
+		for (Player p : players) {
+			if (p.getIsActive() && (p.getPlayerID() != 0)) {
+				activePlayers.add(p);
+			}
+		}
+
+		boolean playerFound = false;
+		for (Player p : activePlayers) {
+			if (!playerFound) {
+				if (p.getPlayerID() > currentPlayerID) {
+					nextActivePlayerID = p.getPlayerID();
+					playerFound = true;
+				}
+			}
+		}
+		if (!playerFound) {
+			nextActivePlayerID = activePlayers.get(0).getPlayerID();
+		}
+
+		return nextActivePlayerID;
 	}
+
 }	// end class

@@ -1,8 +1,6 @@
 package cc.jayv.monopoly3;
 
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.ArrayList;
 
 /**
@@ -32,6 +30,8 @@ public class GameLogicController implements Serializable {
 	boolean playerCanBuildImprovements;
 
 	LogHelper logHelper;
+
+	boolean victoryConditionMet;
 
 	/**
 	 * Possible actions that a player can execute when modifying improvements on
@@ -75,6 +75,10 @@ public class GameLogicController implements Serializable {
 	}
 	// </editor-fold>
 
+	public boolean getIsVictoryConditionMet() {
+		return victoryConditionMet;
+	}
+
 	// <editor-fold desc="Constructor">
 	public GameLogicController(Board inputBoard, LogHelper inputLogHelper) {
 		board = inputBoard;
@@ -83,6 +87,7 @@ public class GameLogicController implements Serializable {
 		useExtraTextPadding = true;
 
 		playerCanBuildImprovements = false;
+		victoryConditionMet = false;
 	}
 	// </editor-fold>
 
@@ -543,20 +548,26 @@ public class GameLogicController implements Serializable {
 
 		appendToGameLog(currentPlayer.getCustomName() + " has ended their turn.");
 
-		if (board.getCurrentPlayerID() == playersCount) {
-			board.setCurrentPlayerID(1);
-			logHelper.appendToDebugLog("\t Rolling over turn to Player 1");
+//		if (board.getCurrentPlayerID() == playersCount) {
+//			board.setCurrentPlayerID(1);
+//			logHelper.appendToDebugLog("\t Rolling over turn to Player 1");
+//		}
+//		else {
+//			board.setCurrentPlayerID(board.getCurrentPlayerID() + 1);
+//			logHelper.appendToDebugLog("\t Incrementing turn to Player " + board.getCurrentPlayerID());
+//		}
+
+		if (board.getCurrentPlayerID() == board.getNextActivePlayerID()) {
+			victoryConditionMet();
 		}
 		else {
-			board.setCurrentPlayerID(board.getCurrentPlayerID() + 1);
-			logHelper.appendToDebugLog("\t Incrementing turn to Player " + board.getCurrentPlayerID());
+			board.setCurrentPlayerID(board.getNextActivePlayerID());
+			currentPlayer = board.players.get(board.getCurrentPlayerID());
+
+			logHelper.appendToDebugLog("\t currentPlayerID: " + board.getCurrentPlayerID());
+			currentPlayer.initializePlayerForNewTurn();
+			initialEvaluator();
 		}
-
-		currentPlayer = board.players.get(board.getCurrentPlayerID());
-
-		logHelper.appendToDebugLog("\t currentPlayerID: " + board.getCurrentPlayerID());
-		currentPlayer.initializePlayerForNewTurn();
-		initialEvaluator();
 	}
 
 	/**
@@ -838,6 +849,15 @@ public class GameLogicController implements Serializable {
 
 			// Update balance of player who owns property
 			board.players.get(p.getOwnerID()).updateCurrentBalance(balanceUpdate);
+		}
+	}
+
+	private void victoryConditionMet() {
+		if (board.getNextActivePlayerID() == currentPlayer.getPlayerID()) {
+			appendToGameLog("Congratulations! " + currentPlayer.getCustomName() + " is the only remaining" +
+					" player in the game, and has won!");
+
+			victoryConditionMet = true;
 		}
 	}
 }

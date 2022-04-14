@@ -2,6 +2,8 @@ package cc.jayv.monopoly3;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.Serializable;
@@ -346,6 +348,16 @@ public class ViewFrameBoard implements Serializable {
         Point labelPoint;
         JLabel label;
 
+        class MovementAnimationListener implements ActionListener {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        }
+
+        Timer movementAnimationTimer = new Timer(50, )
+
         for (Player p : board.players) {
             if (p.getIsActive()) {
                 labelPoint = calculatePointForPlayerIndicator(p.getPlayerID(), p.getCurrentPosition(), p.getIsJailed());
@@ -488,6 +500,7 @@ public class ViewFrameBoard implements Serializable {
         for (Space s : board.spaces) {
             if (s instanceof Property p) {
                 if (p.getIsMortgaged()) {
+
                 }
                 else {
 
