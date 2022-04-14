@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fe395cf4-00c4-4bef-93b5-8a1f264350fd" name="Changes" comment="fancier party mode working">
+    <list default="true" id="fe395cf4-00c4-4bef-93b5-8a1f264350fd" name="Changes" comment="experimenting with auction GUI">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DynamicView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DynamicView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/SwingHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/SwingHelper.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,6 +90,19 @@
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RunManager" selected="Application.JavaMonopoly">
+    <configuration name="DialogContainerAuction" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="cc.jayv.monopoly3.DialogContainerAuction" />
+      <module name="Monoproto3" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="cc.jayv.monopoly3.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="DialogContainerForfeit" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="cc.jayv.monopoly3.DialogContainerForfeit" />
       <module name="Monoproto3" />
@@ -110,19 +122,6 @@
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="cc.jayv.monopoly3.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="DynamicView" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="cc.jayv.monopoly3.DynamicView" />
-      <module name="Monoproto3" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="cc.jayv.monopoly3.GameLogicSwitchboard" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -213,7 +212,6 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Application.DynamicView" />
       <item itemvalue="Application.JavaMonopoly" />
       <item itemvalue="Application.ViewFrameInformationModule" />
       <item itemvalue="Application.DialogContainerMortgage" />
@@ -221,14 +219,15 @@
       <item itemvalue="JAR Application.Run Jar" />
       <item itemvalue="Maven.Clean" />
       <item itemvalue="Maven.Build" />
+      <item itemvalue="Application.DialogContainerAuction" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.JavaMonopoly" />
+        <item itemvalue="Application.DialogContainerAuction" />
         <item itemvalue="Application.DialogContainerForfeit" />
         <item itemvalue="Application.DialogContainerMortgage" />
         <item itemvalue="Application.ViewFrameInformationModule" />
-        <item itemvalue="Application.DynamicView" />
       </list>
     </recent_temporary>
   </component>
@@ -243,20 +242,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1648738215419</updated>
-    </task>
-    <task id="LOCAL-00023" summary="added game log view to board panel">
-      <created>1649294257957</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1649294257957</updated>
-    </task>
-    <task id="LOCAL-00024" summary="updated dynamic space selection info">
-      <created>1649303259555</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1649303259555</updated>
     </task>
     <task id="LOCAL-00025" summary="improved appearance for board view">
       <created>1649333661118</created>
@@ -587,7 +572,21 @@
       <option name="project" value="LOCAL" />
       <updated>1649880977855</updated>
     </task>
-    <option name="localTasksCounter" value="72" />
+    <task id="LOCAL-00072" summary="improved fancier party mode">
+      <created>1649881637417</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1649881637417</updated>
+    </task>
+    <task id="LOCAL-00073" summary="experimenting with auction GUI">
+      <created>1649901572380</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1649901572380</updated>
+    </task>
+    <option name="localTasksCounter" value="74" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -615,8 +614,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="improved player indicator placement logic" />
-    <MESSAGE value="improved control pane appearance and behavior; updated game editor" />
     <MESSAGE value="added improved property purchase dialog" />
     <MESSAGE value="updated PropertyPurchaseDialog" />
     <MESSAGE value="updated PropertyPurchaseDialog; cleaned up code slightly" />
@@ -640,7 +637,9 @@
     <MESSAGE value="updated appearance of asset view" />
     <MESSAGE value="experimenting with timers and multithreading" />
     <MESSAGE value="fancier party mode working" />
-    <option name="LAST_COMMIT_MESSAGE" value="fancier party mode working" />
+    <MESSAGE value="improved fancier party mode" />
+    <MESSAGE value="experimenting with auction GUI" />
+    <option name="LAST_COMMIT_MESSAGE" value="experimenting with auction GUI" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -652,7 +651,7 @@
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DynamicView.java</url>
-          <line>331</line>
+          <line>320</line>
           <option name="timeStamp" value="31" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
@@ -662,12 +661,12 @@
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DynamicView.java</url>
-          <line>584</line>
+          <line>580</line>
           <option name="timeStamp" value="33" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DynamicView.java</url>
-          <line>588</line>
+          <line>584</line>
           <option name="timeStamp" value="35" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">

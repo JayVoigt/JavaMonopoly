@@ -68,6 +68,7 @@ public class DynamicView implements Serializable  {
 	JMenu menuView;
 
 	Border spaceSelectionBorder;
+	Timer partyModeTimer;
 
 	// Reference variables
 	static int currentSpaceButtonSelection;
@@ -217,21 +218,11 @@ public class DynamicView implements Serializable  {
 		menuFile.add(menuFileNewGame);
 
 		JMenuItem menuFileLoadGame = new JMenuItem("Load Game...", SwingHelper.getImageIconFromResource(("/floppygame.png")));
-		menuFileLoadGame.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				loadGame();
-			}
-		});
+		menuFileLoadGame.addActionListener(e -> loadGame());
 		menuFile.add(menuFileLoadGame);
 
 		JMenuItem menuFileSaveGame = new JMenuItem("Save Game...", SwingHelper.getImageIconFromResource(("/floppygame.png")));
-		menuFileSaveGame.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				saveGame();
-			}
-		});
+		menuFileSaveGame.addActionListener(e -> saveGame());
 		menuFile.add(menuFileSaveGame);
 
 		JMenuItem menuFileQuit = new JMenuItem("Quit", SwingHelper.getImageIconFromResource(("/red-x.png")));
@@ -244,30 +235,28 @@ public class DynamicView implements Serializable  {
 		menuEdit.add(menuEditGameEditor);
 
 		JMenuItem menuEditManuallyRefresh = new JMenuItem("Manually Refresh View", SwingHelper.getImageIconFromResource("/alert.png"));
-		menuEditManuallyRefresh.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				update();
-			}
-		});
+		menuEditManuallyRefresh.addActionListener(e -> update());
 		menuEdit.add(menuEditManuallyRefresh);
 
+		// View - About
 		JMenuItem menuViewAbout = new JMenuItem("About", SwingHelper.getImageIconFromResource("/robot.png"));
 		menuViewAbout.addActionListener(new MenuActionListener(MenuActions.VIEW_ABOUT));
 		menuView.add(menuViewAbout);
 
+		// View - Debug Log
 		JMenuItem menuViewDebugLog = new JMenuItem("Debug Log", SwingHelper.getImageIconFromResource("/bug-log-anim.gif"));
 		menuViewDebugLog.addActionListener(new MenuActionListener(MenuActions.VIEW_DEBUG_LOG));
 		menuView.add(menuViewDebugLog);
 
+		// View - Super Party Mode
 		JMenuItem menuViewSuperPartyMode = new JMenuItem("Super party mode", SwingHelper.getImageIconFromResource("/robot2.gif"));
-		menuViewSuperPartyMode.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				partyVisuals();
-			}
-		});
+		menuViewSuperPartyMode.addActionListener(e -> partyVisuals());
 		menuView.add(menuViewSuperPartyMode);
+
+		// View - Reset Space Button Appearance
+		JMenuItem menuViewResetSpaceButtonAppearance = new JMenuItem("Reset Space Button Appearance", SwingHelper.getImageIconFromResource("/red-x.png"));
+		menuViewResetSpaceButtonAppearance.addActionListener(e -> resetSpaceButtonAppearance());
+		menuView.add(menuViewResetSpaceButtonAppearance);
 
 		// Ready
 		menuBar.setVisible(true);
@@ -474,8 +463,15 @@ public class DynamicView implements Serializable  {
 
 		PartyListener partyListener = new PartyListener();
 
-		Timer timer = new Timer(50, partyListener);
-		timer.start();
+		partyModeTimer = new Timer(50, partyListener);
+		partyModeTimer.start();
+	}
+
+	private void resetSpaceButtonAppearance() {
+		partyModeTimer.stop();
+		for (ViewFrameBoard.SpaceButton s : spaceButtons) {
+			s.getButton().setBorder(null);
+		}
 	}
 
 	public class ButtonActionListener implements ActionListener, Serializable {
