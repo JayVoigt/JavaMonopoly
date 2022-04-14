@@ -259,7 +259,7 @@ public class SwingHelper implements Serializable {
 			 java.awt.Color localAWTColor = new java.awt.Color(localRGB);
 
 			 spaceButtons.get((startSpaceID + i) % 40).getButton().setBorderPainted(true);
-			 spaceButtons.get((startSpaceID + i) % 40).getButton().setBorder(createBorderStyleHighlight(localAWTColor, true, (int) (i / 2)));
+			 spaceButtons.get((startSpaceID + i) % 40).getButton().setBorder(createBorderStyleHighlight(localAWTColor, true, 3));
 		}
 	}
 
