@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fe395cf4-00c4-4bef-93b5-8a1f264350fd" name="Changes" comment="reverting changes for CPU players">
+    <list default="true" id="fe395cf4-00c4-4bef-93b5-8a1f264350fd" name="Changes" comment="experimenting with IntelliJ diagrams">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Monoproto3.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Monoproto3.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/GameLogicController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/GameLogicController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/LogHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/LogHelper.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -243,14 +245,7 @@
       <option name="presentableId" value="Default" />
       <updated>1648738215419</updated>
       <workItem from="1649988379173" duration="929000" />
-      <workItem from="1649989457277" duration="1361000" />
-    </task>
-    <task id="LOCAL-00033" summary="general checkpoint">
-      <created>1649459342879</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1649459342879</updated>
+      <workItem from="1649989457277" duration="2447000" />
     </task>
     <task id="LOCAL-00034" summary="improved start game dialog">
       <created>1649531741876</created>
@@ -588,7 +583,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649987733612</updated>
     </task>
-    <option name="localTasksCounter" value="82" />
+    <task id="LOCAL-00082" summary="experimenting with IntelliJ diagrams">
+      <created>1649991045543</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1649991045544</updated>
+    </task>
+    <option name="localTasksCounter" value="83" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -619,7 +621,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="null dialog references mostly fixed" />
     <MESSAGE value="improved dialog containers; updated improvements dialog" />
     <MESSAGE value="added ViewFrameInformationModule; general minor updates" />
     <MESSAGE value="ViewFrameInformationModule now visible on main view" />
@@ -644,7 +645,8 @@
     <MESSAGE value="fixed incorrect alignment of text in ViewAreaSpaceSelection" />
     <MESSAGE value="experimenting with basic CPU players" />
     <MESSAGE value="reverting changes for CPU players" />
-    <option name="LAST_COMMIT_MESSAGE" value="reverting changes for CPU players" />
+    <MESSAGE value="experimenting with IntelliJ diagrams" />
+    <option name="LAST_COMMIT_MESSAGE" value="experimenting with IntelliJ diagrams" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -686,12 +688,12 @@
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/GameLogicController.java</url>
-          <line>689</line>
+          <line>685</line>
           <option name="timeStamp" value="54" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/GameLogicController.java</url>
-          <line>704</line>
+          <line>700</line>
           <option name="timeStamp" value="55" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
@@ -701,22 +703,22 @@
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/GameLogicController.java</url>
-          <line>561</line>
+          <line>557</line>
           <option name="timeStamp" value="58" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/GameLogicController.java</url>
-          <line>560</line>
+          <line>556</line>
           <option name="timeStamp" value="59" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/GameLogicController.java</url>
-          <line>563</line>
+          <line>559</line>
           <option name="timeStamp" value="60" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/GameLogicController.java</url>
-          <line>568</line>
+          <line>564</line>
           <option name="timeStamp" value="61" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">

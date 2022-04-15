@@ -147,4 +147,8 @@ public class LogHelper implements Serializable {
 
 		return contents.toString();
 	}
+
+	public void addNewLine() {
+		gameLogContents.add("\n");
+	}
 }

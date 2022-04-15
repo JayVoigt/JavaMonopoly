@@ -128,11 +128,7 @@ public class GameLogicController implements Serializable {
 			s.setButtonAppearance(Space.buttonAppearanceKeys.none);
 		}
 
-		String paddingPrefix = "";
-		if (useExtraTextPadding) {
-			String newLine = "\n";
-			logHelper.appendToGameLog(newLine);
-		}
+		logHelper.addNewLine();
 
 		appendToGameLog("It is now " + currentPlayer.getCustomName() + "'s turn.");
 		currentPlayer.evaluateState();
