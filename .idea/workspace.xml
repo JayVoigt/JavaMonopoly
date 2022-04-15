@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fe395cf4-00c4-4bef-93b5-8a1f264350fd" name="Changes" comment="experimenting with basic CPU players">
+    <list default="true" id="fe395cf4-00c4-4bef-93b5-8a1f264350fd" name="Changes" comment="reverting changes for CPU players">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/ComputerPlayerBasic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/ComputerPlayerBasic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DynamicView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DynamicView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Monoproto3.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Monoproto3.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,6 +65,9 @@
   </component>
   <component name="NamedScopeManager">
     <scope name="Unnamed" pattern="src:cc.jayv.monopoly3.DialogContainerAbout||src:cc.jayv.monopoly3.Actions||src:cc.jayv.monopoly3.Board||src:cc.jayv.monopoly3.ViewFrameBoard||src:cc.jayv.monopoly3.TemplateDialogButtonProperties||src:cc.jayv.monopoly3.Color||src:cc.jayv.monopoly3.ViewFrameControl||src:cc.jayv.monopoly3.DrawCard||src:cc.jayv.monopoly3.DynamicView||src:cc.jayv.monopoly3.GameEvent||src:cc.jayv.monopoly3.GameEditorActions||src:cc.jayv.monopoly3.DialogContainerGameEditor||src:cc.jayv.monopoly3.GameLogicController||src:cc.jayv.monopoly3.ViewFrameInformation||src:cc.jayv.monopoly3.JavaMonopoly||src:cc.jayv.monopoly3.LogHelper||src:cc.jayv.monopoly3.GameLogicSwitchboard||src:cc.jayv.monopoly3.Player||src:cc.jayv.monopoly3.Property||src:cc.jayv.monopoly3.Railroad||src:cc.jayv.monopoly3.Space||src:cc.jayv.monopoly3.ViewAreaSpaceSelection||src:cc.jayv.monopoly3.DialogContainerStartGame||src:cc.jayv.monopoly3.Statistics||src:cc.jayv.monopoly3.SwingHelper||src:cc.jayv.monopoly3.Utility||src:cc.jayv.monopoly3.ViewComponent||src:cc.jayv.monopoly3.TemplateDialogGenerator" />
+    <scope name="GUI" pattern="src:cc.jayv.monopoly3.DialogContainerForfeit||src:cc.jayv.monopoly3.ViewFrameInformation||src:cc.jayv.monopoly3.ViewFrameInformationModule||src:cc.jayv.monopoly3.MenuActions||src:cc.jayv.monopoly3.DialogContainerGameEditor||src:cc.jayv.monopoly3.DialogContainer||src:cc.jayv.monopoly3.DialogContainerAuction||src:cc.jayv.monopoly3.ViewAreaSpaceSelection||src:cc.jayv.monopoly3.DialogContainerAbout||src:cc.jayv.monopoly3.DialogContainerMortgage||src:cc.jayv.monopoly3.SwingHelper||src:cc.jayv.monopoly3.DialogContainerStartGame||src:cc.jayv.monopoly3.DialogContainerPurchaseProperty||src:cc.jayv.monopoly3.DialogContainerImprovements||src:cc.jayv.monopoly3.DialogContainerJail||src:cc.jayv.monopoly3.ViewComponent||src:cc.jayv.monopoly3.ViewFrameBoard||src:cc.jayv.monopoly3.TemplateDialogGenerator||src:cc.jayv.monopoly3.ViewFrameControl||src:cc.jayv.monopoly3.DialogContainerDebugLog||src:cc.jayv.monopoly3.TemplateDialogButtonProperties||src:cc.jayv.monopoly3.DynamicView" />
+    <scope name="Game Logic" pattern="src:cc.jayv.monopoly3.GameLogicSwitchboard||src:cc.jayv.monopoly3.GameLogicController||src:cc.jayv.monopoly3.Actions||src:cc.jayv.monopoly3.GameEditorController||src:cc.jayv.monopoly3.GameEditorActions||src:cc.jayv.monopoly3.JavaMonopoly||src:cc.jayv.monopoly3.LogHelper||src:cc.jayv.monopoly3.MacroController||src:cc.jayv.monopoly3.MenuActions" />
+    <scope name="Game Data" pattern="src:cc.jayv.monopoly3.Board||src:cc.jayv.monopoly3.Color||src:cc.jayv.monopoly3.DrawCard||src:cc.jayv.monopoly3.Space||src:cc.jayv.monopoly3.Railroad||src:cc.jayv.monopoly3.Property||src:cc.jayv.monopoly3.Player||src:cc.jayv.monopoly3.GameEvent||src:cc.jayv.monopoly3.Utility||src:cc.jayv.monopoly3.Statistics||src:cc.jayv.monopoly3.SerialState" />
   </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
@@ -79,18 +80,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File" value="JAVA" />
-    <property name="project.structure.last.edited" value="Problems" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.3494253" />
-    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
-  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Problems&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.3494253&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.scopes&quot;
+  }
+}</component>
   <component name="RunManager" selected="Application.JavaMonopoly">
     <configuration name="DialogContainerAuction" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="cc.jayv.monopoly3.DialogContainerAuction" />
@@ -244,13 +242,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1648738215419</updated>
-    </task>
-    <task id="LOCAL-00032" summary="added start game dialog">
-      <created>1649459324291</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1649459324291</updated>
+      <workItem from="1649988379173" duration="929000" />
+      <workItem from="1649989457277" duration="1361000" />
     </task>
     <task id="LOCAL-00033" summary="general checkpoint">
       <created>1649459342879</created>
@@ -588,8 +581,18 @@
       <option name="project" value="LOCAL" />
       <updated>1649987600276</updated>
     </task>
-    <option name="localTasksCounter" value="81" />
+    <task id="LOCAL-00081" summary="reverting changes for CPU players">
+      <created>1649987733612</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1649987733612</updated>
+    </task>
+    <option name="localTasksCounter" value="82" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.History.Properties">
     <option name="COLUMN_ID_ORDER">
@@ -616,7 +619,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="added abstract class DialogContainer, dialog containers now extend it" />
     <MESSAGE value="null dialog references mostly fixed" />
     <MESSAGE value="improved dialog containers; updated improvements dialog" />
     <MESSAGE value="added ViewFrameInformationModule; general minor updates" />
@@ -641,7 +643,8 @@
     <MESSAGE value="spaces now animate when players move across them" />
     <MESSAGE value="fixed incorrect alignment of text in ViewAreaSpaceSelection" />
     <MESSAGE value="experimenting with basic CPU players" />
-    <option name="LAST_COMMIT_MESSAGE" value="experimenting with basic CPU players" />
+    <MESSAGE value="reverting changes for CPU players" />
+    <option name="LAST_COMMIT_MESSAGE" value="reverting changes for CPU players" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -1,0 +1,360 @@
+classDiagram
+direction TB
+class AnimatedSpaceActionListener {
+  - AnimatedSpaceActionListener(String, String) 
+  - mousePressed(MouseEvent) void
+  - mouseExited(MouseEvent) void
+  - mouseClicked(MouseEvent) void
+  - mouseEntered(MouseEvent) void
+  - mouseReleased(MouseEvent) void
+}
+class BidControls {
+  - BidControls(int) 
+  - JPanel panel
+  - int playerID
+  - update() void
+  - JPanel panel
+  - int playerID
+}
+class ButtonActionListener {
+  + ButtonActionListener(Actions, boolean) 
+  + ButtonActionListener(Actions) 
+  + Actions action
+  + actionPerformed(ActionEvent) void
+  + Actions action
+}
+class CosmeticSpaceActionListener {
+  - CosmeticSpaceActionListener() 
+  - mouseEntered(MouseEvent) void
+  - mouseClicked(MouseEvent) void
+  - mouseReleased(MouseEvent) void
+  - mousePressed(MouseEvent) void
+  - mouseExited(MouseEvent) void
+}
+class DialogContainer {
+  + DialogContainer() 
+  + JDialog dialog
+  + setStateOfActionButton(Actions, boolean) void
+  + initComponents() void
+  + initLabelTitle(String, String) void
+  + arrangeComponents() void
+  + JDialog dialog
+}
+class DialogContainerAbout {
+  + DialogContainerAbout() 
+  + initComponents() void
+  + arrangeComponents() void
+  + setStateOfActionButton(Actions, boolean) void
+  + JDialog dialog
+}
+class DialogContainerAuction {
+  + DialogContainerAuction(Board) 
+  + initComponents() void
+  + setStateOfActionButton(Actions, boolean) void
+  + arrangeComponents() void
+  + main(String[]) void
+}
+class DialogContainerDebugLog {
+  + DialogContainerDebugLog(LogHelper) 
+  + update() void
+  + setStateOfActionButton(Actions, boolean) void
+  + arrangeComponents() void
+  + initComponents() void
+}
+class DialogContainerForfeit {
+  + DialogContainerForfeit() 
+  + attachActionListeners(ArrayList~ButtonActionListener~) void
+  + setStateOfActionButton(Actions, boolean) void
+  + initComponents() void
+  + arrangeComponents() void
+  + main(String[]) void
+}
+class DialogContainerGameEditor {
+  + DialogContainerGameEditor() 
+  + arrangeComponents() void
+  + main(String[]) void
+  + initComponents() void
+  + setStateOfActionButton(Actions, boolean) void
+  + attachActionListeners(ArrayList~GameEditorActionListener~) void
+  + int selectedPlayer
+}
+class DialogContainerImprovements {
+  + DialogContainerImprovements() 
+  + arrangeComponents() void
+  + main(String[]) void
+  + attachActionListeners(ArrayList~ButtonActionListener~) void
+  + update(Board, Player, int, GameLogicController) void
+  + initComponents() void
+  + setStateOfActionButton(Actions, boolean) void
+  + getInfoAreaMessage(ImprovementEligibilityStatus) String
+}
+class DialogContainerJail {
+  + DialogContainerJail() 
+  + main(String[]) void
+  + initComponents() void
+  + arrangeComponents() void
+  + setStateOfActionButton(Actions, boolean) void
+  + attachActionListeners(ArrayList~ButtonActionListener~) void
+  + update(Board, Player) void
+}
+class DialogContainerMortgage {
+  + DialogContainerMortgage() 
+  + initComponents() void
+  + arrangeComponents() void
+  + update(Board, Player, int, GameLogicController) void
+  + getMessage(MortgageEligibilityStatus) String
+  + attachActionListeners(ArrayList~ButtonActionListener~) void
+  + setStateOfActionButton(Actions, boolean) void
+  + main(String[]) void
+}
+class DialogContainerPurchaseProperty {
+  + DialogContainerPurchaseProperty() 
+  + main(String[]) void
+  + setStateOfActionButton(Actions, boolean) void
+  + update(Board, int) void
+  + attachActionListeners(ArrayList~ButtonActionListener~) void
+  + initComponents() void
+  + arrangeComponents() void
+  + update(Board) void
+  + JComponent component
+}
+class DialogContainerStartGame {
+  + DialogContainerStartGame() 
+  + int playerCount
+  + setStateOfActionButton(Actions, boolean) void
+  + attachStartGameActionListener(StartGameButtonActionListener) void
+  + initComponents() void
+  + getPlayerCustomName(int) String
+  + arrangeComponents() void
+  + main(String[]) void
+  + int playerCount
+}
+class Direction {
+<<enumeration>>
+  - Direction() 
+  - values() Direction[]
+  - valueOf(String) Direction
+}
+class DynamicView {
+  + DynamicView() 
+  + updateGuiMandatoryDialogs() void
+  + updateGuiOptionalDialogs() void
+  + initGUIComponents() void
+  + partyVisuals() void
+  + initDialogs() void
+  + loadGame() void
+  + saveGame() void
+  + update() void
+  + startGame(int, ArrayList~String~, boolean) void
+  + quitManager() void
+  + showDialog(JDialog, boolean) void
+  + showDialog(JDialog) void
+  + initButtonActionListeners() void
+  + initControlFrame() void
+  + disableControlButtons() void
+  + updatePrompt(Actions) void
+  + initMenuBar() void
+  + resetSpaceButtonAppearance() void
+}
+class GameEditorActionListener {
+  + GameEditorActionListener(GameEditorActions) 
+  + GameEditorActions action
+  + actionPerformed(ActionEvent) void
+  + GameEditorActions action
+}
+class ImprovementEligibilityStatus {
+<<enumeration>>
+  - ImprovementEligibilityStatus() 
+  - values() ImprovementEligibilityStatus[]
+  - valueOf(String) ImprovementEligibilityStatus
+}
+class LabelAlignment {
+<<enumeration>>
+  - LabelAlignment() 
+  - valueOf(String) LabelAlignment
+  - values() LabelAlignment[]
+}
+class LabelStyles {
+<<enumeration>>
+  + LabelStyles() 
+  + valueOf(String) LabelStyles
+  + values() LabelStyles[]
+}
+class LocalActionListener {
+  - LocalActionListener() 
+  - actionPerformed(ActionEvent) void
+}
+class MenuActionListener {
+  - MenuActionListener(MenuActions) 
+  - actionPerformed(ActionEvent) void
+}
+class MenuActions {
+<<enumeration>>
+  + MenuActions() 
+  + valueOf(String) MenuActions
+  + values() MenuActions[]
+}
+class MortgageEligibilityStatus {
+<<enumeration>>
+  - MortgageEligibilityStatus() 
+  - values() MortgageEligibilityStatus[]
+  - valueOf(String) MortgageEligibilityStatus
+}
+class SpaceButton {
+  + SpaceButton(int) 
+  + SpaceButton(int, boolean, ImageIcon, ImageIcon) 
+  + JButton button
+  + Direction direction
+  + boolean isAnimated
+  + boolean mortgagedAppearance
+  + int ID
+  + boolean isAnimated
+  + Direction direction
+  + JButton button
+}
+class StartGameButtonActionListener {
+  + StartGameButtonActionListener() 
+  + actionPerformed(ActionEvent) void
+  + ArrayList~String~ playerCustomNames
+  + int playerCount
+}
+class SwingHelper {
+  + SwingHelper(JInternalFrame) 
+  + partyMode(ArrayList~SpaceButton~) void
+  + formatLabel(JLabel) void
+  + getHighlightModifiedColor(Color) Color
+  + createBorderStyleHighlight() Border
+  + resetBorder(JButton) void
+  + formatLabel(JLabel, boolean) void
+  + formatGameLogArea(JTextArea) void
+  + createBorderStyleHighlight(Color, boolean, int) Border
+  + createBorderStyleHighlight(Color, boolean) Border
+  + getImageIconFromResource(String) ImageIcon
+  + spaceButtonHighlightSpectrum(int, int, ArrayList~SpaceButton~) void
+  + partyModeComponent(JComponent) void
+  + formatLabel(JLabel, String) void
+  + formatInfoArea(JTextArea) void
+  + getShadowModifiedColor(Color) Color
+  + drawBorderJDialog(JDialog) void
+  + formatLabel(JLabel, String, LabelStyles) void
+  + centerJDialog(JDialog) void
+  + JDialog customAppearanceJDialog
+}
+class TemplateDialogButtonProperties {
+  + TemplateDialogButtonProperties(String, String, ActionListener, String) 
+  + String migLayoutSpec
+}
+class TemplateDialogGenerator {
+  + TemplateDialogGenerator(String, String) 
+  + createDialogUserPrompt(ArrayList~TemplateDialogButtonProperties~, String) JDialog
+  + getImageIconFromResource(String) ImageIcon
+  + initDialogForView(JDialog) void
+  + String infoAreaContents
+}
+class ViewAreaSpaceSelection {
+  + ViewAreaSpaceSelection() 
+  + generateLabel(JPanel, LabelAlignment, boolean, String, String) JLabel
+  + getLabel(String) JLabel?
+  + initLabels() void
+  + update(Board, int) void
+  + setStateOfActionButton(Actions, boolean) void
+  + generateLabelWithIcons(JPanel, LabelAlignment, boolean, String, String, String) JLabel
+  + update(Board) void
+  + JPanel JPanel
+  + JComponent component
+}
+class ViewComponent {
+<<Interface>>
+  + setStateOfActionButton(Actions, boolean) void
+  + update(Board) void
+  + JComponent component
+}
+class ViewFrameBoard {
+  + ViewFrameBoard(LogHelper, ArrayList~spaceButtonActionHandler~) 
+  + update(Board, int) void
+  + animatePlayerMovement(Board, int) void
+  + updateGuiSpaceHighlight(Board) void
+  + updateGuiMortgagedProperties(Board) void
+  + resetButtonAppearance() void
+  + calculatePointForPlayerIndicator(int, int, boolean) Point
+  + updateGuiImprovementIcons(Board) void
+  + updateGuiPlayerIndicators(Board) void
+  + initImprovementIcons() void
+  + updateGameLog() void
+  + initMouseListenersForAnimatedSpaces() void
+  + JInternalFrame internalFrame
+  + ArrayList~SpaceButton~ spaceButtonArrayList
+}
+class ViewFrameControl {
+  + ViewFrameControl() 
+  + JInternalFrame frame
+  + partyVisuals() void
+  + initLabels() void
+  + setStateOfActionButton(Actions, boolean) void
+  + initButtons(ArrayList~ButtonActionListener~) void
+  + update(Board) void
+  + JInternalFrame frame
+  + JComponent component
+}
+class ViewFrameInformation {
+  + ViewFrameInformation(Board) 
+  + JInternalFrame frame
+  + initComponents() void
+  + setStateOfActionButton(Actions, boolean) void
+  + arrangeComponents() void
+  + update(Board) void
+  + JInternalFrame frame
+  + JComponent component
+}
+class ViewFrameInformationModule {
+  + ViewFrameInformationModule(Board, Player) 
+  + JPanel compositePanel
+  + JPanel panelPlayerAssets
+  + JPanel panelPlayerStatus
+  + updatePropertyGroupOwnershipLabels() void
+  + arrangeComponentsPlayerAssets() void
+  + disableAllComponents() void
+  + main(String[]) void
+  + initComponentsPlayerStatus() void
+  + initComponentsPlayerAssets() void
+  + arrangeComponentsPlayerStatus() void
+  + attachMouseListener(MouseListener) void
+  + update() void
+  + JPanel panelPlayerStatus
+  + JPanel compositePanel
+  + JPanel panelPlayerAssets
+}
+class spaceButtonActionHandler {
+  + spaceButtonActionHandler(int) 
+  + actionPerformed(ActionEvent) void
+}
+
+ViewFrameBoard  -->  AnimatedSpaceActionListener 
+DialogContainerAuction  -->  BidControls 
+DynamicView  -->  ButtonActionListener 
+ViewFrameBoard  -->  CosmeticSpaceActionListener 
+DialogContainerAbout  -->  DialogContainer 
+DialogContainerAuction  -->  DialogContainer 
+DialogContainerDebugLog  -->  DialogContainer 
+DialogContainerForfeit  -->  DialogContainer 
+DialogContainerGameEditor  -->  DialogContainer 
+DialogContainerImprovements  -->  DialogContainer 
+DialogContainerJail  -->  DialogContainer 
+DialogContainerMortgage  -->  DialogContainer 
+DialogContainerPurchaseProperty  -->  DialogContainer 
+DialogContainerPurchaseProperty  ..>  ViewComponent 
+DialogContainerStartGame  -->  DialogContainer 
+ViewFrameBoard  -->  Direction 
+DynamicView  -->  GameEditorActionListener 
+DialogContainerImprovements  -->  ImprovementEligibilityStatus 
+ViewAreaSpaceSelection  -->  LabelAlignment 
+SwingHelper  -->  LabelStyles 
+DialogContainerStartGame  -->  LocalActionListener 
+DynamicView  -->  MenuActionListener 
+DialogContainerMortgage  -->  MortgageEligibilityStatus 
+ViewFrameBoard  -->  SpaceButton 
+DynamicView  -->  StartGameButtonActionListener 
+ViewAreaSpaceSelection  ..>  ViewComponent 
+ViewFrameControl  ..>  ViewComponent 
+ViewFrameInformation  ..>  ViewComponent 
+DynamicView  -->  spaceButtonActionHandler 

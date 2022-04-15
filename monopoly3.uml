@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>cc.jayv.monopoly3</OriginalElement>
+  <nodes>
+    <node x="2780.152777777778" y="449.62109375">cc.jayv.monopoly3.DialogContainer</node>
+    <node x="-136.0" y="-695.689453125">cc.jayv.monopoly3.ViewAreaSpaceSelection.LabelAlignment</node>
+    <node x="974.0" y="-536.689453125">cc.jayv.monopoly3.DialogContainerPurchaseProperty</node>
+    <node x="4596.652777777777" y="177.62109375">cc.jayv.monopoly3.DialogContainerImprovements</node>
+    <node x="1361.0" y="767.431640625">cc.jayv.monopoly3.ViewFrameBoard.CosmeticSpaceActionListener</node>
+    <node x="371.0" y="916.931640625">cc.jayv.monopoly3.DynamicView</node>
+    <node x="1658.0" y="800.431640625">cc.jayv.monopoly3.ViewFrameBoard.Direction</node>
+    <node x="1889.0" y="767.431640625">cc.jayv.monopoly3.ViewFrameBoard.AnimatedSpaceActionListener</node>
+    <node x="3792.652777777778" y="210.62109375">cc.jayv.monopoly3.DialogContainerDebugLog</node>
+    <node x="4644.652777777777" y="-20.37890625">cc.jayv.monopoly3.DialogContainerImprovements.ImprovementEligibilityStatus</node>
+    <node x="3346.652777777778" y="177.62109375">cc.jayv.monopoly3.DialogContainerMortgage</node>
+    <node x="-238.0" y="756.931640625">cc.jayv.monopoly3.DynamicView.spaceButtonActionHandler</node>
+    <node x="-238.0" y="-547.689453125">cc.jayv.monopoly3.ViewAreaSpaceSelection</node>
+    <node x="1658.6527777777778" y="210.12109375">cc.jayv.monopoly3.DialogContainerAbout</node>
+    <node x="2016.6527777777778" y="165.62109375">cc.jayv.monopoly3.DialogContainerStartGame</node>
+    <node x="408.0" y="756.931640625">cc.jayv.monopoly3.DynamicView.MenuActionListener</node>
+    <node x="2988.652777777778" y="210.62109375">cc.jayv.monopoly3.DialogContainerAuction</node>
+    <node x="46.0" y="733.931640625">cc.jayv.monopoly3.DynamicView.GameEditorActionListener</node>
+    <node x="2646.0" y="870.931640625">cc.jayv.monopoly3.SwingHelper</node>
+    <node x="694.0" y="734.431640625">cc.jayv.monopoly3.DynamicView.StartGameButtonActionListener</node>
+    <node x="1004.0" y="722.931640625">cc.jayv.monopoly3.DynamicView.ButtonActionListener</node>
+    <node x="4390.0" y="722.931640625">cc.jayv.monopoly3.TemplateDialogButtonProperties</node>
+    <node x="431.5" y="-242.689453125">cc.jayv.monopoly3.ViewComponent</node>
+    <node x="3171.0" y="722.931640625">cc.jayv.monopoly3.ViewFrameInformationModule</node>
+    <node x="2512.652777777778" y="188.12109375">cc.jayv.monopoly3.DialogContainerGameEditor</node>
+    <node x="3405.152777777778" y="-20.37890625">cc.jayv.monopoly3.DialogContainerMortgage.MortgageEligibilityStatus</node>
+    <node x="2235.0" y="722.931640625">cc.jayv.monopoly3.ViewFrameBoard.SpaceButton</node>
+    <node x="2122.652777777778" y="-9.37890625">cc.jayv.monopoly3.DialogContainerStartGame.LocalActionListener</node>
+    <node x="2765.0" y="722.931640625">cc.jayv.monopoly3.SwingHelper.LabelStyles</node>
+    <node x="616.0" y="-526.189453125">cc.jayv.monopoly3.ViewFrameInformation</node>
+    <node x="1679.75" y="1025.931640625">cc.jayv.monopoly3.ViewFrameBoard</node>
+    <node x="4091.0" y="722.931640625">cc.jayv.monopoly3.MenuActions</node>
+    <node x="236.0" y="-537.189453125">cc.jayv.monopoly3.ViewFrameControl</node>
+    <node x="1212.6527777777778" y="199.62109375">cc.jayv.monopoly3.DialogContainerForfeit</node>
+    <node x="4150.652777777777" y="188.62109375">cc.jayv.monopoly3.DialogContainerJail</node>
+    <node x="3082.652777777778" y="-54.37890625">cc.jayv.monopoly3.DialogContainerAuction.BidControls</node>
+    <node x="3561.0" y="722.931640625">cc.jayv.monopoly3.TemplateDialogGenerator</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="cc.jayv.monopoly3.DialogContainerDebugLog" target="cc.jayv.monopoly3.DialogContainer" relationship="GENERALIZATION">
+      <point x="0.0" y="71.0" />
+      <point x="3961.6527777777774" y="423.62109375" />
+      <point x="2949.152777777778" y="423.62109375" />
+      <point x="0.0" y="-94.0" />
+    </edge>
+    <edge source="cc.jayv.monopoly3.ViewAreaSpaceSelection" target="cc.jayv.monopoly3.ViewComponent" relationship="REALIZATION">
+      <point x="0.0" y="126.5" />
+      <point x="-11.0" y="-268.689453125" />
+      <point x="600.5" y="-268.689453125" />
+      <point x="0.0" y="-49.0" />
+    </edge>
+    <edge source="cc.jayv.monopoly3.ViewFrameControl" target="cc.jayv.monopoly3.ViewComponent" relationship="REALIZATION">
+      <point x="0.0" y="116.0" />
+      <point x="416.0" y="-268.689453125" />
+      <point x="600.5" y="-268.689453125" />
+      <point x="0.0" y="-49.0" />
+    </edge>
+    <edge source="cc.jayv.monopoly3.DialogContainerGameEditor" target="cc.jayv.monopoly3.DialogContainer" relationship="GENERALIZATION">
+      <point x="0.0" y="93.5" />
+      <point x="2740.652777777778" y="423.62109375" />
+      <point x="2949.152777777778" y="423.62109375" />
+      <point x="0.0" y="-94.0" />
+    </edge>
+    <edge source="cc.jayv.monopoly3.DialogContainerMortgage" target="cc.jayv.monopoly3.DialogContainer" relationship="GENERALIZATION">
+      <point x="0.0" y="104.0" />
+      <point x="3559.652777777778" y="423.62109375" />
+      <point x="2949.152777777778" y="423.62109375" />
+      <point x="0.0" y="-94.0" />
+    </edge>
+    <edge source="cc.jayv.monopoly3.DialogContainerAbout" target="cc.jayv.monopoly3.DialogContainer" relationship="GENERALIZATION">
+      <point x="0.0" y="71.5" />
+      <point x="1827.6527777777778" y="423.62109375" />
+      <point x="2949.152777777778" y="423.62109375" />
+      <point x="0.0" y="-94.0" />
+    </edge>
+    <edge source="cc.jayv.monopoly3.DialogContainerAuction" target="cc.jayv.monopoly3.DialogContainer" relationship="GENERALIZATION">
+      <point x="0.0" y="71.0" />
+      <point x="3157.652777777778" y="423.62109375" />
+      <point x="2949.152777777778" y="423.62109375" />
+      <point x="0.0" y="-94.0" />
+    </edge>
+    <edge source="cc.jayv.monopoly3.DialogContainerJail" target="cc.jayv.monopoly3.DialogContainer" relationship="GENERALIZATION">
+      <point x="0.0" y="93.0" />
+      <point x="4363.652777777777" y="423.62109375" />
+      <point x="2949.152777777778" y="423.62109375" />
+      <point x="0.0" y="-94.0" />
+    </edge>
+    <edge source="cc.jayv.monopoly3.DynamicView.GameEditorActionListener" target="cc.jayv.monopoly3.DynamicView" relationship="INNER_CLASS">
+      <point x="0.0" y="61.0" />
+      <point x="217.0" y="891.931640625" />
+      <point x="541.0" y="891.931640625" />
+      <point x="0.0" y="-225.0" />
+    </edge>
+    <edge source="cc.jayv.monopoly3.ViewFrameBoard.CosmeticSpaceActionListener" target="cc.jayv.monopoly3.ViewFrameBoard" relationship="INNER_CLASS">
+      <point x="0.0" y="82.0" />
+      <point x="1499.5" y="1000.931640625" />
+      <point x="1907.75" y="1000.931640625" />
+      <point x="0.0" y="-170.5" />
+    </edge>
+    <edge source="cc.jayv.monopoly3.DialogContainerImprovements" target="cc.jayv.monopoly3.DialogContainer" relationship="GENERALIZATION">
+      <point x="0.0" y="104.0" />
+      <point x="4809.652777777777" y="423.62109375" />
+      <point x="2949.152777777778" y="423.62109375" />
+      <point x="0.0" y="-94.0" />
+    </edge>
+    <edge source="cc.jayv.monopoly3.DialogContainerImprovements.ImprovementEligibilityStatus" target="cc.jayv.monopoly3.DialogContainerImprovements" relationship="INNER_CLASS">
+      <point x="0.0" y="49.0" />
+      <point x="0.0" y="-104.0" />
+    </edge>
+    <edge source="cc.jayv.monopoly3.ViewFrameBoard.Direction" target="cc.jayv.monopoly3.ViewFrameBoard" relationship="INNER_CLASS">
+      <point x="0.0" y="49.0" />
+      <point x="1763.5" y="1000.931640625" />
+      <point x="1907.75" y="1000.931640625" />
+      <point x="0.0" y="-170.5" />
+    </edge>
+    <edge source="cc.jayv.monopoly3.DialogContainerPurchaseProperty" target="cc.jayv.monopoly3.DialogContainer" relationship="GENERALIZATION">
+      <point x="106.5" y="115.5" />
+      <point x="1293.5" y="-268.689453125" />
+      <point x="1202.1527777777778" y="-268.689453125" />
+      <point x="1202.1527777777778" y="423.62109375" />
+      <point x="2949.152777777778" y="423.62109375" />
+      <point x="0.0" y="-94.0" />
+    </edge>
+    <edge source="cc.jayv.monopoly3.ViewFrameInformation" target="cc.jayv.monopoly3.ViewComponent" relationship="REALIZATION">
+      <point x="0.0" y="105.0" />
+      <point x="785.0" y="-268.689453125" />
+      <point x="600.5" y="-268.689453125" />
+      <point x="0.0" y="-49.0" />
+    </edge>
+    <edge source="cc.jayv.monopoly3.ViewAreaSpaceSelection.LabelAlignment" target="cc.jayv.monopoly3.ViewAreaSpaceSelection" relationship="INNER_CLASS">
+      <point x="0.0" y="49.0" />
+      <point x="0.0" y="-126.5" />
+    </edge>
+    <edge source="cc.jayv.monopoly3.DialogContainerStartGame.LocalActionListener" target="cc.jayv.monopoly3.DialogContainerStartGame" relationship="INNER_CLASS">
+      <point x="0.0" y="38.0" />
+      <point x="0.0" y="-116.0" />
+    </edge>
+    <edge source="cc.jayv.monopoly3.SwingHelper.LabelStyles" target="cc.jayv.monopoly3.SwingHelper" relationship="INNER_CLASS">
+      <point x="0.0" y="49.0" />
+      <point x="0.0" y="-236.5" />
+    </edge>
+    <edge source="cc.jayv.monopoly3.DynamicView.MenuActionListener" target="cc.jayv.monopoly3.DynamicView" relationship="INNER_CLASS">
+      <point x="0.0" y="38.0" />
+      <point x="0.0" y="-225.0" />
+    </edge>
+    <edge source="cc.jayv.monopoly3.DialogContainerForfeit" target="cc.jayv.monopoly3.DialogContainer" relationship="GENERALIZATION">
+      <point x="0.0" y="82.0" />
+      <point x="1425.6527777777778" y="423.62109375" />
+      <point x="2949.152777777778" y="423.62109375" />
+      <point x="0.0" y="-94.0" />
+    </edge>
+    <edge source="cc.jayv.monopoly3.DialogContainerStartGame" target="cc.jayv.monopoly3.DialogContainer" relationship="GENERALIZATION">
+      <point x="0.0" y="116.0" />
+      <point x="2254.652777777778" y="423.62109375" />
+      <point x="2949.152777777778" y="423.62109375" />
+      <point x="0.0" y="-94.0" />
+    </edge>
+    <edge source="cc.jayv.monopoly3.ViewFrameBoard.AnimatedSpaceActionListener" target="cc.jayv.monopoly3.ViewFrameBoard" relationship="INNER_CLASS">
+      <point x="0.0" y="82.0" />
+      <point x="2052.0" y="1000.931640625" />
+      <point x="1907.75" y="1000.931640625" />
+      <point x="0.0" y="-170.5" />
+    </edge>
+    <edge source="cc.jayv.monopoly3.ViewFrameBoard.SpaceButton" target="cc.jayv.monopoly3.ViewFrameBoard" relationship="INNER_CLASS">
+      <point x="0.0" y="126.5" />
+      <point x="2409.5" y="1000.931640625" />
+      <point x="1907.75" y="1000.931640625" />
+      <point x="0.0" y="-170.5" />
+    </edge>
+    <edge source="cc.jayv.monopoly3.DynamicView.StartGameButtonActionListener" target="cc.jayv.monopoly3.DynamicView" relationship="INNER_CLASS">
+      <point x="0.0" y="60.5" />
+      <point x="839.0" y="891.931640625" />
+      <point x="541.0" y="891.931640625" />
+      <point x="0.0" y="-225.0" />
+    </edge>
+    <edge source="cc.jayv.monopoly3.DynamicView.ButtonActionListener" target="cc.jayv.monopoly3.DynamicView" relationship="INNER_CLASS">
+      <point x="0.0" y="72.0" />
+      <point x="1151.5" y="891.931640625" />
+      <point x="541.0" y="891.931640625" />
+      <point x="0.0" y="-225.0" />
+    </edge>
+    <edge source="cc.jayv.monopoly3.DialogContainerPurchaseProperty" target="cc.jayv.monopoly3.ViewComponent" relationship="REALIZATION">
+      <point x="-106.5" y="115.5" />
+      <point x="1080.5" y="-268.689453125" />
+      <point x="600.5" y="-268.689453125" />
+      <point x="0.0" y="-49.0" />
+    </edge>
+    <edge source="cc.jayv.monopoly3.DynamicView.spaceButtonActionHandler" target="cc.jayv.monopoly3.DynamicView" relationship="INNER_CLASS">
+      <point x="0.0" y="38.0" />
+      <point x="-106.0" y="891.931640625" />
+      <point x="541.0" y="891.931640625" />
+      <point x="0.0" y="-225.0" />
+    </edge>
+    <edge source="cc.jayv.monopoly3.DialogContainerAuction.BidControls" target="cc.jayv.monopoly3.DialogContainerAuction" relationship="INNER_CLASS">
+      <point x="0.0" y="83.0" />
+      <point x="0.0" y="-71.0" />
+    </edge>
+    <edge source="cc.jayv.monopoly3.DialogContainerMortgage.MortgageEligibilityStatus" target="cc.jayv.monopoly3.DialogContainerMortgage" relationship="INNER_CLASS">
+      <point x="0.0" y="49.0" />
+      <point x="0.0" y="-104.0" />
+    </edge>
+  </edges>
+  <settings layout="Orthogonal Groups" zoom="0.6466385224283105" showDependencies="false" x="2680.5878829392395" y="-327.4728818825364" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Fields</Category>
+    <Category>Inner Classes</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
