@@ -93,6 +93,8 @@ public class Player implements Serializable {
 	// Required state of GUI elements during player's turn
 	boolean actionLockedRollDice,
 		actionLockedEndTurn;
+
+	ComputerPlayerBasic computerLogic;
 	// </editor-fold>
 
 	// <editor-fold desc="Constructor">
@@ -225,6 +227,14 @@ public class Player implements Serializable {
 
 	public void setGetOutOfJailFreeCardCount(int inputCount) {
 		getOutOfJailFreeCardCount = inputCount;
+	}
+
+	public void attachComputerLogic(ComputerPlayerBasic computerLogic) {
+		this.computerLogic = computerLogic;
+	}
+
+	public ComputerPlayerBasic getComputerLogic() {
+		return computerLogic;
 	}
 	// </editor-fold>
 

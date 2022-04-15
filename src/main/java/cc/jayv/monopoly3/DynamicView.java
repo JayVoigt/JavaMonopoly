@@ -70,6 +70,7 @@ public class DynamicView implements Serializable  {
 	Border spaceSelectionBorder;
 	Timer partyModeTimer;
 	MacroController macroController;
+	ArrayList<ComputerPlayerBasic> computerPlayers;
 
 	// Reference variables
 	static int currentSpaceButtonSelection;
@@ -128,24 +129,34 @@ public class DynamicView implements Serializable  {
 
 	public void update() {
 		currentPlayer = board.players.get(board.getCurrentPlayerID());
-		viewFrameBoard.update(board, currentSpaceButtonSelection);
+		currentPlayer.evaluateState();
 
-		viewFrameControl.update(board);
-		viewFrameInformation.update(board);
-		updateGuiMandatoryDialogs();
-		updateGuiOptionalDialogs();
-
-		if (controller.getIsVictoryConditionMet()) {
-			partyVisuals();
+		if (currentPlayer.getIsComputerControlled()) {
+			for (ComputerPlayerBasic c : computerPlayers) {
+				currentPlayer = board.players.get(board.getCurrentPlayerID());
+				currentPlayer.evaluateState();
+				if (c.getAssociatedPlayerID() == currentPlayer.getPlayerID()) {
+					c.evaluate();
+				}
+			}
 		}
 
-		if (currentPlayer.isAnimateMovement()) {
-			viewFrameBoard.animatePlayerMovement(board, currentPlayer.getPlayerID());
-			currentPlayer.setAnimateMovement(false);
-		}
-		else {
-			viewFrameBoard.resetButtonAppearance();
-		}
+		 viewFrameBoard.update(board, currentSpaceButtonSelection);
+
+		 viewFrameControl.update(board);
+		 viewFrameInformation.update(board);
+		 updateGuiMandatoryDialogs();
+		 updateGuiOptionalDialogs();
+
+		 if (controller.getIsVictoryConditionMet()) {
+			 partyVisuals();
+		 }
+		 if (currentPlayer.isAnimateMovement()) {
+			 viewFrameBoard.animatePlayerMovement(board, currentPlayer.getPlayerID());
+			 currentPlayer.setAnimateMovement(false);
+		 } else {
+			 viewFrameBoard.resetButtonAppearance();
+		 }
 	}
 
 	private void updateGuiMandatoryDialogs() {
@@ -450,14 +461,24 @@ public class DynamicView implements Serializable  {
 
 	private void startGame(int playerCount, ArrayList<String> playerCustomNames, boolean loadFromFile) {
 
+		computerPlayers = new ArrayList<>();
 		// If game is not currently running
 		if (!controller.getIsGameActive() || loadFromFile) {
 			controller.setPlayersCount(playerCount);
 
 			// Set names
 			for ( int i = 0 ; i < playerCount ; i++ ) {
-				board.players.get(i + 1).setCustomName(playerCustomNames.get(i));
-				board.players.get(i + 1).setIsPlayerActive(true);
+				if (i == 1) {
+					Player player = board.players.get(i + 1);
+					computerPlayers.add(new ComputerPlayerBasic(board, player, controller, buttonActionListeners));
+					player.setCustomName("Computer " + i);
+					player.setIsPlayerActive(true);
+					player.setIsComputerControlled(true);
+				}
+				else {
+					board.players.get(i + 1).setCustomName(playerCustomNames.get(i));
+					board.players.get(i + 1).setIsPlayerActive(true);
+				}
 			}
 			controller.setIsGameActive(true);
 
@@ -501,25 +522,10 @@ public class DynamicView implements Serializable  {
 			}
 		}
 
-		class GeneralButtonPartyListener implements ActionListener {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-//				SwingHelper.partyModeComponent(viewFrameControl.getFrame());
-//				SwingHelper.partyModeComponent(viewFrameInformation.getFrame());
-//				SwingHelper.partyModeComponent(viewFrameBoard.getInternalFrame());
-//				viewFrameControl.partyVisuals();
-			}
-		}
-
 		SpaceButtonPartyListener spaceButtonPartyListener = new SpaceButtonPartyListener();
-		GeneralButtonPartyListener generalButtonPartyListener = new GeneralButtonPartyListener();
 
 		partyModeTimer = new Timer(50, spaceButtonPartyListener);
 		partyModeTimer.start();
-
-		Timer partyModeTimerSlow = new Timer(500, generalButtonPartyListener);
-		partyModeTimerSlow.start();
 	}
 
 	private void resetSpaceButtonAppearance() {
@@ -611,10 +617,6 @@ public class DynamicView implements Serializable  {
 
 		update();
 	}
-
-//	public static void main(String args[]) {
-//		DynamicView localView = new DynamicView();
-//	}
 
 	private void saveGame() {
 		SerialState gameData = new SerialState();

@@ -561,14 +561,12 @@ public class GameLogicController implements Serializable {
 		if (board.getCurrentPlayerID() == board.getNextActivePlayerID()) {
 			victoryConditionMet();
 		}
-		else {
-			board.setCurrentPlayerID(board.getNextActivePlayerID());
-			currentPlayer = board.players.get(board.getCurrentPlayerID());
+		 board.setCurrentPlayerID(board.getNextActivePlayerID());
+		 currentPlayer = board.players.get(board.getCurrentPlayerID());
 
-			logHelper.appendToDebugLog("\t currentPlayerID: " + board.getCurrentPlayerID());
-			currentPlayer.initializePlayerForNewTurn();
-			initialEvaluator();
-		}
+		 logHelper.appendToDebugLog("\t currentPlayerID: " + board.getCurrentPlayerID());
+		 currentPlayer.initializePlayerForNewTurn();
+		 initialEvaluator();
 	}
 
 	/**
@@ -706,6 +704,7 @@ public class GameLogicController implements Serializable {
 
 			appendToGameLog(currentPlayer.getCustomName() + " has forfeited the game, and their assets have" +
 					"been transferred to " + creditorPlayer.getCustomName() + "!");
+			currentPlayer.setHasRequestedEndTurn(true);
 			endTurnManager();
 			currentPlayer.setIsPlayerActive(false);
 		}

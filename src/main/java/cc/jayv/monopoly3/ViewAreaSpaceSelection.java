@@ -50,7 +50,7 @@ public class ViewAreaSpaceSelection implements ViewComponent, Serializable {
 
     public ViewAreaSpaceSelection() {
         selectionInfoArea = new JPanel();
-        selectionInfoArea.setLayout(new MigLayout());
+        selectionInfoArea.setLayout(new MigLayout("ins 8"));
 
         leftArea = new JPanel();
         leftArea.setLayout(new MigLayout("ins 0"));
@@ -58,15 +58,15 @@ public class ViewAreaSpaceSelection implements ViewComponent, Serializable {
         rightArea.setLayout(new MigLayout("ins 0"));
 
         // The board view (currently) uses a null layout - setBounds is required
-        selectionInfoArea.setBounds(150, 140, 660, 230);
+        selectionInfoArea.setBounds(150, 140, 660, 220);
         selectionInfoArea.setBackground(java.awt.Color.WHITE);
         leftArea.setBackground(java.awt.Color.WHITE);
         rightArea.setBackground(java.awt.Color.WHITE);
 
         initLabels();
 
-        selectionInfoArea.add(leftArea, "cell 0 0, width 330");
-        selectionInfoArea.add(rightArea, "cell 1 0, width 330");
+        selectionInfoArea.add(leftArea, "cell 0 0, width 330, height 220");
+        selectionInfoArea.add(rightArea, "cell 1 0, width 330, height 220");
 
         selectionInfoArea.setEnabled(true);
         selectionInfoArea.setVisible(true);

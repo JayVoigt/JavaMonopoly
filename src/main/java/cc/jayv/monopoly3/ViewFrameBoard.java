@@ -390,16 +390,20 @@ public class ViewFrameBoard implements Serializable {
 
                 JButton initButton = spaceButtons.get(previousSpaceID).getButton();
                 initButton.setBorderPainted(true);
-                initButton.setBorder(SwingHelper.createBorderStyleHighlight(java.awt.Color.gray, true, 4));
+                initButton.setBorder(SwingHelper.createBorderStyleHighlight(java.awt.Color.gray, true, 2));
 
                 int spaceID = board.getNextSpaceID(previousSpaceID + (distance - index) - 1);
                 JButton button = spaceButtons.get(spaceID).getButton();
 
                 int uniformRGB = (int) (255 / (distance - index));
-                java.awt.Color color = new java.awt.Color(255, uniformRGB, uniformRGB, (255 - uniformRGB));
+                int alpha = (320 - uniformRGB);
+                if (alpha > 255) {
+                    alpha = 255;
+                }
+                java.awt.Color color = new java.awt.Color(128, 128, 255, alpha);
 
                 button.setBorderPainted(true);
-                button.setBorder(SwingHelper.createBorderStyleHighlight(color, false, 1));
+                button.setBorder(SwingHelper.createBorderStyleHighlight(color, true, 2));
                 if (index == 0) {
                     timer.stop();
                 }

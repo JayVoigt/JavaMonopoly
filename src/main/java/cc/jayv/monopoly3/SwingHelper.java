@@ -9,6 +9,7 @@ import javax.swing.border.Border;
 import java.awt.*;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  *
@@ -156,6 +157,7 @@ public class SwingHelper implements Serializable {
 		// White background
 		textArea.setBackground(new java.awt.Color(255, 255, 255, 255));
 		textArea.setOpaque(true);
+
 	}
 
 	// <editor-fold desc="Highlights and borders">
@@ -172,7 +174,7 @@ public class SwingHelper implements Serializable {
 
 		java.awt.Color fade1, fade2, fade3;
 		
-		if (lighten == true) {
+		if (lighten) {
 			fade1 = getHighlightModifiedColor(baseShade);
 			fade2 = getHighlightModifiedColor(fade1);
 			fade3 = getHighlightModifiedColor(fade2);
@@ -215,8 +217,7 @@ public class SwingHelper implements Serializable {
 		newB = (int) (((256 - inputAWTColor.getBlue()) * highlightFactor) + inputAWTColor.getBlue());
 		newA = (int) ((inputAWTColor.getAlpha()) * highlightFactor);
 
-		java.awt.Color newColor = new java.awt.Color(newR, newG, newB, newA);
-		return newColor;
+		return new java.awt.Color(newR, newG, newB, newA);
 	}
 
 	public static java.awt.Color getShadowModifiedColor(java.awt.Color inputAWTColor) {
@@ -228,8 +229,7 @@ public class SwingHelper implements Serializable {
 		newB = (int) (shadowFactor * inputAWTColor.getBlue());
 		newA = (int) (shadowFactor * inputAWTColor.getAlpha());
 
-		java.awt.Color newColor = new java.awt.Color(newR, newG, newB, newA);
-		return newColor;
+		return new java.awt.Color(newR, newG, newB, newA);
 	}
 
 	public static void partyMode(ArrayList<ViewFrameBoard.SpaceButton> spaceButtons) {
@@ -283,9 +283,9 @@ public class SwingHelper implements Serializable {
 
 	public static ImageIcon getImageIconFromResource(String inputResource) {
 		try {
-			return new ImageIcon(SwingHelper.class.getResource(inputResource));
+			return new ImageIcon(Objects.requireNonNull(SwingHelper.class.getResource(inputResource)));
 		} catch (NullPointerException e) {
-			return new ImageIcon(SwingHelper.class.getResource("/error-icon.png"));
+			return new ImageIcon(Objects.requireNonNull(SwingHelper.class.getResource("/error-icon.png")));
 		}
 	}
 }
