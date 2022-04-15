@@ -51,13 +51,7 @@ public class DialogContainerGameEditor extends DialogContainer implements Serial
         // Fallback value
         playerID = 1;
 
-        comboBoxPlayerSelection.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                playerID = (int) comboBoxPlayerSelection.getSelectedItem();
-                System.out.println(playerID);
-            }
-        });
+        comboBoxPlayerSelection.addActionListener(e -> playerID = (int) comboBoxPlayerSelection.getSelectedItem());
 
         buttonGive1000 = new JButton("Give $1000", SwingHelper.getImageIconFromResource("/money.png"));
         buttonDeduct1000 = new JButton("Deduct $1000", SwingHelper.getImageIconFromResource("/money.png"));
@@ -111,7 +105,7 @@ public class DialogContainerGameEditor extends DialogContainer implements Serial
         return playerID;
     }
 
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         JDialog dialog;
 
         DialogContainerGameEditor gameEditorDialog = new DialogContainerGameEditor();

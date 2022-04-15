@@ -3,12 +3,7 @@ package cc.jayv.monopoly3;
 
 import javax.swing.*;
 import java.io.Serializable;
-import java.math.*;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 /**
  *
  * @author jay
@@ -41,8 +36,8 @@ public class Player implements Serializable {
 
 	// Sets of boolean values whose indices match to the corresponding
 	// attribute of the space sharing the same ID.
-	boolean ownedPropertyIDs[];
-	boolean mortgagedPropertyIDs[];
+	boolean[] ownedPropertyIDs;
+	boolean[] mortgagedPropertyIDs;
 
 	// Number that appears on the face of the dice
 	int die1, die2;
@@ -308,7 +303,7 @@ public class Player implements Serializable {
 
 	public void setRequiredDecisionPostedBail(boolean input) {
 		requiredDecisionPostedBail = input;
-		if (input == true) {
+		if (input) {
 			isInMandatoryActionsExhaustedState = false;
 		}
 	}
@@ -323,7 +318,7 @@ public class Player implements Serializable {
 
 	public void setRequiredDecisionPropertyAction(boolean input) {
 		requiredDecisionPropertyAction = input;
-		if (input == true) {
+		if (input) {
 			isInMandatoryActionsExhaustedState = false;
 		}
 	}

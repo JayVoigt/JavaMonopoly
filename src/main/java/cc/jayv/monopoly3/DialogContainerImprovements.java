@@ -89,7 +89,7 @@ public class DialogContainerImprovements extends DialogContainer {
     // Passing through controller is a hacky solution that could be improved later
     public void update(Board board, Player player, int spaceSelectionID, GameLogicController controller) {
         Space currentSpace = board.spaces.get(spaceSelectionID);
-        ImprovementEligibilityStatus status = ImprovementEligibilityStatus.CANT_IMPROVE_UNKNOWN;
+        ImprovementEligibilityStatus status;
 
         labelPropertySelection.setText(currentSpace.getFriendlyName());
 
@@ -148,7 +148,7 @@ public class DialogContainerImprovements extends DialogContainer {
         return m;
     }
 
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         DialogContainerImprovements dialogContainerImprovements = new DialogContainerImprovements();
         JDialog dialog = dialogContainerImprovements.getDialog();
         dialog.setVisible(true);

@@ -154,7 +154,7 @@ public class DialogContainerMortgage extends DialogContainer {
         }
     }
 
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         DialogContainerMortgage dialogContainerMortgage = new DialogContainerMortgage();
         try {
             Board board = new Board();

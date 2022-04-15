@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package cc.jayv.monopoly3;
 
 import java.io.Serializable;
@@ -54,7 +50,7 @@ public class LogHelper implements Serializable {
 			String lowerString = s.toLowerCase();
 			String lowerQuery = inputQuery.toLowerCase();
 
-			if (lowerString.contains(lowerQuery) == true) {
+			if (lowerString.contains(lowerQuery)) {
 				gameLogContentsFiltered.add(s);
 			}
 		}
@@ -91,7 +87,7 @@ public class LogHelper implements Serializable {
 	 */
 	public void appendToGameLog(String input, int turnCounter) {
 		Date currentDate = new Date();
-		SimpleDateFormat datePrefix = new SimpleDateFormat("yyyy-mm-dd HH:mm:ss");
+		SimpleDateFormat datePrefix = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
 		String currentTurn = Integer.toString(turnCounter);
 		String formattedPrefix;
@@ -103,7 +99,7 @@ public class LogHelper implements Serializable {
 
 	public void appendToGameLog(String input) {
 		Date currentDate = new Date();
-		SimpleDateFormat datePrefix = new SimpleDateFormat("yyyy-mm-dd HH:mm:ss");
+		SimpleDateFormat datePrefix = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
 		String formattedPrefix;
 		formattedPrefix = ("[" + currentDate + "]: ");
@@ -119,7 +115,7 @@ public class LogHelper implements Serializable {
 	 */
 	public void appendToDebugLog(String input) {
 		Date currentDate = new Date();
-		SimpleDateFormat datePrefix = new SimpleDateFormat("yyyy-mm-dd HH:mm:ss");
+		SimpleDateFormat datePrefix = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
 		String formattedPrefix;
 		formattedPrefix = ("[" + currentDate + "]: ");

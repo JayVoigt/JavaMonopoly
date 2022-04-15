@@ -1,21 +1,7 @@
 package cc.jayv.monopoly3;
 
-
-import com.jcraft.jsch.IO;
-
-import javax.accessibility.Accessible;
-import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 /**
  *
  * @author jay
@@ -25,16 +11,11 @@ public class JavaMonopoly implements Serializable{
 	DynamicView dynamicView;
 
 	public JavaMonopoly() {
-		Runnable runner = new Runnable() {
-			@Override
-			public void run() {
-				dynamicView = new DynamicView();
-			}
-		};
+		Runnable runner = () -> dynamicView = new DynamicView();
 		EventQueue.invokeLater(runner);
 	}
 
-	public static void main(String args[]) throws IOException {
+	public static void main(String[] args) throws IOException {
 		new JavaMonopoly();
 	}
 

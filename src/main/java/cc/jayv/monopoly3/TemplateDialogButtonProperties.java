@@ -21,12 +21,7 @@ public class TemplateDialogButtonProperties extends JButton implements Serializa
 
         this.addActionListener(actionListener);
 
-        if (buttonIconResource.isEmpty() == false) {
-            this.setIcon(new ImageIcon(getClass().getResource(buttonIconResource)));
-        }
-        else {
-            this.setIcon(new ImageIcon(getClass().getResource("/error-icon.png")));
-        }
+        this.setIcon(SwingHelper.getImageIconFromResource(buttonIconResource));
 
         this.setVisible(true);
     }

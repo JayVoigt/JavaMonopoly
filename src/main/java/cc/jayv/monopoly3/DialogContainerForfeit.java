@@ -68,7 +68,7 @@ public class DialogContainerForfeit extends DialogContainer {
         }
     }
 
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         DialogContainerForfeit dialogContainerForfeit = new DialogContainerForfeit();
         JDialog dialog = dialogContainerForfeit.getDialog();
 

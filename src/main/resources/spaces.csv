@@ -29,7 +29,7 @@
 27,Ventor Avenue,property,color,yellow,260,22,110,330,800,975,1150,130,150,150
 28,Water Works,property,utility,,150,,,,,,,75,,
 29,Marvin Gardens,property,color,yellow,280,24,120,360,850,1025,1200,140,150,150
-30,Go to Jail,gameEvent,teleport,,,,,,,,,,,
+30,Go to Jail,gameEvent,jailPlayer,,,,,,,,,,,
 31,Pacific Avenue,property,color,green,300,26,130,390,900,1100,1275,150,200,200
 32,North Carolina Avenue,property,color,green,300,26,130,390,900,1100,1275,150,200,200
 33,Community Chest,gameEvent,drawCard,,,,,,,,,,,

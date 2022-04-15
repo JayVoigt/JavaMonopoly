@@ -1,9 +1,5 @@
 package cc.jayv.monopoly3;
 
-/**
- *
- * @author jay
- */
 import java.util.*;
 import java.io.*;
 
@@ -98,16 +94,16 @@ public class Board implements Serializable {
 				}
 				else if (localSpaceType.equals("property")) {
 
-					if (localPropertyType.equals("color")) {
-						spaces.add(localID, new Color(propertyAttributes, localID, localFriendlyName));
-						Color localColor = (Color) spaces.get(localID);
-						localColor.setColorGroup(Color.colorGroupKeys.valueOf(localColorGroup));
-					}
-					else if (localPropertyType.equals("railroad")) {
-						spaces.add(localID, new Railroad(propertyAttributes, localID, localFriendlyName));
-					}
-					else if (localPropertyType.equals("utility")) {
-						spaces.add(localID, new Utility(propertyAttributes, localID, localFriendlyName));
+					switch (localPropertyType) {
+						case "color" -> {
+							spaces.add(localID, new Color(propertyAttributes, localID, localFriendlyName));
+							Color localColor = (Color) spaces.get(localID);
+							localColor.setColorGroup(Color.colorGroupKeys.valueOf(localColorGroup));
+						}
+						case "railroad" ->
+								spaces.add(localID, new Railroad(propertyAttributes, localID, localFriendlyName));
+						case "utility" ->
+								spaces.add(localID, new Utility(propertyAttributes, localID, localFriendlyName));
 					}
 				}	// end else if
 			}	// end while
@@ -115,7 +111,7 @@ public class Board implements Serializable {
 		// </editor-fold>
 
 		// <editor-fold desc="Read CSV for chanceCards data">
-		try ( BufferedReader chanceCardsConfig = new BufferedReader(new InputStreamReader(getClass().getClassLoader().getResourceAsStream("chanceCards.csv")))) {
+		try ( BufferedReader chanceCardsConfig = new BufferedReader(new InputStreamReader(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("chanceCards.csv"))))) {
 			chanceCardsConfig.readLine();
 
 			while ((lineBuffer = chanceCardsConfig.readLine()) != null) {
@@ -128,7 +124,7 @@ public class Board implements Serializable {
 				int localQuantity = parseIntHandler(configLine[4]);
 				DrawCard.destinationRelativeTypeKeys localDestinationRelativeType;
 
-				if (configLine[5] != "") {
+				if (!Objects.equals(configLine[5], "")) {
 					localDestinationRelativeType = DrawCard.destinationRelativeTypeKeys.valueOf(configLine[5]);
 				}
 				else {
@@ -142,7 +138,7 @@ public class Board implements Serializable {
 		// </editor-fold>
 
 		// <editor-fold desc="Read CSV for communityChestCards data">
-		try ( BufferedReader communityChestCardsConfig = new BufferedReader(new InputStreamReader(getClass().getClassLoader().getResourceAsStream("communityChestCards.csv")))) {
+		try ( BufferedReader communityChestCardsConfig = new BufferedReader(new InputStreamReader(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("communityChestCards.csv"))))) {
 			communityChestCardsConfig.readLine();
 
 			while ((lineBuffer = communityChestCardsConfig.readLine()) != null) {
@@ -178,9 +174,7 @@ public class Board implements Serializable {
 		bankHouseCount = 32;
 		
 		for (Space s : spaces) {
-			if (s instanceof Color) {
-				Color localColor = (Color) s;
-
+			if (s instanceof Color localColor) {
 				bankHouseCount -= (localColor.getHouseCount());
 			}
 		}
@@ -191,9 +185,7 @@ public class Board implements Serializable {
 		bankHotelCount = 12;
 		
 		for (Space s : spaces) {
-			if (s instanceof Color) {
-				Color localColor = (Color) s;
-
+			if (s instanceof Color localColor) {
 				bankHotelCount -= (localColor.getHotelCount());
 			}
 		}
@@ -267,12 +259,7 @@ public class Board implements Serializable {
 				int localColorOwnerID = spacesByColorGroup.get(0).getOwnerID();
 
 				for (Color localColor : spacesByColorGroup) {
-					if ((localColor.getOwnerID() != localColorOwnerID) && (localColor.getOwnerID() != 0)) {
-						isFullSetOwnedBySinglePlayer = false;
-					}
-					else {
-						isFullSetOwnedBySinglePlayer = true;
-					}
+					isFullSetOwnedBySinglePlayer = (localColor.getOwnerID() == localColorOwnerID) || (localColor.getOwnerID() == 0);
 				}	// end for
 			
 
@@ -352,7 +339,7 @@ public class Board implements Serializable {
 			if (colorGroup != Color.colorGroupKeys.unspecified) {
 
 				// This logic depends on the execution of updateColorPropertyOwnershipRelationships
-				if (spacesByColorGroup.get(0).getIsFullSetOwned() == true) {
+				if (spacesByColorGroup.get(0).getIsFullSetOwned()) {
 					for ( int i = 0 ; i < spacesByColorGroup.size() ; i++ ) {
 						
 					}
@@ -403,7 +390,7 @@ public class Board implements Serializable {
 	}
 
 	public int getDistance(int spaceA, int spaceB) {
-		int distance = 0;
+		int distance;
 
 		if (spaceB < spaceA) {
 			distance = (39 - spaceA) + spaceB;

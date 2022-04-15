@@ -146,7 +146,7 @@ public class DialogContainerPurchaseProperty extends DialogContainer implements 
         dialog.pack();
     }
 
-    public static void main(String args[]) throws IOException {
+    public static void main(String[] args) throws IOException {
         DialogContainerPurchaseProperty propertyPurchaseDialog = new DialogContainerPurchaseProperty();
 
         Board board = new Board();

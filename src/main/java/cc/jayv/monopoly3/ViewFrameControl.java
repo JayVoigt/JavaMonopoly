@@ -105,10 +105,12 @@ public class ViewFrameControl implements ViewComponent, Serializable {
                 try {
                         // End turn
                         buttonEndTurn = new TemplateDialogButtonProperties("End turn", "/arrow.png", endTurnActionListener, "cell 2 16, align right, width 108, height 60");
+                        buttonEndTurn.setFocusable(true);
                         frame.add(buttonEndTurn, buttonEndTurn.getMigLayoutSpec());
 
                         // Roll dice
                         buttonRollDice = new TemplateDialogButtonProperties("Roll dice", "/dice-icon.png", rollDiceActionListener, "cell 0 16, align left, width 108, height 60");
+                        buttonRollDice.setFocusable(true);
                         frame.add(buttonRollDice, buttonRollDice.getMigLayoutSpec());
 
                         // Labels for dice
@@ -136,26 +138,32 @@ public class ViewFrameControl implements ViewComponent, Serializable {
                         String standardMigSpecButton = ", grow";
                         // Mortgage
                         buttonControlsMortgage = new TemplateDialogButtonProperties("Mortgage", "/mortgage.png", controlsMortgageActionListener, "cell 0 6, align left" + standardMigSpecButton);
+                        buttonControlsMortgage.setFocusable(false);
                         frame.add(buttonControlsMortgage, buttonControlsMortgage.getMigLayoutSpec());
 
                         // Properties
                         buttonControlsShowProperties = new TemplateDialogButtonProperties("Properties", "/properties.png", controlsPropertiesActionListener, "cell 2 6, align right" + standardMigSpecButton);
+                        buttonControlsShowProperties.setFocusable(false);
                         frame.add(buttonControlsShowProperties, buttonControlsShowProperties.getMigLayoutSpec());
 
                         // Improvements
                         buttonControlsImprovements = new TemplateDialogButtonProperties("Improvements", "/improvements.png", controlsImprovementsActionListener, "cell 0 8, align left" + standardMigSpecButton);
+                        buttonControlsImprovements.setFocusable(false);
                         frame.add(buttonControlsImprovements, buttonControlsImprovements.getMigLayoutSpec());
 
                         // Statistics
                         buttonControlsStatistics = new TemplateDialogButtonProperties("Statistics", "/statistics.png", null, "cell 2 8, align right" + standardMigSpecButton);
+                        buttonControlsStatistics.setFocusable(false);
                         frame.add(buttonControlsStatistics, buttonControlsStatistics.getMigLayoutSpec());
 
                         // Trade
                         buttonControlsTrade = new TemplateDialogButtonProperties("Trade", "/trade.png", null, "cell 0 10, align left" + standardMigSpecButton);
+                        buttonControlsTrade.setFocusable(false);
                         frame.add(buttonControlsTrade, buttonControlsTrade.getMigLayoutSpec());
 
                         // Forfeit
                         buttonControlsForfeit = new TemplateDialogButtonProperties("Forfeit", "/surrender.png", controlsForfeitActionListener, "cell 2 10, align right" + standardMigSpecButton);
+                        buttonControlsForfeit.setFocusable(false);
                         frame.add(buttonControlsForfeit, buttonControlsForfeit.getMigLayoutSpec());
 
                         for (Actions a : Actions.values()) {
@@ -176,7 +184,7 @@ public class ViewFrameControl implements ViewComponent, Serializable {
                 Player currentPlayer = board.players.get(board.getCurrentPlayerID());
 
                 SwingHelper.formatLabel(labelCurrentPlayer, currentPlayer.getCustomName(), SwingHelper.LabelStyles.TITLE_REGULAR);
-                SwingHelper.formatLabel(labelCurrentBalance, "$" + String.valueOf(currentPlayer.getCurrentBalance()), SwingHelper.LabelStyles.TITLE_REGULAR);
+                SwingHelper.formatLabel(labelCurrentBalance, "$" + currentPlayer.getCurrentBalance(), SwingHelper.LabelStyles.TITLE_REGULAR);
 
                 String currentSpaceFriendlyName = board.spaces.get(currentPlayer.getCurrentPosition()).getFriendlyName();
                 SwingHelper.formatLabel(labelCurrentPosition, currentSpaceFriendlyName, SwingHelper.LabelStyles.TITLE_REGULAR);
@@ -218,14 +226,6 @@ public class ViewFrameControl implements ViewComponent, Serializable {
         }
 
         public void partyVisuals() {
-//                SwingHelper.partyModeComponent(labelDie1);
-//                SwingHelper.partyModeComponent(labelDie2);
-//                SwingHelper.partyModeComponent(buttonControlsMortgage);
-//                SwingHelper.partyModeComponent(buttonControlsShowProperties);
-//                SwingHelper.partyModeComponent(buttonControlsStatistics);
-//                SwingHelper.partyModeComponent(buttonControlsTrade);
-//                SwingHelper.partyModeComponent(buttonControlsForfeit);
-//                SwingHelper.partyModeComponent(buttonControlsImprovements);
                 SwingHelper.partyModeComponent(frame);
         }
 }

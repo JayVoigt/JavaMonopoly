@@ -1,8 +1,6 @@
 package cc.jayv.monopoly3;
 
 import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -231,7 +229,7 @@ public class ViewFrameBoard implements Serializable {
     /**
      *
      */
-    public class SpaceButton {
+    public static class SpaceButton {
         JButton button;
         int id;
         Direction direction;
@@ -368,9 +366,9 @@ public class ViewFrameBoard implements Serializable {
 
         class AnimatePlayerMovement implements ActionListener {
 
-            int distance;
+            final int distance;
             int index;
-            Timer timer;
+            final Timer timer;
 
             public AnimatePlayerMovement() {
                 for (SpaceButton b : spaceButtons) {
@@ -395,7 +393,7 @@ public class ViewFrameBoard implements Serializable {
                 int spaceID = board.getNextSpaceID(previousSpaceID + (distance - index) - 1);
                 JButton button = spaceButtons.get(spaceID).getButton();
 
-                int uniformRGB = (int) (255 / (distance - index));
+                int uniformRGB = 255 / (distance - index);
                 int alpha = (320 - uniformRGB);
                 if (alpha > 255) {
                     alpha = 255;
@@ -578,7 +576,7 @@ public class ViewFrameBoard implements Serializable {
         buttonLuxuryTax.addMouseListener(new AnimatedSpaceActionListener("/luxury-tax-anim.gif", null));
     }
 
-    private class AnimatedSpaceActionListener implements MouseListener {
+    private static class AnimatedSpaceActionListener implements MouseListener {
 
         ImageIcon animatedLabel;
         ImageIcon animatedLabelMortgaged;

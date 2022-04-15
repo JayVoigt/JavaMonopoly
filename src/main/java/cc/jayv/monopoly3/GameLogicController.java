@@ -2,6 +2,7 @@ package cc.jayv.monopoly3;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * Controls game logic and updates data within the Board accordingly.
@@ -167,7 +168,7 @@ public class GameLogicController implements Serializable {
 	 */
 	private void normalTurnEvaluator() {
 		logHelper.appendToDebugLog("-> executing normalTurnEvaluator");
-		if (currentPlayer.hasRolledDice == true) {
+		if (currentPlayer.hasRolledDice) {
 			currentPlayer.setIsInMAEState(true);
 			maeStateEvaluator();
 		}
@@ -190,13 +191,13 @@ public class GameLogicController implements Serializable {
 		currentPlayer.setActionLockedEndTurn(false);
 		currentPlayer.setActionLockedRollDice(true);
 
-		if (currentPlayer.getHasRolledDoubles() == true) {
+		if (currentPlayer.getHasRolledDoubles()) {
 			currentPlayer.setActionLockedRollDice(false);
 			currentPlayer.setActionLockedEndTurn(true);
 		}
 
-		if (currentPlayer.getRequiredDecisionPropertyAction() == true) {
-			if (currentPlayer.getMadeDecisionPropertyAction() == true) {
+		if (currentPlayer.getRequiredDecisionPropertyAction()) {
+			if (currentPlayer.getMadeDecisionPropertyAction()) {
 				logHelper.appendToDebugLog("\t Suggested action: unlock endTurn");
 				logHelper.appendToDebugLog("\t\t Reason: Player has made property decision.");
 				currentPlayer.setActionLockedEndTurn(false);
@@ -206,7 +207,7 @@ public class GameLogicController implements Serializable {
 			}
 		}
 		else {
-			if (currentPlayer.getHasRolledDice() == true) {
+			if (currentPlayer.getHasRolledDice()) {
 				logHelper.appendToDebugLog("\t Suggested action: unlock endTurn");
 				logHelper.appendToDebugLog("\t\t Reason: No property decision necessary.");
 				currentPlayer.setActionLockedEndTurn(false);
@@ -241,7 +242,7 @@ public class GameLogicController implements Serializable {
 		currentPlayer.rollDice();
 
 		String doublesSuffix;
-		if (currentPlayer.getHasRolledDoubles() == true) {
+		if (currentPlayer.getHasRolledDoubles()) {
 			doublesSuffix = " Doubles!";
 		}
 		else {
@@ -251,12 +252,7 @@ public class GameLogicController implements Serializable {
 		appendToGameLog(currentPlayer.getCustomName() + " rolled (" + currentPlayer.getDie1() + "," + currentPlayer.getDie2() + ")." + doublesSuffix);
 
 		// Reset roll dice condition for doubles
-		if (currentPlayer.getHasRolledDoubles() == true) {
-			currentPlayer.setHasRolledDice(false);
-		}
-		else {
-			currentPlayer.setHasRolledDice(true);
-		}
+		currentPlayer.setHasRolledDice(!currentPlayer.getHasRolledDoubles());
 
 		if (currentPlayer.getConsecutiveDoublesCount() >= 3) {
 			appendToGameLog(currentPlayer.getCustomName() + " has rolled doubles 3 times, and is now jailed for speeding!");
@@ -337,7 +333,7 @@ public class GameLogicController implements Serializable {
 		boolean playerPassedGo = currentPlayer.advancePosition(movementQuantity);
 
 		// Issue GO bonus
-		if ((playerPassedGo == true) && (collectGoBonus == true)) {
+		if ((playerPassedGo) && (collectGoBonus)) {
 			currentPlayer.updateCurrentBalance(200);
 			appendToGameLog(currentPlayer.getCustomName() + " has passed or landed on GO, and is rewarded a bonus of $200.");
 		}
@@ -366,19 +362,19 @@ public class GameLogicController implements Serializable {
 		currentGameEvent = (GameEvent) currentSpace;
 		GameEvent.gameEventTypeKeys localGameEventType = currentGameEvent.getGameEventType();
 
-		if (localGameEventType.equals(localGameEventType.drawCard)) {
+		if (localGameEventType.equals(GameEvent.gameEventTypeKeys.drawCard)) {
 			drawCardEvaluator();
 		}
-		else if (localGameEventType.equals(localGameEventType.updateBalance)) {
+		else if (localGameEventType.equals(GameEvent.gameEventTypeKeys.updateBalance)) {
 
 		}
-		else if (localGameEventType.equals(localGameEventType.teleport)) {
+		else if (localGameEventType.equals(GameEvent.gameEventTypeKeys.teleport)) {
 
 		}
-		else if (localGameEventType.equals(localGameEventType.jailPlayer)) {
+		else if (localGameEventType.equals(GameEvent.gameEventTypeKeys.jailPlayer)) {
 			jailPlayer();
 		}
-		else if (localGameEventType.equals(localGameEventType.tax)) {
+		else if (localGameEventType.equals(GameEvent.gameEventTypeKeys.tax)) {
 			// Using 2008 Monopoly rules that exclude 10% option
 			if (currentGameEvent.getFriendlyName().contains("Income")) {
 				appendToGameLog(currentPlayer.getCustomName() + " has paid $200 in Income Tax.");
@@ -402,7 +398,7 @@ public class GameLogicController implements Serializable {
 		int randomCardID = (int) (Math.random() * board.chanceCards.size());
 		String gameLogDrawPrefix;
 
-		if (currentSpace.getFriendlyName() == "Chance") {
+		if (Objects.equals(currentSpace.getFriendlyName(), "Chance")) {
 			currentDrawCard = board.chanceCards.get(randomCardID);
 			gameLogDrawPrefix = "The Chance card reads: ";
 		}
@@ -422,6 +418,7 @@ public class GameLogicController implements Serializable {
 			if (currentDrawCard.getDestinationRelativeType().equals(DrawCard.destinationRelativeTypeKeys.backThreeSpaces)) {
 
 			}
+			// Advance to the nearest railroad
 			else if (currentDrawCard.getDestinationRelativeType().equals(DrawCard.destinationRelativeTypeKeys.railroad)) {
 				Railroad destinationRailroad = null;
 				for (Space s : board.spaces) {
@@ -464,9 +461,7 @@ public class GameLogicController implements Serializable {
 			int paymentQuantity;
 
 			for (Space s : board.spaces) {
-				if (s instanceof Color) {
-					Color localColor = (Color) s;
-
+				if (s instanceof Color localColor) {
 					if (currentPlayer.getOwnsPropertyByID(localColor.getID())) {
 						ownedHouses += localColor.getHouseCount();
 						ownedHotels += localColor.getHotelCount();
@@ -545,15 +540,6 @@ public class GameLogicController implements Serializable {
 
 		appendToGameLog(currentPlayer.getCustomName() + " has ended their turn.");
 
-//		if (board.getCurrentPlayerID() == playersCount) {
-//			board.setCurrentPlayerID(1);
-//			logHelper.appendToDebugLog("\t Rolling over turn to Player 1");
-//		}
-//		else {
-//			board.setCurrentPlayerID(board.getCurrentPlayerID() + 1);
-//			logHelper.appendToDebugLog("\t Incrementing turn to Player " + board.getCurrentPlayerID());
-//		}
-
 		if (board.getCurrentPlayerID() == board.getNextActivePlayerID()) {
 			victoryConditionMet();
 		}
@@ -623,7 +609,7 @@ public class GameLogicController implements Serializable {
 		currentPlayer.setMadeDecisionJail(true);
 		currentPlayer.rollDice();
 
-		if (currentPlayer.getHasRolledDoubles() == true) {
+		if (currentPlayer.getHasRolledDoubles()) {
 			appendToGameLog(currentPlayer.getCustomName() + " has rolled doubles, and is no longer jailed!");
 			readyPlayerForJailRelease();
 		}
@@ -737,7 +723,6 @@ public class GameLogicController implements Serializable {
 		for (Space s : board.spaces) {
 			if (s instanceof Property p) {
 				int randomPlayerID = 1 + (int) (Math.random() * activePlayers.size());
-				System.out.println(randomPlayerID);
 				p.setIsOwned(true);
 				p.setOwnerID(randomPlayerID);
 			}
@@ -757,7 +742,7 @@ public class GameLogicController implements Serializable {
 
 		// Build house
 		if (inputAction.equals(ImprovementsActions.buildHouse)) {
-			if (localColor.getIsEligibleForImprovements()) {
+			if (Objects.requireNonNull(localColor).getIsEligibleForImprovements()) {
 				// Maximum houses on space
 				if (localColor.getHouseCount() == 4) {
 					appendToGameLog(localColor.getFriendlyName() + " already has the maximum number of houses.");
@@ -790,7 +775,7 @@ public class GameLogicController implements Serializable {
 
 		// Sell house
 		else if (inputAction.equals(ImprovementsActions.sellHouse)) {
-			if (localColor.getHouseCount() > 0) {
+			if (Objects.requireNonNull(localColor).getHouseCount() > 0) {
 				localColor.sellHouse();
 				currentPlayer.updateCurrentBalance((int) (localColor.getHouseCost() * 0.5));
 			}
@@ -801,7 +786,7 @@ public class GameLogicController implements Serializable {
 
 		// Build hotel
 		else if (inputAction.equals(ImprovementsActions.buildHotel)) {
-			if (localColor.getIsEligibleForImprovements()) {
+			if (Objects.requireNonNull(localColor).getIsEligibleForImprovements()) {
 				if (localColor.getHouseCount() == 4) {
 					localColor.buildHotel();
 				}
@@ -818,7 +803,7 @@ public class GameLogicController implements Serializable {
 
 		// Sell hotel
 		else if (inputAction.equals(ImprovementsActions.sellHotel)) {
-			if (localColor.getHotelCount() > 0) {
+			if (Objects.requireNonNull(localColor).getHotelCount() > 0) {
 				localColor.sellHotel();
 				currentPlayer.updateCurrentBalance((int) (localColor.getHotelCost() * 0.5));
 			}
@@ -831,7 +816,7 @@ public class GameLogicController implements Serializable {
 	public void mortgageProperty(int spaceID, MortgageActions inputAction) {
 		Space localSpace = board.spaces.get(spaceID);
 
-		int balanceUpdate = 0;
+		int balanceUpdate;
 
 		if (localSpace instanceof Property p) {
 			if (inputAction == MortgageActions.MORTGAGE) {

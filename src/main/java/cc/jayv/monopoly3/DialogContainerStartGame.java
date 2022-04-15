@@ -53,35 +53,32 @@ public class DialogContainerStartGame extends DialogContainer implements Seriali
         comboBoxPlayerCount.addItem(4);
         comboBoxPlayerCount.setSelectedItem(4);
 
-        comboBoxPlayerCount.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                playerCount = (int) comboBoxPlayerCount.getSelectedItem();
+        comboBoxPlayerCount.addActionListener(e -> {
+            playerCount = (int) comboBoxPlayerCount.getSelectedItem();
 
-                if (playerCount == 1) {
-                    playerCustomName1.setEnabled(true);
-                    playerCustomName2.setEnabled(false);
-                    playerCustomName3.setEnabled(false);
-                    playerCustomName4.setEnabled(false);
-                }
-                else if (playerCount == 2) {
-                    playerCustomName1.setEnabled(true);
-                    playerCustomName2.setEnabled(true);
-                    playerCustomName3.setEnabled(false);
-                    playerCustomName4.setEnabled(false);
-                }
-                else if (playerCount == 3) {
-                    playerCustomName1.setEnabled(true);
-                    playerCustomName2.setEnabled(true);
-                    playerCustomName3.setEnabled(true);
-                    playerCustomName4.setEnabled(false);
-                }
-                else {
-                    playerCustomName1.setEnabled(true);
-                    playerCustomName2.setEnabled(true);
-                    playerCustomName3.setEnabled(true);
-                    playerCustomName4.setEnabled(true);
-                }
+            if (playerCount == 1) {
+                playerCustomName1.setEnabled(true);
+                playerCustomName2.setEnabled(false);
+                playerCustomName3.setEnabled(false);
+                playerCustomName4.setEnabled(false);
+            }
+            else if (playerCount == 2) {
+                playerCustomName1.setEnabled(true);
+                playerCustomName2.setEnabled(true);
+                playerCustomName3.setEnabled(false);
+                playerCustomName4.setEnabled(false);
+            }
+            else if (playerCount == 3) {
+                playerCustomName1.setEnabled(true);
+                playerCustomName2.setEnabled(true);
+                playerCustomName3.setEnabled(true);
+                playerCustomName4.setEnabled(false);
+            }
+            else {
+                playerCustomName1.setEnabled(true);
+                playerCustomName2.setEnabled(true);
+                playerCustomName3.setEnabled(true);
+                playerCustomName4.setEnabled(true);
             }
         });
 
@@ -139,8 +136,8 @@ public class DialogContainerStartGame extends DialogContainer implements Seriali
 
     @Override
     public void setStateOfActionButton(Actions action, boolean isEnabled) {
-        switch (action) {
-            case NEWGAME_STARTGAME -> buttonStartGame.setEnabled(isEnabled);
+        if (action == Actions.NEWGAME_STARTGAME) {
+            buttonStartGame.setEnabled(isEnabled);
         }
     }
 
@@ -154,7 +151,6 @@ public class DialogContainerStartGame extends DialogContainer implements Seriali
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            System.out.println("test again");
             playerCount = (int) comboBoxPlayerCount.getSelectedItem();
 
             playerCustomNames.clear();
@@ -186,7 +182,7 @@ public class DialogContainerStartGame extends DialogContainer implements Seriali
         return playerCustomName;
     }
 
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         DialogContainerStartGame startGameDialog = new DialogContainerStartGame();
         JDialog dialog = startGameDialog.getDialog();
 

@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package cc.jayv.monopoly3;
 
 import javax.swing.*;
@@ -269,7 +265,7 @@ public class SwingHelper implements Serializable {
 		float hueShiftFactor;
 
 		for (int i = 0; i < spaceButtons.size(); i++) {
-			hueShiftFactor = (float) (i / 40f);
+			hueShiftFactor = i / 40f;
 
 			 int localRGB = java.awt.Color.HSBtoRGB((hueShiftFactor), 1, 1);
 			 java.awt.Color localAWTColor = new java.awt.Color(localRGB);

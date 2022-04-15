@@ -1,14 +1,9 @@
 package cc.jayv.monopoly3;
 
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Map;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 /**
  * 
  * @author jay
@@ -170,7 +165,7 @@ public class Color extends Property implements Serializable {
 	 */
 	@Override
 	public int calculateRent() {
-		if (isMortgaged == true) {
+		if (isMortgaged) {
 			return 0;
 		}
 		else {
@@ -178,7 +173,7 @@ public class Color extends Property implements Serializable {
 				return rentHotel;
 			}
 			else if (houseCount == 0) {
-				if (getIsFullSetOwned() == true) {
+				if (getIsFullSetOwned()) {
 					return 2 * rentBase;
 				}
 				return rentBase;

@@ -1,14 +1,8 @@
 package cc.jayv.monopoly3;
 
-
 import java.io.Serializable;
 import java.util.HashMap;
-import java.util.Map;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 /**
  *
  * @author jay
@@ -152,6 +146,6 @@ public abstract class Property extends Space implements Serializable {
 			case HOTEL -> rentValue = rentHotel;
 		}
 
-		return "$" + String.valueOf(rentValue);
+		return "$" + rentValue;
 	}
 }

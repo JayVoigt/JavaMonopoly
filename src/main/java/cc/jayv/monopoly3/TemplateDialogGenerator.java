@@ -7,12 +7,6 @@ import javax.swing.*;
 
 import net.miginfocom.swing.MigLayout;
 
-
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-
 /**
  *
  * @author jay
@@ -36,12 +30,7 @@ public class TemplateDialogGenerator implements Serializable {
 	}
 
 	public ImageIcon getImageIconFromResource(String inputResource) {
-		if (inputResource.isEmpty() == false) {
-			return new ImageIcon(getClass().getResource(inputResource));
-		}
-		else {
-			return new ImageIcon(getClass().getResource("/error-icon.png"));
-		}
+		return SwingHelper.getImageIconFromResource(inputResource);
 	}
 
 	/**

@@ -92,7 +92,7 @@ public class DialogContainerJail extends DialogContainer {
         }
     }
 
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         DialogContainerJail dialogContainerJail = new DialogContainerJail();
         JDialog dialog = dialogContainerJail.getDialog();
         dialog.setVisible(true);

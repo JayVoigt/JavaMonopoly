@@ -1,8 +1,5 @@
 package cc.jayv.monopoly3;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
 public class SerialState implements Serializable {

@@ -221,7 +221,7 @@ public class ViewFrameInformationModule {
 
             updatePropertyGroupOwnershipLabels();
 
-            labelOwnedPropertyCount.setText(String.valueOf(ownedPropertyCount) + "/28");
+            labelOwnedPropertyCount.setText(ownedPropertyCount + "/28");
             labelGOOJFCCount.setText(String.valueOf(player.getGetOutOfJailFreeCardCount()));
 
         }
@@ -248,7 +248,7 @@ public class ViewFrameInformationModule {
 
     private void updatePropertyGroupOwnershipLabels() {
 
-        JLabel label = null;
+        JLabel label;
 
         int ownedRailroads = 0;
         int ownedUtilities = 0;
@@ -257,10 +257,9 @@ public class ViewFrameInformationModule {
             for (Color.colorGroupKeys colorGroup : Color.colorGroupKeys.values()) {
 
                 int ownedProperties = 0;
-                int totalProperties = 0;
                 label = ownedPropertyGroupLabels.get(colorGroup);
 
-                totalProperties = board.getSpacesByColorGroup(colorGroup).size();
+                int totalProperties = board.getSpacesByColorGroup(colorGroup).size();
                 for (Property property : board.getSpacesByOwnerID(player.getPlayerID())) {
                     if (property instanceof Color c) {
                         if (c.getColorGroup().equals(colorGroup)) {
@@ -270,7 +269,6 @@ public class ViewFrameInformationModule {
                 }
 
                 if (label != null) {
-                    String formattedLabelText = ownedProperties + "/" + totalProperties;
                     label.setText(ownedProperties + "/" + totalProperties);
 
                     // Indicate player has monopoly over property group
@@ -320,7 +318,7 @@ public class ViewFrameInformationModule {
         }   // end if
     }
 
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         JFrame frame = new JFrame();
         frame.setLayout(new MigLayout("ins 4, width 400, height 150"));
         frame.setSize(400, 150);

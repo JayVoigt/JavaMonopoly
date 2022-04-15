@@ -176,7 +176,7 @@ public class ViewAreaSpaceSelection implements ViewComponent, Serializable {
             // If property, check if owned
             if (p.getIsOwned()) {
 
-                String mortgagedString = "";
+                String mortgagedString;
 
                 if (p.getIsMortgaged()) {
                     mortgagedString = "yes";
@@ -220,7 +220,7 @@ public class ViewAreaSpaceSelection implements ViewComponent, Serializable {
         }
 
         // Times landed
-        String landedSuffix = "";
+        String landedSuffix;
         if (localSpace.getTimesLanded() == 1) {
             landedSuffix = " time";
         }
@@ -231,8 +231,8 @@ public class ViewAreaSpaceSelection implements ViewComponent, Serializable {
 
         // Price
         if (localSpace instanceof Property p) {
-            SwingHelper.formatLabel(labelPrice, "$" + String.valueOf(p.getPurchaseCost()), SwingHelper.LabelStyles.TITLE_REGULAR);
-            SwingHelper.formatLabel(labelCurrentRent, "$" + String.valueOf(p.calculateRent()), SwingHelper.LabelStyles.TITLE_REGULAR);
+            SwingHelper.formatLabel(labelPrice, "$" + p.getPurchaseCost(), SwingHelper.LabelStyles.TITLE_REGULAR);
+            SwingHelper.formatLabel(labelCurrentRent, "$" + p.calculateRent(), SwingHelper.LabelStyles.TITLE_REGULAR);
         }
         else {
             SwingHelper.formatLabel(labelPrice, true);

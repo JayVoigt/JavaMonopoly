@@ -607,7 +607,6 @@ public class DynamicView implements Serializable  {
 			ObjectOutputStream o = new ObjectOutputStream(f);
 			o.writeObject(gameData);
 		} catch (IOException e) {
-			System.out.println("a");
 		}
 	}
 
@@ -629,8 +628,7 @@ public class DynamicView implements Serializable  {
 			controller.initialEvaluator();
 			update();
 
-		} catch (IOException e) {
-			System.out.println("b");
+		} catch (IOException ignored) {
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}

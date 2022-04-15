@@ -16,8 +16,6 @@ public class GameLogicSwitchboard implements Serializable {
     }
 
     public void actionHandler(Actions trigger, int currentSpaceSelectionID) {
-        System.out.println("switchboard : " + trigger);
-
         switch (trigger) {
             case CONTROLS_ENDTURN -> c.endTurnManager();
             case CONTROLS_ROLLDICE -> c.diceRollManager();
