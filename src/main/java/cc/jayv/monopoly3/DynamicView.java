@@ -70,7 +70,6 @@ public class DynamicView implements Serializable  {
 	Border spaceSelectionBorder;
 	Timer partyModeTimer;
 	MacroController macroController;
-	ArrayList<ComputerPlayerBasic> computerPlayers;
 
 	// Reference variables
 	static int currentSpaceButtonSelection;
@@ -130,16 +129,6 @@ public class DynamicView implements Serializable  {
 	public void update() {
 		currentPlayer = board.players.get(board.getCurrentPlayerID());
 		currentPlayer.evaluateState();
-
-		if (currentPlayer.getIsComputerControlled()) {
-			for (ComputerPlayerBasic c : computerPlayers) {
-				currentPlayer = board.players.get(board.getCurrentPlayerID());
-				currentPlayer.evaluateState();
-				if (c.getAssociatedPlayerID() == currentPlayer.getPlayerID()) {
-					c.evaluate();
-				}
-			}
-		}
 
 		 viewFrameBoard.update(board, currentSpaceButtonSelection);
 
@@ -461,24 +450,15 @@ public class DynamicView implements Serializable  {
 
 	private void startGame(int playerCount, ArrayList<String> playerCustomNames, boolean loadFromFile) {
 
-		computerPlayers = new ArrayList<>();
 		// If game is not currently running
 		if (!controller.getIsGameActive() || loadFromFile) {
 			controller.setPlayersCount(playerCount);
 
 			// Set names
 			for ( int i = 0 ; i < playerCount ; i++ ) {
-				if (i == 1) {
-					Player player = board.players.get(i + 1);
-					computerPlayers.add(new ComputerPlayerBasic(board, player, controller, buttonActionListeners));
-					player.setCustomName("Computer " + i);
-					player.setIsPlayerActive(true);
-					player.setIsComputerControlled(true);
-				}
-				else {
-					board.players.get(i + 1).setCustomName(playerCustomNames.get(i));
-					board.players.get(i + 1).setIsPlayerActive(true);
-				}
+				 Player player = board.players.get(i + 1);
+				 player.setCustomName(playerCustomNames.get(i));
+				 player.setIsPlayerActive(true);
 			}
 			controller.setIsGameActive(true);
 
