@@ -188,7 +188,7 @@ Below are some sample screenshots from an early build of the game, demonstrating
 <br>
 <div align="center">
 <figure>
-    <img src="gui-example-main-2022-03-22.png">
+    <img src="gui-example-main-2022-04-15.png">
     <figcaption><br>The primary user interface for the game.<br><figcaption>
 </figure>
 </div>
@@ -197,7 +197,7 @@ Below are some sample screenshots from an early build of the game, demonstrating
 <br>
 <div align="center">
 <figure>
-    <img src="gui-example-propertypurchase-2022-03-22.png" width="400">
+    <img src="gui-example-propertypurchase-2022-04-15.png" width="400">
     <figcaption><br>A prompt that the user must respond to when they land on a property that is not owned.<br><figcaption>
 </figure>
 </div>
