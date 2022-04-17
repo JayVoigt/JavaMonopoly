@@ -7,8 +7,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
- * Dialog, Game Editor: Provides actions that the user can perform to modify game state.
- * Useful for debugging.
+ * Dialog, Game Editor: Provides many actions that the user can perform to modify game state.<br>
+ * Useful for debugging. May cause unexpected behavior.
  */
 public class DialogContainerGameEditor extends DialogContainer implements Serializable {
     JComboBox<Integer> comboBoxPlayerSelection;

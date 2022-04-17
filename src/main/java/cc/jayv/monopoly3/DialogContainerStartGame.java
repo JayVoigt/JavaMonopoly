@@ -8,6 +8,12 @@ import java.awt.event.ActionListener;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ * Dialog, Start Game: An optional dialog that allows the user to configure basic game settings,
+ * and start the game when ready.<br>
+ *
+ * Provides options for player count and custom player names; allows starting the game.
+ */
 public class DialogContainerStartGame extends DialogContainer implements Serializable {
 
     int playerCount;

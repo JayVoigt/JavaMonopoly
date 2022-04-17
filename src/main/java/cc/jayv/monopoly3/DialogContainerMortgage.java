@@ -6,6 +6,12 @@ import javax.swing.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Dialog, Mortgage: An optional dialog that allows the user to mortgage or lift the mortgage of a
+ * property they own.<br>
+ *
+ * Provides options for mortgaging and lifting the mortgage of a property.
+ */
 public class DialogContainerMortgage extends DialogContainer {
 
     JButton buttonMortgage;

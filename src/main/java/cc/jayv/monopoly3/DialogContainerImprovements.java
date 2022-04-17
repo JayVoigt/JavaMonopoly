@@ -7,7 +7,9 @@ import java.util.ArrayList;
 
 /**
  * Dialog, Improvements: An optional dialog that allows the player to construct improvements
- * on their Color properties.
+ * on their Color properties.<br>
+ *
+ * Provides options for building and selling houses and hotels.
  */
 public class DialogContainerImprovements extends DialogContainer {
 

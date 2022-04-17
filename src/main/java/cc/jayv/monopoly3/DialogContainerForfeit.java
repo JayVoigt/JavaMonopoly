@@ -6,7 +6,9 @@ import javax.swing.*;
 import java.util.ArrayList;
 
 /**
- * Dialog, Forfeit: An optional dialog that allows the player to forfeit the game under appropriate conditions.
+ * Dialog, Forfeit: An optional dialog that allows the player to forfeit the game under appropriate conditions.<br>
+ *
+ * Provides options for forfeit confirmation and cancelling the action (close the dialog).
  */
 public class DialogContainerForfeit extends DialogContainer {
 

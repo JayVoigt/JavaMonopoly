@@ -4,6 +4,9 @@ import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
 
+/**
+ * A simple dialog that contains a JTextArea for viewing the debug log contents.
+ */
 public class DialogContainerDebugLog extends DialogContainer {
 
     LogHelper logHelper;

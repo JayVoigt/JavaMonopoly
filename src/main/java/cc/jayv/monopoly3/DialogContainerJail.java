@@ -5,6 +5,11 @@ import net.miginfocom.swing.MigLayout;
 import javax.swing.*;
 import java.util.ArrayList;
 
+/**
+ * Dialog, Jail: A mandatory dialog shown when the game rolls over to a jailed player's turn.<br>
+ *
+ * Provides options for posting bail, rolling for doubles, and using a Get Out of Jail Free Card.
+ */
 public class DialogContainerJail extends DialogContainer {
 
     JButton buttonPostBail;

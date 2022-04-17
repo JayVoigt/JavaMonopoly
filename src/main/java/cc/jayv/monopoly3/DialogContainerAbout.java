@@ -6,7 +6,7 @@ import javax.swing.*;
 import java.io.Serializable;
 
 /**
- * Dialog, About:  Provides information about the project.
+ * Dialog, About: Provides information about the project.
  */
 public class DialogContainerAbout extends DialogContainer implements Serializable {
     JLabel logoLabel;

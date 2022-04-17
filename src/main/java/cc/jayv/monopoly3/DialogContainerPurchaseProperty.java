@@ -7,6 +7,12 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ * Dialog, Purchase Property: A mandatory dialog that prompts the user to either purchase or auction
+ * a property they land on.<br>
+ *
+ * Provides options for purchasing and auctioning a property.
+ */
 public class DialogContainerPurchaseProperty extends DialogContainer implements ViewComponent, Serializable {
 
     JTextArea infoArea;
