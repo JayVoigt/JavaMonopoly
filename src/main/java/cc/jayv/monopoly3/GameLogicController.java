@@ -34,6 +34,7 @@ public class GameLogicController implements Serializable {
     LogHelper logHelper;
 
     boolean victoryConditionMet;
+    private final cc.jayv.monopoly3.GDEDC GDEDC = new GDEDC(this, board, currentPlayer);
 
     public GameLogicController(Board inputBoard, LogHelper inputLogHelper) {
         board = inputBoard;
@@ -229,7 +230,7 @@ public class GameLogicController implements Serializable {
     /**
      * Ready the state of the current player to be jailed; jail the player.
      */
-    private void jailPlayer() {
+    void jailPlayer() {
         currentPlayer.setIsJailed(true);
         currentPlayer.setHasRolledDice(true);
         currentPlayer.setActionLockedEndTurn(false);
@@ -293,7 +294,7 @@ public class GameLogicController implements Serializable {
      *                         pass or land on GO.
      * @param movementQuantity The number of spaces to move.
      */
-    private void movementEvaluatorAdvanced(boolean collectGoBonus, int movementQuantity) {
+    protected void movementEvaluatorAdvanced(boolean collectGoBonus, int movementQuantity) {
         logHelper.appendToDebugLog("-> executing movementEvaluatorAdvanced");
         boolean playerPassedGo = currentPlayer.advancePosition(movementQuantity);
 
@@ -328,7 +329,8 @@ public class GameLogicController implements Serializable {
 
         // Draw card
         if (localGameEventType.equals(GameEvent.gameEventTypeKeys.drawCard)) {
-            drawCardEvaluator();
+            GDEDC.updateReferences(board, currentPlayer, currentSpace);
+            GDEDC.drawCardEvaluator();
         }
 
         // Balance update
@@ -368,80 +370,8 @@ public class GameLogicController implements Serializable {
      * <code>DrawCard</code> type.
      */
     private void drawCardEvaluator() {
-        int randomCardID = (int) (Math.random() * board.chanceCards.size());
-        String gameLogDrawPrefix;
 
-        if (Objects.equals(currentSpace.getFriendlyName(), "Chance")) {
-            currentDrawCard = board.chanceCards.get(randomCardID);
-            gameLogDrawPrefix = "The Chance card reads: ";
-        } else {
-            currentDrawCard = board.communityChestCards.get(randomCardID);
-            gameLogDrawPrefix = "The Community Chest card reads: ";
-        }
-
-        appendToGameLog(gameLogDrawPrefix + currentDrawCard.getMessage());
-
-        if (currentDrawCard.getDrawCardType() == DrawCard.DrawCardTypeKeys.TELEPORT) {
-            int forwardMovementQuantity = (currentDrawCard.getDestinationSpace() - currentPlayer.getCurrentPosition());
-            movementEvaluatorAdvanced(true, forwardMovementQuantity);
-        } else if (currentDrawCard.getDrawCardType() == DrawCard.DrawCardTypeKeys.TELEPORT_RELATIVE) {
-            if (currentDrawCard.getDestinationRelativeType().equals(DrawCard.DestinationRelativeTypeKeys.BACK_THREE_SPACES)) {
-
-            }
-            // Advance to the nearest railroad
-            else if (currentDrawCard.getDestinationRelativeType().equals(DrawCard.DestinationRelativeTypeKeys.RAILROAD)) {
-                Railroad destinationRailroad = null;
-                for (Space s : board.spaces) {
-                    if (s.getID() > currentSpace.getID()) {
-                        if (s instanceof Railroad) {
-                            destinationRailroad = (Railroad) currentSpace;
-                        }
-                    }
-                }
-                if (destinationRailroad != null) {
-                    currentPlayer.advancePosition(destinationRailroad.getID() - currentSpace.getID());
-                } else {
-                    currentPlayer.advancePosition(board.spaces.get(5).getID() - currentSpace.getID());
-                }
-            } else if (currentDrawCard.getDestinationRelativeType().equals(DrawCard.DestinationRelativeTypeKeys.UTILITY)) {
-
-            }
-        } else if (currentDrawCard.getDrawCardType() == DrawCard.DrawCardTypeKeys.TELEPORT_WITH_RENT_MODIFIER) {
-
-        } else if (currentDrawCard.getDrawCardType() == DrawCard.DrawCardTypeKeys.BALANCE_UPDATE) {
-            currentPlayer.updateCurrentBalance(currentDrawCard.getQuantity());
-        } else if (currentDrawCard.getDrawCardType() == DrawCard.DrawCardTypeKeys.GET_OUT_OF_JAIL_FREE_CARD) {
-            currentPlayer.setGetOutOfJailFreeCardCount(currentPlayer.getGetOutOfJailFreeCardCount() + 1);
-        } else if (currentDrawCard.getDrawCardType() == DrawCard.DrawCardTypeKeys.JAIL_PLAYER) {
-            jailPlayer();
-        } else if (currentDrawCard.getDrawCardType() == DrawCard.DrawCardTypeKeys.IMPROVEMENT_REPAIRS) {
-            int ownedHouses = 0, ownedHotels = 0;
-            int paymentQuantity;
-
-            for (Space s : board.spaces) {
-                if (s instanceof Color localColor) {
-                    if (currentPlayer.getOwnsPropertyByID(localColor.getID())) {
-                        ownedHouses += localColor.getHouseCount();
-                        ownedHotels += localColor.getHotelCount();
-                    }
-                }
-            }
-
-            paymentQuantity = ((board.getRepairCostHouse() * ownedHouses) + (board.getRepairCostHotel() * ownedHotels));
-
-            if ((ownedHouses + ownedHotels) == 0) {
-                appendToGameLog(currentPlayer.getCustomName() + " owns no improvements."
-                        + " No payment needs to be made.");
-            } else {
-                appendToGameLog(currentPlayer.getCustomName() + " owns " + ownedHouses
-                        + " houses and " + ownedHotels + " hotels. A payment of $" + paymentQuantity
-                        + " is required.");
-
-                currentPlayer.updateCurrentBalance(-1 * paymentQuantity);
-            }
-        } else if (currentDrawCard.getDrawCardType() == DrawCard.DrawCardTypeKeys.DISTRIBUTED_BALANCE_UPDATE) {
-
-        }
+        GDEDC.drawCardEvaluator();
     }
 
     /**
