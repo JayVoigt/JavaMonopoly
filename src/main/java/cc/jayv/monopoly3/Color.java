@@ -154,6 +154,24 @@ public class Color extends Property implements Serializable {
         return 0;
     }
 
+    public String getFriendlyColorGroup() {
+        String groupName = "";
+
+        switch (colorGroup) {
+            case UNSPECIFIED -> groupName = "unspecified";
+            case BROWN -> groupName = "Brown";
+            case LIGHT_BLUE -> groupName = "Light Blue";
+            case MAGENTA -> groupName = "Magenta";
+            case ORANGE -> groupName = "Orange";
+            case RED -> groupName = "Red";
+            case YELLOW -> groupName = "Yellow";
+            case GREEN -> groupName = "Green";
+            case DARK_BLUE -> groupName = "Dark Blue";
+        }
+        
+        return groupName;
+    }
+
 
     // </editor-fold>
 

@@ -135,7 +135,7 @@ public class DialogContainerPurchaseProperty extends DialogContainer implements 
             // Get property type
             if (p instanceof Color c) {
                 // Specify color group
-                propertyType = "Color, " + c.getColorGroup();
+                propertyType = "Color, " + c.getFriendlyColorGroup();
             } else if (p instanceof Railroad) {
                 propertyType = "Railroad";
             } else if (p instanceof Utility) {

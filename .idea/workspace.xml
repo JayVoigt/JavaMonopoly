@@ -7,15 +7,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fe395cf4-00c4-4bef-93b5-8a1f264350fd" name="Changes" comment="updated documentation">
+    <list default="true" id="fe395cf4-00c4-4bef-93b5-8a1f264350fd" name="Changes" comment="updated documentation; updated enum/.csv naming convention">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/GameLogicController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/GameLogicController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/MenuActions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/MenuActions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/Property.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/Property.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/Space.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/Space.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/chanceCards.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/chanceCards.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/communityChestCards.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/communityChestCards.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/spaces.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/spaces.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/Color.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/Color.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DialogContainerPurchaseProperty.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DialogContainerPurchaseProperty.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DynamicView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DynamicView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -263,14 +259,7 @@
       <workItem from="1650213221651" duration="1665000" />
       <workItem from="1650214946151" duration="599000" />
       <workItem from="1650215558780" duration="127000" />
-      <workItem from="1650215697577" duration="3147000" />
-    </task>
-    <task id="LOCAL-00042" summary="updated inline documentation for BoardFrame">
-      <created>1649555172799</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1649555172799</updated>
+      <workItem from="1650215697577" duration="4195000" />
     </task>
     <task id="LOCAL-00043" summary="added very basic player indicator placement code">
       <created>1649641660567</created>
@@ -608,7 +597,14 @@
       <option name="project" value="LOCAL" />
       <updated>1650218215922</updated>
     </task>
-    <option name="localTasksCounter" value="91" />
+    <task id="LOCAL-00091" summary="updated documentation; updated enum/.csv naming convention">
+      <created>1650219056201</created>
+      <option name="number" value="00091" />
+      <option name="presentableId" value="LOCAL-00091" />
+      <option name="project" value="LOCAL" />
+      <updated>1650219056201</updated>
+    </task>
+    <option name="localTasksCounter" value="92" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -639,7 +635,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="property mortgages now working" />
     <MESSAGE value="improved appearance of ViewFrameInformationModule" />
     <MESSAGE value="general checkpoint; experimenting with serialized game state and mortgaged property appearance" />
     <MESSAGE value="asset view for property groups working; added art assets" />
@@ -664,7 +659,8 @@
     <MESSAGE value="experimenting with IDE cleanup tools" />
     <MESSAGE value="cleaning up code; improved documentation; added IntelliJ JavaDoc" />
     <MESSAGE value="updated documentation" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated documentation" />
+    <MESSAGE value="updated documentation; updated enum/.csv naming convention" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated documentation; updated enum/.csv naming convention" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -4,7 +4,6 @@ import com.formdev.flatlaf.FlatLightLaf;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,6 +20,7 @@ public class DynamicView implements Serializable {
 
     // Reference variables
     static int currentSpaceButtonSelection;
+
     // Core components - GUI
     JFrame mainFrame;
     ViewFrameBoard viewFrameBoard;
@@ -28,11 +28,13 @@ public class DynamicView implements Serializable {
     ViewFrameInformation viewFrameInformation;
     ArrayList<ViewFrameBoard.SpaceButton> spaceButtons;
     ArrayList<ButtonActionListener> buttonActionListeners;
+
     // Core components - logic and control
     GameLogicSwitchboard switchboard;
     GameLogicController controller;
     Board board;
     LogHelper logHelper;
+
     // Dialog containers
     DialogContainerGameEditor dialogContainerGameEditor;
     DialogContainerImprovements dialogContainerImprovements;
@@ -43,6 +45,7 @@ public class DynamicView implements Serializable {
     DialogContainerForfeit dialogContainerForfeit;
     DialogContainerDebugLog dialogContainerDebugLog;
     GameEditorController gameEditorController;
+
     // Dialogs
     JDialog dialogJail;
     JDialog dialogPurchaseProperty;
@@ -53,18 +56,18 @@ public class DynamicView implements Serializable {
     JDialog dialogMortgage;
     JDialog dialogForfeit;
     JDialog dialogDebugLog;
+
     // Root-level menus
     JMenuBar menuBar;
     JMenu menuFile;
     JMenu menuEdit;
     JMenu menuView;
     JMenu menuMacros;
-    Border spaceSelectionBorder;
+
+    // Other
     Timer partyModeTimer;
     MacroController macroController;
     Player currentPlayer;
-
-    // Objects required to be class-wide for serialization
     int playerCount;
     ArrayList<String> playerCustomNames;
 
@@ -110,12 +113,13 @@ public class DynamicView implements Serializable {
         mainFrame.pack();
         mainFrame.setVisible(true);
 
-        spaceSelectionBorder = SwingHelper.createBorderStyleHighlight(java.awt.Color.MAGENTA, true);
-
         initDialogs();
-
     }
 
+    /**
+     * Update the view in accordance with the current game state.<br>
+     * Calls several methods which update specific parts of the interface.
+     */
     public void update() {
         currentPlayer = board.players.get(board.getCurrentPlayerID());
         currentPlayer.evaluateState();
@@ -138,21 +142,23 @@ public class DynamicView implements Serializable {
         }
     }
 
+    /**
+     * Update state for mandatory dialogs.
+     */
     private void updateGuiMandatoryDialogs() {
-
         // Jail
         if (!currentPlayer.getInitialJailTurn() && currentPlayer.getIsJailed()) {
             dialogContainerJail.update(board, currentPlayer);
-            showDialog(dialogJail, true);
+            updateDialogAppearance(dialogJail, true);
         } else {
-            showDialog(dialogJail, false);
+            updateDialogAppearance(dialogJail, false);
         }
 
         // Purchase decision
         if (currentPlayer.getRequiredDecisionPropertyAction()) {
             dialogContainerPurchaseProperty.update(board, currentPlayer.getCurrentPosition());
         }
-        showDialog(dialogPurchaseProperty, currentPlayer.getRequiredDecisionPropertyAction());
+        updateDialogAppearance(dialogPurchaseProperty, currentPlayer.getRequiredDecisionPropertyAction());
 
         // Disable control buttons when mandatory action dialogs visible
         // IDE-suggested code
@@ -163,6 +169,9 @@ public class DynamicView implements Serializable {
         }
     }
 
+    /**
+     * Update state for optional dialogs.
+     */
     private void updateGuiOptionalDialogs() {
         if (dialogImprovements.isVisible()) {
             dialogContainerImprovements.update(board, currentPlayer, currentSpaceButtonSelection, controller);
@@ -177,28 +186,37 @@ public class DynamicView implements Serializable {
         }
     }
 
+    /**
+     * Show the corresponding prompt for a given action.
+     * @param action The action that corresponds to a dialog.
+     */
     private void updatePrompt(Actions action) {
         switch (action) {
-            case CONTROLS_SHOW_IMPROVEMENTS -> showDialog(dialogImprovements);
-            case CONTROLS_SHOW_MORTGAGE -> showDialog(dialogMortgage);
-            case GAME_SHOW_JAIL -> showDialog(dialogJail);
-            case GAME_SHOW_PURCHASE -> showDialog(dialogPurchaseProperty);
-            case CONTROLS_SHOW_FORFEIT -> showDialog(dialogForfeit);
+            case CONTROLS_SHOW_IMPROVEMENTS -> updateDialogAppearance(dialogImprovements);
+            case CONTROLS_SHOW_MORTGAGE -> updateDialogAppearance(dialogMortgage);
+            case GAME_SHOW_JAIL -> updateDialogAppearance(dialogJail);
+            case GAME_SHOW_PURCHASE -> updateDialogAppearance(dialogPurchaseProperty);
+            case CONTROLS_SHOW_FORFEIT -> updateDialogAppearance(dialogForfeit);
         }
 
         update();
     }
 
-    private void disableControlButtons() {
-        viewFrameControl.setStateOfActionButton(Actions.CONTROLS_ENDTURN, false);
-        viewFrameControl.setStateOfActionButton(Actions.CONTROLS_ROLLDICE, false);
+    /**
+     * Show the given dialog.
+     * @param dialog The dialog to be shown to the user.
+     */
+    private void updateDialogAppearance(JDialog dialog) {
+        updateDialogAppearance(dialog, true);
     }
 
-    private void showDialog(JDialog dialog) {
-        showDialog(dialog, true);
-    }
-
-    private void showDialog(JDialog dialog, boolean visible) {
+    /**
+     * Show or hide the given dialog. If shown, automatically sets the dialog to be always on top,
+     * and sets its position relative to the main game window.
+     * @param dialog The dialog whose visibility will be set.
+     * @param visible The visibility for the dialog.
+     */
+    private void updateDialogAppearance(JDialog dialog, boolean visible) {
         if (visible) {
             dialog.setLocationRelativeTo(viewFrameBoard.getInternalFrame());
             dialog.setAlwaysOnTop(true);
@@ -208,6 +226,18 @@ public class DynamicView implements Serializable {
         }
     }
 
+    /**
+     * Disable roll dice and end turn control buttons.
+     */
+    private void disableControlButtons() {
+        viewFrameControl.setStateOfActionButton(Actions.CONTROLS_ENDTURN, false);
+        viewFrameControl.setStateOfActionButton(Actions.CONTROLS_ROLLDICE, false);
+    }
+
+
+    /**
+     * Initialize GUI components.
+     */
     private void initGUIComponents() {
 
         ArrayList<SpaceButtonActionListener> SpaceButtonActionListeners = new ArrayList<>();
@@ -224,6 +254,9 @@ public class DynamicView implements Serializable {
         viewFrameInformation = new ViewFrameInformation(board);
     }
 
+    /**
+     * Initialize the menu bar and its items.
+     */
     private void initMenuBar() {
         menuBar = new JMenuBar();
 
@@ -332,14 +365,17 @@ public class DynamicView implements Serializable {
         }
     }
 
+    /**
+     * Initialize the control frame shown in the game view.
+     */
     private void initControlFrame() {
         viewFrameControl.initButtons(buttonActionListeners);
     }
 
+    /**
+     * Initialize dialog containers and attach DynamicView references to their corresponding JDialog objects.
+     */
     private void initDialogs() {
-        TemplateDialogGenerator templateDialog;
-        ArrayList<TemplateDialogButtonProperties> templateDialogButtonPropertiesList = new ArrayList<>();
-
         // About
         dialogAbout = new DialogContainerAbout().getDialog();
 
@@ -413,6 +449,9 @@ public class DynamicView implements Serializable {
         update();
     }
 
+    /**
+     * Reset the appearance of all space buttons within the board view.
+     */
     private void resetSpaceButtonAppearance() {
         partyModeTimer.stop();
         for (ViewFrameBoard.SpaceButton s : spaceButtons) {
@@ -420,6 +459,9 @@ public class DynamicView implements Serializable {
         }
     }
 
+    /**
+     * Party!
+     */
     private void partyVisuals() {
         class SpaceButtonPartyListener implements ActionListener {
             int startID;
@@ -455,6 +497,9 @@ public class DynamicView implements Serializable {
         partyModeTimer.start();
     }
 
+    /**
+     * Exit the application.
+     */
     private void quitManager() {
         System.exit(0);
     }
@@ -495,8 +540,11 @@ public class DynamicView implements Serializable {
         }
     }
 
+    /**
+     * Generic ActionListener class for buttons. Effectively forces each button to have an Action that
+     * can be referenced later.
+     */
     public class ButtonActionListener implements ActionListener, Serializable {
-
         Actions action;
         boolean needsPrompt;
 
@@ -530,6 +578,9 @@ public class DynamicView implements Serializable {
         }
     }
 
+    /**
+     * ActionListener class for space buttons within the board view.
+     */
     public class SpaceButtonActionListener implements ActionListener {
 
         int id;
@@ -546,6 +597,9 @@ public class DynamicView implements Serializable {
 
     }
 
+    /**
+     * Special ActionListener class for starting the game.
+     */
     public class StartGameButtonActionListener implements ActionListener, Serializable {
 
         @Override
@@ -565,6 +619,9 @@ public class DynamicView implements Serializable {
 
     }
 
+    /**
+     * ActionListener class for GameEditor actions. Communicates with a GameEditorControl object directly.
+     */
     public class GameEditorActionListener implements ActionListener {
 
         GameEditorActions action;
@@ -597,6 +654,9 @@ public class DynamicView implements Serializable {
         }
     }
 
+    /**
+     * ActionListener class for items in the menu bar.
+     */
     private class MenuActionListener implements ActionListener {
 
         MenuActions action;
@@ -608,15 +668,15 @@ public class DynamicView implements Serializable {
         @Override
         public void actionPerformed(ActionEvent e) {
             switch (action) {
-                case FILE_NEW_GAME -> showDialog(dialogStartGame);
+                case FILE_NEW_GAME -> updateDialogAppearance(dialogStartGame);
                 case FILE_QUIT -> quitManager();
                 case EDIT_GAME_EDITOR -> {
-                    showDialog(dialogGameEditor);
+                    updateDialogAppearance(dialogGameEditor);
                     logHelper.appendToGameLog("Game editor was opened!");
                     update();
                 }
-                case VIEW_ABOUT -> showDialog(dialogAbout);
-                case VIEW_DEBUG_LOG -> showDialog(dialogDebugLog);
+                case VIEW_ABOUT -> updateDialogAppearance(dialogAbout);
+                case VIEW_DEBUG_LOG -> updateDialogAppearance(dialogDebugLog);
             }
         }
     }
