@@ -7,12 +7,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fe395cf4-00c4-4bef-93b5-8a1f264350fd" name="Changes" comment="refactoring draw card logic">
+    <list default="true" id="fe395cf4-00c4-4bef-93b5-8a1f264350fd" name="Changes" comment="fixed railroad rent evaluation bug">
+      <change afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/GameLogicManagerImprovements.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/GameLogicModule.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/Board.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DynamicView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DynamicView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/GameEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/GameEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/GameLogicController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/GameLogicController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/GameLogicEvaluatorDrawCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/GameLogicEvaluatorDrawCard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/spaces.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/spaces.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -260,14 +263,7 @@
       <workItem from="1650213221651" duration="1665000" />
       <workItem from="1650214946151" duration="599000" />
       <workItem from="1650215558780" duration="127000" />
-      <workItem from="1650215697577" duration="9122000" />
-    </task>
-    <task id="LOCAL-00048" summary="added improved property purchase dialog">
-      <created>1649716248325</created>
-      <option name="number" value="00048" />
-      <option name="presentableId" value="LOCAL-00048" />
-      <option name="project" value="LOCAL" />
-      <updated>1649716248325</updated>
+      <workItem from="1650215697577" duration="10641000" />
     </task>
     <task id="LOCAL-00049" summary="updated PropertyPurchaseDialog">
       <created>1649716852401</created>
@@ -605,7 +601,14 @@
       <option name="project" value="LOCAL" />
       <updated>1650222878119</updated>
     </task>
-    <option name="localTasksCounter" value="97" />
+    <task id="LOCAL-00097" summary="fixed railroad rent evaluation bug">
+      <created>1650225082432</created>
+      <option name="number" value="00097" />
+      <option name="presentableId" value="LOCAL-00097" />
+      <option name="project" value="LOCAL" />
+      <updated>1650225082432</updated>
+    </task>
+    <option name="localTasksCounter" value="98" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -636,7 +639,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="fancier party mode working" />
     <MESSAGE value="improved fancier party mode" />
     <MESSAGE value="experimenting with auction GUI" />
     <MESSAGE value="updated spectrum button dynamics; added reset option; using lambda expressions for some ActionListener events" />
@@ -661,7 +663,8 @@
     <MESSAGE value="fixed bug where players could purchase property from within jail under special conditions" />
     <MESSAGE value="experimenting with splitting game logic into several classes; DrawCard logic seems to be working" />
     <MESSAGE value="refactoring draw card logic" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactoring draw card logic" />
+    <MESSAGE value="fixed railroad rent evaluation bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed railroad rent evaluation bug" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -688,12 +691,12 @@
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/GameLogicController.java</url>
-          <line>557</line>
+          <line>532</line>
           <option name="timeStamp" value="54" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/GameLogicController.java</url>
-          <line>572</line>
+          <line>547</line>
           <option name="timeStamp" value="55" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">

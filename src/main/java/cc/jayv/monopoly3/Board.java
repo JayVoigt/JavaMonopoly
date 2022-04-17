@@ -81,7 +81,7 @@ public class Board implements Serializable {
                 propertyAttributes.put("hotelCost", parseIntHandler(configLine[14]));
 
                 if (localSpaceType.equals("gameEvent")) {
-                    spaces.add(localID, new GameEvent(GameEvent.gameEventTypeKeys.valueOf(localPropertyType), localID, localFriendlyName));
+                    spaces.add(localID, new GameEvent(GameEvent.GameEventTypeKeys.valueOf(localPropertyType), localID, localFriendlyName));
                 } else if (localSpaceType.equals("property")) {
 
                     switch (localPropertyType) {
@@ -393,13 +393,12 @@ public class Board implements Serializable {
                 // This logic depends on the execution of updateColorPropertyOwnershipRelationships
                 if (spacesByColorGroup.get(0).getIsFullSetOwned()) {
                     for (int i = 0; i < spacesByColorGroup.size(); i++) {
-
+                        // need to implement
                     }
                 }    // end if
             }    // end if
 
         }    // end for
-
     }
 
     /**

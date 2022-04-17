@@ -2,7 +2,6 @@ package cc.jayv.monopoly3;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Objects;
 
 /**
  * Controls game logic and updates data within the Board accordingly.
@@ -11,6 +10,7 @@ import java.util.Objects;
  */
 public class GameLogicController implements Serializable {
 
+    private final GameLogicManagerImprovements gameLogicManagerImprovements = new GameLogicManagerImprovements(this);
     Board board;
 
     Player currentPlayer;
@@ -19,8 +19,6 @@ public class GameLogicController implements Serializable {
     Space currentSpace;
     GameEvent currentGameEvent;
     Property currentProperty;
-
-    DrawCard currentDrawCard;
 
     boolean isGameActive;
 
@@ -34,7 +32,7 @@ public class GameLogicController implements Serializable {
     LogHelper logHelper;
 
     boolean victoryConditionMet;
-    private final GameLogicEvaluatorDrawCard GameLogicEvaluatorDrawCard = new GameLogicEvaluatorDrawCard(this, board, currentPlayer);
+    private final GameLogicEvaluatorDrawCard GameLogicEvaluatorDrawCard = new GameLogicEvaluatorDrawCard();
 
     public GameLogicController(Board inputBoard, LogHelper inputLogHelper) {
         board = inputBoard;
@@ -325,53 +323,30 @@ public class GameLogicController implements Serializable {
         logHelper.appendToDebugLog("-> executing gameEventEvaluator");
 
         currentGameEvent = (GameEvent) currentSpace;
-        GameEvent.gameEventTypeKeys localGameEventType = currentGameEvent.getGameEventType();
+        GameEvent.GameEventTypeKeys localGameEventType = currentGameEvent.getGameEventType();
 
-        // Draw card
-        if (localGameEventType.equals(GameEvent.gameEventTypeKeys.drawCard)) {
-            GameLogicEvaluatorDrawCard.updateReferences(board, currentPlayer, currentSpace);
-            GameLogicEvaluatorDrawCard.drawCardEvaluator();
-        }
-
-        // Balance update
-        else if (localGameEventType.equals(GameEvent.gameEventTypeKeys.updateBalance)) {
-
-        }
-
-        // Teleport
-        else if (localGameEventType.equals(GameEvent.gameEventTypeKeys.teleport)) {
-
-        }
-
-        // Jail player
-        else if (localGameEventType.equals(GameEvent.gameEventTypeKeys.jailPlayer)) {
-            jailPlayer();
-        }
-
-        // Tax
-        else if (localGameEventType.equals(GameEvent.gameEventTypeKeys.tax)) {
-            // Using 2008 Monopoly rules that exclude 10% option
-            if (currentGameEvent.getFriendlyName().contains("Income")) {
-                appendToGameLog(currentPlayer.getCustomName() + " has paid $200 in Income Tax.");
-                currentPlayer.updateCurrentBalance(-200);
+        switch (localGameEventType) {
+            case DRAW_CARD ->  {
+                GameLogicEvaluatorDrawCard.attachReferences(board, this, currentSpace, currentPlayer);
+                GameLogicEvaluatorDrawCard.drawCardEvaluator();
             }
 
-            // Luxury Tax is the only other tax GameEvent
-            else {
-                appendToGameLog(currentPlayer.getCustomName() + " has paid $100 in Luxury Tax.");
-                currentPlayer.updateCurrentBalance(-100);
+            case JAIL_PLAYER -> jailPlayer();
+
+            case TAX -> {
+                if (currentGameEvent.getFriendlyName().contains("Income")) {
+                    appendToGameLog(currentPlayer.getCustomName() + " has paid $200 in Income Tax.");
+                    currentPlayer.updateCurrentBalance(-200);
+                }
+
+                // Luxury Tax is the only other tax GameEvent
+                else {
+                    appendToGameLog(currentPlayer.getCustomName() + " has paid $100 in Luxury Tax.");
+                    currentPlayer.updateCurrentBalance(-100);
+                }
             }
         }
         maeStateEvaluator();
-    }
-
-    /**
-     * Evaluator which executes when the landed space is of
-     * <code>DrawCard</code> type.
-     */
-    private void drawCardEvaluator() {
-
-        GameLogicEvaluatorDrawCard.drawCardEvaluator();
     }
 
     /**
@@ -616,75 +591,8 @@ public class GameLogicController implements Serializable {
     }
 
     public void improvementsManager(int spaceID, ImprovementsActions inputAction) {
-        Space localSpace = board.spaces.get(spaceID);
-        Color localColor = null;
-
-        if (localSpace instanceof Color) {
-            localColor = (Color) localSpace;
-        } else {
-            System.err.println("Improvements: property not Color.");
-        }
-
-        // Build house
-        if (inputAction.equals(ImprovementsActions.BUILD_HOUSE)) {
-            if (Objects.requireNonNull(localColor).getIsEligibleForImprovements()) {
-                // Maximum houses on space
-                if (localColor.getHouseCount() == 4) {
-                    appendToGameLog(localColor.getFriendlyName() + " already has the maximum number of houses.");
-                } else if (localColor.getHotelCount() == 1) {
-                    appendToGameLog(localColor.getFriendlyName() + " cannot have "
-                            + "houses constructed when a hotel is already present.");
-                } else if (currentPlayer.getCurrentBalance() >= localColor.getHouseCost()) {
-                    if (board.getBankHouseCount() > 0) {
-                        localColor.buildHouse();
-
-                        // Debit player
-                        currentPlayer.updateCurrentBalance(-1 * localColor.getHouseCost());
-                    } else {
-                        appendToGameLog("There are no available houses to purchase from the Bank.");
-                    }
-                } else {
-                    appendToGameLog("You do not have sufficient funds to construct "
-                            + "a house on this property.");
-                }
-
-            }
-        }
-
-        // Sell house
-        else if (inputAction.equals(ImprovementsActions.SELL_HOUSE)) {
-            if (Objects.requireNonNull(localColor).getHouseCount() > 0) {
-                localColor.sellHouse();
-                currentPlayer.updateCurrentBalance((int) (localColor.getHouseCost() * 0.5));
-            } else {
-                appendToGameLog(localColor.getFriendlyName() + " does not have any houses to sell.");
-            }
-        }
-
-        // Build hotel
-        else if (inputAction.equals(ImprovementsActions.BUILD_HOTEL)) {
-            if (Objects.requireNonNull(localColor).getIsEligibleForImprovements()) {
-                if (localColor.getHouseCount() == 4) {
-                    localColor.buildHotel();
-                } else {
-                    appendToGameLog(localColor.getFriendlyName() + " does not have enough houses "
-                            + "for a hotel to be constructed.");
-                }
-            } else {
-                appendToGameLog("You do not have sufficient funds to construct "
-                        + "a hotel on this property.");
-            }
-        }
-
-        // Sell hotel
-        else if (inputAction.equals(ImprovementsActions.SELL_HOTEL)) {
-            if (Objects.requireNonNull(localColor).getHotelCount() > 0) {
-                localColor.sellHotel();
-                currentPlayer.updateCurrentBalance((int) (localColor.getHotelCost() * 0.5));
-            } else {
-                appendToGameLog(localColor.getFriendlyName() + " does not have any hotels to sell.");
-            }
-        }
+        gameLogicManagerImprovements.attachReferences(board, this, currentSpace, currentPlayer);
+        gameLogicManagerImprovements.improvementsManager(spaceID, inputAction);
     }
 
     public void mortgageProperty(int spaceID, MortgageActions inputAction) {

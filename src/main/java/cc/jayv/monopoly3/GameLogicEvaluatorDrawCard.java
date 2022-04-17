@@ -3,24 +3,10 @@ package cc.jayv.monopoly3;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class GameLogicEvaluatorDrawCard implements Serializable {
-    Board board;
-    Player currentPlayer;
-    Space currentSpace;
+public class GameLogicEvaluatorDrawCard extends GameLogicModule implements Serializable {
     DrawCard currentDrawCard;
 
-    private final GameLogicController gameLogicController;
-
-    public void updateReferences(Board board, Player currentPlayer, Space currentSpace) {
-        this.board = board;
-        this.currentPlayer = currentPlayer;
-        this.currentSpace = currentSpace;
-    }
-
-    public GameLogicEvaluatorDrawCard(GameLogicController gameLogicController, Board board, Player currentPlayer) {
-        this.gameLogicController = gameLogicController;
-        this.board = board;
-        this.currentPlayer = currentPlayer;
+    public GameLogicEvaluatorDrawCard() {
     }
 
     /**
@@ -39,19 +25,19 @@ public class GameLogicEvaluatorDrawCard implements Serializable {
             gameLogDrawPrefix = "The Community Chest card reads: ";
         }
 
-        gameLogicController.appendToGameLog(gameLogDrawPrefix + currentDrawCard.getMessage());
+        controller.appendToGameLog(gameLogDrawPrefix + currentDrawCard.getMessage());
 
         switch (currentDrawCard.getDrawCardType()) {
             case TELEPORT -> {
                 int forwardMovementQuantity = (currentDrawCard.getDestinationSpace() - currentPlayer.getCurrentPosition());
-                gameLogicController.movementEvaluatorAdvanced(true, forwardMovementQuantity);
+                controller.movementEvaluatorAdvanced(true, forwardMovementQuantity);
             }
             case TELEPORT_RELATIVE -> eventTeleportRelative();
             case TELEPORT_WITH_RENT_MODIFIER -> eventTeleportWithRentModifier();
             case IMPROVEMENT_REPAIRS -> eventImprovementRepairs();
             case BALANCE_UPDATE -> currentPlayer.updateCurrentBalance(currentDrawCard.getQuantity());
             case GET_OUT_OF_JAIL_FREE_CARD -> currentPlayer.setGetOutOfJailFreeCardCount(currentPlayer.getGetOutOfJailFreeCardCount() + 1);
-            case JAIL_PLAYER -> gameLogicController.jailPlayer();
+            case JAIL_PLAYER -> controller.jailPlayer();
             case DISTRIBUTED_BALANCE_UPDATE -> eventDistributedBalanceUpdate();
         }
 
@@ -74,10 +60,10 @@ public class GameLogicEvaluatorDrawCard implements Serializable {
         paymentQuantity = ((board.getRepairCostHouse() * ownedHouses) + (board.getRepairCostHotel() * ownedHotels));
 
         if ((ownedHouses + ownedHotels) == 0) {
-            gameLogicController.appendToGameLog(currentPlayer.getCustomName() + " owns no improvements."
+            controller.appendToGameLog(currentPlayer.getCustomName() + " owns no improvements."
                     + " No payment needs to be made.");
         } else {
-            gameLogicController.appendToGameLog(currentPlayer.getCustomName() + " owns " + ownedHouses
+            controller.appendToGameLog(currentPlayer.getCustomName() + " owns " + ownedHouses
                     + " houses and " + ownedHotels + " hotels. A payment of $" + paymentQuantity
                     + " is required.");
 
@@ -92,26 +78,26 @@ public class GameLogicEvaluatorDrawCard implements Serializable {
         // Hacky solution, really not ideal
         if (currentDrawCard.getMessage().contains("Chairman")) {
             for (Player p : board.players) {
-                if (p.getIsActive()) {
-                    gameLogicController.appendToGameLog(p.getCustomName() + " has been paid $50.");
+                if (p.getIsActive() && (p.getPlayerID() != currentPlayer.getPlayerID())) {
+                    controller.appendToGameLog(p.getCustomName() + " has been paid $50.");
                     p.updateCurrentBalance(50);
                     distributionCount++;
                 }
             }
 
-            gameLogicController.appendToGameLog(currentPlayer.getCustomName() + " has paid a total of " + distributionCount * 50 + " to all other players..");
+            controller.appendToGameLog(currentPlayer.getCustomName() + " has paid a total of $" + distributionCount * 50 + " to all other players.");
             currentPlayer.updateCurrentBalance(distributionCount * -50);
         }
         else {
             for (Player p : board.players) {
-                if (p.getIsActive()) {
-                    gameLogicController.appendToGameLog(p.getCustomName() + " has paid $10 to " + currentPlayer.getCustomName() + ".");
+                if (p.getIsActive() && (p.getPlayerID() != currentPlayer.getPlayerID())) {
+                    controller.appendToGameLog(p.getCustomName() + " has paid $10 to " + currentPlayer.getCustomName() + ".");
                     p.updateCurrentBalance(-10);
                     distributionCount++;
                 }
             }
 
-            gameLogicController.appendToGameLog(currentPlayer.getCustomName() + " has received a total of " + distributionCount * 10 + " from all other players.");
+            controller.appendToGameLog(currentPlayer.getCustomName() + " has received a total of $" + distributionCount * 10 + " from all other players.");
             currentPlayer.updateCurrentBalance(distributionCount * 10);
         }
     }

@@ -7,16 +7,16 @@ import java.io.Serializable;
  */
 public class GameEvent extends Space implements Serializable {
 
-    gameEventTypeKeys gameEventType;
+    GameEventTypeKeys gameEventType;
 
     /**
      * Parameterized constructor
      *
-     * @param inputGameEventType
-     * @param inputSpaceID
-     * @param inputFriendlyName
+     * @param inputGameEventType The type of game event that landing on this space will trigger.
+     * @param inputSpaceID The ID of the game event space.
+     * @param inputFriendlyName The friendly name of the space.
      */
-    GameEvent(gameEventTypeKeys inputGameEventType, int inputSpaceID, String inputFriendlyName) {
+    GameEvent(GameEventTypeKeys inputGameEventType, int inputSpaceID, String inputFriendlyName) {
         id = inputSpaceID;
         friendlyName = inputFriendlyName;
 
@@ -24,28 +24,22 @@ public class GameEvent extends Space implements Serializable {
         gameEventType = inputGameEventType;
     }
 
-    // <editor-fold defaultstate="collapsed" desc="Setters and getters">
-    public gameEventTypeKeys getGameEventType() {
+    public GameEventTypeKeys getGameEventType() {
         return gameEventType;
-    }
-
-    public void setGameEventType(gameEventTypeKeys inputGameEventType) {
-        gameEventType = inputGameEventType;
     }
 
     /**
      * The type of GameEvent that describes this object.<br>
      * The default value is <code>unspecified</code>.
      */
-    public enum gameEventTypeKeys {
-        unspecified,
-        drawCard,
-        updateBalance,
-        teleport,
-        jailPlayer,
-        tax,
-        jail,
-        freeParking
+    public enum GameEventTypeKeys {
+        UNSPECIFIED,
+        DRAW_CARD,
+        UPDATE_BALANCE,
+        TELEPORT,
+        JAIL_PLAYER,
+        TAX,
+        JAIL_SPACE,
+        FREE_PARKING
     }
-    // </editor-fold>
 }
