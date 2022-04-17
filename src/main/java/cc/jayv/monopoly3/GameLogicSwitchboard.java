@@ -31,13 +31,13 @@ public class GameLogicSwitchboard implements Serializable {
             case CONTROLS_ROLLDICE -> c.diceRollManager();
 
             case IMPROVEMENTS_BUILD_HOUSE ->
-                    c.improvementsManager(currentSpaceSelectionID, GameLogicController.ImprovementsActions.buildHouse);
+                    c.improvementsManager(currentSpaceSelectionID, GameLogicController.ImprovementsActions.BUILD_HOUSE);
             case IMPROVEMENTS_BUILD_HOTEL ->
-                    c.improvementsManager(currentSpaceSelectionID, GameLogicController.ImprovementsActions.buildHotel);
+                    c.improvementsManager(currentSpaceSelectionID, GameLogicController.ImprovementsActions.BUILD_HOTEL);
             case IMPROVEMENTS_SELL_HOUSE ->
-                    c.improvementsManager(currentSpaceSelectionID, GameLogicController.ImprovementsActions.sellHouse);
+                    c.improvementsManager(currentSpaceSelectionID, GameLogicController.ImprovementsActions.SELL_HOUSE);
             case IMPROVEMENTS_SELL_HOTEL ->
-                    c.improvementsManager(currentSpaceSelectionID, GameLogicController.ImprovementsActions.sellHotel);
+                    c.improvementsManager(currentSpaceSelectionID, GameLogicController.ImprovementsActions.SELL_HOTEL);
 
             case JAIL_POSTBAIL -> c.playerDecisionJailPostBail();
             case JAIL_ROLLDOUBLES -> c.playerDecisionJailRollDoubles();

@@ -35,7 +35,6 @@ public class GameLogicController implements Serializable {
 
     boolean victoryConditionMet;
 
-    // <editor-fold desc="Constructor">
     public GameLogicController(Board inputBoard, LogHelper inputLogHelper) {
         board = inputBoard;
         logHelper = inputLogHelper;
@@ -47,10 +46,6 @@ public class GameLogicController implements Serializable {
     }
 
     // <editor-fold desc="Setters and getters">
-    public int getTurnCounter() {
-        return turnCounter;
-    }
-
     public boolean getIsGameActive() {
         return isGameActive;
     }
@@ -63,10 +58,6 @@ public class GameLogicController implements Serializable {
         playersCount = input;
     }
 
-    public void setExtraTextPadding(boolean input) {
-        useExtraTextPadding = input;
-    }
-
     public void setPlayerCanBuildImprovements(boolean input) {
         playerCanBuildImprovements = input;
     }
@@ -74,7 +65,6 @@ public class GameLogicController implements Serializable {
     public boolean getIsVictoryConditionMet() {
         return victoryConditionMet;
     }
-    // </editor-fold>
 
     /**
      * Append the input to the game log as a formatted line.<br>
@@ -247,6 +237,11 @@ public class GameLogicController implements Serializable {
         currentPlayer.setInitialJailTurn(true);
     }
 
+    /**
+     * Ready the state of the current player to be jailed; jail the player.<br>
+     * Jailing a player through the Game Editor requires the special condition that
+     * "initialJailTurn" must be false.
+     */
     public void gameEditorJailPlayer(Player player) {
         player.setIsJailed(true);
         player.setHasRolledDice(true);
@@ -519,18 +514,25 @@ public class GameLogicController implements Serializable {
         currentPlayer.setMadeDecisionPropertyAction(true);
         currentPlayer.setResultDecisionPropertyAction(true);
 
-        if (currentPlayer.getCurrentBalance() >= currentProperty.getPurchaseCost()) {
-            currentProperty.setIsOwned(true);
-            currentProperty.setOwnerID(currentPlayer.getPlayerID());
+        if (!currentPlayer.getIsJailed()) {
+            if (currentPlayer.getCurrentBalance() >= currentProperty.getPurchaseCost()) {
+                currentProperty.setIsOwned(true);
+                currentProperty.setOwnerID(currentPlayer.getPlayerID());
 
-            currentPlayer.updateCurrentBalance(-1 * currentProperty.getPurchaseCost());
-            currentPlayer.setPropertyOwnedState(true, currentProperty.getID());
+                currentPlayer.updateCurrentBalance(-1 * currentProperty.getPurchaseCost());
+                currentPlayer.setPropertyOwnedState(true, currentProperty.getID());
 
+                currentPlayer.setRequiredDecisionPropertyAction(false);
+                currentPlayer.setMadeDecisionPropertyAction(true);
+                appendToGameLog(currentPlayer.getCustomName() + " has purchased " + currentProperty.getFriendlyName() + " for $" + currentProperty.getPurchaseCost() + ".");
+            } else {
+                appendToGameLog(currentPlayer.getCustomName() + " cannot afford to purchase " + currentSpace.getFriendlyName() + ".");
+            }
+        }
+        else {
+            appendToGameLog("You cannot purchase property from within jail!");
             currentPlayer.setRequiredDecisionPropertyAction(false);
             currentPlayer.setMadeDecisionPropertyAction(true);
-            appendToGameLog(currentPlayer.getCustomName() + " has purchased " + currentProperty.getFriendlyName() + " for $" + currentProperty.getPurchaseCost() + ".");
-        } else {
-            appendToGameLog(currentPlayer.getCustomName() + " cannot afford to purchase " + currentSpace.getFriendlyName() + ".");
         }
     }
 
@@ -694,7 +696,7 @@ public class GameLogicController implements Serializable {
         }
 
         // Build house
-        if (inputAction.equals(ImprovementsActions.buildHouse)) {
+        if (inputAction.equals(ImprovementsActions.BUILD_HOUSE)) {
             if (Objects.requireNonNull(localColor).getIsEligibleForImprovements()) {
                 // Maximum houses on space
                 if (localColor.getHouseCount() == 4) {
@@ -720,7 +722,7 @@ public class GameLogicController implements Serializable {
         }
 
         // Sell house
-        else if (inputAction.equals(ImprovementsActions.sellHouse)) {
+        else if (inputAction.equals(ImprovementsActions.SELL_HOUSE)) {
             if (Objects.requireNonNull(localColor).getHouseCount() > 0) {
                 localColor.sellHouse();
                 currentPlayer.updateCurrentBalance((int) (localColor.getHouseCost() * 0.5));
@@ -730,7 +732,7 @@ public class GameLogicController implements Serializable {
         }
 
         // Build hotel
-        else if (inputAction.equals(ImprovementsActions.buildHotel)) {
+        else if (inputAction.equals(ImprovementsActions.BUILD_HOTEL)) {
             if (Objects.requireNonNull(localColor).getIsEligibleForImprovements()) {
                 if (localColor.getHouseCount() == 4) {
                     localColor.buildHotel();
@@ -745,7 +747,7 @@ public class GameLogicController implements Serializable {
         }
 
         // Sell hotel
-        else if (inputAction.equals(ImprovementsActions.sellHotel)) {
+        else if (inputAction.equals(ImprovementsActions.SELL_HOTEL)) {
             if (Objects.requireNonNull(localColor).getHotelCount() > 0) {
                 localColor.sellHotel();
                 currentPlayer.updateCurrentBalance((int) (localColor.getHotelCost() * 0.5));
@@ -788,10 +790,10 @@ public class GameLogicController implements Serializable {
      * a Color space.
      */
     public enum ImprovementsActions {
-        buildHouse,
-        sellHouse,
-        buildHotel,
-        sellHotel
+        BUILD_HOUSE,
+        SELL_HOUSE,
+        BUILD_HOTEL,
+        SELL_HOTEL
     }
 
     public enum MortgageActions {
