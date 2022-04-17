@@ -57,7 +57,7 @@ Some game event spaces are grouped together - these include **draw card** and **
 
 #### Players
 
-The data for each player is largely independent, not requiring intra-object structures as complex as those for spaces.
+The data for each player is largely independent, not requiring the same degree of intra-object dependence such as that which may exist across space groups.
 
 Additionally, some data is not as cleanly organized into the "space" or "player" domain - namely, the ownership of a property. This data is useful when held in the property object itself, but there are scenarios where finding the properties owned by a specific player is required. The aggregation of space and player data into a single "board" domain proves useful for this reason.
 
@@ -68,30 +68,56 @@ A positive consequence of composing this data as a single class is the ability t
 
 If we wish to determine if a player owns this green color group monopoly, there are two general approaches to query this data:
 
-1. Query the player set.
+**1 - Query the player set**
 - Create a set of values indicating the total number of green properties owned by each player.
     - For each player in the game, check if they own a property with the following attributes:
         - belongs to the *green* color group
-    - If this matches, add to the total.
+    - If this matches, add to the respective total.
 - Compare the totals. If only one of the totals is non-zero, all *owned properties* within that color set belong to a single player.
 
 A problem arises when considering that a player may own 2 out of 3 spaces in a single color group, where all other players own none. This necessitates further querying of the space data, determining how many spaces exist in the group total.
 
+&nbsp;
 
-2. Query the space set.
+**2 - Query the space set**
+- Create a set of values indicating the owners of each green property.
+    - For each space in the game, check if the following conditions apply:
+        - belongs to the *green* color group
+        - is owned by a player
+    - If this matches, set the appropriate owner value for the property.
+- Compare the values. If all values are equal, the full set is owned by the player.
+
+&nbsp;
+
+The general algorithm for determining this data is similar across the domains, but becomes messy when it is frequently access across multiple classes and contexts. An alternative approach exists - the board itself can be queried specifically, through some specialized methods:
+
+**1 - Obtain the set of all spaces owned by player *n***
+ - For each space in the game, check if the following conditions apply:
+    - owned by player *n*
+- If this matches, add the space to the set.
+- Return the set.
+
+&nbsp;
+
+**2 - Obtain the set of all spaces belonging to color group *g***
 - For each space in the game, check if the following conditions apply:
-- belongs to the *green* color group
-    - owned by 
+    - within color group *g*
+- If this matches add the space to the set.
+- Return the set.
 
-However, an alternative approach exists - the board itself can be queried specifically, through some specialized methods:
-
-1. Query the set of all spaces owned by player *n*.
-    1. 
-
-2. Query the set of all spaces belonging to the *green* color group.
+The latter approaches of board-domain querying allow for cleaner access to attributes of the game state. Additionally, much of the need for this querying is eliminated as the board can automatically self-update the relationships between its data members when the game state changes, using these methods internally.
 
 &nbsp;
 ### Code organization
+
+Components of the application are roughly grouped into three categories:
+
+**User interface**: displays the current game state to the user, and allows them to interact with it in a controlled manner
+
+**Data**: contains information about the game state
+
+**Data manipulation**: modifies the game state according to specific rules and user input
+
 
 &nbsp;
 ### Manipulation of data
