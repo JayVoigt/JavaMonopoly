@@ -3,8 +3,6 @@ package cc.jayv.monopoly3;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -28,6 +26,14 @@ public class DialogContainerGameEditor extends DialogContainer implements Serial
     public DialogContainerGameEditor() {
         initComponents();
         arrangeComponents();
+    }
+
+    public static void main(String[] args) {
+        JDialog dialog;
+
+        DialogContainerGameEditor gameEditorDialog = new DialogContainerGameEditor();
+        dialog = gameEditorDialog.getDialog();
+        dialog.setVisible(true);
     }
 
     protected void initComponents() {
@@ -103,13 +109,5 @@ public class DialogContainerGameEditor extends DialogContainer implements Serial
 
     public int getSelectedPlayer() {
         return playerID;
-    }
-
-    public static void main(String[] args) {
-        JDialog dialog;
-
-        DialogContainerGameEditor gameEditorDialog = new DialogContainerGameEditor();
-        dialog = gameEditorDialog.getDialog();
-        dialog.setVisible(true);
     }
 }

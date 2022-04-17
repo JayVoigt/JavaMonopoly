@@ -20,10 +20,14 @@ public class GameLogicSwitchboard implements Serializable {
             case CONTROLS_ENDTURN -> c.endTurnManager();
             case CONTROLS_ROLLDICE -> c.diceRollManager();
 
-            case IMPROVEMENTS_BUILD_HOUSE -> c.improvementsManager(currentSpaceSelectionID, GameLogicController.ImprovementsActions.buildHouse);
-            case IMPROVEMENTS_BUILD_HOTEL -> c.improvementsManager(currentSpaceSelectionID, GameLogicController.ImprovementsActions.buildHotel);
-            case IMPROVEMENTS_SELL_HOUSE -> c.improvementsManager(currentSpaceSelectionID, GameLogicController.ImprovementsActions.sellHouse);
-            case IMPROVEMENTS_SELL_HOTEL -> c.improvementsManager(currentSpaceSelectionID, GameLogicController.ImprovementsActions.sellHotel);
+            case IMPROVEMENTS_BUILD_HOUSE ->
+                    c.improvementsManager(currentSpaceSelectionID, GameLogicController.ImprovementsActions.buildHouse);
+            case IMPROVEMENTS_BUILD_HOTEL ->
+                    c.improvementsManager(currentSpaceSelectionID, GameLogicController.ImprovementsActions.buildHotel);
+            case IMPROVEMENTS_SELL_HOUSE ->
+                    c.improvementsManager(currentSpaceSelectionID, GameLogicController.ImprovementsActions.sellHouse);
+            case IMPROVEMENTS_SELL_HOTEL ->
+                    c.improvementsManager(currentSpaceSelectionID, GameLogicController.ImprovementsActions.sellHotel);
 
             case JAIL_POSTBAIL -> c.playerDecisionJailPostBail();
             case JAIL_ROLLDOUBLES -> c.playerDecisionJailRollDoubles();
@@ -32,8 +36,10 @@ public class GameLogicSwitchboard implements Serializable {
             case PROPERTY_PURCHASE -> c.playerDecisionPurchaseProperty();
             case PROPERTY_AUCTION -> c.playerDecisionAuction();
 
-            case PROPERTY_MORTGAGE -> c.mortgageProperty(currentSpaceSelectionID, GameLogicController.MortgageActions.MORTGAGE);
-            case PROPERTY_UNMORTGAGE -> c.mortgageProperty(currentSpaceSelectionID, GameLogicController.MortgageActions.UNMORTGAGE);
+            case PROPERTY_MORTGAGE ->
+                    c.mortgageProperty(currentSpaceSelectionID, GameLogicController.MortgageActions.MORTGAGE);
+            case PROPERTY_UNMORTGAGE ->
+                    c.mortgageProperty(currentSpaceSelectionID, GameLogicController.MortgageActions.UNMORTGAGE);
 
             case FORFEIT_CONFIRM -> c.forfeitManager();
         }

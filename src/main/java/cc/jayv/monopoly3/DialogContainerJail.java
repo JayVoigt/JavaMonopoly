@@ -18,6 +18,12 @@ public class DialogContainerJail extends DialogContainer {
         arrangeComponents();
     }
 
+    public static void main(String[] args) {
+        DialogContainerJail dialogContainerJail = new DialogContainerJail();
+        JDialog dialog = dialogContainerJail.getDialog();
+        dialog.setVisible(true);
+    }
+
     @Override
     protected void initComponents() {
         dialog = new JDialog();
@@ -47,7 +53,7 @@ public class DialogContainerJail extends DialogContainer {
 
     @Override
     public void setStateOfActionButton(Actions action, boolean isEnabled) {
-        switch(action) {
+        switch (action) {
             case JAIL_POSTBAIL -> buttonPostBail.setEnabled(isEnabled);
             case JAIL_ROLLDOUBLES -> buttonRollForDoubles.setEnabled(isEnabled);
             case JAIL_USEGOOJFC -> buttonUseGOOJFC.setEnabled(isEnabled);
@@ -60,8 +66,7 @@ public class DialogContainerJail extends DialogContainer {
 
         if (turnsJailed == 1) {
             message = "You have been jailed for 1 turn.";
-        }
-        else {
+        } else {
             message = "You have been jailed for " + turnsJailed + " turns.";
         }
 
@@ -73,8 +78,7 @@ public class DialogContainerJail extends DialogContainer {
             setStateOfActionButton(Actions.JAIL_ROLLDOUBLES, false);
             message = message.concat(" You are unable to roll for doubles, and must post bail or use a Get Out" +
                     "of Jail Free card.");
-        }
-        else {
+        } else {
             setStateOfActionButton(Actions.JAIL_ROLLDOUBLES, true);
         }
 
@@ -90,11 +94,5 @@ public class DialogContainerJail extends DialogContainer {
                 case JAIL_USEGOOJFC -> buttonUseGOOJFC.addActionListener(l);
             }
         }
-    }
-
-    public static void main(String[] args) {
-        DialogContainerJail dialogContainerJail = new DialogContainerJail();
-        JDialog dialog = dialogContainerJail.getDialog();
-        dialog.setVisible(true);
     }
 }

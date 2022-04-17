@@ -17,6 +17,14 @@ public class DialogContainerForfeit extends DialogContainer {
         arrangeComponents();
     }
 
+    public static void main(String[] args) {
+        DialogContainerForfeit dialogContainerForfeit = new DialogContainerForfeit();
+        JDialog dialog = dialogContainerForfeit.getDialog();
+
+        dialog.pack();
+        dialog.setVisible(true);
+    }
+
     @Override
     protected void initComponents() {
         dialog = new JDialog();
@@ -66,13 +74,5 @@ public class DialogContainerForfeit extends DialogContainer {
             case FORFEIT_CONFIRM -> buttonForfeit.setEnabled(isEnabled);
             case FORFEIT_CANCEL -> buttonCancel.setEnabled(isEnabled);
         }
-    }
-
-    public static void main(String[] args) {
-        DialogContainerForfeit dialogContainerForfeit = new DialogContainerForfeit();
-        JDialog dialog = dialogContainerForfeit.getDialog();
-
-        dialog.pack();
-        dialog.setVisible(true);
     }
 }

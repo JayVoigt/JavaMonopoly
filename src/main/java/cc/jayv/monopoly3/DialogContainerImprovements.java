@@ -20,6 +20,12 @@ public class DialogContainerImprovements extends DialogContainer {
         arrangeComponents();
     }
 
+    public static void main(String[] args) {
+        DialogContainerImprovements dialogContainerImprovements = new DialogContainerImprovements();
+        JDialog dialog = dialogContainerImprovements.getDialog();
+        dialog.setVisible(true);
+    }
+
     @Override
     protected void initComponents() {
         initLabelTitle("Improve Properties", "/improvements.png");
@@ -78,14 +84,6 @@ public class DialogContainerImprovements extends DialogContainer {
         }
     }
 
-    private enum ImprovementEligibilityStatus {
-        CAN_IMPROVE,
-        CANT_BUILD_FULL_SET_NOT_OWNED,
-        CANT_BUILD_NOT_A_COLOR_PROPERTY,
-        CANT_BUILD_DO_NOT_OWN_PROPERTY,
-        CANT_IMPROVE_UNKNOWN
-    }
-
     // Passing through controller is a hacky solution that could be improved later
     public void update(Board board, Player player, int spaceSelectionID, GameLogicController controller) {
         Space currentSpace = board.spaces.get(spaceSelectionID);
@@ -116,17 +114,14 @@ public class DialogContainerImprovements extends DialogContainer {
                     setStateOfActionButton(Actions.IMPROVEMENTS_SELL_HOTEL, true);
 
                     controller.setPlayerCanBuildImprovements(true);
-                }
-                else {
+                } else {
                     status = ImprovementEligibilityStatus.CANT_BUILD_FULL_SET_NOT_OWNED;
                 }   // end check: does player own full set
 
-            }
-            else {
+            } else {
                 status = ImprovementEligibilityStatus.CANT_BUILD_DO_NOT_OWN_PROPERTY;
             }   // end check: is owned
-        }
-        else {
+        } else {
             status = ImprovementEligibilityStatus.CANT_BUILD_NOT_A_COLOR_PROPERTY;
         }   // end check: is color property
 
@@ -142,16 +137,19 @@ public class DialogContainerImprovements extends DialogContainer {
             case CANT_BUILD_FULL_SET_NOT_OWNED -> m = "You do not own all properties within this color set.";
             case CANT_BUILD_NOT_A_COLOR_PROPERTY -> m = "The selected space is not a Color property.";
             case CANT_BUILD_DO_NOT_OWN_PROPERTY -> m = "You do not own the selected property.";
-            case CANT_IMPROVE_UNKNOWN -> m = "Unknown disqualification.";   // fall back for any edge cases not considered
+            case CANT_IMPROVE_UNKNOWN ->
+                    m = "Unknown disqualification.";   // fall back for any edge cases not considered
         }
 
         return m;
     }
 
-    public static void main(String[] args) {
-        DialogContainerImprovements dialogContainerImprovements = new DialogContainerImprovements();
-        JDialog dialog = dialogContainerImprovements.getDialog();
-        dialog.setVisible(true);
+    private enum ImprovementEligibilityStatus {
+        CAN_IMPROVE,
+        CANT_BUILD_FULL_SET_NOT_OWNED,
+        CANT_BUILD_NOT_A_COLOR_PROPERTY,
+        CANT_BUILD_DO_NOT_OWN_PROPERTY,
+        CANT_IMPROVE_UNKNOWN
     }
 
 }

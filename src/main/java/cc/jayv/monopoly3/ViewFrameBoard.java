@@ -38,7 +38,6 @@ public class ViewFrameBoard implements Serializable {
     ArrayList<ImageIcon> improvementIconsWest;
 
     /**
-     *
      * @param logHelper The logHelper object where the internal text area will read from.
      * @param listener
      */
@@ -103,50 +102,42 @@ public class ViewFrameBoard implements Serializable {
                 posY = 840;
                 sizeX = 120;
                 sizeY = 120;
-            }
-            else if (index == 10) {
+            } else if (index == 10) {
                 posX = 0;
                 posY = 840;
                 sizeX = 120;
                 sizeY = 120;
-            }
-            else if (index == 20) {
+            } else if (index == 20) {
                 posX = 0;
                 posY = 0;
                 sizeX = 120;
                 sizeY = 120;
-            }
-            else if (index == 30) {
+            } else if (index == 30) {
                 posX = 840;
                 posY = 0;
                 sizeX = 120;
                 sizeY = 120;
-            }
-            else if (index > 0 && index < 10) {
+            } else if (index > 0 && index < 10) {
                 posX = 840 - (80 * cardinalPosition);
                 posY = 840;
                 sizeX = 80;
                 sizeY = 120;
-            }
-            else if (index > 10 && index < 20) {
+            } else if (index > 10 && index < 20) {
                 posX = 0;
                 posY = 840 - (80 * cardinalPosition);
                 sizeX = 120;
                 sizeY = 80;
-            }
-            else if (index > 20 && index < 30) {
+            } else if (index > 20 && index < 30) {
                 posX = 40 + (80 * cardinalPosition);
                 posY = 0;
                 sizeX = 80;
                 sizeY = 120;
-            }
-            else if (index > 30 && index < 40) {
+            } else if (index > 30 && index < 40) {
                 posX = 840;
                 posY = 40 + (80 * cardinalPosition);
                 sizeX = 120;
                 sizeY = 80;
-            }
-            else {
+            } else {
                 posX = 0;
                 posY = 0;
                 sizeX = 0;
@@ -166,7 +157,7 @@ public class ViewFrameBoard implements Serializable {
             b.getButton().setCursor(new java.awt.Cursor(Cursor.HAND_CURSOR));
 
             frame.add(b.getButton());
-        }	// end button creation
+        }    // end button creation
 
         // Background image for board
         JLabel boardImage = new JLabel();
@@ -218,101 +209,6 @@ public class ViewFrameBoard implements Serializable {
         improvementIconsWest.add(SwingHelper.getImageIconFromResource("/house-label-4-west.png"));
     }
 
-    private enum Direction {
-        NORTH,
-        SOUTH,
-        EAST,
-        WEST,
-        CORNER
-    }
-
-    /**
-     *
-     */
-    public static class SpaceButton {
-        JButton button;
-        int id;
-        Direction direction;
-
-        boolean isAnimated;
-        ImageIcon animatedIcon;
-        ImageIcon animatedIconMortgaged;
-
-        public SpaceButton(int id, boolean isAnimated, ImageIcon animatedIcon, ImageIcon animatedIconMortgaged) {
-            this.isAnimated = isAnimated;
-            this.animatedIcon = animatedIcon;
-            this.animatedIconMortgaged = animatedIconMortgaged;
-
-            new SpaceButton(id);
-        }
-        /**
-         *
-         * @param id The ID of the space whose button will be created.
-         */
-        public SpaceButton(int id) {
-            this.id = id;
-            button = new JButton();
-
-            if (id == 0 || id == 10 || id == 20 || id == 30) {
-                direction = Direction.CORNER;
-            }
-            else if (id > 0 && id < 10) {
-                direction = Direction.SOUTH;
-            }
-            else if (id > 10 && id < 20) {
-                direction = Direction.WEST;
-            }
-            else if (id > 20 && id < 30) {
-                direction = Direction.NORTH;
-            }
-            else if (id > 30 && id < 40) {
-                direction = Direction.EAST;
-            }
-        }
-
-        public void setAnimated(boolean isAnimated) {
-            this.isAnimated = isAnimated;
-        }
-
-        public JButton getButton() {
-            return button;
-        }
-
-        public int getID() {
-            return id;
-        }
-
-        public Direction getDirection() {
-            return direction;
-        }
-
-        public void setMortgagedAppearance(boolean isMortgaged) {
-            // If not animated
-            if (!isAnimated) {
-                if (isMortgaged) {
-                    switch (direction) {
-                        case NORTH, SOUTH -> button.setIcon(SwingHelper.getImageIconFromResource("/checker-80x120.png"));
-                        case EAST, WEST -> button.setIcon(SwingHelper.getImageIconFromResource("/checker-120x80.png"));
-                    }
-                } else {
-                    button.setIcon(null);
-                }
-            }
-            // If animated
-            else {
-                if (isMortgaged) {
-                    if (id == 12) {
-                        animatedIconMortgaged = SwingHelper.getImageIconFromResource("/electric-company-mortgaged.png");
-                    }
-                }
-                else {
-                    if (id == 12) {
-                    }
-                }
-            }
-        }
-    }
-
     public JInternalFrame getInternalFrame() {
         return frame;
     }
@@ -320,7 +216,8 @@ public class ViewFrameBoard implements Serializable {
     /**
      * Update all components of the BoardFrame class whose appearance depends on the
      * game state.
-     * @param board Board data
+     *
+     * @param board            Board data
      * @param spaceSelectionID The ID of the space that is currently selected.
      */
     public void update(Board board, int spaceSelectionID) {
@@ -342,6 +239,7 @@ public class ViewFrameBoard implements Serializable {
 
     /**
      * Update the icons which indicate the position of each player on the board.
+     *
      * @param board
      */
     private void updateGuiPlayerIndicators(Board board) {
@@ -367,8 +265,8 @@ public class ViewFrameBoard implements Serializable {
         class AnimatePlayerMovement implements ActionListener {
 
             final int distance;
-            int index;
             final Timer timer;
+            int index;
 
             public AnimatePlayerMovement() {
                 for (SpaceButton b : spaceButtons) {
@@ -429,9 +327,8 @@ public class ViewFrameBoard implements Serializable {
     }
 
     /**
-     *
      * @param playerID The player ID whose icon will have its new position calculated.
-     * @param spaceID The space ID that will be used as a target for position calculation.
+     * @param spaceID  The space ID that will be used as a target for position calculation.
      * @return x and y coordinates (java.awt.Dimension) that the player's icon should be set to.
      */
     private Point calculatePointForPlayerIndicator(int playerID, int spaceID, boolean isJailed) {
@@ -456,50 +353,39 @@ public class ViewFrameBoard implements Serializable {
             if (playerID == 1) {
                 x = 90;
                 y = 850;
-            }
-            else if (playerID == 2) {
+            } else if (playerID == 2) {
                 x = 110;
                 y = 850;
-            }
-            else if (playerID == 3) {
+            } else if (playerID == 3) {
                 x = 90;
                 y = 870;
-            }
-            else if (playerID == 4) {
+            } else if (playerID == 4) {
                 x = 110;
                 y = 870;
             }
-        }
-        else {
+        } else {
             if (spaceID == 0) {
                 x = xAnchorSouth + cornerXOffset;
                 y = yReferenceSouth;
-            }
-            else if (spaceID == 10) {
+            } else if (spaceID == 10) {
                 x = 10 + cornerXOffset;
                 y = yReferenceSouth;
-            }
-            else if (spaceID == 20) {
+            } else if (spaceID == 20) {
                 x = 10 + cornerXOffset;
                 y = yReferenceNorth;
-            }
-            else if (spaceID == 30) {
+            } else if (spaceID == 30) {
                 x = xAnchorSouth + cornerXOffset;
                 y = yReferenceNorth;
-            }
-            else if (spaceID > 0 && spaceID < 10) {
+            } else if (spaceID > 0 && spaceID < 10) {
                 x = xAnchorSouth - (80 * spaceID);
                 y = yReferenceSouth;
-            }
-            else if (spaceID > 10 && spaceID < 20) {
+            } else if (spaceID > 10 && spaceID < 20) {
                 x = xReferenceWest;
                 y = yAnchorWest + (80 * (11 - spaceID));
-            }
-            else if (spaceID > 20 && spaceID < 30) {
+            } else if (spaceID > 20 && spaceID < 30) {
                 x = 130 - (80 * (21 - spaceID));
                 y = yReferenceNorth;
-            }
-            else if (spaceID > 30 && spaceID < 40) {
+            } else if (spaceID > 30 && spaceID < 40) {
                 x = xReferenceEast;
                 y = 190 - (80 * (31 - spaceID));
             }
@@ -513,6 +399,7 @@ public class ViewFrameBoard implements Serializable {
 
     /**
      * Update the icons indicating the improvements for each Color property.
+     *
      * @param board Board data
      */
     private void updateGuiImprovementIcons(Board board) {
@@ -536,8 +423,7 @@ public class ViewFrameBoard implements Serializable {
                 // Set icon depending on improvement level
                 if (c.getHotelCount() == 1) {
                     spaceButton.getButton().setIcon(directionalImprovementIcons.get(0));
-                }
-                else {
+                } else {
                     switch (c.getHouseCount()) {
                         case 1 -> spaceButton.getButton().setIcon(directionalImprovementIcons.get(1));
                         case 2 -> spaceButton.getButton().setIcon(directionalImprovementIcons.get(2));
@@ -561,8 +447,7 @@ public class ViewFrameBoard implements Serializable {
             if (s instanceof Property p) {
                 if (p.getIsMortgaged()) {
 
-                }
-                else {
+                } else {
 
                 }
             }
@@ -584,6 +469,97 @@ public class ViewFrameBoard implements Serializable {
         buttonWaterWorks.addMouseListener(new AnimatedSpaceActionListener("/waterworks-anim.gif", null));
         buttonGoToJail.addMouseListener(new AnimatedSpaceActionListener("/go-to-jail-anim.gif", null));
         buttonLuxuryTax.addMouseListener(new AnimatedSpaceActionListener("/luxury-tax-anim.gif", null));
+    }
+
+    private enum Direction {
+        NORTH,
+        SOUTH,
+        EAST,
+        WEST,
+        CORNER
+    }
+
+    /**
+     *
+     */
+    public static class SpaceButton {
+        JButton button;
+        int id;
+        Direction direction;
+
+        boolean isAnimated;
+        ImageIcon animatedIcon;
+        ImageIcon animatedIconMortgaged;
+
+        public SpaceButton(int id, boolean isAnimated, ImageIcon animatedIcon, ImageIcon animatedIconMortgaged) {
+            this.isAnimated = isAnimated;
+            this.animatedIcon = animatedIcon;
+            this.animatedIconMortgaged = animatedIconMortgaged;
+
+            new SpaceButton(id);
+        }
+
+        /**
+         * @param id The ID of the space whose button will be created.
+         */
+        public SpaceButton(int id) {
+            this.id = id;
+            button = new JButton();
+
+            if (id == 0 || id == 10 || id == 20 || id == 30) {
+                direction = Direction.CORNER;
+            } else if (id > 0 && id < 10) {
+                direction = Direction.SOUTH;
+            } else if (id > 10 && id < 20) {
+                direction = Direction.WEST;
+            } else if (id > 20 && id < 30) {
+                direction = Direction.NORTH;
+            } else if (id > 30 && id < 40) {
+                direction = Direction.EAST;
+            }
+        }
+
+        public void setAnimated(boolean isAnimated) {
+            this.isAnimated = isAnimated;
+        }
+
+        public JButton getButton() {
+            return button;
+        }
+
+        public int getID() {
+            return id;
+        }
+
+        public Direction getDirection() {
+            return direction;
+        }
+
+        public void setMortgagedAppearance(boolean isMortgaged) {
+            // If not animated
+            if (!isAnimated) {
+                if (isMortgaged) {
+                    switch (direction) {
+                        case NORTH, SOUTH ->
+                                button.setIcon(SwingHelper.getImageIconFromResource("/checker-80x120.png"));
+                        case EAST, WEST -> button.setIcon(SwingHelper.getImageIconFromResource("/checker-120x80.png"));
+                    }
+                } else {
+                    button.setIcon(null);
+                }
+            }
+            // If animated
+            else {
+                if (isMortgaged) {
+                    if (id == 12) {
+                        animatedIconMortgaged = SwingHelper.getImageIconFromResource("/electric-company-mortgaged.png");
+                    }
+                } else {
+                    if (id == 12) {
+                    }
+                }
+            }
+        }
     }
 
     private static class AnimatedSpaceActionListener implements MouseListener {

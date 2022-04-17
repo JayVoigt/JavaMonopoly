@@ -6,7 +6,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseListener;
 import java.io.IOException;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ViewFrameInformationModule {
 
@@ -64,6 +65,31 @@ public class ViewFrameInformationModule {
         initComponentsPlayerAssets();
         arrangeComponentsPlayerStatus();
         arrangeComponentsPlayerAssets();
+    }
+
+    public static void main(String[] args) {
+        JFrame frame = new JFrame();
+        frame.setLayout(new MigLayout("ins 4, width 400, height 150"));
+        frame.setSize(400, 150);
+
+        Player player = new Player();
+        player.setCustomName("Player 1");
+        player.setCurrentBalance(10001);
+
+        Board board = null;
+        try {
+            board = new Board();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        ViewFrameInformationModule viewFrameInformationModule = new ViewFrameInformationModule(board, player);
+        viewFrameInformationModule.update();
+
+        frame.add(viewFrameInformationModule.getPanelPlayerStatus(), "cell 0 0, width 200, height 150");
+        frame.add(viewFrameInformationModule.getPanelPlayerAssets(), "cell 1 0, width 200, height 150");
+
+        frame.setVisible(true);
     }
 
     private void initComponentsPlayerStatus() {
@@ -224,8 +250,7 @@ public class ViewFrameInformationModule {
             labelOwnedPropertyCount.setText(ownedPropertyCount + "/28");
             labelGOOJFCCount.setText(String.valueOf(player.getGetOutOfJailFreeCardCount()));
 
-        }
-        else {
+        } else {
             disableAllComponents();
         }
     }
@@ -253,7 +278,7 @@ public class ViewFrameInformationModule {
         int ownedRailroads = 0;
         int ownedUtilities = 0;
 
-        if (player.getIsActive())  {
+        if (player.getIsActive()) {
             for (Color.colorGroupKeys colorGroup : Color.colorGroupKeys.values()) {
 
                 int ownedProperties = 0;
@@ -274,11 +299,9 @@ public class ViewFrameInformationModule {
                     // Indicate player has monopoly over property group
                     if (ownedProperties == totalProperties) {
                         label.setForeground(java.awt.Color.red);
-                    }
-                    else if (ownedProperties == 0) {
+                    } else if (ownedProperties == 0) {
                         label.setForeground(java.awt.Color.gray);
-                    }
-                    else {
+                    } else {
                         label.setForeground(java.awt.Color.black);
                     }
                 }
@@ -287,8 +310,7 @@ public class ViewFrameInformationModule {
             for (Property property : board.getSpacesByOwnerID(player.getPlayerID())) {
                 if (property instanceof Railroad) {
                     ownedRailroads++;
-                }
-                else if (property instanceof Utility) {
+                } else if (property instanceof Utility) {
                     ownedUtilities++;
                 }
             }
@@ -298,49 +320,20 @@ public class ViewFrameInformationModule {
 
             if (ownedRailroads == 4) {
                 labelOwnedRailroad.setForeground(java.awt.Color.red);
-            }
-            else if (ownedRailroads == 0) {
+            } else if (ownedRailroads == 0) {
                 labelOwnedRailroad.setForeground(java.awt.Color.gray);
-            }
-            else {
+            } else {
                 labelOwnedRailroad.setForeground(java.awt.Color.black);
             }
 
             if (ownedUtilities == 2) {
                 labelOwnedUtility.setForeground(java.awt.Color.red);
-            }
-            else if (ownedUtilities == 0) {
+            } else if (ownedUtilities == 0) {
                 labelOwnedUtility.setForeground(java.awt.Color.gray);
-            }
-            else {
+            } else {
                 labelOwnedUtility.setForeground(java.awt.Color.black);
             }
         }   // end if
-    }
-
-    public static void main(String[] args) {
-        JFrame frame = new JFrame();
-        frame.setLayout(new MigLayout("ins 4, width 400, height 150"));
-        frame.setSize(400, 150);
-
-        Player player = new Player();
-        player.setCustomName("Player 1");
-        player.setCurrentBalance(10001);
-
-        Board board = null;
-        try {
-            board = new Board();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        ViewFrameInformationModule viewFrameInformationModule = new ViewFrameInformationModule(board, player);
-        viewFrameInformationModule.update();
-
-        frame.add(viewFrameInformationModule.getPanelPlayerStatus(), "cell 0 0, width 200, height 150");
-        frame.add(viewFrameInformationModule.getPanelPlayerAssets(), "cell 1 0, width 200, height 150");
-
-        frame.setVisible(true);
     }
 
 }

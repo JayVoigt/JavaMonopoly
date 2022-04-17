@@ -24,6 +24,20 @@ public class DialogContainerMortgage extends DialogContainer {
         arrangeComponents();
     }
 
+    public static void main(String[] args) {
+        DialogContainerMortgage dialogContainerMortgage = new DialogContainerMortgage();
+        try {
+            Board board = new Board();
+            LogHelper logHelper = new LogHelper();
+            dialogContainerMortgage.update(board, new Player(), 1, new GameLogicController(board, logHelper));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        JDialog dialog = dialogContainerMortgage.getDialog();
+        dialog.setVisible(true);
+
+    }
+
     @Override
     protected void initComponents() {
         dialog = new JDialog();
@@ -77,13 +91,6 @@ public class DialogContainerMortgage extends DialogContainer {
         }
     }
 
-    private enum MortgageEligibilityStatus {
-        CAN_MORTGAGE,
-        CANT_MORTGAGE_NOT_OWNED,
-        CANT_MORTGAGE_ALREADY_MORTGAGED,
-        CANT_MORTGAGE_NOT_PROPERTY
-    }
-
     public void update(Board board, Player player, int spaceSelectionID, GameLogicController controller) {
         Space currentSpace = board.spaces.get(spaceSelectionID);
         MortgageEligibilityStatus status;
@@ -95,18 +102,15 @@ public class DialogContainerMortgage extends DialogContainer {
             if (p.getIsOwned() && (p.getOwnerID() == player.getPlayerID())) {
                 if (!p.getIsMortgaged()) {
                     status = MortgageEligibilityStatus.CAN_MORTGAGE;
-                }
-                else {
+                } else {
                     status = MortgageEligibilityStatus.CANT_MORTGAGE_ALREADY_MORTGAGED;
                 }
                 mortgagePayout = "$" + p.getMortgageValue();
                 unmortgageCost = "$" + p.getUnmortgageCost();
-            }
-            else {
+            } else {
                 status = MortgageEligibilityStatus.CANT_MORTGAGE_NOT_OWNED;
             }
-        }
-        else {
+        } else {
             status = MortgageEligibilityStatus.CANT_MORTGAGE_NOT_PROPERTY;
         }
 
@@ -120,12 +124,10 @@ public class DialogContainerMortgage extends DialogContainer {
         if (status == MortgageEligibilityStatus.CAN_MORTGAGE) {
             setStateOfActionButton(Actions.PROPERTY_MORTGAGE, true);
             setStateOfActionButton(Actions.PROPERTY_UNMORTGAGE, false);
-        }
-        else if (status == MortgageEligibilityStatus.CANT_MORTGAGE_ALREADY_MORTGAGED) {
+        } else if (status == MortgageEligibilityStatus.CANT_MORTGAGE_ALREADY_MORTGAGED) {
             setStateOfActionButton(Actions.PROPERTY_MORTGAGE, false);
             setStateOfActionButton(Actions.PROPERTY_UNMORTGAGE, true);
-        }
-        else {
+        } else {
             setStateOfActionButton(Actions.PROPERTY_MORTGAGE, false);
             setStateOfActionButton(Actions.PROPERTY_UNMORTGAGE, false);
         }
@@ -154,18 +156,11 @@ public class DialogContainerMortgage extends DialogContainer {
         }
     }
 
-    public static void main(String[] args) {
-        DialogContainerMortgage dialogContainerMortgage = new DialogContainerMortgage();
-        try {
-            Board board = new Board();
-            LogHelper logHelper = new LogHelper();
-            dialogContainerMortgage.update(board, new Player(), 1, new GameLogicController(board, logHelper));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        JDialog dialog = dialogContainerMortgage.getDialog();
-        dialog.setVisible(true);
-
+    private enum MortgageEligibilityStatus {
+        CAN_MORTGAGE,
+        CANT_MORTGAGE_NOT_OWNED,
+        CANT_MORTGAGE_ALREADY_MORTGAGED,
+        CANT_MORTGAGE_NOT_PROPERTY
     }
 
 }

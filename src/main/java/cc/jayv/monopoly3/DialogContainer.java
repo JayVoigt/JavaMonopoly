@@ -25,13 +25,15 @@ public abstract class DialogContainer {
     /**
      * Set a particular button to be enabled or disabled, by providing the corresponding Action key
      * implemented by the ButtonActionListener.
-     * @param action The action which the corresponding button will have its state set.
+     *
+     * @param action    The action which the corresponding button will have its state set.
      * @param isEnabled The state of the button.
      */
     public abstract void setStateOfActionButton(Actions action, boolean isEnabled);
 
     /**
      * Obtain the JDialog instantiated by the container class.
+     *
      * @return The JDialog within the container.
      */
     public JDialog getDialog() {

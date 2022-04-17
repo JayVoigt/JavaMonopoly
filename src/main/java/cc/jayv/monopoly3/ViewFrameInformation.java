@@ -19,6 +19,7 @@ public class ViewFrameInformation implements ViewComponent, Serializable {
     JPanel panelPlayer4;
 
     Board board;
+
     public ViewFrameInformation(Board board) {
         this.board = board;
 

@@ -3,97 +3,96 @@ package cc.jayv.monopoly3;
 import java.io.Serializable;
 
 /**
- *
  * @author jay
  */
 public class DrawCard implements Serializable {
 
-	/**
-	 * The type of DrawCard event that describes this object.<br>
-	 * The default value is <code>unspecified</code>.
-	 */
-	public enum drawCardTypeKeys {
-		unspecified,
-		teleport,
-		teleportRelative,
-		teleportWithRentModifier,
-		balanceUpdate,
-		getOutOfJailFreeCard,
-		jailPlayer,
-		improvementRepairs,
-		distributedBalanceUpdate
-	}
-	drawCardTypeKeys drawCardType;
+    drawCardTypeKeys drawCardType;
+    destinationRelativeTypeKeys destinationRelativeType;
+    /**
+     * The message which will be displayed in the game log when a player "draws" this card.
+     */
+    String message;
+    int destinationSpaceID,
+            movementQuantity;
 
-	/**
-	 * For DrawCard objects of type <code>teleportRelative</code>, this describes the target teleport destination,
-	 * relative to the player, to be calculated given the player's position.<br>
-	 * The default value is <code>unspecified</code>.
-	 */
-	public enum destinationRelativeTypeKeys {
-		unspecified,
-		railroad,
-		utility,
-		backThreeSpaces
-	}
-	destinationRelativeTypeKeys destinationRelativeType;
+    /**
+     * Default constructor
+     */
+    public DrawCard() {
+        drawCardType = drawCardTypeKeys.unspecified;
+        destinationRelativeType = destinationRelativeTypeKeys.unspecified;
 
-	/**
-	 * The message which will be displayed in the game log when a player "draws" this card.
-	 */
-	String message;
-	
-	int destinationSpaceID,
-		movementQuantity;
+        message = "";
+        destinationSpaceID = 0;
+        movementQuantity = 0;
+    }
 
-	/**
-	 * Default constructor
-	 */
-	public DrawCard() {
-		drawCardType = drawCardTypeKeys.unspecified;
-		destinationRelativeType = destinationRelativeTypeKeys.unspecified;
+    /**
+     * Parameterized constructor
+     *
+     * @param inputDrawCardType
+     * @param inputDestinationRelativeType
+     * @param inputMessage
+     * @param inputDestinationSpaceID
+     * @param inputMovementQuantity
+     */
+    public DrawCard(drawCardTypeKeys inputDrawCardType, destinationRelativeTypeKeys inputDestinationRelativeType,
+                    String inputMessage, int inputDestinationSpaceID, int inputMovementQuantity) {
 
-		message = "";
-		destinationSpaceID = 0;
-		movementQuantity = 0;
-	}
+        drawCardType = inputDrawCardType;
+        destinationRelativeType = inputDestinationRelativeType;
 
-	/**
-	 * Parameterized constructor
-	 * @param inputDrawCardType
-	 * @param inputDestinationRelativeType
-	 * @param inputMessage
-	 * @param inputDestinationSpaceID
-	 * @param inputMovementQuantity 
-	 */
-	public DrawCard(drawCardTypeKeys inputDrawCardType, destinationRelativeTypeKeys inputDestinationRelativeType,
-					String inputMessage, int inputDestinationSpaceID, int inputMovementQuantity) {
+        message = inputMessage;
+        destinationSpaceID = inputDestinationSpaceID;
+        movementQuantity = inputMovementQuantity;
+    }
 
-		drawCardType = inputDrawCardType;
-		destinationRelativeType = inputDestinationRelativeType;
+    public String getMessage() {
+        return message;
+    }
 
-		message = inputMessage;
-		destinationSpaceID = inputDestinationSpaceID;
-		movementQuantity = inputMovementQuantity;
-	}
+    public drawCardTypeKeys getDrawCardType() {
+        return drawCardType;
+    }
 
-	public String getMessage() {
-		return message;
-	}
+    public destinationRelativeTypeKeys getDestinationRelativeType() {
+        return destinationRelativeType;
+    }
 
-	public drawCardTypeKeys getDrawCardType() {
-		return drawCardType;
-	}
+    public int getDestinationSpace() {
+        return destinationSpaceID;
+    }
 
-	public destinationRelativeTypeKeys getDestinationRelativeType() {
-		return destinationRelativeType;
-	}
+    public int getQuantity() {
+        return movementQuantity;
+    }
 
-	public int getDestinationSpace() {
-		return destinationSpaceID;
-	}
+    /**
+     * The type of DrawCard event that describes this object.<br>
+     * The default value is <code>unspecified</code>.
+     */
+    public enum drawCardTypeKeys {
+        unspecified,
+        teleport,
+        teleportRelative,
+        teleportWithRentModifier,
+        balanceUpdate,
+        getOutOfJailFreeCard,
+        jailPlayer,
+        improvementRepairs,
+        distributedBalanceUpdate
+    }
 
-	public int getQuantity() {
-		return movementQuantity;
-	}
+    /**
+     * For DrawCard objects of type <code>teleportRelative</code>, this describes the target teleport destination,
+     * relative to the player, to be calculated given the player's position.<br>
+     * The default value is <code>unspecified</code>.
+     */
+    public enum destinationRelativeTypeKeys {
+        unspecified,
+        railroad,
+        utility,
+        backThreeSpaces
+    }
 }

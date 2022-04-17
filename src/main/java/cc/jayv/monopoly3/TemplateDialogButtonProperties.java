@@ -8,10 +8,9 @@ public class TemplateDialogButtonProperties extends JButton implements Serializa
     String customMigLayoutSpec;
 
     /**
-     *
-     * @param buttonText The text to be displayed inside the button.
-     * @param buttonIconResource A string indicating a path where an ImageIcon resource can be loaded from.
-     * @param actionListener An enum indicating which action should be executed when the button is pressed.
+     * @param buttonText          The text to be displayed inside the button.
+     * @param buttonIconResource  A string indicating a path where an ImageIcon resource can be loaded from.
+     * @param actionListener      An enum indicating which action should be executed when the button is pressed.
      * @param customMigLayoutSpec A string which is either blank, or can contain commands which are then
      *                            passed onto MigLayout for custom layout properties for this button.
      */

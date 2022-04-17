@@ -30,6 +30,15 @@ public class DialogContainerPurchaseProperty extends DialogContainer implements 
         arrangeComponents();
     }
 
+    public static void main(String[] args) throws IOException {
+        DialogContainerPurchaseProperty propertyPurchaseDialog = new DialogContainerPurchaseProperty();
+
+        Board board = new Board();
+
+        propertyPurchaseDialog.update(board, 9);
+        propertyPurchaseDialog.getDialog().setVisible(true);
+    }
+
     protected void initComponents() {
         dialog = new JDialog();
         dialog.setLayout(new MigLayout());
@@ -39,8 +48,8 @@ public class DialogContainerPurchaseProperty extends DialogContainer implements 
 
         String disclaimerMessage =
                 "You must decide to either purchase or auction this property." +
-                " If you are unable to afford this property, it will automatically" +
-                " be sent to auction where all players may bid on it.";
+                        " If you are unable to afford this property, it will automatically" +
+                        " be sent to auction where all players may bid on it.";
 
         // Static labels
         // Text area for general information
@@ -121,19 +130,16 @@ public class DialogContainerPurchaseProperty extends DialogContainer implements 
             if (p instanceof Color c) {
                 // Specify color group
                 propertyType = "Color, " + c.getColorGroup();
-            }
-            else if (p instanceof Railroad) {
+            } else if (p instanceof Railroad) {
                 propertyType = "Railroad";
-            }
-            else if (p instanceof Utility) {
+            } else if (p instanceof Utility) {
                 propertyType = "Utility";
             }
 
             // Set appropriate grammar
             if (p.getTimesLanded() == 1) {
                 propertyTimesLanded = p.getTimesLanded() + " time";
-            }
-            else {
+            } else {
                 propertyTimesLanded = p.getTimesLanded() + " times";
             }
         }
@@ -144,15 +150,6 @@ public class DialogContainerPurchaseProperty extends DialogContainer implements 
         labelTimesLanded.setText(propertyTimesLanded);
 
         dialog.pack();
-    }
-
-    public static void main(String[] args) throws IOException {
-        DialogContainerPurchaseProperty propertyPurchaseDialog = new DialogContainerPurchaseProperty();
-
-        Board board = new Board();
-
-        propertyPurchaseDialog.update(board, 9);
-        propertyPurchaseDialog.getDialog().setVisible(true);
     }
 
     @Override

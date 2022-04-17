@@ -1,5 +1,8 @@
 package cc.jayv.monopoly3;
 
+/**
+ * Indicates possible actions that the player can perform through the GUI.
+ */
 public enum Actions {
     CONTROLS_ROLLDICE,
     CONTROLS_ENDTURN,
@@ -12,6 +15,7 @@ public enum Actions {
     CONTROLS_SHOW_TRADE,
     CONTROLS_SHOW_FORFEIT,
 
+    // Game-driven GUI events, such as mandatory jail or property purchase decisions.
     GAME_SHOW_JAIL,
     GAME_SHOW_PURCHASE,
 

@@ -113,12 +113,6 @@ public class ViewAreaSpaceSelection implements ViewComponent, Serializable {
 
     }
 
-    private enum LabelAlignment {
-        LEFT,
-        RIGHT,
-        CENTER
-    }
-
     private JLabel generateLabelWithIcons(JPanel targetPanel, LabelAlignment alignment, boolean isTitle, String text, String migSpec, String icon) {
         JLabel label = generateLabel(targetPanel, alignment, isTitle, text, migSpec);
         label.setIcon(SwingHelper.getImageIconFromResource(icon));
@@ -180,23 +174,20 @@ public class ViewAreaSpaceSelection implements ViewComponent, Serializable {
 
                 if (p.getIsMortgaged()) {
                     mortgagedString = "yes";
-                }
-                else {
+                } else {
                     mortgagedString = "no";
                 }
 
                 SwingHelper.formatLabel(labelOwnedBy, board.players.get(p.getOwnerID()).getCustomName(), SwingHelper.LabelStyles.TITLE_REGULAR);
                 SwingHelper.formatLabel(labelIsMortgaged, mortgagedString, SwingHelper.LabelStyles.TITLE_REGULAR);
-            }
-            else {
+            } else {
                 SwingHelper.formatLabel(labelOwnedBy, true);
                 labelOwnedBy.setText("not owned");
 
                 SwingHelper.formatLabel(labelIsMortgaged, true);
                 labelIsMortgaged.setText("not owned");
             }
-        }
-        else {
+        } else {
             // If not property, cannot be owned
             SwingHelper.formatLabel(labelOwnedBy, true);
         }
@@ -206,16 +197,13 @@ public class ViewAreaSpaceSelection implements ViewComponent, Serializable {
             String spaceType = "";
             if (p instanceof Color) {
                 spaceType = "Color";
-            }
-            else if (p instanceof Utility) {
+            } else if (p instanceof Utility) {
                 spaceType = "Utility";
-            }
-            else if (p instanceof Railroad) {
+            } else if (p instanceof Railroad) {
                 spaceType = "Railroad";
             }
             SwingHelper.formatLabel(labelSpaceType, spaceType, SwingHelper.LabelStyles.TITLE_REGULAR);
-        }
-        else {
+        } else {
             SwingHelper.formatLabel(labelSpaceType, "Game event", SwingHelper.LabelStyles.TITLE_REGULAR);
         }
 
@@ -223,8 +211,7 @@ public class ViewAreaSpaceSelection implements ViewComponent, Serializable {
         String landedSuffix;
         if (localSpace.getTimesLanded() == 1) {
             landedSuffix = " time";
-        }
-        else {
+        } else {
             landedSuffix = " times";
         }
         SwingHelper.formatLabel(labelLanded, localSpace.getTimesLanded() + landedSuffix, SwingHelper.LabelStyles.TITLE_REGULAR);
@@ -233,8 +220,7 @@ public class ViewAreaSpaceSelection implements ViewComponent, Serializable {
         if (localSpace instanceof Property p) {
             SwingHelper.formatLabel(labelPrice, "$" + p.getPurchaseCost(), SwingHelper.LabelStyles.TITLE_REGULAR);
             SwingHelper.formatLabel(labelCurrentRent, "$" + p.calculateRent(), SwingHelper.LabelStyles.TITLE_REGULAR);
-        }
-        else {
+        } else {
             SwingHelper.formatLabel(labelPrice, true);
         }
 
@@ -245,15 +231,13 @@ public class ViewAreaSpaceSelection implements ViewComponent, Serializable {
             SwingHelper.formatLabel(labelRentHouse3, p.queryRentValue(Property.QueryRentStates.HOUSE_3), SwingHelper.LabelStyles.TITLE_REGULAR);
             SwingHelper.formatLabel(labelRentHouse4, p.queryRentValue(Property.QueryRentStates.HOUSE_4), SwingHelper.LabelStyles.TITLE_REGULAR);
             SwingHelper.formatLabel(labelRentHotel, p.queryRentValue(Property.QueryRentStates.HOTEL), SwingHelper.LabelStyles.TITLE_REGULAR);
-        }
-        else if (localSpace instanceof Railroad p) {
+        } else if (localSpace instanceof Railroad p) {
             SwingHelper.formatLabel(labelRentHouse1, p.queryRentValue(Property.QueryRentStates.RAILROAD_1), SwingHelper.LabelStyles.TITLE_REGULAR);
             SwingHelper.formatLabel(labelRentHouse2, p.queryRentValue(Property.QueryRentStates.RAILROAD_2), SwingHelper.LabelStyles.TITLE_REGULAR);
             SwingHelper.formatLabel(labelRentHouse3, p.queryRentValue(Property.QueryRentStates.RAILROAD_3), SwingHelper.LabelStyles.TITLE_REGULAR);
             SwingHelper.formatLabel(labelRentHouse4, p.queryRentValue(Property.QueryRentStates.RAILROAD_4), SwingHelper.LabelStyles.TITLE_REGULAR);
             SwingHelper.formatLabel(labelRentHotel, true);
-        }
-        else {
+        } else {
             SwingHelper.formatLabel(labelRentHouse1, true);
             SwingHelper.formatLabel(labelRentHouse2, true);
             SwingHelper.formatLabel(labelRentHouse3, true);
@@ -277,6 +261,12 @@ public class ViewAreaSpaceSelection implements ViewComponent, Serializable {
 
     public JPanel getJPanel() {
         return selectionInfoArea;
+    }
+
+    private enum LabelAlignment {
+        LEFT,
+        RIGHT,
+        CENTER
     }
 
 }

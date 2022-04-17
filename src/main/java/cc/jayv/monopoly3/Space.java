@@ -3,81 +3,79 @@ package cc.jayv.monopoly3;
 import java.io.Serializable;
 
 /**
- *
  * @author jay
  */
 public abstract class Space implements Serializable {
 
-	int id;
-	String friendlyName;
+    int id;
+    String friendlyName;
+    spaceTypeKeys spaceType;
+    buttonAppearanceKeys buttonAppearance;
+    int timesLanded;
 
-	public enum spaceTypeKeys {
-		unspecified,
-		property,
-		gameEvent
-	}
-	spaceTypeKeys spaceType;
-	
-	public enum buttonAppearanceKeys {
-		none,
-		previousSpace,
-		newSpace,
-		canPerformAction
-	}
-	buttonAppearanceKeys buttonAppearance;
+    Space() {
+        id = -1;
+        friendlyName = "";
+        spaceType = spaceTypeKeys.unspecified;
+        buttonAppearance = buttonAppearanceKeys.none;
+        timesLanded = 0;
+    }
 
-	int timesLanded;
+    Space(int inputID, spaceTypeKeys inputSpaceType, String inputFriendlyName) {
+        id = inputID;
+        spaceType = inputSpaceType;
+        buttonAppearance = buttonAppearanceKeys.none;
+        friendlyName = inputFriendlyName;
+        timesLanded = 0;
+    }
 
-	Space() {
-		id = -1;
-		friendlyName = "";
-		spaceType = spaceTypeKeys.unspecified;
-		buttonAppearance = buttonAppearanceKeys.none;
-		timesLanded = 0;
-	}
+    public int getID() {
+        return id;
+    }
 
-	Space(int inputID, spaceTypeKeys inputSpaceType, String inputFriendlyName) {
-		id = inputID;
-		spaceType = inputSpaceType;
-		buttonAppearance = buttonAppearanceKeys.none;
-		friendlyName = inputFriendlyName;
-		timesLanded = 0;
-	}
+    public void setID(int inputID) {
+        id = inputID;
+    }
 
-	public int getID() {
-		return id;
-	}
+    public String getFriendlyName() {
+        return friendlyName;
+    }
 
-	public void setID(int inputID) {
-		id = inputID;
-	}
+    public void setFriendlyName(String inputFriendlyName) {
+        friendlyName = inputFriendlyName;
+    }
 
-	public String getFriendlyName() {
-		return friendlyName;
-	}
+    public int getTimesLanded() {
+        return timesLanded;
+    }
 
-	public void setFriendlyName(String inputFriendlyName) {
-		friendlyName = inputFriendlyName;
-	}
+    public void incrementTimesLanded() {
+        timesLanded++;
+    }
 
-	public int getTimesLanded() {
-		return timesLanded;
-	}
-	
-	public void incrementTimesLanded() {
-		timesLanded++;
-	}
+    public spaceTypeKeys getSpaceType() {
+        return spaceType;
+    }
 
-	public spaceTypeKeys getSpaceType() {
-		return spaceType;
-	}
-	
-	public buttonAppearanceKeys getButtonAppearance() {
-		return buttonAppearance;
-	}
-	
-	public void setButtonAppearance(buttonAppearanceKeys inputAppearance) {
-		buttonAppearance = inputAppearance;
-	}
+    public buttonAppearanceKeys getButtonAppearance() {
+        return buttonAppearance;
+    }
+
+    public void setButtonAppearance(buttonAppearanceKeys inputAppearance) {
+        buttonAppearance = inputAppearance;
+    }
+
+    public enum spaceTypeKeys {
+        unspecified,
+        property,
+        gameEvent
+    }
+
+    public enum buttonAppearanceKeys {
+        none,
+        previousSpace,
+        newSpace,
+        canPerformAction
+    }
 
 }

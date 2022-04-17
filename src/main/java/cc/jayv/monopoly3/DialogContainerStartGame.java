@@ -34,6 +34,13 @@ public class DialogContainerStartGame extends DialogContainer implements Seriali
         arrangeComponents();
     }
 
+    public static void main(String[] args) {
+        DialogContainerStartGame startGameDialog = new DialogContainerStartGame();
+        JDialog dialog = startGameDialog.getDialog();
+
+        dialog.setVisible(true);
+    }
+
     @Override
     protected void initComponents() {
         dialog = new JDialog();
@@ -61,20 +68,17 @@ public class DialogContainerStartGame extends DialogContainer implements Seriali
                 playerCustomName2.setEnabled(false);
                 playerCustomName3.setEnabled(false);
                 playerCustomName4.setEnabled(false);
-            }
-            else if (playerCount == 2) {
+            } else if (playerCount == 2) {
                 playerCustomName1.setEnabled(true);
                 playerCustomName2.setEnabled(true);
                 playerCustomName3.setEnabled(false);
                 playerCustomName4.setEnabled(false);
-            }
-            else if (playerCount == 3) {
+            } else if (playerCount == 3) {
                 playerCustomName1.setEnabled(true);
                 playerCustomName2.setEnabled(true);
                 playerCustomName3.setEnabled(true);
                 playerCustomName4.setEnabled(false);
-            }
-            else {
+            } else {
                 playerCustomName1.setEnabled(true);
                 playerCustomName2.setEnabled(true);
                 playerCustomName3.setEnabled(true);
@@ -147,24 +151,6 @@ public class DialogContainerStartGame extends DialogContainer implements Seriali
         buttonStartGame.addActionListener(new LocalActionListener());
     }
 
-    private class LocalActionListener implements ActionListener {
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            playerCount = (int) comboBoxPlayerCount.getSelectedItem();
-
-            playerCustomNames.clear();
-            playerCustomNames.trimToSize();
-            playerCustomNames.add(playerCustomName1.getText());
-            playerCustomNames.add(playerCustomName2.getText());
-            playerCustomNames.add(playerCustomName3.getText());
-            playerCustomNames.add(playerCustomName4.getText());
-
-            startGameButtonActionListener.setPlayerCustomNames(playerCustomNames);
-            startGameButtonActionListener.setPlayerCount(playerCount);
-        }
-    }
-
     public int getPlayerCount() {
         return playerCount;
     }
@@ -182,11 +168,22 @@ public class DialogContainerStartGame extends DialogContainer implements Seriali
         return playerCustomName;
     }
 
-    public static void main(String[] args) {
-        DialogContainerStartGame startGameDialog = new DialogContainerStartGame();
-        JDialog dialog = startGameDialog.getDialog();
+    private class LocalActionListener implements ActionListener {
 
-        dialog.setVisible(true);
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            playerCount = (int) comboBoxPlayerCount.getSelectedItem();
+
+            playerCustomNames.clear();
+            playerCustomNames.trimToSize();
+            playerCustomNames.add(playerCustomName1.getText());
+            playerCustomNames.add(playerCustomName2.getText());
+            playerCustomNames.add(playerCustomName3.getText());
+            playerCustomNames.add(playerCustomName4.getText());
+
+            startGameButtonActionListener.setPlayerCustomNames(playerCustomNames);
+            startGameButtonActionListener.setPlayerCount(playerCount);
+        }
     }
 
 }
