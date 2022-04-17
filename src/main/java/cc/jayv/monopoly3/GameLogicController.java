@@ -362,18 +362,27 @@ public class GameLogicController implements Serializable {
 		currentGameEvent = (GameEvent) currentSpace;
 		GameEvent.gameEventTypeKeys localGameEventType = currentGameEvent.getGameEventType();
 
+		// Draw card
 		if (localGameEventType.equals(GameEvent.gameEventTypeKeys.drawCard)) {
 			drawCardEvaluator();
 		}
+
+		// Balance update
 		else if (localGameEventType.equals(GameEvent.gameEventTypeKeys.updateBalance)) {
 
 		}
+
+		// Teleport
 		else if (localGameEventType.equals(GameEvent.gameEventTypeKeys.teleport)) {
 
 		}
+
+		// Jail player
 		else if (localGameEventType.equals(GameEvent.gameEventTypeKeys.jailPlayer)) {
 			jailPlayer();
 		}
+
+		// Tax
 		else if (localGameEventType.equals(GameEvent.gameEventTypeKeys.tax)) {
 			// Using 2008 Monopoly rules that exclude 10% option
 			if (currentGameEvent.getFriendlyName().contains("Income")) {
