@@ -1,7 +1,6 @@
 package cc.jayv.monopoly3;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Map;
 
 /**

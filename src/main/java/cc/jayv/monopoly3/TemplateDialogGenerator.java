@@ -22,7 +22,7 @@ public class TemplateDialogGenerator implements Serializable {
 
     public TemplateDialogGenerator(String dialogTitle, String dialogIconResource) {
         this.dialogTitle = dialogTitle;
-        this.dialogIcon = getImageIconFromResource(dialogIconResource);
+        dialogIcon = getImageIconFromResource(dialogIconResource);
 
         dialogButtonList = new ArrayList<>();
         dialogButtonContentList = new ArrayList<>();
@@ -96,14 +96,6 @@ public class TemplateDialogGenerator implements Serializable {
         userPrompt.setResizable(false);
 
         return userPrompt;
-    }
-
-    public void setInfoAreaContents(String text) {
-        try {
-            infoArea.setText(text);
-        } catch (NullPointerException e) {
-            System.err.println("Text area not initialized.");
-        }
     }
 
 }

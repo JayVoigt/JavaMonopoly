@@ -225,7 +225,20 @@ public class ViewFrameInformationModule {
             labelName.setText(player.getCustomName());
             labelName.setIcon(player.getPreferredIcon());
 
-            labelBalance.setText("$" + player.getCurrentBalance());
+            String balanceText = "$" + player.getCurrentBalance();
+
+            int balanceDelta = player.getPreviousBalance() - player.getCurrentBalance();
+            if (balanceDelta < 0) {
+                balanceText = balanceText + " (+$" + Math.abs(balanceDelta) + ")";
+            }
+            else if (balanceDelta == 0) {
+                balanceText = balanceText + " (+$0)";
+            }
+            else {
+                balanceText = balanceText + " (-$" + Math.abs(balanceDelta) + ")";
+            }
+
+            labelBalance.setText(balanceText);
 
             labelStatusTurn.setEnabled((board.getCurrentPlayerID() == player.getPlayerID()));
 

@@ -46,7 +46,7 @@ public class GameLogicTools extends GameLogicModule implements Serializable {
     }
 
     public void debugToolsRandomlyDistributeAllProperties() {
-        ArrayList<Player> activePlayers = new ArrayList<Player>();
+        ArrayList<Player> activePlayers = new ArrayList<>();
 
         for (Player p : board.players) {
             if (p.getIsActive()) {

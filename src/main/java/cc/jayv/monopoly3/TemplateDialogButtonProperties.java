@@ -15,14 +15,14 @@ public class TemplateDialogButtonProperties extends JButton implements Serializa
      *                            passed onto MigLayout for custom layout properties for this button.
      */
     public TemplateDialogButtonProperties(String buttonText, String buttonIconResource, ActionListener actionListener, String customMigLayoutSpec) {
-        this.setText(buttonText);
+        setText(buttonText);
         this.customMigLayoutSpec = customMigLayoutSpec;
 
-        this.addActionListener(actionListener);
+        addActionListener(actionListener);
 
-        this.setIcon(SwingHelper.getImageIconFromResource(buttonIconResource));
+        setIcon(SwingHelper.getImageIconFromResource(buttonIconResource));
 
-        this.setVisible(true);
+        setVisible(true);
     }
 
     public String getMigLayoutSpec() {

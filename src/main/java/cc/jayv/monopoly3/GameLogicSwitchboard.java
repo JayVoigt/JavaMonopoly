@@ -17,7 +17,7 @@ public class GameLogicSwitchboard implements Serializable {
     JTextArea infoArea;
 
     public GameLogicSwitchboard(GameLogicController controller) {
-        this.c = controller;
+        c = controller;
     }
 
     /**

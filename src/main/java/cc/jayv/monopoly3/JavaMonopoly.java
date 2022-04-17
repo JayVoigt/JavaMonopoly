@@ -19,9 +19,8 @@ public class JavaMonopoly implements Serializable {
     /**
      * The main method for the application.
      * @param args none
-     * @throws IOException Thrown when .csv data for the Board object is unable to be read correctly.
      */
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         new JavaMonopoly();
     }
 

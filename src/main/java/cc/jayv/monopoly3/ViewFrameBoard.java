@@ -285,7 +285,6 @@ public class ViewFrameBoard implements Serializable {
                 }
 
                 JButton initButton = spaceButtons.get(previousSpaceID).getButton();
-                System.out.println("Modifying button with ID " + previousSpaceID);
                 initButton.setBorderPainted(true);
                 initButton.setBorder(SwingHelper.createBorderStyleHighlight(java.awt.Color.gray, true, 2));
 
@@ -303,7 +302,6 @@ public class ViewFrameBoard implements Serializable {
                     uniformRGB = 255;
                 }
                 java.awt.Color color = new java.awt.Color(255, 255, uniformRGB, alpha);
-                System.out.println("Modifying button with ID " + spaceID + ", alpha:uRGB" + alpha + ":" + uniformRGB);
 
                 button.setBorderPainted(true);
                 button.setBorder(SwingHelper.createBorderStyleHighlight(color, true, 2));
@@ -568,8 +566,8 @@ public class ViewFrameBoard implements Serializable {
         ImageIcon animatedLabelMortgaged;
 
         public AnimatedSpaceActionListener(String animatedLabelResource, String animatedMortgagedLabelResource) {
-            this.animatedLabel = SwingHelper.getImageIconFromResource(animatedLabelResource);
-            this.animatedLabelMortgaged = SwingHelper.getImageIconFromResource(animatedMortgagedLabelResource);
+            animatedLabel = SwingHelper.getImageIconFromResource(animatedLabelResource);
+            animatedLabelMortgaged = SwingHelper.getImageIconFromResource(animatedMortgagedLabelResource);
         }
 
         @Override

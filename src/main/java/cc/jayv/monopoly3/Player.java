@@ -17,9 +17,15 @@ public class Player implements Serializable {
     String customName;
     ImageIcon preferredIcon;
 
-    int currentBalance,
-            currentPosition,
-            previousPosition;
+    int currentBalance;
+
+    public int getPreviousBalance() {
+        return previousBalance;
+    }
+
+    int previousBalance;
+    int currentPosition;
+    int previousPosition;
     boolean isPlayerActive,
             isComputerControlled;
     // How many times the player has rolled doubles on a single turn.
@@ -72,6 +78,7 @@ public class Player implements Serializable {
 
         // The default balance for players is $1500.
         currentBalance = 1500;
+        previousBalance = 1500;
 
         // Players start at GO, with space ID 0
         currentPosition = 0;
@@ -148,10 +155,12 @@ public class Player implements Serializable {
     }
 
     public void setCurrentBalance(int inputCurrentBalance) {
+        previousBalance = currentBalance;
         currentBalance = inputCurrentBalance;
     }
 
     public void updateCurrentBalance(int change) {
+        previousBalance = currentBalance;
         currentBalance += change;
         evaluateState();
     }
@@ -385,7 +394,7 @@ public class Player implements Serializable {
         }
     }
 
-    public int rollDice() {
+    public void rollDice() {
         die1 = (int) (1 + Math.random() * 6);
         die2 = (int) (1 + Math.random() * 6);
 
@@ -397,7 +406,6 @@ public class Player implements Serializable {
             hasRolledDice = true;
         }
 
-        return die1 + die2;
     }
 
     public void incrementConsecutiveTurnsJailed() {

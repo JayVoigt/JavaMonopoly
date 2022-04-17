@@ -11,18 +11,18 @@ import java.util.Objects;
  */
 public class Board implements Serializable {
 
-    public List<Space> spaces = new ArrayList<>();
-    public List<Player> players = new ArrayList<>();
+    public final List<Space> spaces = new ArrayList<>();
+    public final List<Player> players = new ArrayList<>();
 
-    public List<DrawCard> chanceCards = new ArrayList<>();
-    public List<DrawCard> communityChestCards = new ArrayList<>();
+    public final List<DrawCard> chanceCards = new ArrayList<>();
+    public final List<DrawCard> communityChestCards = new ArrayList<>();
 
     int currentPlayerID;
     int bankHouseCount;
     int bankHotelCount;
 
-    int repairCostHouse;
-    int repairCostHotel;
+    final int repairCostHouse;
+    final int repairCostHotel;
 
     ArrayList<Color> spacesByColorGroup = new ArrayList<>();
     ArrayList<Property> spacesByOwnerID = new ArrayList<>();
@@ -80,9 +80,9 @@ public class Board implements Serializable {
                 propertyAttributes.put("houseCost", parseIntHandler(configLine[13]));
                 propertyAttributes.put("hotelCost", parseIntHandler(configLine[14]));
 
-                if (localSpaceType.equals("gameEvent")) {
+                if ("gameEvent".equals(localSpaceType)) {
                     spaces.add(localID, new GameEvent(GameEvent.GameEventTypeKeys.valueOf(localPropertyType), localID, localFriendlyName));
-                } else if (localSpaceType.equals("property")) {
+                } else if ("property".equals(localSpaceType)) {
 
                     switch (localPropertyType) {
                         case "color" -> {

@@ -145,5 +145,6 @@ public class GameLogicEvaluatorDrawCard extends GameLogicModule implements Seria
             }   // end case UTILITY
 
         }   // end switch
+        controller.initialEvaluator();
     }
 }

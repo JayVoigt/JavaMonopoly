@@ -82,7 +82,7 @@ public class DialogContainerJail extends DialogContainer {
         if (player.getConsecutiveTurnsJailed() >= 3) {
             setStateOfActionButton(ActionsGUI.JAIL_ROLLDOUBLES, false);
             message = message.concat(" You are unable to roll for doubles, and must post bail or use a Get Out" +
-                    "of Jail Free card.");
+                    " of Jail Free card.");
         } else {
             setStateOfActionButton(ActionsGUI.JAIL_ROLLDOUBLES, true);
         }

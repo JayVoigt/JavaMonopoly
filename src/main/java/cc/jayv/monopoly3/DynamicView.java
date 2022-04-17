@@ -357,9 +357,7 @@ public class DynamicView implements Serializable {
         for (ActionsGUI a : ActionsGUI.values()) {
 
             switch (a) {
-                case CONTROLS_SHOW_MORTGAGE, CONTROLS_SHOW_FORFEIT, CONTROLS_SHOW_IMPROVEMENTS -> {
-                    buttonActionListeners.add(new ButtonActionListener(a, true));
-                }
+                case CONTROLS_SHOW_MORTGAGE, CONTROLS_SHOW_FORFEIT, CONTROLS_SHOW_IMPROVEMENTS -> buttonActionListeners.add(new ButtonActionListener(a, true));
                 default -> buttonActionListeners.add(new ButtonActionListener(a, false));
             }
 

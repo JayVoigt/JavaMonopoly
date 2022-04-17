@@ -7,7 +7,6 @@ import java.util.Map;
  */
 public class Utility extends Property {
 
-    // <editor-fold desc="Constructor">
     public Utility(Map<String, Integer> propertyAttributes, int inputSpaceID, String inputFriendlyName) {
         super(null);
 
@@ -16,7 +15,6 @@ public class Utility extends Property {
 
         purchaseCost = propertyAttributes.get("purchaseCost");
     }
-    // </editor-fold>
 
     @Override
     public int calculateRent() {

@@ -235,7 +235,7 @@ public class SwingHelper implements Serializable {
     }
 
     private void drawBorderJDialog(JDialog inputDialog) {
-        if (inputDialog.getName().equals("gameEditorDialog")) {
+        if ("gameEditorDialog".equals(inputDialog.getName())) {
             inputDialog.getRootPane().setBorder(BorderFactory.createLineBorder(java.awt.Color.RED));
         } else {
             inputDialog.getRootPane().setBorder(BorderFactory.createLineBorder(java.awt.Color.BLACK));

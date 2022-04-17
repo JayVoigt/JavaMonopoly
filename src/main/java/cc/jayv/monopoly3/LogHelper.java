@@ -105,7 +105,6 @@ public class LogHelper implements Serializable {
      * Entries are prefixed with the current date and time.
      *
      * @param input       The contents of the message.
-     * @param turnCounter The current turn.
      */
     public void appendToGameLog(String input) {
         Date currentDate = new Date();
