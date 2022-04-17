@@ -1,5 +1,8 @@
 package cc.jayv.monopoly3;
 
+/**
+ * Possible actions the user may perform through the menu bar.
+ */
 public enum MenuActions {
     FILE_NEW_GAME,
     FILE_LOAD_GAME,

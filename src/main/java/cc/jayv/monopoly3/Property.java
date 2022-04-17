@@ -9,21 +9,24 @@ import java.util.HashMap;
 public abstract class Property extends Space implements Serializable {
 
     propertyTypeKeys propertyType;
-    boolean isOwned,
-            isMortgaged,
-            isFullSetOwned;
+    boolean isOwned;
+    boolean isMortgaged;
+    boolean isFullSetOwned;
+
     int ownerID;
+
     // Note that rentHouse<n> variables are used for both Color and Railroad properties.
-    int rentBase,
-            rentHouse1,
-            rentHouse2,
-            rentHouse3,
-            rentHouse4,
-            rentHotel;
-    int purchaseCost,
-            mortgageValue,
-            houseCost,
-            hotelCost;
+    int rentBase;
+    int rentHouse1;
+    int rentHouse2;
+    int rentHouse3;
+    int rentHouse4;
+    int rentHotel;
+
+    int purchaseCost;
+    int mortgageValue;
+    int houseCost;
+    int hotelCost;
 
     // <editor-fold desc="Constructor">
     protected Property(HashMap<String, Integer> propertyAttributes) {
@@ -38,14 +41,6 @@ public abstract class Property extends Space implements Serializable {
     }
 
     // <editor-fold defaultstate="collapsed" desc="Setters and getters">
-    public propertyTypeKeys getPropertyType() {
-        return propertyType;
-    }
-    // </editor-fold>
-
-    public void setPropertyType(propertyTypeKeys inputPropertyType) {
-        propertyType = inputPropertyType;
-    }
     // </editor-fold>
 
     public boolean getIsOwned() {

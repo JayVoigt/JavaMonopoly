@@ -1,17 +1,17 @@
-﻿id,type,description,destination,quantity,destinationRelative
-0,teleport,Advance to Boardwalk.,39,,
-1,teleport,Advance to GO and collect $200.,0,,
-2,teleport,Advance to Illinois Avenue. If you pass GO collect $200.,24,,
-3,teleportRelative,Advance to St. Charles Place. If you pass GO collect $200.,,,
-4,teleportWithRentModifier,Advance to the nearest Railroad. If unowned you may buy it from the Bank. If owned pay the owner twice the rental to which they are otherwise entitled.,,,railroad
-5,teleportWithRentModifier,Advance to the nearest Railroad. If unowned you may buy it from the Bank. If owned pay the owner twice the rental to which they are otherwise entitled.,,,railroad
-6,teleportWithRentModifier,Advance to the nearest Utility. If unowned you may buy it from the Bank. If owned throw dice and pay owher a total ten times amount thrown.,,,utility
-7,balanceUpdate,Bank pays you a dividend of $50.,,50,
-8,getOutOfJailFreeCard,Get Out of Jail Free.,,,
-9,teleportRelative,Go back 3 spaces.,,,backThreeSpaces
-10,jailPlayer,Go directly to Jail. Do not pass GO and do not collect $200.,,,
-11,improvementRepairs,Make general repairs on all your property. For each house pay $25. For each hotel pay $100.,,,
-12,balanceUpdate,Speeding fine $15.,,-15,
-13,teleport,Take a trip to Reading Railroad. If you pass GO collect $200.,5,,
-14,distributedBalanceUpdate,You have been elected Chairman of the Board. Pay each player $50.,,,
-15,balanceUpdate,Your building loan matures. Collect $150.,,150,
+id,type,description,destination,quantity,destinationRelative
+0,TELEPORT,Advance to Boardwalk.,39,,
+1,TELEPORT,Advance to GO and collect $200.,0,,
+2,TELEPORT,Advance to Illinois Avenue. If you pass GO collect $200.,24,,
+3,TELEPORT_RELATIVE,Advance to St. Charles Place. If you pass GO collect $200.,,,
+4,TELEPORT_WITH_RENT_MODIFIER,Advance to the nearest Railroad. If unowned you may buy it from the Bank. If owned pay the owner twice the rental to which they are otherwise entitled.,,,RAILROAD
+5,TELEPORT_WITH_RENT_MODIFIER,Advance to the nearest Railroad. If unowned you may buy it from the Bank. If owned pay the owner twice the rental to which they are otherwise entitled.,,,RAILROAD
+6,TELEPORT_WITH_RENT_MODIFIER,Advance to the nearest Utility. If unowned you may buy it from the Bank. If owned throw dice and pay owher a total ten times amount thrown.,,,UTILITY
+7,BALANCE_UPDATE,Bank pays you a dividend of $50.,,50,
+8,GET_OUT_OF_JAIL_FREE_CARD,Get Out of Jail Free.,,,
+9,TELEPORT_RELATIVE,Go back 3 spaces.,,,BACK_THREE_SPACES
+10,JAIL_PLAYER,Go directly to Jail. Do not pass GO and do not collect $200.,,,
+11,IMPROVEMENT_REPAIRS,Make general repairs on all your property. For each house pay $25. For each hotel pay $100.,,,
+12,BALANCE_UPDATE,Speeding fine $15.,,-15,
+13,TELEPORT,Take a trip to Reading Railroad. If you pass GO collect $200.,5,,
+14,DISTRIBUTED_BALANCE_UPDATE,You have been elected Chairman of the Board. Pay each player $50.,,,
+15,BALANCE_UPDATE,Your building loan matures. Collect $150.,,150,

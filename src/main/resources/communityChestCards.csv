@@ -1,17 +1,17 @@
 id,type,description,destination,quantity
-0,teleport,Advance to GO and collect $200.,,
-1,balanceUpdate,Bank error in your favor. Collect $200.,,200
-2,balanceUpdate,Doctor's fee. Pay $50.,,-50
-3,balanceUpdate,From sale of stock you get $50.,,50
-4,getOutOfJailFreeCard,Get Out of Jail Free,,
-5,jailPlayer,Go directly to Jail. Do not pass GO and do not collect $200.,,
-6,balanceUpdate,Holiday fund matures. Receive $100.,,100
-7,balanceUpdate,Income tax refund. Collect $20.,,20
-8,distributedBalanceUpdate,It is your birthday. Collect $10 from every player.,,
-9,balanceUpdate,Life insurance matures. Collect $100.,,100
-10,balanceUpdate,Pay hospital fees of $100.,,-100
-11,balanceUpdate,Pay school fees of $50.,,-50
-12,balanceUpdate,Receive $25 consultancy fee.,,25
-13,improvementRepairs,You are assessed for street repair. Pay $40 per house and $115 per hotel.,,
-14,balanceUpdate,You have won second prize in a beauty contest. Collect $10.,,10
-15,balanceUpdate,You inherit $100.,,100
+0,TELEPORT,Advance to GO and collect $200.,,
+1,BALANCE_UPDATE,Bank error in your favor. Collect $200.,,200
+2,BALANCE_UPDATE,Doctor's fee. Pay $50.,,-50
+3,BALANCE_UPDATE,From sale of stock you get $50.,,50
+4,GET_OUT_OF_JAIL_FREE_CARD,Get Out of Jail Free,,
+5,JAIL_PLAYER,Go directly to Jail. Do not pass GO and do not collect $200.,,
+6,BALANCE_UPDATE,Holiday fund matures. Receive $100.,,100
+7,BALANCE_UPDATE,Income tax refund. Collect $20.,,20
+8,DISTRIBUTED_BALANCE_UPDATE,It is your birthday. Collect $10 from every player.,,
+9,BALANCE_UPDATE,Life insurance matures. Collect $100.,,100
+10,BALANCE_UPDATE,Pay hospital fees of $100.,,-100
+11,BALANCE_UPDATE,Pay school fees of $50.,,-50
+12,BALANCE_UPDATE,Receive $25 consultancy fee.,,25
+13,IMPROVEMENT_REPAIRS,You are assessed for street repair. Pay $40 per house and $115 per hotel.,,
+14,BALANCE_UPDATE,You have won second prize in a beauty contest. Collect $10.,,10
+15,BALANCE_UPDATE,You inherit $100.,,100

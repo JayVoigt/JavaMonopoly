@@ -10,22 +10,12 @@ public abstract class Space implements Serializable {
     int id;
     String friendlyName;
     spaceTypeKeys spaceType;
-    buttonAppearanceKeys buttonAppearance;
     int timesLanded;
 
     Space() {
         id = -1;
         friendlyName = "";
         spaceType = spaceTypeKeys.unspecified;
-        buttonAppearance = buttonAppearanceKeys.none;
-        timesLanded = 0;
-    }
-
-    Space(int inputID, spaceTypeKeys inputSpaceType, String inputFriendlyName) {
-        id = inputID;
-        spaceType = inputSpaceType;
-        buttonAppearance = buttonAppearanceKeys.none;
-        friendlyName = inputFriendlyName;
         timesLanded = 0;
     }
 
@@ -57,25 +47,11 @@ public abstract class Space implements Serializable {
         return spaceType;
     }
 
-    public buttonAppearanceKeys getButtonAppearance() {
-        return buttonAppearance;
-    }
-
-    public void setButtonAppearance(buttonAppearanceKeys inputAppearance) {
-        buttonAppearance = inputAppearance;
-    }
-
     public enum spaceTypeKeys {
         unspecified,
         property,
         gameEvent
     }
 
-    public enum buttonAppearanceKeys {
-        none,
-        previousSpace,
-        newSpace,
-        canPerformAction
-    }
 
 }

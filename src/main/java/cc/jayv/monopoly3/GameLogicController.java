@@ -109,10 +109,6 @@ public class GameLogicController implements Serializable {
 
         board.forceBoardSelfCheck();
 
-        for (Space s : board.spaces) {
-            s.setButtonAppearance(Space.buttonAppearanceKeys.none);
-        }
-
         logHelper.addNewLine();
 
         appendToGameLog("It is now " + currentPlayer.getCustomName() + "'s turn.");
@@ -269,10 +265,8 @@ public class GameLogicController implements Serializable {
         logHelper.appendToDebugLog("-> executing movementEvaluator");
         int diceSum = currentPlayer.getDiceSum();
 
-        board.spaces.get(currentPlayer.getCurrentPosition()).setButtonAppearance(Space.buttonAppearanceKeys.previousSpace);
         boolean playerPassedGo = currentPlayer.advancePosition(diceSum);
         currentPlayer.setAnimateMovement(true);
-        board.spaces.get(currentPlayer.getCurrentPosition()).setButtonAppearance(Space.buttonAppearanceKeys.newSpace);
 
         // Issue GO bonus
         if (playerPassedGo) {
