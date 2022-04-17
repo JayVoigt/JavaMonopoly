@@ -360,28 +360,24 @@ public class Board implements Serializable {
      * indicator within the Railroad object if all spaces are owned by the same player.
      */
     private void updateRailroadPropertyOwnershipRelationships() {
-        int ownedRailroads = 0;
-
         for (Player p : players) {
-            ArrayList<Railroad> railroadsOwnedBySamePlayer = new ArrayList<>();
-            railroadsOwnedBySamePlayer.clear();
-
-            // Ref: https://stackoverflow.com/questions/4819635/how-to-efficiently-remove-all-null-elements-from-a-arraylist-or-string-array
-            while (railroadsOwnedBySamePlayer.remove(null)) ;
-
             if (p.getPlayerID() != 0) {
+                int railroadCounter = 0;
                 for (Space s : spaces) {
-                    if (s instanceof Railroad) {
-                        railroadsOwnedBySamePlayer.add((Railroad) s);
+                    if ((s instanceof Railroad r) && (r.getOwnerID() == p.getPlayerID())) {
+                        railroadCounter++;
                     }    // end if
                 }    // end for
+                p.setOwnedRailroads(railroadCounter);
             }    // end if
-
-            for (Railroad r : railroadsOwnedBySamePlayer) {
-                r.setOwnedRailroads(railroadsOwnedBySamePlayer.size());
-            }
         }    // end for
 
+        for (Space s : spaces) {
+            if (s instanceof Railroad r) {
+                int ownedRailroads = players.get(r.getOwnerID()).getOwnedRailroads();
+                r.setOwnedRailroads(ownedRailroads);
+            }
+        }
     }
 
     /**

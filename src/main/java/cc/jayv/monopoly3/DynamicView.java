@@ -121,6 +121,7 @@ public class DynamicView implements Serializable {
      * Calls several methods which update specific parts of the interface.
      */
     public void update() {
+        board.forceBoardSelfCheck();
         currentPlayer = board.players.get(board.getCurrentPlayerID());
         currentPlayer.evaluateState();
 

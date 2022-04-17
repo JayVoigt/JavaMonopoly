@@ -30,7 +30,6 @@ public class GameLogicEvaluatorDrawCard implements Serializable {
     void drawCardEvaluator() {
         int randomCardID = (int) (Math.random() * board.chanceCards.size());
         String gameLogDrawPrefix;
-        DrawCard currentDrawCard;
 
         if (Objects.equals(currentSpace.getFriendlyName(), "Chance")) {
             currentDrawCard = board.chanceCards.get(randomCardID);
@@ -62,6 +61,7 @@ public class GameLogicEvaluatorDrawCard implements Serializable {
         int ownedHouses = 0, ownedHotels = 0;
         int paymentQuantity;
 
+        // Determine number of improvements the player owns
         for (Space s : board.spaces) {
             if (s instanceof Color localColor) {
                 if (currentPlayer.getOwnsPropertyByID(localColor.getID())) {
@@ -81,12 +81,39 @@ public class GameLogicEvaluatorDrawCard implements Serializable {
                     + " houses and " + ownedHotels + " hotels. A payment of $" + paymentQuantity
                     + " is required.");
 
+            // Deduct payment
             currentPlayer.updateCurrentBalance(-1 * paymentQuantity);
         }
     }
 
     private void eventDistributedBalanceUpdate() {
+        int distributionCount = 0;
 
+        // Hacky solution, really not ideal
+        if (currentDrawCard.getMessage().contains("Chairman")) {
+            for (Player p : board.players) {
+                if (p.getIsActive()) {
+                    gameLogicController.appendToGameLog(p.getCustomName() + " has been paid $50.");
+                    p.updateCurrentBalance(50);
+                    distributionCount++;
+                }
+            }
+
+            gameLogicController.appendToGameLog(currentPlayer.getCustomName() + " has paid a total of " + distributionCount * 50 + " to all other players..");
+            currentPlayer.updateCurrentBalance(distributionCount * -50);
+        }
+        else {
+            for (Player p : board.players) {
+                if (p.getIsActive()) {
+                    gameLogicController.appendToGameLog(p.getCustomName() + " has paid $10 to " + currentPlayer.getCustomName() + ".");
+                    p.updateCurrentBalance(-10);
+                    distributionCount++;
+                }
+            }
+
+            gameLogicController.appendToGameLog(currentPlayer.getCustomName() + " has received a total of " + distributionCount * 10 + " from all other players.");
+            currentPlayer.updateCurrentBalance(distributionCount * 10);
+        }
     }
 
     private void eventTeleportWithRentModifier() {

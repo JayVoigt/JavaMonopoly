@@ -54,6 +54,16 @@ public class Player implements Serializable {
     // Required state of GUI elements during player's turn
     boolean actionLockedRollDice,
             actionLockedEndTurn;
+
+    public int getOwnedRailroads() {
+        return ownedRailroads;
+    }
+
+    public void setOwnedRailroads(int ownedRailroads) {
+        this.ownedRailroads = ownedRailroads;
+    }
+
+    int ownedRailroads;
     // <editor-fold desc="Constructor">
     Player() {
         playerID = 0;
@@ -66,6 +76,7 @@ public class Player implements Serializable {
         // Players start at GO, with space ID 0
         currentPosition = 0;
         previousPosition = 0;
+        ownedRailroads = 0;
 
         isPlayerActive = false;
         isComputerControlled = false;
