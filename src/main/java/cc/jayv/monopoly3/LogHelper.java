@@ -6,7 +6,8 @@ import java.util.ArrayList;
 import java.util.Date;
 
 /**
- * @author jay
+ * An object that has one instantiation across all classes in the application, and assists with
+ * logging for both the game view and debug log views.
  */
 public class LogHelper implements Serializable {
 
@@ -56,6 +57,9 @@ public class LogHelper implements Serializable {
         return gameLogContentsFiltered;
     }
 
+    /**
+     * Clear the contents of all logs.
+     */
     public void clearLogs() {
         gameLogContents.clear();
         gameLogContents.trimToSize();
@@ -96,6 +100,13 @@ public class LogHelper implements Serializable {
         gameLogContents.add(output);
     }
 
+    /**
+     * Append the input to the game log as a formatted line.<br>
+     * Entries are prefixed with the current date and time.
+     *
+     * @param input       The contents of the message.
+     * @param turnCounter The current turn.
+     */
     public void appendToGameLog(String input) {
         Date currentDate = new Date();
         SimpleDateFormat datePrefix = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -123,6 +134,10 @@ public class LogHelper implements Serializable {
         debugLogContents.add(output);
     }
 
+    /**
+     * Obtain a single string containing all contents of the game log.
+     * @return A string containing all contents of the game log.
+     */
     public String getAllGameLogContents() {
         StringBuilder contents = new StringBuilder();
 
@@ -133,6 +148,10 @@ public class LogHelper implements Serializable {
         return contents.toString();
     }
 
+    /**
+     * Obtain a single string containing all contents of the debug log.
+     * @return A string containing all contents of the debug log.
+     */
     public String getAllDebugLogContents() {
         StringBuilder contents = new StringBuilder();
 
@@ -143,6 +162,9 @@ public class LogHelper implements Serializable {
         return contents.toString();
     }
 
+    /**
+     * Print a newline to the game log without the date and turn counter prefix.
+     */
     public void addNewLine() {
         gameLogContents.add("\n");
     }

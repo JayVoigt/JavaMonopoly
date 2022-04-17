@@ -4,7 +4,8 @@ import java.awt.*;
 import java.io.*;
 
 /**
- * @author jay
+ * The main class for the application. Invokes the creation of DynamicView on a
+ * separate thread.
  */
 public class JavaMonopoly implements Serializable {
 
@@ -15,6 +16,11 @@ public class JavaMonopoly implements Serializable {
         EventQueue.invokeLater(runner);
     }
 
+    /**
+     * The main method for the application.
+     * @param args none
+     * @throws IOException Thrown when .csv data for the Board object is unable to be read correctly.
+     */
     public static void main(String[] args) throws IOException {
         new JavaMonopoly();
     }

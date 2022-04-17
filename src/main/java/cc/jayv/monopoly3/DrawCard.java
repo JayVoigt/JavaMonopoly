@@ -3,25 +3,25 @@ package cc.jayv.monopoly3;
 import java.io.Serializable;
 
 /**
- * @author jay
+ *
  */
 public class DrawCard implements Serializable {
 
     DrawCardTypeKeys drawCardType;
-    destinationRelativeTypeKeys destinationRelativeType;
+    DestinationRelativeTypeKeys destinationRelativeType;
     /**
-     * The message which will be displayed in the game log when a player "draws" this card.
+     * The message which will be displayed in the game log when a player draws this card.
      */
     String message;
-    int destinationSpaceID,
-            movementQuantity;
+    int destinationSpaceID;
+    int movementQuantity;
 
     /**
      * Default constructor
      */
     public DrawCard() {
         drawCardType = DrawCardTypeKeys.UNSPECIFIED;
-        destinationRelativeType = destinationRelativeTypeKeys.UNSPECIFIED;
+        destinationRelativeType = DestinationRelativeTypeKeys.UNSPECIFIED;
 
         message = "";
         destinationSpaceID = 0;
@@ -29,15 +29,15 @@ public class DrawCard implements Serializable {
     }
 
     /**
-     * Parameterized constructor
+     * Construct a DrawCard event for Community Chest and Chance GameEvent spaces.
      *
-     * @param inputDrawCardType
-     * @param inputDestinationRelativeType
-     * @param inputMessage
-     * @param inputDestinationSpaceID
-     * @param inputMovementQuantity
+     * @param inputDrawCardType The type of DrawCard event.
+     * @param inputDestinationRelativeType If type is of TELEPORT_RELATIVE, the type of destination to teleport to.
+     * @param inputMessage The message to be displayed in the game log when a player draws this card.
+     * @param inputDestinationSpaceID If type is of TELEPORT, the space ID to teleport to.
+     * @param inputMovementQuantity If of type TELEPORT_RELATIVE and BACK_THREE_SPACES, the number of spaces to move the player.
      */
-    public DrawCard(DrawCardTypeKeys inputDrawCardType, destinationRelativeTypeKeys inputDestinationRelativeType,
+    public DrawCard(DrawCardTypeKeys inputDrawCardType, DestinationRelativeTypeKeys inputDestinationRelativeType,
                     String inputMessage, int inputDestinationSpaceID, int inputMovementQuantity) {
 
         drawCardType = inputDrawCardType;
@@ -56,7 +56,7 @@ public class DrawCard implements Serializable {
         return drawCardType;
     }
 
-    public destinationRelativeTypeKeys getDestinationRelativeType() {
+    public DestinationRelativeTypeKeys getDestinationRelativeType() {
         return destinationRelativeType;
     }
 
@@ -89,7 +89,7 @@ public class DrawCard implements Serializable {
      * relative to the player, to be calculated given the player's position.<br>
      * The default value is <code>unspecified</code>.
      */
-    public enum destinationRelativeTypeKeys {
+    public enum DestinationRelativeTypeKeys {
         UNSPECIFIED,
         RAILROAD,
         UTILITY,

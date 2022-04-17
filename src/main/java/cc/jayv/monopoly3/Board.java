@@ -110,12 +110,12 @@ public class Board implements Serializable {
                 String localDescription = configLine[2];
                 int localDestination = parseIntHandler(configLine[3]);
                 int localQuantity = parseIntHandler(configLine[4]);
-                DrawCard.destinationRelativeTypeKeys localDestinationRelativeType;
+                DrawCard.DestinationRelativeTypeKeys localDestinationRelativeType;
 
                 if (!Objects.equals(configLine[5], "")) {
-                    localDestinationRelativeType = DrawCard.destinationRelativeTypeKeys.valueOf(configLine[5]);
+                    localDestinationRelativeType = DrawCard.DestinationRelativeTypeKeys.valueOf(configLine[5]);
                 } else {
-                    localDestinationRelativeType = DrawCard.destinationRelativeTypeKeys.UNSPECIFIED;
+                    localDestinationRelativeType = DrawCard.DestinationRelativeTypeKeys.UNSPECIFIED;
                 }
 
                 chanceCards.add(localID, new DrawCard(localDrawCardType, localDestinationRelativeType,
@@ -136,9 +136,9 @@ public class Board implements Serializable {
                 String localDescription = configLine[2];
                 int localDestination = parseIntHandler(configLine[3]);
                 int localQuantity = parseIntHandler(configLine[4]);
-                DrawCard.destinationRelativeTypeKeys localDestinationRelativeType;
+                DrawCard.DestinationRelativeTypeKeys localDestinationRelativeType;
 
-                localDestinationRelativeType = DrawCard.destinationRelativeTypeKeys.UNSPECIFIED;
+                localDestinationRelativeType = DrawCard.DestinationRelativeTypeKeys.UNSPECIFIED;
 
                 communityChestCards.add(localID, new DrawCard(localDrawCardType, localDestinationRelativeType,
                         localDescription, localDestination, localQuantity));

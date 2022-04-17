@@ -396,11 +396,11 @@ public class GameLogicController implements Serializable {
             int forwardMovementQuantity = (currentDrawCard.getDestinationSpace() - currentPlayer.getCurrentPosition());
             movementEvaluatorAdvanced(true, forwardMovementQuantity);
         } else if (currentDrawCard.getDrawCardType() == DrawCard.DrawCardTypeKeys.TELEPORT_RELATIVE) {
-            if (currentDrawCard.getDestinationRelativeType().equals(DrawCard.destinationRelativeTypeKeys.BACK_THREE_SPACES)) {
+            if (currentDrawCard.getDestinationRelativeType().equals(DrawCard.DestinationRelativeTypeKeys.BACK_THREE_SPACES)) {
 
             }
             // Advance to the nearest railroad
-            else if (currentDrawCard.getDestinationRelativeType().equals(DrawCard.destinationRelativeTypeKeys.RAILROAD)) {
+            else if (currentDrawCard.getDestinationRelativeType().equals(DrawCard.DestinationRelativeTypeKeys.RAILROAD)) {
                 Railroad destinationRailroad = null;
                 for (Space s : board.spaces) {
                     if (s.getID() > currentSpace.getID()) {
@@ -414,7 +414,7 @@ public class GameLogicController implements Serializable {
                 } else {
                     currentPlayer.advancePosition(board.spaces.get(5).getID() - currentSpace.getID());
                 }
-            } else if (currentDrawCard.getDestinationRelativeType().equals(DrawCard.destinationRelativeTypeKeys.UTILITY)) {
+            } else if (currentDrawCard.getDestinationRelativeType().equals(DrawCard.DestinationRelativeTypeKeys.UTILITY)) {
 
             }
         } else if (currentDrawCard.getDrawCardType() == DrawCard.DrawCardTypeKeys.TELEPORT_WITH_RENT_MODIFIER) {

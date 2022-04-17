@@ -5,6 +5,11 @@ import java.awt.*;
 import java.io.Serializable;
 import java.util.Objects;
 
+/**
+ * An intermediary layer between the DynamicView and GameLogicController objects.<br>
+ * GUI objects whose listener objects extend from ActionEvent, and have an accessible Actions property,
+ * can have their triggers modified in this class.
+ */
 public class GameLogicSwitchboard implements Serializable {
 
     GameLogicController c;
@@ -15,6 +20,11 @@ public class GameLogicSwitchboard implements Serializable {
         this.c = controller;
     }
 
+    /**
+     *
+     * @param trigger The action to trigger.
+     * @param currentSpaceSelectionID The space ID that is currently selected by the player.
+     */
     public void actionHandler(Actions trigger, int currentSpaceSelectionID) {
         switch (trigger) {
             case CONTROLS_ENDTURN -> c.endTurnManager();
@@ -45,6 +55,10 @@ public class GameLogicSwitchboard implements Serializable {
         }
     }
 
+    /**
+     * Set the object that called the actionHandler method of this class.
+     * @param origin The object containing the method call to this class.
+     */
     public void setOrigin(Object origin) {
         this.origin = origin;
 
@@ -61,9 +75,4 @@ public class GameLogicSwitchboard implements Serializable {
         }
     }
 
-    private void updateInfoArea(String content) {
-        if (infoArea != null) {
-            infoArea.setText(content);
-        }
-    }
 }
