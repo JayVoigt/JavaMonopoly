@@ -7,7 +7,7 @@ import java.io.Serializable;
  */
 public class DrawCard implements Serializable {
 
-    drawCardTypeKeys drawCardType;
+    DrawCardTypeKeys drawCardType;
     destinationRelativeTypeKeys destinationRelativeType;
     /**
      * The message which will be displayed in the game log when a player "draws" this card.
@@ -20,8 +20,8 @@ public class DrawCard implements Serializable {
      * Default constructor
      */
     public DrawCard() {
-        drawCardType = drawCardTypeKeys.unspecified;
-        destinationRelativeType = destinationRelativeTypeKeys.unspecified;
+        drawCardType = DrawCardTypeKeys.UNSPECIFIED;
+        destinationRelativeType = destinationRelativeTypeKeys.UNSPECIFIED;
 
         message = "";
         destinationSpaceID = 0;
@@ -37,7 +37,7 @@ public class DrawCard implements Serializable {
      * @param inputDestinationSpaceID
      * @param inputMovementQuantity
      */
-    public DrawCard(drawCardTypeKeys inputDrawCardType, destinationRelativeTypeKeys inputDestinationRelativeType,
+    public DrawCard(DrawCardTypeKeys inputDrawCardType, destinationRelativeTypeKeys inputDestinationRelativeType,
                     String inputMessage, int inputDestinationSpaceID, int inputMovementQuantity) {
 
         drawCardType = inputDrawCardType;
@@ -52,7 +52,7 @@ public class DrawCard implements Serializable {
         return message;
     }
 
-    public drawCardTypeKeys getDrawCardType() {
+    public DrawCardTypeKeys getDrawCardType() {
         return drawCardType;
     }
 
@@ -72,16 +72,16 @@ public class DrawCard implements Serializable {
      * The type of DrawCard event that describes this object.<br>
      * The default value is <code>unspecified</code>.
      */
-    public enum drawCardTypeKeys {
-        unspecified,
-        teleport,
-        teleportRelative,
-        teleportWithRentModifier,
-        balanceUpdate,
-        getOutOfJailFreeCard,
-        jailPlayer,
-        improvementRepairs,
-        distributedBalanceUpdate
+    public enum DrawCardTypeKeys {
+        UNSPECIFIED,
+        TELEPORT,
+        TELEPORT_RELATIVE,
+        TELEPORT_WITH_RENT_MODIFIER,
+        BALANCE_UPDATE,
+        GET_OUT_OF_JAIL_FREE_CARD,
+        JAIL_PLAYER,
+        IMPROVEMENT_REPAIRS,
+        DISTRIBUTED_BALANCE_UPDATE
     }
 
     /**
@@ -90,9 +90,9 @@ public class DrawCard implements Serializable {
      * The default value is <code>unspecified</code>.
      */
     public enum destinationRelativeTypeKeys {
-        unspecified,
-        railroad,
-        utility,
-        backThreeSpaces
+        UNSPECIFIED,
+        RAILROAD,
+        UTILITY,
+        BACK_THREE_SPACES
     }
 }

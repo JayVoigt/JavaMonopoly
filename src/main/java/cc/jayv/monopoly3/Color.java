@@ -5,20 +5,20 @@ import java.util.ArrayList;
 import java.util.Map;
 
 /**
- * @author jay
+ * Properties that belong to a color group.
  */
 public class Color extends Property implements Serializable {
 
     // <editor-fold desc="Attributes">
+    ColorGroupKeys colorGroup;
 
-    colorGroupKeys colorGroup;
-    int houseCount,
-            hotelCount;
+    int houseCount;
+    int hotelCount;
+
     boolean isEligibleForImprovements;
-    ArrayList<Integer> hasHouseID;
-    ArrayList<Integer> hasHotelID;
+
     /**
-     * @param propertyAttributes
+     * @param propertyAttributes The set of standard property attributes for all Property-derived classes.
      * @param inputSpaceID       The ID of the Space to become a Color type.
      * @param inputFriendlyName  The name of the Color property, e.g., "Boardwalk".
      */
@@ -26,7 +26,7 @@ public class Color extends Property implements Serializable {
         super(null);
 
         propertyType = propertyTypeKeys.color;
-        colorGroup = colorGroupKeys.unspecified;
+        colorGroup = ColorGroupKeys.UNSPECIFIED;
         id = inputSpaceID;
         friendlyName = inputFriendlyName;
 
@@ -51,22 +51,32 @@ public class Color extends Property implements Serializable {
     // </editor-fold>
     // <editor-fold desc="Constructor">
 
-    // <editor-fold defaultstate="collapsed" desc="Setters and getters">
-    public colorGroupKeys getColorGroup() {
+    public ColorGroupKeys getColorGroup() {
         return colorGroup;
     }
-    // </editor-fold>
 
-    public void setColorGroup(colorGroupKeys inputColorGroup) {
+    public void setColorGroup(ColorGroupKeys inputColorGroup) {
         colorGroup = inputColorGroup;
+    }
+
+    public boolean getIsEligibleForImprovements() {
+        return isEligibleForImprovements;
+    }
+
+    public int getHouseCost() {
+        return houseCost;
+    }
+
+    public int getHotelCost() {
+        return hotelCost;
     }
 
     public int getHouseCount() {
         return houseCount;
     }
 
-    public void setHouseCount(int inputHouseCount) {
-        houseCount = inputHouseCount;
+    public int getHotelCount() {
+        return hotelCount;
     }
 
     /**
@@ -89,18 +99,6 @@ public class Color extends Property implements Serializable {
         }
     }
 
-    public int getHouseCost() {
-        return houseCost;
-    }
-
-    public int getHotelCount() {
-        return hotelCount;
-    }
-
-    public void setHotelCount(int inputHotelCount) {
-        hotelCount = inputHotelCount;
-    }
-
     /**
      * Update the quantity of hotels as necessary when one is constructed.
      */
@@ -119,18 +117,6 @@ public class Color extends Property implements Serializable {
             hotelCount = 0;
             houseCount = 4;
         }
-    }
-
-    public int getHotelCost() {
-        return hotelCost;
-    }
-
-    public boolean getIsEligibleForImprovements() {
-        return isEligibleForImprovements;
-    }
-
-    public void setIsEligibleForImprovements() {
-
     }
 
     /**
@@ -175,15 +161,15 @@ public class Color extends Property implements Serializable {
      * Which color group the Color object belongs to.<br>
      * The default value is <code>unspecified</code>.
      */
-    public enum colorGroupKeys {
-        unspecified,
-        brown,
-        lightBlue,
-        magenta,
-        orange,
-        red,
-        yellow,
-        green,
-        darkBlue
+    public enum ColorGroupKeys {
+        UNSPECIFIED,
+        BROWN,
+        LIGHT_BLUE,
+        MAGENTA,
+        ORANGE,
+        RED,
+        YELLOW,
+        GREEN,
+        DARK_BLUE
     }
 }

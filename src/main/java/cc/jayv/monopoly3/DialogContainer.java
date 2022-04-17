@@ -2,6 +2,11 @@ package cc.jayv.monopoly3;
 
 import javax.swing.*;
 
+/**
+ * A template for dialog creation. Provides abstract methods for obtaining the JDialog object
+ * that is shown to the user, and infrastructure for modifying contents of the dialog according
+ * to game state.
+ */
 public abstract class DialogContainer {
     JDialog dialog;
     JLabel labelTitle;
@@ -11,6 +16,12 @@ public abstract class DialogContainer {
      */
     protected abstract void initComponents();
 
+    /**
+     * Initialize the label used for dialogs. Ensures that dialogs have a more standardized
+     * appearance.
+     * @param title The content of the title label.
+     * @param iconResource A string indicating a resource that will be loaded as the icon for the title label.
+     */
     protected void initLabelTitle(String title, String iconResource) {
         labelTitle = new JLabel();
         SwingHelper.formatLabel(labelTitle, title, SwingHelper.LabelStyles.TITLE_BOLD);

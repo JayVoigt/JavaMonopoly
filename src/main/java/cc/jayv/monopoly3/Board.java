@@ -18,11 +18,11 @@ public class Board implements Serializable {
     public List<DrawCard> communityChestCards = new ArrayList<>();
 
     int currentPlayerID;
-    int bankHouseCount,
-            bankHotelCount;
+    int bankHouseCount;
+    int bankHotelCount;
 
-    int repairCostHouse,
-            repairCostHotel;
+    int repairCostHouse;
+    int repairCostHotel;
 
     ArrayList<Color> spacesByColorGroup = new ArrayList<>();
     ArrayList<Property> spacesByOwnerID = new ArrayList<>();
@@ -88,12 +88,10 @@ public class Board implements Serializable {
                         case "color" -> {
                             spaces.add(localID, new Color(propertyAttributes, localID, localFriendlyName));
                             Color localColor = (Color) spaces.get(localID);
-                            localColor.setColorGroup(Color.colorGroupKeys.valueOf(localColorGroup));
+                            localColor.setColorGroup(Color.ColorGroupKeys.valueOf(localColorGroup));
                         }
-                        case "railroad" ->
-                                spaces.add(localID, new Railroad(propertyAttributes, localID, localFriendlyName));
-                        case "utility" ->
-                                spaces.add(localID, new Utility(propertyAttributes, localID, localFriendlyName));
+                        case "railroad" -> spaces.add(localID, new Railroad(propertyAttributes, localID, localFriendlyName));
+                        case "utility" -> spaces.add(localID, new Utility(propertyAttributes, localID, localFriendlyName));
                     }
                 }    // end else if
             }    // end while
@@ -108,7 +106,7 @@ public class Board implements Serializable {
                 String[] configLine = lineBuffer.split(",", -1);
 
                 int localID = parseIntHandler(configLine[0]);
-                DrawCard.drawCardTypeKeys localDrawCardType = DrawCard.drawCardTypeKeys.valueOf(configLine[1]);
+                DrawCard.DrawCardTypeKeys localDrawCardType = DrawCard.DrawCardTypeKeys.valueOf(configLine[1]);
                 String localDescription = configLine[2];
                 int localDestination = parseIntHandler(configLine[3]);
                 int localQuantity = parseIntHandler(configLine[4]);
@@ -117,7 +115,7 @@ public class Board implements Serializable {
                 if (!Objects.equals(configLine[5], "")) {
                     localDestinationRelativeType = DrawCard.destinationRelativeTypeKeys.valueOf(configLine[5]);
                 } else {
-                    localDestinationRelativeType = DrawCard.destinationRelativeTypeKeys.unspecified;
+                    localDestinationRelativeType = DrawCard.destinationRelativeTypeKeys.UNSPECIFIED;
                 }
 
                 chanceCards.add(localID, new DrawCard(localDrawCardType, localDestinationRelativeType,
@@ -134,13 +132,13 @@ public class Board implements Serializable {
                 String[] configLine = lineBuffer.split(",", -1);
 
                 int localID = parseIntHandler(configLine[0]);
-                DrawCard.drawCardTypeKeys localDrawCardType = DrawCard.drawCardTypeKeys.valueOf(configLine[1]);
+                DrawCard.DrawCardTypeKeys localDrawCardType = DrawCard.DrawCardTypeKeys.valueOf(configLine[1]);
                 String localDescription = configLine[2];
                 int localDestination = parseIntHandler(configLine[3]);
                 int localQuantity = parseIntHandler(configLine[4]);
                 DrawCard.destinationRelativeTypeKeys localDestinationRelativeType;
 
-                localDestinationRelativeType = DrawCard.destinationRelativeTypeKeys.unspecified;
+                localDestinationRelativeType = DrawCard.destinationRelativeTypeKeys.UNSPECIFIED;
 
                 communityChestCards.add(localID, new DrawCard(localDrawCardType, localDestinationRelativeType,
                         localDescription, localDestination, localQuantity));
@@ -149,17 +147,6 @@ public class Board implements Serializable {
         // </editor-fold>
 
     }    // end Board()
-
-    // <editor-fold desc="Constructor">
-
-    /**
-     * Call all methods which evaluate the state of the board, and update
-     * relationships between Spaces.
-     */
-    public void forceBoardSelfCheck() {
-        updatePropertyOwnershipRelationships();
-        updateImprovementEligibility();
-    }
     // </editor-fold>
 
     public int getCurrentPlayerID() {
@@ -170,6 +157,9 @@ public class Board implements Serializable {
         currentPlayerID = inputCurrentPlayerID;
     }
 
+    /**
+     * @return The number of houses available for new improvements.
+     */
     public int getBankHouseCount() {
         bankHouseCount = 32;
 
@@ -181,6 +171,9 @@ public class Board implements Serializable {
         return bankHouseCount;
     }
 
+    /**
+     * @return The number of hotels available for new improvements.
+     */
     public int getBankHotelCount() {
         bankHotelCount = 12;
 
@@ -200,27 +193,80 @@ public class Board implements Serializable {
         return repairCostHotel;
     }
 
-    /**
-     * Convert a string to an integer, where the returned value is set to 0
-     * if the string is empty.
-     *
-     * @param inputString A string to be converted to an integer.
-     * @return An integer value.
-     */
-    private int parseIntHandler(String inputString) {
-        if (inputString.isEmpty()) {
-            return 0;
-        } else {
-            return Integer.parseInt(inputString);
-        }
-    }    // end parseIntHandler()
+    // <editor-fold desc="Constructor">
 
     /**
-     * Call all methods that evaluate the state of Properties.
+     * Call all methods which evaluate the state of the board, and update
+     * relationships between Spaces.
      */
-    public void updatePropertyOwnershipRelationships() {
-        updateColorPropertyOwnershipRelationships();
-        updateRailroadPropertyOwnershipRelationships();
+    public void forceBoardSelfCheck() {
+        updatePropertyOwnershipRelationships();
+        updateImprovementEligibility();
+    }
+
+    /**
+     * Obtain the ID of the next active player, after the current turn.
+     * @return The ID of the next player.
+     */
+    public int getNextActivePlayerID() {
+        int nextActivePlayerID = 0;
+
+        ArrayList<Player> activePlayers = new ArrayList<>();
+
+        for (Player p : players) {
+            if (p.getIsActive() && (p.getPlayerID() != 0)) {
+                activePlayers.add(p);
+            }
+        }
+
+        boolean playerFound = false;
+        for (Player p : activePlayers) {
+            if (!playerFound) {
+                if (p.getPlayerID() > currentPlayerID) {
+                    nextActivePlayerID = p.getPlayerID();
+                    playerFound = true;
+                }
+            }
+        }
+        if (!playerFound) {
+            nextActivePlayerID = activePlayers.get(0).getPlayerID();
+        }
+
+        return nextActivePlayerID;
+    }
+
+    /**
+     * Obtain the ID of the space that occurs 1 ahead of the specified input space ID.
+     * Alternatively may return a valid space ID for an input > 39.
+     * @param spaceID The space ID to be checked.
+     * @return The next space ID.
+     */
+    public int getNextSpaceID(int spaceID) {
+        if (spaceID < 39) {
+            return spaceID + 1;
+        } else if (spaceID == 39) {
+            return 0;
+        } else {
+            return 1 + (spaceID % 39);
+        }
+    }
+
+    /**
+     * Obtain the distance, in number of spaces, between any two space IDs.
+     * @param spaceA The origin space ID.
+     * @param spaceB The destination space ID.
+     * @return The number of spaces between A and B. Always a positive integer.
+     */
+    public int getDistance(int spaceA, int spaceB) {
+        int distance;
+
+        if (spaceB < spaceA) {
+            distance = (39 - spaceA) + spaceB;
+        } else {
+            distance = spaceB - spaceA;
+        }
+
+        return distance;
     }
 
     /**
@@ -230,7 +276,7 @@ public class Board implements Serializable {
      * @return An ArrayList of Color spaces, where all elements belong to the
      * color group specified as a parameter.
      */
-    public ArrayList<Color> getSpacesByColorGroup(Color.colorGroupKeys inputColorGroup) {
+    public ArrayList<Color> getSpacesByColorGroup(Color.ColorGroupKeys inputColorGroup) {
         Color localColor;
         spacesByColorGroup.clear();
 
@@ -248,14 +294,46 @@ public class Board implements Serializable {
     }
 
     /**
+     * Return all properties whose ownerID matches the given parameter.
+     *
+     * @param ownerID The ID of the player whose properties will be returned.
+     * @return An ArrayList of Property objects.
+     */
+    public ArrayList<Property> getSpacesByOwnerID(int ownerID) {
+        Property localProperty;
+        spacesByOwnerID.clear();
+        while (spacesByOwnerID.remove(null)) ;
+
+        for (Space s : spaces) {
+            if (s instanceof Property) {
+                localProperty = (Property) s;
+
+                if (localProperty.getOwnerID() == ownerID) {
+                    spacesByOwnerID.add(localProperty);
+                }
+            }
+        }
+
+        return spacesByOwnerID;
+    }
+
+    /**
+     * Call all methods that evaluate the state of Properties.
+     */
+    public void updatePropertyOwnershipRelationships() {
+        updateColorPropertyOwnershipRelationships();
+        updateRailroadPropertyOwnershipRelationships();
+    }
+
+    /**
      * Update the relationships between Color spaces, including setting an
      * indicator within the Color object if all spaces are owned by the same player.
      */
     private void updateColorPropertyOwnershipRelationships() {
-        for (Color.colorGroupKeys colorGroup : Color.colorGroupKeys.values()) {
+        for (Color.ColorGroupKeys colorGroup : Color.ColorGroupKeys.values()) {
             boolean isFullSetOwnedBySinglePlayer = false;
 
-            if (colorGroup != Color.colorGroupKeys.unspecified) {
+            if (colorGroup != Color.ColorGroupKeys.UNSPECIFIED) {
                 getSpacesByColorGroup(colorGroup);
                 int localColorOwnerID = spacesByColorGroup.get(0).getOwnerID();
 
@@ -307,38 +385,14 @@ public class Board implements Serializable {
     }
 
     /**
-     * Return all properties whose ownerID matches the given parameter.
-     *
-     * @param ownerID
-     * @return An ArrayList of Property objects.
-     */
-    public ArrayList<Property> getSpacesByOwnerID(int ownerID) {
-        Property localProperty;
-        spacesByOwnerID.clear();
-        while (spacesByOwnerID.remove(null)) ;
-
-        for (Space s : spaces) {
-            if (s instanceof Property) {
-                localProperty = (Property) s;
-
-                if (localProperty.getOwnerID() == ownerID) {
-                    spacesByOwnerID.add(localProperty);
-                }
-            }
-        }
-
-        return spacesByOwnerID;
-    }
-
-    /**
      * Update each Color space and determine if it is able to have improvements
      * constructed on it.
      */
     private void updateImprovementEligibility() {
-        for (Color.colorGroupKeys colorGroup : Color.colorGroupKeys.values()) {
+        for (Color.ColorGroupKeys colorGroup : Color.ColorGroupKeys.values()) {
             getSpacesByColorGroup(colorGroup);
 
-            if (colorGroup != Color.colorGroupKeys.unspecified) {
+            if (colorGroup != Color.ColorGroupKeys.UNSPECIFIED) {
 
                 // This logic depends on the execution of updateColorPropertyOwnershipRelationships
                 if (spacesByColorGroup.get(0).getIsFullSetOwned()) {
@@ -352,53 +406,19 @@ public class Board implements Serializable {
 
     }
 
-    public int getNextActivePlayerID() {
-        int nextActivePlayerID = 0;
-
-        ArrayList<Player> activePlayers = new ArrayList<>();
-
-        for (Player p : players) {
-            if (p.getIsActive() && (p.getPlayerID() != 0)) {
-                activePlayers.add(p);
-            }
-        }
-
-        boolean playerFound = false;
-        for (Player p : activePlayers) {
-            if (!playerFound) {
-                if (p.getPlayerID() > currentPlayerID) {
-                    nextActivePlayerID = p.getPlayerID();
-                    playerFound = true;
-                }
-            }
-        }
-        if (!playerFound) {
-            nextActivePlayerID = activePlayers.get(0).getPlayerID();
-        }
-
-        return nextActivePlayerID;
-    }
-
-    public int getNextSpaceID(int spaceID) {
-        if (spaceID < 39) {
-            return spaceID + 1;
-        } else if (spaceID == 39) {
+    /**
+     * Convert a string to an integer, where the returned value is set to 0
+     * if the string is empty.
+     *
+     * @param inputString A string to be converted to an integer.
+     * @return An integer value.
+     */
+    private int parseIntHandler(String inputString) {
+        if (inputString.isEmpty()) {
             return 0;
         } else {
-            return 1 + (spaceID % 39);
+            return Integer.parseInt(inputString);
         }
-    }
-
-    public int getDistance(int spaceA, int spaceB) {
-        int distance;
-
-        if (spaceB < spaceA) {
-            distance = (39 - spaceA) + spaceB;
-        } else {
-            distance = spaceB - spaceA;
-        }
-
-        return distance;
-    }
+    }    // end parseIntHandler()
 
 }    // end class

@@ -5,6 +5,10 @@ import net.miginfocom.swing.MigLayout;
 import javax.swing.*;
 import java.util.ArrayList;
 
+/**
+ * Dialog, Improvements: An optional dialog that allows the player to construct improvements
+ * on their Color properties.
+ */
 public class DialogContainerImprovements extends DialogContainer {
 
     JButton buttonBuildHouse;
@@ -20,6 +24,10 @@ public class DialogContainerImprovements extends DialogContainer {
         arrangeComponents();
     }
 
+    /**
+     * Test method
+     * @param args none
+     */
     public static void main(String[] args) {
         DialogContainerImprovements dialogContainerImprovements = new DialogContainerImprovements();
         JDialog dialog = dialogContainerImprovements.getDialog();
@@ -84,7 +92,14 @@ public class DialogContainerImprovements extends DialogContainer {
         }
     }
 
-    // Passing through controller is a hacky solution that could be improved later
+    /**
+     * Update the contents of the dialog for the current player and their selection.
+     *
+     * @param board The Board object.
+     * @param player The player who is using the dialog.
+     * @param spaceSelectionID The ID of the space currently selected by the player.
+     * @param controller The GameLogicController object.
+     */
     public void update(Board board, Player player, int spaceSelectionID, GameLogicController controller) {
         Space currentSpace = board.spaces.get(spaceSelectionID);
         ImprovementEligibilityStatus status;
@@ -129,6 +144,11 @@ public class DialogContainerImprovements extends DialogContainer {
         dialog.pack();
     }
 
+    /**
+     * Obtain a message indicating improvement eligibility in accordance with the player's space selection.
+     * @param status Improvement eligibility status that corresponds to a predetermined message.
+     * @return The corresponding message.
+     */
     private String getInfoAreaMessage(ImprovementEligibilityStatus status) {
         String m = "";
 
@@ -144,6 +164,10 @@ public class DialogContainerImprovements extends DialogContainer {
         return m;
     }
 
+    /**
+     * Possible states that a player can be in regarding improvement eligibility status
+     * on their currently-selected space.
+     */
     private enum ImprovementEligibilityStatus {
         CAN_IMPROVE,
         CANT_BUILD_FULL_SET_NOT_OWNED,

@@ -177,22 +177,48 @@ public class DynamicView implements Serializable {
         }
     }
 
+    private void updatePrompt(Actions action) {
+        switch (action) {
+            case CONTROLS_SHOW_IMPROVEMENTS -> showDialog(dialogImprovements);
+            case CONTROLS_SHOW_MORTGAGE -> showDialog(dialogMortgage);
+            case GAME_SHOW_JAIL -> showDialog(dialogJail);
+            case GAME_SHOW_PURCHASE -> showDialog(dialogPurchaseProperty);
+            case CONTROLS_SHOW_FORFEIT -> showDialog(dialogForfeit);
+        }
+
+        update();
+    }
+
     private void disableControlButtons() {
         viewFrameControl.setStateOfActionButton(Actions.CONTROLS_ENDTURN, false);
         viewFrameControl.setStateOfActionButton(Actions.CONTROLS_ROLLDICE, false);
     }
 
+    private void showDialog(JDialog dialog) {
+        showDialog(dialog, true);
+    }
+
+    private void showDialog(JDialog dialog, boolean visible) {
+        if (visible) {
+            dialog.setLocationRelativeTo(viewFrameBoard.getInternalFrame());
+            dialog.setAlwaysOnTop(true);
+            dialog.setVisible(true);
+        } else {
+            dialog.setVisible(false);
+        }
+    }
+
     private void initGUIComponents() {
 
-        ArrayList<spaceButtonActionHandler> spaceButtonActionHandlers = new ArrayList<>();
+        ArrayList<SpaceButtonActionListener> SpaceButtonActionListeners = new ArrayList<>();
 
         for (int i = 0; i < 40; i++) {
-            spaceButtonActionHandlers.add(new spaceButtonActionHandler(i));
+            SpaceButtonActionListeners.add(new SpaceButtonActionListener(i));
         }
 
         // Core components
         mainFrame = new JFrame();
-        viewFrameBoard = new ViewFrameBoard(logHelper, spaceButtonActionHandlers);
+        viewFrameBoard = new ViewFrameBoard(logHelper, SpaceButtonActionListeners);
         spaceButtons = viewFrameBoard.getSpaceButtonArrayList();
         viewFrameControl = new ViewFrameControl();
         viewFrameInformation = new ViewFrameInformation(board);
@@ -288,20 +314,6 @@ public class DynamicView implements Serializable {
         // Ready
         menuBar.setVisible(true);
         mainFrame.setJMenuBar(menuBar);
-    }
-
-    private void showDialog(JDialog dialog) {
-        showDialog(dialog, true);
-    }
-
-    private void showDialog(JDialog dialog, boolean visible) {
-        if (visible) {
-            dialog.setLocationRelativeTo(viewFrameBoard.getInternalFrame());
-            dialog.setAlwaysOnTop(true);
-            dialog.setVisible(true);
-        } else {
-            dialog.setVisible(false);
-        }
     }
 
     private void initButtonActionListeners() {
@@ -401,6 +413,13 @@ public class DynamicView implements Serializable {
         update();
     }
 
+    private void resetSpaceButtonAppearance() {
+        partyModeTimer.stop();
+        for (ViewFrameBoard.SpaceButton s : spaceButtons) {
+            s.getButton().setBorder(null);
+        }
+    }
+
     private void partyVisuals() {
         class SpaceButtonPartyListener implements ActionListener {
             int startID;
@@ -436,27 +455,8 @@ public class DynamicView implements Serializable {
         partyModeTimer.start();
     }
 
-    private void resetSpaceButtonAppearance() {
-        partyModeTimer.stop();
-        for (ViewFrameBoard.SpaceButton s : spaceButtons) {
-            s.getButton().setBorder(null);
-        }
-    }
-
     private void quitManager() {
         System.exit(0);
-    }
-
-    private void updatePrompt(Actions action) {
-        switch (action) {
-            case CONTROLS_SHOW_IMPROVEMENTS -> showDialog(dialogImprovements);
-            case CONTROLS_SHOW_MORTGAGE -> showDialog(dialogMortgage);
-            case GAME_SHOW_JAIL -> showDialog(dialogJail);
-            case GAME_SHOW_PURCHASE -> showDialog(dialogPurchaseProperty);
-            case CONTROLS_SHOW_FORFEIT -> showDialog(dialogForfeit);
-        }
-
-        update();
     }
 
     private void saveGame() {
@@ -495,65 +495,6 @@ public class DynamicView implements Serializable {
         }
     }
 
-    private class MenuActionListener implements ActionListener {
-
-        MenuActions action;
-
-        public MenuActionListener(MenuActions action) {
-            this.action = action;
-        }
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            switch (action) {
-                case FILE_NEW_GAME -> showDialog(dialogStartGame);
-                case FILE_QUIT -> quitManager();
-                case EDIT_GAME_EDITOR -> {
-                    showDialog(dialogGameEditor);
-                    logHelper.appendToGameLog("Game editor was opened!");
-                    update();
-                }
-                case VIEW_ABOUT -> showDialog(dialogAbout);
-                case VIEW_DEBUG_LOG -> showDialog(dialogDebugLog);
-            }
-        }
-    }
-
-    public class spaceButtonActionHandler implements ActionListener {
-
-        int id;
-
-        public spaceButtonActionHandler(int id) {
-            this.id = id;
-        }
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            currentSpaceButtonSelection = id;
-            update();
-        }
-
-    }
-
-    public class StartGameButtonActionListener implements ActionListener, Serializable {
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            startGame(playerCount, playerCustomNames, false);
-
-            dialogStartGame.setVisible(false);
-        }
-
-        protected void setPlayerCount(int inputPlayerCount) {
-            playerCount = inputPlayerCount;
-        }
-
-        protected void setPlayerCustomNames(ArrayList<String> inputPlayerCustomNames) {
-            playerCustomNames = inputPlayerCustomNames;
-        }
-
-    }
-
     public class ButtonActionListener implements ActionListener, Serializable {
 
         Actions action;
@@ -589,6 +530,41 @@ public class DynamicView implements Serializable {
         }
     }
 
+    public class SpaceButtonActionListener implements ActionListener {
+
+        int id;
+
+        public SpaceButtonActionListener(int id) {
+            this.id = id;
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            currentSpaceButtonSelection = id;
+            update();
+        }
+
+    }
+
+    public class StartGameButtonActionListener implements ActionListener, Serializable {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            startGame(playerCount, playerCustomNames, false);
+
+            dialogStartGame.setVisible(false);
+        }
+
+        protected void setPlayerCount(int inputPlayerCount) {
+            playerCount = inputPlayerCount;
+        }
+
+        protected void setPlayerCustomNames(ArrayList<String> inputPlayerCustomNames) {
+            playerCustomNames = inputPlayerCustomNames;
+        }
+
+    }
+
     public class GameEditorActionListener implements ActionListener {
 
         GameEditorActions action;
@@ -618,6 +594,30 @@ public class DynamicView implements Serializable {
 
         public GameEditorActions getAction() {
             return action;
+        }
+    }
+
+    private class MenuActionListener implements ActionListener {
+
+        MenuActions action;
+
+        public MenuActionListener(MenuActions action) {
+            this.action = action;
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            switch (action) {
+                case FILE_NEW_GAME -> showDialog(dialogStartGame);
+                case FILE_QUIT -> quitManager();
+                case EDIT_GAME_EDITOR -> {
+                    showDialog(dialogGameEditor);
+                    logHelper.appendToGameLog("Game editor was opened!");
+                    update();
+                }
+                case VIEW_ABOUT -> showDialog(dialogAbout);
+                case VIEW_DEBUG_LOG -> showDialog(dialogDebugLog);
+            }
         }
     }
 

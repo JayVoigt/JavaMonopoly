@@ -352,7 +352,7 @@ public class Player implements Serializable {
     }
 
     /*
-     * @return A boolean value indicating whether or not the player passed GO.
+     * @return A boolean value indicating whether the player passed GO.
      */
     public boolean advancePosition(int spacesCount) {
         // If player passes GO, also wrap position

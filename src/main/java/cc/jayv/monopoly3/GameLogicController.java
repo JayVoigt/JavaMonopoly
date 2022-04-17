@@ -392,15 +392,15 @@ public class GameLogicController implements Serializable {
 
         appendToGameLog(gameLogDrawPrefix + currentDrawCard.getMessage());
 
-        if (currentDrawCard.getDrawCardType() == DrawCard.drawCardTypeKeys.teleport) {
+        if (currentDrawCard.getDrawCardType() == DrawCard.DrawCardTypeKeys.TELEPORT) {
             int forwardMovementQuantity = (currentDrawCard.getDestinationSpace() - currentPlayer.getCurrentPosition());
             movementEvaluatorAdvanced(true, forwardMovementQuantity);
-        } else if (currentDrawCard.getDrawCardType() == DrawCard.drawCardTypeKeys.teleportRelative) {
-            if (currentDrawCard.getDestinationRelativeType().equals(DrawCard.destinationRelativeTypeKeys.backThreeSpaces)) {
+        } else if (currentDrawCard.getDrawCardType() == DrawCard.DrawCardTypeKeys.TELEPORT_RELATIVE) {
+            if (currentDrawCard.getDestinationRelativeType().equals(DrawCard.destinationRelativeTypeKeys.BACK_THREE_SPACES)) {
 
             }
             // Advance to the nearest railroad
-            else if (currentDrawCard.getDestinationRelativeType().equals(DrawCard.destinationRelativeTypeKeys.railroad)) {
+            else if (currentDrawCard.getDestinationRelativeType().equals(DrawCard.destinationRelativeTypeKeys.RAILROAD)) {
                 Railroad destinationRailroad = null;
                 for (Space s : board.spaces) {
                     if (s.getID() > currentSpace.getID()) {
@@ -414,18 +414,18 @@ public class GameLogicController implements Serializable {
                 } else {
                     currentPlayer.advancePosition(board.spaces.get(5).getID() - currentSpace.getID());
                 }
-            } else if (currentDrawCard.getDestinationRelativeType().equals(DrawCard.destinationRelativeTypeKeys.utility)) {
+            } else if (currentDrawCard.getDestinationRelativeType().equals(DrawCard.destinationRelativeTypeKeys.UTILITY)) {
 
             }
-        } else if (currentDrawCard.getDrawCardType() == DrawCard.drawCardTypeKeys.teleportWithRentModifier) {
+        } else if (currentDrawCard.getDrawCardType() == DrawCard.DrawCardTypeKeys.TELEPORT_WITH_RENT_MODIFIER) {
 
-        } else if (currentDrawCard.getDrawCardType() == DrawCard.drawCardTypeKeys.balanceUpdate) {
+        } else if (currentDrawCard.getDrawCardType() == DrawCard.DrawCardTypeKeys.BALANCE_UPDATE) {
             currentPlayer.updateCurrentBalance(currentDrawCard.getQuantity());
-        } else if (currentDrawCard.getDrawCardType() == DrawCard.drawCardTypeKeys.getOutOfJailFreeCard) {
+        } else if (currentDrawCard.getDrawCardType() == DrawCard.DrawCardTypeKeys.GET_OUT_OF_JAIL_FREE_CARD) {
             currentPlayer.setGetOutOfJailFreeCardCount(currentPlayer.getGetOutOfJailFreeCardCount() + 1);
-        } else if (currentDrawCard.getDrawCardType() == DrawCard.drawCardTypeKeys.jailPlayer) {
+        } else if (currentDrawCard.getDrawCardType() == DrawCard.DrawCardTypeKeys.JAIL_PLAYER) {
             jailPlayer();
-        } else if (currentDrawCard.getDrawCardType() == DrawCard.drawCardTypeKeys.improvementRepairs) {
+        } else if (currentDrawCard.getDrawCardType() == DrawCard.DrawCardTypeKeys.IMPROVEMENT_REPAIRS) {
             int ownedHouses = 0, ownedHotels = 0;
             int paymentQuantity;
 
@@ -450,7 +450,7 @@ public class GameLogicController implements Serializable {
 
                 currentPlayer.updateCurrentBalance(-1 * paymentQuantity);
             }
-        } else if (currentDrawCard.getDrawCardType() == DrawCard.drawCardTypeKeys.distributedBalanceUpdate) {
+        } else if (currentDrawCard.getDrawCardType() == DrawCard.DrawCardTypeKeys.DISTRIBUTED_BALANCE_UPDATE) {
 
         }
     }

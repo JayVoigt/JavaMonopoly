@@ -49,7 +49,7 @@ public class ViewFrameInformationModule {
     JLabel labelOwnedRailroad;
     JLabel labelOwnedUtility;
 
-    Map<Color.colorGroupKeys, JLabel> ownedPropertyGroupLabels;
+    Map<Color.ColorGroupKeys, JLabel> ownedPropertyGroupLabels;
 
     JLabel labelOwnedHouses;
     JLabel labelOwnedHotels;
@@ -147,14 +147,14 @@ public class ViewFrameInformationModule {
         labelOwnedUtility = new JLabel(SwingHelper.getImageIconFromResource("/property-utility.png"));
 
         ownedPropertyGroupLabels = new HashMap<>();
-        ownedPropertyGroupLabels.put(Color.colorGroupKeys.brown, labelOwnedColorBrown);
-        ownedPropertyGroupLabels.put(Color.colorGroupKeys.lightBlue, labelOwnedColorLightBlue);
-        ownedPropertyGroupLabels.put(Color.colorGroupKeys.magenta, labelOwnedColorMagenta);
-        ownedPropertyGroupLabels.put(Color.colorGroupKeys.orange, labelOwnedColorOrange);
-        ownedPropertyGroupLabels.put(Color.colorGroupKeys.red, labelOwnedColorRed);
-        ownedPropertyGroupLabels.put(Color.colorGroupKeys.yellow, labelOwnedColorYellow);
-        ownedPropertyGroupLabels.put(Color.colorGroupKeys.green, labelOwnedColorGreen);
-        ownedPropertyGroupLabels.put(Color.colorGroupKeys.darkBlue, labelOwnedColorDarkBlue);
+        ownedPropertyGroupLabels.put(Color.ColorGroupKeys.BROWN, labelOwnedColorBrown);
+        ownedPropertyGroupLabels.put(Color.ColorGroupKeys.LIGHT_BLUE, labelOwnedColorLightBlue);
+        ownedPropertyGroupLabels.put(Color.ColorGroupKeys.MAGENTA, labelOwnedColorMagenta);
+        ownedPropertyGroupLabels.put(Color.ColorGroupKeys.ORANGE, labelOwnedColorOrange);
+        ownedPropertyGroupLabels.put(Color.ColorGroupKeys.RED, labelOwnedColorRed);
+        ownedPropertyGroupLabels.put(Color.ColorGroupKeys.YELLOW, labelOwnedColorYellow);
+        ownedPropertyGroupLabels.put(Color.ColorGroupKeys.GREEN, labelOwnedColorGreen);
+        ownedPropertyGroupLabels.put(Color.ColorGroupKeys.DARK_BLUE, labelOwnedColorDarkBlue);
 
         labelOwnedHouses = new JLabel(SwingHelper.getImageIconFromResource("/house.png"));
         labelOwnedHotels = new JLabel(SwingHelper.getImageIconFromResource("/hotel.png"));
@@ -279,7 +279,7 @@ public class ViewFrameInformationModule {
         int ownedUtilities = 0;
 
         if (player.getIsActive()) {
-            for (Color.colorGroupKeys colorGroup : Color.colorGroupKeys.values()) {
+            for (Color.ColorGroupKeys colorGroup : Color.ColorGroupKeys.values()) {
 
                 int ownedProperties = 0;
                 label = ownedPropertyGroupLabels.get(colorGroup);

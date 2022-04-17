@@ -5,6 +5,9 @@ import net.miginfocom.swing.MigLayout;
 import javax.swing.*;
 import java.util.ArrayList;
 
+/**
+ * Dialog, Forfeit: An optional dialog that allows the player to forfeit the game under appropriate conditions.
+ */
 public class DialogContainerForfeit extends DialogContainer {
 
     JButton buttonForfeit;

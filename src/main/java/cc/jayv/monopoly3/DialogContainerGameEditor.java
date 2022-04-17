@@ -6,6 +6,10 @@ import javax.swing.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ * Dialog, Game Editor: Provides actions that the user can perform to modify game state.
+ * Useful for debugging.
+ */
 public class DialogContainerGameEditor extends DialogContainer implements Serializable {
     JComboBox<Integer> comboBoxPlayerSelection;
 
@@ -28,6 +32,10 @@ public class DialogContainerGameEditor extends DialogContainer implements Serial
         arrangeComponents();
     }
 
+    /**
+     * Test method
+     * @param args none
+     */
     public static void main(String[] args) {
         JDialog dialog;
 

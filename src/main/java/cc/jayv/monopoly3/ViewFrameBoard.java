@@ -41,7 +41,7 @@ public class ViewFrameBoard implements Serializable {
      * @param logHelper The logHelper object where the internal text area will read from.
      * @param listener
      */
-    public ViewFrameBoard(LogHelper logHelper, ArrayList<DynamicView.spaceButtonActionHandler> listener) {
+    public ViewFrameBoard(LogHelper logHelper, ArrayList<DynamicView.SpaceButtonActionListener> listener) {
         frame = new JInternalFrame();
         frame.setFrameIcon(SwingHelper.getImageIconFromResource("/board.png"));
 
