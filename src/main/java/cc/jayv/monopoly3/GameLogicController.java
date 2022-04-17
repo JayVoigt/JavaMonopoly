@@ -34,7 +34,7 @@ public class GameLogicController implements Serializable {
     LogHelper logHelper;
 
     boolean victoryConditionMet;
-    private final cc.jayv.monopoly3.GDEDC GDEDC = new GDEDC(this, board, currentPlayer);
+    private final GameLogicEvaluatorDrawCard GameLogicEvaluatorDrawCard = new GameLogicEvaluatorDrawCard(this, board, currentPlayer);
 
     public GameLogicController(Board inputBoard, LogHelper inputLogHelper) {
         board = inputBoard;
@@ -329,8 +329,8 @@ public class GameLogicController implements Serializable {
 
         // Draw card
         if (localGameEventType.equals(GameEvent.gameEventTypeKeys.drawCard)) {
-            GDEDC.updateReferences(board, currentPlayer, currentSpace);
-            GDEDC.drawCardEvaluator();
+            GameLogicEvaluatorDrawCard.updateReferences(board, currentPlayer, currentSpace);
+            GameLogicEvaluatorDrawCard.drawCardEvaluator();
         }
 
         // Balance update
@@ -371,7 +371,7 @@ public class GameLogicController implements Serializable {
      */
     private void drawCardEvaluator() {
 
-        GDEDC.drawCardEvaluator();
+        GameLogicEvaluatorDrawCard.drawCardEvaluator();
     }
 
     /**

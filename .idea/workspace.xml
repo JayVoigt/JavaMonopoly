@@ -7,10 +7,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fe395cf4-00c4-4bef-93b5-8a1f264350fd" name="Changes" comment="fixed bug where players could purchase property from within jail under special conditions">
-      <change afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/GDEDC.java" afterDir="false" />
+    <list default="true" id="fe395cf4-00c4-4bef-93b5-8a1f264350fd" name="Changes" comment="experimenting with splitting game logic into several classes; DrawCard logic seems to be working">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/GDEDC.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/GameLogicController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/GameLogicController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/GameLogicEvaluatorDrawCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/GameLogicEvaluatorDrawCard.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,8 +102,8 @@
       <recent name="$PROJECT_DIR$/src/main/legacy" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.JavaMonopoly">
-    <configuration name="DialogContainerAuction" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Application.cc.jayv.monopoly3.JavaMonopoly">
+    <configuration name="cc.jayv.monopoly3.DialogContainerAuction" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="cc.jayv.monopoly3.DialogContainerAuction" />
       <module name="Monoproto3" />
       <extension name="coverage">
@@ -115,7 +116,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DialogContainerForfeit" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="cc.jayv.monopoly3.DialogContainerForfeit" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="cc.jayv.monopoly3.DialogContainerForfeit" />
       <module name="Monoproto3" />
       <extension name="coverage">
@@ -128,7 +129,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DialogContainerMortgage" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="cc.jayv.monopoly3.DialogContainerMortgage" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="cc.jayv.monopoly3.DialogContainerMortgage" />
       <module name="Monoproto3" />
       <extension name="coverage">
@@ -141,7 +142,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="JavaMonopoly" type="Application" factoryName="Application" nameIsGenerated="true">
+    <configuration name="cc.jayv.monopoly3.JavaMonopoly" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="cc.jayv.monopoly3.JavaMonopoly" />
       <module name="Monoproto3" />
       <extension name="coverage">
@@ -154,7 +155,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ViewFrameInformationModule" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="cc.jayv.monopoly3.ViewFrameInformationModule" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="cc.jayv.monopoly3.ViewFrameInformationModule" />
       <module name="Monoproto3" />
       <extension name="coverage">
@@ -224,21 +225,21 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Application.JavaMonopoly" />
-      <item itemvalue="Application.ViewFrameInformationModule" />
-      <item itemvalue="Application.DialogContainerMortgage" />
-      <item itemvalue="Application.DialogContainerForfeit" />
-      <item itemvalue="Application.DialogContainerAuction" />
+      <item itemvalue="Application.cc.jayv.monopoly3.JavaMonopoly" />
+      <item itemvalue="Application.cc.jayv.monopoly3.DialogContainerAuction" />
+      <item itemvalue="Application.cc.jayv.monopoly3.DialogContainerForfeit" />
+      <item itemvalue="Application.cc.jayv.monopoly3.DialogContainerMortgage" />
+      <item itemvalue="Application.cc.jayv.monopoly3.ViewFrameInformationModule" />
       <item itemvalue="JAR Application.Run Jar" />
       <item itemvalue="Maven.Clean" />
       <item itemvalue="Maven.Build" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.DialogContainerForfeit" />
-        <item itemvalue="Application.DialogContainerAuction" />
-        <item itemvalue="Application.DialogContainerMortgage" />
-        <item itemvalue="Application.ViewFrameInformationModule" />
+        <item itemvalue="Application.cc.jayv.monopoly3.DialogContainerForfeit" />
+        <item itemvalue="Application.cc.jayv.monopoly3.DialogContainerAuction" />
+        <item itemvalue="Application.cc.jayv.monopoly3.DialogContainerMortgage" />
+        <item itemvalue="Application.cc.jayv.monopoly3.ViewFrameInformationModule" />
       </list>
     </recent_temporary>
   </component>
@@ -258,14 +259,7 @@
       <workItem from="1650213221651" duration="1665000" />
       <workItem from="1650214946151" duration="599000" />
       <workItem from="1650215558780" duration="127000" />
-      <workItem from="1650215697577" duration="6046000" />
-    </task>
-    <task id="LOCAL-00046" summary="updated game editor">
-      <created>1649645190606</created>
-      <option name="number" value="00046" />
-      <option name="presentableId" value="LOCAL-00046" />
-      <option name="project" value="LOCAL" />
-      <updated>1649645190606</updated>
+      <workItem from="1650215697577" duration="6966000" />
     </task>
     <task id="LOCAL-00047" summary="improved control pane appearance and behavior; updated game editor">
       <created>1649711641934</created>
@@ -603,7 +597,14 @@
       <option name="project" value="LOCAL" />
       <updated>1650220514254</updated>
     </task>
-    <option name="localTasksCounter" value="95" />
+    <task id="LOCAL-00095" summary="experimenting with splitting game logic into several classes; DrawCard logic seems to be working">
+      <created>1650221998242</created>
+      <option name="number" value="00095" />
+      <option name="presentableId" value="LOCAL-00095" />
+      <option name="project" value="LOCAL" />
+      <updated>1650221998242</updated>
+    </task>
+    <option name="localTasksCounter" value="96" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -634,7 +635,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="updated appearance of asset view" />
     <MESSAGE value="experimenting with timers and multithreading" />
     <MESSAGE value="fancier party mode working" />
     <MESSAGE value="improved fancier party mode" />
@@ -659,7 +659,8 @@
     <MESSAGE value="updated documentation; updated appearance of text inside property purchase dialog" />
     <MESSAGE value="updated JavaDoc" />
     <MESSAGE value="fixed bug where players could purchase property from within jail under special conditions" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed bug where players could purchase property from within jail under special conditions" />
+    <MESSAGE value="experimenting with splitting game logic into several classes; DrawCard logic seems to be working" />
+    <option name="LAST_COMMIT_MESSAGE" value="experimenting with splitting game logic into several classes; DrawCard logic seems to be working" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
