@@ -57,7 +57,7 @@ public class DialogContainerJail extends DialogContainer {
     }
 
     @Override
-    public void setStateOfActionButton(Actions action, boolean isEnabled) {
+    public void setStateOfActionButton(ActionsGUI action, boolean isEnabled) {
         switch (action) {
             case JAIL_POSTBAIL -> buttonPostBail.setEnabled(isEnabled);
             case JAIL_ROLLDOUBLES -> buttonRollForDoubles.setEnabled(isEnabled);
@@ -76,15 +76,15 @@ public class DialogContainerJail extends DialogContainer {
         }
 
         // Enable Get Out of Jail Free Card button if player has at least 1 card
-        setStateOfActionButton(Actions.JAIL_USEGOOJFC, (player.getGetOutOfJailFreeCardCount() > 0));
+        setStateOfActionButton(ActionsGUI.JAIL_USEGOOJFC, (player.getGetOutOfJailFreeCardCount() > 0));
 
         // Disable Roll for Doubles button if player has been jailed for 3 or more turns consecutively
         if (player.getConsecutiveTurnsJailed() >= 3) {
-            setStateOfActionButton(Actions.JAIL_ROLLDOUBLES, false);
+            setStateOfActionButton(ActionsGUI.JAIL_ROLLDOUBLES, false);
             message = message.concat(" You are unable to roll for doubles, and must post bail or use a Get Out" +
                     "of Jail Free card.");
         } else {
-            setStateOfActionButton(Actions.JAIL_ROLLDOUBLES, true);
+            setStateOfActionButton(ActionsGUI.JAIL_ROLLDOUBLES, true);
         }
 
         infoArea.setText(message);

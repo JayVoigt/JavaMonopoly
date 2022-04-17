@@ -145,8 +145,8 @@ public class DialogContainerStartGame extends DialogContainer implements Seriali
     }
 
     @Override
-    public void setStateOfActionButton(Actions action, boolean isEnabled) {
-        if (action == Actions.NEWGAME_STARTGAME) {
+    public void setStateOfActionButton(ActionsGUI action, boolean isEnabled) {
+        if (action == ActionsGUI.NEWGAME_STARTGAME) {
             buttonStartGame.setEnabled(isEnabled);
         }
     }

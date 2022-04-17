@@ -7,15 +7,31 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fe395cf4-00c4-4bef-93b5-8a1f264350fd" name="Changes" comment="fixed railroad rent evaluation bug">
-      <change afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/GameLogicManagerImprovements.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/GameLogicModule.java" afterDir="false" />
+    <list default="true" id="fe395cf4-00c4-4bef-93b5-8a1f264350fd" name="Changes" comment="separated improvements manager into separate class">
+      <change afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/GameLogicTools.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/Board.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/GameEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/GameEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javadoc/cc/jayv/monopoly3/Actions.html" beforeDir="false" afterPath="$PROJECT_DIR$/javadoc/cc/jayv/monopoly3/Actions.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/Actions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/ActionsGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DialogContainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DialogContainer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DialogContainerAbout.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DialogContainerAbout.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DialogContainerAuction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DialogContainerAuction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DialogContainerDebugLog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DialogContainerDebugLog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DialogContainerForfeit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DialogContainerForfeit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DialogContainerGameEditor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DialogContainerGameEditor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DialogContainerImprovements.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DialogContainerImprovements.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DialogContainerJail.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DialogContainerJail.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DialogContainerMortgage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DialogContainerMortgage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DialogContainerPurchaseProperty.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DialogContainerPurchaseProperty.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DialogContainerStartGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DialogContainerStartGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DynamicView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DynamicView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/GameLogicController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/GameLogicController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/GameLogicEvaluatorDrawCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/GameLogicEvaluatorDrawCard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/spaces.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/spaces.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/GameLogicManagerImprovements.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/GameLogicManagerImprovements.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/GameLogicSwitchboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/GameLogicSwitchboard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/ViewAreaSpaceSelection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/ViewAreaSpaceSelection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/ViewComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/ViewComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/ViewFrameControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/ViewFrameControl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/ViewFrameInformation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/ViewFrameInformation.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,9 +89,9 @@
     </option>
   </component>
   <component name="NamedScopeManager">
-    <scope name="Unnamed" pattern="src:cc.jayv.monopoly3.DialogContainerAbout||src:cc.jayv.monopoly3.Actions||src:cc.jayv.monopoly3.Board||src:cc.jayv.monopoly3.ViewFrameBoard||src:cc.jayv.monopoly3.TemplateDialogButtonProperties||src:cc.jayv.monopoly3.Color||src:cc.jayv.monopoly3.ViewFrameControl||src:cc.jayv.monopoly3.DrawCard||src:cc.jayv.monopoly3.DynamicView||src:cc.jayv.monopoly3.GameEvent||src:cc.jayv.monopoly3.GameEditorActions||src:cc.jayv.monopoly3.DialogContainerGameEditor||src:cc.jayv.monopoly3.GameLogicController||src:cc.jayv.monopoly3.ViewFrameInformation||src:cc.jayv.monopoly3.JavaMonopoly||src:cc.jayv.monopoly3.LogHelper||src:cc.jayv.monopoly3.GameLogicSwitchboard||src:cc.jayv.monopoly3.Player||src:cc.jayv.monopoly3.Property||src:cc.jayv.monopoly3.Railroad||src:cc.jayv.monopoly3.Space||src:cc.jayv.monopoly3.ViewAreaSpaceSelection||src:cc.jayv.monopoly3.DialogContainerStartGame||src:cc.jayv.monopoly3.Statistics||src:cc.jayv.monopoly3.SwingHelper||src:cc.jayv.monopoly3.Utility||src:cc.jayv.monopoly3.ViewComponent||src:cc.jayv.monopoly3.TemplateDialogGenerator" />
+    <scope name="Unnamed" pattern="src:cc.jayv.monopoly3.DialogContainerAbout||src:cc.jayv.monopoly3.ActionsGUI||src:cc.jayv.monopoly3.Board||src:cc.jayv.monopoly3.ViewFrameBoard||src:cc.jayv.monopoly3.TemplateDialogButtonProperties||src:cc.jayv.monopoly3.Color||src:cc.jayv.monopoly3.ViewFrameControl||src:cc.jayv.monopoly3.DrawCard||src:cc.jayv.monopoly3.DynamicView||src:cc.jayv.monopoly3.GameEvent||src:cc.jayv.monopoly3.GameEditorActions||src:cc.jayv.monopoly3.DialogContainerGameEditor||src:cc.jayv.monopoly3.GameLogicController||src:cc.jayv.monopoly3.ViewFrameInformation||src:cc.jayv.monopoly3.JavaMonopoly||src:cc.jayv.monopoly3.LogHelper||src:cc.jayv.monopoly3.GameLogicSwitchboard||src:cc.jayv.monopoly3.Player||src:cc.jayv.monopoly3.Property||src:cc.jayv.monopoly3.Railroad||src:cc.jayv.monopoly3.Space||src:cc.jayv.monopoly3.ViewAreaSpaceSelection||src:cc.jayv.monopoly3.DialogContainerStartGame||src:cc.jayv.monopoly3.Statistics||src:cc.jayv.monopoly3.SwingHelper||src:cc.jayv.monopoly3.Utility||src:cc.jayv.monopoly3.ViewComponent||src:cc.jayv.monopoly3.TemplateDialogGenerator" />
     <scope name="GUI" pattern="src:cc.jayv.monopoly3.DialogContainerForfeit||src:cc.jayv.monopoly3.ViewFrameInformation||src:cc.jayv.monopoly3.ViewFrameInformationModule||src:cc.jayv.monopoly3.MenuActions||src:cc.jayv.monopoly3.DialogContainerGameEditor||src:cc.jayv.monopoly3.DialogContainer||src:cc.jayv.monopoly3.DialogContainerAuction||src:cc.jayv.monopoly3.ViewAreaSpaceSelection||src:cc.jayv.monopoly3.DialogContainerAbout||src:cc.jayv.monopoly3.DialogContainerMortgage||src:cc.jayv.monopoly3.SwingHelper||src:cc.jayv.monopoly3.DialogContainerStartGame||src:cc.jayv.monopoly3.DialogContainerPurchaseProperty||src:cc.jayv.monopoly3.DialogContainerImprovements||src:cc.jayv.monopoly3.DialogContainerJail||src:cc.jayv.monopoly3.ViewComponent||src:cc.jayv.monopoly3.ViewFrameBoard||src:cc.jayv.monopoly3.TemplateDialogGenerator||src:cc.jayv.monopoly3.ViewFrameControl||src:cc.jayv.monopoly3.DialogContainerDebugLog||src:cc.jayv.monopoly3.TemplateDialogButtonProperties||src:cc.jayv.monopoly3.DynamicView" />
-    <scope name="Game Logic" pattern="src:cc.jayv.monopoly3.GameLogicSwitchboard||src:cc.jayv.monopoly3.GameLogicController||src:cc.jayv.monopoly3.Actions||src:cc.jayv.monopoly3.GameEditorController||src:cc.jayv.monopoly3.GameEditorActions||src:cc.jayv.monopoly3.JavaMonopoly||src:cc.jayv.monopoly3.LogHelper||src:cc.jayv.monopoly3.MacroController||src:cc.jayv.monopoly3.MenuActions" />
+    <scope name="Game Logic" pattern="src:cc.jayv.monopoly3.GameLogicSwitchboard||src:cc.jayv.monopoly3.GameLogicController||src:cc.jayv.monopoly3.ActionsGUI||src:cc.jayv.monopoly3.GameEditorController||src:cc.jayv.monopoly3.GameEditorActions||src:cc.jayv.monopoly3.JavaMonopoly||src:cc.jayv.monopoly3.LogHelper||src:cc.jayv.monopoly3.MacroController||src:cc.jayv.monopoly3.MenuActions" />
     <scope name="Game Data" pattern="src:cc.jayv.monopoly3.Board||src:cc.jayv.monopoly3.Color||src:cc.jayv.monopoly3.DrawCard||src:cc.jayv.monopoly3.Space||src:cc.jayv.monopoly3.Railroad||src:cc.jayv.monopoly3.Property||src:cc.jayv.monopoly3.Player||src:cc.jayv.monopoly3.GameEvent||src:cc.jayv.monopoly3.Utility||src:cc.jayv.monopoly3.Statistics||src:cc.jayv.monopoly3.SerialState" />
   </component>
   <component name="ProblemsViewState">
@@ -107,7 +123,7 @@
     </key>
   </component>
   <component name="RunManager" selected="Application.cc.jayv.monopoly3.JavaMonopoly">
-    <configuration name="cc.jayv.monopoly3.DialogContainerAuction" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="DialogContainerAuction" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="cc.jayv.monopoly3.DialogContainerAuction" />
       <module name="Monoproto3" />
       <extension name="coverage">
@@ -120,7 +136,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="cc.jayv.monopoly3.DialogContainerForfeit" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="DialogContainerForfeit" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="cc.jayv.monopoly3.DialogContainerForfeit" />
       <module name="Monoproto3" />
       <extension name="coverage">
@@ -133,7 +149,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="cc.jayv.monopoly3.DialogContainerMortgage" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="DialogContainerMortgage" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="cc.jayv.monopoly3.DialogContainerMortgage" />
       <module name="Monoproto3" />
       <extension name="coverage">
@@ -146,7 +162,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="cc.jayv.monopoly3.JavaMonopoly" type="Application" factoryName="Application" nameIsGenerated="true">
+    <configuration name="JavaMonopoly" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="cc.jayv.monopoly3.JavaMonopoly" />
       <module name="Monoproto3" />
       <extension name="coverage">
@@ -159,7 +175,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="cc.jayv.monopoly3.ViewFrameInformationModule" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="ViewFrameInformationModule" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="cc.jayv.monopoly3.ViewFrameInformationModule" />
       <module name="Monoproto3" />
       <extension name="coverage">
@@ -263,14 +279,7 @@
       <workItem from="1650213221651" duration="1665000" />
       <workItem from="1650214946151" duration="599000" />
       <workItem from="1650215558780" duration="127000" />
-      <workItem from="1650215697577" duration="10641000" />
-    </task>
-    <task id="LOCAL-00049" summary="updated PropertyPurchaseDialog">
-      <created>1649716852401</created>
-      <option name="number" value="00049" />
-      <option name="presentableId" value="LOCAL-00049" />
-      <option name="project" value="LOCAL" />
-      <updated>1649716852401</updated>
+      <workItem from="1650215697577" duration="11484000" />
     </task>
     <task id="LOCAL-00050" summary="updated PropertyPurchaseDialog; cleaned up code slightly">
       <created>1649717949384</created>
@@ -608,7 +617,14 @@
       <option name="project" value="LOCAL" />
       <updated>1650225082432</updated>
     </task>
-    <option name="localTasksCounter" value="98" />
+    <task id="LOCAL-00098" summary="separated improvements manager into separate class">
+      <created>1650226564681</created>
+      <option name="number" value="00098" />
+      <option name="presentableId" value="LOCAL-00098" />
+      <option name="project" value="LOCAL" />
+      <updated>1650226564681</updated>
+    </task>
+    <option name="localTasksCounter" value="99" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -639,7 +655,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="improved fancier party mode" />
     <MESSAGE value="experimenting with auction GUI" />
     <MESSAGE value="updated spectrum button dynamics; added reset option; using lambda expressions for some ActionListener events" />
     <MESSAGE value="working on bankruptcy state" />
@@ -664,7 +679,8 @@
     <MESSAGE value="experimenting with splitting game logic into several classes; DrawCard logic seems to be working" />
     <MESSAGE value="refactoring draw card logic" />
     <MESSAGE value="fixed railroad rent evaluation bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed railroad rent evaluation bug" />
+    <MESSAGE value="separated improvements manager into separate class" />
+    <option name="LAST_COMMIT_MESSAGE" value="separated improvements manager into separate class" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -691,12 +707,12 @@
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/GameLogicController.java</url>
-          <line>532</line>
+          <line>524</line>
           <option name="timeStamp" value="54" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/GameLogicController.java</url>
-          <line>547</line>
+          <line>539</line>
           <option name="timeStamp" value="55" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">

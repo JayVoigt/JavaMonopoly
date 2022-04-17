@@ -7,7 +7,7 @@ import java.util.Objects;
 
 /**
  * An intermediary layer between the DynamicView and GameLogicController objects.<br>
- * GUI objects whose listener objects extend from ActionEvent, and have an accessible Actions property,
+ * GUI objects whose listener objects extend from ActionEvent, and have an accessible ActionsGUI property,
  * can have their triggers modified in this class.
  */
 public class GameLogicSwitchboard implements Serializable {
@@ -25,19 +25,19 @@ public class GameLogicSwitchboard implements Serializable {
      * @param trigger The action to trigger.
      * @param currentSpaceSelectionID The space ID that is currently selected by the player.
      */
-    public void actionHandler(Actions trigger, int currentSpaceSelectionID) {
+    public void actionHandler(ActionsGUI trigger, int currentSpaceSelectionID) {
         switch (trigger) {
             case CONTROLS_ENDTURN -> c.endTurnManager();
             case CONTROLS_ROLLDICE -> c.diceRollManager();
 
             case IMPROVEMENTS_BUILD_HOUSE ->
-                    c.improvementsManager(currentSpaceSelectionID, GameLogicController.ImprovementsActions.BUILD_HOUSE);
+                    c.improvementsManager(currentSpaceSelectionID, DialogContainerImprovements.ActionsImprovements.ImprovementsActions.BUILD_HOUSE);
             case IMPROVEMENTS_BUILD_HOTEL ->
-                    c.improvementsManager(currentSpaceSelectionID, GameLogicController.ImprovementsActions.BUILD_HOTEL);
+                    c.improvementsManager(currentSpaceSelectionID, DialogContainerImprovements.ActionsImprovements.ImprovementsActions.BUILD_HOTEL);
             case IMPROVEMENTS_SELL_HOUSE ->
-                    c.improvementsManager(currentSpaceSelectionID, GameLogicController.ImprovementsActions.SELL_HOUSE);
+                    c.improvementsManager(currentSpaceSelectionID, DialogContainerImprovements.ActionsImprovements.ImprovementsActions.SELL_HOUSE);
             case IMPROVEMENTS_SELL_HOTEL ->
-                    c.improvementsManager(currentSpaceSelectionID, GameLogicController.ImprovementsActions.SELL_HOTEL);
+                    c.improvementsManager(currentSpaceSelectionID, DialogContainerImprovements.ActionsImprovements.ImprovementsActions.SELL_HOTEL);
 
             case JAIL_POSTBAIL -> c.playerDecisionJailPostBail();
             case JAIL_ROLLDOUBLES -> c.playerDecisionJailRollDoubles();
@@ -47,9 +47,9 @@ public class GameLogicSwitchboard implements Serializable {
             case PROPERTY_AUCTION -> c.playerDecisionAuction();
 
             case PROPERTY_MORTGAGE ->
-                    c.mortgageProperty(currentSpaceSelectionID, GameLogicController.MortgageActions.MORTGAGE);
+                    c.mortgageProperty(currentSpaceSelectionID, DialogContainerMortgage.ActionsMortgage.MortgageActions.MORTGAGE);
             case PROPERTY_UNMORTGAGE ->
-                    c.mortgageProperty(currentSpaceSelectionID, GameLogicController.MortgageActions.UNMORTGAGE);
+                    c.mortgageProperty(currentSpaceSelectionID, DialogContainerMortgage.ActionsMortgage.MortgageActions.UNMORTGAGE);
 
             case FORFEIT_CONFIRM -> c.forfeitManager();
         }

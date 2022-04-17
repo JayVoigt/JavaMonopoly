@@ -4,6 +4,7 @@ import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -90,7 +91,7 @@ public class DialogContainerMortgage extends DialogContainer {
     }
 
     @Override
-    public void setStateOfActionButton(Actions action, boolean isEnabled) {
+    public void setStateOfActionButton(ActionsGUI action, boolean isEnabled) {
         switch (action) {
             case PROPERTY_MORTGAGE -> buttonMortgage.setEnabled(isEnabled);
             case PROPERTY_UNMORTGAGE -> buttonUnmortgage.setEnabled(isEnabled);
@@ -128,14 +129,14 @@ public class DialogContainerMortgage extends DialogContainer {
 
         // Set button status
         if (status == MortgageEligibilityStatus.CAN_MORTGAGE) {
-            setStateOfActionButton(Actions.PROPERTY_MORTGAGE, true);
-            setStateOfActionButton(Actions.PROPERTY_UNMORTGAGE, false);
+            setStateOfActionButton(ActionsGUI.PROPERTY_MORTGAGE, true);
+            setStateOfActionButton(ActionsGUI.PROPERTY_UNMORTGAGE, false);
         } else if (status == MortgageEligibilityStatus.CANT_MORTGAGE_ALREADY_MORTGAGED) {
-            setStateOfActionButton(Actions.PROPERTY_MORTGAGE, false);
-            setStateOfActionButton(Actions.PROPERTY_UNMORTGAGE, true);
+            setStateOfActionButton(ActionsGUI.PROPERTY_MORTGAGE, false);
+            setStateOfActionButton(ActionsGUI.PROPERTY_UNMORTGAGE, true);
         } else {
-            setStateOfActionButton(Actions.PROPERTY_MORTGAGE, false);
-            setStateOfActionButton(Actions.PROPERTY_UNMORTGAGE, false);
+            setStateOfActionButton(ActionsGUI.PROPERTY_MORTGAGE, false);
+            setStateOfActionButton(ActionsGUI.PROPERTY_UNMORTGAGE, false);
         }
 
     }
@@ -169,4 +170,10 @@ public class DialogContainerMortgage extends DialogContainer {
         CANT_MORTGAGE_NOT_PROPERTY
     }
 
+    public static class ActionsMortgage implements Serializable {
+        enum MortgageActions {
+            MORTGAGE,
+            UNMORTGAGE
+        }
+    }
 }

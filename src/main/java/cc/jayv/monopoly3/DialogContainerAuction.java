@@ -82,7 +82,7 @@ public class DialogContainerAuction extends DialogContainer {
     }
 
     @Override
-    public void setStateOfActionButton(Actions action, boolean isEnabled) {
+    public void setStateOfActionButton(ActionsGUI action, boolean isEnabled) {
 
     }
 

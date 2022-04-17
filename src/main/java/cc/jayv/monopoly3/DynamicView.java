@@ -191,7 +191,7 @@ public class DynamicView implements Serializable {
      * Show the corresponding prompt for a given action.
      * @param action The action that corresponds to a dialog.
      */
-    private void updatePrompt(Actions action) {
+    private void updatePrompt(ActionsGUI action) {
         switch (action) {
             case CONTROLS_SHOW_IMPROVEMENTS -> updateDialogAppearance(dialogImprovements);
             case CONTROLS_SHOW_MORTGAGE -> updateDialogAppearance(dialogMortgage);
@@ -231,8 +231,8 @@ public class DynamicView implements Serializable {
      * Disable roll dice and end turn control buttons.
      */
     private void disableControlButtons() {
-        viewFrameControl.setStateOfActionButton(Actions.CONTROLS_ENDTURN, false);
-        viewFrameControl.setStateOfActionButton(Actions.CONTROLS_ROLLDICE, false);
+        viewFrameControl.setStateOfActionButton(ActionsGUI.CONTROLS_ENDTURN, false);
+        viewFrameControl.setStateOfActionButton(ActionsGUI.CONTROLS_ROLLDICE, false);
     }
 
 
@@ -354,7 +354,7 @@ public class DynamicView implements Serializable {
         // Create all possible ActionListeners for dialogs
         buttonActionListeners = new ArrayList<>();
 
-        for (Actions a : Actions.values()) {
+        for (ActionsGUI a : ActionsGUI.values()) {
 
             switch (a) {
                 case CONTROLS_SHOW_MORTGAGE, CONTROLS_SHOW_FORFEIT, CONTROLS_SHOW_IMPROVEMENTS -> {
@@ -546,17 +546,17 @@ public class DynamicView implements Serializable {
      * can be referenced later.
      */
     public class ButtonActionListener implements ActionListener, Serializable {
-        Actions action;
+        ActionsGUI action;
         boolean needsPrompt;
 
         // Default listeners do not require a prompt
-        public ButtonActionListener(Actions action) {
+        public ButtonActionListener(ActionsGUI action) {
             this.action = action;
             needsPrompt = false;
         }
 
         // For listeners that require a prompt, e.g., Improvements, Mortgage
-        public ButtonActionListener(Actions action, boolean needsPrompt) {
+        public ButtonActionListener(ActionsGUI action, boolean needsPrompt) {
             this.action = action;
             this.needsPrompt = needsPrompt;
         }
@@ -574,7 +574,7 @@ public class DynamicView implements Serializable {
             }
         }
 
-        public Actions getAction() {
+        public ActionsGUI getAction() {
             return action;
         }
     }
@@ -640,8 +640,8 @@ public class DynamicView implements Serializable {
                 case UNJAIL -> gameEditorController.unjailPlayer(player);
                 case GIVE_1000 -> gameEditorController.give1000(player);
                 case DEDUCT_1000 -> gameEditorController.deduct1000(player);
-                case UNLOCK_ROLL_DICE -> viewFrameControl.setStateOfActionButton(Actions.CONTROLS_ROLLDICE, true);
-                case UNLOCK_END_TURN -> viewFrameControl.setStateOfActionButton(Actions.CONTROLS_ENDTURN, true);
+                case UNLOCK_ROLL_DICE -> viewFrameControl.setStateOfActionButton(ActionsGUI.CONTROLS_ROLLDICE, true);
+                case UNLOCK_END_TURN -> viewFrameControl.setStateOfActionButton(ActionsGUI.CONTROLS_ENDTURN, true);
                 case GIVE_ALL_PROPERTIES -> gameEditorController.giveAllProperties(player);
                 case RANDOMLY_DISTRIBUTE_ALL_PROPERTIES -> gameEditorController.randomlyDistributeAllProperties();
             }

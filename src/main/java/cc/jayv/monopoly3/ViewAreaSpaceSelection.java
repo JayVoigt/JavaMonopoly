@@ -251,7 +251,7 @@ public class ViewAreaSpaceSelection implements ViewComponent, Serializable {
     }
 
     @Override
-    public void setStateOfActionButton(Actions action, boolean isEnabled) {
+    public void setStateOfActionButton(ActionsGUI action, boolean isEnabled) {
     }
 
     @Override

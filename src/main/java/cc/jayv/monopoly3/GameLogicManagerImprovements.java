@@ -8,7 +8,7 @@ public class GameLogicManagerImprovements extends GameLogicModule implements Ser
     public GameLogicManagerImprovements(GameLogicController gameLogicController) {
     }
 
-    public void improvementsManager(int spaceID, GameLogicController.ImprovementsActions inputAction) {
+    public void improvementsManager(int spaceID, DialogContainerImprovements.ActionsImprovements.ImprovementsActions inputAction) {
         Space localSpace = board.spaces.get(spaceID);
         Color localColor = null;
 
@@ -19,7 +19,7 @@ public class GameLogicManagerImprovements extends GameLogicModule implements Ser
         }
 
         // Build house
-        if (inputAction.equals(GameLogicController.ImprovementsActions.BUILD_HOUSE)) {
+        if (inputAction.equals(DialogContainerImprovements.ActionsImprovements.ImprovementsActions.BUILD_HOUSE)) {
             if (Objects.requireNonNull(localColor).getIsEligibleForImprovements()) {
                 // Maximum houses on space
                 if (localColor.getHouseCount() == 4) {
@@ -45,7 +45,7 @@ public class GameLogicManagerImprovements extends GameLogicModule implements Ser
         }
 
         // Sell house
-        else if (inputAction.equals(GameLogicController.ImprovementsActions.SELL_HOUSE)) {
+        else if (inputAction.equals(DialogContainerImprovements.ActionsImprovements.ImprovementsActions.SELL_HOUSE)) {
             if (Objects.requireNonNull(localColor).getHouseCount() > 0) {
                 localColor.sellHouse();
                 currentPlayer.updateCurrentBalance((int) (localColor.getHouseCost() * 0.5));
@@ -55,7 +55,7 @@ public class GameLogicManagerImprovements extends GameLogicModule implements Ser
         }
 
         // Build hotel
-        else if (inputAction.equals(GameLogicController.ImprovementsActions.BUILD_HOTEL)) {
+        else if (inputAction.equals(DialogContainerImprovements.ActionsImprovements.ImprovementsActions.BUILD_HOTEL)) {
             if (Objects.requireNonNull(localColor).getIsEligibleForImprovements()) {
                 if (localColor.getHouseCount() == 4) {
                     localColor.buildHotel();
@@ -70,7 +70,7 @@ public class GameLogicManagerImprovements extends GameLogicModule implements Ser
         }
 
         // Sell hotel
-        else if (inputAction.equals(GameLogicController.ImprovementsActions.SELL_HOTEL)) {
+        else if (inputAction.equals(DialogContainerImprovements.ActionsImprovements.ImprovementsActions.SELL_HOTEL)) {
             if (Objects.requireNonNull(localColor).getHotelCount() > 0) {
                 localColor.sellHotel();
                 currentPlayer.updateCurrentBalance((int) (localColor.getHotelCost() * 0.5));

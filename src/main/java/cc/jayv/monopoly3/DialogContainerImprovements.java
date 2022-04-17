@@ -3,6 +3,7 @@ package cc.jayv.monopoly3;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -54,10 +55,10 @@ public class DialogContainerImprovements extends DialogContainer {
         buttonBuildHotel = new JButton("Build a hotel", SwingHelper.getImageIconFromResource("/hotel.png"));
         buttonSellHotel = new JButton("Sell a hotel", SwingHelper.getImageIconFromResource("/hotel.png"));
 
-        setStateOfActionButton(Actions.IMPROVEMENTS_BUILD_HOUSE, false);
-        setStateOfActionButton(Actions.IMPROVEMENTS_SELL_HOUSE, false);
-        setStateOfActionButton(Actions.IMPROVEMENTS_BUILD_HOTEL, false);
-        setStateOfActionButton(Actions.IMPROVEMENTS_SELL_HOTEL, false);
+        setStateOfActionButton(ActionsGUI.IMPROVEMENTS_BUILD_HOUSE, false);
+        setStateOfActionButton(ActionsGUI.IMPROVEMENTS_SELL_HOUSE, false);
+        setStateOfActionButton(ActionsGUI.IMPROVEMENTS_BUILD_HOTEL, false);
+        setStateOfActionButton(ActionsGUI.IMPROVEMENTS_SELL_HOTEL, false);
     }
 
     @Override
@@ -85,7 +86,7 @@ public class DialogContainerImprovements extends DialogContainer {
     }
 
     @Override
-    public void setStateOfActionButton(Actions action, boolean isEnabled) {
+    public void setStateOfActionButton(ActionsGUI action, boolean isEnabled) {
         switch (action) {
             case IMPROVEMENTS_BUILD_HOUSE -> buttonBuildHouse.setEnabled(isEnabled);
             case IMPROVEMENTS_SELL_HOUSE -> buttonSellHouse.setEnabled(isEnabled);
@@ -108,10 +109,10 @@ public class DialogContainerImprovements extends DialogContainer {
 
         labelPropertySelection.setText(currentSpace.getFriendlyName());
 
-        setStateOfActionButton(Actions.IMPROVEMENTS_BUILD_HOUSE, false);
-        setStateOfActionButton(Actions.IMPROVEMENTS_SELL_HOUSE, false);
-        setStateOfActionButton(Actions.IMPROVEMENTS_BUILD_HOTEL, false);
-        setStateOfActionButton(Actions.IMPROVEMENTS_SELL_HOTEL, false);
+        setStateOfActionButton(ActionsGUI.IMPROVEMENTS_BUILD_HOUSE, false);
+        setStateOfActionButton(ActionsGUI.IMPROVEMENTS_SELL_HOUSE, false);
+        setStateOfActionButton(ActionsGUI.IMPROVEMENTS_BUILD_HOTEL, false);
+        setStateOfActionButton(ActionsGUI.IMPROVEMENTS_SELL_HOTEL, false);
 
         dialog.pack();
 
@@ -125,10 +126,10 @@ public class DialogContainerImprovements extends DialogContainer {
                 if (c.getIsFullSetOwned() && (c.getOwnerID() == player.getPlayerID())) {
                     status = ImprovementEligibilityStatus.CAN_IMPROVE;
 
-                    setStateOfActionButton(Actions.IMPROVEMENTS_BUILD_HOUSE, true);
-                    setStateOfActionButton(Actions.IMPROVEMENTS_SELL_HOUSE, true);
-                    setStateOfActionButton(Actions.IMPROVEMENTS_BUILD_HOTEL, true);
-                    setStateOfActionButton(Actions.IMPROVEMENTS_SELL_HOTEL, true);
+                    setStateOfActionButton(ActionsGUI.IMPROVEMENTS_BUILD_HOUSE, true);
+                    setStateOfActionButton(ActionsGUI.IMPROVEMENTS_SELL_HOUSE, true);
+                    setStateOfActionButton(ActionsGUI.IMPROVEMENTS_BUILD_HOTEL, true);
+                    setStateOfActionButton(ActionsGUI.IMPROVEMENTS_SELL_HOTEL, true);
 
                     controller.setPlayerCanBuildImprovements(true);
                 } else {
@@ -178,4 +179,16 @@ public class DialogContainerImprovements extends DialogContainer {
         CANT_IMPROVE_UNKNOWN
     }
 
+    public static class ActionsImprovements implements Serializable {
+        /**
+         * Possible actions that a player can execute when modifying improvements on
+         * a Color space.
+         */
+        enum ImprovementsActions {
+            BUILD_HOUSE,
+            SELL_HOUSE,
+            BUILD_HOTEL,
+            SELL_HOTEL
+        }
+    }
 }

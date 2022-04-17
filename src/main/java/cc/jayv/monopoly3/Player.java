@@ -353,7 +353,7 @@ public class Player implements Serializable {
 
         hasRolledDoubles = false;
 
-        // Actions are locked by default, and later unlocked when appropriate.
+        // ActionsGUI are locked by default, and later unlocked when appropriate.
         actionLockedRollDice = true;
         actionLockedEndTurn = true;
 

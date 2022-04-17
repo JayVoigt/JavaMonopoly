@@ -74,7 +74,7 @@ public class DialogContainerForfeit extends DialogContainer {
     }
 
     @Override
-    public void setStateOfActionButton(Actions action, boolean isEnabled) {
+    public void setStateOfActionButton(ActionsGUI action, boolean isEnabled) {
         switch (action) {
             case FORFEIT_CONFIRM -> buttonForfeit.setEnabled(isEnabled);
             case FORFEIT_CANCEL -> buttonCancel.setEnabled(isEnabled);

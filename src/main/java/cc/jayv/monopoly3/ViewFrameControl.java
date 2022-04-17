@@ -166,7 +166,7 @@ public class ViewFrameControl implements ViewComponent, Serializable {
             buttonControlsForfeit.setFocusable(false);
             frame.add(buttonControlsForfeit, buttonControlsForfeit.getMigLayoutSpec());
 
-            for (Actions a : Actions.values()) {
+            for (ActionsGUI a : ActionsGUI.values()) {
                 setStateOfActionButton(a, false);
             }
 
@@ -192,16 +192,16 @@ public class ViewFrameControl implements ViewComponent, Serializable {
         labelDie1.setIcon(DicePips.get(currentPlayer.getDie1()));
         labelDie2.setIcon(DicePips.get(currentPlayer.getDie2()));
 
-        for (Actions a : Actions.values()) {
+        for (ActionsGUI a : ActionsGUI.values()) {
             setStateOfActionButton(a, true);
         }
 
-        setStateOfActionButton(Actions.CONTROLS_ENDTURN, !currentPlayer.getActionLockedEndTurn());
-        setStateOfActionButton(Actions.CONTROLS_ROLLDICE, !currentPlayer.getActionLockedRollDice());
+        setStateOfActionButton(ActionsGUI.CONTROLS_ENDTURN, !currentPlayer.getActionLockedEndTurn());
+        setStateOfActionButton(ActionsGUI.CONTROLS_ROLLDICE, !currentPlayer.getActionLockedRollDice());
     }
 
     @Override
-    public void setStateOfActionButton(Actions action, boolean isEnabled) {
+    public void setStateOfActionButton(ActionsGUI action, boolean isEnabled) {
         JButton localButton = null;
 
         switch (action) {

@@ -3,7 +3,7 @@ package cc.jayv.monopoly3;
 /**
  * Indicates possible actions that the player can perform through the GUI.
  */
-public enum Actions {
+public enum ActionsGUI {
     CONTROLS_ROLLDICE,
     CONTROLS_ENDTURN,
 

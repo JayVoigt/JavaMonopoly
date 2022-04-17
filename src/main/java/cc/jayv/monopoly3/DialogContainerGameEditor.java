@@ -112,7 +112,7 @@ public class DialogContainerGameEditor extends DialogContainer implements Serial
     }
 
     @Override
-    public void setStateOfActionButton(Actions action, boolean isEnabled) {
+    public void setStateOfActionButton(ActionsGUI action, boolean isEnabled) {
     }
 
     public int getSelectedPlayer() {

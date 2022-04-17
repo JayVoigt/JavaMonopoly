@@ -1,7 +1,6 @@
 package cc.jayv.monopoly3;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
 /**
  * Controls game logic and updates data within the Board accordingly.
@@ -10,11 +9,9 @@ import java.util.ArrayList;
  */
 public class GameLogicController implements Serializable {
 
-    private final GameLogicManagerImprovements gameLogicManagerImprovements = new GameLogicManagerImprovements(this);
     Board board;
 
     Player currentPlayer;
-    Player currentDebugPlayer;
 
     Space currentSpace;
     GameEvent currentGameEvent;
@@ -33,6 +30,8 @@ public class GameLogicController implements Serializable {
 
     boolean victoryConditionMet;
     private final GameLogicEvaluatorDrawCard GameLogicEvaluatorDrawCard = new GameLogicEvaluatorDrawCard();
+    private final GameLogicManagerImprovements gameLogicManagerImprovements = new GameLogicManagerImprovements(this);
+    private final GameLogicTools gameLogicTools = new GameLogicTools();
 
     public GameLogicController(Board inputBoard, LogHelper inputLogHelper) {
         board = inputBoard;
@@ -83,9 +82,6 @@ public class GameLogicController implements Serializable {
     public void sendInitGameMessage() {
         appendToGameLog("A new game has been started with " + playersCount + " players.");
     }
-    // </editor-fold>
-
-    // <editor-fold desc="Misc helpers">
 
     /**
      * Evaluator which is run at the beginning of a player's turn.<br>
@@ -97,7 +93,6 @@ public class GameLogicController implements Serializable {
         currentPlayer = board.players.get(board.getCurrentPlayerID());
 
         board.forceBoardSelfCheck();
-
         logHelper.addNewLine();
 
         appendToGameLog("It is now " + currentPlayer.getCustomName() + "'s turn.");
@@ -121,7 +116,6 @@ public class GameLogicController implements Serializable {
         appendToGameLog(currentPlayer.getCustomName() + " is jailed!");
 
     }
-    // </editor-fold>
 
     private void bankruptStateEvaluator() {
         currentPlayer.setActionLockedEndTurn(true);
@@ -242,11 +236,9 @@ public class GameLogicController implements Serializable {
      * "initialJailTurn" must be false.
      */
     public void gameEditorJailPlayer(Player player) {
-        player.setIsJailed(true);
-        player.setHasRolledDice(true);
-        player.setActionLockedEndTurn(false);
-        player.setActionLockedRollDice(true);
-        player.setInitialJailTurn(false);
+        gameLogicTools.attachLogHelper(logHelper);
+        gameLogicTools.attachReferences(board, this, currentSpace, currentPlayer);
+        gameLogicTools.gameEditorJailPlayer(player);
     }
 
     /**
@@ -555,53 +547,29 @@ public class GameLogicController implements Serializable {
     }
 
     public void debugToolsGiveAllProperties(int playerID) {
-        currentDebugPlayer = board.players.get(playerID);
-        logHelper.appendToDebugLog("Giving " + currentDebugPlayer.getCustomName() + " all properties.");
-
-        Property localProperty;
-        for (Space s : board.spaces) {
-            if (s instanceof Property) {
-                localProperty = (Property) s;
-
-                localProperty.setIsOwned(true);
-                localProperty.setOwnerID(playerID);
-                currentPlayer.setPropertyOwnedState(true, localProperty.getID());
-            }
-        }
-
-        board.forceBoardSelfCheck();
+        gameLogicTools.attachLogHelper(logHelper);
+        gameLogicTools.attachReferences(board, this, currentSpace, currentPlayer);
+        gameLogicTools.debugToolsGiveAllProperties(playerID);
     }
 
     public void debugToolsRandomlyDistributeAllProperties() {
-        ArrayList<Player> activePlayers = new ArrayList<>();
-
-        for (Player p : board.players) {
-            if (p.getIsActive()) {
-                activePlayers.add(p);
-            }
-        }
-
-        for (Space s : board.spaces) {
-            if (s instanceof Property p) {
-                int randomPlayerID = 1 + (int) (Math.random() * activePlayers.size());
-                p.setIsOwned(true);
-                p.setOwnerID(randomPlayerID);
-            }
-        }
+        gameLogicTools.attachLogHelper(logHelper);
+        gameLogicTools.attachReferences(board, this, currentSpace, currentPlayer);
+        gameLogicTools.debugToolsRandomlyDistributeAllProperties();
     }
 
-    public void improvementsManager(int spaceID, ImprovementsActions inputAction) {
+    public void improvementsManager(int spaceID, DialogContainerImprovements.ActionsImprovements.ImprovementsActions inputAction) {
         gameLogicManagerImprovements.attachReferences(board, this, currentSpace, currentPlayer);
         gameLogicManagerImprovements.improvementsManager(spaceID, inputAction);
     }
 
-    public void mortgageProperty(int spaceID, MortgageActions inputAction) {
+    public void mortgageProperty(int spaceID, DialogContainerMortgage.ActionsMortgage.MortgageActions inputAction) {
         Space localSpace = board.spaces.get(spaceID);
 
         int balanceUpdate;
 
         if (localSpace instanceof Property p) {
-            if (inputAction == MortgageActions.MORTGAGE) {
+            if (inputAction == DialogContainerMortgage.ActionsMortgage.MortgageActions.MORTGAGE) {
                 p.setIsMortgaged(true);
                 balanceUpdate = p.getMortgageValue();
             } else {
@@ -623,19 +591,4 @@ public class GameLogicController implements Serializable {
         }
     }
 
-    /**
-     * Possible actions that a player can execute when modifying improvements on
-     * a Color space.
-     */
-    public enum ImprovementsActions {
-        BUILD_HOUSE,
-        SELL_HOUSE,
-        BUILD_HOTEL,
-        SELL_HOTEL
-    }
-
-    public enum MortgageActions {
-        MORTGAGE,
-        UNMORTGAGE
-    }
 }

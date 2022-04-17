@@ -164,7 +164,7 @@ public class DialogContainerPurchaseProperty extends DialogContainer implements 
     }
 
     @Override
-    public void setStateOfActionButton(Actions action, boolean isEnabled) {
+    public void setStateOfActionButton(ActionsGUI action, boolean isEnabled) {
         switch (action) {
             case PROPERTY_AUCTION -> buttonAuction.setEnabled(isEnabled);
             case PROPERTY_PURCHASE -> buttonPurchase.setEnabled(isEnabled);

@@ -49,7 +49,7 @@ public class DialogContainerAbout extends DialogContainer implements Serializabl
     }
 
     @Override
-    public void setStateOfActionButton(Actions action, boolean isEnabled) {
+    public void setStateOfActionButton(ActionsGUI action, boolean isEnabled) {
         // About dialog has no JButtons
     }
 
