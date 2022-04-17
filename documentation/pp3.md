@@ -18,7 +18,7 @@
 
 &nbsp;
 ### Introduction
-This project seeks to implement a playable version of the board game Monopoly.
+This project seeks to implement a playable version of the board game, Monopoly.
 
 &nbsp;
 ### Data structures
@@ -57,8 +57,38 @@ Some game event spaces are grouped together - these include **draw card** and **
 
 #### Players
 
+The data for each player is largely independent, not requiring intra-object structures as complex as those for spaces.
+
+Additionally, some data is not as cleanly organized into the "space" or "player" domain - namely, the ownership of a property. This data is useful when held in the property object itself, but there are scenarios where finding the properties owned by a specific player is required. The aggregation of space and player data into a single "board" domain proves useful for this reason.
+
 #### Aggregating spaces and players
 The primary data element is the board, containing information about all players, spaces, and game events. However, this largely acts as a container for the state of the game, with some inputs and outputs that are validated and manipulated slightly. The manipulation of this data is delegated to the Controller class group.
+
+A positive consequence of composing this data as a single class is the ability to query information across domains. As an example: suppose some representation of the game state must be updated, after a player has purchased the final property in the *green* color group after owning the others within the set.
+
+If we wish to determine if a player owns this green color group monopoly, there are two general approaches to query this data:
+
+1. Query the player set.
+- Create a set of values indicating the total number of green properties owned by each player.
+    - For each player in the game, check if they own a property with the following attributes:
+        - belongs to the *green* color group
+    - If this matches, add to the total.
+- Compare the totals. If only one of the totals is non-zero, all *owned properties* within that color set belong to a single player.
+
+A problem arises when considering that a player may own 2 out of 3 spaces in a single color group, where all other players own none. This necessitates further querying of the space data, determining how many spaces exist in the group total.
+
+
+2. Query the space set.
+- For each space in the game, check if the following conditions apply:
+- belongs to the *green* color group
+    - owned by 
+
+However, an alternative approach exists - the board itself can be queried specifically, through some specialized methods:
+
+1. Query the set of all spaces owned by player *n*.
+    1. 
+
+2. Query the set of all spaces belonging to the *green* color group.
 
 &nbsp;
 ### Code organization
