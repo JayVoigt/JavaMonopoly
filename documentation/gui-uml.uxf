@@ -4,10 +4,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>640</x>
-      <y>90</y>
-      <w>160</w>
-      <h>40</h>
+      <x>730</x>
+      <y>120</y>
+      <w>400</w>
+      <h>260</h>
     </coordinates>
     <panel_attributes>DynamicView</panel_attributes>
     <additional_attributes/>
@@ -15,8 +15,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>0</x>
-      <y>200</y>
+      <x>100</x>
+      <y>500</y>
       <w>480</w>
       <h>230</h>
     </coordinates>
@@ -37,8 +37,8 @@ DialogContainer
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>660</x>
-      <y>210</y>
+      <x>760</x>
+      <y>510</y>
       <w>280</w>
       <h>30</h>
     </coordinates>
@@ -49,44 +49,53 @@ DialogContainerAbout</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>660</x>
-      <y>250</y>
+      <x>760</x>
+      <y>550</y>
       <w>280</w>
-      <h>30</h>
+      <h>50</h>
     </coordinates>
     <panel_attributes>halign=left
-DialogContainerDebugLog</panel_attributes>
+DialogContainerDebugLog
+--
++ update(): void</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>660</x>
-      <y>290</y>
-      <w>280</w>
-      <h>30</h>
+      <x>760</x>
+      <y>610</y>
+      <w>590</w>
+      <h>100</h>
     </coordinates>
     <panel_attributes>DialogContainerForfeit
-halign=left</panel_attributes>
+--
++ attachActionListeners(ArrayList&lt;DynamicView.ButtonActionListener&gt; listeners): void
+halign=left
+style=wordwrap</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>660</x>
-      <y>330</y>
-      <w>280</w>
-      <h>30</h>
+      <x>760</x>
+      <y>730</y>
+      <w>590</w>
+      <h>100</h>
     </coordinates>
     <panel_attributes>DialogContainerGameEditor
-halign=left</panel_attributes>
+--
++ attachActionListeners(ArrayList&lt;DynamicView.GameEditorListener&gt; listeners): void
++ getSelectedPlayerID(): int
+halign=left
+style=wordwrap</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>660</x>
-      <y>370</y>
+      <x>910</x>
+      <y>1090</y>
       <w>280</w>
       <h>30</h>
     </coordinates>
@@ -97,8 +106,8 @@ halign=left</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>660</x>
-      <y>410</y>
+      <x>910</x>
+      <y>1130</y>
       <w>280</w>
       <h>30</h>
     </coordinates>
@@ -109,8 +118,8 @@ halign=left</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>660</x>
-      <y>450</y>
+      <x>910</x>
+      <y>1170</y>
       <w>280</w>
       <h>30</h>
     </coordinates>
@@ -121,8 +130,8 @@ halign=left</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>660</x>
-      <y>490</y>
+      <x>910</x>
+      <y>1210</y>
       <w>280</w>
       <h>30</h>
     </coordinates>
@@ -133,8 +142,8 @@ halign=left</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>660</x>
-      <y>530</y>
+      <x>910</x>
+      <y>1250</y>
       <w>280</w>
       <h>30</h>
     </coordinates>
@@ -145,8 +154,8 @@ halign=left</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>570</x>
-      <y>210</y>
+      <x>670</x>
+      <y>510</y>
       <w>110</w>
       <h>30</h>
     </coordinates>
@@ -156,8 +165,8 @@ halign=left</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>570</x>
-      <y>250</y>
+      <x>670</x>
+      <y>550</y>
       <w>110</w>
       <h>30</h>
     </coordinates>
@@ -167,8 +176,8 @@ halign=left</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>570</x>
-      <y>290</y>
+      <x>670</x>
+      <y>610</y>
       <w>110</w>
       <h>30</h>
     </coordinates>
@@ -178,8 +187,8 @@ halign=left</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>570</x>
-      <y>330</y>
+      <x>670</x>
+      <y>730</y>
       <w>110</w>
       <h>30</h>
     </coordinates>
@@ -189,8 +198,8 @@ halign=left</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>570</x>
-      <y>370</y>
+      <x>820</x>
+      <y>1090</y>
       <w>110</w>
       <h>30</h>
     </coordinates>
@@ -200,8 +209,8 @@ halign=left</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>570</x>
-      <y>410</y>
+      <x>820</x>
+      <y>1130</y>
       <w>110</w>
       <h>30</h>
     </coordinates>
@@ -211,8 +220,8 @@ halign=left</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>570</x>
-      <y>450</y>
+      <x>820</x>
+      <y>1170</y>
       <w>110</w>
       <h>30</h>
     </coordinates>
@@ -222,8 +231,8 @@ halign=left</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>570</x>
-      <y>490</y>
+      <x>820</x>
+      <y>1210</y>
       <w>110</w>
       <h>30</h>
     </coordinates>
@@ -233,8 +242,8 @@ halign=left</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>570</x>
-      <y>530</y>
+      <x>820</x>
+      <y>1250</y>
       <w>110</w>
       <h>30</h>
     </coordinates>
@@ -244,8 +253,8 @@ halign=left</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>570</x>
-      <y>210</y>
+      <x>670</x>
+      <y>510</y>
       <w>30</w>
       <h>350</h>
     </coordinates>
@@ -255,8 +264,8 @@ halign=left</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>470</x>
-      <y>200</y>
+      <x>570</x>
+      <y>500</y>
       <w>130</w>
       <h>40</h>
     </coordinates>
@@ -267,10 +276,10 @@ extends</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>630</x>
-      <y>150</y>
-      <w>330</w>
-      <h>430</h>
+      <x>1500</x>
+      <y>400</y>
+      <w>470</w>
+      <h>650</h>
     </coordinates>
     <panel_attributes>layer=-11
 bg=pink
@@ -280,8 +289,8 @@ Dialogs</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>210</x>
-      <y>650</y>
+      <x>310</x>
+      <y>950</y>
       <w>280</w>
       <h>30</h>
     </coordinates>
@@ -292,8 +301,8 @@ ViewFrameBoard</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>210</x>
-      <y>690</y>
+      <x>310</x>
+      <y>990</y>
       <w>280</w>
       <h>30</h>
     </coordinates>
@@ -304,8 +313,8 @@ ViewFrameControl</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>210</x>
-      <y>730</y>
+      <x>310</x>
+      <y>1030</y>
       <w>280</w>
       <h>30</h>
     </coordinates>
@@ -316,13 +325,56 @@ ViewFrameInformation</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>210</x>
-      <y>770</y>
+      <x>310</x>
+      <y>1070</y>
       <w>280</w>
       <h>30</h>
     </coordinates>
     <panel_attributes>halign=left
 ViewFrameInformationModule</panel_attributes>
     <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>80</x>
+      <y>120</y>
+      <w>490</w>
+      <h>170</h>
+    </coordinates>
+    <panel_attributes>lt=.
+style=wordwrap
+ButtonActionListener
+&lt;&lt;inner class of DynamicView&gt;&gt;
+--
+~ action: ActionsGUI
+~ needsPrompt: boolean
++ &lt;&lt;constructor&gt;&gt; ButtonActionListener(ActionsGUI action)
++ &lt;&lt;constructor&gt;&gt; ButtonActionListener(ActionsGUI action, boolean needsPrompt)
++ &lt;&lt;override&gt;&gt; actionPerformed(ActionEvent e)
++ getAction(): ActionsGUI</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>0</x>
+      <y>0</y>
+      <w>260</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>java.awt.event.ActionListener</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>560</x>
+      <y>160</y>
+      <w>190</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;170.0;10.0</additional_attributes>
   </element>
 </diagram>
