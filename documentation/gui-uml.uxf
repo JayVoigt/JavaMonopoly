@@ -1,24 +1,54 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="14.3.0">
-  <zoom_level>10</zoom_level>
+  <zoom_level>7</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>860</x>
-      <y>80</y>
-      <w>400</w>
-      <h>260</h>
+      <x>1561</x>
+      <y>847</y>
+      <w>546</w>
+      <h>455</h>
     </coordinates>
-    <panel_attributes>DynamicView</panel_attributes>
+    <panel_attributes>DynamicView
+style=wordwrap
+--
+- switchboard: GameLogicSwitchboard
+- controller: GameLogicController
+- board: Board
+- logHelper: LogHelper
+
+- mainFrame: JFrame
+- viewFrameBoard: ViewFrameBoard
+- viewFrameControl: ViewFrameControl
+- viewFrameInformation: ViewFrameInformation
+
+- dialog[dialog type]: JDialog
+- dialogContainer[dialogType]: DialogContainer[dialog type]
+--
+- initButtonActionListeners(): void
+- initControlFrame(): void
+- initDialogs(): void
+- initGUIComponents(): void
+- initMenuBar(): void
+
++ update(): void
+- updateDialogAppearance(JDialog dialog, boolean needsPrompt): void
+- updateDialogAppearance(JDialog dialog): void
+- updateGuiMandatoryDialogs(): void
+- updateGuiOptionalDialogs(): void
+- updatePrompt(ActionsGUI action): void
+
+- startGame(int playerCount, ArrayList&lt;String&gt; playerCustomNames, boolean loadFromFile): void
+- quitManager(): void</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>0</x>
-      <y>960</y>
-      <w>690</w>
-      <h>180</h>
+      <x>1806</x>
+      <y>1428</y>
+      <w>483</w>
+      <h>126</h>
     </coordinates>
     <panel_attributes>style=wordwrap
 DialogContainer
@@ -31,58 +61,69 @@ DialogContainer
 &lt;&lt;abstract&gt;&gt; ~ arrangeComponents(): void
 &lt;&lt;abstract&gt;&gt; + setStateOfActionButton(ActionsGUI action, boolean isEnabled): void
 + getDialog(): JDialog
-~ initLabelTitle(String title, String iconResource): void</panel_attributes>
+~ initLabelTitle(String title, String iconResource): void
+bg=white
+layer=1</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>870</x>
-      <y>970</y>
-      <w>280</w>
-      <h>30</h>
+      <x>2093</x>
+      <y>1589</y>
+      <w>196</w>
+      <h>21</h>
     </coordinates>
     <panel_attributes>halign=left
-DialogContainerAbout</panel_attributes>
+DialogContainerAbout
+
+bg=white
+layer=1</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>870</x>
-      <y>1020</y>
-      <w>280</w>
-      <h>50</h>
+      <x>2093</x>
+      <y>1624</y>
+      <w>196</w>
+      <h>49</h>
     </coordinates>
     <panel_attributes>halign=left
 DialogContainerDebugLog
 --
-+ update(): void</panel_attributes>
+- logHelper: LogHelper
+--
++ update(): void
+bg=white
+layer=1</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>870</x>
-      <y>1090</y>
-      <w>590</w>
-      <h>70</h>
+      <x>2093</x>
+      <y>1687</y>
+      <w>413</w>
+      <h>49</h>
     </coordinates>
     <panel_attributes>DialogContainerForfeit
 --
 + attachActionListeners(
 ArrayList&lt;DynamicView.GenericButtonActionListener&gt; listeners): void
 halign=left
-style=wordwrap</panel_attributes>
+style=wordwrap
+bg=white
+layer=1</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>870</x>
-      <y>1190</y>
-      <w>590</w>
-      <h>90</h>
+      <x>2093</x>
+      <y>1757</y>
+      <w>413</w>
+      <h>63</h>
     </coordinates>
     <panel_attributes>DialogContainerGameEditor
 --
@@ -90,16 +131,18 @@ style=wordwrap</panel_attributes>
 ArrayList&lt;DynamicView.GameEditorListener&gt; listeners): void
 + getSelectedPlayerID(): int
 halign=left
-style=wordwrap</panel_attributes>
+style=wordwrap
+bg=white
+layer=1</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>870</x>
-      <y>1310</y>
-      <w>590</w>
-      <h>160</h>
+      <x>2093</x>
+      <y>1841</y>
+      <w>413</w>
+      <h>112</h>
     </coordinates>
     <panel_attributes>DialogContainerImprovements
 halign=left
@@ -110,249 +153,282 @@ style=wordwrap
 + attachActionListeners(
 ArrayList&lt;DynamicView.GenericButtonActionListener&gt; listeners): void
 + update(Board board, Player player, int spaceSelectionID, GameLogicController controller): void
-- getInfoAreaMessage(ImprovementEligibilityStatus status): String</panel_attributes>
+- getInfoAreaMessage(ImprovementEligibilityStatus status): String
+bg=white
+layer=1</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>870</x>
-      <y>1540</y>
-      <w>590</w>
-      <h>250</h>
+      <x>1575</x>
+      <y>1596</y>
+      <w>413</w>
+      <h>77</h>
     </coordinates>
     <panel_attributes>DialogContainerJail
-halign=left</panel_attributes>
+halign=left
+style=wordwrap
+--
+- infoArea: JTextArea
+--
++ attachActionListeners(
+ArrayList&lt;DynamicView.GenericButtonActionListener&gt; listners): void
++ update(Board board, Player player): void
+bg=white
+layer=1</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>970</x>
-      <y>2050</y>
-      <w>280</w>
-      <h>30</h>
-    </coordinates>
-    <panel_attributes>DialogContainerMortgage
-halign=left</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>970</x>
-      <y>2090</y>
-      <w>280</w>
-      <h>30</h>
+      <x>1575</x>
+      <y>1841</y>
+      <w>413</w>
+      <h>70</h>
     </coordinates>
     <panel_attributes>DialogContainerPurchaseProperty
-halign=left</panel_attributes>
+halign=left
+style=wordwrap
+--
++ attachActionListeners(
+ArrayList&lt;DynamicView.GenericButtonActionListener&gt; listners): void
++ update(Board board, int spaceID): void
++ update(Board board): void
+bg=white
+layer=1</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>970</x>
-      <y>2130</y>
-      <w>280</w>
-      <h>30</h>
+      <x>1575</x>
+      <y>1932</y>
+      <w>413</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes>DialogContainerStartGame
-halign=left</panel_attributes>
+--
++ attachStartGameActionListener(
+DynamicView.StartGameButtonActionListener listener): void
+style=wordwrap
+halign=left
+bg=white
+layer=1</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>780</x>
-      <y>970</y>
-      <w>110</w>
-      <h>30</h>
+      <x>2030</x>
+      <y>1589</y>
+      <w>77</w>
+      <h>21</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <panel_attributes>lt=&lt;&lt;-
+layer=2</panel_attributes>
     <additional_attributes>90.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>780</x>
-      <y>1020</y>
-      <w>110</w>
-      <h>30</h>
+      <x>2030</x>
+      <y>1624</y>
+      <w>77</w>
+      <h>21</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <panel_attributes>lt=&lt;&lt;-
+layer=2</panel_attributes>
     <additional_attributes>90.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>780</x>
-      <y>1090</y>
-      <w>110</w>
-      <h>30</h>
+      <x>2030</x>
+      <y>1687</y>
+      <w>77</w>
+      <h>21</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <panel_attributes>lt=&lt;&lt;-
+layer=2</panel_attributes>
     <additional_attributes>90.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>780</x>
-      <y>1190</y>
-      <w>110</w>
-      <h>30</h>
+      <x>2030</x>
+      <y>1757</y>
+      <w>77</w>
+      <h>21</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <panel_attributes>lt=&lt;&lt;-
+layer=2</panel_attributes>
     <additional_attributes>90.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>780</x>
-      <y>1310</y>
-      <w>110</w>
-      <h>30</h>
+      <x>2030</x>
+      <y>1841</y>
+      <w>77</w>
+      <h>21</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <panel_attributes>lt=&lt;&lt;-
+layer=2</panel_attributes>
     <additional_attributes>90.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>780</x>
-      <y>1540</y>
-      <w>110</w>
-      <h>30</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>90.0;10.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>880</x>
-      <y>2050</y>
-      <w>110</w>
-      <h>30</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>90.0;10.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>880</x>
-      <y>2090</y>
-      <w>110</w>
-      <h>30</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>90.0;10.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>880</x>
-      <y>2130</y>
-      <w>110</w>
-      <h>30</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>90.0;10.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>780</x>
-      <y>970</y>
-      <w>30</w>
-      <h>400</h>
-    </coordinates>
-    <panel_attributes>lt=-</panel_attributes>
-    <additional_attributes>10.0;380.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>680</x>
-      <y>960</y>
-      <w>130</w>
-      <h>40</h>
+      <x>2030</x>
+      <y>1596</y>
+      <w>21</w>
+      <h>357</h>
     </coordinates>
     <panel_attributes>lt=-
-extends</panel_attributes>
-    <additional_attributes>110.0;20.0;10.0;20.0</additional_attributes>
+layer=2</panel_attributes>
+    <additional_attributes>10.0;490.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2030</x>
+      <y>1547</y>
+      <w>63</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=-
+extends
+layer=2</panel_attributes>
+    <additional_attributes>10.0;80.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1550</x>
-      <y>120</y>
-      <w>470</w>
-      <h>650</h>
+      <x>1561</x>
+      <y>1358</y>
+      <w>966</w>
+      <h>679</h>
     </coordinates>
     <panel_attributes>layer=-11
-bg=pink
+bg=#FFD0D0
 Dialogs</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>420</x>
-      <y>1410</y>
-      <w>280</w>
-      <h>30</h>
+      <x>1946</x>
+      <y>329</y>
+      <w>329</w>
+      <h>357</h>
     </coordinates>
     <panel_attributes>halign=left
-ViewFrameBoard</panel_attributes>
+ViewFrameBoard
+layer=1</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>420</x>
-      <y>1450</y>
-      <w>280</w>
-      <h>30</h>
+      <x>2457</x>
+      <y>329</y>
+      <w>357</w>
+      <h>161</h>
     </coordinates>
     <panel_attributes>halign=left
-ViewFrameControl</panel_attributes>
+style=wordwrap
+ViewFrameControl
+layer=1
+--
+- frame: JInternalFrame
+
+- labelCurrentPlayer: JLabel
+- labelCurrentBalance: JLabel
+- labelCurrentPosition: JLabel
+
+- labelDie1: JLabel
+- labelDie2: JLabel
+--
+- initLabels(): void
++ initButtons(
+ArrayList&lt;DynamicView.GenericButtonActionListener&gt; actionListeners): void</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>420</x>
-      <y>1490</y>
-      <w>280</w>
-      <h>30</h>
+      <x>2457</x>
+      <y>539</y>
+      <w>196</w>
+      <h>105</h>
     </coordinates>
     <panel_attributes>halign=left
-ViewFrameInformation</panel_attributes>
+ViewFrameInformation
+layer=1
+-
+- board: Board
+
+- modulePlayer[1..4]: ViewFrameInformationModule
+- panelPlayer[1..4]: JPanel
+--</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>420</x>
-      <y>1530</y>
-      <w>280</w>
-      <h>30</h>
+      <x>2457</x>
+      <y>693</y>
+      <w>343</w>
+      <h>378</h>
     </coordinates>
     <panel_attributes>halign=left
-ViewFrameInformationModule</panel_attributes>
+style=wordwrap
+ViewFrameInformationModule
+layer=1
+--
+- player: Player
+
+- panelPlayerStatus: JPanel
+- panelPlayerAssets: JPanel
+- compositePanel: JPanel
+
+- labelName: JLabel
+- labelBalance: JLabel
+- labelPosition: JLabel
+
+- labelStatusBankrupt: JLabel
+- labelStatusJailed: JLabel
+- labelStatusTurn: JLabel
+
+- labelGOOJFCCount: JLabel
+- labelOwnedPropertyCount: JLabel
+
+- labelOwnedColor[color group]: JLabel
+- labelOwnedRailroad: JLabel
+- labelOwnedUtility: JLabel
+- labelOwnedHouses: JLabel
+- labelOwnedHotels: JLabel
+--
++ &lt;&lt;constructor&gt;&gt; ViewFrameInformationModule(Board board, Player player)
+
+- initComponentsPlayerStatus(): void
+- initComponentsPlayerAssets(): void
+- arrangeComponentsPlayerStatus(): void
+- arrangeComponentsPlayerAssets(): void
++ update(): void
++ getCompositePanel(): JPanel</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>200</x>
-      <y>80</y>
-      <w>490</w>
-      <h>170</h>
+      <x>903</x>
+      <y>693</y>
+      <w>343</w>
+      <h>119</h>
     </coordinates>
-    <panel_attributes>lt=.
+    <panel_attributes>lt=-
 style=wordwrap
 GenericButtonActionListener
 &lt;&lt;inner class of DynamicView&gt;&gt;
@@ -363,40 +439,45 @@ GenericButtonActionListener
 + &lt;&lt;constructor&gt;&gt; ButtonActionListener(ActionsGUI action)
 + &lt;&lt;constructor&gt;&gt; ButtonActionListener(ActionsGUI action, boolean needsPrompt)
 + &lt;&lt;override&gt;&gt; actionPerformed(ActionEvent e)
-+ getAction(): ActionsGUI</panel_attributes>
++ getAction(): ActionsGUI
+bg=white
+group=2</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>110</x>
-      <y>0</y>
-      <w>260</w>
-      <h>30</h>
+      <x>840</x>
+      <y>637</y>
+      <w>182</w>
+      <h>21</h>
     </coordinates>
-    <panel_attributes>java.awt.event.ActionListener</panel_attributes>
+    <panel_attributes>java.awt.event.ActionListener
+bg=white
+group=2</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>680</x>
-      <y>90</y>
-      <w>200</w>
-      <h>30</h>
+      <x>1288</x>
+      <y>875</y>
+      <w>287</w>
+      <h>28</h>
     </coordinates>
-    <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;180.0;10.0</additional_attributes>
+    <panel_attributes>lt=.
+inner classes</panel_attributes>
+    <additional_attributes>10.0;20.0;390.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>200</x>
-      <y>270</y>
-      <w>490</w>
-      <h>110</h>
+      <x>903</x>
+      <y>826</y>
+      <w>343</w>
+      <h>77</h>
     </coordinates>
-    <panel_attributes>lt=.
+    <panel_attributes>lt=-
 style=wordwrap
 SpaceButtonActionListener
 &lt;&lt;inner class of DynamicView&gt;&gt;
@@ -404,36 +485,40 @@ SpaceButtonActionListener
 ~ id: int
 --
 + &lt;&lt;constructor&gt;&gt; SpaceButtonActionListener(int id)
-+ &lt;&lt;override&gt;&gt; actionPerformed(ActionEvent e)</panel_attributes>
++ &lt;&lt;override&gt;&gt; actionPerformed(ActionEvent e)
+bg=white
+group=2</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>200</x>
-      <y>400</y>
-      <w>490</w>
-      <h>120</h>
+      <x>903</x>
+      <y>917</y>
+      <w>343</w>
+      <h>84</h>
     </coordinates>
-    <panel_attributes>lt=.
+    <panel_attributes>lt=-
 style=wordwrap
 StartGameButtonActionListener
 &lt;&lt;inner class of DynamicView&gt;&gt;
 --
 ~ setPlayerCount(int inputPlayerCount): void
 ~ setPlayerCustomNames(ArrayList&lt;String&gt; inputPlayerCustomNames): void
-+ &lt;&lt;override&gt;&gt; actionPerformed(ActionEvent e)</panel_attributes>
++ &lt;&lt;override&gt;&gt; actionPerformed(ActionEvent e)
+bg=white
+group=2</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>200</x>
-      <y>540</y>
-      <w>490</w>
-      <h>160</h>
+      <x>903</x>
+      <y>1015</y>
+      <w>343</w>
+      <h>112</h>
     </coordinates>
-    <panel_attributes>lt=.
+    <panel_attributes>lt=-
 style=wordwrap
 GameEditorActionListener
 &lt;&lt;inner class of DynamicView&gt;&gt;
@@ -443,129 +528,141 @@ GameEditorActionListener
 --
 + &lt;&lt;constructor&gt;&gt; GameEditorActionListener(GameEditorActions action)
 + getAction(): GameEditorActions
-+ &lt;&lt;override&gt;&gt; actionPerformed(ActionEvent e)</panel_attributes>
++ &lt;&lt;override&gt;&gt; actionPerformed(ActionEvent e)
+bg=white
+group=2</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>680</x>
-      <y>280</y>
-      <w>100</w>
-      <h>30</h>
+      <x>1239</x>
+      <y>833</y>
+      <w>70</w>
+      <h>21</h>
     </coordinates>
-    <panel_attributes>lt=.</panel_attributes>
+    <panel_attributes>lt=.
+group=2</panel_attributes>
     <additional_attributes>10.0;10.0;80.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>750</x>
-      <y>90</y>
-      <w>30</w>
-      <h>670</h>
+      <x>1288</x>
+      <y>700</y>
+      <w>21</w>
+      <h>469</h>
     </coordinates>
-    <panel_attributes>lt=.</panel_attributes>
+    <panel_attributes>lt=.
+group=2</panel_attributes>
     <additional_attributes>10.0;650.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>680</x>
-      <y>410</y>
-      <w>100</w>
-      <h>30</h>
+      <x>1239</x>
+      <y>924</y>
+      <w>70</w>
+      <h>21</h>
     </coordinates>
-    <panel_attributes>lt=.</panel_attributes>
+    <panel_attributes>lt=.
+group=2</panel_attributes>
     <additional_attributes>10.0;10.0;80.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>680</x>
-      <y>550</y>
-      <w>100</w>
-      <h>30</h>
+      <x>1239</x>
+      <y>1022</y>
+      <w>70</w>
+      <h>21</h>
     </coordinates>
-    <panel_attributes>lt=.</panel_attributes>
+    <panel_attributes>lt=.
+group=2</panel_attributes>
     <additional_attributes>10.0;10.0;80.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>110</x>
-      <y>90</y>
-      <w>110</w>
-      <h>30</h>
+      <x>840</x>
+      <y>700</y>
+      <w>77</w>
+      <h>21</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <panel_attributes>lt=&lt;&lt;-
+group=2</panel_attributes>
     <additional_attributes>90.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>110</x>
-      <y>280</y>
-      <w>110</w>
-      <h>30</h>
+      <x>840</x>
+      <y>833</y>
+      <w>77</w>
+      <h>21</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <panel_attributes>lt=&lt;&lt;-
+group=2</panel_attributes>
     <additional_attributes>90.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>110</x>
-      <y>410</y>
-      <w>110</w>
-      <h>30</h>
+      <x>840</x>
+      <y>924</y>
+      <w>77</w>
+      <h>21</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <panel_attributes>lt=&lt;&lt;-
+group=2</panel_attributes>
     <additional_attributes>90.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>110</x>
-      <y>550</y>
-      <w>110</w>
-      <h>30</h>
+      <x>840</x>
+      <y>1022</y>
+      <w>77</w>
+      <h>21</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <panel_attributes>lt=&lt;&lt;-
+group=2</panel_attributes>
     <additional_attributes>90.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>110</x>
-      <y>90</y>
-      <w>30</w>
-      <h>670</h>
-    </coordinates>
-    <panel_attributes>lt=-</panel_attributes>
-    <additional_attributes>10.0;650.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>110</x>
-      <y>20</y>
-      <w>110</w>
-      <h>70</h>
+      <x>840</x>
+      <y>700</y>
+      <w>21</w>
+      <h>469</h>
     </coordinates>
     <panel_attributes>lt=-
-implements</panel_attributes>
+group=2</panel_attributes>
+    <additional_attributes>10.0;650.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>840</x>
+      <y>651</y>
+      <w>77</w>
+      <h>49</h>
+    </coordinates>
+    <panel_attributes>lt=-
+implements
+group=2</panel_attributes>
     <additional_attributes>10.0;50.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>200</x>
-      <y>720</y>
-      <w>490</w>
-      <h>110</h>
+      <x>903</x>
+      <y>1141</y>
+      <w>343</w>
+      <h>77</h>
     </coordinates>
-    <panel_attributes>lt=.
+    <panel_attributes>lt=-
 style=wordwrap
 MenuActionListener
 &lt;&lt;inner class of DynamicView&gt;&gt;
@@ -573,64 +670,631 @@ MenuActionListener
 ~ action: MenuActions
 --
 + &lt;&lt;constructor&gt;&gt; MenuActionListener(MenuActions action)
-+ &lt;&lt;override&gt;&gt; actionPerformed(ActionEvent e)</panel_attributes>
++ &lt;&lt;override&gt;&gt; actionPerformed(ActionEvent e)
+bg=white
+group=2</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>680</x>
-      <y>730</y>
-      <w>100</w>
-      <h>30</h>
+      <x>1239</x>
+      <y>1148</y>
+      <w>70</w>
+      <h>21</h>
     </coordinates>
-    <panel_attributes>lt=.</panel_attributes>
+    <panel_attributes>lt=.
+group=2</panel_attributes>
     <additional_attributes>10.0;10.0;80.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>110</x>
-      <y>730</y>
-      <w>110</w>
-      <h>30</h>
+      <x>840</x>
+      <y>1148</y>
+      <w>77</w>
+      <h>21</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <panel_attributes>lt=&lt;&lt;-
+group=2</panel_attributes>
     <additional_attributes>90.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>110</x>
-      <y>60</y>
-      <w>30</w>
-      <h>60</h>
+      <x>840</x>
+      <y>679</y>
+      <w>21</w>
+      <h>42</h>
     </coordinates>
-    <panel_attributes>lt=-</panel_attributes>
+    <panel_attributes>lt=-
+group=2</panel_attributes>
     <additional_attributes>10.0;40.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1130</x>
-      <y>1480</y>
-      <w>330</w>
-      <h>30</h>
+      <x>2275</x>
+      <y>1960</y>
+      <w>231</w>
+      <h>21</h>
     </coordinates>
     <panel_attributes>lt=.
 style=wordwrap
-- ImprovementEligibilityStatus: enum</panel_attributes>
+- ImprovementEligibilityStatus: enum
+bg=white
+layer=1</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1100</x>
-      <y>1460</y>
-      <w>50</w>
-      <h>50</h>
+      <x>2254</x>
+      <y>1946</y>
+      <w>35</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>lt=.
+bg=white
+layer=2</panel_attributes>
+    <additional_attributes>30.0;30.0;10.0;30.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1575</x>
+      <y>1694</y>
+      <w>413</w>
+      <h>105</h>
+    </coordinates>
+    <panel_attributes>DialogContainerMortgage
+halign=left
+style=wordwrap
+--
+- infoArea: JTextArea
+--
++ attachActionListeners(
+ArrayList&lt;DynamicView.GenericButtonActionListener&gt; listners): void
++ update(Board board, Player player, int spaceSelectionID, GameLogicController controller): void
+- getMessage(MortgageEligibilityStatus status): String
+bg=white
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1757</x>
+      <y>1806</y>
+      <w>231</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=.
+style=wordwrap
+- MortgageEligibilityStatus: enum
+bg=white
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1736</x>
+      <y>1792</y>
+      <w>35</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>lt=.
+bg=white
+layer=2</panel_attributes>
+    <additional_attributes>30.0;30.0;10.0;30.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1981</x>
+      <y>1596</y>
+      <w>70</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+layer=2</panel_attributes>
+    <additional_attributes>10.0;10.0;80.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1981</x>
+      <y>1694</y>
+      <w>70</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+layer=2</panel_attributes>
+    <additional_attributes>10.0;10.0;80.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1981</x>
+      <y>1841</y>
+      <w>70</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+layer=2</panel_attributes>
+    <additional_attributes>10.0;10.0;80.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1981</x>
+      <y>1932</y>
+      <w>70</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+layer=2</panel_attributes>
+    <additional_attributes>10.0;10.0;80.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1694</x>
+      <y>1351</y>
+      <w>357</w>
+      <h>231</h>
+    </coordinates>
+    <panel_attributes>lt=-
+fg=red
+layer=2</panel_attributes>
+    <additional_attributes>490.0;310.0;10.0;310.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2030</x>
+      <y>1561</y>
+      <w>21</w>
+      <h>392</h>
+    </coordinates>
+    <panel_attributes>lt=.
+fg=red
+layer=100</panel_attributes>
+    <additional_attributes>10.0;540.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1722</x>
+      <y>1995</y>
+      <w>266</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>lt=.
+style=wordwrap
+LocalActionListener
+&lt;&lt;inner class of DialogContainerStartGame&gt;&gt;
+bg=white
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1701</x>
+      <y>1981</y>
+      <w>35</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>lt=.
+bg=white
+layer=2</panel_attributes>
+    <additional_attributes>30.0;30.0;10.0;30.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>819</x>
+      <y>602</y>
+      <w>504</w>
+      <h>637</h>
+    </coordinates>
+    <panel_attributes>layer=-11
+lt=..
+bg=#D0FFD0
+ActionListener implementations
+group=2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1239</x>
+      <y>700</y>
+      <w>70</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=.
+group=2</panel_attributes>
+    <additional_attributes>10.0;10.0;80.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1694</x>
+      <y>1295</y>
+      <w>21</w>
+      <h>77</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;&gt;
+fg=red
+layer=2</panel_attributes>
+    <additional_attributes>10.0;90.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2891</x>
+      <y>483</y>
+      <w>966</w>
+      <h>679</h>
+    </coordinates>
+    <panel_attributes>layer=-11
+bg=#D0D0FF
+Primary view elements (non-dialog)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2100</x>
+      <y>938</y>
+      <w>91</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;&gt;
+fg=#0000FF
+layer=2</panel_attributes>
+    <additional_attributes>110.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2247</x>
+      <y>175</y>
+      <w>273</w>
+      <h>91</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+ViewComponent
+&lt;&lt;interface&gt;&gt;
+--
++ update(Board board): void
++ setStateOfButtonAction(ActionsGUI action, boolean isEnabled): void
++ getComponent(): JComponent
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2359</x>
+      <y>329</y>
+      <w>112</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+layer=2</panel_attributes>
+    <additional_attributes>140.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2359</x>
+      <y>539</y>
+      <w>112</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+layer=2</panel_attributes>
+    <additional_attributes>140.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2359</x>
+      <y>259</y>
+      <w>77</w>
+      <h>91</h>
+    </coordinates>
+    <panel_attributes>lt=-
+layer=2
+implements</panel_attributes>
+    <additional_attributes>10.0;110.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2359</x>
+      <y>329</y>
+      <w>21</w>
+      <h>231</h>
+    </coordinates>
+    <panel_attributes>lt=-
+layer=2</panel_attributes>
+    <additional_attributes>10.0;310.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2527</x>
+      <y>637</y>
+      <w>28</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;&gt;
+layer=2
+m1=4</panel_attributes>
+    <additional_attributes>10.0;80.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2268</x>
+      <y>343</y>
+      <w>112</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+layer=2</panel_attributes>
+    <additional_attributes>10.0;10.0;140.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>1414</x>
+      <y>966</y>
+      <w>112</w>
+      <h>147</h>
+    </coordinates>
+    <panel_attributes>[dialog type]
+includes:
+
+Jail
+PurchaseProperty
+Improvements
+StartGame
+GameEditor
+About
+Mortgage
+Forfeit
+DebugLog
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>2331</x>
+      <y>889</y>
+      <w>91</w>
+      <h>133</h>
+    </coordinates>
+    <panel_attributes>[color group]
+includes:
+
+Brown
+LightBlue
+Magenta
+Orange
+Red
+Yellow
+Green
+DarkBlue
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1519</x>
+      <y>980</y>
+      <w>56</w>
+      <h>21</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>30.0;30.0;10.0;30.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;10.0;60.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2415</x>
+      <y>903</y>
+      <w>56</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;60.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>959</x>
+      <y>0</y>
+      <w>329</w>
+      <h>357</h>
+    </coordinates>
+    <panel_attributes>halign=left
+ViewFrameBoard
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1848</x>
+      <y>357</y>
+      <w>112</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>lt=.
+inner classes</panel_attributes>
+    <additional_attributes>10.0;20.0;140.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>252</x>
+      <y>399</y>
+      <w>448</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>lt=-
+style=wordwrap
+CosmeticSpaceActionListener
+&lt;&lt;inner class of ViewFrameBoard&gt;&gt;
+--
++ &lt;&lt;override&gt;&gt; mousePressed(MouseEvent e): void
++ &lt;&lt;override&gt;&gt; mouseReleased(MouseEvent e): void
+bg=white
+group=3</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>189</x>
+      <y>343</y>
+      <w>182</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>java.awt.event.MouseListener
+bg=white
+group=3</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>252</x>
+      <y>476</y>
+      <w>448</w>
+      <h>105</h>
+    </coordinates>
+    <panel_attributes>lt=-
+style=wordwrap
+AnimatedSpaceActionListener
+&lt;&lt;inner class of ViewFrameBoard&gt;&gt;
+--
+- animatedLabel: ImageIcon
+- animatedLabelMortgage: ImageIcon
+--
++ &lt;&lt;constructor&gt;&gt; AnimatedSpaceActionListener(String animatedLabelResource, String animatedMortgagedLabelResource)
++ &lt;&lt;override&gt;&gt; mouseEntered(MouseEvent e): void
++ &lt;&lt;override&gt;&gt; mouseExited(MouseEvent e): void
+bg=white
+group=3</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>693</x>
+      <y>413</y>
+      <w>77</w>
+      <h>119</h>
+    </coordinates>
+    <panel_attributes>lt=.
+group=3</panel_attributes>
+    <additional_attributes>10.0;10.0;90.0;10.0;90.0;150.0;10.0;150.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>189</x>
+      <y>406</y>
+      <w>77</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+group=3</panel_attributes>
+    <additional_attributes>90.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>189</x>
+      <y>483</y>
+      <w>77</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+group=3</panel_attributes>
+    <additional_attributes>90.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>189</x>
+      <y>406</y>
+      <w>21</w>
+      <h>98</h>
+    </coordinates>
+    <panel_attributes>lt=-
+group=3</panel_attributes>
+    <additional_attributes>10.0;120.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>189</x>
+      <y>357</y>
+      <w>77</w>
+      <h>49</h>
+    </coordinates>
+    <panel_attributes>lt=-
+implements
+group=3</panel_attributes>
+    <additional_attributes>10.0;50.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>189</x>
+      <y>385</y>
+      <w>21</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>lt=-
+group=3</panel_attributes>
+    <additional_attributes>10.0;40.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>168</x>
+      <y>308</y>
+      <w>602</w>
+      <h>315</h>
+    </coordinates>
+    <panel_attributes>layer=-11
+lt=..
+bg=#D0FFD0
+MouseListener implementations
+group=3</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>749</x>
+      <y>413</y>
+      <w>77</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=.
+group=3</panel_attributes>
+    <additional_attributes>10.0;10.0;90.0;10.0</additional_attributes>
   </element>
 </diagram>
