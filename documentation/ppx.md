@@ -172,3 +172,14 @@ A key attribute of this implementation is the simplicity of the user interface -
 &nbsp;
 
 ### General structure
+
+Visually, the user interface is comprised of a main window, with a set of dialogs that hide/show when appropriate. This main window consists of three sub-windows: the board, information, and control panes.
+
+The board pane provides a visualization for the spaces on the board, acting as a proxy for a physical printed board. Each space is a button that, when pressed, updates a space information area. 
+
+<div align="center">
+<figure>
+    <img src="space-information-view.gif">
+</figure>
+</div>
+<br>
