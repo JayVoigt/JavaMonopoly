@@ -292,8 +292,10 @@ Some user interface elements have specific contexts where their visibility is re
 
 </div>
 
-![](movement-anim.webm)
-
 <video width="320" height="240" controls>
-  <source src="movement-anim.mov" type="video/mp4">
+  <source src="movement-anim.mp4" type="video/mp4">
 </video>
+
+<video controls autoplay>
+  <source src="./movement-anim.mp4" type="video/mp4">
+ </video>
