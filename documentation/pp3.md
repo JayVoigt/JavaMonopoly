@@ -287,6 +287,13 @@ Some user interface elements have specific contexts where their visibility is re
 
 <img src="jail-1turn-nogoojfc.png" width=300>
 <img src="jail-1turn-goojfc.png" width=300>
+<br>
 <img src="jail-3turns.png" width=300>
 
 </div>
+
+![](movement-anim.webm)
+
+<video width="320" height="240" controls>
+  <source src="movement-anim.mov" type="video/mov">
+</video>
