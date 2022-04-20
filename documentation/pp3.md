@@ -292,10 +292,6 @@ Some user interface elements have specific contexts where their visibility is re
 
 </div>
 
-<video width="320" height="240" controls>
-  <source src="movement-anim.mp4" type="video/mp4">
-</video>
 
-<video controls autoplay>
-  <source src="./movement-anim.mp4" type="video/mp4">
- </video>
+
+https://media.github.iu.edu/user/19463/files/54bb1bbd-1d39-4c47-b731-5d5d9a8db8a2
