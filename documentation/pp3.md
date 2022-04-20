@@ -292,15 +292,10 @@ Some user interface elements have specific contexts where their visibility is re
 
 </div>
 
+<br>
 
-<video width="320" height="240" controls>
+<div align="center">
+<video width="640" height="640" controls>
   <source src="https://media.github.iu.edu/user/19463/files/54bb1bbd-1d39-4c47-b731-5d5d9a8db8a2" type="video/mp4">
 </video>
-    
-    
-<video width="320" height="240" controls>
-  <source src="https://media.github.iu.edu/user/19463/files/54bb1bbd-1d39-4c47-b731-5d5d9a8db8a2" type="video/mov">
-</video>
-    
-    https://media.github.iu.edu/user/19463/files/54bb1bbd-1d39-4c47-b731-5d5d9a8db8a2
-
+</div>
