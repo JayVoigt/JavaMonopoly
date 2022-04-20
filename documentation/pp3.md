@@ -295,5 +295,5 @@ Some user interface elements have specific contexts where their visibility is re
 ![](movement-anim.webm)
 
 <video width="320" height="240" controls>
-  <source src="movement-anim.mov" type="video/mov">
+  <source src="movement-anim.mov" type="video/mp4">
 </video>
