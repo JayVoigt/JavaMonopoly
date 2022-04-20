@@ -9,21 +9,27 @@
 
 #### Table of Contents
 1.  [Introduction](#introduction)
-    1.  [Description](#description)
 2.  [Data structures](#data-structures)
     1. [Spaces, properties, and game events](#spaces%2C-properties%2C-and-game-events)
     2. [Players](#players)
     3. [Aggregating spaces and players](#aggregating-spaces-and-players)
 3.  [Code organization](#code-organization)
 4.  [Manipulation of data](#manipulation-of-data-structures)
-5.  [User interface - main components](#user-interface)
+5.  [User interface - main components](#user-interface---main-components)
     1.  [Inspiration](#inspiration)
     2.  [General structure](#general-structure)
     3.  [Board view](#board-view)
     4.  [Information pane](#information-pane)
-    5.  [Control pane](#control-view)
+    5.  [Control pane](#control-pane)
     6.  [Animations and extra features](#animations-and-extra-features)
-6. [User interface - dialogs](#dialogs)
+6.  [User interface - dialogs](#dialogs)
+    1.  [Property purchase](#dialog-purchase-property)
+    2.  [Jail](#jail)
+    3.  [Game editor](#game-editor)
+    4.  [Improvements](#improvements)
+    5.  [Mortgage](#mortgage)
+    6.  [Start game](#start-game)
+7.  [Future features and ideas](#future-features)
 
 &nbsp;
 ### Introduction
@@ -151,7 +157,7 @@ Classes belonging to the **Controller** group are responsible for manipulating t
 
 &nbsp;
 
-### User interface
+### User interface - main components
 
 Classes belonging to the **View** group are responsible for displaying the state of the game to the user, and routing user input to any corresponding actions within Controller group classes.
 
@@ -245,6 +251,16 @@ Note how the "Roll dice" and "End turn" buttons lock and unlock in response to t
 
 For example, it is not legal within official game rules for a player to end their turn if they have not rolled the dice; this also applies when rolling doubles.
 
+&nbsp;
+
+The six buttons in the center of the dialog allow the user to perform *optional* actions -- that is -- any actions that are not strictly required by the game rules. These include:
+- mortgaging properties
+- viewing owned properties
+- managing improvements
+- viewing statistics (not yet implemented)
+- trading with other players (not yet implemented)
+- forfeiting the game
+
 #### Animations and extra features
 
 Additionally, some spaces support animated assets that, when the mouse enters the space area, will replace the standard button appearance until the mouse exits. These spaces include:
@@ -257,5 +273,20 @@ Additionally, some spaces support animated assets that, when the mouse enters th
 <div align="center">
 
 ![](electric-company-anim.gif) ![](waterworks-anim.gif) ![](free-parking-anim.gif) ![](go-to-jail-anim.gif) ![](luxury-tax-anim.gif)
+
+</div>
+
+### User interface - dialogs
+
+Some user interface elements have specific contexts where their visibility is required, in contrast to the always-shown board, information, and control views of the main window. Such user interface elements are implemented with **dialogs**, and these are split into two categories: **mandatory**, which allow responses to required actions, and **optional**, which can be summoned by the user in nearly any game state context.
+
+**Mandatory** dialogs include the property purchase and jail dialogs. A user cannot dismiss these, as a decision is required to continue the game.
+
+
+<div align="center">
+
+<img src="jail-1turn-nogoojfc.png" width=300>
+<img src="jail-1turn-goojfc.png" width=300>
+<img src="jail-3turns.png" width=300>
 
 </div>
