@@ -16,13 +16,14 @@
     3. [Aggregating spaces and players](#aggregating-spaces-and-players)
 3.  [Code organization](#code-organization)
 4.  [Manipulation of data](#manipulation-of-data-structures)
-5.  [User interface](#user-interface)
+5.  [User interface - main components](#user-interface)
     1.  [Inspiration](#inspiration)
     2.  [General structure](#general-structure)
     3.  [Board view](#board-view)
-    4.  [Control pane](#control-view)
-    5.  [Information pane](#information-pane)
+    4.  [Information pane](#information-pane)
+    5.  [Control pane](#control-view)
     6.  [Animations and extra features](#animations-and-extra-features)
+6. [User interface - dialogs](#dialogs)
 
 &nbsp;
 ### Introduction
@@ -72,9 +73,9 @@ Additionally, some data is not as cleanly organized into the "space" or "player"
 &nbsp;
 
 #### Aggregating spaces and players
-The primary data element is the board, containing information about all players, spaces, and game events. However, this largely acts as a container for the state of the game, with some inputs and outputs that are validated and manipulated slightly. The manipulation of this data is delegated to the Controller class group.
+The primary data element is the board, containing information about all players, spaces, and game events. However, this largely acts as a container for the state of the game, with some inputs and outputs that implement simple validation and manipulation. More advanced manipulation and analysis of this data is delegated to the Controller class group.
 
-A positive consequence of composing this data as a single class is the ability to query information across domains. As an example: suppose some representation of the game state must be updated, after a player has purchased the final property in the *green* color group after owning the others within the set.
+A positive consequence of composing this data as a single class is the ability to query information across domains. As an example: suppose some representation of the game state must be updated, after a player has purchased the final property in the green color group, while owning the others within the set.
 
 If we wish to determine if a player owns this green color group monopoly, there are two general approaches to query this data:
 
@@ -117,7 +118,7 @@ The general algorithm for determining this data is similar across the domains, b
 
 &nbsp;
 
-The latter approaches of board-domain querying allow for cleaner access to attributes of the game state. Additionally, much of the need for this querying is eliminated as the board can automatically self-update the relationships between its data members when the game state changes, using these methods internally.
+The latter approaches of board-domain querying allow for cleaner access to attributes of the game state. Additionally, much of the need for this querying is eliminated as the board class can automatically self-update the relationships between its data members when the game state changes, using similar methods internally.
 
 &nbsp;
 
@@ -171,4 +172,90 @@ A key attribute of this implementation is the simplicity of the user interface -
 
 &nbsp;
 
-### General structure
+#### General structure
+
+Visually, the user interface is comprised of a main window, with a set of dialogs that hide/show when appropriate. This main window consists of three sub-windows: the board, information, and control sections.
+
+<div align="center">
+<figure>
+    <img src="view-areas-all.png">
+</figure>
+</div>
+<br>
+
+#### Board view
+
+The board view provides a visualization for the spaces on the board, acting as a proxy for a physical printed board. Each space is a button that, when pressed, updates a space information area. 
+
+<div align="center">
+<figure>
+    <img src="board-view.gif">
+</figure>
+</div>
+<br>
+
+&nbsp;
+
+#### Information pane
+
+The information pane provides a single visual area for any player to assess the state of the game.
+
+<div align="center">
+<figure>
+    <img src="gui-info-pane.gif">
+</figure>
+</div>
+<br>
+
+It consists of four information modules, each assigned to one player. These modules are then subdivided into **status** and **asset** views.
+
+The **status** view, on the left, contains the following icons that indicate
+- ![](res/dice-icon.png)  - if it is currently the player's turn
+- ![](res/jail.png)  - if the player is jailed
+- ![](res/piggy.png)  - if the player is bankrupt
+
+as well as labels to indiate:
+- ![](res/player-generic.png) [ *Player n* ] - the player's name
+- ![](res/money.png) [ *$____* ] - the current balance of the player
+- ![](res/position.png) [ *space* ] - the name of the space that the player's game piece is currently on
+
+&nbsp;
+
+The **asset** view, on the right, contains icons with an associated numerical value. These include:
+
+- ![](res/properties.png) - the total number of properties owned by the player
+- ![](res/goojfc.png) - the number of Get Out of Jail Free Cards owned by the player
+- ![](res/property-single-lightblue.png), ![](res/property-single-orange.png), etc. - the number of properties belonging to each group owned by the player
+
+The text of the property group labels additionally changes colors depending on the state: gray when no properties are owned, and red when all properties are owned. (i.e., a monopoly)
+
+&nbsp;
+
+#### Control pane
+
+The control pane provides important information about the current player, buttons to access optional dialogs (see section [Optional dialogs](#optional-dialogs)), and buttons to roll the dice and end their turn.
+
+<div align="center">
+
+![](control.gif)
+
+</div>
+
+Note how the "Roll dice" and "End turn" buttons lock and unlock in response to the game state. Each player has an attribute, manipulated by the controller, that indicates if a player is permitted to perform either of these actions.
+
+For example, it is not legal within official game rules for a player to end their turn if they have not rolled the dice; this also applies when rolling doubles.
+
+#### Animations and extra features
+
+Additionally, some spaces support animated assets that, when the mouse enters the space area, will replace the standard button appearance until the mouse exits. These spaces include:
+- Electric Company
+- Water Works
+- Free Parking
+- Go To Jail
+- Luxury Tax
+
+<div align="center">
+
+![](electric-company-anim.gif) ![](waterworks-anim.gif) ![](free-parking-anim.gif) ![](go-to-jail-anim.gif) ![](luxury-tax-anim.gif)
+
+</div>

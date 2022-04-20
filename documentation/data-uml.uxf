@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>5</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>395</x>
+      <y>5</y>
+      <w>320</w>
+      <h>185</h>
+    </coordinates>
+    <panel_attributes>Board
+style=wordwrap
+--
++ spaces: List&lt;Space&gt;
++ players: List&lt;Players&gt;
++ chanceCards: List&lt;DrawCard&gt;
++ communityChestCards: List&lt;DrawCard&gt;
+
+- currentPlayerID: int
+- bankHouseCount: int
+- bankHotelCount: int
+--
++ forceBoardSelfCheck(): void
++ getDistance(int spaceA, int spaceB): int
++ getNextSpaceID(int spaceID): int
+
++ getSpacesByColorGroup(ColorGroupKeys colorGroup): ArrayList&lt;Color&gt;
++ getSpacesByOwnerID(int playerID): ArrayList&lt;Property&gt;
+
+- updateColorPropertyOwnershipRelationships(): void
+- updateImprovementEligibility(): void
+- updatePropertyOwnershipRelationships(): void
++ updateRailroadPropertyOwnershipRelationships(): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>365</x>
+      <y>305</y>
+      <w>105</w>
+      <h>95</h>
+    </coordinates>
+    <panel_attributes>Space
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>780</x>
+      <y>75</y>
+      <w>270</w>
+      <h>215</h>
+    </coordinates>
+    <panel_attributes>Player
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>235</x>
+      <y>450</y>
+      <w>105</w>
+      <h>95</h>
+    </coordinates>
+    <panel_attributes>GameEvent
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>525</x>
+      <y>455</y>
+      <w>105</w>
+      <h>95</h>
+    </coordinates>
+    <panel_attributes>Property
+&lt;&lt;abstract&gt;&gt;
+--
++ calculateRent(): int</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>525</x>
+      <y>600</y>
+      <w>165</w>
+      <h>95</h>
+    </coordinates>
+    <panel_attributes>Utility
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>705</x>
+      <y>600</y>
+      <w>105</w>
+      <h>95</h>
+    </coordinates>
+    <panel_attributes>Railroad
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>300</x>
+      <y>600</y>
+      <w>210</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>Color
+style=wordwrap
+--
+- colorGroup: ColorGroupKeys
+- houseCount: int
+- hotelCount: int
+- isEligibleForImprovements: boolean
+--
++ &lt;&lt;constructor&gt;&gt; Color(Map&lt;String, Integer&gt; propertyAttributes, int spaceID, String friendlyName)
+
++ buildHouse(): void
++ sellHouse(): void
++ buildHotel(): void
++ sellHotel(): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>310</x>
+      <y>395</y>
+      <w>85</w>
+      <h>65</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+extends</panel_attributes>
+    <additional_attributes>10.0;110.0;10.0;40.0;150.0;40.0;150.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>445</x>
+      <y>395</y>
+      <w>135</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+extends</panel_attributes>
+    <additional_attributes>250.0;120.0;250.0;40.0;10.0;40.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>440</x>
+      <y>545</y>
+      <w>115</w>
+      <h>65</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+extends</panel_attributes>
+    <additional_attributes>10.0;110.0;10.0;40.0;210.0;40.0;210.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>570</x>
+      <y>545</y>
+      <w>45</w>
+      <h>65</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+extends</panel_attributes>
+    <additional_attributes>10.0;110.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>605</x>
+      <y>545</y>
+      <w>115</w>
+      <h>65</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+extends</panel_attributes>
+    <additional_attributes>210.0;110.0;210.0;40.0;10.0;40.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>410</x>
+      <y>185</y>
+      <w>25</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=1
+m2=40</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;240.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>95</x>
+      <y>95</y>
+      <w>230</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>DrawCard
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>320</x>
+      <y>155</y>
+      <w>85</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=2
+m2=16</panel_attributes>
+    <additional_attributes>150.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>710</x>
+      <y>135</y>
+      <w>80</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=1
+m2=4</panel_attributes>
+    <additional_attributes>10.0;10.0;140.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>170</x>
+      <y>600</y>
+      <w>115</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>lt=.
+ColorGroupKeys
+&lt;&lt;internal enum of Color&gt;&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
