@@ -8,20 +8,20 @@
 <br>
 
 #### Table of Contents
-1.  [Introduction](#introduction)
-2.  [Data structures](#data-structures)
-    1. [Spaces, properties, and game events](#spaces%2C-properties%2C-and-game-events)
-    2. [Players](#players)
-    3. [Aggregating spaces and players](#aggregating-spaces-and-players)
+1.  [Introduction](#introduction) [c]
+2.  [Data structures](#data-structures) [c]
+    1. [Spaces, properties, and game events](#spaces%2C-properties%2C-and-game-events) [c]
+    2. [Players](#players) [c]
+    3. [Aggregating spaces and players](#aggregating-spaces-and-players) [c]
 3.  [Code organization](#code-organization)
 4.  [Manipulation of data](#manipulation-of-data-structures)
 5.  [User interface - main components](#user-interface---main-components)
-    1.  [Inspiration](#inspiration)
-    2.  [General structure](#general-structure)
+    1.  [Inspiration](#inspiration) [c]
+    2.  [General structure](#general-structure) [c]
     3.  [Board view](#board-view)
-    4.  [Information pane](#information-pane)
-    5.  [Control pane](#control-pane)
-    6.  [Animations and extra features](#animations-and-extra-features)
+    4.  [Information pane](#information-pane) [c]
+    5.  [Control pane](#control-pane) [c]
+    6.  [Animations and extra features](#animations-and-extra-features) [c]
 6.  [User interface - dialogs](#dialogs)
     1.  [Property purchase](#dialog-purchase-property)
     2.  [Jail](#jail)
@@ -29,11 +29,15 @@
     4.  [Improvements](#improvements)
     5.  [Mortgage](#mortgage)
     6.  [Start game](#start-game)
-7.  [Future features and ideas](#future-features)
+7.  [Future features and ideas](#future-features-and-ideas) [c]
 
 &nbsp;
 ### Introduction
-This project seeks to implement a playable version of the board game, Monopoly.
+This project seeks to implement a playable version of the board game, Monopoly. With the physical version of the board game, players are responsible for interpreting and enforcing the game rules, while the software versions typically perform this automatically.
+
+The primary objective for this Java prototype of is to demonstrate how the game can be logically organized, such that it is fully playable with no need to reference a rule book.
+
+Note the use of the word "prototype" -- this implementation is not fully compliant with the original game rules. For example, auctions and trading are not implemented, and there are inevitably some bugs to be encountered while playing normally.
 
 &nbsp;
 ### Data structures
@@ -74,12 +78,27 @@ Some game event spaces are grouped together - these include **draw card** and **
 
 The data for each player is largely independent, not requiring the same degree of intra-object dependence such as that which may exist across space groups.
 
-Additionally, some data is not as cleanly organized into the "space" or "player" domain - namely, the ownership of a property. This data is useful when held in the property object itself, but there are scenarios where finding the properties owned by a specific player is required. The aggregation of space and player data into a single "board" domain proves useful for this reason.
+Each player must contain data for the following attributes:
+- name
+- current balance
+- current position
+- is jailed
+- values of dice
+- number of owned Get Out of Jail Free Cards
+
+As well as several "flags" that are accessed by the Controller class group, examples:
+- suggested lock state of end turn, roll dice buttons
+- is bankrupt
+- is currently in the initial turn of being jailed
+- has rolled doubles
+- needs to make a decision for property purchase, jail
 
 &nbsp;
 
 #### Aggregating spaces and players
 The primary data element is the board, containing information about all players, spaces, and game events. However, this largely acts as a container for the state of the game, with some inputs and outputs that implement simple validation and manipulation. More advanced manipulation and analysis of this data is delegated to the Controller class group.
+
+Additionally, some data is not as cleanly organized into the "space" or "player" domain - namely, the ownership of a property. This data is useful when held in the property object itself, but there are scenarios where finding the properties owned by a specific player is required. The aggregation of space and player data into a single "board" domain proves useful for this reason.
 
 A positive consequence of composing this data as a single class is the ability to query information across domains. As an example: suppose some representation of the game state must be updated, after a player has purchased the final property in the green color group, while owning the others within the set.
 
@@ -253,7 +272,7 @@ For example, it is not legal within official game rules for a player to end thei
 
 &nbsp;
 
-The six buttons in the center of the dialog allow the user to perform *optional* actions -- that is -- any actions that are not strictly required by the game rules. These include:
+The six buttons in the center of the dialog allow the user to perform *optional* actions, i.e., any actions that are not strictly required by the game rules. These include:
 - mortgaging properties
 - viewing owned properties
 - managing improvements
@@ -263,7 +282,7 @@ The six buttons in the center of the dialog allow the user to perform *optional*
 
 #### Animations and extra features
 
-Additionally, some spaces support animated assets that, when the mouse enters the space area, will replace the standard button appearance until the mouse exits. These spaces include:
+Some spaces support animated assets that, when the mouse enters the space area, will replace the standard button appearance until the mouse exits. These spaces include:
 - Electric Company
 - Water Works
 - Free Parking
@@ -301,3 +320,25 @@ Some user interface elements have specific contexts where their visibility is re
 </div>
 
 <a href="{https://media.github.iu.edu/user/19463/files/54bb1bbd-1d39-4c47-b731-5d5d9a8db8a2}" title="Link Title"><img src="{https://media.github.iu.edu/user/19463/files/54bb1bbd-1d39-4c47-b731-5d5d9a8db8a2}" alt="Alternate Text" /></a>
+
+### Future features and ideas
+
+A standard implementation of Monopoly has several features which are not present in this version. Namely, auctions and trading between players. The GUI elements exist for these, but time constraints simply moved these features to a lower priority. Auctions particularly require more advanced GUI design, requiring timers and an array of simultaneous inputs for each player. 
+
+Additional non-implemented ideas that exist outside the scope of a standard Monopoly game include:
+
+**Statistics view**
+
+An area to view various statistics gathered over a single game, e.g.:
+- total money issued by the bank
+- total money spent by each player
+- frequency graphs for landing on specific areas of the board
+- return on investment for improvements on color properties
+
+**Dice probability view**
+
+Dynamically highlighting spaces on the board such that their appearance reflects the probability that a player may land on them. For example, spaces 7 units away from the current player have the highest probability of landing, and would be the most visually prominent highlight.
+
+**Player icon selection**
+
+This feature existed in the prior `MainWindow.java` GUI implementation, but has not yet been re-implemented in the `DynamicView.java` implementation.
