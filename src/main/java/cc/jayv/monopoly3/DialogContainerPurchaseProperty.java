@@ -112,8 +112,8 @@ public class DialogContainerPurchaseProperty extends DialogContainer implements 
         dialog.add(buttonAuction, "cell 1 9, align right");
     }
 
-    public void attachActionListeners(ArrayList<DynamicView.ButtonActionListener> listeners) {
-        for (DynamicView.ButtonActionListener l : listeners) {
+    public void attachActionListeners(ArrayList<DynamicView.GenericButtonActionListener> listeners) {
+        for (DynamicView.GenericButtonActionListener l : listeners) {
             switch (l.getAction()) {
                 case PROPERTY_PURCHASE -> buttonPurchase.addActionListener(l);
                 case PROPERTY_AUCTION -> buttonAuction.addActionListener(l);

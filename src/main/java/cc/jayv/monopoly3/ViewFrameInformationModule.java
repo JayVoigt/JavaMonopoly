@@ -195,11 +195,11 @@ public class ViewFrameInformationModule {
 
     }
 
-    public JPanel getPanelPlayerStatus() {
+    private JPanel getPanelPlayerStatus() {
         return panelPlayerStatus;
     }
 
-    public JPanel getPanelPlayerAssets() {
+    private JPanel getPanelPlayerAssets() {
         return panelPlayerAssets;
     }
 

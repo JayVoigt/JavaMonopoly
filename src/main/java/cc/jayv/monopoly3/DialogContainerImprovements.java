@@ -74,8 +74,8 @@ public class DialogContainerImprovements extends DialogContainer {
         dialog.add(buttonSellHotel, "cell 1 6, grow, wrap");
     }
 
-    public void attachActionListeners(ArrayList<DynamicView.ButtonActionListener> listeners) {
-        for (DynamicView.ButtonActionListener l : listeners) {
+    public void attachActionListeners(ArrayList<DynamicView.GenericButtonActionListener> listeners) {
+        for (DynamicView.GenericButtonActionListener l : listeners) {
             switch (l.getAction()) {
                 case IMPROVEMENTS_BUILD_HOUSE -> buttonBuildHouse.addActionListener(l);
                 case IMPROVEMENTS_SELL_HOUSE -> buttonSellHouse.addActionListener(l);

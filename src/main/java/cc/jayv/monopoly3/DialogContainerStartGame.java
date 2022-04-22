@@ -157,23 +157,6 @@ public class DialogContainerStartGame extends DialogContainer implements Seriali
         buttonStartGame.addActionListener(new LocalActionListener());
     }
 
-    public int getPlayerCount() {
-        return playerCount;
-    }
-
-    public String getPlayerCustomName(int playerID) {
-        String playerCustomName = "";
-
-        switch (playerID) {
-            case 1 -> playerCustomName = playerCustomNames.get(0);
-            case 2 -> playerCustomName = playerCustomNames.get(1);
-            case 3 -> playerCustomName = playerCustomNames.get(2);
-            case 4 -> playerCustomName = playerCustomNames.get(3);
-        }
-
-        return playerCustomName;
-    }
-
     private class LocalActionListener implements ActionListener {
 
         @Override

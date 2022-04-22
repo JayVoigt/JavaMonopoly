@@ -115,7 +115,7 @@ public class DialogContainerGameEditor extends DialogContainer implements Serial
     public void setStateOfActionButton(ActionsGUI action, boolean isEnabled) {
     }
 
-    public int getSelectedPlayer() {
+    public int getSelectedPlayerID() {
         return playerID;
     }
 }

@@ -154,8 +154,8 @@ public class DialogContainerMortgage extends DialogContainer {
         return m;
     }
 
-    public void attachActionListeners(ArrayList<DynamicView.ButtonActionListener> listeners) {
-        for (DynamicView.ButtonActionListener l : listeners) {
+    public void attachActionListeners(ArrayList<DynamicView.GenericButtonActionListener> listeners) {
+        for (DynamicView.GenericButtonActionListener l : listeners) {
             switch (l.getAction()) {
                 case PROPERTY_MORTGAGE -> buttonMortgage.addActionListener(l);
                 case PROPERTY_UNMORTGAGE -> buttonUnmortgage.addActionListener(l);

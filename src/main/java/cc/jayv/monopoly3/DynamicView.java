@@ -22,54 +22,47 @@ public class DynamicView implements Serializable {
     static int currentSpaceButtonSelection;
 
     // Core components - GUI
-    JFrame mainFrame;
-    ViewFrameBoard viewFrameBoard;
-    ViewFrameControl viewFrameControl;
-    ViewFrameInformation viewFrameInformation;
-    ArrayList<ViewFrameBoard.SpaceButton> spaceButtons;
-    ArrayList<ButtonActionListener> buttonActionListeners;
+    private JFrame mainFrame;
+    private ViewFrameBoard viewFrameBoard;
+    private ViewFrameControl viewFrameControl;
+    private ViewFrameInformation viewFrameInformation;
+    private ArrayList<ViewFrameBoard.SpaceButton> spaceButtons;
+    private ArrayList<GenericButtonActionListener> genericButtonActionListeners;
 
     // Core components - logic and control
-    GameLogicSwitchboard switchboard;
-    GameLogicController controller;
-    Board board;
-    LogHelper logHelper;
+    private GameLogicSwitchboard switchboard;
+    private GameLogicController controller;
+    private Board board;
+    private LogHelper logHelper;
 
     // Dialog containers
-    DialogContainerGameEditor dialogContainerGameEditor;
-    DialogContainerImprovements dialogContainerImprovements;
-    DialogContainerJail dialogContainerJail;
-    DialogContainerMortgage dialogContainerMortgage;
-    DialogContainerPurchaseProperty dialogContainerPurchaseProperty;
-    DialogContainerStartGame dialogContainerStartGame;
-    DialogContainerForfeit dialogContainerForfeit;
-    DialogContainerDebugLog dialogContainerDebugLog;
-    GameEditorController gameEditorController;
+    private DialogContainerGameEditor dialogContainerGameEditor;
+    private DialogContainerImprovements dialogContainerImprovements;
+    private DialogContainerJail dialogContainerJail;
+    private DialogContainerMortgage dialogContainerMortgage;
+    private DialogContainerPurchaseProperty dialogContainerPurchaseProperty;
+    private DialogContainerStartGame dialogContainerStartGame;
+    private DialogContainerForfeit dialogContainerForfeit;
+    private DialogContainerDebugLog dialogContainerDebugLog;
+    private GameEditorController gameEditorController;
 
     // Dialogs
-    JDialog dialogJail;
-    JDialog dialogPurchaseProperty;
-    JDialog dialogImprovements;
-    JDialog dialogStartGame;
-    JDialog dialogGameEditor;
-    JDialog dialogAbout;
-    JDialog dialogMortgage;
-    JDialog dialogForfeit;
-    JDialog dialogDebugLog;
-
-    // Root-level menus
-    JMenuBar menuBar;
-    JMenu menuFile;
-    JMenu menuEdit;
-    JMenu menuView;
-    JMenu menuMacros;
+    private JDialog dialogJail;
+    private JDialog dialogPurchaseProperty;
+    private JDialog dialogImprovements;
+    private JDialog dialogStartGame;
+    private JDialog dialogGameEditor;
+    private JDialog dialogAbout;
+    private JDialog dialogMortgage;
+    private JDialog dialogForfeit;
+    private JDialog dialogDebugLog;
 
     // Other
-    Timer partyModeTimer;
-    MacroController macroController;
-    Player currentPlayer;
-    int playerCount;
-    ArrayList<String> playerCustomNames;
+    private Timer partyModeTimer;
+    private MacroController macroController;
+    private Player currentPlayer;
+    private int playerCount;
+    private ArrayList<String> playerCustomNames;
 
     public DynamicView() {
 
@@ -259,22 +252,23 @@ public class DynamicView implements Serializable {
      * Initialize the menu bar and its items.
      */
     private void initMenuBar() {
-        menuBar = new JMenuBar();
+        // Root-level menus
+        JMenuBar menuBar = new JMenuBar();
 
         // Root level menus
-        menuFile = new JMenu();
+        JMenu menuFile = new JMenu();
         menuFile.setText("File");
         menuBar.add(menuFile);
 
-        menuEdit = new JMenu();
+        JMenu menuEdit = new JMenu();
         menuEdit.setText("Edit");
         menuBar.add(menuEdit);
 
-        menuView = new JMenu();
+        JMenu menuView = new JMenu();
         menuView.setText("View");
         menuBar.add(menuView);
 
-        menuMacros = new JMenu();
+        JMenu menuMacros = new JMenu();
         menuMacros.setText("Macros");
         menuBar.add(menuMacros);
 
@@ -352,13 +346,13 @@ public class DynamicView implements Serializable {
 
     private void initButtonActionListeners() {
         // Create all possible ActionListeners for dialogs
-        buttonActionListeners = new ArrayList<>();
+        genericButtonActionListeners = new ArrayList<>();
 
         for (ActionsGUI a : ActionsGUI.values()) {
 
             switch (a) {
-                case CONTROLS_SHOW_MORTGAGE, CONTROLS_SHOW_FORFEIT, CONTROLS_SHOW_IMPROVEMENTS -> buttonActionListeners.add(new ButtonActionListener(a, true));
-                default -> buttonActionListeners.add(new ButtonActionListener(a, false));
+                case CONTROLS_SHOW_MORTGAGE, CONTROLS_SHOW_FORFEIT, CONTROLS_SHOW_IMPROVEMENTS -> genericButtonActionListeners.add(new GenericButtonActionListener(a, true));
+                default -> genericButtonActionListeners.add(new GenericButtonActionListener(a, false));
             }
 
         }
@@ -368,7 +362,7 @@ public class DynamicView implements Serializable {
      * Initialize the control frame shown in the game view.
      */
     private void initControlFrame() {
-        viewFrameControl.initButtons(buttonActionListeners);
+        viewFrameControl.initButtons(genericButtonActionListeners);
     }
 
     /**
@@ -384,22 +378,22 @@ public class DynamicView implements Serializable {
 
         // Improvements
         dialogContainerImprovements = new DialogContainerImprovements();
-        dialogContainerImprovements.attachActionListeners(buttonActionListeners);
+        dialogContainerImprovements.attachActionListeners(genericButtonActionListeners);
         dialogImprovements = dialogContainerImprovements.getDialog();
 
         // Jail
         dialogContainerJail = new DialogContainerJail();
-        dialogContainerJail.attachActionListeners(buttonActionListeners);
+        dialogContainerJail.attachActionListeners(genericButtonActionListeners);
         dialogJail = dialogContainerJail.getDialog();
 
         // Mortgage properties
         dialogContainerMortgage = new DialogContainerMortgage();
-        dialogContainerMortgage.attachActionListeners(buttonActionListeners);
+        dialogContainerMortgage.attachActionListeners(genericButtonActionListeners);
         dialogMortgage = dialogContainerMortgage.getDialog();
 
         // Purchase property
         dialogContainerPurchaseProperty = new DialogContainerPurchaseProperty();
-        dialogContainerPurchaseProperty.attachActionListeners(buttonActionListeners);
+        dialogContainerPurchaseProperty.attachActionListeners(genericButtonActionListeners);
         dialogPurchaseProperty = dialogContainerPurchaseProperty.getDialog();
 
         // Game editor ActionListeners
@@ -417,7 +411,7 @@ public class DynamicView implements Serializable {
 
         // Forfeit
         dialogContainerForfeit = new DialogContainerForfeit();
-        dialogContainerForfeit.attachActionListeners(buttonActionListeners);
+        dialogContainerForfeit.attachActionListeners(genericButtonActionListeners);
         dialogForfeit = dialogContainerForfeit.getDialog();
 
         // Debug log
@@ -543,18 +537,18 @@ public class DynamicView implements Serializable {
      * Generic ActionListener class for buttons. Effectively forces each button to have an Action that
      * can be referenced later.
      */
-    public class ButtonActionListener implements ActionListener, Serializable {
-        ActionsGUI action;
-        boolean needsPrompt;
+    public class GenericButtonActionListener implements ActionListener, Serializable {
+        protected ActionsGUI action;
+        protected boolean needsPrompt;
 
         // Default listeners do not require a prompt
-        public ButtonActionListener(ActionsGUI action) {
+        public GenericButtonActionListener(ActionsGUI action) {
             this.action = action;
             needsPrompt = false;
         }
 
         // For listeners that require a prompt, e.g., Improvements, Mortgage
-        public ButtonActionListener(ActionsGUI action, boolean needsPrompt) {
+        public GenericButtonActionListener(ActionsGUI action, boolean needsPrompt) {
             this.action = action;
             this.needsPrompt = needsPrompt;
         }
@@ -582,7 +576,7 @@ public class DynamicView implements Serializable {
      */
     public class SpaceButtonActionListener implements ActionListener {
 
-        int id;
+        protected int id;
 
         public SpaceButtonActionListener(int id) {
             this.id = id;
@@ -632,7 +626,7 @@ public class DynamicView implements Serializable {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            player = board.players.get(dialogContainerGameEditor.getSelectedPlayer());
+            player = board.players.get(dialogContainerGameEditor.getSelectedPlayerID());
             switch (action) {
                 case JAIL -> gameEditorController.jailPlayer(player);
                 case UNJAIL -> gameEditorController.unjailPlayer(player);

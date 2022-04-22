@@ -83,16 +83,16 @@ public class ViewFrameControl implements ViewComponent, Serializable {
 
     }
 
-    public void initButtons(ArrayList<DynamicView.ButtonActionListener> actionListeners) {
+    public void initButtons(ArrayList<DynamicView.GenericButtonActionListener> actionListeners) {
 
-        DynamicView.ButtonActionListener endTurnActionListener = null;
-        DynamicView.ButtonActionListener rollDiceActionListener = null;
-        DynamicView.ButtonActionListener controlsMortgageActionListener = null;
-        DynamicView.ButtonActionListener controlsPropertiesActionListener = null;
-        DynamicView.ButtonActionListener controlsImprovementsActionListener = null;
-        DynamicView.ButtonActionListener controlsForfeitActionListener = null;
+        DynamicView.GenericButtonActionListener endTurnActionListener = null;
+        DynamicView.GenericButtonActionListener rollDiceActionListener = null;
+        DynamicView.GenericButtonActionListener controlsMortgageActionListener = null;
+        DynamicView.GenericButtonActionListener controlsPropertiesActionListener = null;
+        DynamicView.GenericButtonActionListener controlsImprovementsActionListener = null;
+        DynamicView.GenericButtonActionListener controlsForfeitActionListener = null;
 
-        for (DynamicView.ButtonActionListener l : actionListeners) {
+        for (DynamicView.GenericButtonActionListener l : actionListeners) {
             switch (l.getAction()) {
                 case CONTROLS_ENDTURN -> endTurnActionListener = l;
                 case CONTROLS_ROLLDICE -> rollDiceActionListener = l;

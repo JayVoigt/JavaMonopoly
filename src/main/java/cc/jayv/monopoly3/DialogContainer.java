@@ -8,8 +8,8 @@ import javax.swing.*;
  * to game state.
  */
 public abstract class DialogContainer {
-    JDialog dialog;
-    JLabel labelTitle;
+    protected JDialog dialog;
+    protected JLabel labelTitle;
 
     /**
      * Initialize GUI components for the dialog.
@@ -35,7 +35,7 @@ public abstract class DialogContainer {
 
     /**
      * Set a particular button to be enabled or disabled, by providing the corresponding Action key
-     * implemented by the ButtonActionListener.
+     * implemented by the GenericButtonActionListener.
      *
      * @param action    The action which the corresponding button will have its state set.
      * @param isEnabled The state of the button.

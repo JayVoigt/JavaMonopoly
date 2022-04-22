@@ -9,7 +9,7 @@ import javax.swing.*;
  */
 public class DialogContainerDebugLog extends DialogContainer {
 
-    LogHelper logHelper;
+    private final LogHelper logHelper;
     JTextArea textAreaDebugLog;
 
     public DialogContainerDebugLog(LogHelper logHelper) {

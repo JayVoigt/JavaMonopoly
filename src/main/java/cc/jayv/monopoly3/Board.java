@@ -320,7 +320,7 @@ public class Board implements Serializable {
     /**
      * Call all methods that evaluate the state of Properties.
      */
-    public void updatePropertyOwnershipRelationships() {
+    private void updatePropertyOwnershipRelationships() {
         updateColorPropertyOwnershipRelationships();
         updateRailroadPropertyOwnershipRelationships();
     }

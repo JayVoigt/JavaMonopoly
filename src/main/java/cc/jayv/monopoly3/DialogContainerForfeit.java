@@ -64,8 +64,8 @@ public class DialogContainerForfeit extends DialogContainer {
         dialog.pack();
     }
 
-    public void attachActionListeners(ArrayList<DynamicView.ButtonActionListener> listeners) {
-        for (DynamicView.ButtonActionListener l : listeners) {
+    public void attachActionListeners(ArrayList<DynamicView.GenericButtonActionListener> listeners) {
+        for (DynamicView.GenericButtonActionListener l : listeners) {
             switch (l.getAction()) {
                 case FORFEIT_CONFIRM -> buttonForfeit.addActionListener(l);
                 case FORFEIT_CANCEL -> buttonCancel.addActionListener(l);

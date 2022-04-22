@@ -91,8 +91,8 @@ public class DialogContainerJail extends DialogContainer {
         dialog.pack();
     }
 
-    public void attachActionListeners(ArrayList<DynamicView.ButtonActionListener> listeners) {
-        for (DynamicView.ButtonActionListener l : listeners) {
+    public void attachActionListeners(ArrayList<DynamicView.GenericButtonActionListener> listeners) {
+        for (DynamicView.GenericButtonActionListener l : listeners) {
             switch (l.getAction()) {
                 case JAIL_POSTBAIL -> buttonPostBail.addActionListener(l);
                 case JAIL_ROLLDOUBLES -> buttonRollForDoubles.addActionListener(l);
