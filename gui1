@@ -1,0 +1,2295 @@
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:demostyle2="http://www.yworks.com/yFilesHTML/demos/FlatDemoStyle/2.0" xmlns:demostyle="http://www.yworks.com/yFilesHTML/demos/FlatDemoStyle/1.0" xmlns:icon-style="http://www.yworks.com/yed-live/icon-style/1.0" xmlns:bpmn="http://www.yworks.com/xml/yfiles-bpmn/2.0" xmlns:demotablestyle="http://www.yworks.com/yFilesHTML/demos/FlatDemoTableStyle/1.0" xmlns:uml="http://www.yworks.com/yFilesHTML/demos/UMLDemoStyle/1.0" xmlns:GraphvizNodeStyle="http://www.yworks.com/yFilesHTML/graphviz-node-style/1.0" xmlns:VuejsNodeStyle="http://www.yworks.com/demos/yfiles-vuejs-node-style/1.0" xmlns:explorer-style="http://www.yworks.com/data-explorer/1.0" xmlns:y="http://www.yworks.com/xml/yfiles-common/3.0" xmlns:x="http://www.yworks.com/xml/yfiles-common/markup/3.0" xmlns:sys="http://www.yworks.com/xml/yfiles-common/markup/primitives/2.0" xmlns:yjs="http://www.yworks.com/xml/yfiles-for-html/2.0/xaml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://www.yworks.com/xml/schema/graphml.html/2.0/ygraphml.xsd ">
+  <key id="d0" for="node" attr.type="int" attr.name="zOrder" y:attr.uri="http://www.yworks.com/xml/yfiles-z-order/1.0/zOrder" />
+  <key id="d1" for="node" attr.type="boolean" attr.name="Expanded" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/folding/Expanded">
+    <default>true</default>
+  </key>
+  <key id="d2" for="node" attr.type="string" attr.name="url" />
+  <key id="d3" for="node" attr.type="string" attr.name="description" />
+  <key id="d4" for="node" attr.name="NodeLabels" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/NodeLabels" />
+  <key id="d5" for="node" attr.name="NodeGeometry" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/NodeGeometry" />
+  <key id="d6" for="all" attr.name="UserTags" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/UserTags" />
+  <key id="d7" for="node" attr.name="NodeStyle" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/NodeStyle" />
+  <key id="d8" for="node" attr.name="NodeViewState" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/folding/1.1/NodeViewState" />
+  <key id="d9" for="edge" attr.type="string" attr.name="url" />
+  <key id="d10" for="edge" attr.type="string" attr.name="description" />
+  <key id="d11" for="edge" attr.name="EdgeLabels" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/EdgeLabels" />
+  <key id="d12" for="edge" attr.name="EdgeGeometry" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/EdgeGeometry" />
+  <key id="d13" for="edge" attr.name="EdgeStyle" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/EdgeStyle" />
+  <key id="d14" for="edge" attr.name="EdgeViewState" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/folding/1.1/EdgeViewState" />
+  <key id="d15" for="port" attr.name="PortLabels" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/PortLabels" />
+  <key id="d16" for="port" attr.name="PortLocationParameter" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/PortLocationParameter">
+    <default>
+      <x:Static Member="y:FreeNodePortLocationModel.NodeCenterAnchored" />
+    </default>
+  </key>
+  <key id="d17" for="port" attr.name="PortStyle" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/PortStyle">
+    <default>
+      <x:Static Member="y:VoidPortStyle.Instance" />
+    </default>
+  </key>
+  <key id="d18" for="port" attr.name="PortViewState" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/folding/1.1/PortViewState" />
+  <key id="d19" attr.name="SharedData" y:attr.uri="http://www.yworks.com/xml/yfiles-common/2.0/SharedData" />
+  <data key="d19">
+    <y:SharedData>
+      <y:InteriorLabelModel x:Key="1" />
+      <y:CompositeLabelModelParameter x:Key="2">
+        <y:CompositeLabelModelParameter.Parameter>
+          <y:InteriorLabelModelParameter Position="Center" Model="{y:GraphMLReference 1}" />
+        </y:CompositeLabelModelParameter.Parameter>
+        <y:CompositeLabelModelParameter.Model>
+          <y:CompositeLabelModel>
+            <y:CompositeLabelModel.LabelModels>
+              <y:ExteriorLabelModel Insets="5" />
+              <y:GraphMLReference ResourceKey="1" />
+              <y:FreeNodeLabelModel />
+            </y:CompositeLabelModel.LabelModels>
+          </y:CompositeLabelModel>
+        </y:CompositeLabelModelParameter.Model>
+      </y:CompositeLabelModelParameter>
+      <y:SmartEdgeLabelModel x:Key="3" />
+    </y:SharedData>
+  </data>
+  <graph id="G" edgedefault="directed">
+    <data key="d6">
+      <y:Json>{&quot;version&quot;:&quot;2.0.0&quot;,&quot;theme&quot;:{&quot;name&quot;:&quot;light&quot;,&quot;version&quot;:&quot;1.0.0&quot;},&quot;bridge-style&quot;:&quot;ARC_SCALED&quot;}</y:Json>
+    </data>
+    <node id="node14">
+      <data key="d0">0</data>
+      <data key="d5">
+        <y:RectD X="301" Y="-475" Width="220" Height="28" />
+      </data>
+      <data key="d7">
+        <uml:UMLNodeStyle fill="#FF607D8B" highlightFill="#FFA3F1BB">
+          <uml:UMLNodeStyle.model>
+            <uml:UMLClassModel stereotype="" constraint="" className="ActionsImprovements" attributesOpen="true" operationsOpen="true">
+              <uml:UMLClassModel.attributes>
+                <x:Array Type="sys:Object" />
+              </uml:UMLClassModel.attributes>
+              <uml:UMLClassModel.operations>
+                <x:Array Type="sys:Object" />
+              </uml:UMLClassModel.operations>
+            </uml:UMLClassModel>
+          </uml:UMLNodeStyle.model>
+        </uml:UMLNodeStyle>
+      </data>
+      <port name="port0">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.5,0.5" />
+        </data>
+      </port>
+      <port name="port1">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.5,0.5" />
+        </data>
+      </port>
+    </node>
+    <node id="node7">
+      <data key="d0">0</data>
+      <data key="d5">
+        <y:RectD X="266" Y="-407" Width="182" Height="28" />
+      </data>
+      <data key="d7">
+        <uml:UMLNodeStyle fill="#FF607D8B" highlightFill="#FFA3F1BB">
+          <uml:UMLNodeStyle.model>
+            <uml:UMLClassModel stereotype="" constraint="" className="ActionsMortgage" attributesOpen="true" operationsOpen="true">
+              <uml:UMLClassModel.attributes>
+                <x:Array Type="sys:Object" />
+              </uml:UMLClassModel.attributes>
+              <uml:UMLClassModel.operations>
+                <x:Array Type="sys:Object" />
+              </uml:UMLClassModel.operations>
+            </uml:UMLClassModel>
+          </uml:UMLNodeStyle.model>
+        </uml:UMLNodeStyle>
+      </data>
+      <port name="port0">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.5,0.5" />
+        </data>
+      </port>
+      <port name="port1">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.5,0.5" />
+        </data>
+      </port>
+    </node>
+    <node id="node40">
+      <data key="d0">0</data>
+      <data key="d5">
+        <y:RectD X="520" Y="6" Width="286" Height="28" />
+      </data>
+      <data key="d7">
+        <uml:UMLNodeStyle fill="#FF607D8B" highlightFill="#FFA3F1BB">
+          <uml:UMLNodeStyle.model>
+            <uml:UMLClassModel stereotype="" constraint="" className="AnimatedSpaceActionListener" attributesOpen="true" operationsOpen="true">
+              <uml:UMLClassModel.attributes>
+                <x:Array Type="sys:Object">
+                  <sys:String>- animatedLabelMortgaged: ImageIcon</sys:String>
+                  <sys:String>- animatedLabel: ImageIcon</sys:String>
+                </x:Array>
+              </uml:UMLClassModel.attributes>
+              <uml:UMLClassModel.operations>
+                <x:Array Type="sys:Object" />
+              </uml:UMLClassModel.operations>
+            </uml:UMLClassModel>
+          </uml:UMLNodeStyle.model>
+        </uml:UMLNodeStyle>
+      </data>
+      <port name="port0">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.5,0.5" />
+        </data>
+      </port>
+    </node>
+    <node id="node5">
+      <data key="d0">0</data>
+      <data key="d5">
+        <y:RectD X="250" Y="-271" Width="142" Height="28" />
+      </data>
+      <data key="d7">
+        <uml:UMLNodeStyle fill="#FF607D8B" highlightFill="#FFA3F1BB">
+          <uml:UMLNodeStyle.model>
+            <uml:UMLClassModel stereotype="" constraint="" className="BidControls" attributesOpen="true" operationsOpen="true">
+              <uml:UMLClassModel.attributes>
+                <x:Array Type="sys:Object">
+                  <sys:String>- playerID: int</sys:String>
+                  <sys:String>- bid100: JButton</sys:String>
+                  <sys:String>- bidQuantity: int</sys:String>
+                  <sys:String>- labelPlayerName: JLabel</sys:String>
+                  <sys:String>- bid10: JButton</sys:String>
+                  <sys:String>- panel: JPanel</sys:String>
+                  <sys:String>- labelPlayerBalance: JLabel</sys:String>
+                  <sys:String>- bid1: JButton</sys:String>
+                </x:Array>
+              </uml:UMLClassModel.attributes>
+              <uml:UMLClassModel.operations>
+                <x:Array Type="sys:Object" />
+              </uml:UMLClassModel.operations>
+            </uml:UMLClassModel>
+          </uml:UMLNodeStyle.model>
+        </uml:UMLNodeStyle>
+      </data>
+      <port name="port0">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.5,0.5" />
+        </data>
+      </port>
+    </node>
+    <node id="node38">
+      <data key="d0">0</data>
+      <data key="d5">
+        <y:RectD X="-47" Y="142" Width="216" Height="28" />
+      </data>
+      <data key="d7">
+        <uml:UMLNodeStyle fill="#FF607D8B" highlightFill="#FFA3F1BB">
+          <uml:UMLNodeStyle.model>
+            <uml:UMLClassModel stereotype="" constraint="" className="ButtonActionListener" attributesOpen="true" operationsOpen="true">
+              <uml:UMLClassModel.attributes>
+                <x:Array Type="sys:Object">
+                  <sys:String>+ needsPrompt: boolean</sys:String>
+                  <sys:String>+ action: ActionsGUI</sys:String>
+                </x:Array>
+              </uml:UMLClassModel.attributes>
+              <uml:UMLClassModel.operations>
+                <x:Array Type="sys:Object" />
+              </uml:UMLClassModel.operations>
+            </uml:UMLClassModel>
+          </uml:UMLNodeStyle.model>
+        </uml:UMLNodeStyle>
+      </data>
+      <port name="port0">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.5,0.5" />
+        </data>
+      </port>
+    </node>
+    <node id="node29">
+      <data key="d0">0</data>
+      <data key="d5">
+        <y:RectD X="520" Y="142" Width="286" Height="28" />
+      </data>
+      <data key="d7">
+        <uml:UMLNodeStyle fill="#FF607D8B" highlightFill="#FFA3F1BB">
+          <uml:UMLNodeStyle.model>
+            <uml:UMLClassModel stereotype="" constraint="" className="CosmeticSpaceActionListener" attributesOpen="true" operationsOpen="true">
+              <uml:UMLClassModel.attributes>
+                <x:Array Type="sys:Object" />
+              </uml:UMLClassModel.attributes>
+              <uml:UMLClassModel.operations>
+                <x:Array Type="sys:Object" />
+              </uml:UMLClassModel.operations>
+            </uml:UMLClassModel>
+          </uml:UMLNodeStyle.model>
+        </uml:UMLNodeStyle>
+      </data>
+      <port name="port0">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.5,0.5" />
+        </data>
+      </port>
+    </node>
+    <node id="node37">
+      <data key="d0">0</data>
+      <data key="d5">
+        <y:RectD X="-242" Y="-505" Width="176" Height="28" />
+      </data>
+      <data key="d7">
+        <uml:UMLNodeStyle fill="#FF607D8B" highlightFill="#FFA3F1BB">
+          <uml:UMLNodeStyle.model>
+            <uml:UMLClassModel stereotype="" constraint="" className="DialogContainer" attributesOpen="true" operationsOpen="true">
+              <uml:UMLClassModel.attributes>
+                <x:Array Type="sys:Object">
+                  <sys:String>+ labelTitle: JLabel</sys:String>
+                  <sys:String>+ dialog: JDialog</sys:String>
+                </x:Array>
+              </uml:UMLClassModel.attributes>
+              <uml:UMLClassModel.operations>
+                <x:Array Type="sys:Object" />
+              </uml:UMLClassModel.operations>
+            </uml:UMLClassModel>
+          </uml:UMLNodeStyle.model>
+        </uml:UMLNodeStyle>
+      </data>
+      <port name="port0">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.5,0.5" />
+        </data>
+      </port>
+      <port name="port1">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.5,0.5" />
+        </data>
+      </port>
+      <port name="port2">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.5,0.5" />
+        </data>
+      </port>
+      <port name="port3">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.5,0.5" />
+        </data>
+      </port>
+      <port name="port4">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.5,0.5" />
+        </data>
+      </port>
+      <port name="port5">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.5,0.5" />
+        </data>
+      </port>
+      <port name="port6">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.5,0.5" />
+        </data>
+      </port>
+      <port name="port7">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.5,0.5" />
+        </data>
+      </port>
+      <port name="port8">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.5,0.5" />
+        </data>
+      </port>
+      <port name="port9">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.5,0.5" />
+        </data>
+      </port>
+    </node>
+    <node id="node16">
+      <data key="d0">0</data>
+      <data key="d5">
+        <y:RectD X="-26" Y="-577" Width="223" Height="28" />
+      </data>
+      <data key="d7">
+        <uml:UMLNodeStyle fill="#FF607D8B" highlightFill="#FFA3F1BB">
+          <uml:UMLNodeStyle.model>
+            <uml:UMLClassModel stereotype="" constraint="" className="DialogContainerAbout" attributesOpen="true" operationsOpen="true">
+              <uml:UMLClassModel.attributes>
+                <x:Array Type="sys:Object">
+                  <sys:String>+ logoLabel: JLabel</sys:String>
+                  <sys:String>+ authorLabel: JLabel</sys:String>
+                  <sys:String>+ infoLabel: JLabel</sys:String>
+                </x:Array>
+              </uml:UMLClassModel.attributes>
+              <uml:UMLClassModel.operations>
+                <x:Array Type="sys:Object" />
+              </uml:UMLClassModel.operations>
+            </uml:UMLClassModel>
+          </uml:UMLNodeStyle.model>
+        </uml:UMLNodeStyle>
+      </data>
+      <port name="port0">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.5,0.5" />
+        </data>
+      </port>
+    </node>
+    <node id="node22">
+      <data key="d0">0</data>
+      <data key="d5">
+        <y:RectD X="-26" Y="-271" Width="236" Height="28" />
+      </data>
+      <data key="d7">
+        <uml:UMLNodeStyle fill="#FF607D8B" highlightFill="#FFA3F1BB">
+          <uml:UMLNodeStyle.model>
+            <uml:UMLClassModel stereotype="" constraint="" className="DialogContainerAuction" attributesOpen="true" operationsOpen="true">
+              <uml:UMLClassModel.attributes>
+                <x:Array Type="sys:Object">
+                  <sys:String>+ bidView: JPanel</sys:String>
+                  <sys:String>+ bidControlsPlayer1: BidControls</sys:String>
+                  <sys:String>+ bidControlsPanelPlayer4: JPanel</sys:String>
+                  <sys:String>+ bidControlsPlayer4: BidControls</sys:String>
+                  <sys:String>+ bidControlsPlayer3: BidControls</sys:String>
+                  <sys:String>+ bidControlsPanelPlayer1: JPanel</sys:String>
+                  <sys:String>+ bidControlsPanelPlayer2: JPanel</sys:String>
+                  <sys:String>+ bidControlsPanelPlayer3: JPanel</sys:String>
+                  <sys:String>+ board: Board</sys:String>
+                  <sys:String>+ bidControlsPlayer2: BidControls</sys:String>
+                  <sys:String>+ winningBidCost: int</sys:String>
+                  <sys:String>+ winningBidPlayerID: int</sys:String>
+                </x:Array>
+              </uml:UMLClassModel.attributes>
+              <uml:UMLClassModel.operations>
+                <x:Array Type="sys:Object" />
+              </uml:UMLClassModel.operations>
+            </uml:UMLClassModel>
+          </uml:UMLNodeStyle.model>
+        </uml:UMLNodeStyle>
+      </data>
+      <port name="port0">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.5,0.5" />
+        </data>
+      </port>
+      <port name="port1">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.5,0.5" />
+        </data>
+      </port>
+    </node>
+    <node id="node1">
+      <data key="d0">0</data>
+      <data key="d5">
+        <y:RectD X="-26" Y="-875" Width="289" Height="54" />
+      </data>
+      <data key="d7">
+        <uml:UMLNodeStyle fill="#FF607D8B" highlightFill="#FFA3F1BB">
+          <uml:UMLNodeStyle.model>
+            <uml:UMLClassModel stereotype="" constraint="" className="DialogContainerDebugLog" attributesOpen="true" operationsOpen="true">
+              <uml:UMLClassModel.attributes>
+                <x:Array Type="sys:Object">
+                  <sys:String>+ logHelper: LogHelper</sys:String>
+                  <sys:String>+ textAreaDebugLog: JTextArea</sys:String>
+                </x:Array>
+              </uml:UMLClassModel.attributes>
+              <uml:UMLClassModel.operations>
+                <x:Array Type="sys:Object" />
+              </uml:UMLClassModel.operations>
+            </uml:UMLClassModel>
+          </uml:UMLNodeStyle.model>
+        </uml:UMLNodeStyle>
+      </data>
+      <port name="port0">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.5,0.5" />
+        </data>
+      </port>
+    </node>
+    <node id="node36">
+      <data key="d0">0</data>
+      <data key="d5">
+        <y:RectD X="-26" Y="-645" Width="227" Height="28" />
+      </data>
+      <data key="d7">
+        <uml:UMLNodeStyle fill="#FF607D8B" highlightFill="#FFA3F1BB">
+          <uml:UMLNodeStyle.model>
+            <uml:UMLClassModel stereotype="" constraint="" className="DialogContainerForfeit" attributesOpen="true" operationsOpen="true">
+              <uml:UMLClassModel.attributes>
+                <x:Array Type="sys:Object">
+                  <sys:String>+ buttonCancel: JButton</sys:String>
+                  <sys:String>+ buttonForfeit: JButton</sys:String>
+                  <sys:String>+ infoArea: JTextArea</sys:String>
+                </x:Array>
+              </uml:UMLClassModel.attributes>
+              <uml:UMLClassModel.operations>
+                <x:Array Type="sys:Object" />
+              </uml:UMLClassModel.operations>
+            </uml:UMLClassModel>
+          </uml:UMLNodeStyle.model>
+        </uml:UMLNodeStyle>
+      </data>
+      <port name="port0">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.5,0.5" />
+        </data>
+      </port>
+    </node>
+    <node id="node19">
+      <data key="d0">0</data>
+      <data key="d5">
+        <y:RectD X="-26" Y="-203" Width="268" Height="28" />
+      </data>
+      <data key="d7">
+        <uml:UMLNodeStyle fill="#FF607D8B" highlightFill="#FFA3F1BB">
+          <uml:UMLNodeStyle.model>
+            <uml:UMLClassModel stereotype="" constraint="" className="DialogContainerGameEditor" attributesOpen="true" operationsOpen="true">
+              <uml:UMLClassModel.attributes>
+                <x:Array Type="sys:Object">
+                  <sys:String>+ comboBoxPlayerSelection: JComboBox&lt;Integer&gt;</sys:String>
+                  <sys:String>+ playerID: int</sys:String>
+                  <sys:String>+ buttonUnlockRollDiceAction: JButton</sys:String>
+                  <sys:String>+ buttonUnlockEndTurnAction: JButton</sys:String>
+                  <sys:String>+ buttonForceEndTurn: JButton</sys:String>
+                  <sys:String>+ buttonJailPlayer: JButton</sys:String>
+                  <sys:String>+ buttonGive1000: JButton</sys:String>
+                  <sys:String>+ buttonRandomlyDistributeAllProperties: JButton</sys:String>
+                  <sys:String>+ buttonDeduct1000: JButton</sys:String>
+                  <sys:String>+ buttonUnjailPlayer: JButton</sys:String>
+                  <sys:String>+ staticLabelPlayerSelection: JLabel</sys:String>
+                  <sys:String>+ buttonGiveAllProperties: JButton</sys:String>
+                </x:Array>
+              </uml:UMLClassModel.attributes>
+              <uml:UMLClassModel.operations>
+                <x:Array Type="sys:Object" />
+              </uml:UMLClassModel.operations>
+            </uml:UMLClassModel>
+          </uml:UMLNodeStyle.model>
+        </uml:UMLNodeStyle>
+      </data>
+      <port name="port0">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.5,0.5" />
+        </data>
+      </port>
+    </node>
+    <node id="node31">
+      <data key="d0">0</data>
+      <data key="d5">
+        <y:RectD X="-26" Y="-509" Width="287" Height="28" />
+      </data>
+      <data key="d7">
+        <uml:UMLNodeStyle fill="#FF607D8B" highlightFill="#FFA3F1BB">
+          <uml:UMLNodeStyle.model>
+            <uml:UMLClassModel stereotype="" constraint="" className="DialogContainerImprovements" attributesOpen="true" operationsOpen="true">
+              <uml:UMLClassModel.attributes>
+                <x:Array Type="sys:Object">
+                  <sys:String>+ buttonBuildHotel: JButton</sys:String>
+                  <sys:String>+ infoArea: JTextArea</sys:String>
+                  <sys:String>+ buttonBuildHouse: JButton</sys:String>
+                  <sys:String>+ buttonSellHouse: JButton</sys:String>
+                  <sys:String>+ buttonSellHotel: JButton</sys:String>
+                  <sys:String>+ labelPropertySelection: JLabel</sys:String>
+                </x:Array>
+              </uml:UMLClassModel.attributes>
+              <uml:UMLClassModel.operations>
+                <x:Array Type="sys:Object" />
+              </uml:UMLClassModel.operations>
+            </uml:UMLClassModel>
+          </uml:UMLNodeStyle.model>
+        </uml:UMLNodeStyle>
+      </data>
+      <port name="port0">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.5,0.5" />
+        </data>
+      </port>
+      <port name="port1">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.5,0.5" />
+        </data>
+      </port>
+      <port name="port2">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.5,0.5" />
+        </data>
+      </port>
+    </node>
+    <node id="node21">
+      <data key="d0">0</data>
+      <data key="d5">
+        <y:RectD X="-26" Y="-781" Width="202" Height="28" />
+      </data>
+      <data key="d7">
+        <uml:UMLNodeStyle fill="#FF607D8B" highlightFill="#FFA3F1BB">
+          <uml:UMLNodeStyle.model>
+            <uml:UMLClassModel stereotype="" constraint="" className="DialogContainerJail" attributesOpen="true" operationsOpen="true">
+              <uml:UMLClassModel.attributes>
+                <x:Array Type="sys:Object">
+                  <sys:String>+ buttonUseGOOJFC: JButton</sys:String>
+                  <sys:String>+ buttonRollForDoubles: JButton</sys:String>
+                  <sys:String>+ infoArea: JTextArea</sys:String>
+                  <sys:String>+ buttonPostBail: JButton</sys:String>
+                </x:Array>
+              </uml:UMLClassModel.attributes>
+              <uml:UMLClassModel.operations>
+                <x:Array Type="sys:Object" />
+              </uml:UMLClassModel.operations>
+            </uml:UMLClassModel>
+          </uml:UMLNodeStyle.model>
+        </uml:UMLNodeStyle>
+      </data>
+      <port name="port0">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.5,0.5" />
+        </data>
+      </port>
+    </node>
+    <node id="node27">
+      <data key="d0">0</data>
+      <data key="d5">
+        <y:RectD X="-26" Y="-373" Width="252" Height="28" />
+      </data>
+      <data key="d7">
+        <uml:UMLNodeStyle fill="#FF607D8B" highlightFill="#FFA3F1BB">
+          <uml:UMLNodeStyle.model>
+            <uml:UMLClassModel stereotype="" constraint="" className="DialogContainerMortgage" attributesOpen="true" operationsOpen="true">
+              <uml:UMLClassModel.attributes>
+                <x:Array Type="sys:Object">
+                  <sys:String>+ labelMortgagePayout: JLabel</sys:String>
+                  <sys:String>+ infoArea: JTextArea</sys:String>
+                  <sys:String>+ staticLabelMortgagePayout: JLabel</sys:String>
+                  <sys:String>+ staticLabelUnmortgageCost: JLabel</sys:String>
+                  <sys:String>+ labelUnmortgageCost: JLabel</sys:String>
+                  <sys:String>+ buttonMortgage: JButton</sys:String>
+                  <sys:String>+ labelPropertySelection: JLabel</sys:String>
+                  <sys:String>+ buttonUnmortgage: JButton</sys:String>
+                </x:Array>
+              </uml:UMLClassModel.attributes>
+              <uml:UMLClassModel.operations>
+                <x:Array Type="sys:Object" />
+              </uml:UMLClassModel.operations>
+            </uml:UMLClassModel>
+          </uml:UMLNodeStyle.model>
+        </uml:UMLNodeStyle>
+      </data>
+      <port name="port0">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.5,0.5" />
+        </data>
+      </port>
+      <port name="port1">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.5,0.5" />
+        </data>
+      </port>
+      <port name="port2">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.5,0.5" />
+        </data>
+      </port>
+    </node>
+    <node id="node4">
+      <data key="d0">0</data>
+      <data key="d5">
+        <y:RectD X="-26" Y="-713" Width="316" Height="28" />
+      </data>
+      <data key="d7">
+        <uml:UMLNodeStyle fill="#FF607D8B" highlightFill="#FFA3F1BB">
+          <uml:UMLNodeStyle.model>
+            <uml:UMLClassModel stereotype="" constraint="" className="DialogContainerPurchaseProperty" attributesOpen="true" operationsOpen="true">
+              <uml:UMLClassModel.attributes>
+                <x:Array Type="sys:Object">
+                  <sys:String>+ labelPropertyName: JLabel</sys:String>
+                  <sys:String>+ staticLabelPropertyName: JLabel</sys:String>
+                  <sys:String>+ staticLabelPropertyCost: JLabel</sys:String>
+                  <sys:String>+ staticLabelTimesLanded: JLabel</sys:String>
+                  <sys:String>+ staticLabelDisclaimer: JLabel</sys:String>
+                  <sys:String>+ labelPropertyCost: JLabel</sys:String>
+                  <sys:String>+ labelTimesLanded: JLabel</sys:String>
+                  <sys:String>+ staticLabelPropertyType: JLabel</sys:String>
+                  <sys:String>+ infoArea: JTextArea</sys:String>
+                  <sys:String>+ buttonPurchase: JButton</sys:String>
+                  <sys:String>+ labelPropertyType: JLabel</sys:String>
+                  <sys:String>+ buttonAuction: JButton</sys:String>
+                </x:Array>
+              </uml:UMLClassModel.attributes>
+              <uml:UMLClassModel.operations>
+                <x:Array Type="sys:Object" />
+              </uml:UMLClassModel.operations>
+            </uml:UMLClassModel>
+          </uml:UMLNodeStyle.model>
+        </uml:UMLNodeStyle>
+      </data>
+      <port name="port0">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.5,0.5" />
+        </data>
+      </port>
+      <port name="port1">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.5,0.5" />
+        </data>
+      </port>
+    </node>
+    <node id="node12">
+      <data key="d0">0</data>
+      <data key="d5">
+        <y:RectD X="-26" Y="-135" Width="260" Height="28" />
+      </data>
+      <data key="d7">
+        <uml:UMLNodeStyle fill="#FF607D8B" highlightFill="#FFA3F1BB">
+          <uml:UMLNodeStyle.model>
+            <uml:UMLClassModel stereotype="" constraint="" className="DialogContainerStartGame" attributesOpen="true" operationsOpen="true">
+              <uml:UMLClassModel.attributes>
+                <x:Array Type="sys:Object">
+                  <sys:String>+ playerCustomName1: JTextField</sys:String>
+                  <sys:String>+ playerCustomName3: JTextField</sys:String>
+                  <sys:String>+ playerCustomName4: JTextField</sys:String>
+                  <sys:String>+ staticLabelPlayer4: JLabel</sys:String>
+                  <sys:String>+ startGameButtonActionListener: StartGameButtonActionListener</sys:String>
+                  <sys:String>+ playerCustomName2: JTextField</sys:String>
+                  <sys:String>+ staticLabelPlayer3: JLabel</sys:String>
+                  <sys:String>+ comboBoxPlayerCount: JComboBox&lt;Integer&gt;</sys:String>
+                  <sys:String>+ staticLabelPlayer1: JLabel</sys:String>
+                  <sys:String>+ buttonStartGame: JButton</sys:String>
+                  <sys:String>+ staticLabelPlayer2: JLabel</sys:String>
+                  <sys:String>+ playerCount: int</sys:String>
+                  <sys:String>+ staticLabelPlayerCount: JLabel</sys:String>
+                  <sys:String>+ playerCustomNames: ArrayList&lt;String&gt;</sys:String>
+                </x:Array>
+              </uml:UMLClassModel.attributes>
+              <uml:UMLClassModel.operations>
+                <x:Array Type="sys:Object" />
+              </uml:UMLClassModel.operations>
+            </uml:UMLClassModel>
+          </uml:UMLNodeStyle.model>
+        </uml:UMLNodeStyle>
+      </data>
+      <port name="port0">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.5,0.5" />
+        </data>
+      </port>
+      <port name="port1">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.5,0.5" />
+        </data>
+      </port>
+    </node>
+    <node id="node30">
+      <data key="d0">0</data>
+      <data key="d5">
+        <y:RectD X="520" Y="74" Width="121" Height="28" />
+      </data>
+      <data key="d7">
+        <uml:UMLNodeStyle fill="#FF607D8B" highlightFill="#FFA3F1BB">
+          <uml:UMLNodeStyle.model>
+            <uml:UMLClassModel stereotype="" constraint="" className="Direction" attributesOpen="true" operationsOpen="true">
+              <uml:UMLClassModel.attributes>
+                <x:Array Type="sys:Object">
+                  <sys:String>- SOUTH:</sys:String>
+                  <sys:String>- EAST:</sys:String>
+                  <sys:String>- CORNER:</sys:String>
+                  <sys:String>- WEST:</sys:String>
+                  <sys:String>- NORTH:</sys:String>
+                </x:Array>
+              </uml:UMLClassModel.attributes>
+              <uml:UMLClassModel.operations>
+                <x:Array Type="sys:Object" />
+              </uml:UMLClassModel.operations>
+            </uml:UMLClassModel>
+          </uml:UMLNodeStyle.model>
+        </uml:UMLNodeStyle>
+      </data>
+      <port name="port0">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.5,0.5" />
+        </data>
+      </port>
+    </node>
+    <node id="node20">
+      <data key="d0">0</data>
+      <data key="d5">
+        <y:RectD X="-242" Y="74" Width="155" Height="28" />
+      </data>
+      <data key="d7">
+        <uml:UMLNodeStyle fill="#FF607D8B" highlightFill="#FFA3F1BB">
+          <uml:UMLNodeStyle.model>
+            <uml:UMLClassModel stereotype="" constraint="" className="DynamicView" attributesOpen="true" operationsOpen="true">
+              <uml:UMLClassModel.attributes>
+                <x:Array Type="sys:Object">
+                  <sys:String>+ controller: GameLogicController</sys:String>
+                  <sys:String>+ dialogContainerPurchaseProperty: DialogContainerPurchaseProperty</sys:String>
+                  <sys:String>+ dialogContainerDebugLog: DialogContainerDebugLog</sys:String>
+                  <sys:String>+ viewFrameInformation: ViewFrameInformation</sys:String>
+                  <sys:String>+ dialogForfeit: JDialog</sys:String>
+                  <sys:String>+ macroController: MacroController</sys:String>
+                  <sys:String>+ viewFrameBoard: ViewFrameBoard</sys:String>
+                  <sys:String>+ menuEdit: JMenu</sys:String>
+                  <sys:String>+ playerCount: int</sys:String>
+                  <sys:String>+ dialogContainerStartGame: DialogContainerStartGame</sys:String>
+                  <sys:String>+ playerCustomNames: ArrayList&lt;String&gt;</sys:String>
+                  <sys:String>+ menuBar: JMenuBar</sys:String>
+                  <sys:String>+ menuMacros: JMenu</sys:String>
+                  <sys:String>+ dialogMortgage: JDialog</sys:String>
+                  <sys:String>+ board: Board</sys:String>
+                  <sys:String>+ currentPlayer: Player</sys:String>
+                  <sys:String>+ menuFile: JMenu</sys:String>
+                  <sys:String>+ dialogPurchaseProperty: JDialog</sys:String>
+                  <sys:String>+ dialogGameEditor: JDialog</sys:String>
+                  <sys:String>+ currentSpaceButtonSelection: int</sys:String>
+                  <sys:String>+ dialogContainerForfeit: DialogContainerForfeit</sys:String>
+                  <sys:String>+ dialogAbout: JDialog</sys:String>
+                  <sys:String>+ partyModeTimer: Timer</sys:String>
+                  <sys:String>+ dialogContainerMortgage: DialogContainerMortgage</sys:String>
+                  <sys:String>+ dialogContainerJail: DialogContainerJail</sys:String>
+                  <sys:String>+ dialogDebugLog: JDialog</sys:String>
+                  <sys:String>+ dialogJail: JDialog</sys:String>
+                  <sys:String>+ dialogContainerGameEditor: DialogContainerGameEditor</sys:String>
+                  <sys:String>+ switchboard: GameLogicSwitchboard</sys:String>
+                  <sys:String>+ viewFrameControl: ViewFrameControl</sys:String>
+                  <sys:String>+ mainFrame: JFrame</sys:String>
+                  <sys:String>+ gameEditorController: GameEditorController</sys:String>
+                  <sys:String>+ buttonActionListeners: ArrayList&lt;ButtonActionListener&gt;</sys:String>
+                  <sys:String>+ logHelper: LogHelper</sys:String>
+                  <sys:String>+ spaceButtons: ArrayList&lt;SpaceButton&gt;</sys:String>
+                  <sys:String>+ dialogStartGame: JDialog</sys:String>
+                  <sys:String>+ menuView: JMenu</sys:String>
+                  <sys:String>+ dialogImprovements: JDialog</sys:String>
+                  <sys:String>+ dialogContainerImprovements: DialogContainerImprovements</sys:String>
+                </x:Array>
+              </uml:UMLClassModel.attributes>
+              <uml:UMLClassModel.operations>
+                <x:Array Type="sys:Object" />
+              </uml:UMLClassModel.operations>
+            </uml:UMLClassModel>
+          </uml:UMLNodeStyle.model>
+        </uml:UMLNodeStyle>
+      </data>
+      <port name="port0">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.5,0.5" />
+        </data>
+      </port>
+      <port name="port1">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.5,0.5" />
+        </data>
+      </port>
+      <port name="port2">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.5,0.5" />
+        </data>
+      </port>
+      <port name="port3">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.5,0.5" />
+        </data>
+      </port>
+      <port name="port4">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.5,0.5" />
+        </data>
+      </port>
+    </node>
+    <node id="node28">
+      <data key="d0">0</data>
+      <data key="d5">
+        <y:RectD X="-47" Y="6" Width="255" Height="28" />
+      </data>
+      <data key="d7">
+        <uml:UMLNodeStyle fill="#FF607D8B" highlightFill="#FFA3F1BB">
+          <uml:UMLNodeStyle.model>
+            <uml:UMLClassModel stereotype="" constraint="" className="GameEditorActionListener" attributesOpen="true" operationsOpen="true">
+              <uml:UMLClassModel.attributes>
+                <x:Array Type="sys:Object">
+                  <sys:String>+ action: GameEditorActions</sys:String>
+                  <sys:String>+ player: Player</sys:String>
+                </x:Array>
+              </uml:UMLClassModel.attributes>
+              <uml:UMLClassModel.operations>
+                <x:Array Type="sys:Object" />
+              </uml:UMLClassModel.operations>
+            </uml:UMLClassModel>
+          </uml:UMLNodeStyle.model>
+        </uml:UMLNodeStyle>
+      </data>
+      <port name="port0">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.5,0.5" />
+        </data>
+      </port>
+    </node>
+    <node id="node26">
+      <data key="d0">0</data>
+      <data key="d5">
+        <y:RectD X="301" Y="-543" Width="274" Height="28" />
+      </data>
+      <data key="d7">
+        <uml:UMLNodeStyle fill="#FF607D8B" highlightFill="#FFA3F1BB">
+          <uml:UMLNodeStyle.model>
+            <uml:UMLClassModel stereotype="" constraint="" className="ImprovementEligibilityStatus" attributesOpen="true" operationsOpen="true">
+              <uml:UMLClassModel.attributes>
+                <x:Array Type="sys:Object">
+                  <sys:String>- CAN_IMPROVE:</sys:String>
+                  <sys:String>- CANT_BUILD_FULL_SET_NOT_OWNED:</sys:String>
+                  <sys:String>- CANT_BUILD_NOT_A_COLOR_PROPERTY:</sys:String>
+                  <sys:String>- CANT_BUILD_DO_NOT_OWN_PROPERTY:</sys:String>
+                  <sys:String>- CANT_IMPROVE_UNKNOWN:</sys:String>
+                </x:Array>
+              </uml:UMLClassModel.attributes>
+              <uml:UMLClassModel.operations>
+                <x:Array Type="sys:Object" />
+              </uml:UMLClassModel.operations>
+            </uml:UMLClassModel>
+          </uml:UMLNodeStyle.model>
+        </uml:UMLNodeStyle>
+      </data>
+      <port name="port0">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.5,0.5" />
+        </data>
+      </port>
+    </node>
+    <node id="node18">
+      <data key="d0">0</data>
+      <data key="d5">
+        <y:RectD X="561" Y="-475" Width="220" Height="28" />
+      </data>
+      <data key="d7">
+        <uml:UMLNodeStyle fill="#FF607D8B" highlightFill="#FFA3F1BB">
+          <uml:UMLNodeStyle.model>
+            <uml:UMLClassModel stereotype="" constraint="" className="ImprovementsActions" attributesOpen="true" operationsOpen="true">
+              <uml:UMLClassModel.attributes>
+                <x:Array Type="sys:Object">
+                  <sys:String>~ SELL_HOUSE:</sys:String>
+                  <sys:String>~ SELL_HOTEL:</sys:String>
+                  <sys:String>~ BUILD_HOTEL:</sys:String>
+                  <sys:String>~ BUILD_HOUSE:</sys:String>
+                </x:Array>
+              </uml:UMLClassModel.attributes>
+              <uml:UMLClassModel.operations>
+                <x:Array Type="sys:Object" />
+              </uml:UMLClassModel.operations>
+            </uml:UMLClassModel>
+          </uml:UMLNodeStyle.model>
+        </uml:UMLNodeStyle>
+      </data>
+      <port name="port0">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.5,0.5" />
+        </data>
+      </port>
+    </node>
+    <node id="node39">
+      <data key="d0">0</data>
+      <data key="d5">
+        <y:RectD X="834" Y="-713" Width="172" Height="28" />
+      </data>
+      <data key="d7">
+        <uml:UMLNodeStyle fill="#FF607D8B" highlightFill="#FFA3F1BB">
+          <uml:UMLNodeStyle.model>
+            <uml:UMLClassModel stereotype="" constraint="" className="LabelAlignment" attributesOpen="true" operationsOpen="true">
+              <uml:UMLClassModel.attributes>
+                <x:Array Type="sys:Object">
+                  <sys:String>- RIGHT:</sys:String>
+                  <sys:String>- CENTER:</sys:String>
+                  <sys:String>- LEFT:</sys:String>
+                </x:Array>
+              </uml:UMLClassModel.attributes>
+              <uml:UMLClassModel.operations>
+                <x:Array Type="sys:Object" />
+              </uml:UMLClassModel.operations>
+            </uml:UMLClassModel>
+          </uml:UMLNodeStyle.model>
+        </uml:UMLNodeStyle>
+      </data>
+      <port name="port0">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.5,0.5" />
+        </data>
+      </port>
+    </node>
+    <node id="node11">
+      <data key="d0">0</data>
+      <data key="d5">
+        <y:RectD X="-242" Y="283" Width="141" Height="28" />
+      </data>
+      <data key="d7">
+        <uml:UMLNodeStyle fill="#FF607D8B" highlightFill="#FFA3F1BB">
+          <uml:UMLNodeStyle.model>
+            <uml:UMLClassModel stereotype="" constraint="" className="LabelStyles" attributesOpen="true" operationsOpen="true">
+              <uml:UMLClassModel.attributes>
+                <x:Array Type="sys:Object">
+                  <sys:String>+ REGULAR:</sys:String>
+                  <sys:String>+ TITLE_NO_CONTENT:</sys:String>
+                  <sys:String>+ NO_CONTENT:</sys:String>
+                  <sys:String>+ TITLE_BOLD:</sys:String>
+                  <sys:String>+ TITLE_REGULAR:</sys:String>
+                </x:Array>
+              </uml:UMLClassModel.attributes>
+              <uml:UMLClassModel.operations>
+                <x:Array Type="sys:Object" />
+              </uml:UMLClassModel.operations>
+            </uml:UMLClassModel>
+          </uml:UMLNodeStyle.model>
+        </uml:UMLNodeStyle>
+      </data>
+      <port name="port0">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.5,0.5" />
+        </data>
+      </port>
+    </node>
+    <node id="node17">
+      <data key="d0">0</data>
+      <data key="d5">
+        <y:RectD X="274" Y="-135" Width="206" Height="28" />
+      </data>
+      <data key="d7">
+        <uml:UMLNodeStyle fill="#FF607D8B" highlightFill="#FFA3F1BB">
+          <uml:UMLNodeStyle.model>
+            <uml:UMLClassModel stereotype="" constraint="" className="LocalActionListener" attributesOpen="true" operationsOpen="true">
+              <uml:UMLClassModel.attributes>
+                <x:Array Type="sys:Object" />
+              </uml:UMLClassModel.attributes>
+              <uml:UMLClassModel.operations>
+                <x:Array Type="sys:Object" />
+              </uml:UMLClassModel.operations>
+            </uml:UMLClassModel>
+          </uml:UMLNodeStyle.model>
+        </uml:UMLNodeStyle>
+      </data>
+      <port name="port0">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.5,0.5" />
+        </data>
+      </port>
+    </node>
+    <node id="node25">
+      <data key="d0">0</data>
+      <data key="d5">
+        <y:RectD X="-47" Y="210" Width="207" Height="28" />
+      </data>
+      <data key="d7">
+        <uml:UMLNodeStyle fill="#FF607D8B" highlightFill="#FFA3F1BB">
+          <uml:UMLNodeStyle.model>
+            <uml:UMLClassModel stereotype="" constraint="" className="MenuActionListener" attributesOpen="true" operationsOpen="true">
+              <uml:UMLClassModel.attributes>
+                <x:Array Type="sys:Object">
+                  <sys:String>- action: MenuActions</sys:String>
+                </x:Array>
+              </uml:UMLClassModel.attributes>
+              <uml:UMLClassModel.operations>
+                <x:Array Type="sys:Object" />
+              </uml:UMLClassModel.operations>
+            </uml:UMLClassModel>
+          </uml:UMLNodeStyle.model>
+        </uml:UMLNodeStyle>
+      </data>
+      <port name="port0">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.5,0.5" />
+        </data>
+      </port>
+    </node>
+    <node id="node2">
+      <data key="d0">0</data>
+      <data key="d5">
+        <y:RectD X="53" Y="356" Width="153" Height="28" />
+      </data>
+      <data key="d7">
+        <uml:UMLNodeStyle fill="#FF607D8B" highlightFill="#FFA3F1BB">
+          <uml:UMLNodeStyle.model>
+            <uml:UMLClassModel stereotype="" constraint="" className="MenuActions" attributesOpen="true" operationsOpen="true">
+              <uml:UMLClassModel.attributes>
+                <x:Array Type="sys:Object">
+                  <sys:String>+ VIEW_DEBUG_LOG:</sys:String>
+                  <sys:String>+ FILE_SAVE_GAME:</sys:String>
+                  <sys:String>+ FILE_QUIT:</sys:String>
+                  <sys:String>+ FILE_NEW_GAME:</sys:String>
+                  <sys:String>+ EDIT_GAME_EDITOR:</sys:String>
+                  <sys:String>+ FILE_LOAD_GAME:</sys:String>
+                  <sys:String>+ VIEW_ABOUT:</sys:String>
+                </x:Array>
+              </uml:UMLClassModel.attributes>
+              <uml:UMLClassModel.operations>
+                <x:Array Type="sys:Object" />
+              </uml:UMLClassModel.operations>
+            </uml:UMLClassModel>
+          </uml:UMLNodeStyle.model>
+        </uml:UMLNodeStyle>
+      </data>
+    </node>
+    <node id="node33">
+      <data key="d0">0</data>
+      <data key="d5">
+        <y:RectD X="488" Y="-407" Width="181" Height="28" />
+      </data>
+      <data key="d7">
+        <uml:UMLNodeStyle fill="#FF607D8B" highlightFill="#FFA3F1BB">
+          <uml:UMLNodeStyle.model>
+            <uml:UMLClassModel stereotype="" constraint="" className="MortgageActions" attributesOpen="true" operationsOpen="true">
+              <uml:UMLClassModel.attributes>
+                <x:Array Type="sys:Object">
+                  <sys:String>~ MORTGAGE:</sys:String>
+                  <sys:String>~ UNMORTGAGE:</sys:String>
+                </x:Array>
+              </uml:UMLClassModel.attributes>
+              <uml:UMLClassModel.operations>
+                <x:Array Type="sys:Object" />
+              </uml:UMLClassModel.operations>
+            </uml:UMLClassModel>
+          </uml:UMLNodeStyle.model>
+        </uml:UMLNodeStyle>
+      </data>
+      <port name="port0">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.5,0.5" />
+        </data>
+      </port>
+    </node>
+    <node id="node8">
+      <data key="d0">0</data>
+      <data key="d5">
+        <y:RectD X="266" Y="-339" Width="244" Height="28" />
+      </data>
+      <data key="d7">
+        <uml:UMLNodeStyle fill="#FF607D8B" highlightFill="#FFA3F1BB">
+          <uml:UMLNodeStyle.model>
+            <uml:UMLClassModel stereotype="" constraint="" className="MortgageEligibilityStatus" attributesOpen="true" operationsOpen="true">
+              <uml:UMLClassModel.attributes>
+                <x:Array Type="sys:Object">
+                  <sys:String>- CANT_MORTGAGE_NOT_OWNED:</sys:String>
+                  <sys:String>- CANT_MORTGAGE_NOT_PROPERTY:</sys:String>
+                  <sys:String>- CAN_MORTGAGE:</sys:String>
+                  <sys:String>- CANT_MORTGAGE_ALREADY_MORTGAGED:</sys:String>
+                </x:Array>
+              </uml:UMLClassModel.attributes>
+              <uml:UMLClassModel.operations>
+                <x:Array Type="sys:Object" />
+              </uml:UMLClassModel.operations>
+            </uml:UMLClassModel>
+          </uml:UMLNodeStyle.model>
+        </uml:UMLNodeStyle>
+      </data>
+      <port name="port0">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.5,0.5" />
+        </data>
+      </port>
+    </node>
+    <node id="node34">
+      <data key="d0">0</data>
+      <data key="d5">
+        <y:RectD X="520" Y="-62" Width="151" Height="28" />
+      </data>
+      <data key="d7">
+        <uml:UMLNodeStyle fill="#FF607D8B" highlightFill="#FFA3F1BB">
+          <uml:UMLNodeStyle.model>
+            <uml:UMLClassModel stereotype="" constraint="" className="SpaceButton" attributesOpen="true" operationsOpen="true">
+              <uml:UMLClassModel.attributes>
+                <x:Array Type="sys:Object">
+                  <sys:String>+ animatedIcon: ImageIcon</sys:String>
+                  <sys:String>+ animatedIconMortgaged: ImageIcon</sys:String>
+                  <sys:String>+ id: int</sys:String>
+                  <sys:String>+ isAnimated: boolean</sys:String>
+                  <sys:String>+ button: JButton</sys:String>
+                  <sys:String>+ direction: Direction</sys:String>
+                </x:Array>
+              </uml:UMLClassModel.attributes>
+              <uml:UMLClassModel.operations>
+                <x:Array Type="sys:Object" />
+              </uml:UMLClassModel.operations>
+            </uml:UMLClassModel>
+          </uml:UMLNodeStyle.model>
+        </uml:UMLNodeStyle>
+      </data>
+      <port name="port0">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.5,0.5" />
+        </data>
+      </port>
+    </node>
+    <node id="node32">
+      <data key="d0">0</data>
+      <data key="d5">
+        <y:RectD X="-47" Y="74" Width="264" Height="28" />
+      </data>
+      <data key="d7">
+        <uml:UMLNodeStyle fill="#FF607D8B" highlightFill="#FFA3F1BB">
+          <uml:UMLNodeStyle.model>
+            <uml:UMLClassModel stereotype="" constraint="" className="SpaceButtonActionListener" attributesOpen="true" operationsOpen="true">
+              <uml:UMLClassModel.attributes>
+                <x:Array Type="sys:Object">
+                  <sys:String>+ id: int</sys:String>
+                </x:Array>
+              </uml:UMLClassModel.attributes>
+              <uml:UMLClassModel.operations>
+                <x:Array Type="sys:Object" />
+              </uml:UMLClassModel.operations>
+            </uml:UMLClassModel>
+          </uml:UMLNodeStyle.model>
+        </uml:UMLNodeStyle>
+      </data>
+      <port name="port0">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.5,0.5" />
+        </data>
+      </port>
+    </node>
+    <node id="node0">
+      <data key="d0">0</data>
+      <data key="d5">
+        <y:RectD X="-47" Y="-62" Width="299" Height="28" />
+      </data>
+      <data key="d7">
+        <uml:UMLNodeStyle fill="#FF607D8B" highlightFill="#FFA3F1BB">
+          <uml:UMLNodeStyle.model>
+            <uml:UMLClassModel stereotype="" constraint="" className="StartGameButtonActionListener" attributesOpen="true" operationsOpen="true">
+              <uml:UMLClassModel.attributes>
+                <x:Array Type="sys:Object" />
+              </uml:UMLClassModel.attributes>
+              <uml:UMLClassModel.operations>
+                <x:Array Type="sys:Object" />
+              </uml:UMLClassModel.operations>
+            </uml:UMLClassModel>
+          </uml:UMLNodeStyle.model>
+        </uml:UMLNodeStyle>
+      </data>
+      <port name="port0">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.5,0.5" />
+        </data>
+      </port>
+    </node>
+    <node id="node24">
+      <data key="d0">0</data>
+      <data key="d5">
+        <y:RectD X="-61" Y="283" Width="150" Height="28" />
+      </data>
+      <data key="d7">
+        <uml:UMLNodeStyle fill="#FF607D8B" highlightFill="#FFA3F1BB">
+          <uml:UMLNodeStyle.model>
+            <uml:UMLClassModel stereotype="" constraint="" className="SwingHelper" attributesOpen="true" operationsOpen="true">
+              <uml:UMLClassModel.attributes>
+                <x:Array Type="sys:Object">
+                  <sys:String>+ titleFont: Font</sys:String>
+                  <sys:String>+ frameBoard: JInternalFrame</sys:String>
+                  <sys:String>+ highlightYellowShade: Color</sys:String>
+                </x:Array>
+              </uml:UMLClassModel.attributes>
+              <uml:UMLClassModel.operations>
+                <x:Array Type="sys:Object" />
+              </uml:UMLClassModel.operations>
+            </uml:UMLClassModel>
+          </uml:UMLNodeStyle.model>
+        </uml:UMLNodeStyle>
+      </data>
+      <port name="port0">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.5,0.5" />
+        </data>
+      </port>
+    </node>
+    <node id="node10">
+      <data key="d0">0</data>
+      <data key="d5">
+        <y:RectD X="134" Y="283" Width="304" Height="28" />
+      </data>
+      <data key="d7">
+        <uml:UMLNodeStyle fill="#FF607D8B" highlightFill="#FFA3F1BB">
+          <uml:UMLNodeStyle.model>
+            <uml:UMLClassModel stereotype="" constraint="" className="TemplateDialogButtonProperties" attributesOpen="true" operationsOpen="true">
+              <uml:UMLClassModel.attributes>
+                <x:Array Type="sys:Object">
+                  <sys:String>+ customMigLayoutSpec: String</sys:String>
+                </x:Array>
+              </uml:UMLClassModel.attributes>
+              <uml:UMLClassModel.operations>
+                <x:Array Type="sys:Object" />
+              </uml:UMLClassModel.operations>
+            </uml:UMLClassModel>
+          </uml:UMLNodeStyle.model>
+        </uml:UMLNodeStyle>
+      </data>
+    </node>
+    <node id="node6">
+      <data key="d0">0</data>
+      <data key="d5">
+        <y:RectD X="-242" Y="356" Width="250" Height="28" />
+      </data>
+      <data key="d7">
+        <uml:UMLNodeStyle fill="#FF607D8B" highlightFill="#FFA3F1BB">
+          <uml:UMLNodeStyle.model>
+            <uml:UMLClassModel stereotype="" constraint="" className="TemplateDialogGenerator" attributesOpen="true" operationsOpen="true">
+              <uml:UMLClassModel.attributes>
+                <x:Array Type="sys:Object">
+                  <sys:String>+ dialogTitle: String</sys:String>
+                  <sys:String>+ dialogButtonList: ArrayList&lt;JButton&gt;</sys:String>
+                  <sys:String>+ dialogIcon: Icon</sys:String>
+                  <sys:String>+ infoArea: JTextArea</sys:String>
+                  <sys:String>+ dialogButtonContentList: ArrayList&lt;TemplateDialogButtonProperties&gt;</sys:String>
+                  <sys:String>+ userPrompt: JDialog</sys:String>
+                </x:Array>
+              </uml:UMLClassModel.attributes>
+              <uml:UMLClassModel.operations>
+                <x:Array Type="sys:Object" />
+              </uml:UMLClassModel.operations>
+            </uml:UMLClassModel>
+          </uml:UMLNodeStyle.model>
+        </uml:UMLNodeStyle>
+      </data>
+    </node>
+    <node id="node15">
+      <data key="d0">0</data>
+      <data key="d5">
+        <y:RectD X="549" Y="-713" Width="245" Height="28" />
+      </data>
+      <data key="d7">
+        <uml:UMLNodeStyle fill="#FF607D8B" highlightFill="#FFA3F1BB">
+          <uml:UMLNodeStyle.model>
+            <uml:UMLClassModel stereotype="" constraint="" className="ViewAreaSpaceSelection" attributesOpen="true" operationsOpen="true">
+              <uml:UMLClassModel.attributes>
+                <x:Array Type="sys:Object">
+                  <sys:String>+ labelRent: JLabel</sys:String>
+                  <sys:String>+ staticLabelIsMortgaged: JLabel</sys:String>
+                  <sys:String>+ staticLabelRentHouse2: JLabel</sys:String>
+                  <sys:String>+ leftArea: JPanel</sys:String>
+                  <sys:String>+ staticLabelRent: JLabel</sys:String>
+                  <sys:String>+ staticLabelRentHouse4: JLabel</sys:String>
+                  <sys:String>+ staticLabelCurrentRent: JLabel</sys:String>
+                  <sys:String>+ staticLabelRentHouse3: JLabel</sys:String>
+                  <sys:String>+ staticLabelRentHotel: JLabel</sys:String>
+                  <sys:String>+ labelIsMortgaged: JLabel</sys:String>
+                  <sys:String>+ labelRentHotel: JLabel</sys:String>
+                  <sys:String>+ staticLabelRentHouse1: JLabel</sys:String>
+                  <sys:String>+ rightArea: JPanel</sys:String>
+                  <sys:String>+ staticLabelID: JLabel</sys:String>
+                  <sys:String>+ labelName: JLabel</sys:String>
+                  <sys:String>+ labelRentHouse1: JLabel</sys:String>
+                  <sys:String>+ labelPrice: JLabel</sys:String>
+                  <sys:String>+ selectionInfoArea: JPanel</sys:String>
+                  <sys:String>+ staticLabelSpaceType: JLabel</sys:String>
+                  <sys:String>+ labelRentHouse3: JLabel</sys:String>
+                  <sys:String>+ staticLabelLanded: JLabel</sys:String>
+                  <sys:String>+ labelRentHouse2: JLabel</sys:String>
+                  <sys:String>+ labelSpaceType: JLabel</sys:String>
+                  <sys:String>+ labelLanded: JLabel</sys:String>
+                  <sys:String>+ labelRentHouse4: JLabel</sys:String>
+                  <sys:String>+ labelCurrentRent: JLabel</sys:String>
+                  <sys:String>+ staticLabelName: JLabel</sys:String>
+                  <sys:String>+ staticLabelOwnedBy: JLabel</sys:String>
+                  <sys:String>+ labelID: JLabel</sys:String>
+                  <sys:String>+ staticLabelPrice: JLabel</sys:String>
+                  <sys:String>+ labelOwnedBy: JLabel</sys:String>
+                </x:Array>
+              </uml:UMLClassModel.attributes>
+              <uml:UMLClassModel.operations>
+                <x:Array Type="sys:Object" />
+              </uml:UMLClassModel.operations>
+            </uml:UMLClassModel>
+          </uml:UMLNodeStyle.model>
+        </uml:UMLNodeStyle>
+      </data>
+      <port name="port0">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.5,0.5" />
+        </data>
+      </port>
+      <port name="port1">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.5,0.5" />
+        </data>
+      </port>
+    </node>
+    <node id="node3">
+      <data key="d0">0</data>
+      <data key="d5">
+        <y:RectD X="330" Y="-713" Width="179" Height="28" />
+      </data>
+      <data key="d7">
+        <uml:UMLNodeStyle fill="#4CAF50" highlightFill="#FFA3F1BB">
+          <uml:UMLNodeStyle.model>
+            <uml:UMLClassModel stereotype="interface" constraint="" className="ViewComponent" attributesOpen="true" operationsOpen="true">
+              <uml:UMLClassModel.attributes>
+                <x:Array Type="sys:Object" />
+              </uml:UMLClassModel.attributes>
+              <uml:UMLClassModel.operations>
+                <x:Array Type="sys:Object" />
+              </uml:UMLClassModel.operations>
+            </uml:UMLClassModel>
+          </uml:UMLNodeStyle.model>
+        </uml:UMLNodeStyle>
+      </data>
+      <port name="port0">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.5,0.5" />
+        </data>
+      </port>
+      <port name="port1">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.5,0.5" />
+        </data>
+      </port>
+      <port name="port2">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.5,0.5" />
+        </data>
+      </port>
+      <port name="port3">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.5,0.5" />
+        </data>
+      </port>
+    </node>
+    <node id="node35">
+      <data key="d0">0</data>
+      <data key="d5">
+        <y:RectD X="297" Y="40" Width="183" Height="28" />
+      </data>
+      <data key="d7">
+        <uml:UMLNodeStyle fill="#FF607D8B" highlightFill="#FFA3F1BB">
+          <uml:UMLNodeStyle.model>
+            <uml:UMLClassModel stereotype="" constraint="" className="ViewFrameBoard" attributesOpen="true" operationsOpen="true">
+              <uml:UMLClassModel.attributes>
+                <x:Array Type="sys:Object">
+                  <sys:String>+ viewAreaSpaceSelection: ViewAreaSpaceSelection</sys:String>
+                  <sys:String>+ logHelper: LogHelper</sys:String>
+                  <sys:String>+ improvementIconsNorth: ArrayList&lt;ImageIcon&gt;</sys:String>
+                  <sys:String>+ improvementIconsSouth: ArrayList&lt;ImageIcon&gt;</sys:String>
+                  <sys:String>+ gameLogTextArea: JTextArea</sys:String>
+                  <sys:String>+ spaceButtons: ArrayList&lt;SpaceButton&gt;</sys:String>
+                  <sys:String>+ improvementIconsEast: ArrayList&lt;ImageIcon&gt;</sys:String>
+                  <sys:String>+ indicatorPlayer3: JLabel</sys:String>
+                  <sys:String>+ indicatorPlayer1: JLabel</sys:String>
+                  <sys:String>+ improvementIconsWest: ArrayList&lt;ImageIcon&gt;</sys:String>
+                  <sys:String>+ gameLogScrollPane: JScrollPane</sys:String>
+                  <sys:String>+ indicatorPlayer4: JLabel</sys:String>
+                  <sys:String>+ playerIndicators: ArrayList&lt;JLabel&gt;</sys:String>
+                  <sys:String>+ frame: JInternalFrame</sys:String>
+                  <sys:String>+ indicatorPlayer2: JLabel</sys:String>
+                </x:Array>
+              </uml:UMLClassModel.attributes>
+              <uml:UMLClassModel.operations>
+                <x:Array Type="sys:Object" />
+              </uml:UMLClassModel.operations>
+            </uml:UMLClassModel>
+          </uml:UMLNodeStyle.model>
+        </uml:UMLNodeStyle>
+      </data>
+      <port name="port0">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.5,0.5" />
+        </data>
+      </port>
+      <port name="port1">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.5,0.5" />
+        </data>
+      </port>
+      <port name="port2">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.5,0.5" />
+        </data>
+      </port>
+      <port name="port3">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.5,0.5" />
+        </data>
+      </port>
+    </node>
+    <node id="node23">
+      <data key="d0">0</data>
+      <data key="d5">
+        <y:RectD X="549" Y="-645" Width="194" Height="28" />
+      </data>
+      <data key="d7">
+        <uml:UMLNodeStyle fill="#FF607D8B" highlightFill="#FFA3F1BB">
+          <uml:UMLNodeStyle.model>
+            <uml:UMLClassModel stereotype="" constraint="" className="ViewFrameControl" attributesOpen="true" operationsOpen="true">
+              <uml:UMLClassModel.attributes>
+                <x:Array Type="sys:Object">
+                  <sys:String>+ staticLabelCurrentPlayer: JLabel</sys:String>
+                  <sys:String>+ labelCurrentBalance: JLabel</sys:String>
+                  <sys:String>+ labelDie2: JLabel</sys:String>
+                  <sys:String>+ staticLabelCurrentPosition: JLabel</sys:String>
+                  <sys:String>+ buttonRollDice: TemplateDialogButtonProperties</sys:String>
+                  <sys:String>+ buttonControlsForfeit: TemplateDialogButtonProperties</sys:String>
+                  <sys:String>+ staticLabelCurrentBalance: JLabel</sys:String>
+                  <sys:String>+ DicePips: ArrayList&lt;ImageIcon&gt;</sys:String>
+                  <sys:String>+ buttonControlsShowProperties: TemplateDialogButtonProperties</sys:String>
+                  <sys:String>+ frame: JInternalFrame</sys:String>
+                  <sys:String>+ buttonControlsTrade: TemplateDialogButtonProperties</sys:String>
+                  <sys:String>+ buttonControlsImprovements: TemplateDialogButtonProperties</sys:String>
+                  <sys:String>+ labelCurrentPlayer: JLabel</sys:String>
+                  <sys:String>+ buttonControlsMortgage: TemplateDialogButtonProperties</sys:String>
+                  <sys:String>+ labelCurrentPosition: JLabel</sys:String>
+                  <sys:String>+ buttonEndTurn: TemplateDialogButtonProperties</sys:String>
+                  <sys:String>+ buttonControlsStatistics: TemplateDialogButtonProperties</sys:String>
+                  <sys:String>+ labelDie1: JLabel</sys:String>
+                </x:Array>
+              </uml:UMLClassModel.attributes>
+              <uml:UMLClassModel.operations>
+                <x:Array Type="sys:Object" />
+              </uml:UMLClassModel.operations>
+            </uml:UMLClassModel>
+          </uml:UMLNodeStyle.model>
+        </uml:UMLNodeStyle>
+      </data>
+      <port name="port0">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.5,0.5" />
+        </data>
+      </port>
+    </node>
+    <node id="node9">
+      <data key="d0">0</data>
+      <data key="d5">
+        <y:RectD X="549" Y="-781" Width="226" Height="28" />
+      </data>
+      <data key="d7">
+        <uml:UMLNodeStyle fill="#FF607D8B" highlightFill="#FFA3F1BB">
+          <uml:UMLNodeStyle.model>
+            <uml:UMLClassModel stereotype="" constraint="" className="ViewFrameInformation" attributesOpen="true" operationsOpen="true">
+              <uml:UMLClassModel.attributes>
+                <x:Array Type="sys:Object">
+                  <sys:String>+ panelPlayer4: JPanel</sys:String>
+                  <sys:String>+ panelPlayer3: JPanel</sys:String>
+                  <sys:String>+ modulePlayer3: ViewFrameInformationModule</sys:String>
+                  <sys:String>+ modulePlayer2: ViewFrameInformationModule</sys:String>
+                  <sys:String>+ panelPlayer2: JPanel</sys:String>
+                  <sys:String>+ modulePlayer1: ViewFrameInformationModule</sys:String>
+                  <sys:String>+ panelPlayer1: JPanel</sys:String>
+                  <sys:String>+ board: Board</sys:String>
+                  <sys:String>+ frame: JInternalFrame</sys:String>
+                  <sys:String>+ modulePlayer4: ViewFrameInformationModule</sys:String>
+                </x:Array>
+              </uml:UMLClassModel.attributes>
+              <uml:UMLClassModel.operations>
+                <x:Array Type="sys:Object" />
+              </uml:UMLClassModel.operations>
+            </uml:UMLClassModel>
+          </uml:UMLNodeStyle.model>
+        </uml:UMLNodeStyle>
+      </data>
+      <port name="port0">
+        <data key="d16">
+          <y:FreeNodePortLocationModelParameter Ratio="0.5,0.5" />
+        </data>
+      </port>
+    </node>
+    <node id="node13">
+      <data key="d0">0</data>
+      <data key="d5">
+        <y:RectD X="483" Y="283" Width="283" Height="28" />
+      </data>
+      <data key="d7">
+        <uml:UMLNodeStyle fill="#FF607D8B" highlightFill="#FFA3F1BB">
+          <uml:UMLNodeStyle.model>
+            <uml:UMLClassModel stereotype="" constraint="" className="ViewFrameInformationModule" attributesOpen="true" operationsOpen="true">
+              <uml:UMLClassModel.attributes>
+                <x:Array Type="sys:Object">
+                  <sys:String>+ labelStatusBankrupt: JLabel</sys:String>
+                  <sys:String>+ labelPosition: JLabel</sys:String>
+                  <sys:String>+ labelOwnedColorLightBlue: JLabel</sys:String>
+                  <sys:String>+ labelOwnedColorBrown: JLabel</sys:String>
+                  <sys:String>+ staticLabelOwnedPropertyCount: JLabel</sys:String>
+                  <sys:String>+ labelOwnedRailroad: JLabel</sys:String>
+                  <sys:String>+ compositePanel: JPanel</sys:String>
+                  <sys:String>+ labelOwnedColorGreen: JLabel</sys:String>
+                  <sys:String>+ labelOwnedPropertyCount: JLabel</sys:String>
+                  <sys:String>+ staticLabelBalance: JLabel</sys:String>
+                  <sys:String>+ labelOwnedColorOrange: JLabel</sys:String>
+                  <sys:String>+ labelStatusJailed: JLabel</sys:String>
+                  <sys:String>+ labelName: JLabel</sys:String>
+                  <sys:String>+ labelBalance: JLabel</sys:String>
+                  <sys:String>+ labelOwnedColorYellow: JLabel</sys:String>
+                  <sys:String>+ staticLabelGOOJFCCount: JLabel</sys:String>
+                  <sys:String>+ panelPlayerStatus: JPanel</sys:String>
+                  <sys:String>+ player: Player</sys:String>
+                  <sys:String>+ ownedPropertyGroupLabels: Map&lt;ColorGroupKeys, JLabel&gt;</sys:String>
+                  <sys:String>+ labelOwnedHouses: JLabel</sys:String>
+                  <sys:String>+ labelStatusTurn: JLabel</sys:String>
+                  <sys:String>+ labelOwnedColorMagenta: JLabel</sys:String>
+                  <sys:String>+ labelOwnedUtility: JLabel</sys:String>
+                  <sys:String>+ labelOwnedHotels: JLabel</sys:String>
+                  <sys:String>+ labelOwnedColorRed: JLabel</sys:String>
+                  <sys:String>+ labelOwnedColorDarkBlue: JLabel</sys:String>
+                  <sys:String>+ board: Board</sys:String>
+                  <sys:String>+ staticLabelPosition: JLabel</sys:String>
+                  <sys:String>+ labelGOOJFCCount: JLabel</sys:String>
+                  <sys:String>+ panelPlayerAssets: JPanel</sys:String>
+                </x:Array>
+              </uml:UMLClassModel.attributes>
+              <uml:UMLClassModel.operations>
+                <x:Array Type="sys:Object" />
+              </uml:UMLClassModel.operations>
+            </uml:UMLClassModel>
+          </uml:UMLNodeStyle.model>
+        </uml:UMLNodeStyle>
+      </data>
+    </node>
+    <edge id="edge21" source="node14" target="node31" sourceport="port0" targetport="port0">
+      <data key="d11">
+        <x:List />
+      </data>
+      <data key="d12">
+        <x:List>
+          <y:Bend Location="281.0,-461.0" />
+          <y:Bend Location="281.0,-495.0" />
+        </x:List>
+      </data>
+      <data key="d13">
+        <yjs:PolylineEdgeStyle smoothingLength="20">
+          <yjs:PolylineEdgeStyle.stroke>
+            <yjs:Stroke fill="#820000" />
+          </yjs:PolylineEdgeStyle.stroke>
+          <yjs:PolylineEdgeStyle.sourceArrow>
+            <yjs:Arrow type="CIRCLE" stroke="#820000" fill="WHITE" />
+          </yjs:PolylineEdgeStyle.sourceArrow>
+          <yjs:PolylineEdgeStyle.targetArrow>
+            <yjs:Arrow type="NONE" stroke="#820000" fill="#820000" />
+          </yjs:PolylineEdgeStyle.targetArrow>
+        </yjs:PolylineEdgeStyle>
+      </data>
+    </edge>
+    <edge id="edge2" source="node7" target="node27" sourceport="port0" targetport="port0">
+      <data key="d11">
+        <x:List />
+      </data>
+      <data key="d12">
+        <x:List>
+          <y:Bend Location="246.0,-393.0" />
+          <y:Bend Location="246.0,-359.0" />
+        </x:List>
+      </data>
+      <data key="d13">
+        <yjs:PolylineEdgeStyle smoothingLength="20">
+          <yjs:PolylineEdgeStyle.stroke>
+            <yjs:Stroke fill="#820000" />
+          </yjs:PolylineEdgeStyle.stroke>
+          <yjs:PolylineEdgeStyle.sourceArrow>
+            <yjs:Arrow type="CIRCLE" stroke="#820000" fill="WHITE" />
+          </yjs:PolylineEdgeStyle.sourceArrow>
+          <yjs:PolylineEdgeStyle.targetArrow>
+            <yjs:Arrow type="NONE" stroke="#820000" fill="#820000" />
+          </yjs:PolylineEdgeStyle.targetArrow>
+        </yjs:PolylineEdgeStyle>
+      </data>
+    </edge>
+    <edge id="edge15" source="node40" target="node35" sourceport="port0" targetport="port0">
+      <data key="d11">
+        <x:List />
+      </data>
+      <data key="d12">
+        <x:List>
+          <y:Bend Location="500.0,20.0" />
+          <y:Bend Location="500.0,54.0" />
+        </x:List>
+      </data>
+      <data key="d13">
+        <yjs:PolylineEdgeStyle smoothingLength="20">
+          <yjs:PolylineEdgeStyle.stroke>
+            <yjs:Stroke fill="#820000" />
+          </yjs:PolylineEdgeStyle.stroke>
+          <yjs:PolylineEdgeStyle.sourceArrow>
+            <yjs:Arrow type="CIRCLE" stroke="#820000" fill="WHITE" />
+          </yjs:PolylineEdgeStyle.sourceArrow>
+          <yjs:PolylineEdgeStyle.targetArrow>
+            <yjs:Arrow type="NONE" stroke="#820000" fill="#820000" />
+          </yjs:PolylineEdgeStyle.targetArrow>
+        </yjs:PolylineEdgeStyle>
+      </data>
+    </edge>
+    <edge id="edge7" source="node5" target="node22" sourceport="port0" targetport="port0">
+      <data key="d11">
+        <x:List />
+      </data>
+      <data key="d12">
+        <x:List />
+      </data>
+      <data key="d13">
+        <yjs:PolylineEdgeStyle smoothingLength="20">
+          <yjs:PolylineEdgeStyle.stroke>
+            <yjs:Stroke fill="#820000" />
+          </yjs:PolylineEdgeStyle.stroke>
+          <yjs:PolylineEdgeStyle.sourceArrow>
+            <yjs:Arrow type="CIRCLE" stroke="#820000" fill="WHITE" />
+          </yjs:PolylineEdgeStyle.sourceArrow>
+          <yjs:PolylineEdgeStyle.targetArrow>
+            <yjs:Arrow type="NONE" stroke="#820000" fill="#820000" />
+          </yjs:PolylineEdgeStyle.targetArrow>
+        </yjs:PolylineEdgeStyle>
+      </data>
+    </edge>
+    <edge id="edge27" source="node38" target="node20" sourceport="port0" targetport="port0">
+      <data key="d11">
+        <x:List />
+      </data>
+      <data key="d12">
+        <x:List>
+          <y:Bend Location="-67.0,156.0" />
+          <y:Bend Location="-67.0,88.0" />
+        </x:List>
+      </data>
+      <data key="d13">
+        <yjs:PolylineEdgeStyle smoothingLength="20">
+          <yjs:PolylineEdgeStyle.stroke>
+            <yjs:Stroke fill="#820000" />
+          </yjs:PolylineEdgeStyle.stroke>
+          <yjs:PolylineEdgeStyle.sourceArrow>
+            <yjs:Arrow type="CIRCLE" stroke="#820000" fill="WHITE" />
+          </yjs:PolylineEdgeStyle.sourceArrow>
+          <yjs:PolylineEdgeStyle.targetArrow>
+            <yjs:Arrow type="NONE" stroke="#820000" fill="#820000" />
+          </yjs:PolylineEdgeStyle.targetArrow>
+        </yjs:PolylineEdgeStyle>
+      </data>
+    </edge>
+    <edge id="edge8" source="node29" target="node35" sourceport="port0" targetport="port0">
+      <data key="d11">
+        <x:List />
+      </data>
+      <data key="d12">
+        <x:List>
+          <y:Bend Location="500.0,156.0" />
+          <y:Bend Location="500.0,54.0" />
+        </x:List>
+      </data>
+      <data key="d13">
+        <yjs:PolylineEdgeStyle smoothingLength="20">
+          <yjs:PolylineEdgeStyle.stroke>
+            <yjs:Stroke fill="#820000" />
+          </yjs:PolylineEdgeStyle.stroke>
+          <yjs:PolylineEdgeStyle.sourceArrow>
+            <yjs:Arrow type="CIRCLE" stroke="#820000" fill="WHITE" />
+          </yjs:PolylineEdgeStyle.sourceArrow>
+          <yjs:PolylineEdgeStyle.targetArrow>
+            <yjs:Arrow type="NONE" stroke="#820000" fill="#820000" />
+          </yjs:PolylineEdgeStyle.targetArrow>
+        </yjs:PolylineEdgeStyle>
+      </data>
+    </edge>
+    <edge id="edge11" source="node16" target="node37" sourceport="port0" targetport="port0">
+      <data key="d11">
+        <x:List />
+      </data>
+      <data key="d12">
+        <x:List>
+          <y:Bend Location="-46.0,-563.0" />
+          <y:Bend Location="-46.0,-491.0" />
+        </x:List>
+      </data>
+      <data key="d13">
+        <yjs:PolylineEdgeStyle smoothingLength="20">
+          <yjs:PolylineEdgeStyle.stroke>
+            <yjs:Stroke fill="#000082" />
+          </yjs:PolylineEdgeStyle.stroke>
+          <yjs:PolylineEdgeStyle.sourceArrow>
+            <yjs:Arrow type="NONE" stroke="#000082" fill="#000082" />
+          </yjs:PolylineEdgeStyle.sourceArrow>
+          <yjs:PolylineEdgeStyle.targetArrow>
+            <yjs:Arrow type="TRIANGLE" stroke="#000082" fill="#000082" />
+          </yjs:PolylineEdgeStyle.targetArrow>
+        </yjs:PolylineEdgeStyle>
+      </data>
+    </edge>
+    <edge id="edge17" source="node22" target="node37" sourceport="port0" targetport="port0">
+      <data key="d11">
+        <x:List />
+      </data>
+      <data key="d12">
+        <x:List>
+          <y:Bend Location="-46.0,-257.0" />
+          <y:Bend Location="-46.0,-491.0" />
+        </x:List>
+      </data>
+      <data key="d13">
+        <yjs:PolylineEdgeStyle smoothingLength="20">
+          <yjs:PolylineEdgeStyle.stroke>
+            <yjs:Stroke fill="#000082" />
+          </yjs:PolylineEdgeStyle.stroke>
+          <yjs:PolylineEdgeStyle.sourceArrow>
+            <yjs:Arrow type="NONE" stroke="#000082" fill="#000082" />
+          </yjs:PolylineEdgeStyle.sourceArrow>
+          <yjs:PolylineEdgeStyle.targetArrow>
+            <yjs:Arrow type="TRIANGLE" stroke="#000082" fill="#000082" />
+          </yjs:PolylineEdgeStyle.targetArrow>
+        </yjs:PolylineEdgeStyle>
+      </data>
+    </edge>
+    <edge id="edge9" source="node1" target="node37" sourceport="port0" targetport="port0">
+      <data key="d11">
+        <x:List />
+      </data>
+      <data key="d12">
+        <x:List>
+          <y:Bend Location="-46.0,-848.0" />
+          <y:Bend Location="-46.0,-491.0" />
+        </x:List>
+      </data>
+      <data key="d13">
+        <yjs:PolylineEdgeStyle smoothingLength="20">
+          <yjs:PolylineEdgeStyle.stroke>
+            <yjs:Stroke fill="#000082" />
+          </yjs:PolylineEdgeStyle.stroke>
+          <yjs:PolylineEdgeStyle.sourceArrow>
+            <yjs:Arrow type="NONE" stroke="#000082" fill="#000082" />
+          </yjs:PolylineEdgeStyle.sourceArrow>
+          <yjs:PolylineEdgeStyle.targetArrow>
+            <yjs:Arrow type="TRIANGLE" stroke="#000082" fill="#000082" />
+          </yjs:PolylineEdgeStyle.targetArrow>
+        </yjs:PolylineEdgeStyle>
+      </data>
+    </edge>
+    <edge id="edge10" source="node36" target="node37" sourceport="port0" targetport="port0">
+      <data key="d11">
+        <x:List />
+      </data>
+      <data key="d12">
+        <x:List>
+          <y:Bend Location="-46.0,-631.0" />
+          <y:Bend Location="-46.0,-491.0" />
+        </x:List>
+      </data>
+      <data key="d13">
+        <yjs:PolylineEdgeStyle smoothingLength="20">
+          <yjs:PolylineEdgeStyle.stroke>
+            <yjs:Stroke fill="#000082" />
+          </yjs:PolylineEdgeStyle.stroke>
+          <yjs:PolylineEdgeStyle.sourceArrow>
+            <yjs:Arrow type="NONE" stroke="#000082" fill="#000082" />
+          </yjs:PolylineEdgeStyle.sourceArrow>
+          <yjs:PolylineEdgeStyle.targetArrow>
+            <yjs:Arrow type="TRIANGLE" stroke="#000082" fill="#000082" />
+          </yjs:PolylineEdgeStyle.targetArrow>
+        </yjs:PolylineEdgeStyle>
+      </data>
+    </edge>
+    <edge id="edge18" source="node19" target="node37" sourceport="port0" targetport="port0">
+      <data key="d11">
+        <x:List />
+      </data>
+      <data key="d12">
+        <x:List>
+          <y:Bend Location="-46.0,-189.0" />
+          <y:Bend Location="-46.0,-491.0" />
+        </x:List>
+      </data>
+      <data key="d13">
+        <yjs:PolylineEdgeStyle smoothingLength="20">
+          <yjs:PolylineEdgeStyle.stroke>
+            <yjs:Stroke fill="#000082" />
+          </yjs:PolylineEdgeStyle.stroke>
+          <yjs:PolylineEdgeStyle.sourceArrow>
+            <yjs:Arrow type="NONE" stroke="#000082" fill="#000082" />
+          </yjs:PolylineEdgeStyle.sourceArrow>
+          <yjs:PolylineEdgeStyle.targetArrow>
+            <yjs:Arrow type="TRIANGLE" stroke="#000082" fill="#000082" />
+          </yjs:PolylineEdgeStyle.targetArrow>
+        </yjs:PolylineEdgeStyle>
+      </data>
+    </edge>
+    <edge id="edge13" source="node31" target="node37" sourceport="port0" targetport="port0">
+      <data key="d11">
+        <x:List />
+      </data>
+      <data key="d12">
+        <x:List>
+          <y:Bend Location="-46.0,-495.0" />
+          <y:Bend Location="-46.0,-491.0" />
+        </x:List>
+      </data>
+      <data key="d13">
+        <yjs:PolylineEdgeStyle smoothingLength="20">
+          <yjs:PolylineEdgeStyle.stroke>
+            <yjs:Stroke fill="#000082" />
+          </yjs:PolylineEdgeStyle.stroke>
+          <yjs:PolylineEdgeStyle.sourceArrow>
+            <yjs:Arrow type="NONE" stroke="#000082" fill="#000082" />
+          </yjs:PolylineEdgeStyle.sourceArrow>
+          <yjs:PolylineEdgeStyle.targetArrow>
+            <yjs:Arrow type="TRIANGLE" stroke="#000082" fill="#000082" />
+          </yjs:PolylineEdgeStyle.targetArrow>
+        </yjs:PolylineEdgeStyle>
+      </data>
+    </edge>
+    <edge id="edge3" source="node21" target="node37" sourceport="port0" targetport="port0">
+      <data key="d11">
+        <x:List />
+      </data>
+      <data key="d12">
+        <x:List>
+          <y:Bend Location="-46.0,-767.0" />
+          <y:Bend Location="-46.0,-491.0" />
+        </x:List>
+      </data>
+      <data key="d13">
+        <yjs:PolylineEdgeStyle smoothingLength="20">
+          <yjs:PolylineEdgeStyle.stroke>
+            <yjs:Stroke fill="#000082" />
+          </yjs:PolylineEdgeStyle.stroke>
+          <yjs:PolylineEdgeStyle.sourceArrow>
+            <yjs:Arrow type="NONE" stroke="#000082" fill="#000082" />
+          </yjs:PolylineEdgeStyle.sourceArrow>
+          <yjs:PolylineEdgeStyle.targetArrow>
+            <yjs:Arrow type="TRIANGLE" stroke="#000082" fill="#000082" />
+          </yjs:PolylineEdgeStyle.targetArrow>
+        </yjs:PolylineEdgeStyle>
+      </data>
+    </edge>
+    <edge id="edge16" source="node27" target="node37" sourceport="port0" targetport="port0">
+      <data key="d11">
+        <x:List />
+      </data>
+      <data key="d12">
+        <x:List>
+          <y:Bend Location="-46.0,-359.0" />
+          <y:Bend Location="-46.0,-491.0" />
+        </x:List>
+      </data>
+      <data key="d13">
+        <yjs:PolylineEdgeStyle smoothingLength="20">
+          <yjs:PolylineEdgeStyle.stroke>
+            <yjs:Stroke fill="#000082" />
+          </yjs:PolylineEdgeStyle.stroke>
+          <yjs:PolylineEdgeStyle.sourceArrow>
+            <yjs:Arrow type="NONE" stroke="#000082" fill="#000082" />
+          </yjs:PolylineEdgeStyle.sourceArrow>
+          <yjs:PolylineEdgeStyle.targetArrow>
+            <yjs:Arrow type="TRIANGLE" stroke="#000082" fill="#000082" />
+          </yjs:PolylineEdgeStyle.targetArrow>
+        </yjs:PolylineEdgeStyle>
+      </data>
+    </edge>
+    <edge id="edge6" source="node4" target="node37" sourceport="port0" targetport="port0">
+      <data key="d11">
+        <x:List />
+      </data>
+      <data key="d12">
+        <x:List>
+          <y:Bend Location="-46.0,-699.0" />
+          <y:Bend Location="-46.0,-491.0" />
+        </x:List>
+      </data>
+      <data key="d13">
+        <yjs:PolylineEdgeStyle smoothingLength="20">
+          <yjs:PolylineEdgeStyle.stroke>
+            <yjs:Stroke fill="#000082" />
+          </yjs:PolylineEdgeStyle.stroke>
+          <yjs:PolylineEdgeStyle.sourceArrow>
+            <yjs:Arrow type="NONE" stroke="#000082" fill="#000082" />
+          </yjs:PolylineEdgeStyle.sourceArrow>
+          <yjs:PolylineEdgeStyle.targetArrow>
+            <yjs:Arrow type="TRIANGLE" stroke="#000082" fill="#000082" />
+          </yjs:PolylineEdgeStyle.targetArrow>
+        </yjs:PolylineEdgeStyle>
+      </data>
+    </edge>
+    <edge id="edge30" source="node4" target="node3" sourceport="port0" targetport="port0">
+      <data key="d11">
+        <x:List />
+      </data>
+      <data key="d12">
+        <x:List />
+      </data>
+      <data key="d13">
+        <yjs:PolylineEdgeStyle smoothingLength="20">
+          <yjs:PolylineEdgeStyle.stroke>
+            <yjs:Stroke fill="#008200" dashStyle="Dash" />
+          </yjs:PolylineEdgeStyle.stroke>
+          <yjs:PolylineEdgeStyle.sourceArrow>
+            <yjs:Arrow type="NONE" stroke="#008200" fill="#008200" />
+          </yjs:PolylineEdgeStyle.sourceArrow>
+          <yjs:PolylineEdgeStyle.targetArrow>
+            <yjs:Arrow type="TRIANGLE" stroke="#008200" fill="#008200" />
+          </yjs:PolylineEdgeStyle.targetArrow>
+        </yjs:PolylineEdgeStyle>
+      </data>
+    </edge>
+    <edge id="edge31" source="node12" target="node37" sourceport="port0" targetport="port0">
+      <data key="d11">
+        <x:List />
+      </data>
+      <data key="d12">
+        <x:List>
+          <y:Bend Location="-46.0,-121.0" />
+          <y:Bend Location="-46.0,-491.0" />
+        </x:List>
+      </data>
+      <data key="d13">
+        <yjs:PolylineEdgeStyle smoothingLength="20">
+          <yjs:PolylineEdgeStyle.stroke>
+            <yjs:Stroke fill="#000082" />
+          </yjs:PolylineEdgeStyle.stroke>
+          <yjs:PolylineEdgeStyle.sourceArrow>
+            <yjs:Arrow type="NONE" stroke="#000082" fill="#000082" />
+          </yjs:PolylineEdgeStyle.sourceArrow>
+          <yjs:PolylineEdgeStyle.targetArrow>
+            <yjs:Arrow type="TRIANGLE" stroke="#000082" fill="#000082" />
+          </yjs:PolylineEdgeStyle.targetArrow>
+        </yjs:PolylineEdgeStyle>
+      </data>
+    </edge>
+    <edge id="edge14" source="node30" target="node35" sourceport="port0" targetport="port0">
+      <data key="d11">
+        <x:List />
+      </data>
+      <data key="d12">
+        <x:List>
+          <y:Bend Location="500.0,88.0" />
+          <y:Bend Location="500.0,54.0" />
+        </x:List>
+      </data>
+      <data key="d13">
+        <yjs:PolylineEdgeStyle smoothingLength="20">
+          <yjs:PolylineEdgeStyle.stroke>
+            <yjs:Stroke fill="#820000" />
+          </yjs:PolylineEdgeStyle.stroke>
+          <yjs:PolylineEdgeStyle.sourceArrow>
+            <yjs:Arrow type="CIRCLE" stroke="#820000" fill="WHITE" />
+          </yjs:PolylineEdgeStyle.sourceArrow>
+          <yjs:PolylineEdgeStyle.targetArrow>
+            <yjs:Arrow type="NONE" stroke="#820000" fill="#820000" />
+          </yjs:PolylineEdgeStyle.targetArrow>
+        </yjs:PolylineEdgeStyle>
+      </data>
+    </edge>
+    <edge id="edge20" source="node28" target="node20" sourceport="port0" targetport="port0">
+      <data key="d11">
+        <x:List />
+      </data>
+      <data key="d12">
+        <x:List>
+          <y:Bend Location="-67.0,20.0" />
+          <y:Bend Location="-67.0,88.0" />
+        </x:List>
+      </data>
+      <data key="d13">
+        <yjs:PolylineEdgeStyle smoothingLength="20">
+          <yjs:PolylineEdgeStyle.stroke>
+            <yjs:Stroke fill="#820000" />
+          </yjs:PolylineEdgeStyle.stroke>
+          <yjs:PolylineEdgeStyle.sourceArrow>
+            <yjs:Arrow type="CIRCLE" stroke="#820000" fill="WHITE" />
+          </yjs:PolylineEdgeStyle.sourceArrow>
+          <yjs:PolylineEdgeStyle.targetArrow>
+            <yjs:Arrow type="NONE" stroke="#820000" fill="#820000" />
+          </yjs:PolylineEdgeStyle.targetArrow>
+        </yjs:PolylineEdgeStyle>
+      </data>
+    </edge>
+    <edge id="edge19" source="node26" target="node31" sourceport="port0" targetport="port0">
+      <data key="d11">
+        <x:List />
+      </data>
+      <data key="d12">
+        <x:List>
+          <y:Bend Location="281.0,-529.0" />
+          <y:Bend Location="281.0,-495.0" />
+        </x:List>
+      </data>
+      <data key="d13">
+        <yjs:PolylineEdgeStyle smoothingLength="20">
+          <yjs:PolylineEdgeStyle.stroke>
+            <yjs:Stroke fill="#820000" />
+          </yjs:PolylineEdgeStyle.stroke>
+          <yjs:PolylineEdgeStyle.sourceArrow>
+            <yjs:Arrow type="CIRCLE" stroke="#820000" fill="WHITE" />
+          </yjs:PolylineEdgeStyle.sourceArrow>
+          <yjs:PolylineEdgeStyle.targetArrow>
+            <yjs:Arrow type="NONE" stroke="#820000" fill="#820000" />
+          </yjs:PolylineEdgeStyle.targetArrow>
+        </yjs:PolylineEdgeStyle>
+      </data>
+    </edge>
+    <edge id="edge24" source="node18" target="node14" sourceport="port0" targetport="port0">
+      <data key="d11">
+        <x:List />
+      </data>
+      <data key="d12">
+        <x:List />
+      </data>
+      <data key="d13">
+        <yjs:PolylineEdgeStyle smoothingLength="20">
+          <yjs:PolylineEdgeStyle.stroke>
+            <yjs:Stroke fill="#820000" />
+          </yjs:PolylineEdgeStyle.stroke>
+          <yjs:PolylineEdgeStyle.sourceArrow>
+            <yjs:Arrow type="CIRCLE" stroke="#820000" fill="WHITE" />
+          </yjs:PolylineEdgeStyle.sourceArrow>
+          <yjs:PolylineEdgeStyle.targetArrow>
+            <yjs:Arrow type="NONE" stroke="#820000" fill="#820000" />
+          </yjs:PolylineEdgeStyle.targetArrow>
+        </yjs:PolylineEdgeStyle>
+      </data>
+    </edge>
+    <edge id="edge22" source="node39" target="node15" sourceport="port0" targetport="port0">
+      <data key="d11">
+        <x:List />
+      </data>
+      <data key="d12">
+        <x:List />
+      </data>
+      <data key="d13">
+        <yjs:PolylineEdgeStyle smoothingLength="20">
+          <yjs:PolylineEdgeStyle.stroke>
+            <yjs:Stroke fill="#820000" />
+          </yjs:PolylineEdgeStyle.stroke>
+          <yjs:PolylineEdgeStyle.sourceArrow>
+            <yjs:Arrow type="CIRCLE" stroke="#820000" fill="WHITE" />
+          </yjs:PolylineEdgeStyle.sourceArrow>
+          <yjs:PolylineEdgeStyle.targetArrow>
+            <yjs:Arrow type="NONE" stroke="#820000" fill="#820000" />
+          </yjs:PolylineEdgeStyle.targetArrow>
+        </yjs:PolylineEdgeStyle>
+      </data>
+    </edge>
+    <edge id="edge28" source="node11" target="node24" sourceport="port0" targetport="port0">
+      <data key="d11">
+        <x:List />
+      </data>
+      <data key="d12">
+        <x:List />
+      </data>
+      <data key="d13">
+        <yjs:PolylineEdgeStyle smoothingLength="20">
+          <yjs:PolylineEdgeStyle.stroke>
+            <yjs:Stroke fill="#820000" />
+          </yjs:PolylineEdgeStyle.stroke>
+          <yjs:PolylineEdgeStyle.sourceArrow>
+            <yjs:Arrow type="CIRCLE" stroke="#820000" fill="WHITE" />
+          </yjs:PolylineEdgeStyle.sourceArrow>
+          <yjs:PolylineEdgeStyle.targetArrow>
+            <yjs:Arrow type="NONE" stroke="#820000" fill="#820000" />
+          </yjs:PolylineEdgeStyle.targetArrow>
+        </yjs:PolylineEdgeStyle>
+      </data>
+    </edge>
+    <edge id="edge4" source="node17" target="node12" sourceport="port0" targetport="port0">
+      <data key="d11">
+        <x:List />
+      </data>
+      <data key="d12">
+        <x:List />
+      </data>
+      <data key="d13">
+        <yjs:PolylineEdgeStyle smoothingLength="20">
+          <yjs:PolylineEdgeStyle.stroke>
+            <yjs:Stroke fill="#820000" />
+          </yjs:PolylineEdgeStyle.stroke>
+          <yjs:PolylineEdgeStyle.sourceArrow>
+            <yjs:Arrow type="CIRCLE" stroke="#820000" fill="WHITE" />
+          </yjs:PolylineEdgeStyle.sourceArrow>
+          <yjs:PolylineEdgeStyle.targetArrow>
+            <yjs:Arrow type="NONE" stroke="#820000" fill="#820000" />
+          </yjs:PolylineEdgeStyle.targetArrow>
+        </yjs:PolylineEdgeStyle>
+      </data>
+    </edge>
+    <edge id="edge32" source="node25" target="node20" sourceport="port0" targetport="port0">
+      <data key="d11">
+        <x:List />
+      </data>
+      <data key="d12">
+        <x:List>
+          <y:Bend Location="-67.0,224.0" />
+          <y:Bend Location="-67.0,88.0" />
+        </x:List>
+      </data>
+      <data key="d13">
+        <yjs:PolylineEdgeStyle smoothingLength="20">
+          <yjs:PolylineEdgeStyle.stroke>
+            <yjs:Stroke fill="#820000" />
+          </yjs:PolylineEdgeStyle.stroke>
+          <yjs:PolylineEdgeStyle.sourceArrow>
+            <yjs:Arrow type="CIRCLE" stroke="#820000" fill="WHITE" />
+          </yjs:PolylineEdgeStyle.sourceArrow>
+          <yjs:PolylineEdgeStyle.targetArrow>
+            <yjs:Arrow type="NONE" stroke="#820000" fill="#820000" />
+          </yjs:PolylineEdgeStyle.targetArrow>
+        </yjs:PolylineEdgeStyle>
+      </data>
+    </edge>
+    <edge id="edge5" source="node33" target="node7" sourceport="port0" targetport="port0">
+      <data key="d11">
+        <x:List />
+      </data>
+      <data key="d12">
+        <x:List />
+      </data>
+      <data key="d13">
+        <yjs:PolylineEdgeStyle smoothingLength="20">
+          <yjs:PolylineEdgeStyle.stroke>
+            <yjs:Stroke fill="#820000" />
+          </yjs:PolylineEdgeStyle.stroke>
+          <yjs:PolylineEdgeStyle.sourceArrow>
+            <yjs:Arrow type="CIRCLE" stroke="#820000" fill="WHITE" />
+          </yjs:PolylineEdgeStyle.sourceArrow>
+          <yjs:PolylineEdgeStyle.targetArrow>
+            <yjs:Arrow type="NONE" stroke="#820000" fill="#820000" />
+          </yjs:PolylineEdgeStyle.targetArrow>
+        </yjs:PolylineEdgeStyle>
+      </data>
+    </edge>
+    <edge id="edge25" source="node8" target="node27" sourceport="port0" targetport="port0">
+      <data key="d11">
+        <x:List />
+      </data>
+      <data key="d12">
+        <x:List>
+          <y:Bend Location="246.0,-325.0" />
+          <y:Bend Location="246.0,-359.0" />
+        </x:List>
+      </data>
+      <data key="d13">
+        <yjs:PolylineEdgeStyle smoothingLength="20">
+          <yjs:PolylineEdgeStyle.stroke>
+            <yjs:Stroke fill="#820000" />
+          </yjs:PolylineEdgeStyle.stroke>
+          <yjs:PolylineEdgeStyle.sourceArrow>
+            <yjs:Arrow type="CIRCLE" stroke="#820000" fill="WHITE" />
+          </yjs:PolylineEdgeStyle.sourceArrow>
+          <yjs:PolylineEdgeStyle.targetArrow>
+            <yjs:Arrow type="NONE" stroke="#820000" fill="#820000" />
+          </yjs:PolylineEdgeStyle.targetArrow>
+        </yjs:PolylineEdgeStyle>
+      </data>
+    </edge>
+    <edge id="edge29" source="node34" target="node35" sourceport="port0" targetport="port0">
+      <data key="d11">
+        <x:List />
+      </data>
+      <data key="d12">
+        <x:List>
+          <y:Bend Location="500.0,-48.0" />
+          <y:Bend Location="500.0,54.0" />
+        </x:List>
+      </data>
+      <data key="d13">
+        <yjs:PolylineEdgeStyle smoothingLength="20">
+          <yjs:PolylineEdgeStyle.stroke>
+            <yjs:Stroke fill="#820000" />
+          </yjs:PolylineEdgeStyle.stroke>
+          <yjs:PolylineEdgeStyle.sourceArrow>
+            <yjs:Arrow type="CIRCLE" stroke="#820000" fill="WHITE" />
+          </yjs:PolylineEdgeStyle.sourceArrow>
+          <yjs:PolylineEdgeStyle.targetArrow>
+            <yjs:Arrow type="NONE" stroke="#820000" fill="#820000" />
+          </yjs:PolylineEdgeStyle.targetArrow>
+        </yjs:PolylineEdgeStyle>
+      </data>
+    </edge>
+    <edge id="edge23" source="node32" target="node20" sourceport="port0" targetport="port0">
+      <data key="d11">
+        <x:List />
+      </data>
+      <data key="d12">
+        <x:List />
+      </data>
+      <data key="d13">
+        <yjs:PolylineEdgeStyle smoothingLength="20">
+          <yjs:PolylineEdgeStyle.stroke>
+            <yjs:Stroke fill="#820000" />
+          </yjs:PolylineEdgeStyle.stroke>
+          <yjs:PolylineEdgeStyle.sourceArrow>
+            <yjs:Arrow type="CIRCLE" stroke="#820000" fill="WHITE" />
+          </yjs:PolylineEdgeStyle.sourceArrow>
+          <yjs:PolylineEdgeStyle.targetArrow>
+            <yjs:Arrow type="NONE" stroke="#820000" fill="#820000" />
+          </yjs:PolylineEdgeStyle.targetArrow>
+        </yjs:PolylineEdgeStyle>
+      </data>
+    </edge>
+    <edge id="edge0" source="node0" target="node20" sourceport="port0" targetport="port0">
+      <data key="d11">
+        <x:List />
+      </data>
+      <data key="d12">
+        <x:List>
+          <y:Bend Location="-67.0,-48.0" />
+          <y:Bend Location="-67.0,88.0" />
+        </x:List>
+      </data>
+      <data key="d13">
+        <yjs:PolylineEdgeStyle smoothingLength="20">
+          <yjs:PolylineEdgeStyle.stroke>
+            <yjs:Stroke fill="#820000" />
+          </yjs:PolylineEdgeStyle.stroke>
+          <yjs:PolylineEdgeStyle.sourceArrow>
+            <yjs:Arrow type="CIRCLE" stroke="#820000" fill="WHITE" />
+          </yjs:PolylineEdgeStyle.sourceArrow>
+          <yjs:PolylineEdgeStyle.targetArrow>
+            <yjs:Arrow type="NONE" stroke="#820000" fill="#820000" />
+          </yjs:PolylineEdgeStyle.targetArrow>
+        </yjs:PolylineEdgeStyle>
+      </data>
+    </edge>
+    <edge id="edge12" source="node15" target="node3" sourceport="port0" targetport="port0">
+      <data key="d11">
+        <x:List />
+      </data>
+      <data key="d12">
+        <x:List />
+      </data>
+      <data key="d13">
+        <yjs:PolylineEdgeStyle smoothingLength="20">
+          <yjs:PolylineEdgeStyle.stroke>
+            <yjs:Stroke fill="#008200" dashStyle="Dash" />
+          </yjs:PolylineEdgeStyle.stroke>
+          <yjs:PolylineEdgeStyle.sourceArrow>
+            <yjs:Arrow type="NONE" stroke="#008200" fill="#008200" />
+          </yjs:PolylineEdgeStyle.sourceArrow>
+          <yjs:PolylineEdgeStyle.targetArrow>
+            <yjs:Arrow type="TRIANGLE" stroke="#008200" fill="#008200" />
+          </yjs:PolylineEdgeStyle.targetArrow>
+        </yjs:PolylineEdgeStyle>
+      </data>
+    </edge>
+    <edge id="edge26" source="node23" target="node3" sourceport="port0" targetport="port0">
+      <data key="d11">
+        <x:List />
+      </data>
+      <data key="d12">
+        <x:List>
+          <y:Bend Location="529.0,-631.0" />
+          <y:Bend Location="529.0,-699.0" />
+        </x:List>
+      </data>
+      <data key="d13">
+        <yjs:PolylineEdgeStyle smoothingLength="20">
+          <yjs:PolylineEdgeStyle.stroke>
+            <yjs:Stroke fill="#008200" dashStyle="Dash" />
+          </yjs:PolylineEdgeStyle.stroke>
+          <yjs:PolylineEdgeStyle.sourceArrow>
+            <yjs:Arrow type="NONE" stroke="#008200" fill="#008200" />
+          </yjs:PolylineEdgeStyle.sourceArrow>
+          <yjs:PolylineEdgeStyle.targetArrow>
+            <yjs:Arrow type="TRIANGLE" stroke="#008200" fill="#008200" />
+          </yjs:PolylineEdgeStyle.targetArrow>
+        </yjs:PolylineEdgeStyle>
+      </data>
+    </edge>
+    <edge id="edge1" source="node9" target="node3" sourceport="port0" targetport="port0">
+      <data key="d11">
+        <x:List />
+      </data>
+      <data key="d12">
+        <x:List>
+          <y:Bend Location="529.0,-767.0" />
+          <y:Bend Location="529.0,-699.0" />
+        </x:List>
+      </data>
+      <data key="d13">
+        <yjs:PolylineEdgeStyle smoothingLength="20">
+          <yjs:PolylineEdgeStyle.stroke>
+            <yjs:Stroke fill="#008200" dashStyle="Dash" />
+          </yjs:PolylineEdgeStyle.stroke>
+          <yjs:PolylineEdgeStyle.sourceArrow>
+            <yjs:Arrow type="NONE" stroke="#008200" fill="#008200" />
+          </yjs:PolylineEdgeStyle.sourceArrow>
+          <yjs:PolylineEdgeStyle.targetArrow>
+            <yjs:Arrow type="TRIANGLE" stroke="#008200" fill="#008200" />
+          </yjs:PolylineEdgeStyle.targetArrow>
+        </yjs:PolylineEdgeStyle>
+      </data>
+    </edge>
+  </graph>
+</graphml>

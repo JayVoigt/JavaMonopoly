@@ -13,7 +13,7 @@ public class GameLogicEvaluatorDrawCard extends GameLogicModule implements Seria
      * Evaluator which executes when the landed space is of
      * <code>DrawCard</code> type.
      */
-    void drawCardEvaluator() {
+    public void drawCardEvaluator() {
         int randomCardID = (int) (Math.random() * board.chanceCards.size());
         String gameLogDrawPrefix;
 

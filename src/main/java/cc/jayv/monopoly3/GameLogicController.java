@@ -29,7 +29,7 @@ public class GameLogicController implements Serializable {
     LogHelper logHelper;
 
     boolean victoryConditionMet;
-    private final GameLogicEvaluatorDrawCard GameLogicEvaluatorDrawCard = new GameLogicEvaluatorDrawCard();
+    private final GameLogicEvaluatorDrawCard gameLogicEvaluatorDrawCard = new GameLogicEvaluatorDrawCard();
     private final GameLogicManagerImprovements gameLogicManagerImprovements = new GameLogicManagerImprovements(this);
     private final GameLogicTools gameLogicTools = new GameLogicTools();
 
@@ -179,15 +179,6 @@ public class GameLogicController implements Serializable {
     }
 
     /**
-     * Manager which is executed when the player decides to purchase a property.
-     */
-    private void propertyPurchaseManager() {
-        logHelper.appendToDebugLog("-> executing propertyPurchaseManager");
-        currentPlayer.setRequiredDecisionPropertyAction(false);
-        currentPlayer.setMadeDecisionPropertyAction(true);
-    }
-
-    /**
      * Manager which is executed when the current player rolls the dice.<br>
      * Note: this does not execute for special dice roll conditions, such as
      * rolling for doubles when jailed, or rolling to determine the rent paid
@@ -319,8 +310,8 @@ public class GameLogicController implements Serializable {
 
         switch (localGameEventType) {
             case DRAW_CARD ->  {
-                GameLogicEvaluatorDrawCard.attachReferences(board, this, currentSpace, currentPlayer);
-                GameLogicEvaluatorDrawCard.drawCardEvaluator();
+                gameLogicEvaluatorDrawCard.attachReferences(board, this, currentSpace, currentPlayer);
+                gameLogicEvaluatorDrawCard.drawCardEvaluator();
             }
 
             case JAIL_PLAYER -> jailPlayer();

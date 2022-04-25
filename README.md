@@ -1,4 +1,4 @@
-# Project Proposal: Java Monopoly Prototype
+# Final Project: Java Monopoly Prototype
 
 <div align="center">
 <figure>
@@ -7,54 +7,85 @@
 </div>
 <br>
 
-#### Table of contents
-1. [Description](#description)
-2. [Problems to solve](#problems-to-solve)
-    1. [General data structures](#data)
-    2. [Manipulating data](#data-manipulation)
-        1. [Example scenario](#manip-example)
-    3. [Synchronization between objects](#sync)
-3. [Technologies needed](#technologies-needed)
-    1. [Data technologies](#data-technologies)
-    2. [User interface](#user-interface)
-    3. [CPU players](#cpu-players)
-4. [Notes](#notes)
-    1. [Further description of data structures](#further-data)
+#### Table of Contents
+1.  [Introduction](#introduction) [c]
+2.  [Data structures](#data-structures) [c]
+    1. [Spaces, properties, and game events](#spaces%2C-properties%2C-and-game-events) [c]
+    2. [Players](#players) [c]
+    3. [Aggregating spaces and players](#aggregating-spaces-and-players) [c]
+3.  [Code organization](#code-organization)
+4.  [Manipulation of data](#manipulation-of-data-structures)
+5.  [User interface - main components](#user-interface---main-components)
+    1.  [Inspiration](#inspiration) [c]
+    2.  [General structure](#general-structure) [c]
+    3.  [Board view](#board-view)
+    4.  [Information pane](#information-pane) [c]
+    5.  [Control pane](#control-pane) [c]
+    6.  [Animations and extra features](#animations-and-extra-features) [c]
+6.  [User interface - dialogs](#dialogs) [c]
+    1.  [Property purchase](#dialog-purchase-property) [c]
+    2.  [Jail](#jail) [c]
+    3.  [Game editor](#game-editor) [c]
+    4.  [Improvements](#improvements) [c]
+    5.  [Mortgage](#mortgage) [c]
+    6.  [Start game](#start-game) [c]
+7.  [Future features and ideas](#future-features-and-ideas) [c]
 
 &nbsp;
----
+### Introduction
+This project seeks to implement a playable version of the board game, Monopoly. With the physical version of the board game, players are responsible for interpreting and enforcing the game rules, while the software versions typically perform this automatically.
 
-<a name="description"></a>
-**Description**
+The primary objective for this Java prototype of is to demonstrate how the game can be logically organized, such that it is fully playable with no need to reference a rule book.
 
-The program seeks to implement a playable version of the board game, Monopoly.
-
-
-[JavaDocs for this project are available on GitHub Pages.](https://pages.github.iu.edu/jayvoigt/cc/jayv/monopoly3/package-summary.html) For more specific information about the codebase, please refer to this page.
-
-This document may not appear correctly if exported to another format. The original documentation file is available at:
-
-`https://github.iu.edu/jayvoigt/Monoproto3/blob/master/documentation/projectProposal.md` ([link](https://github.iu.edu/jayvoigt/Monoproto3/blob/master/documentation/projectProposal.md))
+Note the use of the word "prototype" -- this implementation is not fully compliant with the original game rules. For example, auctions and trading are not implemented, and there are inevitably some bugs to be encountered while playing normally.
 
 &nbsp;
 
-<a name="problems-to-solve"></a>
-## Problems to solve
+<mark>**Important:**</mark>
 
-<a name="data"></a>
-**General data structures**
+**See the directory `/src/main/java/cc/jayv/monopoly3` for all Java code** pertaining to this project.
 
-A game of Monopoly can be decomposed into a single, large data structure, and this comprises the core of this project. A set of objects which contain certain attributes are affected throughout gameplay, either randomly, or by user decision.
+The latest executable `.jar` file is available as `/JavaMonopolyPrototype.jar`.
 
-The primary element of the game data is the board. It contains information about both the players and board spaces. Both the players and spaces are represented in an `ArrayList`. In the case of spaces, this `ArrayList` can contain several different object types, all derived from the base `Space` class. Consequently, each space can have its own methods that are called during a generic event, e.g., calculating rent.
+For more details on the codebase, please see the JavaDoc -- it is currently available online at [GitHub Pages](), but the offline version is available under the `/javadoc` directory.
 
-<div align="center">
-<figure>
-    <img src="documentation/main-uml.svg">
-<figcaption><br>The full UML diagram for the project. <br>If you are unable to read this clearly, the full size image is available as <code>main-uml.svg</code> or <code>main-uml.png</code>.<figcaption>
-</figure>
-</div>
-<br>
+Primary documentation is available within `/documentation` along with supplemental diagrams and screenshots.
+
+Legacy and unused code files are stored under `/src/main/legacy`. These files are **not** used in the final version of the main project, but are stored for reference.
+
+Art assets and helper files, such as icons and .csv-formatted space data, are stored under `/src/main/resources`. All non-reference images were created with Aseprite and Adobe Illustrator.
+
+##### Third-party libraries:
+This project utilizes:
+- [MigLayout](http://miglayout.com/) as the primary Swing layout manager. Licensed under BSD or GPL.
+- [FlatLaf](https://github.com/JFormDesigner/FlatLaf) for the Swing look and feel. Licensed under Apache License 2.0.
+
+&nbsp;
+### Data structures
+
+#### Spaces, properties, and game events
+A game of Monopoly can be decomposed into a single, large data structure, and this comprises the core of this project.
+
+There are 40 spaces in a standard game of Monopoly. These can be categorized into several groups according to their behavior - the two primary groups are **properties** and **game events**.
+
+&nbsp;
+
+**Properties** are any spaces that a player may purchase. For example, *Mediterranean Avenue* and *Electric Company* are both properties, but *Free Parking* is not. All properties share some common attributes; players can purchase, mortgage, and trade them - but they can also charge rent when another player lands on them. The calculation of this rent is not uniform across properties, and is a key reason for further subcategorization.
+
+Some properties belong to a **Color** group, such as *Park Place* and *Boardwalk* from the dark blue group. The only non-color properties on the board are **Railroads** and **Utilities**.
+
+Each of these property groups have specific rules that determine the amount of rent that a player must pay when they land on them. Additionally, these calculations are dependent on the state of other spaces within the group. For example, a player must pay more rent if the owner possesses more than one railroad, or if a house is developed on a color property.
+
+&nbsp;
+
+**Game events** are any spaces that a player is not able to purchase. These include *GO*, *Jail*, and any draw-card spaces such as *Chance* or *Community Chest*.
+
+These spaces also have specific rules that govern how the game state changes if a player lands on them. Examples: landing or passing on *GO* grants the player a $200 bonus, landing on *Chance* executes a random event from a predetermined set, and landing on *Free Parking* does nothing.
+
+Similar to properties, game event spaces are also subcategorized into several groups. A key differentiating factor of game events, however, is that there exist several categories that are occupied by only one space. For example, there is only a single *Jail* space.
+
+Some game event spaces are grouped together - these include **draw card** and **tax** spaces.
+
 
 <div align="center">
 <figure>
@@ -64,12 +95,91 @@ The primary element of the game data is the board. It contains information about
 </div>
 <br>
 
-*The data structure is of maximum priority for this project.* Its implementation is essential to the remainder of the project's functionality, and is the most demonstrative of object-oriented principles covered in this course.
+#### Players
 
----
+The data for each player is largely independent, not requiring the same degree of intra-object dependence such as that which may exist across space groups.
+
+Each player must contain data for the following attributes:
+- name
+- current balance
+- current position
+- is jailed
+- values of dice
+- number of owned Get Out of Jail Free Cards
+
+As well as several "flags" that are accessed by the Controller class group, examples:
+- suggested lock state of end turn, roll dice buttons
+- is bankrupt
+- is currently in the initial turn of being jailed
+- has rolled doubles
+- needs to make a decision for property purchase, jail
+
 &nbsp;
-<a name="data-manipulation"></a>
-**Manipulating data**
+
+#### Aggregating spaces and players
+The primary data element is the board, containing information about all players, spaces, and game events. However, this largely acts as a container for the state of the game, with some inputs and outputs that implement simple validation and manipulation. More advanced manipulation and analysis of this data is delegated to the Controller class group.
+
+Additionally, some data is not as cleanly organized into the "space" or "player" domain - namely, the ownership of a property. This data is useful when held in the property object itself, but there are scenarios where finding the properties owned by a specific player is required. The aggregation of space and player data into a single "board" domain proves useful for this reason.
+
+A positive consequence of composing this data as a single class is the ability to query information across domains. As an example: suppose some representation of the game state must be updated, after a player has purchased the final property in the green color group, while owning the others within the set.
+
+If we wish to determine if a player owns this green color group monopoly, there are two general approaches to query this data:
+
+**1 - Query the player set**
+- Create a set of values indicating the total number of green properties owned by each player.
+    - For each player in the game, check if they own a property with the following attributes:
+        - belongs to the *green* color group
+    - If this matches, add to the respective total.
+- Compare the totals. If only one of the totals is non-zero, all *owned properties* within that color set belong to a single player.
+
+A problem arises when considering that a player may own 2 out of 3 spaces in a single color group, where all other players own none. This necessitates further querying of the space data, determining how many spaces exist in the group total.
+
+&nbsp;
+
+**2 - Query the space set**
+- Create a set of values indicating the owners of each green property.
+    - For each space in the game, check if the following conditions apply:
+        - belongs to the *green* color group
+        - is owned by a player
+    - If this matches, set the appropriate owner value for the property.
+- Compare the values. If all values are equal, the full set is owned by the player.
+
+&nbsp;
+
+The general algorithm for determining this data is similar across the domains, but becomes messy when it is frequently access across multiple classes and contexts. An alternative approach exists - the board itself can be queried specifically, through some specialized methods:
+
+**1 - Obtain the set of all spaces owned by player *n***
+ - For each space in the game, check if the following conditions apply:
+    - owned by player *n*
+- If this matches, add the space to the set.
+- Return the set.
+
+&nbsp;
+
+**2 - Obtain the set of all spaces belonging to color group *g***
+- For each space in the game, check if the following conditions apply:
+    - within color group *g*
+- If this matches add the space to the set.
+- Return the set.
+
+&nbsp;
+
+The latter approaches of board-domain querying allow for cleaner access to attributes of the game state. Additionally, much of the need for this querying is eliminated as the board class can automatically self-update the relationships between its data members when the game state changes, using similar methods internally.
+
+&nbsp;
+
+### Code organization
+
+Components of the application are roughly grouped into three categories:
+
+**View**: displays the current game state to the user, and allows them to interact with it in a controlled manner
+
+**Data**: contains information about the game state
+
+**Controller**: modifies the game state according to specific rules and user input
+
+An important note is that these categories are not occupied by single classes or objects, rather, responsibilities are delegated into smaller classes with some overlap.
+
 
 <div align="center">
 <figure>
@@ -79,54 +189,62 @@ The primary element of the game data is the board. It contains information about
 </div>
 <br>
 
-The primary structure of the program is demonstrated in the above diagram. It uses elements of MVC (model, view, controller) structures, but is not necessarily defined as one.
+&nbsp;
+### Manipulation of data
 
-- `Board` contains the game data, with only basic logic implementation.
-- `Controller` provides an interface for user input to be converted into an altered game state. It contains the majority of logic for the application, including the code which implements game rules and enforcement.
-- `View` provides an interactive and graphical representation of the current game state. It allows the player to perform an action from a set whose restrictions are context-dependent on the game state.
+Classes belonging to the **Controller** group are responsible for manipulating the game state, enforcing the game rules, and regulating the flow of available interactions. An intermediary class, `GameLogicSwitchboard`, receives action descriptions from the View group, and forwards them appropriately to other objects in the Controller group.
 
-<a name="manip-example"></a>
-To provide an example of how a specific action would affect these components, suppose it is the beginning of a new turn, and the current player rolls the dice:
+This enables more concise control expressions in the GUI class, along with adding additional routines universally to all usages of a particular message. For example, a dialog may invoke the `CONTROLS_ROLLDICE` action -- *only this value* needs to be passed to the "switchboard" for the sequence of roll-dice routines to occur.
 
-- The roll dice button, presented as a Swing element from the `View` class, calls a method inside the `Controller` class.
-- The `Controller` queries data about the `Board` and its players.
-- The `Controller` evaluates the player's new position according to the result of the dice roll.
-- The `Board` is updated with new information determined by the `Controller`.
-- The `View` queries data about the `Board`, and updates its visual elements accordingly.
+Below is a UML diagram demonstrating the relationship between classes within this group. Note the inclusion of the symbolic `DynamicView` object to display its connection into the rest of the application.
+<div align="center">
+<img src="documentation/control-uml.svg">
+</div>
 
----
 &nbsp;
 
-<a name="sync"></a>
-**Synchronization between objects**
+The Controller group contains the vast majority of game logic, aside from some context enforcement of GUI actions, such as enabling/disabling buttons based on game state. This contains the primary class, `GameLogicController`, with some delegate classes to handle more complex actions, such as evaluating a Community Chest card or building improvements on Color properties.
 
-Given that the `Board`, `Controller`, and `View` classes comprise the core of the game, an issue arises regarding how they should interact.
+&nbsp;
+### User interface - main components
 
-This is resolved by allowing the view to inherit the controller, enabling any user input to be validated and sent to the controller when appropriate. Once a method from the controller is finished executing, the view updates itself by accessing the now-modified contents of the board. Effectively, this creates a system where actions only occur when strictly necessary; there is no "main game loop" in the application.
+Classes belonging to the **View** group are responsible for displaying the state of the game to the user, and routing user input to any corresponding actions within Controller group classes.
 
----
+Below is a UML diagram indicating the structure and relationships of the objects which comprise the view group. These relationships are further described in later sections.
+
+Three primary subgroups exist in the View group:
+- primary view elements, non-dialog
+- dialog view elements
+- ActionListener implementations
+
+<div align="center">
+<img src="documentation/gui-uml.svg">
+</div>
+
 &nbsp;
 
-<a name="technologies-needed"></a>
-## Technologies needed
+*See the below sections for more information on the *primary view* and *dialog* subgroups.*
 
-<a name="data-technologies"></a>
-**Data technologies**
+The ActionListener implementation subgroup contains internal classes of the primary View class -- `DynamicView`. These can be attached to any arbitrary Swing element that supports them. The function of these classes is similar to that of the "switchboard," i.e., to reduce code duplication and to allow simpler expressions of actions.
 
-The primary data of the application is stored in a single serializable class, `Board`. This class can then be saved to a file to preserve the game state, and can be used by a future instance of the program to resume gameplay. Basic file I/O is needed as a result of this functionality.
+Example:
 
-Supplementary data is required for the program, such as property costs, names of spaces, and Community Chest/Chance card event data. This data is static during the execution of the program, and is not intended to be modified. It can be loaded from a file format such as `.csv`, and then loaded into appropriate class attributes.
+An instance of `GenericButtonActionListener` can be created with the action `CONTROLS_SHOW_IMPROVEMENTS` specified in the constructor call:
 
-File I/O exceptions will need to be handled for both of these operation types.
+```
+listener = new GenericButtonActionListener(CONTROLS_SHOW_IMPROVEMENTS);
+```
 
-Other components of the project utilize `ArrayList` data structures heavily, mostly for intra-class organization.
+This new instance can then be attached to an existing `JButton`, and the appropriate action will be forwarded to the switchboard object without needing any additional expressions:
 
----
+```
+JButton button;
+...
+button.addActionListener(listener);
+```
+
 &nbsp;
-
-
-<a name="user-interface"></a>
-**User interface**
+#### Inspiration
 
 The user interface for this application is inspired and informed by [a commercial implementation](https://archive.org/details/MonopolyMacPlay) of the game - <i>Monopoly</i> (1993) by MacPlay, for the original Macintosh platform.
 <div align="center">
@@ -139,138 +257,219 @@ The user interface for this application is inspired and informed by [a commercia
 
 A key attribute of this implementation is the simplicity of the user interface - given that the Macintosh has a resolution of 512x342 with 2 colors, this serves as a good template for a simpler design.
 
----
+&nbsp;
+#### General structure
 
-In the Java implementation, a GUI front-end is provided to the user. This indicates much of the essential information needed for gameplay, including:
-- All properties and game event spaces that exist on the board
-- Position of each player
-- Balance of each player
-- Whose turn it is
-- Whether a specific property is owned, and if so, by whom
-- A log containing information about all previous turns, and the actions taken during those turns
+Visually, the user interface is comprised of a main window, with a set of dialogs that hide/show when appropriate. This main window consists of three sub-windows: the board, information, and control sections.
 
 <div align="center">
 <figure>
-    <img src="documentation/gui-diagram.svg">
-    <figcaption><br>An abstract diagram of how the user interface interacts with the data of the program.<figcaption>
+    <img src="documentation/view-areas-all.png">
 </figure>
 </div>
 <br>
 
-The key technology required for the GUI is Java Swing.
+A more abstract diagram of the View group components, and how they interact with the Controller and Data groups, is given:
 
-*The visual representation of data is of medium priority for this project.* The game can still be played without it, provided that a more primitive representation was given. 
+<div align="center">
+<img src="documentation/gui-diagram.png">
+</div>
 
----
+&nbsp;
+#### Board view
 
-The GUI provides mechanisms for controlling this core data structure of the game. Examples of actions through this interface include:
-- Rolling dice
-- Ending turn
-- Viewing information about a specific property
+The board view provides a visualization for the spaces on the board, acting as a proxy for a physical printed board. Each space is a button that, when pressed, updates a space information area. 
 
-Additionally, the GUI has several elements that provide simpler functions, and these can be displayed either automatically or manually.
-
-Automatic elements are necessary when it is mandatory that a player takes action. Examples include:
-- When landing on a property, asking the player if they wish to purchase or auction a property
-- When jailed, asking the player if they wish to post bail, roll for doubles, or use a *Get Out of Jail Free Card*.
-
-Manual elements are provided for optional actions. It is often useful to perform validation on a given selection, and to ask for confirmation. Examples include:
-- Mortgaging properties
-- Displaying which properties the player currently owns
-- Constructing improvements (houses, hotels)
-- Viewing statistics about the current game
-- Trading with another player
-- Forfeiting the game
----
-<a name="gui-screenshots"></a>
-Below are some sample screenshots from an early build of the game, demonstrating the different  types of GUI elements needed. Not all required elements are included, but the basic structure is present:
-
-<br>
 <div align="center">
 <figure>
-    <img src="documentation/gui-example-main-2022-04-15.png">
-    <figcaption><br>The primary user interface for the game.<br><figcaption>
+    <img src="documentation/board-view.gif">
 </figure>
 </div>
 <br>
 
-<br>
-<div align="center">
-<figure>
-    <img src="documentation/gui-example-propertypurchase-2022-04-15.png" width="400">
-    <figcaption><br>A prompt that the user must respond to when they land on a property that is not owned.<br><figcaption>
-</figure>
-</div>
-<br>
-
-<br>
-<div align="center">
-<figure>
-    <img src="documentation/gui-example-gameeditor-2022-03-22.png" width="400">
-    <figcaption><br>A utility window primarily for debugging purposes, allowing the user to edit attributes of the current game.<br><figcaption>
-</figure>
-</div>
-<br>
-
----
 &nbsp;
 
-<a name="cpu-players"></a>
+#### Information pane
+
+The information pane provides a single visual area for any player to assess the state of the game.
+
+<div align="center">
+<figure>
+    <img src="documentation/gui-info-pane.gif">
+</figure>
+</div>
+<br>
+
+It consists of four information modules, each assigned to one player. These modules are then subdivided into **status** and **asset** views.
+
+The **status** view, on the left, contains the following icons that indicate
+- ![](res/dice-icon.png)  - if it is currently the player's turn
+- ![](res/jail.png)  - if the player is jailed
+- ![](res/piggy.png)  - if the player is bankrupt
+
+as well as labels to indiate:
+- ![](res/player-generic.png) [ *Player n* ] - the player's name
+- ![](res/money.png) [ *$____* ] - the current balance of the player
+- ![](res/position.png) [ *space* ] - the name of the space that the player's game piece is currently on
+
+&nbsp;
+
+The **asset** view, on the right, contains icons with an associated numerical value. These include:
+
+- ![](res/properties.png) - the total number of properties owned by the player
+- ![](res/goojfc.png) - the number of Get Out of Jail Free Cards owned by the player
+- ![](res/property-single-lightblue.png), ![](res/property-single-orange.png), etc. - the number of properties belonging to each group owned by the player
+
+The text of the property group labels additionally changes colors depending on the state: gray when no properties are owned, and red when all properties are owned. (i.e., a monopoly)
+
+&nbsp;
+#### Control pane
+
+The control pane provides important information about the current player, buttons to access optional dialogs (see section [Optional dialogs](#optional-dialogs)), and buttons to roll the dice and end their turn.
+
+<div align="center">
+
+![](control.gif)
+
+</div>
+
+Note how the "Roll dice" and "End turn" buttons lock and unlock in response to the game state. Each player has an attribute, manipulated by the controller, that indicates if a player is permitted to perform either of these actions.
+
+For example, it is not legal within official game rules for a player to end their turn if they have not rolled the dice; this also applies when rolling doubles.
+
+&nbsp;
+
+The six buttons in the center of the dialog allow the user to perform *optional* actions, i.e., any actions that are not strictly required by the game rules. These include:
+- mortgaging properties
+- viewing owned properties
+- managing improvements
+- viewing statistics (not yet implemented)
+- trading with other players (not yet implemented)
+- forfeiting the game
+
+&nbsp;
+#### Animations and extra features
+
+Some spaces support animated assets that, when the mouse enters the space area, will replace the standard button appearance until the mouse exits. These spaces include:
+- Electric Company
+- Water Works
+- Free Parking
+- Go To Jail
+- Luxury Tax
+
+<div align="center">
+
+![](electric-company-anim.gif) ![](waterworks-anim.gif) ![](free-parking-anim.gif) ![](go-to-jail-anim.gif) ![](luxury-tax-anim.gif)
+
+</div>
+
+&nbsp;
+### User interface - dialogs
+
+Some user interface elements have specific contexts where their visibility is required, in contrast to the always-shown board, information, and control views of the main window. Such user interface elements are implemented with **dialogs**, and these are split into two categories: **mandatory**, which allow responses to required actions, and **optional**, which can be summoned by the user in nearly any game state context.
+
+**Mandatory** dialogs include the property purchase and jail dialogs. A user cannot dismiss these, as a decision is required to continue the game.
+
+&nbsp;
+<a name="dialog-purchase-property"></a>
+
+The **Property Decision** mandatory dialog appears when a player lands on a property that is not owned. They must then decide to either purchase, or sent the property to auction. *Note that auctions are not currently implemented.*
+
+<div align="center">
+<img src="documentation/dialog-property-purchase.png" width=300>
+</div>
+
+&nbsp;
+<a name="jail"></a>
+
+The **Jail** mandatory dialog appears at the beginning of a player's turn if they are jailed, only if it is *not* the first turn they have been jailed. For example, if a player lands on *Go To Jail*, their only option to continue will be to end their turn. The dialog will then appear on their *next* turn.
+
+Three options are provided through the dialog:
+- Post Bail: Pay $50 to be released from jail immediately.
+- Roll for Doubles: Roll the dice, and be released from jail if the values of both dice are the same.
+- Use Get Out of Jail Free Card: Consume a GOOJFC card and be released from jail immediately.
+<div align="center">
+
+<img src="documentation/jail-1turn-nogoojfc.png" width=300>
+<img src="documentation/jail-1turn-goojfc.png" width=300>
+<br>
+<img src="documentation/jail-3turns.png" width=300>
+</div>
+
+&nbsp;
+<a name="game-editor"></a>
+<a name="optional-dialogs"></a>
+
+The **Game Editor** optional dialog is available under the *Edit* menu, and provides the user with options to directly manipulate the game state. This is very useful for debugging, and can also "repair" the game if a bug renders it unplayable.
+
+<div align="center">
+<img src="documentation/dialog-game-editor.png" width=500>
+</div>
+
+&nbsp;
+<a name="improvements"></a>
+
+The **Improvements** optional dialog allows the player to construct and sell houses and hotels on their color properties.
+
+<div align="center">
+<img src="documentation/dialog-improvements-1.png" width=300>
+<img src="documentation/dialog-improvements-2.png" width=300>
+<br>
+<img src="documentation/dialog-improvements-3.png" width=300>
+</div>
+
+&nbsp;
+<a name="mortgage"></a>
+
+The **Mortgage Properties** optional dialog allows the player to mortgage and lift the mortgage of their owned properties.
+
+<div align="center">
+<img src="documentation/dialog-mortgage-1.png" width=300>
+<img src="documentation/dialog-mortgage-2.png" width=300>
+<br>
+<img src="documentation/dialog-mortgage-3.png" width=300>
+</div>
+
+&nbsp;
+<a name="start-game"></a>
+
+The **New Game** optional dialog allows the user to start a new game, select the number of players, and set custom names for these players.
+
+<div align="center">
+<img src="documentation/dialog-newgame-1.png" width=300>
+<img src="documentation/dialog-newgame-2.png" width=300>
+<br>
+<img src="documentation/dialog-newgame-3.png" width=300>
+<img src="documentation/dialog-newgame-3-corresponding.png" width=300>
+</div>
+
+&nbsp;
+### Future features and ideas
+
+A standard implementation of Monopoly has several features which are not present in this version. Namely, auctions and trading between players. The basic GUI elements exist for these within the codebase, but time constraints simply moved these features to a lower priority. Auctions particularly require more advanced GUI design, requiring timers and an array of simultaneous inputs for each player. 
+
+Additional non-implemented ideas that exist outside the scope of a standard Monopoly game include:
+
+**Statistics view**
+
+An area to view various statistics gathered over a single game, e.g.:
+- total money issued by the bank
+- total money spent by each player
+- frequency graphs for landing on specific areas of the board
+- return on investment for improvements on color properties
+
+**Dice probability view**
+
+Dynamically highlighting spaces on the board such that their appearance reflects the probability that a player may land on them. For example, spaces 7 units away from the current player have the highest probability of landing, and would be the most visually prominent highlight.
+
+**Player icon selection**
+
+This feature existed in the prior `MainWindow.java` GUI implementation, but has not yet been re-implemented in the `DynamicView.java` implementation.
+
+**Saving/loading game state**
+
+The GUI does not contain necessary routines to update correctly after serialized game state objects are loaded. The board and player data have successfully been saved and loaded, but the interface becomes unusable after this.
+
 **CPU players**
 
-Implementing an extremely basic CPU player is not difficult, wherein the player automatically performs its necessary actions, and executes any required decision as `true`.
-
-A more advanced CPU player can be manifested through several styles:
-
-<u>Random probability</u>: For each mandatory binary decision that the player encounters, a probability is assigned to one option. When an action is required, the execution of this decision is dependent on its probability. This effectively makes all actions random, where the probability could be determined at the start of the game by a seed.
-
-<u>Basic statistical model</u>: When running simulations of Monopoly, particular patterns begin to appear. For example, the Jail space is often a 'trap' for players - this means that the spaces immediately following the Jail space have the highest probability of landing out of any other spaces on the board.
-
-As a consequence of this land-probability distribution, some properties have a measurably higher return on investment (ROI) when improvements are constructed on them.
-
-A statistically-based CPU player could make decisions similarly to that of the random probability model, but with a multiplicative factor based on the estimated ROI of a particular space.
-
-<u>Machine-learning model</u>: While an ML-based model would undoubtedly perform very well compared to the other models listed, this is simply out of scope for this project. An implementation could be possible by using a relatively simple training method such as (framework here)
-
-An important note to make is that much of a player's success in Monopoly is simply luck. The dice roll is the primary engine of the game, and there is an inherent amount of randomness that cannot be surpassed entirely with skill. One benefit to this is that the ability of any CPU player is not entirely dependent on its code - the luck will sometimes skew the game state in its favor regardless.
-
-*The inclusion of a CPU player is of low priority for this project.* It would certainly improve the program, but is not essential.
-
-&nbsp;
-
-<a name="notes"></a>
-## Notes
-
-Below is a list of how the project specifically demonstrates principles of CSCI 24000:
-
-**Object-oriented programming (OOP)**
-
-- Given that the project is written in Java, the codebase is inherently comprised of objects.
-- OOP is particularly useful for this project, as the main data of the game is readily decomposed into a tree structure.
-- A game of Monopoly can be architected with many "black boxes," i.e., most of the concern is about what a specific object does, rather than what it contains.
-
-<a name="further-data"></a>
-**Inheritance and data structures**
-
-- The `Board` class contains three primary types of inherited classes, each contained within an `ArrayList`:
-    - players
-    - spaces
-    - draw card events
-- Each object in the `ArrayList` of spaces must be downcast to a subclass.
-
-The set of spaces can be considered a tree:
-<br>
-<div align="center">
-<figure>
-    <img src="documentation/tree-structure.svg">
-</figure>
-</div>
-<br>
-
-**Abstraction and polymorphism**
-
-- Properties contain an abstract method for calculating rent.
-    - This method is then defined by the individual space, where the return type remains the same for all properties, but the calculation algorithm is independent.
-- Spaces are abstract, as there exist no spaces on the board that do not fit into a subcategory.
-    - All spaces share certain properties, such as a position and name.
-    - Properties are also abstract for this reason.
+A simple implementation of computer-controlled player.

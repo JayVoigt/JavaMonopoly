@@ -23,7 +23,7 @@
     <node x="46.0" y="733.931640625">cc.jayv.monopoly3.DynamicView.GameEditorActionListener</node>
     <node x="2646.0" y="870.931640625">cc.jayv.monopoly3.SwingHelper</node>
     <node x="694.0" y="734.431640625">cc.jayv.monopoly3.DynamicView.StartGameButtonActionListener</node>
-    <node x="1004.0" y="722.931640625">cc.jayv.monopoly3.DynamicView.ButtonActionListener</node>
+    <node x="1004.0" y="722.931640625">cc.jayv.monopoly3.DynamicView.GenericButtonActionListener</node>
     <node x="4390.0" y="722.931640625">cc.jayv.monopoly3.TemplateDialogButtonProperties</node>
     <node x="431.5" y="-242.689453125">cc.jayv.monopoly3.ViewComponent</node>
     <node x="3171.0" y="722.931640625">cc.jayv.monopoly3.ViewFrameInformationModule</node>
@@ -179,7 +179,7 @@
       <point x="541.0" y="891.931640625" />
       <point x="0.0" y="-225.0" />
     </edge>
-    <edge source="cc.jayv.monopoly3.DynamicView.ButtonActionListener" target="cc.jayv.monopoly3.DynamicView" relationship="INNER_CLASS">
+    <edge source="cc.jayv.monopoly3.DynamicView.GenericButtonActionListener" target="cc.jayv.monopoly3.DynamicView" relationship="INNER_CLASS">
       <point x="0.0" y="72.0" />
       <point x="1151.5" y="891.931640625" />
       <point x="541.0" y="891.931640625" />

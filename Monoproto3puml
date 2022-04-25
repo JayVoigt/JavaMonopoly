@@ -1,0 +1,736 @@
+@startuml
+
+!theme plain
+top to bottom direction
+skinparam linetype ortho
+
+enum ActionsGUI << enumeration >> {
+  + ActionsGUI(): 
+  + values(): ActionsGUI[]
+  + valueOf(String): ActionsGUI
+}
+class ActionsImprovements {
+  + ActionsImprovements(): 
+}
+class ActionsMortgage {
+  + ActionsMortgage(): 
+}
+class AnimatedSpaceActionListener {
+  - AnimatedSpaceActionListener(String, String): 
+  - mousePressed(MouseEvent): void
+  - mouseClicked(MouseEvent): void
+  - mouseEntered(MouseEvent): void
+  - mouseReleased(MouseEvent): void
+  - mouseExited(MouseEvent): void
+}
+class BidControls {
+  - BidControls(int): 
+  - playerID: int
+  - panel: JPanel
+  - update(): void
+  - playerID: int
+  - panel: JPanel
+}
+class Board {
+  + Board(): 
+  + bankHotelCount: int
+  + currentPlayerID: int
+  + repairCostHotel: int
+  + bankHouseCount: int
+  + repairCostHouse: int
+  + getSpacesByOwnerID(int): ArrayList<Property>
+  + updateColorPropertyOwnershipRelationships(): void
+  + updatePropertyOwnershipRelationships(): void
+  + updateRailroadPropertyOwnershipRelationships(): void
+  + getSpacesByColorGroup(ColorGroupKeys): ArrayList<Color>
+  + parseIntHandler(String): int
+  + updateImprovementEligibility(): void
+  + getNextSpaceID(int): int
+  + forceBoardSelfCheck(): void
+  + getDistance(int, int): int
+  + currentPlayerID: int
+  + nextActivePlayerID: int
+  + bankHotelCount: int
+  + repairCostHotel: int
+  + repairCostHouse: int
+  + bankHouseCount: int
+}
+class ButtonActionListener {
+  + ButtonActionListener(ActionsGUI): 
+  + ButtonActionListener(ActionsGUI, boolean): 
+  + action: ActionsGUI
+  + actionPerformed(ActionEvent): void
+  + action: ActionsGUI
+}
+class Color {
+  + Color(Map<String, Integer>, int, String): 
+  + colorGroup: ColorGroupKeys
+  + houseCount: int
+  + hotelCount: int
+  + buildHotel(): void
+  + calculateRent(): int
+  + buildHouse(): void
+  + sellHotel(): void
+  + sellHouse(): void
+  + houseCount: int
+  + hotelCount: int
+  + isEligibleForImprovements: boolean
+  + houseCost: int
+  + friendlyColorGroup: String
+  + hotelCost: int
+  + colorGroup: ColorGroupKeys
+}
+enum ColorGroupKeys << enumeration >> {
+  + ColorGroupKeys(): 
+  + values(): ColorGroupKeys[]
+  + valueOf(String): ColorGroupKeys
+}
+class CosmeticSpaceActionListener {
+  - CosmeticSpaceActionListener(): 
+  - mouseEntered(MouseEvent): void
+  - mouseClicked(MouseEvent): void
+  - mouseReleased(MouseEvent): void
+  - mousePressed(MouseEvent): void
+  - mouseExited(MouseEvent): void
+}
+enum DestinationRelativeTypeKeys << enumeration >> {
+  + DestinationRelativeTypeKeys(): 
+  + values(): DestinationRelativeTypeKeys[]
+  + valueOf(String): DestinationRelativeTypeKeys
+}
+class DialogContainer {
+  + DialogContainer(): 
+  + dialog: JDialog
+  + initComponents(): void
+  + arrangeComponents(): void
+  + initLabelTitle(String, String): void
+  + setStateOfActionButton(ActionsGUI, boolean): void
+  + dialog: JDialog
+}
+class DialogContainerAbout {
+  + DialogContainerAbout(): 
+  + initComponents(): void
+  + arrangeComponents(): void
+  + setStateOfActionButton(ActionsGUI, boolean): void
+  + dialog: JDialog
+}
+class DialogContainerAuction {
+  + DialogContainerAuction(Board): 
+  + arrangeComponents(): void
+  + main(String[]): void
+  + setStateOfActionButton(ActionsGUI, boolean): void
+  + initComponents(): void
+}
+class DialogContainerDebugLog {
+  + DialogContainerDebugLog(LogHelper): 
+  + initComponents(): void
+  + arrangeComponents(): void
+  + setStateOfActionButton(ActionsGUI, boolean): void
+  + update(): void
+}
+class DialogContainerForfeit {
+  + DialogContainerForfeit(): 
+  + arrangeComponents(): void
+  + main(String[]): void
+  + setStateOfActionButton(ActionsGUI, boolean): void
+  + initComponents(): void
+  + attachActionListeners(ArrayList<ButtonActionListener>): void
+}
+class DialogContainerGameEditor {
+  + DialogContainerGameEditor(): 
+  + setStateOfActionButton(ActionsGUI, boolean): void
+  + main(String[]): void
+  + attachActionListeners(ArrayList<GameEditorActionListener>): void
+  + arrangeComponents(): void
+  + initComponents(): void
+  + selectedPlayer: int
+}
+class DialogContainerImprovements {
+  + DialogContainerImprovements(): 
+  + setStateOfActionButton(ActionsGUI, boolean): void
+  + getInfoAreaMessage(ImprovementEligibilityStatus): String
+  + initComponents(): void
+  + update(Board, Player, int, GameLogicController): void
+  + main(String[]): void
+  + attachActionListeners(ArrayList<ButtonActionListener>): void
+  + arrangeComponents(): void
+}
+class DialogContainerJail {
+  + DialogContainerJail(): 
+  + update(Board, Player): void
+  + arrangeComponents(): void
+  + main(String[]): void
+  + attachActionListeners(ArrayList<ButtonActionListener>): void
+  + initComponents(): void
+  + setStateOfActionButton(ActionsGUI, boolean): void
+}
+class DialogContainerMortgage {
+  + DialogContainerMortgage(): 
+  + attachActionListeners(ArrayList<ButtonActionListener>): void
+  + getMessage(MortgageEligibilityStatus): String
+  + main(String[]): void
+  + update(Board, Player, int, GameLogicController): void
+  + setStateOfActionButton(ActionsGUI, boolean): void
+  + initComponents(): void
+  + arrangeComponents(): void
+}
+class DialogContainerPurchaseProperty {
+  + DialogContainerPurchaseProperty(): 
+  + arrangeComponents(): void
+  + setStateOfActionButton(ActionsGUI, boolean): void
+  + initComponents(): void
+  + main(String[]): void
+  + update(Board): void
+  + update(Board, int): void
+  + attachActionListeners(ArrayList<ButtonActionListener>): void
+  + component: JComponent
+}
+class DialogContainerStartGame {
+  + DialogContainerStartGame(): 
+  + playerCount: int
+  + main(String[]): void
+  + setStateOfActionButton(ActionsGUI, boolean): void
+  + initComponents(): void
+  + arrangeComponents(): void
+  + attachStartGameActionListener(StartGameButtonActionListener): void
+  + getPlayerCustomName(int): String
+  + playerCount: int
+}
+enum Direction << enumeration >> {
+  - Direction(): 
+  - valueOf(String): Direction
+  - values(): Direction[]
+}
+class DrawCard {
+  + DrawCard(DrawCardTypeKeys, DestinationRelativeTypeKeys, String, int, int): 
+  + DrawCard(): 
+  + destinationRelativeType: DestinationRelativeTypeKeys
+  + message: String
+  + drawCardType: DrawCardTypeKeys
+  + drawCardType: DrawCardTypeKeys
+  + destinationSpace: int
+  + destinationRelativeType: DestinationRelativeTypeKeys
+  + message: String
+  + quantity: int
+}
+enum DrawCardTypeKeys << enumeration >> {
+  + DrawCardTypeKeys(): 
+  + valueOf(String): DrawCardTypeKeys
+  + values(): DrawCardTypeKeys[]
+}
+class DynamicView {
+  + DynamicView(): 
+  + updateDialogAppearance(JDialog, boolean): void
+  + initDialogs(): void
+  + initGUIComponents(): void
+  + updateGuiMandatoryDialogs(): void
+  + quitManager(): void
+  + loadGame(): void
+  + updateDialogAppearance(JDialog): void
+  + resetSpaceButtonAppearance(): void
+  + partyVisuals(): void
+  + update(): void
+  + initButtonActionListeners(): void
+  + disableControlButtons(): void
+  + initControlFrame(): void
+  + updatePrompt(ActionsGUI): void
+  + updateGuiOptionalDialogs(): void
+  + saveGame(): void
+  + startGame(int, ArrayList<String>, boolean): void
+  + initMenuBar(): void
+}
+class GameEditorActionListener {
+  + GameEditorActionListener(GameEditorActions): 
+  + action: GameEditorActions
+  + actionPerformed(ActionEvent): void
+  + action: GameEditorActions
+}
+enum GameEditorActions << enumeration >> {
+  + GameEditorActions(): 
+  + values(): GameEditorActions[]
+  + valueOf(String): GameEditorActions
+}
+class GameEditorController {
+  + GameEditorController(Board, GameLogicController, LogHelper): 
+  + deduct1000(Player): void
+  + giveAllProperties(Player): void
+  + unjailPlayer(Player): void
+  + give1000(Player): void
+  + randomlyDistributeAllProperties(): void
+  + jailPlayer(Player): void
+  + appendToGameLogGameEditor(String): void
+  + forceEndTurn(): void
+}
+class GameEvent {
+  + GameEvent(GameEventTypeKeys, int, String): 
+  + gameEventType: GameEventTypeKeys
+  + gameEventType: GameEventTypeKeys
+}
+enum GameEventTypeKeys << enumeration >> {
+  + GameEventTypeKeys(): 
+  + values(): GameEventTypeKeys[]
+  + valueOf(String): GameEventTypeKeys
+}
+class GameLogicController {
+  + GameLogicController(Board, LogHelper): 
+  + playersCount: int
+  + playerCanBuildImprovements: boolean
+  + normalTurnEvaluator(): void
+  + debugToolsGiveAllProperties(int): void
+  + forfeitManager(): void
+  + mortgageProperty(int, MortgageActions): void
+  + propertyPurchaseManager(): void
+  + movementEvaluator(): void
+  + propertyEvaluator(): void
+  + debugToolsRandomlyDistributeAllProperties(): void
+  + playerDecisionJailUseGOOJFC(): void
+  + appendToGameLog(String): void
+  + gameEventEvaluator(): void
+  + movementEvaluatorAdvanced(boolean, int): void
+  + jailStateEvaluator(): void
+  + jailPlayer(): void
+  + readyPlayerForJailRelease(): void
+  + maeStateEvaluator(): void
+  + gameEditorJailPlayer(Player): void
+  + playerDecisionAuction(): void
+  + bankruptStateEvaluator(): void
+  + sendInitGameMessage(): void
+  + endTurnManager(): void
+  + playerDecisionJailPostBail(): void
+  + diceRollManager(): void
+  + victoryConditionMet(): void
+  + initialEvaluator(): void
+  + playerDecisionJailRollDoubles(): void
+  + playerDecisionPurchaseProperty(): void
+  + improvementsManager(int, ImprovementsActions): void
+  + isVictoryConditionMet: boolean
+  + isGameActive: boolean
+  + playersCount: int
+  + playerCanBuildImprovements: boolean
+}
+class GameLogicEvaluatorDrawCard {
+  + GameLogicEvaluatorDrawCard(): 
+  + eventTeleportWithRentModifier(): void
+  + drawCardEvaluator(): void
+  + eventImprovementRepairs(): void
+  + eventDistributedBalanceUpdate(): void
+  + eventTeleportRelative(): void
+}
+class GameLogicManagerImprovements {
+  + GameLogicManagerImprovements(GameLogicController): 
+  + improvementsManager(int, ImprovementsActions): void
+}
+class GameLogicModule {
+  + GameLogicModule(): 
+  + attachReferences(Board, GameLogicController, Space, Player): void
+}
+class GameLogicSwitchboard {
+  + GameLogicSwitchboard(GameLogicController): 
+  + origin: Object
+  + actionHandler(ActionsGUI, int): void
+  + origin: Object
+}
+class GameLogicTools {
+  + GameLogicTools(): 
+  + debugToolsGiveAllProperties(int): void
+  + gameEditorJailPlayer(Player): void
+  + debugToolsRandomlyDistributeAllProperties(): void
+  + attachLogHelper(LogHelper): void
+}
+enum ImprovementEligibilityStatus << enumeration >> {
+  - ImprovementEligibilityStatus(): 
+  - valueOf(String): ImprovementEligibilityStatus
+  - values(): ImprovementEligibilityStatus[]
+}
+enum ImprovementsActions << enumeration >> {
+  ~ ImprovementsActions(): 
+  ~ valueOf(String): ImprovementsActions
+  ~ values(): ImprovementsActions[]
+}
+class JavaMonopoly {
+  + JavaMonopoly(): 
+  + main(String[]): void
+  + saveToFile(): void
+  + loadFromFile(): void
+}
+enum LabelAlignment << enumeration >> {
+  - LabelAlignment(): 
+  - values(): LabelAlignment[]
+  - valueOf(String): LabelAlignment
+}
+enum LabelStyles << enumeration >> {
+  + LabelStyles(): 
+  + valueOf(String): LabelStyles
+  + values(): LabelStyles[]
+}
+class LocalActionListener {
+  - LocalActionListener(): 
+  - actionPerformed(ActionEvent): void
+}
+class LogHelper {
+  + LogHelper(): 
+  + gameLogContents: ArrayList<String>
+  + sendWelcomeMessage(): void
+  + clearLogs(): void
+  + appendToDebugLog(String): void
+  + addNewLine(): void
+  + getGameLogContentsFiltered(String): ArrayList<String>
+  + appendToGameLog(String, int): void
+  + appendToGameLog(String): void
+  + allDebugLogContents: String
+  + allGameLogContents: String
+  + gameLogContents: ArrayList<String>
+}
+class MacroController {
+  + MacroController(Board, GameLogicController, LogHelper): 
+  + activePlayers: ArrayList<Player>
+  + appendToGameLogMacros(String): void
+  + macroBankruptcyTest(): void
+  + macroDisableRandomPlayer(): void
+  + randomActivePlayer: Player
+  + activePlayers: ArrayList<Player>
+}
+class MenuActionListener {
+  - MenuActionListener(MenuActions): 
+  - actionPerformed(ActionEvent): void
+}
+enum MenuActions << enumeration >> {
+  + MenuActions(): 
+  + valueOf(String): MenuActions
+  + values(): MenuActions[]
+}
+enum MortgageActions << enumeration >> {
+  ~ MortgageActions(): 
+  ~ values(): MortgageActions[]
+  ~ valueOf(String): MortgageActions
+}
+enum MortgageEligibilityStatus << enumeration >> {
+  - MortgageEligibilityStatus(): 
+  - valueOf(String): MortgageEligibilityStatus
+  - values(): MortgageEligibilityStatus[]
+}
+class Player {
+  + Player(): 
+  + ownedRailroads: int
+  + initialJailTurn: boolean
+  + requiredDecisionPostedBail: boolean
+  + actionLockedRollDice: boolean
+  + madeDecisionPropertyAction: boolean
+  + preferredIcon: ImageIcon
+  + customName: String
+  + consecutiveDoublesCount: int
+  + resultDecisionPropertyAction: boolean
+  + mortgagedPropertyIDs: boolean[]
+  + hasRequestedEndTurn: boolean
+  + ownedPropertyIDs: boolean[]
+  + actionLockedEndTurn: boolean
+  + die1: int
+  + playerID: int
+  + getOutOfJailFreeCardCount: int
+  + resultDecisionJail: boolean
+  + requiredDecisionPropertyAction: boolean
+  + consecutiveTurnsJailed: int
+  + hasRolledDoubles: boolean
+  + animateMovement: boolean
+  + creditorPlayerID: int
+  + currentPosition: int
+  + previousPosition: int
+  + die2: int
+  + hasRolledDice: boolean
+  + currentBalance: int
+  + madeDecisionJail: boolean
+  + incrementConsecutiveTurnsJailed(): void
+  + setPropertyMortgagedState(boolean, int): void
+  + updateCurrentBalance(int): void
+  + evaluateState(): void
+  + unjailPlayer(): void
+  + initializePlayerForNewTurn(): void
+  + advancePosition(int): boolean
+  + rollDice(): void
+  + getOwnsPropertyByID(int): boolean
+  + setPropertyOwnedState(boolean, int): void
+  + madeDecisionJail: boolean
+  + requiredDecisionPropertyAction: boolean
+  + consecutiveTurnsJailed: int
+  + isPlayerActive: boolean
+  + previousPosition: int
+  + getOutOfJailFreeCardCount: int
+  + creditorPlayerID: int
+  + position: int
+  + initialJailTurn: boolean
+  + ownedRailroads: int
+  + die1: int
+  + resultDecisionJail: boolean
+  + madeDecisionPropertyAction: boolean
+  + isActive: boolean
+  + consecutiveDoublesCount: int
+  + currentBalance: int
+  + actionLockedRollDice: boolean
+  + isInMAEState: boolean
+  + customName: String
+  + hasRolledDice: boolean
+  + animateMovement: boolean
+  + hasRolledDoubles: boolean
+  + isBankrupt: boolean
+  + ownedPropertyIDs: boolean[]
+  + isComputerControlled: boolean
+  + diceSum: int
+  + isJailed: boolean
+  + mortgagedPropertyIDs: boolean[]
+  + preferredIcon: ImageIcon
+  + requiredDecisionPostedBail: boolean
+  + resultDecisionPropertyAction: boolean
+  + die2: int
+  + currentPosition: int
+  + resultDecisionPostedBail: boolean
+  + hasRequestedEndTurn: boolean
+  + actionLockedEndTurn: boolean
+  + playerID: int
+}
+class Property {
+  + Property(HashMap<String, Integer>): 
+  + purchaseCost: int
+  + ownerID: int
+  + mortgageValue: int
+  + calculateRent(): int
+  + queryRentValue(QueryRentStates): String
+  + purchaseCost: int
+  + isMortgaged: boolean
+  + isFullSetOwned: boolean
+  + mortgageValue: int
+  + ownerID: int
+  + unmortgageCost: int
+  + isOwned: boolean
+}
+enum QueryRentStates << enumeration >> {
+  + QueryRentStates(): 
+  + values(): QueryRentStates[]
+  + valueOf(String): QueryRentStates
+}
+class Railroad {
+  + Railroad(Map<String, Integer>, int, String): 
+  + ownedRailroads: int
+  + calculateRent(): int
+  + ownedRailroads: int
+}
+class SerialState {
+  + SerialState(): 
+  + controller: GameLogicController
+  + currentPlayer: Player
+  + logHelper: LogHelper
+  + board: Board
+  + switchboard: GameLogicSwitchboard
+  + updateData(Board, GameLogicController, LogHelper, Player, GameLogicSwitchboard): void
+  + switchboard: GameLogicSwitchboard
+  + board: Board
+  + currentPlayer: Player
+  + logHelper: LogHelper
+  + controller: GameLogicController
+}
+class Space {
+  + Space(): 
+  + spaceType: spaceTypeKeys
+  + timesLanded: int
+  + friendlyName: String
+  + incrementTimesLanded(): void
+  + spaceType: spaceTypeKeys
+  + friendlyName: String
+  + timesLanded: int
+  + ID: int
+}
+class SpaceButton {
+  + SpaceButton(int): 
+  + SpaceButton(int, boolean, ImageIcon, ImageIcon): 
+  + direction: Direction
+  + button: JButton
+  + isAnimated: boolean
+  + direction: Direction
+  + button: JButton
+  + mortgagedAppearance: boolean
+  + ID: int
+  + isAnimated: boolean
+}
+class SpaceButtonActionListener {
+  + SpaceButtonActionListener(int): 
+  + actionPerformed(ActionEvent): void
+}
+class StartGameButtonActionListener {
+  + StartGameButtonActionListener(): 
+  + actionPerformed(ActionEvent): void
+  + playerCustomNames: ArrayList<String>
+  + playerCount: int
+}
+class Statistics {
+  + Statistics(): 
+  + statsMap: HashMap<String, Integer>
+  + putStatsMap(String, int): void
+  + statsMap: HashMap<String, Integer>
+}
+class SwingHelper {
+  + SwingHelper(JInternalFrame): 
+  + drawBorderJDialog(JDialog): void
+  + centerJDialog(JDialog): void
+  + createBorderStyleHighlight(Color, boolean, int): Border
+  + getImageIconFromResource(String): ImageIcon
+  + formatLabel(JLabel, String, LabelStyles): void
+  + formatLabel(JLabel): void
+  + formatGameLogArea(JTextArea): void
+  + formatLabel(JLabel, String): void
+  + partyMode(ArrayList<SpaceButton>): void
+  + formatLabel(JLabel, boolean): void
+  + partyModeComponent(JComponent): void
+  + formatInfoArea(JTextArea): void
+  + createBorderStyleHighlight(Color, boolean): Border
+  + getShadowModifiedColor(Color): Color
+  + createBorderStyleHighlight(): Border
+  + getHighlightModifiedColor(Color): Color
+  + resetBorder(JButton): void
+  + spaceButtonHighlightSpectrum(int, int, ArrayList<SpaceButton>): void
+  + customAppearanceJDialog: JDialog
+}
+class TemplateDialogButtonProperties {
+  + TemplateDialogButtonProperties(String, String, ActionListener, String): 
+  + migLayoutSpec: String
+}
+class TemplateDialogGenerator {
+  + TemplateDialogGenerator(String, String): 
+  + initDialogForView(JDialog): void
+  + getImageIconFromResource(String): ImageIcon
+  + createDialogUserPrompt(ArrayList<TemplateDialogButtonProperties>, String): JDialog
+}
+class Utility {
+  + Utility(Map<String, Integer>, int, String): 
+  + calculateRent(): int
+}
+class ViewAreaSpaceSelection {
+  + ViewAreaSpaceSelection(): 
+  + initLabels(): void
+  + update(Board): void
+  + update(Board, int): void
+  + getLabel(String): JLabel
+  + generateLabelWithIcons(JPanel, LabelAlignment, boolean, String, String, String): JLabel
+  + setStateOfActionButton(ActionsGUI, boolean): void
+  + generateLabel(JPanel, LabelAlignment, boolean, String, String): JLabel
+  + JPanel: JPanel
+  + component: JComponent
+}
+interface ViewComponent << interface >> {
+  + update(Board): void
+  + setStateOfActionButton(ActionsGUI, boolean): void
+  + component: JComponent
+}
+class ViewFrameBoard {
+  + ViewFrameBoard(LogHelper, ArrayList<SpaceButtonActionListener>): 
+  + initMouseListenersForAnimatedSpaces(): void
+  + update(Board, int): void
+  + updateGameLog(): void
+  + initImprovementIcons(): void
+  + resetButtonAppearance(): void
+  + updateGuiImprovementIcons(Board): void
+  + updateGuiMortgagedProperties(Board): void
+  + updateGuiPlayerIndicators(Board): void
+  + calculatePointForPlayerIndicator(int, int, boolean): Point
+  + animatePlayerMovement(Board, int): void
+  + updateGuiSpaceHighlight(Board): void
+  + internalFrame: JInternalFrame
+  + spaceButtonArrayList: ArrayList<SpaceButton>
+}
+class ViewFrameControl {
+  + ViewFrameControl(): 
+  + frame: JInternalFrame
+  + setStateOfActionButton(ActionsGUI, boolean): void
+  + update(Board): void
+  + initButtons(ArrayList<ButtonActionListener>): void
+  + partyVisuals(): void
+  + initLabels(): void
+  + frame: JInternalFrame
+  + component: JComponent
+}
+class ViewFrameInformation {
+  + ViewFrameInformation(Board): 
+  + frame: JInternalFrame
+  + setStateOfActionButton(ActionsGUI, boolean): void
+  + update(Board): void
+  + arrangeComponents(): void
+  + initComponents(): void
+  + frame: JInternalFrame
+  + component: JComponent
+}
+class ViewFrameInformationModule {
+  + ViewFrameInformationModule(Board, Player): 
+  + panelPlayerAssets: JPanel
+  + panelPlayerStatus: JPanel
+  + compositePanel: JPanel
+  + arrangeComponentsPlayerAssets(): void
+  + updatePropertyGroupOwnershipLabels(): void
+  + initComponentsPlayerStatus(): void
+  + arrangeComponentsPlayerStatus(): void
+  + main(String[]): void
+  + initComponentsPlayerAssets(): void
+  + attachMouseListener(MouseListener): void
+  + update(): void
+  + disableAllComponents(): void
+  + panelPlayerStatus: JPanel
+  + compositePanel: JPanel
+  + panelPlayerAssets: JPanel
+}
+enum propertyTypeKeys << enumeration >> {
+  + propertyTypeKeys(): 
+  + values(): propertyTypeKeys[]
+  + valueOf(String): propertyTypeKeys
+}
+enum spaceTypeKeys << enumeration >> {
+  + spaceTypeKeys(): 
+  + valueOf(String): spaceTypeKeys
+  + values(): spaceTypeKeys[]
+}
+
+ActionsImprovements              +-[#820000,plain]-  DialogContainerImprovements     
+ActionsMortgage                  +-[#820000,plain]-  DialogContainerMortgage         
+AnimatedSpaceActionListener      +-[#820000,plain]-  ViewFrameBoard                  
+BidControls                      +-[#820000,plain]-  DialogContainerAuction          
+ButtonActionListener             +-[#820000,plain]-  DynamicView                     
+Color                            -[#000082,plain]-^  Property                        
+ColorGroupKeys                   +-[#820000,plain]-  Color                           
+CosmeticSpaceActionListener      +-[#820000,plain]-  ViewFrameBoard                  
+DestinationRelativeTypeKeys      +-[#820000,plain]-  DrawCard                        
+DialogContainerAbout             -[#000082,plain]-^  DialogContainer                 
+DialogContainerAuction           -[#000082,plain]-^  DialogContainer                 
+DialogContainerDebugLog          -[#000082,plain]-^  DialogContainer                 
+DialogContainerForfeit           -[#000082,plain]-^  DialogContainer                 
+DialogContainerGameEditor        -[#000082,plain]-^  DialogContainer                 
+DialogContainerImprovements      -[#000082,plain]-^  DialogContainer                 
+DialogContainerJail              -[#000082,plain]-^  DialogContainer                 
+DialogContainerMortgage          -[#000082,plain]-^  DialogContainer                 
+DialogContainerPurchaseProperty  -[#000082,plain]-^  DialogContainer                 
+DialogContainerPurchaseProperty  -[#008200,dashed]-^  ViewComponent                   
+DialogContainerStartGame         -[#000082,plain]-^  DialogContainer                 
+Direction                        +-[#820000,plain]-  ViewFrameBoard                  
+DrawCardTypeKeys                 +-[#820000,plain]-  DrawCard                        
+GameEditorActionListener         +-[#820000,plain]-  DynamicView                     
+GameEvent                        -[#000082,plain]-^  Space                           
+GameEventTypeKeys                +-[#820000,plain]-  GameEvent                       
+GameLogicEvaluatorDrawCard       -[#000082,plain]-^  GameLogicModule                 
+GameLogicManagerImprovements     -[#000082,plain]-^  GameLogicModule                 
+GameLogicTools                   -[#000082,plain]-^  GameLogicModule                 
+ImprovementEligibilityStatus     +-[#820000,plain]-  DialogContainerImprovements     
+ImprovementsActions              +-[#820000,plain]-  ActionsImprovements             
+LabelAlignment                   +-[#820000,plain]-  ViewAreaSpaceSelection          
+LabelStyles                      +-[#820000,plain]-  SwingHelper                     
+LocalActionListener              +-[#820000,plain]-  DialogContainerStartGame        
+MenuActionListener               +-[#820000,plain]-  DynamicView                     
+MortgageActions                  +-[#820000,plain]-  ActionsMortgage                 
+MortgageEligibilityStatus        +-[#820000,plain]-  DialogContainerMortgage         
+Property                         -[#000082,plain]-^  Space                           
+QueryRentStates                  +-[#820000,plain]-  Property                        
+Railroad                         -[#000082,plain]-^  Property                        
+SpaceButton                      +-[#820000,plain]-  ViewFrameBoard                  
+SpaceButtonActionListener        +-[#820000,plain]-  DynamicView                     
+StartGameButtonActionListener    +-[#820000,plain]-  DynamicView                     
+Utility                          -[#000082,plain]-^  Property                        
+ViewAreaSpaceSelection           -[#008200,dashed]-^  ViewComponent                   
+ViewFrameControl                 -[#008200,dashed]-^  ViewComponent                   
+ViewFrameInformation             -[#008200,dashed]-^  ViewComponent                   
+propertyTypeKeys                 +-[#820000,plain]-  Property                        
+spaceTypeKeys                    +-[#820000,plain]-  Space                           
+@enduml

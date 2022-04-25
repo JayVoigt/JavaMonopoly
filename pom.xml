@@ -86,20 +86,9 @@
             <version>RELEASE126</version>
         </dependency>
         <dependency>
-            <groupId>io.github.git-commit-id</groupId>
-            <artifactId>git-commit-id-maven-plugin</artifactId>
-            <version>5.0.0</version>
-        </dependency>
-        <dependency>
             <groupId>com.miglayout</groupId>
             <artifactId>miglayout-swing</artifactId>
             <version>11.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.jetbrains</groupId>
-            <artifactId>annotations</artifactId>
-            <version>RELEASE</version>
-            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.jetbrains</groupId>
