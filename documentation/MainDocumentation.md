@@ -49,7 +49,7 @@ Note the use of the word "prototype" -- this implementation is not fully complia
 
 The latest executable `.jar` file is available as `/JavaMonopolyPrototype.jar`.
 
-For more details on the codebase, please see the JavaDoc -- it is currently available online at [GitHub Pages](), but the offline version is available under the `/javadoc` directory.
+For more details on the codebase, please see the JavaDoc -- it is currently available online at [GitHub Pages](https://pages.github.iu.edu/jayvoigt/cc/jayv/monopoly3/package-summary.html), but the offline version is available under the `/javadoc` directory.
 
 Primary documentation is available as `/documentation/MainDocumentation.md`, along with supplemental diagrams and screenshots in this directory.
 

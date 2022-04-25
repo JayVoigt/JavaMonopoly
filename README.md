@@ -3,7 +3,6 @@
 Images may not load correctly in the README version of the documentation.
 
 [Please refer to `documentation/MainDocumentation.md` instead.](https://github.iu.edu/jayvoigt/CSCI24000_spring22_final_project/blob/master/documentation/MainDocumentation.md)
-
 # Final Project: Java Monopoly Prototype
 
 <div align="center">
@@ -55,7 +54,7 @@ Note the use of the word "prototype" -- this implementation is not fully complia
 
 The latest executable `.jar` file is available as `/JavaMonopolyPrototype.jar`.
 
-For more details on the codebase, please see the JavaDoc -- it is currently available online at [GitHub Pages](), but the offline version is available under the `/javadoc` directory.
+For more details on the codebase, please see the JavaDoc -- it is currently available online at [GitHub Pages](https://pages.github.iu.edu/jayvoigt/cc/jayv/monopoly3/package-summary.html), but the offline version is available under the `/javadoc` directory.
 
 Primary documentation is available as `/documentation/MainDocumentation.md`, along with supplemental diagrams and screenshots in this directory.
 
@@ -68,6 +67,20 @@ Art assets and helper files, such as icons and .csv-formatted space data, are st
 This project utilizes:
 - [MigLayout](http://miglayout.com/) as the primary Swing layout manager. Licensed under BSD or GPL.
 - [FlatLaf](https://github.com/JFormDesigner/FlatLaf) for the Swing look and feel. Licensed under Apache License 2.0.
+
+&nbsp;
+##### Build instructions
+This project uses Maven for its build system. Commands to compile and build are given below. Run the following in the root directory of the project with `pom.xml`:
+
+To clean: `mvn clean`
+
+To build: `mvn install`
+
+To package jar: `mvn package`; will produce `/target/Monoproto3-1.0-SNAPSHOT-jar-with-dependencies.jar`
+
+The resulting jar can then be executed with:
+
+`java -jar target/Monoproto3-1.0-SNAPSHOT-jar-with-dependencies.jar`
 
 &nbsp;
 ### Data structures
@@ -129,7 +142,7 @@ The primary data element is the board, containing information about all players,
 
 A UML diagram illustrating the game state data structure is included:
 
-![](data-uml.svg)
+![](documentation/data-uml.svg)
 
 Additionally, some data is not as cleanly organized into the "space" or "player" domain - namely, the ownership of a property. This data is useful when held in the property object itself, but there are scenarios where finding the properties owned by a specific player is required. The aggregation of space and player data into a single "board" domain proves useful for this reason.
 
@@ -315,22 +328,22 @@ The information pane provides a single visual area for any player to assess the 
 It consists of four information modules, each assigned to one player. These modules are then subdivided into **status** and **asset** views.
 
 The **status** view, on the left, contains the following icons that indicate
-- ![](res/dice-icon.png)  - if it is currently the player's turn
-- ![](res/jail.png)  - if the player is jailed
-- ![](res/piggy.png)  - if the player is bankrupt
+- ![](documentation/res/dice-icon.png)  - if it is currently the player's turn
+- ![](documentation/res/jail.png)  - if the player is jailed
+- ![](documentation/res/piggy.png)  - if the player is bankrupt
 
 as well as labels to indiate:
-- ![](res/player-generic.png) [ *Player n* ] - the player's name
-- ![](res/money.png) [ *$____* ] - the current balance of the player
-- ![](res/position.png) [ *space* ] - the name of the space that the player's game piece is currently on
+- ![](documentation/res/player-generic.png) [ *Player n* ] - the player's name
+- ![](documentation/res/money.png) [ *$____* ] - the current balance of the player
+- ![](documentation/res/position.png) [ *space* ] - the name of the space that the player's game piece is currently on
 
 &nbsp;
 
 The **asset** view, on the right, contains icons with an associated numerical value. These include:
 
-- ![](res/properties.png) - the total number of properties owned by the player
-- ![](res/goojfc.png) - the number of Get Out of Jail Free Cards owned by the player
-- ![](res/property-single-lightblue.png), ![](res/property-single-orange.png), etc. - the number of properties belonging to each group owned by the player
+- ![](documentation/res/properties.png) - the total number of properties owned by the player
+- ![](documentation/res/goojfc.png) - the number of Get Out of Jail Free Cards owned by the player
+- ![](documentation/res/property-single-lightblue.png), ![](documentation/res/property-single-orange.png), etc. - the number of properties belonging to each group owned by the player
 
 The text of the property group labels additionally changes colors depending on the state: gray when no properties are owned, and red when all properties are owned. (i.e., a monopoly)
 
@@ -341,7 +354,7 @@ The control pane provides important information about the current player, button
 
 <div align="center">
 
-![](control.gif)
+![](documentation/control.gif)
 
 </div>
 
@@ -371,7 +384,7 @@ Some spaces support animated assets that, when the mouse enters the space area, 
 
 <div align="center">
 
-![](electric-company-anim.gif) ![](waterworks-anim.gif) ![](free-parking-anim.gif) ![](go-to-jail-anim.gif) ![](luxury-tax-anim.gif)
+![](documentation/electric-company-anim.gif) ![](documentation/waterworks-anim.gif) ![](documentation/free-parking-anim.gif) ![](documentation/go-to-jail-anim.gif) ![](documentation/luxury-tax-anim.gif)
 
 </div>
 
