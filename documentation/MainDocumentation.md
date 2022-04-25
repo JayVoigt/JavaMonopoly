@@ -8,31 +8,33 @@
 <br>
 
 #### Table of Contents
-1.  [Introduction](#introduction) [c]
-2.  [Data structures](#data-structures) [c]
-    1. [Spaces, properties, and game events](#spaces%2C-properties%2C-and-game-events) [c]
-    2. [Players](#players) [c]
-    3. [Aggregating spaces and players](#aggregating-spaces-and-players) [c]
+1.  [Introduction](#introduction) 
+2.  [Data structures](#data-structures) 
+    1. [Spaces, properties, and game events](#spaces%2C-properties%2C-and-game-events) 
+    2. [Players](#players) 
+    3. [Aggregating spaces and players](#aggregating-spaces-and-players) 
 3.  [Code organization](#code-organization)
-4.  [Manipulation of data](#manipulation-of-data-structures)
+4.  [Manipulation of data](#manipulation-of-data)
 5.  [User interface - main components](#user-interface---main-components)
-    1.  [Inspiration](#inspiration) [c]
-    2.  [General structure](#general-structure) [c]
+    1.  [Inspiration](#inspiration) 
+    2.  [General structure](#general-structure) 
     3.  [Board view](#board-view)
-    4.  [Information pane](#information-pane) [c]
-    5.  [Control pane](#control-pane) [c]
-    6.  [Animations and extra features](#animations-and-extra-features) [c]
-6.  [User interface - dialogs](#dialogs) [c]
-    1.  [Property purchase](#dialog-purchase-property) [c]
-    2.  [Jail](#jail) [c]
-    3.  [Game editor](#game-editor) [c]
-    4.  [Improvements](#improvements) [c]
-    5.  [Mortgage](#mortgage) [c]
-    6.  [Start game](#start-game) [c]
-7.  [Future features and ideas](#future-features-and-ideas) [c]
+    4.  [Information pane](#information-pane) 
+    5.  [Control pane](#control-pane) 
+    6.  [Animations and extra features](#animations-and-extra-features) 
+6.  [User interface - dialogs](#dialogs) 
+    1.  [Property purchase](#dialog-purchase-property) 
+    2.  [Jail](#jail) 
+    3.  [Game editor](#game-editor) 
+    4.  [Improvements](#improvements) 
+    5.  [Mortgage](#mortgage) 
+    6.  [Start game](#start-game) 
+7.  [Future features and ideas](#future-features-and-ideas) 
 
 &nbsp;
 ### Introduction
+*Created by Jay Voigt as a final project for CSCI 24000, Spring 2022.*
+
 This project seeks to implement a playable version of the board game, Monopoly. With the physical version of the board game, players are responsible for interpreting and enforcing the game rules, while the software versions typically perform this automatically.
 
 The primary objective for this Java prototype of is to demonstrate how the game can be logically organized, such that it is fully playable with no need to reference a rule book.
@@ -41,21 +43,22 @@ Note the use of the word "prototype" -- this implementation is not fully complia
 
 &nbsp;
 
-<mark>**Important:**</mark>
+![](important.svg)
 
-**See the directory `/src/main/java/cc/jayv/monopoly3` for all Java code** pertaining to this project.
+**See the directory `/src/main/java/cc/jayv/monopoly3` for all Java code** utilized in the final build for this project.
 
 The latest executable `.jar` file is available as `/JavaMonopolyPrototype.jar`.
 
 For more details on the codebase, please see the JavaDoc -- it is currently available online at [GitHub Pages](), but the offline version is available under the `/javadoc` directory.
 
-Primary documentation is available within `/documentation` along with supplemental diagrams and screenshots.
+Primary documentation is available as `/documentation/MainDocumentation.md`, along with supplemental diagrams and screenshots in this directory.
 
 Legacy and unused code files are stored under `/src/main/legacy`. These files are **not** used in the final version of the main project, but are stored for reference.
 
 Art assets and helper files, such as icons and .csv-formatted space data, are stored under `/src/main/resources`. All non-reference images were created with Aseprite and Adobe Illustrator.
 
-##### Third-party libraries:
+&nbsp;
+##### Third-party libraries and dependencies
 This project utilizes:
 - [MigLayout](http://miglayout.com/) as the primary Swing layout manager. Licensed under BSD or GPL.
 - [FlatLaf](https://github.com/JFormDesigner/FlatLaf) for the Swing look and feel. Licensed under Apache License 2.0.
@@ -115,9 +118,12 @@ As well as several "flags" that are accessed by the Controller class group, exam
 - needs to make a decision for property purchase, jail
 
 &nbsp;
-
 #### Aggregating spaces and players
 The primary data element is the board, containing information about all players, spaces, and game events. However, this largely acts as a container for the state of the game, with some inputs and outputs that implement simple validation and manipulation. More advanced manipulation and analysis of this data is delegated to the Controller class group.
+
+A UML diagram illustrating the game state data structure is included:
+
+![](data-uml.svg)
 
 Additionally, some data is not as cleanly organized into the "space" or "player" domain - namely, the ownership of a property. This data is useful when held in the property object itself, but there are scenarios where finding the properties owned by a specific player is required. The aggregation of space and player data into a single "board" domain proves useful for this reason.
 
@@ -363,6 +369,7 @@ Some spaces support animated assets that, when the mouse enters the space area, 
 
 </div>
 
+<a name="dialogs"></a>
 &nbsp;
 ### User interface - dialogs
 
@@ -473,3 +480,14 @@ The GUI does not contain necessary routines to update correctly after serialized
 **CPU players**
 
 A simple implementation of computer-controlled player.
+
+&nbsp;
+
+<div align="center">
+<img src="res/bug-log-anim.gif">
+<br>
+<i>Thank you for your interest in (or grading of) my project!
+<br>
+</i>
+<br>
+</div>

@@ -4,8 +4,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>260</x>
-      <y>190</y>
+      <x>480</x>
+      <y>0</y>
       <w>550</w>
       <h>620</h>
     </coordinates>
@@ -54,8 +54,8 @@ GameLogicController
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1130</x>
-      <y>900</y>
+      <x>1350</x>
+      <y>710</y>
       <w>530</w>
       <h>200</h>
     </coordinates>
@@ -79,8 +79,8 @@ layer=1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1020</x>
-      <y>220</y>
+      <x>1240</x>
+      <y>30</y>
       <w>550</w>
       <h>180</h>
     </coordinates>
@@ -101,8 +101,8 @@ layer=1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1130</x>
-      <y>460</y>
+      <x>1350</x>
+      <y>270</y>
       <w>530</w>
       <h>200</h>
     </coordinates>
@@ -119,8 +119,8 @@ layer=1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1130</x>
-      <y>680</y>
+      <x>1350</x>
+      <y>490</y>
       <w>530</w>
       <h>200</h>
     </coordinates>
@@ -143,8 +143,8 @@ layer=1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1050</x>
-      <y>490</y>
+      <x>1270</x>
+      <y>300</y>
       <w>100</w>
       <h>30</h>
     </coordinates>
@@ -154,8 +154,8 @@ layer=1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1050</x>
-      <y>710</y>
+      <x>1270</x>
+      <y>520</y>
       <w>100</w>
       <h>30</h>
     </coordinates>
@@ -165,8 +165,8 @@ layer=1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1050</x>
-      <y>930</y>
+      <x>1270</x>
+      <y>740</y>
       <w>100</w>
       <h>30</h>
     </coordinates>
@@ -176,8 +176,8 @@ layer=1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1050</x>
-      <y>430</y>
+      <x>1270</x>
+      <y>240</y>
       <w>30</w>
       <h>530</h>
     </coordinates>
@@ -187,8 +187,8 @@ layer=1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1050</x>
-      <y>390</y>
+      <x>1270</x>
+      <y>200</y>
       <w>100</w>
       <h>70</h>
     </coordinates>
@@ -199,8 +199,8 @@ extends v</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1050</x>
-      <y>490</y>
+      <x>1270</x>
+      <y>300</y>
       <w>90</w>
       <h>30</h>
     </coordinates>
@@ -213,8 +213,8 @@ layer=1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1050</x>
-      <y>710</y>
+      <x>1270</x>
+      <y>520</y>
       <w>90</w>
       <h>30</h>
     </coordinates>
@@ -227,8 +227,8 @@ layer=1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1050</x>
-      <y>930</y>
+      <x>1270</x>
+      <y>740</y>
       <w>90</w>
       <h>30</h>
     </coordinates>
@@ -241,8 +241,8 @@ layer=1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1050</x>
-      <y>490</y>
+      <x>1270</x>
+      <y>300</y>
       <w>30</w>
       <h>470</h>
     </coordinates>
@@ -255,8 +255,8 @@ layer=1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>930</x>
-      <y>490</y>
+      <x>1150</x>
+      <y>300</y>
       <w>150</w>
       <h>30</h>
     </coordinates>
@@ -268,8 +268,8 @@ layer=1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>800</x>
-      <y>480</y>
+      <x>1020</x>
+      <y>290</y>
       <w>160</w>
       <h>40</h>
     </coordinates>
@@ -282,8 +282,8 @@ layer=1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1000</x>
-      <y>190</y>
+      <x>1220</x>
+      <y>0</y>
       <w>680</w>
       <h>930</h>
     </coordinates>
@@ -296,8 +296,8 @@ layer=-1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>260</x>
-      <y>880</y>
+      <x>480</x>
+      <y>690</y>
       <w>550</w>
       <h>240</h>
     </coordinates>
@@ -317,8 +317,8 @@ GameLogicSwitchboard
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>60</x>
-      <y>900</y>
+      <x>280</x>
+      <y>710</y>
       <w>110</w>
       <h>60</h>
     </coordinates>
@@ -332,8 +332,8 @@ bg=#CCCCFF</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>160</x>
-      <y>920</y>
+      <x>380</x>
+      <y>730</y>
       <w>120</w>
       <h>30</h>
     </coordinates>
@@ -343,8 +343,8 @@ bg=#CCCCFF</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>130</x>
-      <y>740</y>
+      <x>350</x>
+      <y>550</y>
       <w>150</w>
       <h>180</h>
     </coordinates>
@@ -354,8 +354,8 @@ bg=#CCCCFF</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>690</x>
-      <y>800</y>
+      <x>910</x>
+      <y>610</y>
       <w>110</w>
       <h>100</h>
     </coordinates>
@@ -369,8 +369,8 @@ fg=magenta</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>70</x>
-      <y>950</y>
+      <x>290</x>
+      <y>760</y>
       <w>210</w>
       <h>70</h>
     </coordinates>
