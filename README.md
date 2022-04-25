@@ -1,3 +1,9 @@
+![](https://img.shields.io/badge/-NOTICE-FF0000?&style=for-the-badge)
+
+Images may not load correctly in the README version of the documentation.
+
+[Please refer to `documentation/MainDocumentation.md` instead.](https://github.iu.edu/jayvoigt/CSCI24000_spring22_final_project/blob/master/documentation/MainDocumentation.md)
+
 # Final Project: Java Monopoly Prototype
 
 <div align="center">
@@ -43,7 +49,7 @@ Note the use of the word "prototype" -- this implementation is not fully complia
 
 &nbsp;
 
-![](important.svg)
+![](documentation/important.svg)
 
 **See the directory `/src/main/java/cc/jayv/monopoly3` for all Java code** utilized in the final build for this project.
 
