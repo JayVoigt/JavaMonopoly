@@ -9,9 +9,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fe395cf4-00c4-4bef-93b5-8a1f264350fd" name="Changes" comment="general refactor and clean up of code">
+    <list default="true" id="fe395cf4-00c4-4bef-93b5-8a1f264350fd" name="Changes" comment="final appearance cleanup for main window">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DynamicView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DynamicView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/ViewFrameBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/ViewFrameBoard.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -274,14 +274,7 @@
       <workItem from="1650568735481" duration="1734000" />
       <workItem from="1650655638615" duration="9619000" />
       <workItem from="1650887141854" duration="1580000" />
-      <workItem from="1650905691328" duration="8441000" />
-    </task>
-    <task id="LOCAL-00052" summary="renamed files for greater consistency">
-      <created>1649718917593</created>
-      <option name="number" value="00052" />
-      <option name="presentableId" value="LOCAL-00052" />
-      <option name="project" value="LOCAL" />
-      <updated>1649718917593</updated>
+      <workItem from="1650905691328" duration="10843000" />
     </task>
     <task id="LOCAL-00053" summary="moved MainWindow to legacy folder">
       <created>1649719892522</created>
@@ -619,7 +612,14 @@
       <option name="project" value="LOCAL" />
       <updated>1650230907940</updated>
     </task>
-    <option name="localTasksCounter" value="101" />
+    <task id="LOCAL-00101" summary="final appearance cleanup for main window">
+      <created>1650919343533</created>
+      <option name="number" value="00101" />
+      <option name="presentableId" value="LOCAL-00101" />
+      <option name="project" value="LOCAL" />
+      <updated>1650919343534</updated>
+    </task>
+    <option name="localTasksCounter" value="102" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -650,7 +650,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="updated spectrum button dynamics; added reset option; using lambda expressions for some ActionListener events" />
     <MESSAGE value="working on bankruptcy state" />
     <MESSAGE value="improved bankruptcy state" />
     <MESSAGE value="experimenting with space movement animations" />
@@ -675,7 +674,8 @@
     <MESSAGE value="fixed railroad rent evaluation bug" />
     <MESSAGE value="separated improvements manager into separate class" />
     <MESSAGE value="general refactor and clean up of code" />
-    <option name="LAST_COMMIT_MESSAGE" value="general refactor and clean up of code" />
+    <MESSAGE value="final appearance cleanup for main window" />
+    <option name="LAST_COMMIT_MESSAGE" value="final appearance cleanup for main window" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

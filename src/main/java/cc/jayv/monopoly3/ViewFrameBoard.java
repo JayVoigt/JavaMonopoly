@@ -334,63 +334,57 @@ public class ViewFrameBoard implements Serializable {
         Point point = new Point();
         int x = 0, y = 0;
 
-        int standardXOffset = 18 * (playerID - 1);
-        int cornerXOffset = 10 * (playerID - 1);
-        int standardYOffset = -4;
+        int spacing = 20;
+        int spacingCorner = 30;
+        int margin = 2;
 
-        int yReferenceNorth = 0;
-        int yReferenceSouth = 942;
-        int xReferenceEast = 942;
-        int xReferenceWest = 0;
+        int yAnchorSouth = 940 + margin - 4;
+        int yAnchorNorth = margin;
+        int xAnchorWest = margin;
+        int xAnchorEast = 940 + margin;
 
-        int xAnchorNorth = 0;
-        int xAnchorSouth = 840;
-        int yAnchorEast = 108;
-        int yAnchorWest = 832;
-
-        if (isJailed) {
-            if (playerID == 1) {
-                x = 90;
-                y = 850;
-            } else if (playerID == 2) {
-                x = 110;
-                y = 850;
-            } else if (playerID == 3) {
-                x = 90;
-                y = 870;
-            } else if (playerID == 4) {
-                x = 110;
-                y = 870;
-            }
-        } else {
-            if (spaceID == 0) {
-                x = xAnchorSouth + cornerXOffset;
-                y = yReferenceSouth;
+        int spacingNorthOrEast = 120 + (80 * ((spaceID - 1) % 10) + (spacing * (playerID - 1)));
+        int spacingSouthOrWest = 840 - (80 * (spaceID % 10) - (spacing * (playerID - 1)));
+        if (!isJailed) {
+            if ((spaceID > 0) && (spaceID < 10)) {
+                x = spacingSouthOrWest;
+                y = yAnchorSouth;
+            } else if ((spaceID > 10) && (spaceID < 20)) {
+                x = xAnchorWest;
+                y = spacingSouthOrWest;
+            } else if ((spaceID > 20) && (spaceID < 30)) {
+                x = spacingNorthOrEast;
+                y = yAnchorNorth;
+            } else if ((spaceID > 30) && (spaceID < 40)) {
+                x = xAnchorEast;
+                y = spacingNorthOrEast;
+            } else if (spaceID == 0) {
+                x = 840 + (spacingCorner * (playerID - 1));
+                y = yAnchorSouth;
             } else if (spaceID == 10) {
-                x = 10 + cornerXOffset;
-                y = yReferenceSouth;
+                x = (spacingCorner * (playerID - 1));
+                y = yAnchorSouth;
             } else if (spaceID == 20) {
-                x = 10 + cornerXOffset;
-                y = yReferenceNorth;
+                x = (spacingCorner * (playerID - 1));
+                y = yAnchorNorth;
             } else if (spaceID == 30) {
-                x = xAnchorSouth + cornerXOffset;
-                y = yReferenceNorth;
-            } else if (spaceID > 0 && spaceID < 10) {
-                x = xAnchorSouth - (80 * spaceID);
-                y = yReferenceSouth;
-            } else if (spaceID > 10 && spaceID < 20) {
-                x = xReferenceWest;
-                y = yAnchorWest + (80 * (11 - spaceID));
-            } else if (spaceID > 20 && spaceID < 30) {
-                x = 130 - (80 * (21 - spaceID));
-                y = yReferenceNorth;
-            } else if (spaceID > 30 && spaceID < 40) {
-                x = xReferenceEast;
-                y = 190 - (80 * (31 - spaceID));
+                x = 840 - (spacingCorner * (playerID - 1));
+                y = yAnchorNorth;
             }
-            x += standardXOffset;
-            y += standardYOffset;
         }
+        else {
+            if (playerID <= 2) {
+                x = 80 - ((1 - playerID) * spacing) - margin;
+                y = 840;
+            }
+            else {
+                x = 80 - ((3 - playerID) * spacing) - margin;
+                y = 840 + spacing;
+            }
+            x -= 28;
+            y += 28;
+        }
+
         point.setLocation(x, y);
 
         return point;
