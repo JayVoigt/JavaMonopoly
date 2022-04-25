@@ -127,7 +127,7 @@ public class DynamicView implements Serializable {
         viewFrameInformation.update(board);
         updateGuiMandatoryDialogs();
         updateGuiOptionalDialogs();
-        showPlayerOwnedProperties(false);
+        showPlayerOwnedProperties();
 
         if (controller.getIsVictoryConditionMet()) {
             partyVisuals();
@@ -179,10 +179,10 @@ public class DynamicView implements Serializable {
 
         if (dialogMortgage.isVisible()) {
             dialogContainerMortgage.update(board, currentPlayer, currentSpaceButtonSelection, controller);
-            showPlayerOwnedProperties(true);
+            showPlayerOwnedProperties();
         }
         else {
-            showPlayerOwnedProperties(false);
+            showPlayerOwnedProperties();
         }
 
         if (dialogDebugLog.isVisible()) {
@@ -560,7 +560,7 @@ public class DynamicView implements Serializable {
             }
 
             if (action.equals(ActionsGUI.CONTROLS_SHOW_PROPERTIES)) {
-                showPlayerOwnedProperties(true);
+                showPlayerOwnedProperties();
             }
         }
 
@@ -672,35 +672,13 @@ public class DynamicView implements Serializable {
         }
     }
 
-    private void showPlayerOwnedProperties(boolean timerStatus) {
+    private void showPlayerOwnedProperties() {
         int currentPlayerID = currentPlayer.getPlayerID();
-
-        ActionListener a = new ActionListener() {
-
-            boolean flip = true;
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                flip = !flip;
-                    for (Space s : board.spaces) {
-                        if ((s instanceof Property p) && (p.getOwnerID() == currentPlayerID)) {
-                            viewFrameBoard.highlightSpace(p.getID(), flip);
-                        }
-                    }
-                }
-        };
-
-        Timer timer = new Timer(1000, a);
-        if (timerStatus) {
-//            timer.start();
-//            a.actionPerformed(null);
-        }
-        else {
-            if (timer.isRunning()) {
-                viewFrameBoard.resetButtonAppearance();
+        for (Space s : board.spaces) {
+            if ((s instanceof Property p) && (p.getOwnerID() == currentPlayerID)) {
+                viewFrameBoard.highlightSpace(p.getID(), false);
             }
-            timer.stop();
         }
-
     }
 
 }

@@ -227,6 +227,7 @@ public class ViewFrameBoard implements Serializable {
         updateGuiPlayerIndicators(board);
         updateGuiImprovementIcons(board);
         updateGuiSpaceHighlight(board);
+        updateGuiMortgagedProperties(board);
     }
 
     public ArrayList<SpaceButton> getSpaceButtonArrayList() {
@@ -345,34 +346,35 @@ public class ViewFrameBoard implements Serializable {
 
         int spacingNorthOrEast = 120 + (80 * ((spaceID - 1) % 10) + (spacing * (playerID - 1)));
         int spacingSouthOrWest = 840 - (80 * (spaceID % 10) - (spacing * (playerID - 1)));
+
         if (!isJailed) {
-            if ((spaceID > 0) && (spaceID < 10)) {
+            if ((spaceID > 0) && (spaceID < 10)) {          // South
                 x = spacingSouthOrWest;
                 y = yAnchorSouth;
-            } else if ((spaceID > 10) && (spaceID < 20)) {
+            } else if ((spaceID > 10) && (spaceID < 20)) {  // West
                 x = xAnchorWest;
                 y = spacingSouthOrWest;
-            } else if ((spaceID > 20) && (spaceID < 30)) {
+            } else if ((spaceID > 20) && (spaceID < 30)) {  // North
                 x = spacingNorthOrEast;
                 y = yAnchorNorth;
-            } else if ((spaceID > 30) && (spaceID < 40)) {
+            } else if ((spaceID > 30) && (spaceID < 40)) {  // East
                 x = xAnchorEast;
                 y = spacingNorthOrEast;
-            } else if (spaceID == 0) {
+            } else if (spaceID == 0) {                      // GO
                 x = 840 + (spacingCorner * (playerID - 1));
                 y = yAnchorSouth;
-            } else if (spaceID == 10) {
+            } else if (spaceID == 10) {                     // Jail (just visiting)
                 x = (spacingCorner * (playerID - 1));
                 y = yAnchorSouth;
-            } else if (spaceID == 20) {
+            } else if (spaceID == 20) {                     // Free Parking
                 x = (spacingCorner * (playerID - 1));
                 y = yAnchorNorth;
-            } else if (spaceID == 30) {
+            } else if (spaceID == 30) {                     // Go To Jail
                 x = 840 - (spacingCorner * (playerID - 1));
                 y = yAnchorNorth;
             }
         }
-        else {
+        else {      // Player jailed
             if (playerID <= 2) {
                 x = 80 - ((1 - playerID) * spacing) - margin;
                 y = 840;
@@ -381,6 +383,7 @@ public class ViewFrameBoard implements Serializable {
                 x = 80 - ((3 - playerID) * spacing) - margin;
                 y = 840 + spacing;
             }
+            // Offset south-west
             x -= 28;
             y += 28;
         }
@@ -438,11 +441,25 @@ public class ViewFrameBoard implements Serializable {
 
         for (Space s : board.spaces) {
             if (s instanceof Property p) {
-                if (p.getIsMortgaged()) {
+                JButton localButton = spaceButtons.get(p.getID()).getButton();
+                spaceButtons.get(p.getID()).setMortgagedAppearance(p.getIsMortgaged());
+                String overlayResource = "";
 
-                } else {
-
+                if (p.getIsMortgaged() && !(p instanceof Utility)) {
+                    switch (spaceButtons.get(p.getID()).getDirection()) {
+                        case NORTH, SOUTH -> overlayResource = "/checker-80x120.png";
+                        case EAST, WEST -> overlayResource = "/checker-120x80.png";
+                    }
+                } else if (p.getIsMortgaged() && (p instanceof Utility)){
+                    if (p.getID() == 12) {
+                        overlayResource = "/electric-company-mortgaged.png";
+                    }
+                    else if (p.getID() == 28) {
+                        overlayResource = "/waterworks-mortgaged.png";
+                    }
                 }
+
+                localButton.setIcon(SwingHelper.getImageIconFromResource(overlayResource));
             }
         }
     }
@@ -457,11 +474,11 @@ public class ViewFrameBoard implements Serializable {
         JButton buttonGoToJail = spaceButtons.get(30).getButton();
         JButton buttonLuxuryTax = spaceButtons.get(38).getButton();
 
-        buttonElectricCompany.addMouseListener(new AnimatedSpaceActionListener("/electric-company-anim.gif", "/electric-company-mortgaged.png"));
-        buttonFreeParking.addMouseListener(new AnimatedSpaceActionListener("/free-parking-anim.gif", null));
-        buttonWaterWorks.addMouseListener(new AnimatedSpaceActionListener("/waterworks-anim.gif", null));
-        buttonGoToJail.addMouseListener(new AnimatedSpaceActionListener("/go-to-jail-anim.gif", null));
-        buttonLuxuryTax.addMouseListener(new AnimatedSpaceActionListener("/luxury-tax-anim.gif", null));
+        buttonElectricCompany.addMouseListener(new AnimatedSpaceActionListener(12, "/electric-company-anim.gif", "/electric-company-mortgaged.png"));
+        buttonFreeParking.addMouseListener(new AnimatedSpaceActionListener(20, "/free-parking-anim.gif", null));
+        buttonWaterWorks.addMouseListener(new AnimatedSpaceActionListener(28, "/waterworks-anim.gif", null));
+        buttonGoToJail.addMouseListener(new AnimatedSpaceActionListener(30, "/go-to-jail-anim.gif", null));
+        buttonLuxuryTax.addMouseListener(new AnimatedSpaceActionListener(38, "/luxury-tax-anim.gif", null));
     }
 
     private enum Direction {
@@ -544,11 +561,13 @@ public class ViewFrameBoard implements Serializable {
             // If animated
             else {
                 if (isMortgaged) {
-                    if (id == 12) {
-                        animatedIconMortgaged = SwingHelper.getImageIconFromResource("/electric-company-mortgaged.png");
+                    switch (id) {
+                        case 12 -> animatedIconMortgaged = SwingHelper.getImageIconFromResource("/electric-company-mortgaged.png");
+                        case 28 -> animatedIconMortgaged = SwingHelper.getImageIconFromResource("/waterworks-mortgaged.png");
                     }
                 } else {
-                    if (id == 12) {
+                    switch (id) {
+                        case 12, 28 -> animatedIconMortgaged = SwingHelper.getImageIconFromResource(null);
                     }
                 }
             }
@@ -559,10 +578,12 @@ public class ViewFrameBoard implements Serializable {
 
         ImageIcon animatedLabel;
         ImageIcon animatedLabelMortgaged;
+        int spaceID;
 
-        public AnimatedSpaceActionListener(String animatedLabelResource, String animatedMortgagedLabelResource) {
+        public AnimatedSpaceActionListener(int spaceID, String animatedLabelResource, String animatedMortgagedLabelResource) {
             animatedLabel = SwingHelper.getImageIconFromResource(animatedLabelResource);
             animatedLabelMortgaged = SwingHelper.getImageIconFromResource(animatedMortgagedLabelResource);
+            this.spaceID = spaceID;
         }
 
         @Override

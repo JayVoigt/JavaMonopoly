@@ -9,8 +9,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fe395cf4-00c4-4bef-93b5-8a1f264350fd" name="Changes" comment="final appearance cleanup for main window">
+    <list default="true" id="fe395cf4-00c4-4bef-93b5-8a1f264350fd" name="Changes" comment="fixed player icon placement issue">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DynamicView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DynamicView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/ViewFrameBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/ViewFrameBoard.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -274,14 +275,7 @@
       <workItem from="1650568735481" duration="1734000" />
       <workItem from="1650655638615" duration="9619000" />
       <workItem from="1650887141854" duration="1580000" />
-      <workItem from="1650905691328" duration="10843000" />
-    </task>
-    <task id="LOCAL-00053" summary="moved MainWindow to legacy folder">
-      <created>1649719892522</created>
-      <option name="number" value="00053" />
-      <option name="presentableId" value="LOCAL-00053" />
-      <option name="project" value="LOCAL" />
-      <updated>1649719892522</updated>
+      <workItem from="1650905691328" duration="13152000" />
     </task>
     <task id="LOCAL-00054" summary="updated game editor">
       <created>1649720940881</created>
@@ -619,7 +613,14 @@
       <option name="project" value="LOCAL" />
       <updated>1650919343534</updated>
     </task>
-    <option name="localTasksCounter" value="102" />
+    <task id="LOCAL-00102" summary="fixed player icon placement issue">
+      <created>1650921773039</created>
+      <option name="number" value="00102" />
+      <option name="presentableId" value="LOCAL-00102" />
+      <option name="project" value="LOCAL" />
+      <updated>1650921773039</updated>
+    </task>
+    <option name="localTasksCounter" value="103" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -650,7 +651,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="working on bankruptcy state" />
     <MESSAGE value="improved bankruptcy state" />
     <MESSAGE value="experimenting with space movement animations" />
     <MESSAGE value="spaces now animate when players move across them" />
@@ -675,7 +675,8 @@
     <MESSAGE value="separated improvements manager into separate class" />
     <MESSAGE value="general refactor and clean up of code" />
     <MESSAGE value="final appearance cleanup for main window" />
-    <option name="LAST_COMMIT_MESSAGE" value="final appearance cleanup for main window" />
+    <MESSAGE value="fixed player icon placement issue" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed player icon placement issue" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
