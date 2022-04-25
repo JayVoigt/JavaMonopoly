@@ -6,6 +6,9 @@ import javax.swing.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ * Internal frame container for the control pane.
+ */
 public class ViewFrameControl implements ViewComponent, Serializable {
     JInternalFrame frame;
 

@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 /**
- *
+ * Internal frame container for the board view.
  */
 public class ViewFrameBoard implements Serializable {
 

@@ -5,6 +5,9 @@ import net.miginfocom.swing.MigLayout;
 import javax.swing.*;
 import java.io.Serializable;
 
+/**
+ * Internal frame container for the information pane.
+ */
 public class ViewFrameInformation implements ViewComponent, Serializable {
 
     JInternalFrame frame;
