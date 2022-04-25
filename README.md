@@ -1,3 +1,9 @@
+![](https://img.shields.io/badge/-NOTICE-FF0000?&style=for-the-badge)
+
+Images may not load correctly in the README version of the documentation.
+
+Please refer to `documentation/MainDocumentation.md` instead.
+
 # Final Project: Java Monopoly Prototype
 
 <div align="center">
