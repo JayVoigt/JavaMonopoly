@@ -64,6 +64,20 @@ This project utilizes:
 - [FlatLaf](https://github.com/JFormDesigner/FlatLaf) for the Swing look and feel. Licensed under Apache License 2.0.
 
 &nbsp;
+##### Build instructions
+This project uses Maven for its build system. Commands to compile and build are given below. Run the following in the root directory of the project with `pom.xml`:
+
+To clean: `mvn clean`
+
+To build: `mvn install`
+
+To package jar: `mvn package`; will produce `/target/Monoproto3-1.0-SNAPSHOT-jar-with-dependencies.jar`
+
+The resulting jar can then be executed with:
+
+`java -jar target/Monoproto3-1.0-SNAPSHOT-jar-with-dependencies.jar`
+
+&nbsp;
 ### Data structures
 
 #### Spaces, properties, and game events
