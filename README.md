@@ -43,7 +43,7 @@ Note the use of the word "prototype" -- this implementation is not fully complia
 
 &nbsp;
 
-![](important.svg)
+![](documentation/important.svg)
 
 **See the directory `/src/main/java/cc/jayv/monopoly3` for all Java code** utilized in the final build for this project.
 
