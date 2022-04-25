@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="14.3.0">
-  <zoom_level>5</zoom_level>
+  <zoom_level>10</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>395</x>
-      <y>5</y>
-      <w>320</w>
-      <h>185</h>
+      <x>770</x>
+      <y>0</y>
+      <w>640</w>
+      <h>360</h>
     </coordinates>
     <panel_attributes>Board
 style=wordwrap
@@ -37,22 +37,24 @@ style=wordwrap
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>365</x>
-      <y>305</y>
-      <w>105</w>
-      <h>95</h>
+      <x>710</x>
+      <y>590</y>
+      <w>210</w>
+      <h>190</h>
     </coordinates>
     <panel_attributes>Space
---</panel_attributes>
+--
+layer=1
+bg=white</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>780</x>
-      <y>75</y>
-      <w>270</w>
-      <h>215</h>
+      <x>1540</x>
+      <y>80</y>
+      <w>540</w>
+      <h>430</h>
     </coordinates>
     <panel_attributes>Player
 --</panel_attributes>
@@ -61,60 +63,98 @@ style=wordwrap
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>235</x>
-      <y>450</y>
-      <w>105</w>
-      <h>95</h>
+      <x>150</x>
+      <y>880</y>
+      <w>510</w>
+      <h>190</h>
     </coordinates>
     <panel_attributes>GameEvent
---</panel_attributes>
+--
+layer=1
+bg=white</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>525</x>
-      <y>455</y>
-      <w>105</w>
-      <h>95</h>
+      <x>870</x>
+      <y>830</y>
+      <w>530</w>
+      <h>290</h>
     </coordinates>
-    <panel_attributes>Property
+    <panel_attributes>style=wordwrap
+Property
 &lt;&lt;abstract&gt;&gt;
 --
-+ calculateRent(): int</panel_attributes>
+~ isOwned: boolean
+~ isMortgaged: boolean
+~ isFullSetOwned: boolean
+
+~ ownerID: int
+
+~ rentBase: int
+~ rentHouse[1..4]: int
+~ rentHotel: int
+~ purchaseCost: int
+~ mortgageValue: int
+~ houseCost: int
+~ hotelCost: int
+--
++ &lt;&lt;abstract&gt;&gt; calculateRent(): int
+layer=1
+bg=white
+
+</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>525</x>
-      <y>600</y>
-      <w>165</w>
-      <h>95</h>
+      <x>490</x>
+      <y>1340</y>
+      <w>570</w>
+      <h>180</h>
     </coordinates>
-    <panel_attributes>Utility
---</panel_attributes>
+    <panel_attributes>style=wordwrap
+Utility
+--
++ &lt;&lt;constructor&gt;&gt;  Utility(Map&lt;String, Integer&gt; propertyAttributes, int inputSpaceID, String inputFriendlyName)
+
++ &lt;&lt;override&gt;&gt; calculateRent(): int
+layer=1
+bg=white</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>705</x>
-      <y>600</y>
-      <w>105</w>
-      <h>95</h>
+      <x>490</x>
+      <y>1140</y>
+      <w>570</w>
+      <h>180</h>
     </coordinates>
-    <panel_attributes>Railroad
---</panel_attributes>
+    <panel_attributes>style=wordwrap
+Railroad
+--
+- ownedRailroads: int
+- rentRailroad2: int
+- rentRailroad3: int
+- rentRailroad4: int
+--
++ &lt;&lt;constructor&gt;&gt; Railroad(Map&lt;String, Integer&gt; propertyAttributes, int inputSpaceID, String inputFriendlyName)
+
++ &lt;&lt;override&gt;&gt; calculateRent(): int
+layer=1
+bg=white</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>300</x>
-      <y>600</y>
-      <w>210</w>
-      <h>110</h>
+      <x>1190</x>
+      <y>1210</y>
+      <w>570</w>
+      <h>260</h>
     </coordinates>
     <panel_attributes>Color
 style=wordwrap
@@ -126,79 +166,79 @@ style=wordwrap
 --
 + &lt;&lt;constructor&gt;&gt; Color(Map&lt;String, Integer&gt; propertyAttributes, int spaceID, String friendlyName)
 
++ &lt;&lt;override&gt;&gt; calculateRent(): void
+
 + buildHouse(): void
 + sellHouse(): void
 + buildHotel(): void
-+ sellHotel(): void</panel_attributes>
++ sellHotel(): void
+group=2
+layer=1
+bg=white</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>310</x>
-      <y>395</y>
-      <w>85</w>
-      <h>65</h>
+      <x>600</x>
+      <y>770</y>
+      <w>170</w>
+      <h>130</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
-extends</panel_attributes>
+extends
+layer=2
+bg=white</panel_attributes>
     <additional_attributes>10.0;110.0;10.0;40.0;150.0;40.0;150.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>445</x>
-      <y>395</y>
-      <w>135</w>
-      <h>70</h>
+      <x>870</x>
+      <y>770</y>
+      <w>270</w>
+      <h>80</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
-extends</panel_attributes>
-    <additional_attributes>250.0;120.0;250.0;40.0;10.0;40.0;10.0;10.0</additional_attributes>
+extends
+layer=2
+bg=white</panel_attributes>
+    <additional_attributes>250.0;60.0;250.0;40.0;10.0;40.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>440</x>
-      <y>545</y>
-      <w>115</w>
-      <h>65</h>
+      <x>1050</x>
+      <y>1160</y>
+      <w>100</w>
+      <h>30</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
-extends</panel_attributes>
-    <additional_attributes>10.0;110.0;10.0;40.0;210.0;40.0;210.0;10.0</additional_attributes>
+layer=2
+bg=white</panel_attributes>
+    <additional_attributes>10.0;10.0;80.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>570</x>
-      <y>545</y>
-      <w>45</w>
-      <h>65</h>
+      <x>1120</x>
+      <y>1110</y>
+      <w>100</w>
+      <h>120</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;-
-extends</panel_attributes>
-    <additional_attributes>10.0;110.0;10.0;10.0</additional_attributes>
+    <panel_attributes>lt=-
+extends v
+layer=2
+bg=white</panel_attributes>
+    <additional_attributes>10.0;100.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>605</x>
-      <y>545</y>
-      <w>115</w>
-      <h>65</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;-
-extends</panel_attributes>
-    <additional_attributes>210.0;110.0;210.0;40.0;10.0;40.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>410</x>
-      <y>185</y>
-      <w>25</w>
-      <h>130</h>
+      <x>800</x>
+      <y>350</y>
+      <w>50</w>
+      <h>260</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m1=1
@@ -208,22 +248,32 @@ m2=40</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>95</x>
-      <y>95</y>
-      <w>230</w>
-      <h>140</h>
+      <x>20</x>
+      <y>170</y>
+      <w>610</w>
+      <h>210</h>
     </coordinates>
-    <panel_attributes>DrawCard
---</panel_attributes>
+    <panel_attributes>style=wordwrap
+DrawCard
+--
+- destinationRelativeType: DestinationRelativeTypeKeys
+- drawCardType: DrawCardTypeKeys
+
+- destinationSpaceID: int
+
+- message: String
+- movementQuantity: int
+--
++ &lt;&lt;constructor&gt;&gt; DrawCard(DrawCardTypeKeys inputDrawCardType, DestinationRelativeTypeKeys inputDestinationRelativeType, String inputMessage, int inputDestinationSpaceID, int inputMovementQuantity)</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>320</x>
-      <y>155</y>
-      <w>85</w>
-      <h>20</h>
+      <x>620</x>
+      <y>290</y>
+      <w>170</w>
+      <h>40</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m1=2
@@ -233,10 +283,10 @@ m2=16</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>710</x>
-      <y>135</y>
-      <w>80</w>
-      <h>20</h>
+      <x>1400</x>
+      <y>250</y>
+      <w>160</w>
+      <h>40</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m1=1
@@ -246,14 +296,158 @@ m2=4</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>170</x>
-      <y>600</y>
-      <w>115</w>
-      <h>20</h>
+      <x>1190</x>
+      <y>1480</y>
+      <w>230</w>
+      <h>40</h>
     </coordinates>
     <panel_attributes>lt=.
 ColorGroupKeys
-&lt;&lt;internal enum of Color&gt;&gt;</panel_attributes>
+&lt;&lt;internal enum of Color&gt;&gt;
+group=2
+layer=1
+bg=white</panel_attributes>
     <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>20</x>
+      <y>400</y>
+      <w>340</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=.
+DestinationRelativeTypeKeys
+&lt;&lt;internal enum of DrawCard&gt;&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>20</x>
+      <y>450</y>
+      <w>340</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=.
+DrawCardTypeKeys
+&lt;&lt;internal enum of DrawCard&gt;&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>350</x>
+      <y>370</y>
+      <w>70</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;40.0;50.0;40.0;50.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>350</x>
+      <y>400</y>
+      <w>70</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;60.0;50.0;60.0;50.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1410</x>
+      <y>1460</y>
+      <w>70</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=.
+group=2
+layer=2
+bg=white</panel_attributes>
+    <additional_attributes>10.0;30.0;50.0;30.0;50.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1120</x>
+      <y>1200</y>
+      <w>30</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>lt=-
+layer=2
+bg=white</panel_attributes>
+    <additional_attributes>10.0;170.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1050</x>
+      <y>1360</y>
+      <w>100</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+layer=2
+bg=white</panel_attributes>
+    <additional_attributes>10.0;10.0;80.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1120</x>
+      <y>1230</y>
+      <w>90</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+group=2
+layer=2
+bg=white</panel_attributes>
+    <additional_attributes>70.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>130</x>
+      <y>550</y>
+      <w>1650</w>
+      <h>990</h>
+    </coordinates>
+    <panel_attributes>Spaces
+lt=..
+layer=-11
+bg=#CCFFFF</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1250</x>
+      <y>1130</y>
+      <w>260</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=.
+QueryRentStates
+&lt;&lt;internal enum of Property&gt;&gt;
+bg=white</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1220</x>
+      <y>1110</y>
+      <w>50</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;40.0;30.0;40.0</additional_attributes>
   </element>
 </diagram>

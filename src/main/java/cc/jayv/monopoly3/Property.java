@@ -8,7 +8,7 @@ import java.util.HashMap;
  */
 public abstract class Property extends Space implements Serializable {
 
-    propertyTypeKeys propertyType;
+    PropertyTypeKeys propertyType;
     boolean isOwned;
     boolean isMortgaged;
     boolean isFullSetOwned;
@@ -31,7 +31,7 @@ public abstract class Property extends Space implements Serializable {
     // <editor-fold desc="Constructor">
     protected Property(HashMap<String, Integer> propertyAttributes) {
         spaceType = spaceTypeKeys.property;
-        propertyType = propertyTypeKeys.unspecified;
+        propertyType = PropertyTypeKeys.unspecified;
 
         isOwned = false;
         isMortgaged = false;
@@ -117,7 +117,7 @@ public abstract class Property extends Space implements Serializable {
     // </editor-fold>
 
     // <editor-fold desc="Attributes">
-    public enum propertyTypeKeys {
+    public enum PropertyTypeKeys {
         unspecified,
         color,
         railroad,

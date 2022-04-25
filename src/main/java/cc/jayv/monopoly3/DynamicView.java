@@ -8,13 +8,14 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
+import java.security.spec.EllipticCurve;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * @author jay
+ * The primary class for the application. Organizes and initializes root-level GUI components.
  */
 public class DynamicView implements Serializable {
 
@@ -124,6 +125,7 @@ public class DynamicView implements Serializable {
         viewFrameInformation.update(board);
         updateGuiMandatoryDialogs();
         updateGuiOptionalDialogs();
+        showPlayerOwnedProperties(false);
 
         if (controller.getIsVictoryConditionMet()) {
             partyVisuals();
@@ -132,7 +134,9 @@ public class DynamicView implements Serializable {
             viewFrameBoard.animatePlayerMovement(board, currentPlayer.getPlayerID());
             currentPlayer.setAnimateMovement(false);
         } else {
-            viewFrameBoard.resetButtonAppearance();
+            if (!dialogMortgage.isVisible()) {
+                viewFrameBoard.resetButtonAppearance();
+            }
         }
     }
 
@@ -173,6 +177,10 @@ public class DynamicView implements Serializable {
 
         if (dialogMortgage.isVisible()) {
             dialogContainerMortgage.update(board, currentPlayer, currentSpaceButtonSelection, controller);
+            showPlayerOwnedProperties(true);
+        }
+        else {
+            showPlayerOwnedProperties(false);
         }
 
         if (dialogDebugLog.isVisible()) {
@@ -279,12 +287,14 @@ public class DynamicView implements Serializable {
 
         // File - Load Game
         JMenuItem menuFileLoadGame = new JMenuItem("Load Game...", SwingHelper.getImageIconFromResource(("/floppygame.png")));
-        menuFileLoadGame.addActionListener(e -> loadGame());
+        menuFileLoadGame.addActionListener(e -> logHelper.appendToGameLog("This action is not supported."));
+        menuFileLoadGame.setEnabled(false);
         menuFile.add(menuFileLoadGame);
 
         // File - Save Game
         JMenuItem menuFileSaveGame = new JMenuItem("Save Game...", SwingHelper.getImageIconFromResource(("/floppygame.png")));
-        menuFileSaveGame.addActionListener(e -> saveGame());
+        menuFileSaveGame.addActionListener(e -> logHelper.appendToGameLog("This action is not supported."));
+        menuFileSaveGame.setEnabled(false);
         menuFile.add(menuFileSaveGame);
 
         // File - Quit
@@ -325,12 +335,18 @@ public class DynamicView implements Serializable {
 
         // Macros - Bankruptcy Test
         JMenuItem menuMacrosBankruptcyTest = new JMenuItem("Bankruptcy Test", SwingHelper.getImageIconFromResource("/alert.png"));
-        menuMacrosBankruptcyTest.addActionListener(e -> macroController.macroBankruptcyTest());
+        menuMacrosBankruptcyTest.addActionListener(e -> {
+            macroController.macroBankruptcyTest();
+            update();
+        });
         menuMacros.add(menuMacrosBankruptcyTest);
 
         // Macros - Disable Random Player
         JMenuItem menuMacrosDisableRandomPlayer = new JMenuItem("Disable Random Player", SwingHelper.getImageIconFromResource("/player-generic.png"));
-        menuMacrosDisableRandomPlayer.addActionListener(e -> macroController.macroDisableRandomPlayer());
+        menuMacrosDisableRandomPlayer.addActionListener(e -> {
+            macroController.macroDisableRandomPlayer();
+            update();
+        });
         menuMacros.add(menuMacrosDisableRandomPlayer);
 
         for (Component c : menuMacros.getMenuComponents()) {
@@ -509,30 +525,6 @@ public class DynamicView implements Serializable {
         }
     }
 
-    private void loadGame() {
-        SerialState gameData = new SerialState();
-
-        try {
-            FileInputStream f = new FileInputStream("test.dat");
-            ObjectInputStream o = new ObjectInputStream(f);
-            gameData = (SerialState) o.readObject();
-
-            board = gameData.getBoard();
-            controller = gameData.getController();
-            logHelper = gameData.getLogHelper();
-            switchboard = gameData.getSwitchboard();
-
-            logHelper.appendToGameLog("Loaded from file.");
-
-            controller.initialEvaluator();
-            update();
-
-        } catch (IOException ignored) {
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
-
     /**
      * Generic ActionListener class for buttons. Effectively forces each button to have an Action that
      * can be referenced later.
@@ -563,6 +555,10 @@ public class DynamicView implements Serializable {
 
             if (needsPrompt) {
                 updatePrompt(action);
+            }
+
+            if (action.equals(ActionsGUI.CONTROLS_SHOW_PROPERTIES)) {
+                showPlayerOwnedProperties(true);
             }
         }
 
@@ -672,6 +668,37 @@ public class DynamicView implements Serializable {
                 case VIEW_DEBUG_LOG -> updateDialogAppearance(dialogDebugLog);
             }
         }
+    }
+
+    private void showPlayerOwnedProperties(boolean timerStatus) {
+        int currentPlayerID = currentPlayer.getPlayerID();
+
+        ActionListener a = new ActionListener() {
+
+            boolean flip = true;
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                flip = !flip;
+                    for (Space s : board.spaces) {
+                        if ((s instanceof Property p) && (p.getOwnerID() == currentPlayerID)) {
+                            viewFrameBoard.highlightSpace(p.getID(), flip);
+                        }
+                    }
+                }
+        };
+
+        Timer timer = new Timer(1000, a);
+        if (timerStatus) {
+//            timer.start();
+//            a.actionPerformed(null);
+        }
+        else {
+            if (timer.isRunning()) {
+                viewFrameBoard.resetButtonAppearance();
+            }
+            timer.stop();
+        }
+
     }
 
 }

@@ -77,7 +77,7 @@ public class LogHelper implements Serializable {
      */
     public void sendWelcomeMessage() {
         appendToGameLog("Welcome to Java Monopoly Prototype!");
-        appendToGameLog("A new game can be started or loaded under the File menu.\n");
+        appendToGameLog("A new game can be started under the File menu.\n");
     }
 
     /**

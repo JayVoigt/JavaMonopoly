@@ -1,6 +1,7 @@
 package cc.jayv.monopoly3;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -628,5 +629,12 @@ public class ViewFrameBoard implements Serializable {
         public void mouseExited(MouseEvent e) {
 
         }
+    }
+
+    public void highlightSpace(int spaceID, boolean flip) {
+        java.awt.Color highlightShade = new java.awt.Color(0x0AFF0A);
+        Border highlightBorder = SwingHelper.createBorderStyleHighlight(highlightShade,flip);
+        spaceButtons.get(spaceID).getButton().setBorderPainted(true);
+        spaceButtons.get(spaceID).getButton().setBorder(highlightBorder);
     }
 }

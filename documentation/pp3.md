@@ -22,13 +22,13 @@
     4.  [Information pane](#information-pane) [c]
     5.  [Control pane](#control-pane) [c]
     6.  [Animations and extra features](#animations-and-extra-features) [c]
-6.  [User interface - dialogs](#dialogs)
-    1.  [Property purchase](#dialog-purchase-property)
-    2.  [Jail](#jail)
-    3.  [Game editor](#game-editor)
-    4.  [Improvements](#improvements)
-    5.  [Mortgage](#mortgage)
-    6.  [Start game](#start-game)
+6.  [User interface - dialogs](#dialogs) [c]
+    1.  [Property purchase](#dialog-purchase-property) [c]
+    2.  [Jail](#jail) [c]
+    3.  [Game editor](#game-editor) [c]
+    4.  [Improvements](#improvements) [c]
+    5.  [Mortgage](#mortgage) [c]
+    6.  [Start game](#start-game) [c]
 7.  [Future features and ideas](#future-features-and-ideas) [c]
 
 &nbsp;
@@ -180,6 +180,10 @@ Classes belonging to the **Controller** group are responsible for manipulating t
 
 Classes belonging to the **View** group are responsible for displaying the state of the game to the user, and routing user input to any corresponding actions within Controller group classes.
 
+Below is a UML diagram indicating the structure and relationships of the objects which comprise the view group.
+
+![](gui-uml.svg)
+
 &nbsp;
 
 #### Inspiration
@@ -208,6 +212,7 @@ Visually, the user interface is comprised of a main window, with a set of dialog
 </div>
 <br>
 
+&nbsp;
 #### Board view
 
 The board view provides a visualization for the spaces on the board, acting as a proxy for a physical printed board. Each space is a button that, when pressed, updates a space information area. 
@@ -255,7 +260,6 @@ The **asset** view, on the right, contains icons with an associated numerical va
 The text of the property group labels additionally changes colors depending on the state: gray when no properties are owned, and red when all properties are owned. (i.e., a monopoly)
 
 &nbsp;
-
 #### Control pane
 
 The control pane provides important information about the current player, buttons to access optional dialogs (see section [Optional dialogs](#optional-dialogs)), and buttons to roll the dice and end their turn.
@@ -280,6 +284,7 @@ The six buttons in the center of the dialog allow the user to perform *optional*
 - trading with other players (not yet implemented)
 - forfeiting the game
 
+&nbsp;
 #### Animations and extra features
 
 Some spaces support animated assets that, when the mouse enters the space area, will replace the standard button appearance until the mouse exits. These spaces include:
@@ -295,35 +300,89 @@ Some spaces support animated assets that, when the mouse enters the space area, 
 
 </div>
 
+&nbsp;
 ### User interface - dialogs
 
 Some user interface elements have specific contexts where their visibility is required, in contrast to the always-shown board, information, and control views of the main window. Such user interface elements are implemented with **dialogs**, and these are split into two categories: **mandatory**, which allow responses to required actions, and **optional**, which can be summoned by the user in nearly any game state context.
 
 **Mandatory** dialogs include the property purchase and jail dialogs. A user cannot dismiss these, as a decision is required to continue the game.
 
+&nbsp;
+<a name="dialog-purchase-property"></a>
 
+The **Property Decision** mandatory dialog appears when a player lands on a property that is not owned. They must then decide to either purchase, or sent the property to auction. *Note that auctions are not currently implemented.*
+
+<div align="center">
+<img src="dialog-property-purchase.png" width=300>
+</div>
+
+&nbsp;
+<a name="jail"></a>
+
+The **Jail** mandatory dialog appears at the beginning of a player's turn if they are jailed, only if it is *not* the first turn they have been jailed. For example, if a player lands on *Go To Jail*, their only option to continue will be to end their turn. The dialog will then appear on their *next* turn.
+
+Three options are provided through the dialog:
+- Post Bail: Pay $50 to be released from jail immediately.
+- Roll for Doubles: Roll the dice, and be released from jail if the values of both dice are the same.
+- Use Get Out of Jail Free Card: Consume a GOOJFC card and be released from jail immediately.
 <div align="center">
 
 <img src="jail-1turn-nogoojfc.png" width=300>
 <img src="jail-1turn-goojfc.png" width=300>
 <br>
 <img src="jail-3turns.png" width=300>
-
 </div>
 
-<br>
+&nbsp;
+<a name="game-editor"></a>
+
+The **Game Editor** optional dialog is available under the *Edit* menu, and provides the user with options to directly manipulate the game state. This is very useful for debugging, and can also "repair" the game if a bug renders it unplayable.
 
 <div align="center">
-<video width="640" height="640" controls>
-  <source src="https://media.github.iu.edu/user/19463/files/54bb1bbd-1d39-4c47-b731-5d5d9a8db8a2" type="video/mp4">
-</video>
+<img src="dialog-game-editor.png" width=500>
 </div>
 
-<a href="{https://media.github.iu.edu/user/19463/files/54bb1bbd-1d39-4c47-b731-5d5d9a8db8a2}" title="Link Title"><img src="{https://media.github.iu.edu/user/19463/files/54bb1bbd-1d39-4c47-b731-5d5d9a8db8a2}" alt="Alternate Text" /></a>
+&nbsp;
+<a name="improvements"></a>
 
+The **Improvements** optional dialog allows the player to construct and sell houses and hotels on their color properties.
+
+<div align="center">
+<img src="dialog-improvements-1.png" width=300>
+<img src="dialog-improvements-2.png" width=300>
+<br>
+<img src="dialog-improvements-3.png" width=300>
+</div>
+
+&nbsp;
+<a name="mortgage"></a>
+
+The **Mortgage Properties** optional dialog allows the player to mortgage and lift the mortgage of their owned properties.
+
+<div align="center">
+<img src="dialog-mortgage-1.png" width=300>
+<img src="dialog-mortgage-2.png" width=300>
+<br>
+<img src="dialog-mortgage-3.png" width=300>
+</div>
+
+&nbsp;
+<a name="start-game"></a>
+
+The **New Game** optional dialog allows the user to start a new game, select the number of players, and set custom names for these players.
+
+<div align="center">
+<img src="dialog-newgame-1.png" width=300>
+<img src="dialog-newgame-2.png" width=300>
+<br>
+<img src="dialog-newgame-3.png" width=300>
+<img src="dialog-newgame-3-corresponding.png" width=300>
+</div>
+
+&nbsp;
 ### Future features and ideas
 
-A standard implementation of Monopoly has several features which are not present in this version. Namely, auctions and trading between players. The GUI elements exist for these, but time constraints simply moved these features to a lower priority. Auctions particularly require more advanced GUI design, requiring timers and an array of simultaneous inputs for each player. 
+A standard implementation of Monopoly has several features which are not present in this version. Namely, auctions and trading between players. The basic GUI elements exist for these within the codebase, but time constraints simply moved these features to a lower priority. Auctions particularly require more advanced GUI design, requiring timers and an array of simultaneous inputs for each player. 
 
 Additional non-implemented ideas that exist outside the scope of a standard Monopoly game include:
 
@@ -342,3 +401,7 @@ Dynamically highlighting spaces on the board such that their appearance reflects
 **Player icon selection**
 
 This feature existed in the prior `MainWindow.java` GUI implementation, but has not yet been re-implemented in the `DynamicView.java` implementation.
+
+**Saving/loading game state**
+
+The GUI does not contain necessary routines to update correctly after serialized game state objects are loaded. The board and player data have successfully been saved and loaded, but the interface becomes unusable after this.

@@ -1,11 +1,17 @@
 @startuml
-'https://plantuml.com/sequence-diagram
+class DynamicView {
+    board: Board
+    controller: GameLogicController
+}
 
-autonumber
 
-Alice -> Bob: Authentication Request
-Bob --> Alice: Authentication Response
+abstract class DialogContainer {
 
-Alice -> Bob: Another authentication Request
-Alice <-- Bob: another authentication Response
+}
+
+class DialogContainerAbout extends DialogContainer {
+
+}
+
+
 @enduml

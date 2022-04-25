@@ -99,6 +99,7 @@ public class ViewFrameControl implements ViewComponent, Serializable {
                 case CONTROLS_SHOW_IMPROVEMENTS -> controlsImprovementsActionListener = l;
                 case CONTROLS_SHOW_MORTGAGE -> controlsMortgageActionListener = l;
                 case CONTROLS_SHOW_FORFEIT -> controlsForfeitActionListener = l;
+                case CONTROLS_SHOW_PROPERTIES -> controlsPropertiesActionListener = l;
             }
         }
 
@@ -198,6 +199,9 @@ public class ViewFrameControl implements ViewComponent, Serializable {
 
         setStateOfActionButton(ActionsGUI.CONTROLS_ENDTURN, !currentPlayer.getActionLockedEndTurn());
         setStateOfActionButton(ActionsGUI.CONTROLS_ROLLDICE, !currentPlayer.getActionLockedRollDice());
+
+        buttonControlsStatistics.setEnabled(false);
+        buttonControlsTrade.setEnabled(false);
     }
 
     @Override

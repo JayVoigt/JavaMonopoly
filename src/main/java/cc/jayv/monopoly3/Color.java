@@ -24,7 +24,7 @@ public class Color extends Property implements Serializable {
     Color(Map<String, Integer> propertyAttributes, int inputSpaceID, String inputFriendlyName) {
         super(null);
 
-        propertyType = propertyTypeKeys.color;
+        propertyType = PropertyTypeKeys.color;
         colorGroup = ColorGroupKeys.UNSPECIFIED;
         id = inputSpaceID;
         friendlyName = inputFriendlyName;
