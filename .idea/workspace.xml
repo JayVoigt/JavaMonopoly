@@ -10,19 +10,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fe395cf4-00c4-4bef-93b5-8a1f264350fd" name="Changes" comment="general refactor and clean up of code">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_12_22,_10_40_AM_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_12_22__10_40_AM__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/data-uml.uxf" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/data-uml.uxf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/gui-uml.png" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/gui-uml.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/gui-uml.svg" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/gui-uml.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/gui-uml.uxf" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/gui-uml.uxf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/pp3.md" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/pp3.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monopoly3.uml" beforeDir="false" afterPath="$PROJECT_DIR$/monopoly3.uml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/GameLogicController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/GameLogicController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/GameLogicEvaluatorDrawCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/GameLogicEvaluatorDrawCard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DynamicView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DynamicView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,6 +66,7 @@
     <option name="generalSettings">
       <MavenGeneralSettings>
         <option name="useMavenConfig" value="true" />
+        <option name="workOffline" value="true" />
       </MavenGeneralSettings>
     </option>
   </component>
@@ -101,15 +91,19 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "DefaultPlantUmlFileTemplate": "UML Sequence",
+    "Downloaded.Files.Path.Enabled": "true",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Libraries",
+    "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.3494253",
     "run.code.analysis.last.selected.profile": "aDefault",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+    "settings.editor.selected.configurable": "MavenSettings"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -118,7 +112,7 @@
       <recent name="$PROJECT_DIR$/src/main/legacy" />
     </key>
   </component>
-  <component name="RunManager" selected="Maven.Build">
+  <component name="RunManager" selected="Application.JavaMonopoly">
     <configuration name="DialogContainerAuction" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="cc.jayv.monopoly3.DialogContainerAuction" />
       <module name="Monoproto3" />
@@ -280,7 +274,7 @@
       <workItem from="1650568735481" duration="1734000" />
       <workItem from="1650655638615" duration="9619000" />
       <workItem from="1650887141854" duration="1580000" />
-      <workItem from="1650905691328" duration="3891000" />
+      <workItem from="1650905691328" duration="8441000" />
     </task>
     <task id="LOCAL-00052" summary="renamed files for greater consistency">
       <created>1649718917593</created>
@@ -748,12 +742,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DynamicView.java</url>
-          <line>178</line>
+          <line>180</line>
           <option name="timeStamp" value="79" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/cc/jayv/monopoly3/DynamicView.java</url>
-          <line>179</line>
+          <line>181</line>
           <option name="timeStamp" value="80" />
         </line-breakpoint>
         <breakpoint type="java-exception">

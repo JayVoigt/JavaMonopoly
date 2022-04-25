@@ -101,10 +101,12 @@ public class DynamicView implements Serializable {
         // Initialize main frame
         mainFrame.setLayout(new MigLayout());
         initControlFrame();
-        mainFrame.add(viewFrameBoard.getInternalFrame(), "cell 0 0, x 0, y 0, width 1000, height 1000");
-        mainFrame.add(viewFrameInformation.getFrame(), "cell 1 0, x 1000, y 0, width 400, height 600");
-        mainFrame.add(viewFrameControl.getFrame(), "cell 1 1, x 1000, y 600, width 400, height 400");
+        mainFrame.add(viewFrameBoard.getInternalFrame(), "cell 0 0, x 0, y 0, width 976, height 1000");
+        mainFrame.add(viewFrameInformation.getFrame(), "cell 1 0, x 976, y 0, width 400, height 600");
+        mainFrame.add(viewFrameControl.getFrame(), "cell 1 1, x 976, y 600, width 400, height 400");
         mainFrame.pack();
+        mainFrame.setSize(1380, 1058);
+        mainFrame.setResizable(true);
         mainFrame.setVisible(true);
 
         initDialogs();
