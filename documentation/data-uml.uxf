@@ -4,8 +4,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>770</x>
-      <y>0</y>
+      <x>480</x>
+      <y>400</y>
       <w>640</w>
       <h>360</h>
     </coordinates>
@@ -31,55 +31,52 @@ style=wordwrap
 - updateColorPropertyOwnershipRelationships(): void
 - updateImprovementEligibility(): void
 - updatePropertyOwnershipRelationships(): void
-+ updateRailroadPropertyOwnershipRelationships(): void</panel_attributes>
++ updateRailroadPropertyOwnershipRelationships(): void
+bg=pink</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>710</x>
-      <y>590</y>
+      <x>700</x>
+      <y>900</y>
       <w>210</w>
-      <h>190</h>
+      <h>120</h>
     </coordinates>
     <panel_attributes>Space
+&lt;&lt;abstract&gt;&gt;
 --
 layer=1
-bg=white</panel_attributes>
+bg=white
+- id: int
+- friendlyName: String
+- timesLanded: int</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1540</x>
-      <y>80</y>
-      <w>540</w>
-      <h>430</h>
+      <x>430</x>
+      <y>1120</y>
+      <w>420</w>
+      <h>110</h>
     </coordinates>
-    <panel_attributes>Player
---</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>150</x>
-      <y>880</y>
-      <w>510</w>
-      <h>190</h>
-    </coordinates>
-    <panel_attributes>GameEvent
+    <panel_attributes>style=wordwrap
+GameEvent
 --
 layer=1
-bg=white</panel_attributes>
+bg=white
+- gameEventType: GameEventTypeKeys
+--
++ &lt;&lt;constructor&gt;&gt; GameEvent(GameEventTypeKeys inputGameEventType, int inputSpaceID, String inputFriendlyName)</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>870</x>
-      <y>830</y>
-      <w>530</w>
+      <x>970</x>
+      <y>1070</y>
+      <w>460</w>
       <h>290</h>
     </coordinates>
     <panel_attributes>style=wordwrap
@@ -110,8 +107,8 @@ bg=white
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>490</x>
-      <y>1340</y>
+      <x>360</x>
+      <y>1580</y>
       <w>570</w>
       <h>180</h>
     </coordinates>
@@ -128,8 +125,8 @@ bg=white</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>490</x>
-      <y>1140</y>
+      <x>360</x>
+      <y>1380</y>
       <w>570</w>
       <h>180</h>
     </coordinates>
@@ -151,8 +148,8 @@ bg=white</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1190</x>
-      <y>1210</y>
+      <x>1060</x>
+      <y>1450</y>
       <w>570</w>
       <h>260</h>
     </coordinates>
@@ -172,7 +169,6 @@ style=wordwrap
 + sellHouse(): void
 + buildHotel(): void
 + sellHotel(): void
-group=2
 layer=1
 bg=white</panel_attributes>
     <additional_attributes/>
@@ -180,36 +176,22 @@ bg=white</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>600</x>
-      <y>770</y>
-      <w>170</w>
-      <h>130</h>
+      <x>900</x>
+      <y>950</y>
+      <w>200</w>
+      <h>140</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
 extends
 layer=2
 bg=white</panel_attributes>
-    <additional_attributes>10.0;110.0;10.0;40.0;150.0;40.0;150.0;10.0</additional_attributes>
+    <additional_attributes>120.0;120.0;120.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>870</x>
-      <y>770</y>
-      <w>270</w>
-      <h>80</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;-
-extends
-layer=2
-bg=white</panel_attributes>
-    <additional_attributes>250.0;60.0;250.0;40.0;10.0;40.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>1050</x>
-      <y>1160</y>
+      <x>920</x>
+      <y>1400</y>
       <w>100</w>
       <h>30</h>
     </coordinates>
@@ -221,8 +203,8 @@ bg=white</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1120</x>
-      <y>1110</y>
+      <x>990</x>
+      <y>1350</y>
       <w>100</w>
       <h>120</h>
     </coordinates>
@@ -235,21 +217,21 @@ bg=white</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>800</x>
-      <y>350</y>
+      <x>740</x>
+      <y>750</y>
       <w>50</w>
-      <h>260</h>
+      <h>170</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m1=1
 m2=40</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;240.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;150.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>20</x>
-      <y>170</y>
+      <x>470</x>
+      <y>0</y>
       <w>610</w>
       <h>210</h>
     </coordinates>
@@ -270,41 +252,40 @@ DrawCard
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>620</x>
-      <y>290</y>
-      <w>170</w>
-      <h>40</h>
+      <x>360</x>
+      <y>80</y>
+      <w>140</w>
+      <h>550</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m1=2
 m2=16</panel_attributes>
-    <additional_attributes>150.0;10.0;10.0;10.0</additional_attributes>
+    <additional_attributes>120.0;520.0;10.0;520.0;10.0;10.0;110.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1400</x>
-      <y>250</y>
-      <w>160</w>
+      <x>1110</x>
+      <y>670</y>
+      <w>110</w>
       <h>40</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m1=1
 m2=4</panel_attributes>
-    <additional_attributes>10.0;10.0;140.0;10.0</additional_attributes>
+    <additional_attributes>10.0;10.0;90.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1190</x>
-      <y>1480</y>
+      <x>1060</x>
+      <y>1720</y>
       <w>230</w>
       <h>40</h>
     </coordinates>
     <panel_attributes>lt=.
 ColorGroupKeys
 &lt;&lt;internal enum of Color&gt;&gt;
-group=2
 layer=1
 bg=white</panel_attributes>
     <additional_attributes/>
@@ -312,8 +293,8 @@ bg=white</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>20</x>
-      <y>400</y>
+      <x>470</x>
+      <y>230</y>
       <w>340</w>
       <h>40</h>
     </coordinates>
@@ -325,8 +306,8 @@ DestinationRelativeTypeKeys
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>20</x>
-      <y>450</y>
+      <x>470</x>
+      <y>280</y>
       <w>340</w>
       <h>40</h>
     </coordinates>
@@ -338,8 +319,8 @@ DrawCardTypeKeys
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>350</x>
-      <y>370</y>
+      <x>800</x>
+      <y>200</y>
       <w>70</w>
       <h>60</h>
     </coordinates>
@@ -349,8 +330,8 @@ DrawCardTypeKeys
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>350</x>
-      <y>400</y>
+      <x>800</x>
+      <y>230</y>
       <w>70</w>
       <h>80</h>
     </coordinates>
@@ -360,13 +341,12 @@ DrawCardTypeKeys
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1410</x>
-      <y>1460</y>
+      <x>1280</x>
+      <y>1700</y>
       <w>70</w>
       <h>50</h>
     </coordinates>
     <panel_attributes>lt=.
-group=2
 layer=2
 bg=white</panel_attributes>
     <additional_attributes>10.0;30.0;50.0;30.0;50.0;10.0</additional_attributes>
@@ -374,8 +354,8 @@ bg=white</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1120</x>
-      <y>1200</y>
+      <x>990</x>
+      <y>1440</y>
       <w>30</w>
       <h>190</h>
     </coordinates>
@@ -387,8 +367,8 @@ bg=white</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1050</x>
-      <y>1360</y>
+      <x>920</x>
+      <y>1600</y>
       <w>100</w>
       <h>30</h>
     </coordinates>
@@ -400,13 +380,12 @@ bg=white</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1120</x>
-      <y>1230</y>
+      <x>990</x>
+      <y>1470</y>
       <w>90</w>
       <h>30</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
-group=2
 layer=2
 bg=white</panel_attributes>
     <additional_attributes>70.0;10.0;10.0;10.0</additional_attributes>
@@ -414,10 +393,10 @@ bg=white</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>130</x>
-      <y>550</y>
-      <w>1650</w>
-      <h>990</h>
+      <x>340</x>
+      <y>840</y>
+      <w>1310</w>
+      <h>940</h>
     </coordinates>
     <panel_attributes>Spaces
 lt=..
@@ -428,8 +407,8 @@ bg=#CCFFFF</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1250</x>
-      <y>1130</y>
+      <x>1170</x>
+      <y>1370</y>
       <w>260</w>
       <h>40</h>
     </coordinates>
@@ -442,12 +421,104 @@ bg=white</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1220</x>
-      <y>1110</y>
+      <x>1140</x>
+      <y>1350</y>
       <w>50</w>
       <h>60</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;40.0;30.0;40.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1200</x>
+      <y>210</y>
+      <w>420</w>
+      <h>550</h>
+    </coordinates>
+    <panel_attributes>Player
+--
+- currentBalance: int
+- currentPosition: int
+- customName: String
+- playerID: int
+- isPlayerActive: boolean
+
+- consecutiveDoublesCount: int
+- consecutiveTurnsJailed: int
+- die1: int
+- die2: int
+- getOutOfJailFreeCardCount: int
+
+- actionLockedEndTurn: boolean
+- actionLockedRollDice: boolean
+- hasRequestedEndTurn: boolean
+- initialJailTurn: boolean
+
+- madeDecisionJail: boolean
+- madeDecisionPropertyAction: boolean
+- requiredDecisionPostBail: boolean
+- requiredDecisionPropertyAction: boolean
+
+- isBankrupt: boolean
+- isJailed: boolean
+--
++ evaluateState(): void
++ initializePlayerForNewTurn(): void
+
++ advancePosition(int spaceCount): boolean
++ updateCurrentBalance(int balanceChange): void
+
++ rollDice(): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>430</x>
+      <y>900</y>
+      <w>180</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>halign=left
+GameEventTypeKeys
+&lt;&lt;enum&gt;&gt;
+--
+UNSPECIFIED,
+DRAW_CARD,
+UPDATE_BALANCE,
+TELEPORT,
+JAIL_PLAYER,
+TAX,
+JAIL_SPACE,
+FREE_PARKING
+bg=white</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>490</x>
+      <y>1080</y>
+      <w>30</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;40.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>740</x>
+      <y>1010</y>
+      <w>90</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+extends
+layer=2
+bg=white</panel_attributes>
+    <additional_attributes>10.0;110.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>

@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>260</x>
+      <y>190</y>
+      <w>550</w>
+      <h>620</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+GameLogicController
+--
+- board: Board
+- logHelper: LogHelper
+
+- currentPlayer: Player
+- currentSpace: Space
+- currentProperty: Property
+- currentGameEvent: GameEvent
+
+- isGameActive: boolean
+- playersCount: int
+- turnCounter: int
+- victoryConditionMet: boolean
+
+- gameLogicEvaluatorDrawCard: GameLogicEvaluatorDrawCard
+- gameLogicManagerImprovements: GameLogicManagerImprovements
+- gameLogicTools: GameLogicTools
+
+--
++ initialEvaluator(): void
+- bankruptStateEvaluator(): void
+- jailStateEvaluator(): void
+- maeStateEvaluator(): void
+- movementEvaluator(): void
+- normalTurnEvaluator(): void
+- propertyEvaluator(): void
+
++ playerDecisionAuction(): void
++ playerDecisionPurchaseProperty(): void
+
++ playerDecisionJailPostBail(): void
++ playerDecisionJailRollDoubles(): void
++ playerDecisionJailUseGOOJFC(): void
+
++ diceRollManager(): void
++ endTurnManager(): void
++ forfeitManager(): void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1130</x>
+      <y>900</y>
+      <w>530</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+GameLogicEvaluatorDrawCard
+--
+- currentDrawCard: DrawCard
+--
++ &lt;&lt;constructor&gt;&gt; GameLogicEvaluatorDrawCard()
+
++ drawCardEvaluator(): void
+
+- eventDistributedBalanceUpdate(): void
+- eventImprovementRepairs(): void
+- eventTeleportRelative(): void
+- eventTeleportWithRentModifier(): void
+bg=white
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1020</x>
+      <y>220</y>
+      <w>550</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+GameLogicModule
+&lt;&lt;abstract&gt;&gt;
+--
+- board: Board
+- controller: GameLogicController
+- currentPlayer: Player
+- currentSpace: Space
+--
++ attachReferences(Board board, GameLogicController controller, Space currentSpace, Player currentPlayer): void
+bg=white
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1130</x>
+      <y>460</y>
+      <w>530</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+GameLogicManagerImprovements
+--
++ &lt;&lt;constructor&gt;&gt; GameLogicManagerImprovements(GameLogicController controller)
+
++ improvementsManager((int spaceID, DialogContainerImprovements.ActionsImprovements.ImprovementsActions inputAction): void
+bg=white
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1130</x>
+      <y>680</y>
+      <w>530</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+GameLogicTools
+--
+- debugPlayer: Player
+- logHelper: LogHelper
+--
++ &lt;&lt;constructor&gt;&gt; GameLogicTools()
+
++ attachLogHelper(LogHelper logHelper): void
++ debugToolsGiveAllProperties(int playerID): void
++ debugToolsRandomlyDistributeAllProperties(): void
++ gameEditorJailPlayer(Player player): void
+bg=white
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1050</x>
+      <y>490</y>
+      <w>100</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>80.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1050</x>
+      <y>710</y>
+      <w>100</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>80.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1050</x>
+      <y>930</y>
+      <w>100</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>80.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1050</x>
+      <y>430</y>
+      <w>30</w>
+      <h>530</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;510.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1050</x>
+      <y>390</y>
+      <w>100</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=-
+extends v</panel_attributes>
+    <additional_attributes>10.0;50.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1050</x>
+      <y>490</y>
+      <w>90</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=.
+lw=4
+fg=red
+layer=1</panel_attributes>
+    <additional_attributes>10.0;10.0;70.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1050</x>
+      <y>710</y>
+      <w>90</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=.
+lw=4
+fg=red
+layer=1</panel_attributes>
+    <additional_attributes>10.0;10.0;70.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1050</x>
+      <y>930</y>
+      <w>90</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=.
+lw=4
+fg=red
+layer=1</panel_attributes>
+    <additional_attributes>10.0;10.0;70.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1050</x>
+      <y>490</y>
+      <w>30</w>
+      <h>470</h>
+    </coordinates>
+    <panel_attributes>lt=.
+lw=4
+fg=red
+layer=1</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;450.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>930</x>
+      <y>490</y>
+      <w>150</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=.
+fg=red
+layer=1</panel_attributes>
+    <additional_attributes>130.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>800</x>
+      <y>480</y>
+      <w>160</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;&gt;
+contains &gt;
+fg=red
+layer=1</panel_attributes>
+    <additional_attributes>140.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1000</x>
+      <y>190</y>
+      <w>680</w>
+      <h>930</h>
+    </coordinates>
+    <panel_attributes>Game Logic Modules
+lt=..
+bg=#FFD0D0
+layer=-1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>260</x>
+      <y>880</y>
+      <w>550</w>
+      <h>240</h>
+    </coordinates>
+    <panel_attributes>style=wordwrap
+GameLogicSwitchboard
+--
+- c: GameLogicController
+- infoArea: JTextArea
+- origin: Object
+--
++ &lt;&lt;constructor&gt;&gt; GameLogicSwitchboard(GameLogicController controller)
+
++ actionHandler(ActionsGUI trigger, int currentSpaceSelectionID): void
++ setOrigin(Object origin): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>60</x>
+      <y>900</y>
+      <w>110</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>valign=center
+halign=center
+DynamicView
+lt=..
+bg=#CCCCFF</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>160</x>
+      <y>920</y>
+      <w>120</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;100.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>130</x>
+      <y>740</y>
+      <w>150</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;160.0;10.0;10.0;130.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>690</x>
+      <y>800</y>
+      <w>110</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+forwards
+actions to
+layer=1
+fg=magenta</panel_attributes>
+    <additional_attributes>10.0;80.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>70</x>
+      <y>950</y>
+      <w>210</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+sends actions to
+layer=1
+fg=magenta</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0;190.0;50.0</additional_attributes>
+  </element>
+</diagram>

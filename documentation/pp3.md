@@ -40,6 +40,27 @@ The primary objective for this Java prototype of is to demonstrate how the game 
 Note the use of the word "prototype" -- this implementation is not fully compliant with the original game rules. For example, auctions and trading are not implemented, and there are inevitably some bugs to be encountered while playing normally.
 
 &nbsp;
+
+<mark>**Important:**</mark>
+
+**See the directory `/src/main/java/cc/jayv/monopoly3` for all Java code** pertaining to this project.
+
+The latest executable `.jar` file is available as `/JavaMonopolyPrototype.jar`.
+
+For more details on the codebase, please see the JavaDoc -- it is currently available online at [GitHub Pages](), but the offline version is available under the `/javadoc` directory.
+
+Primary documentation is available within `/documentation` along with supplemental diagrams and screenshots.
+
+Legacy and unused code files are stored under `/src/main/legacy`. These files are **not** used in the final version of the main project, but are stored for reference.
+
+Art assets and helper files, such as icons and .csv-formatted space data, are stored under `/src/main/resources`. All non-reference images were created with Aseprite and Adobe Illustrator.
+
+##### Third-party libraries:
+This project utilizes:
+- [MigLayout](http://miglayout.com/) as the primary Swing layout manager. Licensed under BSD or GPL.
+- [FlatLaf](https://github.com/JFormDesigner/FlatLaf) for the Swing look and feel. Licensed under Apache License 2.0.
+
+&nbsp;
 ### Data structures
 
 #### Spaces, properties, and game events
@@ -169,23 +190,60 @@ An important note is that these categories are not occupied by single classes or
 <br>
 
 &nbsp;
-
 ### Manipulation of data
 
-Classes belonging to the **Controller** group are responsible for manipulating the game state, enforcing the game rules, and regulating the flow of available interactions. 
+Classes belonging to the **Controller** group are responsible for manipulating the game state, enforcing the game rules, and regulating the flow of available interactions. An intermediary class, `GameLogicSwitchboard`, receives action descriptions from the View group, and forwards them appropriately to other objects in the Controller group.
+
+This enables more concise control expressions in the GUI class, along with adding additional routines universally to all usages of a particular message. For example, a dialog may invoke the `CONTROLS_ROLLDICE` action -- *only this value* needs to be passed to the "switchboard" for the sequence of roll-dice routines to occur.
+
+Below is a UML diagram demonstrating the relationship between classes within this group. Note the inclusion of the symbolic `DynamicView` object to display its connection into the rest of the application.
+<div align="center">
+<img src="control-uml.svg">
+</div>
 
 &nbsp;
 
+The Controller group contains the vast majority of game logic, aside from some context enforcement of GUI actions, such as enabling/disabling buttons based on game state. This contains the primary class, `GameLogicController`, with some delegate classes to handle more complex actions, such as evaluating a Community Chest card or building improvements on Color properties.
+
+&nbsp;
 ### User interface - main components
 
 Classes belonging to the **View** group are responsible for displaying the state of the game to the user, and routing user input to any corresponding actions within Controller group classes.
 
-Below is a UML diagram indicating the structure and relationships of the objects which comprise the view group.
+Below is a UML diagram indicating the structure and relationships of the objects which comprise the view group. These relationships are further described in later sections.
 
-![](gui-uml.svg)
+Three primary subgroups exist in the View group:
+- primary view elements, non-dialog
+- dialog view elements
+- ActionListener implementations
+
+<div align="center">
+<img src="gui-uml.svg">
+</div>
 
 &nbsp;
 
+*See the below sections for more information on the *primary view* and *dialog* subgroups.*
+
+The ActionListener implementation subgroup contains internal classes of the primary View class -- `DynamicView`. These can be attached to any arbitrary Swing element that supports them. The function of these classes is similar to that of the "switchboard," i.e., to reduce code duplication and to allow simpler expressions of actions.
+
+Example:
+
+An instance of `GenericButtonActionListener` can be created with the action `CONTROLS_SHOW_IMPROVEMENTS` specified in the constructor call:
+
+```
+listener = new GenericButtonActionListener(CONTROLS_SHOW_IMPROVEMENTS);
+```
+
+This new instance can then be attached to an existing `JButton`, and the appropriate action will be forwarded to the switchboard object without needing any additional expressions:
+
+```
+JButton button;
+...
+button.addActionListener(listener);
+```
+
+&nbsp;
 #### Inspiration
 
 The user interface for this application is inspired and informed by [a commercial implementation](https://archive.org/details/MonopolyMacPlay) of the game - <i>Monopoly</i> (1993) by MacPlay, for the original Macintosh platform.
@@ -200,7 +258,6 @@ The user interface for this application is inspired and informed by [a commercia
 A key attribute of this implementation is the simplicity of the user interface - given that the Macintosh has a resolution of 512x342 with 2 colors, this serves as a good template for a simpler design.
 
 &nbsp;
-
 #### General structure
 
 Visually, the user interface is comprised of a main window, with a set of dialogs that hide/show when appropriate. This main window consists of three sub-windows: the board, information, and control sections.
@@ -211,6 +268,12 @@ Visually, the user interface is comprised of a main window, with a set of dialog
 </figure>
 </div>
 <br>
+
+A more abstract diagram of the View group components, and how they interact with the Controller and Data groups, is given:
+
+<div align="center">
+<img src="gui-diagram.png">
+</div>
 
 &nbsp;
 #### Board view
@@ -335,6 +398,7 @@ Three options are provided through the dialog:
 
 &nbsp;
 <a name="game-editor"></a>
+<a name="optional-dialogs"></a>
 
 The **Game Editor** optional dialog is available under the *Edit* menu, and provides the user with options to directly manipulate the game state. This is very useful for debugging, and can also "repair" the game if a bug renders it unplayable.
 
@@ -405,3 +469,7 @@ This feature existed in the prior `MainWindow.java` GUI implementation, but has 
 **Saving/loading game state**
 
 The GUI does not contain necessary routines to update correctly after serialized game state objects are loaded. The board and player data have successfully been saved and loaded, but the interface becomes unusable after this.
+
+**CPU players**
+
+A simple implementation of computer-controlled player.
