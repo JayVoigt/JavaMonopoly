@@ -49,6 +49,8 @@ Note the use of the word "prototype" -- this implementation is not fully complia
 
 The latest executable `.jar` file is available as `/JavaMonopolyPrototype.jar`.
 
+**Features from Java 18 are used in the project.** The .jar has been tested on macOS 11 and Windows 10 with OpenJDK and OpenJDK Runtime Environment versions 18.0.1. **It may not run without a JRE version that supports class file versions >= 60.**
+
 For more details on the codebase, please see the JavaDoc -- it is currently available online at [GitHub Pages](https://pages.github.iu.edu/jayvoigt/cc/jayv/monopoly3/package-summary.html), but the offline version is available under the `/javadoc` directory.
 
 Primary documentation is available as `/documentation/MainDocumentation.md`, along with supplemental diagrams and screenshots in this directory.
